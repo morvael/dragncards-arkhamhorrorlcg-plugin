@@ -1,0 +1,33 @@
+{
+    "steps": {
+        "0.0": {"phaseId": "Beginning", "label": "id:step-0.0"},
+        "1.1": {"phaseId": "Mythos", "label": "id:step-1.1"},
+        "1.2": {"phaseId": "Mythos", "label": "id:step-1.2"},
+        "1.3": {"phaseId": "Mythos", "label": "id:step-1.3"},
+        "1.4": {"phaseId": "Mythos", "label": "id:step-1.4"},
+        "PW1": {"phaseId": "Mythos", "label": "id:step-PW1"},
+        "1.5": {"phaseId": "Mythos", "label": "id:step-1.5"},
+        "2.1": {"phaseId": "Investigation", "label": "id:step-2.1"},
+        "PW2": {"phaseId": "Investigation", "label": "id:step-PW2"},
+        "2.2": {"phaseId": "Investigation", "label": "id:step-2.2"},
+        "PW3": {"phaseId": "Investigation", "label": "id:step-PW3"},
+        "2.2.1": {"phaseId": "Investigation", "label": "id:step-2.2.1"},
+        "2.2.2": {"phaseId": "Investigation", "label": "id:step-2.2.2"},
+        "2.3": {"phaseId": "Investigation", "label": "id:step-2.3"},
+        "3.1": {"phaseId": "Enemy", "label": "id:step-3.1"},
+        "3.2": {"phaseId": "Enemy", "label": "id:step-3.2"},
+        "PW4": {"phaseId": "Enemy", "label": "id:step-PW4"},
+        "3.3": {"phaseId": "Enemy", "label": "id:step-3.3"},
+        "PW5": {"phaseId": "Enemy", "label": "id:step-PW5"},
+        "3.4": {"phaseId": "Enemy", "label": "id:step-3.4"},
+        "4.1": {"phaseId": "Upkeep", "label": "id:step-4.1"},
+        "PW6": {"phaseId": "Upkeep", "label": "id:step-PW6"},
+        "4.2": {"phaseId": "Upkeep", "label": "id:step-4.2"},
+        "4.3": {"phaseId": "Upkeep", "label": "id:step-4.3"},
+        "4.4": {"phaseId": "Upkeep", "label": "id:step-4.4"},
+        "4.5": {"phaseId": "Upkeep", "label": "id:step-4.5"},
+        "4.6": {"phaseId": "Upkeep", "label": "id:step-4.6"},
+        "0.1": {"phaseId": "End", "label": "id:step-0.1"}
+    },
+    "stepOrder": ["0.0", "1.1", "1.2", "1.3", "1.4", "PW1", "1.5", "2.1", "PW2", "2.2", "PW3", "2.2.1", "2.2.2", "2.3", "3.1", "3.2", "PW4", "3.3", "PW5", "3.4", "4.1", "PW6", "4.2", "4.3", "4.4", "4.5", "4.6", "0.1"]
+}
