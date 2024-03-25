@@ -1,0 +1,5 @@
+{
+    "cardProperties": {
+        "exhausted": {"type": "boolean", "default": false}
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "cardTypes": {
+        "Investigator": {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Asset":        {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Treachery":    {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Event":        {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Skill":        {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Enemy":        {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Scenario":     {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Agenda":       {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Act":          {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Location":     {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Story":        {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Key":          {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]}
+    }
+}

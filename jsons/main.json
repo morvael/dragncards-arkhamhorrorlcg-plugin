@@ -1,0 +1,8 @@
+{
+    "pluginName": "Arkham Horror Living Card Game",
+    "tutorialUrl": "https://www.youtube.com/watch?v=zzliu_-xNNQ",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "firstPlayerImageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/firstplayer.png",
+    "backgroundUrl": "https://i.imgur.com/sHn4yAA.jpg"
+}
