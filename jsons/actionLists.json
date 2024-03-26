@@ -1,0 +1,92 @@
+{
+    "actionLists": {
+        "toggleExhaust": [
+            ["COND",
+                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 90], "$ACTIVE_CARD.inPlay"],
+                [
+                    ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                ],
+                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 0], "$ACTIVE_CARD.inPlay"],
+                [
+                    ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 90],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                ],
+                ["AND", "$ACTIVE_CARD.inPlay"],
+                [
+                    ["LOG", "{{$ALIAS_N}} straightened {{$ACTIVE_FACE.name}}."],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                ]
+            ]
+        ],
+        "flipCard": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                [
+                    ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} facedown."],
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"]    
+                ],
+                true,
+                [
+                    ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
+                    ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} faceup."]
+                ]
+            ]
+        ],
+        "discardCard": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                [
+                    ["VAR", "$STACK_ID", ["GET_STACK_ID", "$ACTIVE_CARD.groupId", "$ACTIVE_CARD.stackIndex"]],
+                    ["VAR", "$CARD_IDS", "$GAME.stackById.$STACK_ID.cardIds"],
+                    ["FOR_EACH_VAL", "$CARD_ID", "$CARD_IDS",
+                        [
+                            ["VAR", "$CARD", "$GAME.cardById.$CARD_ID"],
+                            ["COND",
+                                ["EQUAL", "$CARD.discardGroupId", null],
+                                ["LOG", "{{$ALIAS_N}} failed to discard {{$CARD.currentFace.name}} because it is not associated with a discard pile. Please drag the card instead."],
+                                true,
+                                [
+                                    ["VAR", "$CURRENT_SIDE", "$CARD.currentSide"],
+                                    ["LOG", "{{$ALIAS_N}} discarded {{$CARD.sides.A.name}}."],
+                                    ["MOVE_CARD", "$CARD_ID", "$CARD.discardGroupId", 0]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                true,
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.discardGroupId", null],
+                        ["LOG", "{{$ALIAS_N}} failed to discard {{$ACTIVE_FACE.name}} because it is not associated with a discard pile. Please drag the card instead."],
+                        true,
+                        [
+                            ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_CARD.sides.A.name}}."],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.discardGroupId", 0]
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        "shuffleIntoDeck": [
+            ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.deckGroupId", 0],
+            ["VAR", "$GROUP_ID", "$ACTIVE_CARD.deckGroupId"],
+            ["SHUFFLE_GROUP", "$GROUP_ID"],
+            ["LOG", "{{$ALIAS_N}} shuffled {{$ACTIVE_FACE.name}} into {{$GAME.groupById.$GROUP_ID.label}}."]
+        ],
+        "detach": [
+            ["COND",
+                ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                [
+                    ["LOG", "{{$ALIAS_N}} detached {{$ACTIVE_FACE.name}}."],
+                    ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1]]
+                ]
+            ]
+        ]
+
+    }
+}

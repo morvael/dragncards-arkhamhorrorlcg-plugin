@@ -1,0 +1,20 @@
+{
+    "hotkeys": {
+        "token": [
+            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/resource.png)"},
+            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/progress.png)"},
+            {"key": "3", "tokenType": "damage", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/damage.png)"},
+            {"key": "4", "tokenType": "horror", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/willpower.png)"},
+            {"key": "5", "tokenType": "doom", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/threat.png)"}
+        ],
+        "game": [
+        ],
+        "card": [
+            {"key": "A", "actionList": "toggleExhaust", "label": "id:exhaustOrReady"},
+            {"key": "C", "actionList": "detach", "label": "id:detach"},
+            {"key": "F", "actionList": "flipCard", "label": "id:flip"},
+            {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
+            {"key": "X", "actionList": "discardCard", "label": "id:discard"}
+        ]
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "layoutMenu": [
+        {"label": "id:layout1Player", "layoutId": "layout1Player", "numPlayers": 1},
+        {"label": "id:layout2Player", "layoutId": "layout2Player", "numPlayers": 2}
+    ]
+}

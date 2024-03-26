@@ -1,0 +1,27 @@
+{
+    "deckbuilder": {
+        "addButtons": [1,2,3],
+        "colorKey": "faction",
+        "colorValues": {
+            "Guardian": "#9600b9",
+            "Mystic": "#09b900",
+            "Seeker": "#00ccee",
+            "Rogue": "#ff0000",
+            "Survivor": "#ffaa00",
+            "Neutral": "#000000",
+            "Mythos": "#000000"
+        },
+        "columns": [
+            {"propName": "name", "label": "id:name"},
+            {"propName": "faction", "label": "id:faction"},
+            {"propName": "type", "label": "id:type"},
+            {"propName": "traits", "label": "id:traits"},
+            {"propName": "packName", "label": "id:pack"},
+            {"propName": "numberInPack", "label": "id:number"}
+        ],
+        "spawnGroups": [
+            {"loadGroupId": "playerNPlay1", "label": "id:myPlayArea"},
+            {"loadGroupId": "playerNDeck", "label": "id:myDeck"}
+        ]
+    }
+}
