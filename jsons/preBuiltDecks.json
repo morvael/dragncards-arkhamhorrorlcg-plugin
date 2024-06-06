@@ -1,4 +1,359 @@
 {
     "preBuiltDecks": {
+        "Roland Banks Starter Deck": {
+             "label": "Roland Banks Starter Deck",
+             "cards": [
+                {"databaseId": "01501", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01506", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01507", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01516", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01517", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01518", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01519", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01520", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01521", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01522", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01523", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01524", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01525", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01530", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01531", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01532", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01533", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01534", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01535", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01536", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01537", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01538", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01539", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01589", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01592", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01602", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Daisy Walker Starter Deck": {
+             "label": "Daisy Walker Starter Deck",
+             "cards": [
+                {"databaseId": "01502", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01508", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01509", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01530", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01531", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01532", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01533", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01534", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01535", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01536", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01537", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01538", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01539", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01558", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01559", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01560", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01561", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01562", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01563", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01564", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01565", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01566", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01567", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01592", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01597", "quantity": 1, "loadGroupId": "playerNDeck"}                
+            ]
+        },
+        "\"Skids\" O'Toole Starter Deck": {
+             "label": "\"Skids\" O'Toole Starter Deck",
+             "cards": [
+                {"databaseId": "01503", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01510", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01511", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01516", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01517", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01518", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01519", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01520", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01521", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01522", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01523", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01524", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01525", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01544", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01545", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01546", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01547", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01548", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01549", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01550", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01551", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01552", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01553", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01589", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01591", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01601", "quantity": 1, "loadGroupId": "playerNDeck"}          
+            ]
+        },
+        "Agnes Baker Starter Deck": {
+             "label": "Agnes Baker Starter Deck",
+             "cards": [
+                {"databaseId": "01504", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01512", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01513", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01558", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01559", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01560", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01561", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01562", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01563", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01564", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01565", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01566", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01567", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01572", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01573", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01574", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01575", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01576", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01577", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01578", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01579", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01580", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01581", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01593", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01598", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Wendy Adams Starter Deck": {
+             "label": "Wendy Adams Starter Deck",
+             "cards": [
+                {"databaseId": "01505", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01514", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01515", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01544", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01545", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01546", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01547", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01548", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01549", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01550", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01551", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01552", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01553", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01572", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01573", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01574", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01575", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01576", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01577", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01578", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01579", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01580", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01581", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01591", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01593", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01596", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "The Gathering Scenario": {
+             "label": "The Gathering Scenario",
+             "cards": [
+                {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01107", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01108", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01111", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01112", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOAD_CARDS", "Rats"],
+                ["LOAD_CARDS", "Ghouls"],
+                ["LOAD_CARDS", "Striking Fear"],
+                ["LOAD_CARDS", "Ancient Evils"],
+                ["LOAD_CARDS", "Chilling Cold"]
+            ]
+        },
+        "The Midnight Masks Scenario": {
+            "label": "The Midnight Masks Scenario", 
+            "cards": [
+                {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOAD_CARDS", "Chilling Cold"],
+                ["LOAD_CARDS", "Nightgaunts"],
+                ["LOAD_CARDS", "Dark Cult"],
+                ["LOAD_CARDS", "Locked Doors"],
+                ["LOAD_CARDS", "Cult of Umôrdhoth"]
+            ]
+        },
+        "Cult of Umôrdhoth": {
+            "label": "Cult of Umôrdhoth",
+            "cards": [
+                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedExtraPile1"}
+            ]
+        },
+        "The Devourer Below Scenario": {
+            "label": "The Devourer Below Scenario", 
+            "cards": [
+                {"databaseId": "01142", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "01143", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01144", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01145", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01146", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01147", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01148", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01149", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedSetAside"},
+                {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOAD_CARDS", "Ancient Evils"],
+                ["LOAD_CARDS", "Striking Fear"],
+                ["LOAD_CARDS", "Ghouls"],
+                ["LOAD_CARDS", "Dark Cult"],
+                ["LOAD_CARDS", 
+                    ["AT_INDEX", 
+                        ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"],
+                        ["RANDOM_INT", 0, 3]
+                    ]
+                ]
+            ]
+        },
+        "Rats": { 
+            "label": "Rats",
+            "cards": [
+                {"databaseId": "01159", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Ghouls": { 
+            "label": "Ghouls",
+            "cards": [
+                {"databaseId": "01160", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01161", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01162", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Striking Fear": { 
+            "label": "Striking Fear",
+            "cards": [
+                {"databaseId": "01163", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01164", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01165", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Ancient Evils": {
+            "label": "Ancient Evils", 
+            "cards": [
+                {"databaseId": "01166", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Chilling Cold": { 
+            "label": "Chilling Cold",
+            "cards": [
+                {"databaseId": "01167", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01168", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Dark Cult": { 
+            "label": "Dark Cult", 
+            "cards": [
+                {"databaseId": "01169", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01170", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01171", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Nightgaunts": {
+            "label": "Nightgaunts",
+            "cards": [
+                {"databaseId": "01172", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01173", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Locked Doors": { 
+            "label": "Locked Doors",
+            "cards": [
+                {"databaseId": "01174", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Agents of Hastur": { 
+            "label": "Agents of Hastur", 
+            "cards": [
+                {"databaseId": "01175", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01176", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Agents of Yog-Sothoth": {
+            "label": "Agents of Yog-Sothoth",
+            "cards": [
+                {"databaseId": "01177", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01178", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Agents of Shub-Niggurath": {
+            "label": "Agents of Shub-Niggurath",
+            "cards": [
+                {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01180", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Agents of Cthulhu": {
+            "label": "Agents of Cthulhu",
+            "cards": [
+                {"databaseId": "01181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
     }
 }
