@@ -27,56 +27,24 @@
                 "discardGroupId": "sharedEncounterDiscard"
             }
         },
-        "sharedScenario": {
-            "groupType": "deck",
-            "label": "id:sharedScenarioReference", 
-            "tableLabel": "id:scenarioReference",
+        "sharedAgendaDeck": {
+            "groupType": "stack",
+            "label": "id:sharedAgendaDeck", 
+            "tableLabel": "id:agenda",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
-        "sharedAgendaDeck": {
-            "groupType": "deck",
-            "label": "id:sharedAgendaDeck", 
-            "tableLabel": "id:agenda",
-            "onCardEnter": {
-                "controller": "shared",
-                "deckGroupId": "sharedAgendaDeck",
-                "discardGroupId": "sharedAgendaDiscard"
-            }
-        },
-        "sharedAgendaDiscard": {
-            "groupType": "discard",
-            "label": "id:sharedAgendaDiscard", 
-            "tableLabel": "id:sharedAgendaDiscard",
-            "onCardEnter": {
-                "controller": "shared",
-                "deckGroupId": "sharedAgendaDeck",
-                "discardGroupId": "sharedAgendaDiscard"
-            }
-        },
         "sharedActDeck": {
-            "groupType": "deck",
+            "groupType": "stack",
             "label": "id:sharedActDeck", 
             "tableLabel": "id:encounter",
             "onCardEnter": {
-                "controller": "shared",
-                "deckGroupId": "sharedActDeck",
-                "discardGroupId": "sharedActDiscard"
-            }
-        },
-        "sharedActDiscard": {
-            "groupType": "discard",
-            "label": "id:sharedActDiscard", 
-            "tableLabel": "id:discard",
-            "onCardEnter": {
-                "controller": "shared",
-                "deckGroupId": "sharedActDeck",
-                "discardGroupId": "sharedActDiscard"
+                "controller": "shared"
             }
         },
         "sharedSetAside": {
-            "groupType": "discard",
+            "groupType": "stack",
             "label": "id:sharedSetAside", 
             "tableLabel": "id:sharedSetAside",
             "onCardEnter": {
@@ -84,7 +52,7 @@
             }
         },
         "sharedScenarioReference": {
-            "groupType": "discard",
+            "groupType": "stack",
             "label": "id:sharedScenarioReference", 
             "tableLabel": "id:scenarioReference",
             "onCardEnter": {

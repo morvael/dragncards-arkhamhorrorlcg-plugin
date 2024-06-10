@@ -1,15 +1,32 @@
 {
     "deckbuilder": {
-        "addButtons": [1,2,3],
+        "addButtons": [1,2],
         "colorKey": "faction",
         "colorValues": {
-            "Guardian": "#9600b9",
-            "Mystic": "#09b900",
-            "Seeker": "#00ccee",
-            "Rogue": "#ff0000",
-            "Survivor": "#ffaa00",
-            "Neutral": "#000000",
-            "Mythos": "#000000"
+            "Guardian.": "#0070C0",
+            "Seeker.": "#E28700",
+            "Rogue.": "#00B050",
+            "Mystic.": "#7030A0",
+            "Survivor.": "#FF0000",
+            "Neutral.": "#606060",
+            "Guardian. Seeker.": "#C0C000",
+            "Guardian. Seeker. Mystic.": "#C0C000",
+            "Guardian. Rogue.": "#C0C000",
+            "Guardian. Rogue. Survivor.": "#C0C000",
+            "Guardian. Mystic.": "#C0C000",
+            "Guardian. Mystic. Survivor.": "#C0C000",
+            "Guardian. Survivor.": "#C0C000",
+            "Seeker. Rogue.": "#C0C000",
+            "Seeker. Rogue. Mystic.": "#C0C000",
+            "Seeker. Rogue. Survivor.": "#C0C000",
+            "Seeker. Mystic.": "#C0C000",
+            "Seeker. Survivor.": "#C0C000",
+            "Rogue. Mystic.": "#C0C000",
+            "Rogue. Survivor.": "#C0C000",
+            "Mystic. Guardian.": "#C0C000",
+            "Mystic. Survivor.": "#C0C000",
+            "Survivor. Seeker.": "#C0C000",
+            "Mythos.": "#000000"
         },
         "columns": [
             {"propName": "name", "label": "id:name"},
@@ -20,6 +37,7 @@
             {"propName": "numberInPack", "label": "id:number"}
         ],
         "spawnGroups": [
+            {"loadGroupId": "playerNInvestigator", "label": "id:myInvestigator"},
             {"loadGroupId": "playerNPlay1", "label": "id:myPlayArea"},
             {"loadGroupId": "playerNDeck", "label": "id:myDeck"}
         ]

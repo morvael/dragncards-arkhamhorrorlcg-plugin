@@ -1,5 +1,15 @@
 {
     "groupTypes": {
+        "stack": {
+            "canHaveAttachments": true,
+            "canHaveTokens": true,
+            "shuffleOnLoad": false,
+            "onCardEnter": {
+                "currentSide": "A",
+                "inPlay": true,
+                "rotation": 0
+            }
+        },
         "deck": {
             "canHaveAttachments": false,
             "canHaveTokens": false,

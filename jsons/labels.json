@@ -30,6 +30,9 @@
         "player4Sideboard": {
             "English": "Player4 Sideboard"
         },
+        "doom": {
+            "English": "Doom"
+        },
         "threat": {
             "English": "Threat"
         },
@@ -144,17 +147,11 @@
         "sharedSetAside": {
             "English": "Set Aside"
         },
-        "sharedActDiscard": {
-            "English": "Act Discard"
-        },
         "encounter": {
             "English": "Encounter"
         },
         "sharedActDeck": {
             "English": "Act Deck"
-        },
-        "sharedAgendaDiscard": {
-            "English": "Agenda Discard"
         },
         "agenda": {
             "English": "Agenda"
@@ -192,11 +189,14 @@
         "exhaustOrReady": {
             "English": "Exhaust Or Ready"
         },
-        "myDeck": {
-            "English": "My Deck"
+        "myInvestigator": {
+            "English": "My Investigator"
         },
         "myPlayArea": {
             "English": "My Play Area"
+        },
+        "myDeck": {
+            "English": "My Deck"
         },
         "number": {
             "English": "Number"
@@ -258,8 +258,8 @@
         "step-4.2": {
             "English": "Step-4.2"
         },
-        "step-PW6": {
-            "English": "Step- P W6"
+        "step-W6": {
+            "English": "Step-Player Window 6"
         },
         "step-4.1": {
             "English": "Step-4.1"
@@ -267,14 +267,14 @@
         "step-3.4": {
             "English": "Step-3.4"
         },
-        "step-PW5": {
-            "English": "Step- P W5"
+        "step-W5": {
+            "English": "Step-Player Window 5"
         },
         "step-3.3": {
             "English": "Step-3.3"
         },
-        "step-PW4": {
-            "English": "Step- P W4"
+        "step-W4": {
+            "English": "Step-Player Window 4"
         },
         "step-3.2": {
             "English": "Step-3.2"
@@ -291,14 +291,14 @@
         "step-2.2.1": {
             "English": "Step-2.2.1"
         },
-        "step-PW3": {
-            "English": "Step- P W3"
+        "step-W3": {
+            "English": "Step-Player Window 3"
         },
         "step-2.2": {
             "English": "Step-2.2"
         },
-        "step-PW2": {
-            "English": "Step- P W2"
+        "step-W2": {
+            "English": "Step-Player Window 2"
         },
         "step-2.1": {
             "English": "Step-2.1"
@@ -306,8 +306,8 @@
         "step-1.5": {
             "English": "Step-1.5"
         },
-        "step-PW1": {
-            "English": "Step- P W1"
+        "step-W1": {
+            "English": "Step-Player Window 1"
         },
         "step-1.4": {
             "English": "Step-1.4"
