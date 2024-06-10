@@ -8,6 +8,7 @@
             {"key": "5", "tokenType": "doom", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/threat.png)"}
         ],
         "game": [
+            {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}
         ],
         "card": [
             {"key": "A", "actionList": "toggleExhaust", "label": "id:exhaustOrReady"},

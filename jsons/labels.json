@@ -1,5 +1,23 @@
 {
     "labels": {
+        "toggleSetAside": {
+            "English": "Show/Hide Set Aside"
+        },
+        "layout1Or2Player": {
+            "English": "1 or 2 Player"
+        },
+        "sharedFacedownPile2": {
+            "English": "Facedown Pile2"
+        },
+        "sharedFacedownPile1": {
+            "English": "Facedown Pile1"
+        },
+        "sharedFaceupPile2": {
+            "English": "Faceup Pile2"
+        },
+        "sharedFaceupPile1": {
+            "English": "Faceup Pile1"
+        },
         "resources": {
             "English": "Resources"
         },
@@ -124,37 +142,37 @@
             "English": "Player1 Hand"
         },
         "sharedSetAside": {
-            "English": "Shared Set Aside"
+            "English": "Set Aside"
         },
         "sharedActDiscard": {
-            "English": "Shared Act Discard"
+            "English": "Act Discard"
         },
         "encounter": {
             "English": "Encounter"
         },
         "sharedActDeck": {
-            "English": "Shared Act Deck"
+            "English": "Act Deck"
         },
         "sharedAgendaDiscard": {
-            "English": "Shared Agenda Discard"
+            "English": "Agenda Discard"
         },
         "agenda": {
             "English": "Agenda"
         },
         "sharedAgendaDeck": {
-            "English": "Shared Agenda Deck"
+            "English": "Agenda Deck"
         },
         "scenarioReference": {
-            "English": "Scenario Reference"
+            "English": "Scenario"
         },
         "sharedScenarioReference": {
-            "English": "Shared Scenario Reference"
+            "English": "Scenario"
         },
         "sharedEncounterDiscard": {
-            "English": "Shared Encounter Discard"
+            "English": "Encounter Discard"
         },
         "sharedEncounterDeck": {
-            "English": "Shared Encounter Deck"
+            "English": "Encounter Deck"
         },
         "layout2Player": {
             "English": "Layout2 Player"

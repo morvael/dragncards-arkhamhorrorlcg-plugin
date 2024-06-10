@@ -230,11 +230,11 @@
         "Cult of Umôrdhoth": {
             "label": "Cult of Umôrdhoth",
             "cards": [
-                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedExtraPile1"}
+                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedFacedownPile1"}
             ]
         },
         "The Devourer Below Scenario": {
@@ -248,12 +248,12 @@
                 {"databaseId": "01147", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01148", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01149", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
-                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedExtraPile1"},
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
                 {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedSetAside"},
                 {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedSetAside"},
                 {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}

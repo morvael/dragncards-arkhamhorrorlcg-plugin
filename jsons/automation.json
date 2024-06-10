@@ -1,0 +1,11 @@
+{
+    "automation": {
+        "postNewGameActionList": [
+            ["LOAD_CARDS", "Roland Banks Starter Deck"],
+            ["LOAD_CARDS", "The Gathering Scenario"],
+            ["SET", "/numPlayers", 2],
+            ["DEFINE", "$PLAYER_N", "player2"],
+            ["LOAD_CARDS", "Daisy Walker Starter Deck"]
+        ]
+    }
+}

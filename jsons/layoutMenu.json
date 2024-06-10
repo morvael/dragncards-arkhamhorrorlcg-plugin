@@ -1,6 +1,5 @@
 {
     "layoutMenu": [
-        {"label": "id:layout1Player", "layoutId": "layout1Player", "numPlayers": 1},
-        {"label": "id:layout2Player", "layoutId": "layout2Player", "numPlayers": 2}
+        {"label": "id:layout1Or2Player", "layoutId": "layout1Or2Player", "numPlayers": 1}
     ]
 }

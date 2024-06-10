@@ -83,6 +83,46 @@
                 "controller": "shared"
             }
         },
+        "sharedScenarioReference": {
+            "groupType": "discard",
+            "label": "id:sharedScenarioReference", 
+            "tableLabel": "id:scenarioReference",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedFaceupPile1": {
+            "groupType": "discard",
+            "label": "id:sharedFaceupPile1", 
+            "tableLabel": "id:sharedFaceupPile1",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedFaceupPile2": {
+            "groupType": "discard",
+            "label": "id:sharedFaceupPile2", 
+            "tableLabel": "id:sharedFaceupPile2",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedFacedownPile1": {
+            "groupType": "deck",
+            "label": "id:sharedFacedownPile1", 
+            "tableLabel": "id:sharedFacedownPile1",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedFacedownPile2": {
+            "groupType": "deck",
+            "label": "id:sharedFacedownPile2", 
+            "tableLabel": "id:sharedFacedownPile2",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
         "player1Hand": {
             "groupType": "hand",
             "label": "id:player1Hand", 

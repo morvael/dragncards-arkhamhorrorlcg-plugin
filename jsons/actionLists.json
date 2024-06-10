@@ -86,7 +86,32 @@
                     ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1]]
                 ]
             ]
+        ],
+        "toggleSetAside": [
+            ["COND",
+                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSetAside", true],
+                [
+                    ["LOG", "{{$ALIAS_N}} is looking at the set aside regions."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSetAside", true],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", true]
+                        ]
+                    ]]
+                ],
+                ["TRUE"],
+                [
+                    ["LOG", "{{$ALIAS_N}} is no longer looking at the set aside regions."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSetAside", false],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", false]
+                        ]
+                    ]]
+                ]
+            ]
         ]
-
     }
 }
