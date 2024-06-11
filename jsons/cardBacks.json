@@ -1,7 +1,6 @@
 {
     "cardBacks": {
-        "encounter": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/cardbacks/encounter.jpg"},
-        "player": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/cardbacks/player.jpg"}
+        "encounter": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
+        "player": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"}
     }
 }
-

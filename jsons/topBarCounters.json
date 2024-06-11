@@ -8,14 +8,14 @@
             },
             {
                 "label": "id:doom",
-                "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/threat.png",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png",
                 "gameProperty": "doom"
             }
         ],
         "player": [
             {
                 "label": "id:resources",
-                "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/resource.png",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png",
                 "playerProperty": "resources"
             }
         ]

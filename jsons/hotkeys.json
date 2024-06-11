@@ -1,11 +1,11 @@
 {
     "hotkeys": {
         "token": [
-            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/resource.png)"},
-            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/progress.png)"},
-            {"key": "3", "tokenType": "damage", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/damage.png)"},
-            {"key": "4", "tokenType": "horror", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/willpower.png)"},
-            {"key": "5", "tokenType": "doom", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/threat.png)"}
+            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png)"},
+            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png)"},
+            {"key": "3", "tokenType": "doom", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png)"},
+            {"key": "4", "tokenType": "damage", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png)"},
+            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
         ],
         "game": [
             {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}

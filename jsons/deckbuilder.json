@@ -37,6 +37,7 @@
             {"propName": "numberInPack", "label": "id:number"}
         ],
         "spawnGroups": [
+            {"loadGroupId": "sharedLocations", "label": "id:myMiniInvestigator"},
             {"loadGroupId": "playerNInvestigator", "label": "id:myInvestigator"},
             {"loadGroupId": "playerNPlay1", "label": "id:myPlayArea"},
             {"loadGroupId": "playerNDeck", "label": "id:myDeck"}
