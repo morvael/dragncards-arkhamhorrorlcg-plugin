@@ -3,7 +3,7 @@
         "resources": {
             "label": "id:resources",
             "type": "integer", 
-            "default": 0,
+            "default": 5,
             "min": 0
         }
     }

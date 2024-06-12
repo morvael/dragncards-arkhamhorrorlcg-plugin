@@ -28,7 +28,7 @@
             }
         },
         "sharedAgendaDeck": {
-            "groupType": "stack",
+            "groupType": "story",
             "label": "id:sharedAgendaDeck", 
             "tableLabel": "id:agenda",
             "onCardEnter": {
@@ -36,7 +36,7 @@
             }
         },
         "sharedActDeck": {
-            "groupType": "stack",
+            "groupType": "story",
             "label": "id:sharedActDeck", 
             "tableLabel": "id:encounter",
             "onCardEnter": {

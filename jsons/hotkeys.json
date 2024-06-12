@@ -11,7 +11,8 @@
             {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}
         ],
         "card": [
-            {"key": "A", "actionList": "toggleExhaust", "label": "id:exhaustOrReady"},
+            {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
+            {"key": "E", "actionList": "toggleExhaust", "label": "id:exhaustOrReady"},
             {"key": "C", "actionList": "detach", "label": "id:detach"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},
             {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},

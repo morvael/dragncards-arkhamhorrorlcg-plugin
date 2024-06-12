@@ -1,5 +1,15 @@
 {
     "groupTypes": {
+        "story": {
+            "canHaveAttachments": true,
+            "canHaveTokens": true,
+            "shuffleOnLoad": false,
+            "onCardEnter": {
+                "currentSide": "A",
+                "inPlay": true,
+                "rotation": 0
+            }
+        },
         "stack": {
             "canHaveAttachments": true,
             "canHaveTokens": true,
