@@ -128,10 +128,27 @@
                         ["EQUAL", "$ADVANCING_CARD.currentSide", "B"],
                         [
                             ["LOG", "{{$ALIAS_N}} advanced {{$ADVANCING_CARD.sides.B.name}}."],
-                            ["MOVE_CARD", "$ADVANCING_CARD.id", "$ACTIVE_GROUP_ID", -1],
+                            ["COND",
+                                ["GREATER_THAN", ["LENGTH", "$ACTIVE_GROUP.stackIds"], 1],
+                                ["MOVE_CARD", "$ADVANCING_CARD.id", "$ACTIVE_GROUP_ID", -1]
+                            ],
                             ["SET", "/cardById/$ADVANCING_CARD.id/currentSide", "A"]
                         ]
                     ]
+                ]
+            ]
+        ],
+        "pickChaosToken": [
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 1],
+                ["SHUFFLE_GROUP", "sharedChaosBag"]
+            ],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 0],
+                [
+                    ["VAR", "$PICKED_TOKEN", ["GET_CARD", "sharedChaosBag", 0, 0]],
+                    ["SET", "/cardById/$PICKED_TOKEN.id/currentSide", "A"],
+                    ["MOVE_CARD", "$PICKED_TOKEN.id", "sharedLocations", -1]
                 ]
             ]
         ]

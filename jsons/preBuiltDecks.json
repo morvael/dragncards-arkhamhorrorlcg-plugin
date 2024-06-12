@@ -200,7 +200,8 @@
                 ["LOAD_CARDS", "Ghouls"],
                 ["LOAD_CARDS", "Striking Fear"],
                 ["LOAD_CARDS", "Ancient Evils"],
-                ["LOAD_CARDS", "Chilling Cold"]
+                ["LOAD_CARDS", "Chilling Cold"],
+                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
             ]
         },
         "The Midnight Masks Scenario": {
@@ -229,7 +230,8 @@
                 ["LOAD_CARDS", "Nightgaunts"],
                 ["LOAD_CARDS", "Dark Cult"],
                 ["LOAD_CARDS", "Locked Doors"],
-                ["LOAD_CARDS", "Cult of Umôrdhoth"]
+                ["LOAD_CARDS", "Cult of Umôrdhoth"],
+                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
             ]
         },
         "Cult of Umôrdhoth": {
@@ -273,7 +275,8 @@
                         ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"],
                         ["RANDOM_INT", 0, 3]
                     ]
-                ]
+                ],
+                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
             ]
         },
         "Rats": { 
@@ -358,6 +361,70 @@
             "cards": [
                 {"databaseId": "01181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "01182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Night of the Zealot Chaos Bag - Easy": {
+            "label": "Night of the Zealot Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Night of the Zealot Chaos Bag - Normal": {
+            "label": "Night of the Zealot Chaos Bag - Normal",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Night of the Zealot Chaos Bag - Hard": {
+            "label": "Night of the Zealot Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Night of the Zealot Chaos Bag - Expert": {
+            "label": "Night of the Zealot Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
     }

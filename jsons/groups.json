@@ -60,6 +60,16 @@
                 "controller": "shared"
             }
         },
+        "sharedChaosBag": {
+            "groupType": "chaosBag",
+            "label": "id:sharedChaosBag",
+            "tableLabel": "id:chaosBag",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedChaosBag",
+                "discardGroupId": "sharedChaosBag"
+            }
+        },
         "sharedFaceupPile1": {
             "groupType": "discard",
             "label": "id:sharedFaceupPile1", 

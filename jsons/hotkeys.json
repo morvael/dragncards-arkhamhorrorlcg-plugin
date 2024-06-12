@@ -8,6 +8,7 @@
             {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
         ],
         "game": [
+            {"key": "T", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
             {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}
         ],
         "card": [

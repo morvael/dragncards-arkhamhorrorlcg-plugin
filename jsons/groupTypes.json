@@ -58,6 +58,16 @@
                 "currentSide": "A",
                 "inPlay": true
             }
+        },
+        "chaosBag": {
+            "canHaveAttachments": false,
+            "canHaveTokens": false,
+            "shuffleOnLoad": false,
+            "onCardEnter": {
+                "currentSide": "B",
+                "inPlay": false,
+                "rotation": 0
+            }
         }
     }
 }

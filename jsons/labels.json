@@ -147,6 +147,12 @@
         "sharedScenarioReference": {
             "English": "Scenario"
         },
+        "chaosBag": {
+            "English": "Chaos"
+        },
+        "sharedChaosBag": {
+            "English": "Chaos Bag"
+        },
         "sharedEncounterDiscard": {
             "English": "Encounter Discard"
         },
@@ -329,6 +335,9 @@
         },
         "alpha": {
             "English": "α"
+        },
+        "pickChaosToken": {
+            "English": "Pick Chaos Token"
         }
     }
 }
