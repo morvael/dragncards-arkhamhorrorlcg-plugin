@@ -5,6 +5,7 @@
             "label": "Locations", 
             "tableLabel": "",
             "onCardEnter": {
+                "controller": "shared"
             }
         },
         "sharedEncounterDeck": {
@@ -130,18 +131,9 @@
                 "controller": "player1"
             }
         },
-        "player1Play1": {
+        "player1Play": {
             "groupType": "inPlay",
-            "label": "id:player1Play1", 
-            "tableLabel": "id:playArea",
-            "canHaveAttachments": true,
-            "onCardEnter": {
-                "controller": "player1"
-            }
-        },
-        "player1Play2": {
-            "groupType": "inPlay",
-            "label": "id:player1Play2", 
+            "label": "id:player1Play", 
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
@@ -153,13 +145,6 @@
             "label": "id:player1Threat", 
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
-            "onCardEnter": {
-            }
-        },
-        "player1Sideboard": {
-            "groupType": "discard",
-            "label": "id:player1Sideboard", 
-            "tableLabel": "id:sideboard",
             "onCardEnter": {
                 "controller": "player1"
             }
@@ -203,18 +188,9 @@
                 "controller": "player2"
             }
         },
-        "player2Play1": {
+        "player2Play": {
             "groupType": "inPlay",
-            "label": "id:player2Play1", 
-            "tableLabel": "id:playArea",
-            "canHaveAttachments": true,
-            "onCardEnter": {
-                "controller": "player2"
-            }
-        },
-        "player2Play2": {
-            "groupType": "inPlay",
-            "label": "id:player2Play2", 
+            "label": "id:player2Play", 
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
@@ -226,13 +202,6 @@
             "label": "id:player2Threat", 
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
-            "onCardEnter": {
-            }
-        },
-        "player2Sideboard": {
-            "groupType": "discard",
-            "label": "id:player2Sideboard", 
-            "tableLabel": "id:sideboard",
             "onCardEnter": {
                 "controller": "player2"
             }
@@ -276,18 +245,9 @@
                 "controller": "player3"
             }
         },
-        "player3Play1": {
+        "player3Play": {
             "groupType": "inPlay",
-            "label": "id:player3Play1", 
-            "tableLabel": "id:playArea",
-            "canHaveAttachments": true,
-            "onCardEnter": {
-                "controller": "player3"
-            }
-        },
-        "player3Play2": {
-            "groupType": "inPlay",
-            "label": "id:player3Play2", 
+            "label": "id:player3Play", 
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
@@ -299,13 +259,6 @@
             "label": "id:player3Threat", 
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
-            "onCardEnter": {
-            }
-        },
-        "player3Sideboard": {
-            "groupType": "discard",
-            "label": "id:player3Sideboard", 
-            "tableLabel": "id:sideboard",
             "onCardEnter": {
                 "controller": "player3"
             }
@@ -349,18 +302,9 @@
                 "controller": "player4"
             }
         },
-        "player4Play1": {
+        "player4Play": {
             "groupType": "inPlay",
-            "label": "id:player4Play1", 
-            "tableLabel": "id:playArea",
-            "canHaveAttachments": true,
-            "onCardEnter": {
-                "controller": "player4"
-            }
-        },
-        "player4Play2": {
-            "groupType": "inPlay",
-            "label": "id:player4Play2", 
+            "label": "id:player4Play", 
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
@@ -372,13 +316,6 @@
             "label": "id:player4Threat", 
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
-            "onCardEnter": {
-            }
-        },
-        "player4Sideboard": {
-            "groupType": "discard",
-            "label": "id:player4Sideboard", 
-            "tableLabel": "id:sideboard",
             "onCardEnter": {
                 "controller": "player4"
             }

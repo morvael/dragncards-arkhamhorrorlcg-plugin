@@ -1,22 +1,20 @@
 {
     "actionLists": {
-        "toggleExhaust": [
+        "exhaust": [
             ["COND",
-                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 90], "$ACTIVE_CARD.inPlay"],
-                [
-                    ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
-                ],
                 ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 0], "$ACTIVE_CARD.inPlay"],
                 [
                     ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
                     ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 90],
                     ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
-                ],
-                ["AND", "$ACTIVE_CARD.inPlay"],
+                ]
+            ]
+        ],
+        "ready": [
+            ["COND",
+                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 90], "$ACTIVE_CARD.inPlay"],
                 [
-                    ["LOG", "{{$ALIAS_N}} straightened {{$ACTIVE_FACE.name}}."],
+                    ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
                     ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
                     ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
                 ]

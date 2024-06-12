@@ -1,7 +1,11 @@
 {
     "groupMenu": {
-        "moveToGroupIds": [],
+        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
+            {
+                "label": "id:advanceStoryShort",
+                "actionList": "advanceStory"
+            }
         ]
     }
 }

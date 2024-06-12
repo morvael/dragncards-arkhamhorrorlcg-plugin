@@ -33,12 +33,6 @@
         "round": {
             "English": "Round"
         },
-        "sideboard": {
-            "English": "Sideboard"
-        },
-        "player4Sideboard": {
-            "English": "Player4 Sideboard"
-        },
         "doom": {
             "English": "Doom"
         },
@@ -48,11 +42,8 @@
         "player4Threat": {
             "English": "Player4 Threat"
         },
-        "player4Play2": {
-            "English": "Player4 Play2"
-        },
-        "player4Play1": {
-            "English": "Player4 Play1"
+        "player4Play": {
+            "English": "Player4 Play Area"
         },
         "investigator": {
             "English": "Investigator"
@@ -81,17 +72,11 @@
         "playArea": {
             "English": "Play Area"
         },
-        "player3Sideboard": {
-            "English": "Player3 Sideboard"
-        },
         "player3Threat": {
             "English": "Player3 Threat"
         },
-        "player3Play2": {
-            "English": "Player3 Play2"
-        },
-        "player3Play1": {
-            "English": "Player3 Play1"
+        "player3Play": {
+            "English": "Player3 Play Area"
         },
         "player3Investigator": {
             "English": "Player3 Investigator"
@@ -105,17 +90,11 @@
         "player3Hand": {
             "English": "Player3 Hand"
         },
-        "player2Sideboard": {
-            "English": "Player2 Sideboard"
-        },
         "player2Threat": {
             "English": "Player2 Threat"
         },
-        "player2Play2": {
-            "English": "Player2 Play2"
-        },
-        "player2Play1": {
-            "English": "Player2 Play1"
+        "player2Play": {
+            "English": "Player2 Play Area"
         },
         "player2Investigator": {
             "English": "Player2 Investigator"
@@ -129,17 +108,11 @@
         "player2Hand": {
             "English": "Player2 Hand"
         },
-        "player1Sideboard": {
-            "English": "Player1 Sideboard"
-        },
         "player1Threat": {
             "English": "Player1 Threat"
         },
-        "player1Play2": {
-            "English": "Player1 Play2"
-        },
-        "player1Play1": {
-            "English": "Player1 Play1"
+        "player1Play": {
+            "English": "Player1 Play Area"
         },
         "player1Investigator": {
             "English": "Player1 Investigator"
@@ -192,8 +165,14 @@
         "advanceStory": {
             "English": "Advance Agenda or Act Deck"
         },
-        "exhaustOrReady": {
-            "English": "Exhaust Or Ready"
+        "advanceStoryShort": {
+            "English": "Advance"
+        },
+        "exhaust": {
+            "English": "Exhaust"
+        },
+        "ready": {
+            "English": "Ready"
         },
         "myMiniInvestigator": {
             "English": "My Mini Investigator"

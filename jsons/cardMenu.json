@@ -1,6 +1,15 @@
 {
     "cardMenu": {
-        "moveToGroupIds": [],
-        "options": []
+        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
+        "options": [
+            {
+                "label": "id:exhaust",
+                "actionList": "exhaust"
+            },
+            {
+                "label": "id:ready",
+                "actionList": "ready"
+            }
+        ]
     }
 }
