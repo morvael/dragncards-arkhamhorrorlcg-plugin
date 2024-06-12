@@ -1,11 +1,16 @@
 {
     "automation": {
         "postNewGameActionList": [
+            ["SET_LAYOUT", "shared", "layout4Player"],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
             ["LOAD_CARDS", "The Gathering Scenario"],
-            ["SET", "/numPlayers", 2],
+            ["SET", "/numPlayers", 4],
             ["DEFINE", "$PLAYER_N", "player2"],
-            ["LOAD_CARDS", "Daisy Walker Starter Deck"]
+            ["LOAD_CARDS", "Daisy Walker Starter Deck"],
+            ["DEFINE", "$PLAYER_N", "player3"],
+            ["LOAD_CARDS", "\"Skids\" O'Toole Starter Deck"],
+            ["DEFINE", "$PLAYER_N", "player4"],
+            ["LOAD_CARDS", "Agnes Baker Starter Deck"]
         ]
     }
 }

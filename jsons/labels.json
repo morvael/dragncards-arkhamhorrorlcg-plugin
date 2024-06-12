@@ -3,8 +3,17 @@
         "toggleSetAside": {
             "English": "Show/Hide Set Aside"
         },
-        "layout1Or2Player": {
-            "English": "1 or 2 Player"
+        "layout1Player": {
+            "English": "1 Player"
+        },
+        "layout2Player": {
+            "English": "2 Player"
+        },
+        "layout3Player": {
+            "English": "3 Player"
+        },
+        "layout4Player": {
+            "English": "4 Player"
         },
         "sharedFacedownPile2": {
             "English": "Facedown Pile2"
@@ -170,12 +179,6 @@
         },
         "sharedEncounterDeck": {
             "English": "Encounter Deck"
-        },
-        "layout2Player": {
-            "English": "Layout2 Player"
-        },
-        "layout1Player": {
-            "English": "Layout1 Player"
         },
         "shuffleIntoOwnersDeck": {
             "English": "Shuffle Into Owners Deck"
