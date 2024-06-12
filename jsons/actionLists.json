@@ -118,18 +118,18 @@
                     ["GREATER_THAN", ["LENGTH", "$ACTIVE_GROUP.stackIds"], 0]
                 ],
                 [
-                    ["LOG", "{{$ALIAS_N}} advanced {{$ACTIVE_GROUP.label}}."],
-                    ["VAR", "$ADVANCING_CARD_ID", "$ACTIVE_GROUP.parentCardIds.[0]"],
-                    ["VAR", "$ADVANCING_CARD", ["GET_CARD", "$ADVANCING_CARD_ID"]],
+                    ["VAR", "$ADVANCING_CARD", ["GET_CARD", "$ACTIVE_GROUP_ID", 0, 0]],
                     ["COND",
                         ["EQUAL", "$ADVANCING_CARD.currentSide", "A"],
                         [
-                            ["SET", "/cardById/$ADVANCING_CARD_ID/currentSide", "B"]
+                            ["LOG", "{{$ALIAS_N}} advanced {{$ADVANCING_CARD.sides.A.name}}."],
+                            ["SET", "/cardById/$ADVANCING_CARD.id/currentSide", "B"]
                         ],
                         ["EQUAL", "$ADVANCING_CARD.currentSide", "B"],
                         [
-                            ["MOVE_STACK", "$ADVANCING_CARD.stackId", "$ACTIVE_GROUP_ID", -1],
-                            ["SET", "/cardById/$ADVANCING_CARD_ID/currentSide", "A"]
+                            ["LOG", "{{$ALIAS_N}} advanced {{$ADVANCING_CARD.sides.B.name}}."],
+                            ["MOVE_CARD", "$ADVANCING_CARD.id", "$ACTIVE_GROUP_ID", -1],
+                            ["SET", "/cardById/$ADVANCING_CARD.id/currentSide", "A"]
                         ]
                     ]
                 ]
