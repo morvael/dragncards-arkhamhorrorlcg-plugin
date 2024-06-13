@@ -1,4 +1,97 @@
 {
     "functions": {
+        "COUNT_CHAOS_TOKENS": {
+            "args": ["$CHAOS_TOKEN_ID"],
+            "code": [
+                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.currentFace.chaos", "$CHAOS_TOKEN_ID"]
+                ]]],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT", ["LENGTH", "$SELECTED_CHAOS_TOKENS"]]
+            ]
+        },
+        "COUNT_ALL_CHAOS_TOKENS": {
+            "args": [],
+            "code": [
+                ["COUNT_CHAOS_TOKENS", "+1"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_P1", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "0"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_P0", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-1"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M1", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-2"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M2", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-3"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M3", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-4"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M4", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-5"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M5", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-6"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M6", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-7"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M7", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "-8"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_M8", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Elder Thing"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_ELDER_THING", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Cultist"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_CULTIST", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Skull"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_SKULL", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Tablet"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_TABLET", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Bless"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_BLESS", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Curse"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_CURSE", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Frost"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_FROST", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Auto Fail"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_AUTO_FAIL", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["COUNT_CHAOS_TOKENS", "Elder Sign"],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT_ELDER_SIGN", "$COUNT_CHAOS_TOKENS_RESULT"]
+            ]
+        },
+        "ADD_CHAOS_TOKEN": {
+            "args": ["$CHAOS_TOKEN_ID", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS"],
+            "code": [
+                ["COUNT_CHAOS_TOKENS", "$CHAOS_TOKEN_ID"],
+                ["VAR", "$TOKEN_COUNT", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$TOKEN_COUNT"]],
+                ["COND",
+                    ["GREATER_THAN", "$LEFT_TO_ADD", 0],
+                    [
+                        ["LOG", "{{$ALIAS_N}} added {{$CHAOS_TOKEN_ID}} to the Chaos Bag."],
+                        ["LOAD_CARDS", "$CHAOS_TOKEN_DATABASE_ID"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} was unable to add {{$CHAOS_TOKEN_ID}} to the Chaos Bag."]
+                    ]
+                ]
+            ]
+        },
+        "REMOVE_CHAOS_TOKEN": {
+            "args": ["$CHAOS_TOKEN_ID", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["VAR", "$MATCHED_CHAOS_TOKEN", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"],
+                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.currentFace.chaos", "$CHAOS_TOKEN_ID"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CHAOS_TOKEN", null],
+                    [
+                        ["LOG", "{{$ALIAS_N}} removed {{$CHAOS_TOKEN_ID}} from the Chaos Bag."],
+                        ["DELETE_CARD", "$MATCHED_CHAOS_TOKEN.id"]
+                    ],
+                    ["TRUE"],
+                    [                        
+                        ["LOG", "{{$ALIAS_N}} was unable to remove {{$CHAOS_TOKEN_ID}} from the Chaos Bag."]
+                    ]
+                ]
+            ]
+        }
     }
 }

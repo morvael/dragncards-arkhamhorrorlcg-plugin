@@ -347,6 +347,15 @@
         },
         "returnChaosToken": {
             "English": "Return Chaos Token"
+        },
+        "listChaosTokens": {
+            "English": "List Chaos Tokens"
+        },
+        "addChaosTokens": {
+            "English": "Add Chaos Tokens"
+        },
+        "removeChaosTokens": {
+            "English": "Remove Chaos Tokens"
         }
     }
 }

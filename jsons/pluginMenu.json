@@ -1,6 +1,18 @@
 {
     "pluginMenu": {
         "options": [
+            { 
+                "label": "id:listChaosTokens",
+                "actionList": "listChaosTokens"
+            },
+            { 
+                "label": "id:addChaosTokens",
+                "actionList": "addChaosTokens"
+            },
+            { 
+                "label": "id:removeChaosTokens",
+                "actionList": "removeChaosTokens"
+            }
         ]
     }
 }

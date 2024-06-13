@@ -1,5 +1,297 @@
 {
     "prompts": {
+        "addChaosTokens": {
+            "args": [],
+            "message": "Pick Chaos Token to add.",
+            "options": [
+                {
+                    "label": "Elder Thing",
+                    "hotkey": "E",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Elder Thing", "chaos_elder_thing", 4]
+                    ]
+                },
+                {
+                    "label": "Cultist",
+                    "hotkey": "U",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Cultist", "chaos_cultist", 4]
+                    ]
+                },
+                {
+                    "label": "Skull",
+                    "hotkey": "S",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Skull", "chaos_skull", 4]
+                    ]
+                },
+                {
+                    "label": "Tablet",
+                    "hotkey": "T",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Tablet", "chaos_tablet", 4]
+                    ]
+                },
+                {
+                    "label": "Bless",
+                    "hotkey": "B",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Bless", "chaos_bless", 10]
+                    ]
+                },
+                {
+                    "label": "Curse",
+                    "hotkey": "C",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Curse", "chaos_curse", 10]
+                    ]
+                },
+                {
+                    "label": "Frost",
+                    "hotkey": "F",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "Frost", "chaos_frost", 8]
+                    ]
+                },
+                {
+                    "label": "Numeric",
+                    "hotkey": "N",
+                    "code": [
+                        ["PROMPT", "$PLAYER_N", "addChaosTokensNumeric"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "addChaosTokensNumeric": {
+            "args": [],
+            "message": "Pick Chaos Token to add.",
+            "options": [
+                {
+                    "label": "+1",
+                    "hotkey": "I",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "+1", "chaos_p1", 3]
+                    ]
+                },
+                {
+                    "label": "0",
+                    "hotkey": "0",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "0", "chaos_p0", 4]
+                    ]
+                },
+                {
+                    "label": "-1",
+                    "hotkey": "1",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-1", "chaos_m1", 5]
+                    ]
+                },
+                {
+                    "label": "-2",
+                    "hotkey": "2",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-2", "chaos_m2", 4]
+                    ]
+                },
+                {
+                    "label": "-3",
+                    "hotkey": "3",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-3", "chaos_m3", 3]
+                    ]
+                },
+                {
+                    "label": "-4",
+                    "hotkey": "4",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-4", "chaos_m4", 2]
+                    ]
+                },
+                {
+                    "label": "-5",
+                    "hotkey": "5",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-5", "chaos_m5", 2]
+                    ]
+                },
+                {
+                    "label": "-6",
+                    "hotkey": "6",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-6", "chaos_m6", 1]
+                    ]
+                },
+                {
+                    "label": "-7",
+                    "hotkey": "7",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-7", "chaos_m7", 1]
+                    ]
+                },
+                {
+                    "label": "-8",
+                    "hotkey": "8",
+                    "code": [
+                        ["ADD_CHAOS_TOKEN", "-8", "chaos_m8", 1]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "removeChaosTokens": {
+            "args": [],
+            "message": "Pick Chaos Token to remove.",
+            "options": [
+                {
+                    "label": "Elder Thing",
+                    "hotkey": "E",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Elder Thing", "chaos_elder_thing"]
+                    ]
+                },
+                {
+                    "label": "Cultist",
+                    "hotkey": "U",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Cultist", "chaos_cultist"]
+                    ]
+                },
+                {
+                    "label": "Skull",
+                    "hotkey": "S",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Skull", "chaos_skull"]
+                    ]
+                },
+                {
+                    "label": "Tablet",
+                    "hotkey": "T",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Tablet", "chaos_tablet"]
+                    ]
+                },
+                {
+                    "label": "Bless",
+                    "hotkey": "B",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Bless", "chaos_bless"]
+                    ]
+                },
+                {
+                    "label": "Curse",
+                    "hotkey": "C",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Curse", "chaos_curse"]
+                    ]
+                },
+                {
+                    "label": "Frost",
+                    "hotkey": "F",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "Frost", "chaos_frost"]
+                    ]
+                },
+                {
+                    "label": "Numeric",
+                    "hotkey": "N",
+                    "code": [
+                        ["PROMPT", "$PLAYER_N", "removeChaosTokensNumeric"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "removeChaosTokensNumeric": {
+            "args": [],
+            "message": "Pick Chaos Token to remove.",
+            "options": [
+                {
+                    "label": "+1",
+                    "hotkey": "I",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "+1", "chaos_p1"]
+                    ]
+                },
+                {
+                    "label": "0",
+                    "hotkey": "0",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "0", "chaos_p0"]
+                    ]
+                },
+                {
+                    "label": "-1",
+                    "hotkey": "1",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-1", "chaos_m1"]
+                    ]
+                },
+                {
+                    "label": "-2",
+                    "hotkey": "2",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-2", "chaos_m2"]
+                    ]
+                },
+                {
+                    "label": "-3",
+                    "hotkey": "3",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-3", "chaos_m3"]
+                    ]
+                },
+                {
+                    "label": "-4",
+                    "hotkey": "4",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-4", "chaos_m4"]
+                    ]
+                },
+                {
+                    "label": "-5",
+                    "hotkey": "5",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-5", "chaos_m5"]
+                    ]
+                },
+                {
+                    "label": "-6",
+                    "hotkey": "6",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-6", "chaos_m6"]
+                    ]
+                },
+                {
+                    "label": "-7",
+                    "hotkey": "7",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-7", "chaos_m7"]
+                    ]
+                },
+                {
+                    "label": "-8",
+                    "hotkey": "8",
+                    "code": [
+                        ["REMOVE_CHAOS_TOKEN", "-8", "chaos_m8"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
         "nightOfTheZealotChaosBagInit": {
             "args": [],
             "message": "Pick Night of the Zealot campaign difficulty.",
@@ -8,6 +300,7 @@
                     "label": "Easy",
                     "hotkey": "E",
                     "code": [
+                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Easy."],
                         ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Easy"],
                         ["ACTION_LIST", "scenarioToA"]
                     ]
@@ -16,6 +309,7 @@
                     "label": "Normal",
                     "hotkey": "N",
                     "code": [
+                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Normal."],
                         ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"],
                         ["ACTION_LIST", "scenarioToA"]
                     ]
@@ -24,6 +318,7 @@
                     "label": "Hard",
                     "hotkey": "H",
                     "code": [
+                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Hard."],
                         ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Hard"],
                         ["ACTION_LIST", "scenarioToB"]
                     ]
@@ -32,6 +327,7 @@
                     "label": "Expert",
                     "hotkey": "X",
                     "code": [
+                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Expert."],
                         ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Expert"],
                         ["ACTION_LIST", "scenarioToB"]
                     ]

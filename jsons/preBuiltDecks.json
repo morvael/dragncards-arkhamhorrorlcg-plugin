@@ -363,6 +363,108 @@
                 {"databaseId": "01182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
+        "chaos_p1": {
+            "label": "chaos_p1",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_p0": {
+            "label": "chaos_p0",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m1": {
+            "label": "chaos_m1",
+            "cards": [
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m2": {
+            "label": "chaos_m2",
+            "cards": [
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m3": {
+            "label": "chaos_m3",
+            "cards": [
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m4": {
+            "label": "chaos_m4",
+            "cards": [
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m5": {
+            "label": "chaos_m5",
+            "cards": [
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m6": {
+            "label": "chaos_m6",
+            "cards": [
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m7": {
+            "label": "chaos_m7",
+            "cards": [
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m8": {
+            "label": "chaos_m8",
+            "cards": [
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_elder_thing": {
+            "label": "chaos_elder_thing",
+            "cards": [
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_cultist": {
+            "label": "chaos_cultist",
+            "cards": [
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_skull": {
+            "label": "chaos_skull",
+            "cards": [
+                {"databaseId": "chaos_skull", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_tablet": {
+            "label": "chaos_tablet",
+            "cards": [
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_bless": {
+            "label": "chaos_bless",
+            "cards": [
+                {"databaseId": "chaos_bless", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_curse": {
+            "label": "chaos_curse",
+            "cards": [
+                {"databaseId": "chaos_curse", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_frost": {
+            "label": "chaos_frost",
+            "cards": [
+                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
         "Night of the Zealot Chaos Bag - Easy": {
             "label": "Night of the Zealot Chaos Bag - Easy",
             "cards": [

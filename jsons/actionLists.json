@@ -155,9 +155,21 @@
         ],
         "returnChaosToken": [
             ["COND",
+                ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.currentFace.type", "ChaosToken"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.currentFace.chaos", "Bless"],
+                        ["EQUAL", "$ACTIVE_CARD.currentFace.chaos", "Curse"]
+                    ]
+                ],
+                [
+                    ["LOG", "{{$ALIAS_N}} removed {{$ACTIVE_CARD.sides.A.name}} Chaos Token."],
+                    ["DELETE_CARD", "$ACTIVE_CARD.id"]
+                ],
                 ["EQUAL", "$ACTIVE_CARD.currentFace.type", "ChaosToken"],
                 [
                     ["LOG", "{{$ALIAS_N}} returned {{$ACTIVE_CARD.sides.A.name}} to the Chaos Bag."],
+                    ["SET", "/cardById/$ACTIVE_CARD.id/currentSide", "A"],
                     ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedChaosBag", 0]
                 ]
             ]
@@ -187,6 +199,94 @@
                     ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "B"]
                 ]
             ]
+        ],
+        "listChaosTokens": [
+            ["COUNT_ALL_CHAOS_TOKENS"],
+            ["VAR", "$MESSAGE", ""],
+            ["VAR", "$SEPARATOR", ": "],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_P1", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_P1}}x +1"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_P0", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_P0}}x 0"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M1", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M1}}x -1"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M2", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M2}}x -2"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M3", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M3}}x -3"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M4", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M4}}x -4"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M5", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M5}}x -5"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M6", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M6}}x -6"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M7", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M7}}x -7"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_M8", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_M8}}x -8"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_ELDER_THING", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_ELDER_THING}}x Elder Thing"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_CULTIST", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_CULTIST}}x Cultist"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_SKULL", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_SKULL}}x Skull"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_TABLET", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_TABLET}}x Tablet"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_BLESS", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_BLESS}}x Bless"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_CURSE", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_CURSE}}x Curse"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_FROST", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_FROST}}x Frost"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_AUTO_FAIL", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_AUTO_FAIL}}x Auto Fail"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT_ELDER_SIGN", 0], [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT_ELDER_SIGN}}x Elder Sign"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]],
+            ["LOG", "{{$ALIAS_N}} checked Chaos Tokens{{$MESSAGE}}."]
+        ],
+        "addChaosTokens": [
+            ["PROMPT", "$PLAYER_N", "addChaosTokens"]
+        ],
+        "removeChaosTokens": [
+            ["PROMPT", "$PLAYER_N", "removeChaosTokens"]
         ]
     }
 }
