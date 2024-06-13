@@ -68,6 +68,16 @@
                 "inPlay": false,
                 "rotation": 0
             }
+        },
+        "void": {
+            "canHaveAttachments": false,
+            "canHaveTokens": false,
+            "shuffleOnLoad": false,
+            "onCardEnter": {
+                "currentSide": "A",
+                "inPlay": false,
+                "rotation": 0
+            }
         }
     }
 }

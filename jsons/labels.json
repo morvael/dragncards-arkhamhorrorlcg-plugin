@@ -153,6 +153,12 @@
         "sharedChaosBag": {
             "English": "Chaos Bag"
         },
+        "void": {
+            "English": "Void"
+        },
+        "sharedVoid": {
+            "English": "Void"
+        },
         "sharedEncounterDiscard": {
             "English": "Encounter Discard"
         },
@@ -338,6 +344,9 @@
         },
         "pickChaosToken": {
             "English": "Pick Chaos Token"
+        },
+        "returnChaosToken": {
+            "English": "Return Chaos Token"
         }
     }
 }

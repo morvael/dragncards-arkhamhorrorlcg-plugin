@@ -1,4 +1,42 @@
 {
     "prompts": {
+        "nightOfTheZealotChaosBagInit": {
+            "args": [],
+            "message": "Pick Night of the Zealot campaign difficulty.",
+            "options": [
+                {
+                    "label": "Easy",
+                    "hotkey": "E",
+                    "code": [
+                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Easy"],
+                        ["ACTION_LIST", "scenarioToA"]
+                    ]
+                },
+                {
+                    "label": "Normal",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"],
+                        ["ACTION_LIST", "scenarioToA"]
+                    ]
+                },
+                {
+                    "label": "Hard",
+                    "hotkey": "H",
+                    "code": [
+                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Hard"],
+                        ["ACTION_LIST", "scenarioToB"]
+                    ]
+                },
+                {
+                    "label": "Expert",
+                    "hotkey": "X",
+                    "code": [
+                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Expert"],
+                        ["ACTION_LIST", "scenarioToB"]
+                    ]
+                }
+            ]
+        }
     }
 }

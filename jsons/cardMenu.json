@@ -9,6 +9,10 @@
             {
                 "label": "id:ready",
                 "actionList": "ready"
+            },
+            {
+                "label": "id:returnChaosToken",
+                "actionList": "returnChaosToken"
             }
         ]
     }

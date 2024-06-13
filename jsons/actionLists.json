@@ -147,8 +147,44 @@
                 ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 0],
                 [
                     ["VAR", "$PICKED_TOKEN", ["GET_CARD", "sharedChaosBag", 0, 0]],
+                    ["LOG", "{{$ALIAS_N}} picked {{$PICKED_TOKEN.sides.A.name}} from the Chaos Bag."],
                     ["SET", "/cardById/$PICKED_TOKEN.id/currentSide", "A"],
-                    ["MOVE_CARD", "$PICKED_TOKEN.id", "sharedLocations", -1]
+                    ["MOVE_CARD", "$PICKED_TOKEN.id", "sharedVoid", 0]
+                ]
+            ]
+        ],
+        "returnChaosToken": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_CARD.currentFace.type", "ChaosToken"],
+                [
+                    ["LOG", "{{$ALIAS_N}} returned {{$ACTIVE_CARD.sides.A.name}} to the Chaos Bag."],
+                    ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedChaosBag", 0]
+                ]
+            ]
+        ],
+        "scenarioToA": [
+            ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+            ["COND",
+                ["AND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    ["EQUAL", "$MATCHED_CARD.currentSide", "B"]
+                ],
+                [
+                    ["LOG", "{{$ALIAS_N}} flipped {{$MATCHED_CARD.sides.B.name}} to Easy/Normal side."],
+                    ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "A"]
+                ]
+            ]
+        ],
+        "scenarioToB": [
+            ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+            ["COND",
+                ["AND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    ["EQUAL", "$MATCHED_CARD.currentSide", "A"]
+                ],
+                [
+                    ["LOG", "{{$ALIAS_N}} flipped {{$MATCHED_CARD.sides.A.name}} to Hard/Expert side."],
+                    ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "B"]
                 ]
             ]
         ]

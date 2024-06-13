@@ -201,7 +201,7 @@
                 ["LOAD_CARDS", "Striking Fear"],
                 ["LOAD_CARDS", "Ancient Evils"],
                 ["LOAD_CARDS", "Chilling Cold"],
-                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
+                ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
         "The Midnight Masks Scenario": {
@@ -231,7 +231,7 @@
                 ["LOAD_CARDS", "Dark Cult"],
                 ["LOAD_CARDS", "Locked Doors"],
                 ["LOAD_CARDS", "Cult of Umôrdhoth"],
-                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
+                ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
         "Cult of Umôrdhoth": {
@@ -276,7 +276,7 @@
                         ["RANDOM_INT", 0, 3]
                     ]
                 ],
-                ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"]
+                ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
         "Rats": { 

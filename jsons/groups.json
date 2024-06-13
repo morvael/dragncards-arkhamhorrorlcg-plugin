@@ -60,14 +60,20 @@
                 "controller": "shared"
             }
         },
+        "sharedVoid": {
+            "groupType": "void",
+            "label": "id:sharedVoid",
+            "tableLabel": "id:void",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
         "sharedChaosBag": {
             "groupType": "chaosBag",
             "label": "id:sharedChaosBag",
             "tableLabel": "id:chaosBag",
             "onCardEnter": {
-                "controller": "shared",
-                "deckGroupId": "sharedChaosBag",
-                "discardGroupId": "sharedChaosBag"
+                "controller": "shared"
             }
         },
         "sharedFaceupPile1": {

@@ -2,3 +2,5 @@
 images/*.png
 images/*/*.png
 jsons.tar.gz
+upload.sh
+
