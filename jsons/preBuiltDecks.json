@@ -196,11 +196,13 @@
                 {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
             ],
             "postLoadActionList": [
+                ["LOAD_CARDS", "first_investigator_token"],
                 ["LOAD_CARDS", "Rats"],
                 ["LOAD_CARDS", "Ghouls"],
                 ["LOAD_CARDS", "Striking Fear"],
                 ["LOAD_CARDS", "Ancient Evils"],
                 ["LOAD_CARDS", "Chilling Cold"],
+                ["ACTION_LIST", "locationsToB"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
@@ -226,22 +228,24 @@
                 {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ],
             "postLoadActionList": [
+                ["LOAD_CARDS", "first_investigator_token"],
                 ["LOAD_CARDS", "Chilling Cold"],
                 ["LOAD_CARDS", "Nightgaunts"],
                 ["LOAD_CARDS", "Dark Cult"],
                 ["LOAD_CARDS", "Locked Doors"],
                 ["LOAD_CARDS", "Cult of Umôrdhoth"],
+                ["ACTION_LIST", "locationsToB"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
         "Cult of Umôrdhoth": {
             "label": "Cult of Umôrdhoth",
             "cards": [
-                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedFacedownPile1"}
+                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedDeckA"}
             ]
         },
         "The Devourer Below Scenario": {
@@ -255,17 +259,18 @@
                 {"databaseId": "01147", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01148", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01149", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
-                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedFacedownPile1"},
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedSetAside"},
                 {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedSetAside"},
                 {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ],
             "postLoadActionList": [
+                ["LOAD_CARDS", "first_investigator_token"],
                 ["LOAD_CARDS", "Ancient Evils"],
                 ["LOAD_CARDS", "Striking Fear"],
                 ["LOAD_CARDS", "Ghouls"],
@@ -276,6 +281,7 @@
                         ["RANDOM_INT", 0, 3]
                     ]
                 ],
+                ["ACTION_LIST", "locationsToB"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
         },
@@ -463,6 +469,40 @@
             "label": "chaos_frost",
             "cards": [
                 {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "first_investigator_token": {
+            "label": "first_investigator_token",
+            "cards": [
+                {"databaseId": "first_investigator", "quantity": 1, "loadGroupId": "sharedTokens"}
+            ]
+        },
+        "key_tokens": {
+            "label": "key_tokens",
+            "cards": [
+                {"databaseId": "key_red", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_blue", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_green", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_yellow", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_purple", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_black", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_white", "quantity": 1, "loadGroupId": "sharedTokens"}
+            ]
+        },
+        "flooded_tokens": {
+            "label": "flooded_tokens",
+            "cards": [
+                {"databaseId": "flooded", "quantity": 19, "loadGroupId": "sharedTokens"}
+            ]
+        },
+        "seal_tokens": {
+            "label": "seal_tokens",
+            "cards": [
+                {"databaseId": "seal_first", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_second", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_third", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_fourth", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_fifth", "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
         "Night of the Zealot Chaos Bag - Easy": {

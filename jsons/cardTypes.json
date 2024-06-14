@@ -1,19 +1,23 @@
 {
     "cardTypes": {
-        "Investigator":           {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
-        "Asset":                  {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Treachery":              {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Event":                  {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Skill":                  {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Enemy":                  {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Scenario":               {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Agenda":                 {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
-        "Act":                    {"width":  1.0, "height": 0.72,"tokens": ["resource","clue","damage","horror","doom"]},
-        "Location":               {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Story":                  {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Key":                    {"width": 0.72, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "ChaosToken":             {"width": 0.40, "height": 0.40,"tokens": []},
-        "FirstInvestigatorToken": {"width": 0.40, "height": 0.40,"tokens": []},
-        "MiniInvestigator":       {"width": 0.40, "height": 0.56,"tokens": []}
+        "Investigator":           {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Asset":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Treachery":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Event":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Skill":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Scenario":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Agenda":                 {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Act":                    {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Location":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Story":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Key":                    {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "ChaosToken":             {"width": 0.28, "height": 0.28,"tokens": []},
+        "FirstInvestigatorToken": {"width": 0.57, "height": 0.55,"tokens": []},
+        "KeyToken":               {"width": 0.19, "height": 0.19,"tokens": []},
+        "FloodedToken":           {"width": 0.20, "height": 0.20,"tokens": []},
+        "SealToken":              {"width": 0.20, "height": 0.42,"tokens": []},
+        "MiniConcealed":          {"width": 0.47, "height": 0.72,"tokens": []},
+        "MiniInvestigator":       {"width": 0.47, "height": 0.72,"tokens": []}
     }
 }

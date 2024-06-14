@@ -1,11 +1,11 @@
 {
     "functions": {
         "COUNT_CHAOS_TOKENS": {
-            "args": ["$CHAOS_TOKEN_ID"],
+            "args": ["$CHAOS_TOKEN_NAME"],
             "code": [
                 ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
-                    ["EQUAL", "$CARD.currentFace.chaos", "$CHAOS_TOKEN_ID"]
+                    ["EQUAL", "$CARD.currentFace.name", "$CHAOS_TOKEN_NAME"]
                 ]]],
                 ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT", ["LENGTH", "$SELECTED_CHAOS_TOKENS"]]
             ]
@@ -54,41 +54,41 @@
             ]
         },
         "ADD_CHAOS_TOKEN": {
-            "args": ["$CHAOS_TOKEN_ID", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS"],
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS"],
             "code": [
-                ["COUNT_CHAOS_TOKENS", "$CHAOS_TOKEN_ID"],
+                ["COUNT_CHAOS_TOKENS", "$CHAOS_TOKEN_NAME"],
                 ["VAR", "$TOKEN_COUNT", "$COUNT_CHAOS_TOKENS_RESULT"],
                 ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$TOKEN_COUNT"]],
                 ["COND",
                     ["GREATER_THAN", "$LEFT_TO_ADD", 0],
                     [
-                        ["LOG", "{{$ALIAS_N}} added {{$CHAOS_TOKEN_ID}} to the Chaos Bag."],
+                        ["LOG", "{{$ALIAS_N}} added {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."],
                         ["LOAD_CARDS", "$CHAOS_TOKEN_DATABASE_ID"]
                     ],
                     ["TRUE"],
                     [
-                        ["LOG", "{{$ALIAS_N}} was unable to add {{$CHAOS_TOKEN_ID}} to the Chaos Bag."]
+                        ["LOG", "{{$ALIAS_N}} was unable to add {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."]
                     ]
                 ]
             ]
         },
         "REMOVE_CHAOS_TOKEN": {
-            "args": ["$CHAOS_TOKEN_ID", "$CHAOS_TOKEN_DATABASE_ID"],
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
             "code": [
                 ["VAR", "$MATCHED_CHAOS_TOKEN", ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "sharedChaosBag"],
                     ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
-                    ["EQUAL", "$CARD.currentFace.chaos", "$CHAOS_TOKEN_ID"]
+                    ["EQUAL", "$CARD.currentFace.name", "$CHAOS_TOKEN_NAME"]
                 ]]],
                 ["COND",
                     ["NOT_EQUAL", "$MATCHED_CHAOS_TOKEN", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} removed {{$CHAOS_TOKEN_ID}} from the Chaos Bag."],
+                        ["LOG", "{{$ALIAS_N}} removed {{$CHAOS_TOKEN_NAME}} from the Chaos Bag."],
                         ["DELETE_CARD", "$MATCHED_CHAOS_TOKEN.id"]
                     ],
                     ["TRUE"],
                     [                        
-                        ["LOG", "{{$ALIAS_N}} was unable to remove {{$CHAOS_TOKEN_ID}} from the Chaos Bag."]
+                        ["LOG", "{{$ALIAS_N}} was unable to remove {{$CHAOS_TOKEN_NAME}} from the Chaos Bag."]
                     ]
                 ]
             ]

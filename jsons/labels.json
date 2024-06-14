@@ -15,17 +15,35 @@
         "layout4Player": {
             "English": "4 Player"
         },
-        "sharedFacedownPile2": {
-            "English": "Facedown Pile2"
+        "sharedDeckA": {
+            "English": "Deck A"
         },
-        "sharedFacedownPile1": {
-            "English": "Facedown Pile1"
+        "sharedDiscardA": {
+            "English": "Discard A"
         },
-        "sharedFaceupPile2": {
-            "English": "Faceup Pile2"
+        "sharedDeckB": {
+            "English": "Deck B"
         },
-        "sharedFaceupPile1": {
-            "English": "Faceup Pile1"
+        "sharedDiscardB": {
+            "English": "Discard B"
+        },
+        "sharedDeckC": {
+            "English": "Deck C"
+        },
+        "sharedDiscardC": {
+            "English": "Discard C"
+        },
+        "sharedPileA": {
+            "English": "Pile A"
+        },
+        "sharedPileB": {
+            "English": "Pile B"
+        },
+        "sharedPileC": {
+            "English": "Pile C"
+        },
+        "sharedPileD": {
+            "English": "Pile D"
         },
         "resources": {
             "English": "Resources"
@@ -129,11 +147,50 @@
         "sharedSetAside": {
             "English": "Set Aside"
         },
+        "sharedOffMap": {
+            "English": "Off Map"
+        },
+        "sharedTokens": {
+            "English": "Tokens"
+        },
+        "victory": {
+            "English": "Victory"
+        },
+        "sharedVictoryDisplay": {
+            "English": "Victory Display"
+        },
         "encounter": {
             "English": "Encounter"
         },
+        "act": {
+            "English": "Act"
+        },
         "sharedActDeck": {
             "English": "Act Deck"
+        },
+        "actB": {
+            "English": "Act B"
+        },
+        "sharedActDeckB": {
+            "English": "Act Deck B"
+        },
+        "actC": {
+            "English": "Act C"
+        },
+        "sharedActDeckC": {
+            "English": "Act Deck C"
+        },
+        "actD": {
+            "English": "Act D"
+        },
+        "sharedActDeckD": {
+            "English": "Act Deck D"
+        },
+        "actE": {
+            "English": "Act E"
+        },
+        "sharedActDeckE": {
+            "English": "Act Deck E"
         },
         "agenda": {
             "English": "Agenda"

@@ -158,8 +158,8 @@
                 ["AND",
                     ["EQUAL", "$ACTIVE_CARD.currentFace.type", "ChaosToken"],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_CARD.currentFace.chaos", "Bless"],
-                        ["EQUAL", "$ACTIVE_CARD.currentFace.chaos", "Curse"]
+                        ["EQUAL", "$ACTIVE_CARD.currentFace.name", "Bless"],
+                        ["EQUAL", "$ACTIVE_CARD.currentFace.name", "Curse"]
                     ]
                 ],
                 [
@@ -199,6 +199,18 @@
                     ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "B"]
                 ]
             ]
+        ],
+        "locationsToB": [
+            ["VAR", "$SELECTED_LOCATIONS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.sides.A.type", "Location"],
+                ["EQUAL", "$CARD.sides.B.type", "Location"],
+                ["EQUAL", "$CARD.currentSide", "A"],
+                ["EQUAL", "$CARD.sides.B.clues", null],
+                ["EQUAL", "$CARD.sides.B.shroud", null]
+            ]]],
+            ["FOR_EACH_VAL", "$SELECTED_LOCATION", "$SELECTED_LOCATIONS", [
+                ["SET", "/cardById/$SELECTED_LOCATION.id/currentSide", "B"]
+            ]]
         ],
         "listChaosTokens": [
             ["COUNT_ALL_CHAOS_TOKENS"],

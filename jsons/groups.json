@@ -39,21 +39,45 @@
         "sharedActDeck": {
             "groupType": "story",
             "label": "id:sharedActDeck", 
-            "tableLabel": "id:encounter",
+            "tableLabel": "id:act",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
-        "sharedSetAside": {
-            "groupType": "stack",
-            "label": "id:sharedSetAside", 
-            "tableLabel": "id:sharedSetAside",
+        "sharedActDeckB": {
+            "groupType": "story",
+            "label": "id:sharedActDeckB",
+            "tableLabel": "id:actB",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedActDeckC": {
+            "groupType": "story",
+            "label": "id:sharedActDeckC",
+            "tableLabel": "id:actC",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedActDeckD": {
+            "groupType": "story",
+            "label": "id:sharedActDeckD",
+            "tableLabel": "id:actD",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedActDeckE": {
+            "groupType": "story",
+            "label": "id:sharedActDeckE",
+            "tableLabel": "id:actE",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
         "sharedScenarioReference": {
-            "groupType": "stack",
+            "groupType": "inPlay",
             "label": "id:sharedScenarioReference", 
             "tableLabel": "id:scenarioReference",
             "onCardEnter": {
@@ -61,9 +85,41 @@
             }
         },
         "sharedVoid": {
-            "groupType": "void",
+            "groupType": "inPlay",
             "label": "id:sharedVoid",
             "tableLabel": "id:void",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedVictoryDisplay": {
+            "groupType": "outOfPlay",
+            "label": "id:sharedVictoryDisplay", 
+            "tableLabel": "id:victory",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedSetAside": {
+            "groupType": "outOfPlay",
+            "label": "id:sharedSetAside", 
+            "tableLabel": "id:sharedSetAside",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedOffMap": {
+            "groupType": "inPlay",
+            "label": "id:sharedOffMap", 
+            "tableLabel": "id:sharedOffMap",
+            "onCardEnter": {
+                "controller": "shared"
+            }
+        },
+        "sharedTokens": {
+            "groupType": "tokens",
+            "label": "id:sharedTokens", 
+            "tableLabel": "id:sharedTokens",
             "onCardEnter": {
                 "controller": "shared"
             }
@@ -76,36 +132,96 @@
                 "controller": "shared"
             }
         },
-        "sharedFaceupPile1": {
+        "sharedPileA": {
             "groupType": "discard",
-            "label": "id:sharedFaceupPile1", 
-            "tableLabel": "id:sharedFaceupPile1",
+            "label": "id:sharedPileA", 
+            "tableLabel": "id:sharedPileA",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
-        "sharedFaceupPile2": {
+        "sharedPileB": {
             "groupType": "discard",
-            "label": "id:sharedFaceupPile2", 
-            "tableLabel": "id:sharedFaceupPile2",
+            "label": "id:sharedPileB", 
+            "tableLabel": "id:sharedPileB",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
-        "sharedFacedownPile1": {
-            "groupType": "deck",
-            "label": "id:sharedFacedownPile1", 
-            "tableLabel": "id:sharedFacedownPile1",
+        "sharedPileC": {
+            "groupType": "discard",
+            "label": "id:sharedPileC", 
+            "tableLabel": "id:sharedPileC",
             "onCardEnter": {
                 "controller": "shared"
             }
         },
-        "sharedFacedownPile2": {
-            "groupType": "deck",
-            "label": "id:sharedFacedownPile2", 
-            "tableLabel": "id:sharedFacedownPile2",
+        "sharedPileD": {
+            "groupType": "discard",
+            "label": "id:sharedPileD", 
+            "tableLabel": "id:sharedPileD",
             "onCardEnter": {
                 "controller": "shared"
+            }
+        },
+        "sharedDeckA": {
+            "groupType": "deck",
+            "label": "id:sharedDeckA", 
+            "tableLabel": "id:sharedDeckA",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckA",
+                "discardGroupId": "sharedDiscardA"
+            }
+        },
+        "sharedDiscardA": {
+            "groupType": "discard",
+            "label": "id:sharedDiscardA", 
+            "tableLabel": "id:sharedDiscardA",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckA",
+                "discardGroupId": "sharedDiscardA"
+            }
+        },
+        "sharedDeckB": {
+            "groupType": "deck",
+            "label": "id:sharedDeckB", 
+            "tableLabel": "id:sharedDeckB",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckB",
+                "discardGroupId": "sharedDiscardB"
+            }
+        },
+        "sharedDiscardB": {
+            "groupType": "discard",
+            "label": "id:sharedDiscardB", 
+            "tableLabel": "id:sharedDiscardB",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckB",
+                "discardGroupId": "sharedDiscardB"
+            }
+        },
+        "sharedDeckC": {
+            "groupType": "deck",
+            "label": "id:sharedDeckC", 
+            "tableLabel": "id:sharedDeckC",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckC",
+                "discardGroupId": "sharedDiscardC"
+            }
+        },
+        "sharedDiscardC": {
+            "groupType": "discard",
+            "label": "id:sharedDiscardC", 
+            "tableLabel": "id:sharedDiscardC",
+            "onCardEnter": {
+                "controller": "shared",
+                "deckGroupId": "sharedDeckC",
+                "discardGroupId": "sharedDiscardC"
             }
         },
         "player1Hand": {

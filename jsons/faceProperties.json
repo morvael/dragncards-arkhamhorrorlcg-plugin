@@ -32,7 +32,6 @@
         "cluesFixed" : {"type": "boolean", "default": false},
         "victoryPoints" : {"type": "integer", "default": null},
         "stage" : {"type": "integer", "default": null},
-        "chaos" : {"type": "string", "default": null},
         "text" : {"type": "string", "default": null}
     }
 }

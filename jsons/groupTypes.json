@@ -1,23 +1,27 @@
 {
     "groupTypes": {
+        "inPlay": {
+            "canHaveAttachments": true,
+            "canHaveTokens": true,
+            "shuffleOnLoad": false,
+            "onCardEnter": {
+                "inPlay": true
+            }
+        },
         "story": {
             "canHaveAttachments": true,
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "currentSide": "A",
-                "inPlay": true,
-                "rotation": 0
+                "inPlay": true
             }
         },
-        "stack": {
+        "outOfPlay": {
             "canHaveAttachments": true,
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "currentSide": "A",
-                "inPlay": true,
-                "rotation": 0
+                "inPlay": false
             }
         },
         "deck": {
@@ -50,26 +54,17 @@
                 "rotation": 0
             }
         },
-        "inPlay": {
-            "canHaveAttachments": true,
-            "canHaveTokens": true,
-            "shuffleOnLoad": false,
-            "onCardEnter": {
-                "currentSide": "A",
-                "inPlay": true
-            }
-        },
         "chaosBag": {
             "canHaveAttachments": false,
             "canHaveTokens": false,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "currentSide": "B",
+                "currentSide": "A",
                 "inPlay": false,
                 "rotation": 0
             }
         },
-        "void": {
+        "tokens": {
             "canHaveAttachments": false,
             "canHaveTokens": false,
             "shuffleOnLoad": false,
