@@ -16,7 +16,7 @@
             {"key": "E", "actionList": "exhaust", "label": "id:exhaust"},
             {"key": "R", "actionList": "ready", "label": "id:ready"},
             {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
-            {"key": "C", "actionList": "detach", "label": "id:detach"},
+            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},
             {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
             {"key": "X", "actionList": "discardCard", "label": "id:discard"}

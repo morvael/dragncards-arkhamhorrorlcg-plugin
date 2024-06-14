@@ -76,15 +76,6 @@
             ["SHUFFLE_GROUP", "$GROUP_ID"],
             ["LOG", "{{$ALIAS_N}} shuffled {{$ACTIVE_FACE.name}} into {{$GAME.groupById.$GROUP_ID.label}}."]
         ],
-        "detach": [
-            ["COND",
-                ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
-                [
-                    ["LOG", "{{$ALIAS_N}} detached {{$ACTIVE_FACE.name}}."],
-                    ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1]]
-                ]
-            ]
-        ],
         "toggleSetAside": [
             ["COND",
                 ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSetAside", true],
@@ -299,6 +290,41 @@
         ],
         "removeChaosTokens": [
             ["PROMPT", "$PLAYER_N", "removeChaosTokens"]
+        ],
+        "attachDetachCard": [
+            ["COND",
+                ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                [
+                    ["LOG", "{{$ALIAS_N}} detached {{$ACTIVE_FACE.name}} from {{$ACTIVE_CARD.parentCard.currentFace.name}}."],
+                    ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                ],
+                ["TRUE"],
+                ["COND",
+                    ["EQUAL", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached", null],
+                    [
+                        ["LOG", "{{$ALIAS_N}} will attach {{$ACTIVE_CARD.currentFace.name}}."],
+                        ["SET", "/playerData/{{$PLAYER_N}}/cardToBeAttached", "$ACTIVE_CARD"],
+                        ["SET", "/cardById/{{$ACTIVE_CARD_ID}}/borderColor", "LightSkyBlue"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["VAR", "$ATTACHED_CARD", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached"],
+                        ["COND",
+                            ["EQUAL", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"],
+                            [
+                                ["LOG", "{{$ALIAS_N}} will not attach {{$ATTACHED_CARD.currentFace.name}}."]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["LOG", "{{$ALIAS_N}} attached {{$ATTACHED_CARD.currentFace.name}} to {{$ACTIVE_FACE.name}}."],
+                                ["ATTACH_CARD", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"]
+                            ]
+                        ],
+                        ["UNSET", "/playerData/{{$PLAYER_N}}/cardToBeAttached"],
+                        ["UNSET", "/cardById/{{$ATTACHED_CARD.id}}/borderColor"]
+                    ]
+                ]
+            ]            
         ]
     }
 }

@@ -228,8 +228,8 @@
         "flip": {
             "English": "Flip"
         },
-        "detach": {
-            "English": "Detach"
+        "attachDetachCard": {
+            "English": "Attach / Detach"
         },
         "advanceStory": {
             "English": "Advance Agenda or Act Deck"
