@@ -1,36 +1,90 @@
 {
     "actionLists": {
-        "exhaust": [
+        "exhaustCard": [
             ["COND",
-                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 0], "$ACTIVE_CARD.inPlay"],
+                ["EQUAL", "$ACTIVE_CARD.currentFace.type", "MiniInvestigator"],
                 [
-                    ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 90],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.rotation", 0],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 90],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ]
+                    ]
                 ]
             ]
         ],
-        "ready": [
+        "readyCard": [
             ["COND",
-                ["AND", ["EQUAL", "$ACTIVE_CARD.rotation", 90], "$ACTIVE_CARD.inPlay"],
+                ["EQUAL", "$ACTIVE_CARD.currentFace.type", "MiniInvestigator"],
                 [
-                    ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTIVE_CARD.rotation", 0],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
                 ]
             ]
         ],
         "flipCard": [
             ["COND",
-                ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                ["EQUAL", "$ACTIVE_CARD.currentFace.type", "MiniInvestigator"],
                 [
-                    ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} facedown."],
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"]    
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
                 ],
-                true,
+                ["TRUE"],
                 [
-                    ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
-                    ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} faceup."]
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} facedown."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} faceup."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"]
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -317,7 +371,51 @@
                             ["TRUE"],
                             [
                                 ["LOG", "{{$ALIAS_N}} attached {{$ATTACHED_CARD.currentFace.name}} to {{$ACTIVE_FACE.name}}."],
-                                ["ATTACH_CARD", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"]
+                                ["ATTACH_CARD", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$ATTACHED_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                        ["EQUAL", "$ACTIVE_CARD.currentFace.type", "Investigator"]
+                                    ],
+                                    ["COND",
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player1"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player1"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player1"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player2"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player2"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player2"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player3"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player3"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player3"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player4"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player4"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player4"]
+                                        ]
+                                    ]
+                                ]
                             ]
                         ],
                         ["UNSET", "/playerData/{{$PLAYER_N}}/cardToBeAttached"],

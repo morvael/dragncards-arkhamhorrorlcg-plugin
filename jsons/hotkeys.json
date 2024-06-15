@@ -13,8 +13,8 @@
         ],
         "card": [
             {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
-            {"key": "E", "actionList": "exhaust", "label": "id:exhaust"},
-            {"key": "R", "actionList": "ready", "label": "id:ready"},
+            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
+            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
             {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
             {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},

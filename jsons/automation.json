@@ -11,6 +11,63 @@
             ["LOAD_CARDS", "\"Skids\" O'Toole Starter Deck"],
             ["DEFINE", "$PLAYER_N", "player4"],
             ["LOAD_CARDS", "Agnes Baker Starter Deck"]
+        ],
+        "gameRules": [
+            {
+                "_comment": "Game step helpers",
+                "type": "trigger",
+                "listenTo": ["/stepId"],
+                "condition": [
+                    ["OR",
+                        ["EQUAL", "$GAME.stepId", "M1"],
+                        ["EQUAL", "$GAME.stepId", "M2"],
+                        ["EQUAL", "$GAME.stepId", "U3"],
+                        ["EQUAL", "$GAME.stepId", "U4"]
+                    ]
+                ],
+                "then": [
+                    ["COND",
+                        ["EQUAL", "$GAME.stepId", "M1"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} advanced round number."],
+                            ["INCREASE_VAL", "/roundNumber", 1]
+                        ],
+                        ["EQUAL", "$GAME.stepId", "M2"],
+                        [
+                            ["VAR", "$AGENDA_CARD", ["GET_CARD", "sharedAgendaDeck", 0, 0]],
+                            ["LOG", "{{$ALIAS_N}} placed 1 doom on {{$AGENDA_CARD.currentFace.name}}."],
+                            ["INCREASE_VAL", "/cardById/$AGENDA_CARD.id/tokens/doom", 1]
+                        ],
+                        ["EQUAL", "$GAME.stepId", "U3"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied exhausted cards."],
+                            ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
+                                ["COND",
+                                    ["EQUAL", "$CARD.exhausted", true],
+                                    [
+                                        ["COND",
+                                            ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"],
+                                            ["SET", "/cardById/$CARD_ID/currentSide", "A"],
+                                            ["TRUE"],
+                                            ["SET", "/cardById/$CARD_ID/rotation", 0]
+                                        ],
+                                        ["SET", "/cardById/$CARD_ID/exhausted", false]
+                                    ]
+                                ]
+                            ]]
+                        ],
+                        ["EQUAL", "$GAME.stepId", "U4"],
+                        [
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                                ["LOG", "{{$ALIAS_I}} draws 1 card and gains 1 resource."],
+                                ["DRAW_CARD", 1, "$PLAYER_I"],
+                                ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
+                            ]]
+                        ]
+                    ]
+                ]
+            }
         ]
     }
 }

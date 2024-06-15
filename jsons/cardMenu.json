@@ -3,12 +3,12 @@
         "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
             {
-                "label": "id:exhaust",
-                "actionList": "exhaust"
+                "label": "id:exhaustCard",
+                "actionList": "exhaustCard"
             },
             {
-                "label": "id:ready",
-                "actionList": "ready"
+                "label": "id:readyCard",
+                "actionList": "readyCard"
             },
             {
                 "label": "id:returnChaosToken",
