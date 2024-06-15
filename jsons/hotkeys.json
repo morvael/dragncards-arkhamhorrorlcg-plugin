@@ -8,17 +8,22 @@
             {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
         ],
         "game": [
-            {"key": "T", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
+            {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
+            {"key": "V", "actionList": "lookAtVictoryDisplay", "label": "id:lookAtVictoryDisplay"},
+            {"key": "B", "actionList": "lookAtChaosBag", "label": "id:lookAtChaosBag"},            
+            {"key": "N", "actionList": "lookAtNotInPlay", "label": "id:lookAtNotInPlay"},
+            {"key": "M", "actionList": "lookAtOffMap", "label": "id:lookAtOffMap"},
+            {"key": "K", "actionList": "lookAtTokens", "label": "id:lookAtTokens"},
             {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}
         ],
         "card": [
-            {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
             {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
             {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
-            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
+            {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},
             {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
+            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
             {"key": "X", "actionList": "discardCard", "label": "id:discard"}
         ]
     }

@@ -423,6 +423,26 @@
                     ]
                 ]
             ]            
+        ],
+        "lookAtVictoryDisplay": [
+            ["LOG", "{{$ALIAS_N}} is looking at Victory Display cards."],
+            ["LOOK_AT", "$PLAYER_N", "sharedVictoryDisplay", -1, true]
+        ],
+        "lookAtChaosBag": [
+            ["LOG", "{{$ALIAS_N}} is looking at Chaos Bag."],
+            ["LOOK_AT", "$PLAYER_N", "sharedChaosBag", -1, true]
+        ],
+        "lookAtNotInPlay": [
+            ["LOG", "{{$ALIAS_N}} is looking at Not in Play cards."],
+            ["LOOK_AT", "$PLAYER_N", "sharedNotInPlay", -1, true]
+        ],
+        "lookAtOffMap": [
+            ["LOG", "{{$ALIAS_N}} is looking at Off Map cards."],
+            ["LOOK_AT", "$PLAYER_N", "sharedOffMap", -1, true]
+        ],
+        "lookAtTokens": [
+            ["LOG", "{{$ALIAS_N}} is looking at Tokens."],
+            ["LOOK_AT", "$PLAYER_N", "sharedTokens", -1, true]
         ]
     }
 }

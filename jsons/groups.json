@@ -5,7 +5,7 @@
             "label": "Locations", 
             "tableLabel": "",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedEncounterDeck": {
@@ -13,7 +13,6 @@
             "label": "id:sharedEncounterDeck", 
             "tableLabel": "id:encounter",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedEncounterDeck",
                 "discardGroupId": "sharedEncounterDiscard"
             }
@@ -23,7 +22,6 @@
             "label": "id:sharedEncounterDiscard", 
             "tableLabel": "id:discard",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedEncounterDeck",
                 "discardGroupId": "sharedEncounterDiscard"
             }
@@ -33,7 +31,7 @@
             "label": "id:sharedAgendaDeck", 
             "tableLabel": "id:agenda",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedActDeck": {
@@ -41,7 +39,7 @@
             "label": "id:sharedActDeck", 
             "tableLabel": "id:act",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedActDeckB": {
@@ -49,7 +47,7 @@
             "label": "id:sharedActDeckB",
             "tableLabel": "id:actB",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedActDeckC": {
@@ -57,7 +55,7 @@
             "label": "id:sharedActDeckC",
             "tableLabel": "id:actC",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedActDeckD": {
@@ -65,7 +63,7 @@
             "label": "id:sharedActDeckD",
             "tableLabel": "id:actD",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedActDeckE": {
@@ -73,7 +71,7 @@
             "label": "id:sharedActDeckE",
             "tableLabel": "id:actE",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedScenarioReference": {
@@ -81,7 +79,7 @@
             "label": "id:sharedScenarioReference", 
             "tableLabel": "id:scenarioReference",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedVoid": {
@@ -89,7 +87,7 @@
             "label": "id:sharedVoid",
             "tableLabel": "id:void",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedVictoryDisplay": {
@@ -97,15 +95,15 @@
             "label": "id:sharedVictoryDisplay", 
             "tableLabel": "id:victory",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
-        "sharedSetAside": {
+        "sharedNotInPlay": {
             "groupType": "outOfPlay",
-            "label": "id:sharedSetAside", 
-            "tableLabel": "id:sharedSetAside",
+            "label": "id:sharedNotInPlay", 
+            "tableLabel": "id:sharedNotInPlay",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedOffMap": {
@@ -113,7 +111,7 @@
             "label": "id:sharedOffMap", 
             "tableLabel": "id:sharedOffMap",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedTokens": {
@@ -121,7 +119,7 @@
             "label": "id:sharedTokens", 
             "tableLabel": "id:sharedTokens",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedChaosBag": {
@@ -129,7 +127,7 @@
             "label": "id:sharedChaosBag",
             "tableLabel": "id:chaosBag",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedPileA": {
@@ -137,7 +135,7 @@
             "label": "id:sharedPileA", 
             "tableLabel": "id:sharedPileA",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedPileB": {
@@ -145,7 +143,7 @@
             "label": "id:sharedPileB", 
             "tableLabel": "id:sharedPileB",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedPileC": {
@@ -153,7 +151,7 @@
             "label": "id:sharedPileC", 
             "tableLabel": "id:sharedPileC",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedPileD": {
@@ -161,7 +159,7 @@
             "label": "id:sharedPileD", 
             "tableLabel": "id:sharedPileD",
             "onCardEnter": {
-                "controller": "shared"
+                
             }
         },
         "sharedDeckA": {
@@ -169,7 +167,6 @@
             "label": "id:sharedDeckA", 
             "tableLabel": "id:sharedDeckA",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckA",
                 "discardGroupId": "sharedDiscardA"
             }
@@ -179,7 +176,6 @@
             "label": "id:sharedDiscardA", 
             "tableLabel": "id:sharedDiscardA",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckA",
                 "discardGroupId": "sharedDiscardA"
             }
@@ -189,7 +185,6 @@
             "label": "id:sharedDeckB", 
             "tableLabel": "id:sharedDeckB",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckB",
                 "discardGroupId": "sharedDiscardB"
             }
@@ -199,7 +194,6 @@
             "label": "id:sharedDiscardB", 
             "tableLabel": "id:sharedDiscardB",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckB",
                 "discardGroupId": "sharedDiscardB"
             }
@@ -209,7 +203,6 @@
             "label": "id:sharedDeckC", 
             "tableLabel": "id:sharedDeckC",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckC",
                 "discardGroupId": "sharedDiscardC"
             }
@@ -219,7 +212,6 @@
             "label": "id:sharedDiscardC", 
             "tableLabel": "id:sharedDiscardC",
             "onCardEnter": {
-                "controller": "shared",
                 "deckGroupId": "sharedDeckC",
                 "discardGroupId": "sharedDiscardC"
             }
@@ -229,7 +221,6 @@
             "label": "id:player1Hand", 
             "tableLabel": "id:hand",
             "onCardEnter": {
-                "controller": "player1",
                 "deckGroupId": "player1Deck",
                 "discardGroupId": "player1Discard"
             }
@@ -249,7 +240,6 @@
             "label": "id:player1Discard", 
             "tableLabel": "id:discard",
             "onCardEnter": {
-                "controller": "player1",
                 "deckGroupId": "player1Deck",
                 "discardGroupId": "player1Discard"
             }
@@ -269,7 +259,7 @@
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player1"
+                
             }
         },
         "player1Threat": {
@@ -278,7 +268,7 @@
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player1"
+                
             }
         },
         "player2Hand": {
@@ -286,7 +276,6 @@
             "label": "id:player2Hand", 
             "tableLabel": "id:hand",
             "onCardEnter": {
-                "controller": "player2",
                 "deckGroupId": "player2Deck",
                 "discardGroupId": "player2Discard"
             }
@@ -306,7 +295,6 @@
             "label": "id:player2Discard", 
             "tableLabel": "id:discard",
             "onCardEnter": {
-                "controller": "player2",
                 "deckGroupId": "player2Deck",
                 "discardGroupId": "player2Discard"
             }
@@ -326,7 +314,7 @@
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player2"
+                
             }
         },
         "player2Threat": {
@@ -335,7 +323,7 @@
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player2"
+                
             }
         },
         "player3Hand": {
@@ -343,7 +331,6 @@
             "label": "id:player3Hand", 
             "tableLabel": "id:hand",
             "onCardEnter": {
-                "controller": "player3",
                 "deckGroupId": "player3Deck",
                 "discardGroupId": "player3Discard"
             }
@@ -363,7 +350,6 @@
             "label": "id:player3Discard", 
             "tableLabel": "id:discard",
             "onCardEnter": {
-                "controller": "player3",
                 "deckGroupId": "player3Deck",
                 "discardGroupId": "player3Discard"
             }
@@ -383,7 +369,7 @@
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player3"
+
             }
         },
         "player3Threat": {
@@ -392,7 +378,7 @@
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player3"
+
             }
         },
         "player4Hand": {
@@ -400,7 +386,6 @@
             "label": "id:player4Hand", 
             "tableLabel": "id:hand",
             "onCardEnter": {
-                "controller": "player4",
                 "deckGroupId": "player4Deck",
                 "discardGroupId": "player4Discard"
             }
@@ -420,7 +405,6 @@
             "label": "id:player4Discard", 
             "tableLabel": "id:discard",
             "onCardEnter": {
-                "controller": "player4",
                 "deckGroupId": "player4Deck",
                 "discardGroupId": "player4Discard"
             }
@@ -440,7 +424,7 @@
             "tableLabel": "id:playArea",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player4"
+
             }
         },
         "player4Threat": {
@@ -449,7 +433,7 @@
             "tableLabel": "id:threat",
             "canHaveAttachments": true,
             "onCardEnter": {
-                "controller": "player4"
+
             }
         }
     }

@@ -144,8 +144,8 @@
         "player1Hand": {
             "English": "Player1 Hand"
         },
-        "sharedSetAside": {
-            "English": "Set Aside"
+        "sharedNotInPlay": {
+            "English": "Not in Play"
         },
         "sharedOffMap": {
             "English": "Off Map"
@@ -398,6 +398,21 @@
         },
         "alpha": {
             "English": "α"
+        },
+        "lookAtOffMap": {
+            "English": "Look at Off Map cards"
+        },
+        "lookAtNotInPlay": {
+            "English": "Look at Not in Play cards"
+        },
+        "lookAtVictoryDisplay": {
+            "English": "Look at Victory Display cards"
+        },
+        "lookAtTokens": {
+            "English": "Look at Tokens"
+        },
+        "lookAtChaosBag": {
+            "English": "Look at Chaos Bag"
         },
         "pickChaosToken": {
             "English": "Pick Chaos Token"
