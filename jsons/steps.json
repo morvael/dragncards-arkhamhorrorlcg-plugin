@@ -1,6 +1,5 @@
 {
     "steps": {
-        "B": {"phaseId": "Beginning", "label": "id:step-B"},
         "M1": {"phaseId": "Mythos", "label": "id:step-M1"},
         "M2": {"phaseId": "Mythos", "label": "id:step-M2"},
         "M3": {"phaseId": "Mythos", "label": "id:step-M3"},
@@ -26,8 +25,7 @@
         "U3": {"phaseId": "Upkeep", "label": "id:step-U3"},
         "U4": {"phaseId": "Upkeep", "label": "id:step-U4"},
         "U5": {"phaseId": "Upkeep", "label": "id:step-U5"},
-        "U6": {"phaseId": "Upkeep", "label": "id:step-U6"},
-        "A": {"phaseId": "End", "label": "id:step-A"}
+        "U6": {"phaseId": "Upkeep", "label": "id:step-U6"}
     },
-    "stepOrder": ["B", "M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6", "A"]
+    "stepOrder": ["M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6"]
 }

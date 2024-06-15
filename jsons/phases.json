@@ -1,29 +1,21 @@
 {
     "phases": {
-        "Beginning": {
-            "label": "id:alpha",
-            "height" : "4%"
-        },
         "Mythos": {
             "label": "id:mythos",
-            "height" : "21%"
+            "height" : "23%"
         },
         "Investigation": {
             "label": "id:investigation",
-            "height" : "25%"
+            "height" : "27%"
         },
         "Enemy": {
             "label": "id:enemy",
-            "height" : "21%"
+            "height" : "23%"
         },
         "Upkeep": {
             "label": "id:upkeep",
-            "height" : "25%"
-        },
-        "End": {
-            "label": "id:omega",
-            "height" : "4%"
+            "height" : "27%"
         }
     },
-    "phaseOrder": ["Beginning", "Mythos", "Investigation", "Enemy", "Upkeep", "End"]
+    "phaseOrder": ["Mythos", "Investigation", "Enemy", "Upkeep"]
 }

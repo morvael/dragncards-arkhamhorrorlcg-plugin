@@ -130,32 +130,6 @@
             ["SHUFFLE_GROUP", "$GROUP_ID"],
             ["LOG", "{{$ALIAS_N}} shuffled {{$ACTIVE_FACE.name}} into {{$GAME.groupById.$GROUP_ID.label}}."]
         ],
-        "toggleSetAside": [
-            ["COND",
-                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSetAside", true],
-                [
-                    ["LOG", "{{$ALIAS_N}} is looking at the set aside regions."],
-                    ["SET", "/playerData/$PLAYER_N/viewingSetAside", true],
-                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                        ["COND",
-                            ["EQUAL", "$REGION.layerIndex", 1],
-                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", true]
-                        ]
-                    ]]
-                ],
-                ["TRUE"],
-                [
-                    ["LOG", "{{$ALIAS_N}} is no longer looking at the set aside regions."],
-                    ["SET", "/playerData/$PLAYER_N/viewingSetAside", false],
-                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                        ["COND",
-                            ["EQUAL", "$REGION.layerIndex", 1],
-                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", false]
-                        ]
-                    ]]
-                ]
-            ]
-        ],
         "advanceStory": [
             ["COND",
                 ["AND",
@@ -424,25 +398,46 @@
                 ]
             ]            
         ],
-        "lookAtVictoryDisplay": [
-            ["LOG", "{{$ALIAS_N}} is looking at Victory Display cards."],
-            ["LOOK_AT", "$PLAYER_N", "sharedVictoryDisplay", -1, true]
+        "toggleSideboard": [
+            ["COND",
+                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSideboard", true],
+                [
+                    ["LOG", "{{$ALIAS_N}} is looking at Sideboard."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", true],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", true]
+                        ]
+                    ]]
+                ],
+                ["TRUE"],
+                [
+                    ["LOG", "{{$ALIAS_N}} is no longer looking at Sideboard."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", false],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", false]
+                        ]
+                    ]]
+                ]
+            ]
         ],
-        "lookAtChaosBag": [
-            ["LOG", "{{$ALIAS_N}} is looking at Chaos Bag."],
-            ["LOOK_AT", "$PLAYER_N", "sharedChaosBag", -1, true]
+        "toggleVictoryDisplay": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedVictoryDisplay"]
         ],
-        "lookAtNotInPlay": [
-            ["LOG", "{{$ALIAS_N}} is looking at Not in Play cards."],
-            ["LOOK_AT", "$PLAYER_N", "sharedNotInPlay", -1, true]
+        "toggleChaosBag": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedChaosBag"]
         ],
-        "lookAtOffMap": [
-            ["LOG", "{{$ALIAS_N}} is looking at Off Map cards."],
-            ["LOOK_AT", "$PLAYER_N", "sharedOffMap", -1, true]
+        "toggleNotInPlay": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedNotInPlay"]
         ],
-        "lookAtTokens": [
-            ["LOG", "{{$ALIAS_N}} is looking at Tokens."],
-            ["LOOK_AT", "$PLAYER_N", "sharedTokens", -1, true]
+        "toggleOffMap": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedOffMap"]
+        ],
+        "toggleTokens": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedTokens"]
         ]
     }
 }

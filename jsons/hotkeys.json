@@ -8,23 +8,23 @@
             {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
         ],
         "game": [
+            {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
-            {"key": "V", "actionList": "lookAtVictoryDisplay", "label": "id:lookAtVictoryDisplay"},
-            {"key": "B", "actionList": "lookAtChaosBag", "label": "id:lookAtChaosBag"},            
-            {"key": "N", "actionList": "lookAtNotInPlay", "label": "id:lookAtNotInPlay"},
-            {"key": "M", "actionList": "lookAtOffMap", "label": "id:lookAtOffMap"},
-            {"key": "K", "actionList": "lookAtTokens", "label": "id:lookAtTokens"},
-            {"key": "Shift+S", "actionList": "toggleSetAside", "label": "id:toggleSetAside"}
+            {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
+            {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
+            {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
+            {"key": "O", "actionList": "toggleSideboard", "label": "id:toggleSideboard"},
+            {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"}
         ],
         "card": [
-            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
-            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
-            {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
             {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
+            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},
             {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
-            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
-            {"key": "X", "actionList": "discardCard", "label": "id:discard"}
+            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
+            {"key": "X", "actionList": "discardCard", "label": "id:discard"},
+            {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
+            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"}
         ]
     }
 }

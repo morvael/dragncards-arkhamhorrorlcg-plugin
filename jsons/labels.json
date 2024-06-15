@@ -1,7 +1,7 @@
 {
     "labels": {
-        "toggleSetAside": {
-            "English": "Show/Hide Set Aside"
+        "toggleSideboard": {
+            "English": "Show / Hide Sideboard"
         },
         "layout1Player": {
             "English": "1 Player"
@@ -381,9 +381,6 @@
         "step-B": {
             "English": "Before the game"
         },
-        "omega": {
-            "English": "Ω"
-        },
         "upkeep": {
             "English": "Upkeep"
         },
@@ -396,23 +393,20 @@
         "mythos": {
             "English": "Mythos"
         },
-        "alpha": {
-            "English": "α"
+        "toggleTokens": {
+            "English": "Show / Hide Tokens"
         },
-        "lookAtOffMap": {
-            "English": "Look at Off Map cards"
+        "toggleVictoryDisplay": {
+            "English": "Show / Hide Victory Display"
         },
-        "lookAtNotInPlay": {
-            "English": "Look at Not in Play cards"
+        "toggleChaosBag": {
+            "English": "Show / Hide Chaos Bag"
         },
-        "lookAtVictoryDisplay": {
-            "English": "Look at Victory Display cards"
+        "toggleNotInPlay": {
+            "English": "Show / Hide Not in Play"
         },
-        "lookAtTokens": {
-            "English": "Look at Tokens"
-        },
-        "lookAtChaosBag": {
-            "English": "Look at Chaos Bag"
+        "toggleOffMap": {
+            "English": "Show / Hide Off Map"
         },
         "pickChaosToken": {
             "English": "Pick Chaos Token"

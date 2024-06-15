@@ -92,6 +92,23 @@
                     ]
                 ]
             ]
+        },
+        "TOGGLE_SIDEBOARD_GROUP": {
+            "args": ["$SHOW_GROUP_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.browseGroup.id", "$SHOW_GROUP_ID"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} closed {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["LOOK_AT", "$PLAYER_N", null, -1, false]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} fanned out {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["LOOK_AT", "$PLAYER_N", "$SHOW_GROUP_ID", -1, false]
+                    ]
+                ]
+            ]
         }
     }
 }
