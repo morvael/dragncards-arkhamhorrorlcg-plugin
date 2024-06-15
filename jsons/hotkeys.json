@@ -18,12 +18,11 @@
         ],
         "card": [
             {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
+            {"key": "D", "actionList": "discardCard", "label": "id:discard"},
             {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flip"},
             {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
-            {"key": "X", "actionList": "discardCard", "label": "id:discard"},
-            {"key": "Y", "actionList": "returnChaosToken", "label": "id:returnChaosToken"},
             {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"}
         ]
     }

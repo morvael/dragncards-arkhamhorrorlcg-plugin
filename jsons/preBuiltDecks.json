@@ -190,8 +190,6 @@
                 {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
             ],
@@ -202,6 +200,7 @@
                 ["LOAD_CARDS", "Striking Fear"],
                 ["LOAD_CARDS", "Ancient Evils"],
                 ["LOAD_CARDS", "Chilling Cold"],
+                ["LOAD_CARDS", "Night of the Zealot - Shared"],                
                 ["ACTION_LIST", "locationsToB"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
             ]
@@ -213,17 +212,13 @@
                 {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
                 {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
                 {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActDeck"},
-                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
+                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
                 {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ],
@@ -234,8 +229,25 @@
                 ["LOAD_CARDS", "Dark Cult"],
                 ["LOAD_CARDS", "Locked Doors"],
                 ["LOAD_CARDS", "Cult of Umôrdhoth"],
+                ["LOAD_CARDS", ["CHOOSE_N", ["GET_LOAD_LIST", "The Midnight Masks - Downtown"], 1]],
+                ["LOAD_CARDS", ["CHOOSE_N", ["GET_LOAD_LIST", "The Midnight Masks - Southside"], 1]],
+                ["LOAD_CARDS", "Night of the Zealot - Shared"],                
                 ["ACTION_LIST", "locationsToB"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
+            ]
+        },
+        "The Midnight Masks - Southside": {
+            "label": "The Midnight Masks - Southside",
+            "cards": [
+                {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
+                {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}
+            ]
+        },
+        "The Midnight Masks - Downtown": {
+            "label": "The Midnight Masks - Downtown",
+            "cards": [
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
+                {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
             ]
         },
         "Cult of Umôrdhoth": {
@@ -259,12 +271,6 @@
                 {"databaseId": "01147", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01148", "quantity": 1, "loadGroupId": "sharedActDeck"},
                 {"databaseId": "01149", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
@@ -281,8 +287,36 @@
                         ["RANDOM_INT", 0, 3]
                     ]
                 ],
+                ["LOAD_CARDS", ["CHOOSE_N", ["GET_LOAD_LIST", "The Devourer Below - Woods"], 4]],
+                ["LOAD_CARDS", "Night of the Zealot - Shared"],                
                 ["ACTION_LIST", "locationsToB"],
+                ["VAR", "$SELECTED_LOCATIONS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.B.name", "Arkham Woods"]
+                ]]],
+                ["VAR", "$SHUFFLED_LOCATIONS", ["SHUFFLE_LIST", "$SELECTED_LOCATIONS"]],
+                ["SET_CARD_LOCATION", "$SHUFFLED_LOCATIONS.[0]", "45%", "10%"],
+                ["SET_CARD_LOCATION", "$SHUFFLED_LOCATIONS.[1]", "70%", "43%"],
+                ["SET_CARD_LOCATION", "$SHUFFLED_LOCATIONS.[2]", "45%", "76%"],
+                ["SET_CARD_LOCATION", "$SHUFFLED_LOCATIONS.[3]", "20%", "43%"],
                 ["PROMPT", "$PLAYER_N", "nightOfTheZealotChaosBagInit"]
+            ]
+        },
+        "The Devourer Below - Woods": { 
+            "label": "The Devourer Below - Woods",
+            "cards": [
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedLocations"}
+            ]
+        },
+        "Night of the Zealot - Shared": { 
+            "label": "Night of the Zealot - Shared",
+            "cards": [
+                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
             ]
         },
         "Rats": { 

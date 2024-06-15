@@ -3,7 +3,7 @@
         "postNewGameActionList": [
             ["SET_LAYOUT", "shared", "layout4Player"],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
-            ["LOAD_CARDS", "The Gathering Scenario"],
+            ["LOAD_CARDS", "The Devourer Below Scenario"],
             ["SET", "/numPlayers", 4],
             ["DEFINE", "$PLAYER_N", "player2"],
             ["LOAD_CARDS", "Daisy Walker Starter Deck"],

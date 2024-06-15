@@ -100,7 +100,7 @@
                     ["EQUAL", "$GAME.playerData.$PLAYER_N.browseGroup.id", "$SHOW_GROUP_ID"],
                     [
                         ["LOG", "{{$ALIAS_N}} closed {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
-                        ["LOOK_AT", "$PLAYER_N", null, -1, false]
+                        ["STOP_LOOKING", "$PLAYER_N", "hide"]
                     ],
                     ["TRUE"],
                     [
@@ -108,6 +108,14 @@
                         ["LOOK_AT", "$PLAYER_N", "$SHOW_GROUP_ID", -1, false]
                     ]
                 ]
+            ]
+        },
+        "SET_CARD_LOCATION": {
+            "args": ["$CARD", "$LEFT", "$TOP"],
+            "code": [
+                ["VAR", "$STACK_ID", "$GAME.groupById.{{$CARD.groupId}}.stackIds.[{{$CARD.stackIndex}}]"],
+                ["SET", "/stackById/$STACK_ID/left", "$LEFT"],
+                ["SET", "/stackById/$STACK_ID/top",  "$TOP"]
             ]
         }
     }

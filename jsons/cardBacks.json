@@ -1,6 +1,6 @@
 {
     "cardBacks": {
-        "encounter": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
-        "player": {"width": 0.72, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"}
+        "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
+        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"}
     }
 }

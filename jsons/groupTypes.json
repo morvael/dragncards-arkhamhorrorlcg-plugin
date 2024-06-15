@@ -5,7 +5,8 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": true
+                "inPlay": true,
+                "inHand": false
             }
         },
         "story": {
@@ -13,7 +14,8 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": true
+                "inPlay": true,
+                "inHand": false
             }
         },
         "outOfPlay": {
@@ -21,7 +23,8 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": false
+                "inPlay": false,
+                "inHand": false
             }
         },
         "deck": {
@@ -31,6 +34,7 @@
             "onCardEnter": {
                 "currentSide": "B",
                 "inPlay": false,
+                "inHand": false,
                 "rotation": 0
             }
         },
@@ -41,6 +45,7 @@
             "onCardEnter": {
                 "currentSide": "A",
                 "inPlay": false,
+                "inHand": false,
                 "rotation": 0
             }
         },
@@ -51,6 +56,7 @@
             "onCardEnter": {
                 "currentSide": "A",
                 "inPlay": false,
+                "inHand": true,
                 "rotation": 0
             }
         },
@@ -61,6 +67,7 @@
             "onCardEnter": {
                 "currentSide": "A",
                 "inPlay": false,
+                "inHand": false,
                 "rotation": 0
             }
         },
@@ -71,6 +78,7 @@
             "onCardEnter": {
                 "currentSide": "A",
                 "inPlay": false,
+                "inHand": false,
                 "rotation": 0
             }
         }
