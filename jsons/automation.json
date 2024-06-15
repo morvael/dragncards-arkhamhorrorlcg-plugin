@@ -10,7 +10,10 @@
             ["DEFINE", "$PLAYER_N", "player3"],
             ["LOAD_CARDS", "\"Skids\" O'Toole Starter Deck"],
             ["DEFINE", "$PLAYER_N", "player4"],
-            ["LOAD_CARDS", "Agnes Baker Starter Deck"]
+            ["LOAD_CARDS", "Agnes Baker Starter Deck"],
+            ["LOG", "Game begins with the Investigation phase."],
+            ["SET", "/roundNumber", "1"],
+            ["SET", "/stepId", "I1"]
         ],
         "gameRules": [
             {
