@@ -10,7 +10,9 @@
             "groupType": "deck",
             "label": "id:sharedEncounterDeck", 
             "tableLabel": "id:encounter",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "discardToPile": "sharedEncounterDiscard"
+             }
         },
         "sharedEncounterDiscard": {
             "groupType": "discard",
@@ -124,7 +126,9 @@
             "groupType": "deck",
             "label": "id:sharedDeckA", 
             "tableLabel": "id:sharedDeckA",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "discardToPile": "sharedDiscardA"
+             }
         },
         "sharedDiscardA": {
             "groupType": "discard",
@@ -136,7 +140,9 @@
             "groupType": "deck",
             "label": "id:sharedDeckB", 
             "tableLabel": "id:sharedDeckB",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "discardToPile": "sharedDiscardB"
+             }
         },
         "sharedDiscardB": {
             "groupType": "discard",
@@ -148,7 +154,9 @@
             "groupType": "deck",
             "label": "id:sharedDeckC", 
             "tableLabel": "id:sharedDeckC",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "discardToPile": "sharedDiscardC"
+             }
         },
         "sharedDiscardC": {
             "groupType": "discard",
@@ -160,14 +168,19 @@
             "groupType": "hand",
             "label": "id:player1Hand", 
             "tableLabel": "id:hand",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "peeking": {
+                    "player1": true
+                }
+            }
         },
         "player1Deck": {
             "groupType": "deck",
             "label": "id:player1Deck", 
             "tableLabel": "id:deck",
             "onCardEnter": {
-                "controller": "player1"
+                "controller": "player1",
+                "discardToPile": "player1Discard"
             }
         },
         "player1Discard": {
@@ -198,14 +211,19 @@
             "groupType": "hand",
             "label": "id:player2Hand", 
             "tableLabel": "id:hand",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "peeking": {
+                    "player2": true
+                }
+            }
         },
         "player2Deck": {
             "groupType": "deck",
             "label": "id:player2Deck", 
             "tableLabel": "id:deck",
             "onCardEnter": {
-                "controller": "player2"
+                "controller": "player2",
+                "discardToPile": "player2Discard"
             }
         },
         "player2Discard": {
@@ -236,14 +254,19 @@
             "groupType": "hand",
             "label": "id:player3Hand", 
             "tableLabel": "id:hand",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "peeking": {
+                    "player3": true
+                }
+            }
         },
         "player3Deck": {
             "groupType": "deck",
             "label": "id:player3Deck", 
             "tableLabel": "id:deck",
             "onCardEnter": {
-                "controller": "player3"
+                "controller": "player3",
+                "discardToPile": "player3Discard"
             }
         },
         "player3Discard": {
@@ -274,14 +297,19 @@
             "groupType": "hand",
             "label": "id:player4Hand", 
             "tableLabel": "id:hand",
-            "onCardEnter": { }
+            "onCardEnter": {
+                "peeking": {
+                    "player4": true
+                }
+            }
         },
         "player4Deck": {
             "groupType": "deck",
             "label": "id:player4Deck", 
             "tableLabel": "id:deck",
             "onCardEnter": {
-                "controller": "player4"
+                "controller": "player4",
+                "discardToPile": "player4Discard"
             }
         },
         "player4Discard": {

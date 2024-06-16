@@ -419,6 +419,12 @@
         },
         "removeChaosTokens": {
             "English": "Remove Chaos Tokens"
+        },
+        "decreaseResources": {
+            "English": "Spend 1 Resource"
+        },
+        "increaseResources": {
+            "English": "Gain 1 Resource"
         }
     }
 }

@@ -17,7 +17,7 @@
         ],
         "gameRules": [
             {
-                "_comment": "Game step helpers",
+                "_comment": "Game step helpers.",
                 "type": "trigger",
                 "listenTo": ["/stepId"],
                 "condition": [
@@ -69,6 +69,27 @@
                             ]]
                         ]
                     ]
+                ]
+            },
+            {
+                "_comment": "Flip selected cards face up when entering play.",
+                "type": "trigger", 
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.groupById.{{$TARGET.groupId}}.groupType", "inPlay"],
+                        ["NOT_EQUAL", ["PREV", "$GAME.groupById.{{$TARGET.groupId}}.groupType"], "inPlay"],
+                        ["EQUAL", "$TARGET.currentSide", "B"],
+                        ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                        ["NOT_EQUAL", "$TARGET.sides.B.type", "MiniConcealed"]
+                    ]
+                ],
+                "then": [
+                    ["SET", "/cardById/$TARGET.id/peeking/player1", false],
+                    ["SET", "/cardById/$TARGET.id/peeking/player2", false],
+                    ["SET", "/cardById/$TARGET.id/peeking/player3", false],
+                    ["SET", "/cardById/$TARGET.id/peeking/player4", false],
+                    ["SET", "/cardById/$TARGET.id/currentSide", "A"]
                 ]
             }
         ]

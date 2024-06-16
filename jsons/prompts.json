@@ -292,6 +292,39 @@
                 }
             ]
         },
+        "victoryOrDiscard": {
+            "args": ["$DISCARDED_CARD"],
+            "message": "{{$DISCARDED_CARD.currentFace.name}} is Victory {{$DISCARDED_CARD.currentFace.victoryPoints}}. Select destination.",
+            "options": [
+                {
+                    "label": "Victory Display",
+                    "hotkey": "V",
+                    "code": [
+                        ["LOG", "{{$ALIAS_N}} moved {{$DISCARDED_CARD.currentFace.name}} to Victory Display."],
+                        ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedVictoryDisplay", -1]
+                    ]
+                },
+                {
+                    "label": "Discard Pile",
+                    "hotkey": "D",
+                    "code": [
+                        ["LOG", "{{$ALIAS_N}} discarded {{$DISCARDED_CARD.currentFace.name}}."],
+                        ["COND",
+                            ["EQUAL", "$DISCARDED_CARD.controller", "player1"],
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player1Discard", 0],
+                            ["EQUAL", "$DISCARDED_CARD.controller", "player2"],
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player2Discard", 0],
+                            ["EQUAL", "$DISCARDED_CARD.controller", "player3"],
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player3Discard", 0],
+                            ["EQUAL", "$DISCARDED_CARD.controller", "player4"],
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player4Discard", 0],
+                            ["TRUE"],
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedEncounterDiscard", 0]
+                        ]
+                    ]
+                }
+            ]
+        },
         "nightOfTheZealotChaosBagInit": {
             "args": [],
             "message": "Pick Night of the Zealot campaign difficulty.",

@@ -5,8 +5,9 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": true,
-                "inHand": false
+                "inDeck": false,
+                "inHand": false,
+                "inPlay": true
             }
         },
         "story": {
@@ -14,8 +15,9 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": true,
-                "inHand": false
+                "inDeck": false,
+                "inHand": false,
+                "inPlay": true
             }
         },
         "outOfPlay": {
@@ -23,8 +25,9 @@
             "canHaveTokens": true,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "inPlay": false,
-                "inHand": false
+                "inDeck": false,
+                "inHand": false,
+                "inPlay": false
             }
         },
         "deck": {
@@ -33,8 +36,9 @@
             "shuffleOnLoad": true,
             "onCardEnter": {
                 "currentSide": "B",
-                "inPlay": false,
+                "inDeck": true,
                 "inHand": false,
+                "inPlay": false,
                 "rotation": 0
             }
         },
@@ -44,8 +48,9 @@
             "shuffleOnLoad": false,
             "onCardEnter": {
                 "currentSide": "A",
-                "inPlay": false,
+                "inDeck": false,
                 "inHand": false,
+                "inPlay": false,
                 "rotation": 0
             }
         },
@@ -54,9 +59,10 @@
             "canHaveTokens": false,
             "shuffleOnLoad": false,
             "onCardEnter": {
-                "currentSide": "A",
-                "inPlay": false,
+                "currentSide": "B",
+                "inDeck": false,
                 "inHand": true,
+                "inPlay": false,
                 "rotation": 0
             }
         },
@@ -66,8 +72,9 @@
             "shuffleOnLoad": false,
             "onCardEnter": {
                 "currentSide": "A",
-                "inPlay": false,
+                "inDeck": false,
                 "inHand": false,
+                "inPlay": false,
                 "rotation": 0
             }
         },
@@ -77,8 +84,9 @@
             "shuffleOnLoad": false,
             "onCardEnter": {
                 "currentSide": "A",
-                "inPlay": false,
+                "inDeck": false,
                 "inHand": false,
+                "inPlay": false,
                 "rotation": 0
             }
         }

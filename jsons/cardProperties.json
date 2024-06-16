@@ -1,8 +1,9 @@
 {
     "cardProperties": {
         "controller" : {"type": "string", "default": ""},
-        "inPlay": {"type": "boolean", "default": false},
+        "inDeck": {"type": "boolean", "default": false},
         "inHand": {"type": "boolean", "default": false},
+        "inPlay": {"type": "boolean", "default": false},
         "exhausted": {"type": "boolean", "default": false}
     }
 }

@@ -110,7 +110,7 @@
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
                     [
                         ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}}."],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedTokens", -1]
+                        ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedTokens", -1]
                     ],
                     ["TRUE"],
                     ["LOG", "{{$ACTIVE_FACE.name}} cannot be discarded from here, {{$ALIAS_N}}."]
@@ -123,7 +123,7 @@
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     [
                         ["LOG", "{{$ALIAS_N}} removed {{$ACTIVE_FACE.name}} from play."],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedNotInPlay", -1]
+                        ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedNotInPlay", -1]
                     ],
                     ["TRUE"],
                     ["LOG", "{{$ACTIVE_FACE.name}} cannot be removed from play from here, {{$ALIAS_N}}."]
@@ -138,12 +138,12 @@
                         ],
                         [
                             ["LOG", "{{$ALIAS_N}} removed {{$ACTIVE_FACE.name}} Chaos Token from play."],
-                            ["DELETE_CARD", "$ACTIVE_CARD.id"]
+                            ["DELETE_CARD", "$ACTIVE_CARD_ID"]
                         ],
                         ["TRUE"],
                         [
                             ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}} Chaos Token."],
-                            ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedChaosBag", -1]
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedChaosBag", -1]
                         ]
                     ],
                     ["TRUE"],
@@ -153,20 +153,40 @@
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["EQUAL", "$ACTIVE_CARD.inHand", true]
                 ],
-                [
-                    ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}}."],
-                    ["COND",
-                        ["EQUAL", "$ACTIVE_CARD.controller", "player1"],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "player1Discard", 0],
-                        ["EQUAL", "$ACTIVE_CARD.controller", "player2"],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "player2Discard", 0],
-                        ["EQUAL", "$ACTIVE_CARD.controller", "player3"],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "player3Discard", 0],
-                        ["EQUAL", "$ACTIVE_CARD.controller", "player4"],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "player4Discard", 0],
-                        ["TRUE"],
-                        ["MOVE_CARD", "$ACTIVE_CARD.id", "sharedEncounterDiscard", 0]
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$ACTIVE_CARD.sides.B.databaseId", null],
+                        ["GREATER_THAN", "$ACTIVE_FACE.victoryPoints", 0]
+                    ],
+                    [
+                        ["LOG", "{{$ALIAS_N}} moved {{$ACTIVE_FACE.name}} to Victory Display."],
+                        ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedVictoryDisplay", -1]
+                    ],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.sides.B.databaseId", null],
+                    ["LOG", "{{$ACTIVE_FACE.name}} cannot be discarded, {{$ALIAS_N}}."],
+                    ["GREATER_THAN", "$ACTIVE_FACE.victoryPoints", 0],
+                    ["PROMPT", "$PLAYER_N", "victoryOrDiscard", "$ACTIVE_CARD"],
+                    ["TRUE"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}}."],
+                        ["COND",
+                            ["EQUAL", "$ACTIVE_CARD.controller", "player1"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player1Discard", 0],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "player2"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player2Discard", 0],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "player3"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player3Discard", 0],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "player4"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player4Discard", 0],
+                            ["TRUE"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedEncounterDiscard", 0]
+                        ]
                     ]
+                ],
+                ["EQUAL", "$ACTIVE_CARD.inDeck", true],
+                [
+                    ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_CARD.sides.A.name}} from the top of {{$ACTIVE_GROUP.label}}."],
+                    ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.discardToPile", 0]
                 ],
                 ["TRUE"],
                 ["LOG", "{{$ACTIVE_FACE.name}} cannot be discarded from here, {{$ALIAS_N}}."]
@@ -467,6 +487,21 @@
         ],
         "toggleTokens": [
             ["TOGGLE_SIDEBOARD_GROUP", "sharedTokens"]
+        ],
+        "increaseResources": [
+            ["LOG", "{{$ALIAS_N}} increased {{$PLAYER_N}}'s Resources by 1."],
+            ["INCREASE_VAL", "/playerData/$PLAYER_N/resources", 1]
+        ],
+        "decreaseResources": [
+            ["COND",
+                ["GREATER_THAN", "$GAME.playerData.$PLAYER_N.resources", 0],
+                [
+                    ["LOG", "{{$ALIAS_N}} decreased {{$PLAYER_N}}'s Resources by 1."],
+                    ["DECREASE_VAL", "/playerData/$PLAYER_N/resources", 1]
+                ],
+                ["TRUE"],
+                ["LOG", "{{$PLAYER_N}}'s Resources cannot be decreased, {{$ALIAS_N}}."]
+            ]
         ]
     }
 }
