@@ -1,0 +1,78 @@
+{
+    "actionLists": {
+        "advanceStory": [
+            ["COND",
+                ["AND",
+                    ["EQUAL","$ACTIVE_GROUP.groupType", "story"],
+                    ["GREATER_THAN", ["LENGTH", "$ACTIVE_GROUP.stackIds"], 0]
+                ],
+                [
+                    ["VAR", "$ADVANCING_CARD", ["GET_CARD", "$ACTIVE_GROUP_ID", 0, 0]],
+                    ["COND",
+                        ["EQUAL", "$ADVANCING_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} advanced {{$ADVANCING_CARD.sides.A.name}}."],
+                            ["SET", "/cardById/$ADVANCING_CARD.id/currentSide", "B"]
+                        ],
+                        ["EQUAL", "$ADVANCING_CARD.currentSide", "B"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} advanced {{$ADVANCING_CARD.sides.B.name}}."],
+                            ["COND",
+                                ["GREATER_THAN", ["LENGTH", "$ACTIVE_GROUP.stackIds"], 1],
+                                ["MOVE_CARD", "$ADVANCING_CARD.id", "$ACTIVE_GROUP_ID", -1]
+                            ],
+                            ["SET", "/cardById/$ADVANCING_CARD.id/currentSide", "A"]
+                        ]
+                    ]
+                ]
+            ]
+        ],        
+        "flipCard": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} facedown."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} flipped {{$ACTIVE_FACE.name}} faceup."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"]
+                        ]
+                    ]
+                ]
+            ]
+        ]        
+    },
+    "labels": {
+        "advanceStory": {
+            "English": "Advance Agenda or Act Deck"
+        },
+        "advanceStoryShort": {
+            "English": "Advance"
+        },
+        "flipCard": {
+            "English": "Flip"
+        } 
+    }
+}

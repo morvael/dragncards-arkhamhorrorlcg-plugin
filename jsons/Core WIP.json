@@ -1,0 +1,15 @@
+{
+    "actionLists": {
+        "shuffleIntoDeck": [
+            ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.deckGroupId", 0],
+            ["VAR", "$GROUP_ID", "$ACTIVE_CARD.deckGroupId"],
+            ["SHUFFLE_GROUP", "$GROUP_ID"],
+            ["LOG", "{{$ALIAS_N}} shuffled {{$ACTIVE_FACE.name}} into {{$GAME.groupById.$GROUP_ID.label}}."]
+        ]
+    },
+    "labels": {
+        "shuffleIntoOwnersDeck": {
+            "English": "Shuffle Into Owners Deck"
+        }
+    }    
+}

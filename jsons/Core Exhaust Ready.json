@@ -1,0 +1,64 @@
+{
+    "actionLists": {
+        "exhaustCard": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "B"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["COND",
+                        ["EQUAL", "$ACTIVE_CARD.rotation", 0],
+                        [
+                            ["LOG", "{{$ALIAS_N}} exhausted {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 90],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", true]
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        "readyCard": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                [
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/currentSide", "A"],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTIVE_CARD.rotation", 0],
+                        [
+                            ["LOG", "{{$ALIAS_N}} readied {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/rotation", 0],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/exhausted", false]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    },
+    "labels": {
+        "exhaustCard": {
+            "English": "Exhaust"
+        },
+        "readyCard": {
+            "English": "Ready"
+        }
+    }
+}

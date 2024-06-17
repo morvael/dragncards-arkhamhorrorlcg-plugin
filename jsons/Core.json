@@ -1,0 +1,112 @@
+{
+    "pluginName": "Arkham Horror Living Card Game",
+    "tutorialUrl": "https://www.youtube.com/watch?v=zzliu_-xNNQ",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "backgroundUrl": "https://i.imgur.com/luvXy07.jpeg",
+    "announcements": [
+        "2024-03-24: Plugin beta development begun"
+    ],
+    "browse": {
+        "filterPropertySideA": "type",
+        "filterValuesSideA": ["Asset", "Enemy", "Event", "Skill", "Treachery"],
+        "textPropertiesSideA": ["name", "faction", "traits", "text"]
+    },
+    "cardBacks": {
+        "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
+        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"}
+    },
+    "cardTypes": {
+        "Investigator":           {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Asset":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Treachery":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Event":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Skill":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Scenario":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Agenda":                 {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Act":                    {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
+        "Location":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Story":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Key":                    {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "ChaosToken":             {"width": 0.28, "height": 0.28,"tokens": []},
+        "FirstInvestigatorToken": {"width": 0.57, "height": 0.55,"tokens": []},
+        "KeyToken":               {"width": 0.19, "height": 0.19,"tokens": []},
+        "FloodedToken":           {"width": 0.20, "height": 0.20,"tokens": []},
+        "SealToken":              {"width": 0.20, "height": 0.42,"tokens": []},
+        "MiniConcealed":          {"width": 0.47, "height": 0.72,"tokens": []},
+        "MiniInvestigator":       {"width": 0.47, "height": 0.72,"tokens": []}
+    },
+    "defaultActions": [
+    ],
+    "hotkeys": {
+        "token": [
+            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png)"},
+            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png)"},
+            {"key": "3", "tokenType": "doom", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png)"},
+            {"key": "4", "tokenType": "damage", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png)"},
+            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
+        ],
+        "game": [
+            {"key": "-", "actionList": "decreaseResources", "label": "id:decreaseResources"},
+            {"key": "=", "actionList": "increaseResources", "label": "id:increaseResources"},
+            {"key": "+", "actionList": "increaseResources", "label": "id:increaseResources"},
+            {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
+            {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
+            {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
+            {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
+            {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
+            {"key": "O", "actionList": "toggleSideboard", "label": "id:toggleSideboard"},
+            {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"}
+        ],
+        "card": [
+            {"key": "A", "actionList": "advanceStory", "label": "id:advanceStory"},
+            {"key": "D", "actionList": "discardCard", "label": "id:discardCard"},
+            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
+            {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
+            {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
+            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
+            {"key": "Z", "actionList": "attachDetachCard", "label": "id:attachDetachCard"}
+        ]
+    },
+    "imageUrlPrefix": {
+        "Default": "https://arkhamdb.com/bundles/cards/",
+        "English": "https://arkhamdb.com/bundles/cards/"
+    },
+    "saveGame": {
+        "metadata": {
+        }
+    },
+    "spawnExistingCardModal": {
+        "columnProperties": ["name", "packName"],
+        "loadGroupIds": ["player1Play","player2Play","player3Play","player4Play"]
+    },
+    "stepReminderRegex": [
+    ],
+    "topBarCounters": {
+        "shared": [
+            {
+                "label": "id:roundCounter",
+                "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png",
+                "gameProperty": "roundNumber"
+            }
+        ],
+        "player": [
+            {
+                "label": "id:resourcesCounter",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png",
+                "playerProperty": "resources"
+            }
+        ]
+    },
+    "touchBar": [
+    ],
+    "labels": {
+        "roundCounter": {
+            "English": "Round"
+        },
+        "resourcesCounter": {
+            "English": "Resources"
+        }
+    }
+}

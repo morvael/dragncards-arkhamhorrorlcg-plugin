@@ -1,0 +1,88 @@
+{
+    "actionLists": {
+        "attachDetachCard": [
+            ["COND",
+                ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                [
+                    ["LOG", "{{$ALIAS_N}} detached {{$ACTIVE_FACE.name}} from {{$ACTIVE_CARD.parentCard.currentFace.name}}."],
+                    ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                ],
+                ["TRUE"],
+                ["COND",
+                    ["EQUAL", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached", null],
+                    [
+                        ["LOG", "{{$ALIAS_N}} will attach {{$ACTIVE_FACE.name}}."],
+                        ["SET", "/playerData/{{$PLAYER_N}}/cardToBeAttached", "$ACTIVE_CARD"],
+                        ["SET", "/cardById/{{$ACTIVE_CARD_ID}}/borderColor", "LightSkyBlue"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["VAR", "$ATTACHED_CARD", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached"],
+                        ["COND",
+                            ["EQUAL", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"],
+                            [
+                                ["LOG", "{{$ALIAS_N}} will not attach {{$ATTACHED_CARD.currentFace.name}}."]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["LOG", "{{$ALIAS_N}} attached {{$ATTACHED_CARD.currentFace.name}} to {{$ACTIVE_FACE.name}}."],
+                                ["ATTACH_CARD", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$ATTACHED_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"]
+                                    ],
+                                    ["COND",
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player1"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player1"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player1"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player2"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player2"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player2"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player3"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player3"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player3"]
+                                        ],
+                                        ["AND",
+                                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Investigator"],
+                                            ["NOT_EQUAL", "$GAME.firstPlayer", "player4"]
+                                        ],
+                                        [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "player4"]],
+                                            ["LOG", "{{$ALIAS_N}} set {{$ALIAS_I}} as the lead investigator."],
+                                            ["SET", "/firstPlayer", "player4"]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        ["UNSET", "/playerData/{{$PLAYER_N}}/cardToBeAttached"],
+                        ["UNSET", "/cardById/{{$ATTACHED_CARD.id}}/borderColor"]
+                    ]
+                ]
+            ]
+        ]
+    },
+    "labels": {
+        "attachDetachCard": {
+            "English": "Attach / Detach"
+        }
+    }
+}

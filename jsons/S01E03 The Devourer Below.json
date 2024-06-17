@@ -1,0 +1,98 @@
+{
+    "preBuiltDecks": {
+        "The Devourer Below Scenario": {
+            "label": "The Devourer Below Scenario",
+            "cards": [
+                {"databaseId": "01142", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "01143", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01144", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01145", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
+                {"databaseId": "01146", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01147", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01148", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01149", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Night of the Zealot", "The Devourer Below", "The Devourer Below Scenario Init"]
+            ]
+        },
+        "The Devourer Below - Woods": {
+            "label": "The Devourer Below - Woods",
+            "cards": [
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedLocations"},
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedLocations"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The Devourer Below Scenario Init": [
+            ["LOAD_CARDS", "Ancient Evils"],
+            ["LOAD_CARDS", "Striking Fear"],
+            ["LOAD_CARDS", "Ghouls"],
+            ["LOAD_CARDS", "Dark Cult"],
+            ["LOAD_N_CARDS", "The Devourer Below - Woods", 4],
+            ["VAR", "$SELECTED_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.B.name", "Arkham Woods"]]]],
+            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[0]", "45%", "10%"],
+            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1]", "70%", "43%"],
+            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2]", "45%", "76%"],
+            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3]", "20%", "43%"],
+            ["PLACE_MINI_INVESTIGATORS", 45, 43],
+            ["LOAD_RANDOM_LIST", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Cultists Who Got Away” in your Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "The Devourer Below Scenario Question 1"]
+        ],
+        "The Devourer Below Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "Campaign Log: There are exactly 0 names recorded under “Cultists Who Got Away”."]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["LOG", "Campaign Log: There are exactly 1 or 2 names recorded under “Cultists Who Got Away”."],
+                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 1]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                [
+                    ["LOG", "Campaign Log: There are exactly 3 or 4 names recorded under “Cultists Who Got Away”."],
+                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 2]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                [
+                    ["LOG", "Campaign Log: There are exactly 5 or 6 names recorded under “Cultists Who Got Away”."],
+                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 3]
+                ]
+            ],
+            ["LOAD_CARDS", "chaos_elder_thing"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "The Devourer Below Scenario Question 2"]
+        ],
+        "The Devourer Below Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "Campaign Log: It is past midnight."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
+                        ["DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "The Devourer Below Scenario Question 3"]
+        ],
+        "The Devourer Below Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "Campaign Log: The Ghoul Priest is still alive."],
+                    ["LOAD_CARDS", "Night of the Zealot - Ghoul Priest"]
+                ]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

@@ -1,0 +1,130 @@
+{
+    "phases": {
+        "Mythos":        {"label": "id:mythosPhase",        "height" : "23%"},
+        "Investigation": {"label": "id:investigationPhase", "height" : "27%"},
+        "Enemy":         {"label": "id:enemyPhase",         "height" : "23%"},
+        "Upkeep":        {"label": "id:upkeepPhase",        "height" : "27%"}
+    },
+    "phaseOrder": ["Mythos", "Investigation", "Enemy", "Upkeep"],
+    "steps": {
+        "M1":   {"phaseId": "Mythos",        "label": "id:step-M1"},
+        "M2":   {"phaseId": "Mythos",        "label": "id:step-M2"},
+        "M3":   {"phaseId": "Mythos",        "label": "id:step-M3"},
+        "M4":   {"phaseId": "Mythos",        "label": "id:step-M4"},
+        "W1":   {"phaseId": "Mythos",        "label": "id:step-W1"},
+        "M5":   {"phaseId": "Mythos",        "label": "id:step-M5"},
+        "I1":   {"phaseId": "Investigation", "label": "id:step-I1"},
+        "W2":   {"phaseId": "Investigation", "label": "id:step-W2"},
+        "I2":   {"phaseId": "Investigation", "label": "id:step-I2"},
+        "W3":   {"phaseId": "Investigation", "label": "id:step-W3"},
+        "I2.1": {"phaseId": "Investigation", "label": "id:step-I2.1"},
+        "I2.2": {"phaseId": "Investigation", "label": "id:step-I2.2"},
+        "I3":   {"phaseId": "Investigation", "label": "id:step-I3"},
+        "E1":   {"phaseId": "Enemy",         "label": "id:step-E1"},
+        "E2":   {"phaseId": "Enemy",         "label": "id:step-E2"},
+        "W4":   {"phaseId": "Enemy",         "label": "id:step-W4"},
+        "E3":   {"phaseId": "Enemy",         "label": "id:step-E3"},
+        "W5":   {"phaseId": "Enemy",         "label": "id:step-W5"},
+        "E4":   {"phaseId": "Enemy",         "label": "id:step-E4"},
+        "U1":   {"phaseId": "Upkeep",        "label": "id:step-U1"},
+        "W6":   {"phaseId": "Upkeep",        "label": "id:step-W6"},
+        "U2":   {"phaseId": "Upkeep",        "label": "id:step-U2"},
+        "U3":   {"phaseId": "Upkeep",        "label": "id:step-U3"},
+        "U4":   {"phaseId": "Upkeep",        "label": "id:step-U4"},
+        "U5":   {"phaseId": "Upkeep",        "label": "id:step-U5"},
+        "U6":   {"phaseId": "Upkeep",        "label": "id:step-U6"}
+    },
+    "stepOrder": ["M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6"],
+    "labels": {
+        "mythosPhase": {
+            "English": "Mythos"
+        },        
+        "investigationPhase": {
+            "English": "Investigation"
+        },
+        "enemyPhase": {
+            "English": "Enemy"
+        },
+        "upkeepPhase": {
+            "English": "Upkeep"
+        },
+        "step-M1": {
+            "English": "1.1 Mythos phase begins"
+        },
+        "step-M2": {
+            "English": "1.2 Place 1 doom on the current agenda"
+        },
+        "step-M3": {
+            "English": "1.3 Check doom threshold"
+        },
+        "step-M4": {
+            "English": "1.4 Each investigator draws 1 encounter card"
+        },
+        "step-W1": {
+            "English": "Player Window 1"
+        },
+        "step-M5": {
+            "English": "1.5 Mythos phase ends"
+        },
+        "step-I1": {
+            "English": "2.1 Investigation phase begins"
+        },
+        "step-W2": {
+            "English": "Player Window 2"
+        },
+        "step-I2": {
+            "English": "2.2 Next investigator’s turn begins"
+        },
+        "step-W3": {
+            "English": "Player Window 3"
+        },
+        "step-I2.1": {
+            "English": "2.2.1 Investigator takes an action, if able"
+        },
+        "step-I2.2": {
+            "English": "2.2.2 Investigator’s turn ends"
+        },
+        "step-I3": {
+            "English": "2.3 Investigation phase ends"
+        },
+        "step-E1": {
+            "English": "3.1 Enemy phase begins"
+        },
+        "step-E2": {
+            "English": "3.2 Hunter enemies move"
+        },
+        "step-W4": {
+            "English": "Player Window 4"
+        },
+        "step-E3": {
+            "English": "3.3 Next investigator resolves engaged enemy attacks"
+        },
+        "step-W5": {
+            "English": "Player Window 5"
+        },
+        "step-E4": {
+            "English": "3.4 Enemy phase ends"
+        },
+        "step-U1": {
+            "English": "4.1 Upkeep phase begins"
+        },
+        "step-W6": {
+            "English": "Player Window 6"
+        },
+        "step-U2": {
+            "English": "4.2 Reset actions"
+        },
+        "step-U3": {
+            "English": "4.3 Ready exhausted cards"
+        },
+        "step-U4": {
+            "English": "4.4 Each investigator draws 1 card and gains 1 resource"
+        },
+        "step-U5": {
+            "English": "4.5 Each investigator checks hand size"
+        },
+        "step-U6": {
+            "English": "4.6 Upkeep phase ends"
+        }
+    }    
+}

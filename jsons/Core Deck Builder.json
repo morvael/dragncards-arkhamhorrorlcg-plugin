@@ -1,6 +1,6 @@
 {
     "deckbuilder": {
-        "addButtons": [1,2],
+        "addButtons": [1, 2],
         "colorKey": "faction",
         "colorValues": {
             "Guardian.": "#0070C0",
@@ -29,18 +29,42 @@
             "Mythos.": "#000000"
         },
         "columns": [
-            {"propName": "name", "label": "id:name"},
-            {"propName": "faction", "label": "id:faction"},
-            {"propName": "type", "label": "id:type"},
-            {"propName": "traits", "label": "id:traits"},
-            {"propName": "packName", "label": "id:pack"},
-            {"propName": "numberInPack", "label": "id:number"}
+            {"propName": "name", "label": "id:dbName"},
+            {"propName": "faction", "label": "id:dbFaction"},
+            {"propName": "type", "label": "id:dbType"},
+            {"propName": "traits", "label": "id:dbTraits"},
+            {"propName": "packName", "label": "id:dbPack"},
+            {"propName": "numberInPack", "label": "id:dbNumber"}
         ],
         "spawnGroups": [
-            {"loadGroupId": "sharedLocations", "label": "id:myMiniInvestigator"},
-            {"loadGroupId": "playerNInvestigator", "label": "id:myInvestigator"},
-            {"loadGroupId": "playerNPlay1", "label": "id:myPlayArea"},
-            {"loadGroupId": "playerNDeck", "label": "id:myDeck"}
+            {"loadGroupId": "playerNInvestigator", "label": "id:dbMyInvestigator"},
+            {"loadGroupId": "playerNDeck", "label": "id:dbMyDeck"}
         ]
+    },
+    "labels": {
+        "dbName": {
+            "English": "Name"
+        },
+        "dbFaction": {
+            "English": "Faction"
+        },
+        "dbType": {
+            "English": "Type"
+        },
+        "dbTraits": {
+            "English": "Traits"
+        },
+        "dbPack": {
+            "English": "Pack"
+        },
+        "dbNumber": {
+            "English": "Number"
+        },
+        "dbMyInvestigator": {
+            "English": "My Investigator"
+        },
+        "dbMyDeck": {
+            "English": "My Deck"
+        }
     }
 }

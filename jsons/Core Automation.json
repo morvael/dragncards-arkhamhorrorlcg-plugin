@@ -1,19 +1,12 @@
 {
     "automation": {
         "postNewGameActionList": [
-            ["SET_LAYOUT", "shared", "layout4Player"],
+            ["SET", "/arkhamScenarioInit", true],
+            ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
+            ["SET_LAYOUT", "shared", "layout1Player"],
+            ["SET", "/numPlayers", 1],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
-            ["LOAD_CARDS", "The Devourer Below Scenario"],
-            ["SET", "/numPlayers", 4],
-            ["DEFINE", "$PLAYER_N", "player2"],
-            ["LOAD_CARDS", "Daisy Walker Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player3"],
-            ["LOAD_CARDS", "\"Skids\" O'Toole Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player4"],
-            ["LOAD_CARDS", "Agnes Baker Starter Deck"],
-            ["LOG", "Game begins with the Investigation phase."],
-            ["SET", "/roundNumber", "1"],
-            ["SET", "/stepId", "I1"]
+            ["LOAD_CARDS", "The Midnight Masks Scenario"]
         ],
         "gameRules": [
             {
@@ -36,11 +29,7 @@
                             ["INCREASE_VAL", "/roundNumber", 1]
                         ],
                         ["EQUAL", "$GAME.stepId", "M2"],
-                        [
-                            ["VAR", "$AGENDA_CARD", ["GET_CARD", "sharedAgendaDeck", 0, 0]],
-                            ["LOG", "{{$ALIAS_N}} placed 1 doom on {{$AGENDA_CARD.currentFace.name}}."],
-                            ["INCREASE_VAL", "/cardById/$AGENDA_CARD.id/tokens/doom", 1]
-                        ],
+                        ["PLACE_DOOM_ON_CURRENT_AGENDA", 1],
                         ["EQUAL", "$GAME.stepId", "U3"],
                         [
                             ["LOG", "{{$ALIAS_N}} readied exhausted cards."],
@@ -73,7 +62,7 @@
             },
             {
                 "_comment": "Flip selected cards face up when entering play.",
-                "type": "trigger", 
+                "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
@@ -81,7 +70,7 @@
                         ["NOT_EQUAL", ["PREV", "$GAME.groupById.{{$TARGET.groupId}}.groupType"], "inPlay"],
                         ["EQUAL", "$TARGET.currentSide", "B"],
                         ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                        ["NOT_EQUAL", "$TARGET.sides.B.type", "MiniConcealed"]
+                        ["NOT_EQUAL", "$TARGET.sides.A.type", "MiniConcealed"]
                     ]
                 ],
                 "then": [
@@ -90,6 +79,24 @@
                     ["SET", "/cardById/$TARGET.id/peeking/player3", false],
                     ["SET", "/cardById/$TARGET.id/peeking/player4", false],
                     ["SET", "/cardById/$TARGET.id/currentSide", "A"]
+                ]
+            },
+            {
+                "_comment": "Flip locations facedown when loading scenario.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", true],
+                        ["EQUAL", "$TARGET.sides.A.type", "Location"],
+                        ["EQUAL", "$TARGET.sides.B.type", "Location"],
+                        ["EQUAL", "$TARGET.currentSide", "A"],
+                        ["EQUAL", "$TARGET.sides.B.clues", null],
+                        ["EQUAL", "$TARGET.sides.B.shroud", null]
+                    ]
+                ],
+                "then": [
+                    ["SET", "/cardById/$TARGET.id/currentSide", "B"]
                 ]
             }
         ]

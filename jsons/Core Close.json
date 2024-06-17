@@ -1,0 +1,34 @@
+{
+    "actionLists": {
+        "markAsVictory": [
+            ["SET", "/victoryState", "victory"]
+        ],
+        "markAsDefeat": [
+            ["SET", "/victoryState", "defeat"]
+        ],
+        "markAsIncomplete": [
+            ["SET", "/victoryState", "incomplete"]
+        ]
+    },
+    "clearTableOptions": [
+        {"label": "id:labelMarkAsVictory",    "actionList": ["ACTION_LIST", "markAsVictory"]},
+        {"label": "id:labelMarkAsDefeat",     "actionList": ["ACTION_LIST", "markAsDefeat"]},
+        {"label": "id:labelMarkAsIncomplete", "actionList": ["ACTION_LIST", "markAsIncomplete"]}
+    ],
+    "closeRoomOptions": [
+        {"label": "id:labelMarkAsVictory",    "actionList": ["ACTION_LIST", "markAsVictory"]},
+        {"label": "id:labelMarkAsDefeat",     "actionList": ["ACTION_LIST", "markAsDefeat"]},
+        {"label": "id:labelMarkAsIncomplete", "actionList": ["ACTION_LIST", "markAsIncomplete"]}
+    ],
+    "labels": {
+        "labelMarkAsVictory": {
+            "English": "Mark As Victory"
+        },
+        "labelMarkAsDefeat": {
+            "English": "Mark As Defeat"
+        },
+        "labelMarkAsIncomplete": {
+            "English": "Mark As Incomplete"
+        }
+    }
+}

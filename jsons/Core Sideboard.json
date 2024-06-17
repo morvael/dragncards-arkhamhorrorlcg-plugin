@@ -1,0 +1,84 @@
+{
+    "actionLists": {
+        "toggleSideboard": [
+            ["COND",
+                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSideboard", true],
+                [
+                    ["LOG", "{{$ALIAS_N}} is looking at Sideboard."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", true],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", true]
+                        ]
+                    ]]
+                ],
+                ["TRUE"],
+                [
+                    ["LOG", "{{$ALIAS_N}} is no longer looking at Sideboard."],
+                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", false],
+                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                        ["COND",
+                            ["EQUAL", "$REGION.layerIndex", 1],
+                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", false]
+                        ]
+                    ]]
+                ]
+            ]
+        ],
+        "toggleOffMap": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedOffMap"]
+        ],
+        "toggleNotInPlay": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedNotInPlay"]
+        ],
+        "toggleVictoryDisplay": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedVictoryDisplay"]
+        ],
+        "toggleTokens": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedTokens"]
+        ],
+        "toggleChaosBag": [
+            ["TOGGLE_SIDEBOARD_GROUP", "sharedChaosBag"]
+        ]
+    },
+    "functions": {
+        "TOGGLE_SIDEBOARD_GROUP": {
+            "args": ["$SHOW_GROUP_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.browseGroup.id", "$SHOW_GROUP_ID"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} closed {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["STOP_LOOKING", "$PLAYER_N", "hide"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["LOG", "{{$ALIAS_N}} fanned out {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["LOOK_AT", "$PLAYER_N", "$SHOW_GROUP_ID", -1, false]
+                    ]
+                ]
+            ]
+        }
+    },
+    "labels": {
+        "toggleSideboard": {
+            "English": "Show / Hide Sideboard"
+        },
+        "toggleOffMap": {
+            "English": "Show / Hide Off Map"
+        },
+        "toggleNotInPlay": {
+            "English": "Show / Hide Not in Play"
+        },
+        "toggleVictoryDisplay": {
+            "English": "Show / Hide Victory Display"
+        },
+        "toggleTokens": {
+            "English": "Show / Hide Tokens"
+        },
+        "toggleChaosBag": {
+            "English": "Show / Hide Chaos Bag"
+        }
+    }
+}

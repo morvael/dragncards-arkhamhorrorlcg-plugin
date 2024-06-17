@@ -1,0 +1,309 @@
+{
+    "groupTypes": {
+        "inPlay":    {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": true}},
+        "story":     {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": true}},
+        "outOfPlay": {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": false}},
+        "deck":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"inDeck": true,  "inHand": false, "inPlay": false, "currentSide": "B", "rotation": 0}},
+        "discard":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": false, "currentSide": "A", "rotation": 0}},
+        "hand":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": true,  "inPlay": false, "currentSide": "B", "rotation": 0}},
+        "tokens":    {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": false, "currentSide": "A", "rotation": 0}},
+        "chaosBag":  {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"inDeck": false, "inHand": false, "inPlay": false, "currentSide": "A", "rotation": 0}}
+    },
+    "groups": {
+        "sharedLocations":         {"groupType": "inPlay",    "label": "id:sharedLocations",         "tableLabel": "",                                "onCardEnter": {}},
+        "sharedEncounterDeck":     {"groupType": "deck",      "label": "id:sharedEncounterDeck",     "tableLabel": "id:sharedEncounterDeckShort",     "onCardEnter": {"discardToPile": "sharedEncounterDiscard"}},
+        "sharedEncounterDiscard":  {"groupType": "discard",   "label": "id:sharedEncounterDiscard",  "tableLabel": "id:sharedEncounterDiscardShort",  "onCardEnter": {}},
+        "sharedAgendaDeck":        {"groupType": "story",     "label": "id:sharedAgendaDeck",        "tableLabel": "id:sharedAgendaDeckShort",        "onCardEnter": {}},
+        "sharedActDeck":           {"groupType": "story",     "label": "id:sharedActDeck",           "tableLabel": "id:sharedActDeckShort",           "onCardEnter": {}},
+        "sharedScenarioReference": {"groupType": "inPlay",    "label": "id:sharedScenarioReference", "tableLabel": "id:sharedScenarioReferenceShort", "onCardEnter": {}},
+        "sharedVoid":              {"groupType": "inPlay",    "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort",              "onCardEnter": {}},
+        "player4Hand":             {"groupType": "hand",      "label": "id:player4Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player4": true}}},
+        "player4Deck":             {"groupType": "deck",      "label": "id:player4Deck",             "tableLabel": "id:playerDeckShort",              "onCardEnter": {"controller": "player4", "discardToPile": "player4Discard"}},
+        "player4Discard":          {"groupType": "discard",   "label": "id:player4Discard",          "tableLabel": "id:playerDiscardShort",           "onCardEnter": {}},
+        "player4Threat":           {"groupType": "inPlay",    "label": "id:player4Threat",           "tableLabel": "id:playerThreatShort",            "onCardEnter": {}},
+        "player4Investigator":     {"groupType": "inPlay",    "label": "id:player4Investigator",     "tableLabel": "id:playerInvestigatorShort",      "onCardEnter": {}},
+        "player4Play":             {"groupType": "inPlay",    "label": "id:player4Play",             "tableLabel": "id:playerPlayShort",              "onCardEnter": {}},
+        "player3Hand":             {"groupType": "hand",      "label": "id:player3Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player3": true}}},
+        "player3Deck":             {"groupType": "deck",      "label": "id:player3Deck",             "tableLabel": "id:playerDeckShort",              "onCardEnter": {"controller": "player3", "discardToPile": "player3Discard"}},
+        "player3Discard":          {"groupType": "discard",   "label": "id:player3Discard",          "tableLabel": "id:playerDiscardShort",           "onCardEnter": {}},
+        "player3Threat":           {"groupType": "inPlay",    "label": "id:player3Threat",           "tableLabel": "id:playerThreatShort",            "onCardEnter": {}},
+        "player3Investigator":     {"groupType": "inPlay",    "label": "id:player3Investigator",     "tableLabel": "id:playerInvestigatorShort",      "onCardEnter": {}},
+        "player3Play":             {"groupType": "inPlay",    "label": "id:player3Play",             "tableLabel": "id:playerPlayShort",              "onCardEnter": {}},
+        "player2Hand":             {"groupType": "hand",      "label": "id:player2Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player2": true}}},
+        "player2Deck":             {"groupType": "deck",      "label": "id:player2Deck",             "tableLabel": "id:playerDeckShort",              "onCardEnter": {"controller": "player2", "discardToPile": "player2Discard"}},
+        "player2Discard":          {"groupType": "discard",   "label": "id:player2Discard",          "tableLabel": "id:playerDiscardShort",           "onCardEnter": {}},
+        "player2Threat":           {"groupType": "inPlay",    "label": "id:player2Threat",           "tableLabel": "id:playerThreatShort",            "onCardEnter": {}},
+        "player2Investigator":     {"groupType": "inPlay",    "label": "id:player2Investigator",     "tableLabel": "id:playerInvestigatorShort",      "onCardEnter": {}},
+        "player2Play":             {"groupType": "inPlay",    "label": "id:player2Play",             "tableLabel": "id:playerPlayShort",              "onCardEnter": {}},
+        "player1Hand":             {"groupType": "hand",      "label": "id:player1Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player1": true}}},
+        "player1Deck":             {"groupType": "deck",      "label": "id:player1Deck",             "tableLabel": "id:playerDeckShort",              "onCardEnter": {"controller": "player1", "discardToPile": "player1Discard"}},
+        "player1Discard":          {"groupType": "discard",   "label": "id:player1Discard",          "tableLabel": "id:playerDiscardShort",           "onCardEnter": {}},
+        "player1Threat":           {"groupType": "inPlay",    "label": "id:player1Threat",           "tableLabel": "id:playerThreatShort",            "onCardEnter": {}},
+        "player1Investigator":     {"groupType": "inPlay",    "label": "id:player1Investigator",     "tableLabel": "id:playerInvestigatorShort",      "onCardEnter": {}},
+        "player1Play":             {"groupType": "inPlay",    "label": "id:player1Play",             "tableLabel": "id:playerPlayShort",              "onCardEnter": {}},
+        "sharedOffMap":            {"groupType": "inPlay",    "label": "id:sharedOffMap",            "tableLabel": "id:sharedOffMapShort",            "onCardEnter": {}},
+        "sharedActDeckB":          {"groupType": "story",     "label": "id:sharedActDeckB",          "tableLabel": "id:sharedActDeckBShort",          "onCardEnter": {}},
+        "sharedActDeckC":          {"groupType": "story",     "label": "id:sharedActDeckC",          "tableLabel": "id:sharedActDeckCShort",          "onCardEnter": {}},
+        "sharedActDeckD":          {"groupType": "story",     "label": "id:sharedActDeckD",          "tableLabel": "id:sharedActDeckDShort",          "onCardEnter": {}},
+        "sharedActDeckE":          {"groupType": "story",     "label": "id:sharedActDeckE",          "tableLabel": "id:sharedActDeckEShort",          "onCardEnter": {}},
+        "sharedNotInPlay":         {"groupType": "outOfPlay", "label": "id:sharedNotInPlay",         "tableLabel": "id:sharedNotInPlayShort",         "onCardEnter": {}},
+        "sharedDeckA":             {"groupType": "deck",      "label": "id:sharedDeckA",             "tableLabel": "id:sharedDeckAShort",             "onCardEnter": {"discardToPile": "sharedDiscardA"}},
+        "sharedDiscardA":          {"groupType": "discard",   "label": "id:sharedDiscardA",          "tableLabel": "id:sharedDiscardAShort",          "onCardEnter": {}},
+        "sharedDeckB":             {"groupType": "deck",      "label": "id:sharedDeckB",             "tableLabel": "id:sharedDeckBShort",             "onCardEnter": {"discardToPile": "sharedDiscardB"}},
+        "sharedDiscardB":          {"groupType": "discard",   "label": "id:sharedDiscardB",          "tableLabel": "id:sharedDiscardBShort",          "onCardEnter": {}},
+        "sharedDeckC":             {"groupType": "deck",      "label": "id:sharedDeckC",             "tableLabel": "id:sharedDeckCShort",             "onCardEnter": {"discardToPile": "sharedDiscardC"}},
+        "sharedDiscardC":          {"groupType": "discard",   "label": "id:sharedDiscardC",          "tableLabel": "id:sharedDiscardCShort",          "onCardEnter": {}},
+        "sharedVictoryDisplay":    {"groupType": "outOfPlay", "label": "id:sharedVictoryDisplay",    "tableLabel": "id:sharedVictoryDisplayShort",    "onCardEnter": {}},
+        "sharedTokens":            {"groupType": "tokens",    "label": "id:sharedTokens",            "tableLabel": "id:sharedTokensShort",            "onCardEnter": {}},
+        "sharedPileA":             {"groupType": "discard",   "label": "id:sharedPileA",             "tableLabel": "id:sharedPileAShort",             "onCardEnter": {}},
+        "sharedPileB":             {"groupType": "discard",   "label": "id:sharedPileB",             "tableLabel": "id:sharedPileBShort",             "onCardEnter": {}},
+        "sharedPileC":             {"groupType": "discard",   "label": "id:sharedPileC",             "tableLabel": "id:sharedPileCShort",             "onCardEnter": {}},
+        "sharedPileD":             {"groupType": "discard",   "label": "id:sharedPileD",             "tableLabel": "id:sharedPileDShort",             "onCardEnter": {}},
+        "sharedChaosBag":          {"groupType": "chaosBag",  "label": "id:sharedChaosBag",          "tableLabel": "id:sharedChaosBagShort",          "onCardEnter": {}}
+    },
+    "labels": {
+        "sharedLocations": {
+            "English": "Locations"
+        },
+        "sharedEncounterDeck": {
+            "English": "Encounter Deck"
+        },
+        "sharedEncounterDeckShort": {
+            "English": "Encounter"
+        },        
+        "sharedEncounterDiscard": {
+            "English": "Encounter Discard"
+        },
+        "sharedEncounterDiscardShort": {
+            "English": "Discard"
+        },
+        "sharedAgendaDeck": {
+            "English": "Agenda Deck"
+        },
+        "sharedAgendaDeckShort": {
+            "English": "Agenda"
+        },
+        "sharedActDeck": {
+            "English": "Act Deck"
+        },
+        "sharedActDeckShort": {
+            "English": "Act"
+        },        
+        "sharedScenarioReference": {
+            "English": "Scenario Reference"
+        },        
+        "sharedScenarioReferenceShort": {
+            "English": "Scenario"
+        },
+        "sharedVoid": {
+            "English": "Void"
+        },        
+        "sharedVoidShort": {
+            "English": "Void"
+        },        
+        "playerHandShort": {
+            "English": "Hand"
+        },
+        "playerDeckShort": {
+            "English": "Deck"
+        },
+        "playerDiscardShort": {
+            "English": "Discard"
+        },
+        "playerThreatShort": {
+            "English": "Threat"
+        },
+        "playerInvestigatorShort": {
+            "English": "Investigator"
+        },
+        "playerPlayShort": {
+            "English": "Play Area"
+        },
+        "player4Hand": {
+            "English": "Player 4 Hand"
+        },
+        "player4Deck": {
+            "English": "Player 4 Deck"
+        },
+        "player4Discard": {
+            "English": "Player 4 Discard"
+        },
+        "player4Threat": {
+            "English": "Player 4 Threat"
+        },
+        "player4Investigator": {
+            "English": "Player 4 Investigator"
+        },
+        "player4Play": {
+            "English": "Player 4 Play Area"
+        },
+        "player3Hand": {
+            "English": "Player 3 Hand"
+        },
+        "player3Deck": {
+            "English": "Player 3 Deck"
+        },
+        "player3Discard": {
+            "English": "Player 3 Discard"
+        },
+        "player3Threat": {
+            "English": "Player 3 Threat"
+        },
+        "player3Investigator": {
+            "English": "Player 3 Investigator"
+        },
+        "player3Play": {
+            "English": "Player 3 Play Area"
+        },
+        "player2Hand": {
+            "English": "Player 2 Hand"
+        },
+        "player2Deck": {
+            "English": "Player 2 Deck"
+        },
+        "player2Discard": {
+            "English": "Player 2 Discard"
+        },
+        "player2Threat": {
+            "English": "Player 2 Threat"
+        },
+        "player2Investigator": {
+            "English": "Player 2 Investigator"
+        },
+        "player2Play": {
+            "English": "Player 2 Play Area"
+        },
+        "player1Hand": {
+            "English": "Player 1 Hand"
+        },
+        "player1Deck": {
+            "English": "Player 1 Deck"
+        },
+        "player1Discard": {
+            "English": "Player 1 Discard"
+        },
+        "player1Threat": {
+            "English": "Player 1 Threat"
+        },
+        "player1Investigator": {
+            "English": "Player 1 Investigator"
+        },
+        "player1Play": {
+            "English": "Player 1 Play Area"
+        },        
+        "sharedOffMap": {
+            "English": "Off Map"
+        },
+        "sharedOffMapShort": {
+            "English": "Off Map"
+        },
+        "sharedActDeckB": {
+            "English": "Act Deck B"
+        },
+        "sharedActDeckBShort": {
+            "English": "Act B"
+        },
+        "sharedActDeckC": {
+            "English": "Act Deck C"
+        },
+        "sharedActDeckCShort": {
+            "English": "Act C"
+        },
+        "sharedActDeckD": {
+            "English": "Act Deck D"
+        },
+        "sharedActDeckDShort": {
+            "English": "Act D"
+        },
+        "sharedActDeckE": {
+            "English": "Act Deck E"
+        },
+        "sharedActDeckEShort": {
+            "English": "Act E"
+        },
+        "sharedNotInPlay": {
+            "English": "Not in Play"
+        },
+        "sharedNotInPlayShort": {
+            "English": "Not in Play"
+        },
+        "sharedDeckA": {
+            "English": "Deck A"
+        },
+        "sharedDeckAShort": {
+            "English": "Deck A"
+        },
+        "sharedDiscardA": {
+            "English": "Discard A"
+        },
+        "sharedDiscardAShort": {
+            "English": "Discard A"
+        },
+        "sharedDeckB": {
+            "English": "Deck B"
+        },
+        "sharedDeckBShort": {
+            "English": "Deck B"
+        },
+        "sharedDiscardB": {
+            "English": "Discard B"
+        },
+        "sharedDiscardBShort": {
+            "English": "Discard B"
+        },
+        "sharedDeckC": {
+            "English": "Deck C"
+        },
+        "sharedDeckCShort": {
+            "English": "Deck C"
+        },
+        "sharedDiscardC": {
+            "English": "Discard C"
+        },
+        "sharedDiscardCShort": {
+            "English": "Discard C"
+        },
+        "sharedVictoryDisplay": {
+            "English": "Victory Display"
+        },
+        "sharedVictoryDisplayShort": {
+            "English": "Victory"
+        },
+        "sharedTokens": {
+            "English": "Tokens"
+        },
+        "sharedTokensShort": {
+            "English": "Tokens"
+        },        
+        "sharedPileA": {
+            "English": "Pile A"
+        },
+        "sharedPileAShort": {
+            "English": "Pile A"
+        },
+        "sharedPileB": {
+            "English": "Pile B"
+        },
+        "sharedPileBShort": {
+            "English": "Pile B"
+        },
+        "sharedPileC": {
+            "English": "Pile C"
+        },
+        "sharedPileCShort": {
+            "English": "Pile C"
+        },
+        "sharedPileD": {
+            "English": "Pile D"
+        },
+        "sharedPileDShort": {
+            "English": "Pile D"
+        },
+        "sharedChaosBag": {
+            "English": "Chaos Bag"
+        },
+        "sharedChaosBagShort": {
+            "English": "Chaos Bag"
+        }
+    }
+}

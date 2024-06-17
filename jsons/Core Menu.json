@@ -1,0 +1,32 @@
+{
+    "cardMenu": {
+        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
+        "options": [
+        ]
+    },
+    "groupMenu": {
+        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
+        "options": [
+            {
+                "label": "id:advanceStoryShort",
+                "actionList": "advanceStory"
+            }
+        ]
+    },
+    "pluginMenu": {
+        "options": [
+            {
+                "label": "id:listChaosTokens",
+                "actionList": "listChaosTokens"
+            },
+            {
+                "label": "id:addChaosTokens",
+                "actionList": "addChaosTokens"
+            },
+            {
+                "label": "id:removeChaosTokens",
+                "actionList": "removeChaosTokens"
+            }
+        ]
+    }
+}

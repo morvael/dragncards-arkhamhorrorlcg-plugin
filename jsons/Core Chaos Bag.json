@@ -1,4 +1,112 @@
 {
+    "actionLists": {
+        "addChaosTokens": [
+            ["PROMPT", "$PLAYER_N", "addChaosTokens"]
+        ],
+        "removeChaosTokens": [
+            ["PROMPT", "$PLAYER_N", "removeChaosTokens"]
+        ],
+        "pickChaosToken": [
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 1],
+                ["SHUFFLE_GROUP", "sharedChaosBag"]
+            ],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 0],
+                [
+                    ["VAR", "$PICKED_TOKEN", ["GET_CARD", "sharedChaosBag", 0, 0]],
+                    ["LOG", "{{$ALIAS_N}} reveals {{$PICKED_TOKEN.sides.A.name}} from the Chaos Bag."],
+                    ["SET", "/cardById/$PICKED_TOKEN.id/currentSide", "A"],
+                    ["MOVE_CARD", "$PICKED_TOKEN.id", "sharedVoid", 0]
+                ],
+                ["TRUE"],
+                ["LOG", "Chaos Token cannot be revealed, {{$ALIAS_N}}."]
+            ]
+        ],
+        "listChaosTokens": [
+            ["VAR", "$MESSAGE", ""],
+            ["VAR", "$SEPARATOR", ": "],
+            ["APPEND_CHAOS_TOKEN_COUNT", "+1"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "0"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-1"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-2"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-3"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-4"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-5"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-6"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-7"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "-8"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Elder Thing"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Cultist"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Skull"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Tablet"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Bless"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Curse"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Frost"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Frost"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Auto Fail"],
+            ["APPEND_CHAOS_TOKEN_COUNT", "Elder Sign"],
+            ["LOG", "{{$ALIAS_N}} counted Chaos Tokens{{$MESSAGE}}."]
+        ]
+    },
+    "functions": {
+        "COUNT_CHAOS_TOKENS": {
+            "args": ["$CHAOS_TOKEN_NAME"],
+            "code": [
+                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.currentFace.name", "$CHAOS_TOKEN_NAME"]
+                ]]],
+                ["DEFINE", "$COUNT_CHAOS_TOKENS_RESULT", ["LENGTH", "$SELECTED_CHAOS_TOKENS"]]
+            ]
+        },
+        "APPEND_CHAOS_TOKEN_COUNT": {
+            "args": ["$CHAOS_TOKEN_NAME"],
+            "code": [
+                ["COUNT_CHAOS_TOKENS", "$CHAOS_TOKEN_NAME"],
+                ["COND", ["GREATER_THAN", "$COUNT_CHAOS_TOKENS_RESULT", 0], [
+                    ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$COUNT_CHAOS_TOKENS_RESULT}}x {{$CHAOS_TOKEN_NAME}}"],
+                    ["UPDATE_VAR", "$SEPARATOR", ", "]
+                ]]
+            ]
+        },
+        "ADD_CHAOS_TOKEN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS"],
+            "code": [
+                ["COUNT_CHAOS_TOKENS", "$CHAOS_TOKEN_NAME"],
+                ["VAR", "$TOKEN_COUNT", "$COUNT_CHAOS_TOKENS_RESULT"],
+                ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$TOKEN_COUNT"]],
+                ["COND",
+                    ["GREATER_THAN", "$LEFT_TO_ADD", 0],
+                    [
+                        ["LOG", "{{$ALIAS_N}} adds {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."],
+                        ["LOAD_CARDS", "$CHAOS_TOKEN_DATABASE_ID"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "{{$CHAOS_TOKEN_NAME}} cannot be added to the Chaos Bag, {{$ALIAS_N}}."]
+                ]
+            ]
+        },
+        "REMOVE_CHAOS_TOKEN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["VAR", "$MATCHED_CHAOS_TOKEN", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"],
+                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.currentFace.name", "$CHAOS_TOKEN_NAME"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CHAOS_TOKEN", null],
+                    [
+                        ["LOG", "{{$ALIAS_N}} removes {{$CHAOS_TOKEN_NAME}} from the Chaos Bag."],
+                        ["DELETE_CARD", "$MATCHED_CHAOS_TOKEN.id"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "{{$CHAOS_TOKEN_NAME}} cannot be removed from the Chaos Bag, {{$ALIAS_N}}."]
+                ]
+            ]
+        }
+    },
     "prompts": {
         "addChaosTokens": {
             "args": [],
@@ -291,81 +399,124 @@
                     "hotkey": "X"
                 }
             ]
-        },
-        "victoryOrDiscard": {
-            "args": ["$DISCARDED_CARD"],
-            "message": "{{$DISCARDED_CARD.currentFace.name}} is Victory {{$DISCARDED_CARD.currentFace.victoryPoints}}. Select destination.",
-            "options": [
-                {
-                    "label": "Victory Display",
-                    "hotkey": "V",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} moved {{$DISCARDED_CARD.currentFace.name}} to Victory Display."],
-                        ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedVictoryDisplay", -1]
-                    ]
-                },
-                {
-                    "label": "Discard Pile",
-                    "hotkey": "D",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} discarded {{$DISCARDED_CARD.currentFace.name}}."],
-                        ["COND",
-                            ["EQUAL", "$DISCARDED_CARD.controller", "player1"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player1Discard", 0],
-                            ["EQUAL", "$DISCARDED_CARD.controller", "player2"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player2Discard", 0],
-                            ["EQUAL", "$DISCARDED_CARD.controller", "player3"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player3Discard", 0],
-                            ["EQUAL", "$DISCARDED_CARD.controller", "player4"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player4Discard", 0],
-                            ["TRUE"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedEncounterDiscard", 0]
-                        ]
-                    ]
-                }
+        }
+    },
+    "preBuiltDecks": {
+        "chaos_p1": {
+            "label": "chaos_p1",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "nightOfTheZealotChaosBagInit": {
-            "args": [],
-            "message": "Pick Night of the Zealot campaign difficulty.",
-            "options": [
-                {
-                    "label": "Easy",
-                    "hotkey": "E",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Easy."],
-                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Easy"],
-                        ["ACTION_LIST", "scenarioToA"]
-                    ]
-                },
-                {
-                    "label": "Normal",
-                    "hotkey": "N",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Normal."],
-                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Normal"],
-                        ["ACTION_LIST", "scenarioToA"]
-                    ]
-                },
-                {
-                    "label": "Hard",
-                    "hotkey": "H",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Hard."],
-                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Hard"],
-                        ["ACTION_LIST", "scenarioToB"]
-                    ]
-                },
-                {
-                    "label": "Expert",
-                    "hotkey": "X",
-                    "code": [
-                        ["LOG", "{{$ALIAS_N}} initialized Chaos Bag to Night of the Zealot - Expert."],
-                        ["LOAD_CARDS", "Night of the Zealot Chaos Bag - Expert"],
-                        ["ACTION_LIST", "scenarioToB"]
-                    ]
-                }
+        "chaos_p0": {
+            "label": "chaos_p0",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m1": {
+            "label": "chaos_m1",
+            "cards": [
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m2": {
+            "label": "chaos_m2",
+            "cards": [
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m3": {
+            "label": "chaos_m3",
+            "cards": [
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m4": {
+            "label": "chaos_m4",
+            "cards": [
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m5": {
+            "label": "chaos_m5",
+            "cards": [
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m6": {
+            "label": "chaos_m6",
+            "cards": [
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m7": {
+            "label": "chaos_m7",
+            "cards": [
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_m8": {
+            "label": "chaos_m8",
+            "cards": [
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_elder_thing": {
+            "label": "chaos_elder_thing",
+            "cards": [
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_cultist": {
+            "label": "chaos_cultist",
+            "cards": [
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_skull": {
+            "label": "chaos_skull",
+            "cards": [
+                {"databaseId": "chaos_skull", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_tablet": {
+            "label": "chaos_tablet",
+            "cards": [
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_bless": {
+            "label": "chaos_bless",
+            "cards": [
+                {"databaseId": "chaos_bless", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_curse": {
+            "label": "chaos_curse",
+            "cards": [
+                {"databaseId": "chaos_curse", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "chaos_frost": {
+            "label": "chaos_frost",
+            "cards": [
+                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
-    }
+    },
+    "labels": {
+        "addChaosTokens": {
+            "English": "Add Chaos Token"
+        },
+        "removeChaosTokens": {
+            "English": "Remove Chaos Token"
+        },
+        "pickChaosToken": {
+            "English": "Reveal Chaos Token"
+        },
+        "listChaosTokens": {
+            "English": "Count Chaos Tokens"
+        }
+    }    
 }

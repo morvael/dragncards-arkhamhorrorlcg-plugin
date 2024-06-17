@@ -1,0 +1,496 @@
+{
+    "functions": {
+        "SCENARIO_INIT": {
+            "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
+            "code": [
+                ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
+                ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
+                ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
+                ["SET", "/arkhamNumScenarioQuestions", 0],
+                ["SET", "/arkhamScenarioQuestionIndex", 0],
+                ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
+                ["SET", "/arkhamTraumaDone", "$GAME.numPlayers"],
+                ["SET", "/arkhamStartingHandDone", "$GAME.numPlayers"],
+                ["SET", "/arkhamPlayerOrder", "$PLAYER_ORDER"],
+                ["SET", "/arkhamLeadPlayer", "$GAME.arkhamPlayerOrder.[0]"],
+                ["SET", "/arkhamLeadPlayerAlias", ["GET_ALIAS", "$GAME.arkhamLeadPlayer"]],
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "{{$GAME.arkhamLeadPlayer}}Investigator"],
+                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    [
+                        ["SET", "/arkhamLeadInvestigatorCard", "$MATCHED_CARD"],
+                        ["LOG", "Initializing {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and {{$GAME.arkhamLeadPlayerAlias}}'s {{$GAME.arkhamLeadInvestigatorCard.currentFace.name}} as the lead investigator."],
+                        ["PROMPT", "$GAME.arkhamPlayerOrder", "startingPhysicalTrauma"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "Lead investigator is missing."]
+                ]
+            ]
+        },
+        "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
+            "args": ["$NUMBER_OF_TOKENS"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
+                    [
+                        ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                            ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                            ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                        ]]],
+                        ["COND",
+                            ["NOT_EQUAL", "$MATCHED_CARD", null],
+                            [
+                                ["LOG", "{{$ALIAS_N}}'s {{$MATCHED_CARD.currentFace.name}} physical trauma is {{$NUMBER_OF_TOKENS}}."],
+                                ["INCREASE_VAL", "/cardById/$MATCHED_CARD.id/tokens/damage", "$NUMBER_OF_TOKENS"]
+                            ]
+                        ]
+                    ]
+                ],
+                ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
+            ]
+        },
+        "PLACE_STARTING_HORROR_ON_INVESTIGATOR": {
+            "args": ["$NUMBER_OF_TOKENS"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
+                    [
+                        ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                            ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                            ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                        ]]],
+                        ["COND",
+                            ["NOT_EQUAL", "$MATCHED_CARD", null],
+                            [
+                                ["LOG", "{{$ALIAS_N}}'s {{$MATCHED_CARD.currentFace.name}} mental trauma is {{$NUMBER_OF_TOKENS}}."],
+                                ["INCREASE_VAL", "/cardById/$MATCHED_CARD.id/tokens/horror", "$NUMBER_OF_TOKENS"]
+                            ]
+                        ]
+                    ]
+                ],
+                ["DECREASE_VAL", "/arkhamTraumaDone", 1],
+                ["COND",
+                    ["LESS_EQUAL", "$GAME.arkhamTraumaDone", 0],
+                    ["PROMPT", "$GAME.arkhamLeadPlayer", "chooseScenarioDifficulty"]
+                ]
+            ]
+        },
+        "SET_SCENARIO_DIFFICULTY": {
+            "args": ["$DIFFICULTY_NAME"],
+            "code": [
+                ["LOG", "{{$GAME.arkhamLeadPlayerAlias}} set difficulty to {{$DIFFICULTY_NAME}}."],
+                ["LOAD_CARDS", "{{$GAME.arkhamCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}"],
+                ["VAR", "$SCENARIO_BAD_SIDE", "B"],
+                ["VAR", "$SCENARIO_GOOD_SIDE", "A"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$DIFFICULTY_NAME", "Hard"],
+                        ["EQUAL", "$DIFFICULTY_NAME", "Expert"]
+                    ],
+                    [
+                        ["UPDATE_VAR", "$SCENARIO_BAD_SIDE", "A"],
+                        ["UPDATE_VAR", "$SCENARIO_GOOD_SIDE", "B"]
+                    ]
+                ],
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$MATCHED_CARD", null],
+                        ["EQUAL", "$MATCHED_CARD.currentSide", "$SCENARIO_BAD_SIDE"]
+                    ],
+                    ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "$SCENARIO_GOOD_SIDE"]
+                ],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
+                    ["DRAW_STARTING_HAND", "$PLAYER_I"]
+                ]]
+            ]
+        },
+        "EXECUTE_DRAW_STARTING_HAND": {
+            "args": ["$PLAYER_I", "$COMMENT"],
+            "code": [
+                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                ["VAR", "$SELECTED_CARDS", "$GAME.groupById.{{$PLAYER_I}}Hand.parentCards"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["LOG", "{{$ALIAS_I}} returns their current hand to their deck."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Deck", 0]
+                        ]]
+                    ]
+                ],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Deck.stackIds"], 1],
+                    [
+                        ["LOG", "{{$ALIAS_I}} shuffles their deck."],
+                        ["SHUFFLE_GROUP", "{{$PLAYER_I}}Deck"]
+                    ]
+                ],
+                ["LOG", "{{$ALIAS_I}} draws opening hand{{$COMMENT}}."],
+                ["DRAW_CARD", 5, "$PLAYER_I"],
+                ["WHILE",
+                    ["LESS_THAN", ["SUBTRACT", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Hand.stackIds"], ["LENGTH", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Hand"],
+                        ["OR",
+                            ["EQUAL", "$CARD.sides.A.subtype", "Weakness"],
+                            ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"]
+                        ]
+                    ]]]], 5],
+                    [
+                        ["LOG", "{{$ALIAS_I}} draws an extra card because of drawn Weakness card."],
+                        ["DRAW_CARD", 1, "$PLAYER_I"]
+                    ]
+                ],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Hand"],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.subtype", "Weakness"],
+                        ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"]
+                    ]
+                ]]],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["LOG", "{{$ALIAS_I}} returns Weakness card(s) to their deck."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Deck", 0]
+                        ]],
+                        ["COND",
+                            ["GREATER_THAN", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Deck.stackIds"], 1],
+                            [
+                                ["LOG", "{{$ALIAS_I}} shuffles their deck again."],
+                                ["SHUFFLE_GROUP", "{{$PLAYER_I}}Deck"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DRAW_STARTING_HAND": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                ["LOG", "{{$ALIAS_I}} collects starting resources."],
+                ["SET", "/playerData/$PLAYER_I/resources", 5],
+                ["EXECUTE_DRAW_STARTING_HAND", "$PLAYER_I", ""],
+                ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
+            ]
+        },
+        "DRAW_MULLIGAN_HAND": {
+            "args": ["$DO_MULLIGAN"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$DO_MULLIGAN", true],
+                    ["EXECUTE_DRAW_STARTING_HAND", "$PLAYER_N", " again"]
+                ],
+                ["DECREASE_VAL", "/arkhamStartingHandDone", 1],
+                ["COND",
+                    ["LESS_EQUAL", "$GAME.arkhamStartingHandDone", 0],
+                    ["COND",
+                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
+                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                        ["TRUE"],
+                        ["SCENARIO_INIT_FINISH", null]
+                    ]
+                ]
+            ]
+        },
+        "ADD_SCENARIO_QUESTION": {
+            "args": ["$MESSAGE", "$LIST_OF_QUESTIONS"],
+            "code": [
+                ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "$MESSAGE"],
+                ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", "$LIST_OF_QUESTIONS"],
+                ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1]
+            ]
+        },
+        "SCENARIO_INIT_CONTINUE": {
+            "args": ["$NEXT_SCENARIO_ACTION"],
+            "code": [
+                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+            ]
+        },
+        "ASK_SCENARIO_QUESTION_AND_CONTINUE": {
+            "args": ["$MESSAGE", "$LIST_OF_QUESTIONS", "$NEXT_SCENARIO_ACTION"],
+            "code": [
+                ["ADD_SCENARIO_QUESTION", "$MESSAGE", "$LIST_OF_QUESTIONS"],
+                ["SCENARIO_INIT_CONTINUE", "$NEXT_SCENARIO_ACTION"]
+            ]
+        },
+        "SHOW_SCENARIO_QUESTION_PROMPT": {
+            "args": ["$DUMMY"],
+            "code": [
+                ["COND",
+                    ["LESS_THAN", "$GAME.arkhamScenarioQuestionIndex", "$GAME.arkhamNumScenarioQuestions"],
+                    [
+                        ["PROMPT", "$GAME.arkhamLeadPlayer", "scenarioQuestion", "$GAME.arkhamScenarioQuestion{{$GAME.arkhamScenarioQuestionIndex}}"],
+                        ["VAR", "$INDEX", 0],
+                        ["FOR_EACH_VAL", "$QUESTION_I", "$GAME.arkhamScenarioQuestionList{{$GAME.arkhamScenarioQuestionIndex}}", [
+                            ["VAR", "$LETTER", ["SUBSTRING", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "$INDEX", 1]],
+                            ["PROMPT_ADD_OPTION", "$GAME.arkhamLeadPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}"]],
+                            ["INCREASE_VAR", "$INDEX", 1]
+                        ]]
+                    ],
+                    ["TRUE"],
+                    ["COND",
+                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
+                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                        ["TRUE"],
+                        ["SCENARIO_INIT_FINISH", null]
+                    ]
+                ]
+            ]
+        },
+        "SCENARIO_QUESTION_ANSWER": {
+            "args": ["$QUESTION_ANSWER"],
+            "code": [
+                ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
+                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "$QUESTION_ANSWER"],
+                ["LOG", "Answer to question {{$GAME.arkhamScenarioQuestionIndex}} is {{$QUESTION_ANSWER}}."],
+                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+            ]
+        },
+        "SCENARIO_INIT_FINISH": {
+            "args": ["$DUMMY"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedEncounterDeck.stackIds"], 1],
+                    ["SHUFFLE_GROUP", "sharedEncounterDeck"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckA.stackIds"], 1],
+                    ["SHUFFLE_GROUP", "sharedDeckA"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckB.stackIds"], 1],
+                    ["SHUFFLE_GROUP", "sharedDeckB"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckC.stackIds"], 1],
+                    ["SHUFFLE_GROUP", "sharedDeckC"]
+                ],
+                ["SET", "/roundNumber", "1"],
+                ["SET", "/stepId", "I1"],
+                ["SET", "/arkhamScenarioInit", false],
+                ["LOG", "Game begins with the Investigation phase."]
+            ]
+        }
+    },
+    "prompts": {
+        "startingPhysicalTrauma": {
+            "args": [],
+            "message": "State the physical trauma of your investigator.",
+            "options": [
+                {
+                    "label": "0",
+                    "hotkey": "0",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 0]
+                    ]
+                },
+                {
+                    "label": "1",
+                    "hotkey": "1",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 1]
+                    ]
+                },
+                {
+                    "label": "2",
+                    "hotkey": "2",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 2]
+                    ]
+                },
+                {
+                    "label": "3",
+                    "hotkey": "3",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 3]
+                    ]
+                },
+                {
+                    "label": "4",
+                    "hotkey": "4",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 4]
+                    ]
+                },
+                {
+                    "label": "5",
+                    "hotkey": "5",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 5]
+                    ]
+                },
+                {
+                    "label": "6",
+                    "hotkey": "6",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 6]
+                    ]
+                },
+                {
+                    "label": "7",
+                    "hotkey": "7",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 7]
+                    ]
+                },
+                {
+                    "label": "8",
+                    "hotkey": "8",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 8]
+                    ]
+                },
+                {
+                    "label": "9",
+                    "hotkey": "9",
+                    "code": [
+                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 9]
+                    ]
+                }
+            ]
+        },
+        "startingMentalTrauma": {
+            "args": [],
+            "message": "State the mental trauma of your investigator.",
+            "options": [
+                {
+                    "label": "0",
+                    "hotkey": "0",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 0]
+                    ]
+                },
+                {
+                    "label": "1",
+                    "hotkey": "1",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 1]
+                    ]
+                },
+                {
+                    "label": "2",
+                    "hotkey": "2",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 2]
+                    ]
+                },
+                {
+                    "label": "3",
+                    "hotkey": "3",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 3]
+                    ]
+                },
+                {
+                    "label": "4",
+                    "hotkey": "4",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 4]
+                    ]
+                },
+                {
+                    "label": "5",
+                    "hotkey": "5",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 5]
+                    ]
+                },
+                {
+                    "label": "6",
+                    "hotkey": "6",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 6]
+                    ]
+                },
+                {
+                    "label": "7",
+                    "hotkey": "7",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 7]
+                    ]
+                },
+                {
+                    "label": "8",
+                    "hotkey": "8",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 8]
+                    ]
+                },
+                {
+                    "label": "9",
+                    "hotkey": "9",
+                    "code": [
+                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 9]
+                    ]
+                }
+            ]
+        },
+        "chooseScenarioDifficulty": {
+            "args": [],
+            "message": "Choose {{$GAME.arkhamScenarioName}} difficulty.",
+            "options": [
+                {
+                    "label": "Easy",
+                    "hotkey": "E",
+                    "code": [
+                        ["SET_SCENARIO_DIFFICULTY", "Easy"]
+                    ]
+                },
+                {
+                    "label": "Normal",
+                    "hotkey": "N",
+                    "code": [
+                        ["SET_SCENARIO_DIFFICULTY", "Normal"]
+                    ]
+                },
+                {
+                    "label": "Hard",
+                    "hotkey": "H",
+                    "code": [
+                        ["SET_SCENARIO_DIFFICULTY", "Hard"]
+                    ]
+                },
+                {
+                    "label": "Expert",
+                    "hotkey": "X",
+                    "code": [
+                        ["SET_SCENARIO_DIFFICULTY", "Expert"]
+                    ]
+                }
+            ]
+        },
+        "decideAboutMulligan": {
+            "args": [],
+            "message": "Do you want to take a mulligan?",
+            "options": [
+                {
+                    "label": "Yes",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DRAW_MULLIGAN_HAND", true]
+                    ]
+                },
+                {
+                    "label": "No",
+                    "hotkey": "N",
+                    "code": [
+                        ["DRAW_MULLIGAN_HAND", false]
+                    ]
+                }
+            ]
+        },
+        "scenarioQuestion": {
+            "args": ["$MESSAGE"],
+            "message": "{{$MESSAGE}}",
+            "options": [
+            ]
+        }
+    }
+}
