@@ -2,7 +2,7 @@
     "automation": {
         "postNewGameActionList": [
             ["SET", "/arkhamScenarioInit", true],
-            ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
+            ["LOG", "└── Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
             ["SET_LAYOUT", "shared", "layout1Player"],
             ["SET", "/numPlayers", 1],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
@@ -25,35 +25,26 @@
                     ["COND",
                         ["EQUAL", "$GAME.stepId", "M1"],
                         [
-                            ["LOG", "{{$ALIAS_N}} advanced round number."],
+                            ["LOG", "└── Round number advances."],
                             ["INCREASE_VAL", "/roundNumber", 1]
                         ],
                         ["EQUAL", "$GAME.stepId", "M2"],
                         ["PLACE_DOOM_ON_CURRENT_AGENDA", 1],
                         ["EQUAL", "$GAME.stepId", "U3"],
                         [
-                            ["LOG", "{{$ALIAS_N}} readied exhausted cards."],
+                            ["LOG", "└── Each exhausted card readies."],
                             ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                                ["COND",
-                                    ["EQUAL", "$CARD.exhausted", true],
-                                    [
-                                        ["COND",
-                                            ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"],
-                                            ["SET", "/cardById/$CARD_ID/currentSide", "A"],
-                                            ["TRUE"],
-                                            ["SET", "/cardById/$CARD_ID/rotation", 0]
-                                        ],
-                                        ["SET", "/cardById/$CARD_ID/exhausted", false]
-                                    ]
-                                ]
+                                ["READY_CARD", "$CARD", false]
                             ]]
                         ],
                         ["EQUAL", "$GAME.stepId", "U4"],
                         [
-                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
-                                ["LOG", "{{$ALIAS_I}} draws 1 card and gains 1 resource."],
-                                ["DRAW_CARD", 1, "$PLAYER_I"],
+                            ["LOG", "└── Each investigator draws 1 card."],
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
+                                ["DRAW_CARD", 1, "$PLAYER_I"]
+                            ]],
+                            ["LOG", "└── Each investigator gains 1 resource."],
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
                                 ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
                             ]]
                         ]
@@ -69,7 +60,12 @@
                         ["EQUAL", "$GAME.groupById.{{$TARGET.groupId}}.groupType", "inPlay"],
                         ["NOT_EQUAL", ["PREV", "$GAME.groupById.{{$TARGET.groupId}}.groupType"], "inPlay"],
                         ["EQUAL", "$TARGET.currentSide", "B"],
-                        ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                        ["OR",
+                            ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                            ["EQUAL", "$TARGET.sides.A.type", "Investigator"],
+                            ["EQUAL", "$TARGET.sides.A.type", "ChaosToken"],
+                            ["EQUAL", "$TARGET.sides.A.type", "FirstInvestigatorToken"]
+                        ],
                         ["NOT_EQUAL", "$TARGET.sides.A.type", "MiniConcealed"]
                     ]
                 ],

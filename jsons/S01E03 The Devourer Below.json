@@ -51,32 +51,32 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "Campaign Log: There are exactly 0 names recorded under “Cultists Who Got Away”."]
+                    ["LOG", "└── Campaign Log: There are exactly 0 names recorded under “Cultists Who Got Away”."]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
-                    ["LOG", "Campaign Log: There are exactly 1 or 2 names recorded under “Cultists Who Got Away”."],
+                    ["LOG", "└── Campaign Log: There are exactly 1 or 2 names recorded under “Cultists Who Got Away”."],
                     ["PLACE_DOOM_ON_CURRENT_AGENDA", 1]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
                 [
-                    ["LOG", "Campaign Log: There are exactly 3 or 4 names recorded under “Cultists Who Got Away”."],
+                    ["LOG", "└── Campaign Log: There are exactly 3 or 4 names recorded under “Cultists Who Got Away”."],
                     ["PLACE_DOOM_ON_CURRENT_AGENDA", 2]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
                 [
-                    ["LOG", "Campaign Log: There are exactly 5 or 6 names recorded under “Cultists Who Got Away”."],
+                    ["LOG", "└── Campaign Log: There are exactly 5 or 6 names recorded under “Cultists Who Got Away”."],
                     ["PLACE_DOOM_ON_CURRENT_AGENDA", 3]
                 ]
             ],
-            ["LOAD_CARDS", "chaos_elder_thing"],
+            ["CREATE_CARDS", "chaos_elder_thing", 1, "sharedChaosBag"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "The Devourer Below Scenario Question 2"]
         ],
         "The Devourer Below Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
-                    ["LOG", "Campaign Log: It is past midnight."],
+                    ["LOG", "└── Campaign Log: It is past midnight."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
                         ["DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2]
                     ]]
@@ -88,8 +88,8 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
-                    ["LOG", "Campaign Log: The Ghoul Priest is still alive."],
-                    ["LOAD_CARDS", "Night of the Zealot - Ghoul Priest"]
+                    ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
+                    ["CREATE_CARDS", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

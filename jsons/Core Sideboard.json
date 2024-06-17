@@ -4,7 +4,7 @@
             ["COND",
                 ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSideboard", true],
                 [
-                    ["LOG", "{{$ALIAS_N}} is looking at Sideboard."],
+                    ["LOG", "{{$ALIAS_N}} browses Sideboard."],
                     ["SET", "/playerData/$PLAYER_N/viewingSideboard", true],
                     ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
                         ["COND",
@@ -15,7 +15,7 @@
                 ],
                 ["TRUE"],
                 [
-                    ["LOG", "{{$ALIAS_N}} is no longer looking at Sideboard."],
+                    ["LOG", "{{$ALIAS_N}} closes Sideboard."],
                     ["SET", "/playerData/$PLAYER_N/viewingSideboard", false],
                     ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
                         ["COND",
@@ -49,12 +49,12 @@
                 ["COND",
                     ["EQUAL", "$GAME.playerData.$PLAYER_N.browseGroup.id", "$SHOW_GROUP_ID"],
                     [
-                        ["LOG", "{{$ALIAS_N}} closed {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["LOG", "{{$ALIAS_N}} closes {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
                         ["STOP_LOOKING", "$PLAYER_N", "hide"]
                     ],
                     ["TRUE"],
                     [
-                        ["LOG", "{{$ALIAS_N}} fanned out {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
+                        ["LOG", "{{$ALIAS_N}} browses {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
                         ["LOOK_AT", "$PLAYER_N", "$SHOW_GROUP_ID", -1, false]
                     ]
                 ]
@@ -63,22 +63,22 @@
     },
     "labels": {
         "toggleSideboard": {
-            "English": "Show / Hide Sideboard"
+            "English": "Browse / Close Sideboard"
         },
         "toggleOffMap": {
-            "English": "Show / Hide Off Map"
+            "English": "Browse / Close Off Map"
         },
         "toggleNotInPlay": {
-            "English": "Show / Hide Not in Play"
+            "English": "Browse / Close Not in Play"
         },
         "toggleVictoryDisplay": {
-            "English": "Show / Hide Victory Display"
+            "English": "Browse / Close Victory Display"
         },
         "toggleTokens": {
-            "English": "Show / Hide Tokens"
+            "English": "Browse / Close Tokens"
         },
         "toggleChaosBag": {
-            "English": "Show / Hide Chaos Bag"
+            "English": "Browse / Close Chaos Bag"
         }
     }
 }

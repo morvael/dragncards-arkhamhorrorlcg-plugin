@@ -46,7 +46,7 @@
             ["APPEND_CHAOS_TOKEN_COUNT", "Frost"],
             ["APPEND_CHAOS_TOKEN_COUNT", "Auto Fail"],
             ["APPEND_CHAOS_TOKEN_COUNT", "Elder Sign"],
-            ["LOG", "{{$ALIAS_N}} counted Chaos Tokens{{$MESSAGE}}."]
+            ["LOG", "{{$ALIAS_N}} counts Chaos Tokens{{$MESSAGE}}."]
         ]
     },
     "functions": {
@@ -80,7 +80,7 @@
                     ["GREATER_THAN", "$LEFT_TO_ADD", 0],
                     [
                         ["LOG", "{{$ALIAS_N}} adds {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."],
-                        ["LOAD_CARDS", "$CHAOS_TOKEN_DATABASE_ID"]
+                        ["CREATE_CARDS", "$CHAOS_TOKEN_DATABASE_ID", 1, "sharedChaosBag"]
                     ],
                     ["TRUE"],
                     ["LOG", "{{$CHAOS_TOKEN_NAME}} cannot be added to the Chaos Bag, {{$ALIAS_N}}."]
@@ -398,110 +398,6 @@
                     "label": "Cancel",
                     "hotkey": "X"
                 }
-            ]
-        }
-    },
-    "preBuiltDecks": {
-        "chaos_p1": {
-            "label": "chaos_p1",
-            "cards": [
-                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_p0": {
-            "label": "chaos_p0",
-            "cards": [
-                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m1": {
-            "label": "chaos_m1",
-            "cards": [
-                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m2": {
-            "label": "chaos_m2",
-            "cards": [
-                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m3": {
-            "label": "chaos_m3",
-            "cards": [
-                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m4": {
-            "label": "chaos_m4",
-            "cards": [
-                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m5": {
-            "label": "chaos_m5",
-            "cards": [
-                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m6": {
-            "label": "chaos_m6",
-            "cards": [
-                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m7": {
-            "label": "chaos_m7",
-            "cards": [
-                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_m8": {
-            "label": "chaos_m8",
-            "cards": [
-                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_elder_thing": {
-            "label": "chaos_elder_thing",
-            "cards": [
-                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_cultist": {
-            "label": "chaos_cultist",
-            "cards": [
-                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_skull": {
-            "label": "chaos_skull",
-            "cards": [
-                {"databaseId": "chaos_skull", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_tablet": {
-            "label": "chaos_tablet",
-            "cards": [
-                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_bless": {
-            "label": "chaos_bless",
-            "cards": [
-                {"databaseId": "chaos_bless", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_curse": {
-            "label": "chaos_curse",
-            "cards": [
-                {"databaseId": "chaos_curse", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "chaos_frost": {
-            "label": "chaos_frost",
-            "cards": [
-                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
     },

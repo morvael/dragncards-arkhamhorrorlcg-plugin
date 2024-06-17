@@ -3,7 +3,6 @@
         "Roland Banks Starter Deck": {
              "label": "Roland Banks Starter Deck",
              "cards": [
-                {"databaseId": "m01001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01006", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01007", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -38,7 +37,6 @@
         "Daisy Walker Starter Deck": {
              "label": "Daisy Walker Starter Deck",
              "cards": [
-                {"databaseId": "m01002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01008", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01009", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -73,7 +71,6 @@
         "\"Skids\" O'Toole Starter Deck": {
              "label": "\"Skids\" O'Toole Starter Deck",
              "cards": [
-                {"databaseId": "m01003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01010", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01011", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -108,7 +105,6 @@
         "Agnes Baker Starter Deck": {
              "label": "Agnes Baker Starter Deck",
              "cards": [
-                {"databaseId": "m01004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01012", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01013", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -143,7 +139,6 @@
         "Wendy Adams Starter Deck": {
              "label": "Wendy Adams Starter Deck",
              "cards": [
-                {"databaseId": "m01005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01014", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01015", "quantity": 1, "loadGroupId": "playerNDeck"},

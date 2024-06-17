@@ -2,15 +2,13 @@
     "cardMenu": {
         "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
+            
         ]
     },
     "groupMenu": {
         "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
-            {
-                "label": "id:advanceStoryShort",
-                "actionList": "advanceStory"
-            }
+
         ]
     },
     "pluginMenu": {

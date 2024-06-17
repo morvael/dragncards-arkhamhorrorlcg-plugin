@@ -15,7 +15,7 @@
                     ["DECREASE_VAL", "/playerData/$PLAYER_N/resources", 1]
                 ],
                 ["TRUE"],
-                ["LOG", "Resource cannot be spent, {{$ALIAS_N}}."]
+                ["LOG", "1 resource cannot be spent, {{$ALIAS_N}}."]
             ]
         ],
         "increaseResources": [
@@ -24,12 +24,6 @@
         ]
     },
     "preBuiltDecks": {
-        "first_investigator_token": {
-            "label": "first_investigator_token",
-            "cards": [
-                {"databaseId": "first_investigator", "quantity": 1, "loadGroupId": "sharedTokens"}
-            ]
-        },
         "key_tokens": {
             "label": "key_tokens",
             "cards": [

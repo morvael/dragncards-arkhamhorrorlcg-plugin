@@ -1,5 +1,12 @@
 {
     "functions": {
+        "CREATE_CARDS": {
+            "args": ["$DATABASE_ID", "$QUANTITY", "$LOAD_GROUP_ID"],
+            "code": [
+                ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$DATABASE_ID", "quantity": "$QUANTITY", "loadGroupId": "$LOAD_GROUP_ID"}]],
+                ["LOAD_CARDS", ["LIST", "$LOAD_LIST_ITEM"]]
+            ]
+        },
         "DELETE_CARD_BY_TITLE": {
             "args": ["$CARD_TITLE"],
             "code": [
@@ -19,7 +26,7 @@
                     [
                         ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["LOG", "{{$ALIAS_I}} discarded {{$CARD.sides.A.name}}."],
+                            ["LOG", "{{$ALIAS_I}} discards {{$CARD.sides.A.name}}."],
                             ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Discard", 0]
                         ]]
                     ]
@@ -45,7 +52,12 @@
                 ["COND",
                     ["NOT_EQUAL", "$AGENDA_CARD", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} placed {{$NUMBER_OF_DOOM_TOKENS}} doom on {{$AGENDA_CARD.currentFace.name}}."],
+                        ["COND",
+                            ["GREATER_THAN", "$NUMBER_OF_DOOM_TOKENS", 1],
+                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom are placed on {{$AGENDA_CARD.currentFace.name}}."],
+                            ["TRUE"],
+                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom is placed on {{$AGENDA_CARD.currentFace.name}}."]
+                        ],
                         ["INCREASE_VAL", "/cardById/$AGENDA_CARD.id/tokens/doom", "$NUMBER_OF_DOOM_TOKENS"]
                     ]
                 ]
@@ -54,9 +66,9 @@
         "PLACE_MINI_INVESTIGATORS": {
             "args": ["$LEFT", "$TOP"],
             "code": [
-                ["VAR", "$SELECTED_MINI_INVESTIGATORS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]]],
-                ["FOR_EACH_VAL", "$SELECTED_MINI_INVESTIGATOR", "$SELECTED_MINI_INVESTIGATORS", [
-                    ["MOVE_CARD", "$SELECTED_MINI_INVESTIGATOR.id", "sharedLocations", -1]
+                ["VAR", "$SELECTED_INVESTIGATORS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Investigator"]]],
+                ["FOR_EACH_VAL", "$SELECTED_INVESTIGATOR", "$SELECTED_INVESTIGATORS", [
+                    ["CREATE_CARDS", "m{{$SELECTED_INVESTIGATOR.sides.A.databaseId}}", 1, "sharedLocations"]
                 ]],
                 ["VAR", "$SELECTED_MINI_INVESTIGATORS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]]],
                 ["VAR", "$X", ["ADD", "$LEFT", 5]],

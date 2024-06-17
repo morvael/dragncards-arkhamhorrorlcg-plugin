@@ -21,7 +21,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
                     [
-                        ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}}."],
+                        ["LOG", "{{$ALIAS_N}} discards {{$ACTIVE_FACE.name}}."],
                         ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedTokens", -1]
                     ],
                     ["TRUE"],
@@ -34,7 +34,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     [
-                        ["LOG", "{{$ALIAS_N}} removed {{$ACTIVE_FACE.name}} from play."],
+                        ["LOG", "{{$ALIAS_N}} removes {{$ACTIVE_FACE.name}} from play."],
                         ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedNotInPlay", -1]
                     ],
                     ["TRUE"],
@@ -49,12 +49,12 @@
                             ["EQUAL", "$ACTIVE_FACE.name", "Curse"]
                         ],
                         [
-                            ["LOG", "{{$ALIAS_N}} removed {{$ACTIVE_FACE.name}} Chaos Token from play."],
+                            ["LOG", "{{$ALIAS_N}} removes {{$ACTIVE_FACE.name}} Chaos Token from play."],
                             ["DELETE_CARD", "$ACTIVE_CARD_ID"]
                         ],
                         ["TRUE"],
                         [
-                            ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}} Chaos Token."],
+                            ["LOG", "{{$ALIAS_N}} discards {{$ACTIVE_FACE.name}} Chaos Token."],
                             ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedChaosBag", -1]
                         ]
                     ],
@@ -71,7 +71,7 @@
                         ["GREATER_THAN", "$ACTIVE_FACE.victoryPoints", 0]
                     ],
                     [
-                        ["LOG", "{{$ALIAS_N}} moved {{$ACTIVE_FACE.name}} to Victory Display."],
+                        ["LOG", "{{$ALIAS_N}} moves {{$ACTIVE_FACE.name}} to Victory Display."],
                         ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedVictoryDisplay", -1]
                     ],
                     ["NOT_EQUAL", "$ACTIVE_CARD.sides.B.databaseId", null],
@@ -80,24 +80,24 @@
                     ["PROMPT", "$PLAYER_N", "victoryOrDiscard", "$ACTIVE_CARD"],
                     ["TRUE"],
                     [
-                        ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_FACE.name}}."],
+                        ["LOG", "{{$ALIAS_N}} discards {{$ACTIVE_CARD.sides.A.name}}."],
                         ["COND",
+                            ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedEncounterDiscard", 0],
                             ["EQUAL", "$ACTIVE_CARD.controller", "player1"],
                             ["MOVE_CARD", "$ACTIVE_CARD_ID", "player1Discard", 0],
                             ["EQUAL", "$ACTIVE_CARD.controller", "player2"],
                             ["MOVE_CARD", "$ACTIVE_CARD_ID", "player2Discard", 0],
                             ["EQUAL", "$ACTIVE_CARD.controller", "player3"],
                             ["MOVE_CARD", "$ACTIVE_CARD_ID", "player3Discard", 0],
-                            ["EQUAL", "$ACTIVE_CARD.controller", "player4"],
-                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player4Discard", 0],
                             ["TRUE"],
-                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedEncounterDiscard", 0]
+                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "player4Discard", 0]
                         ]
                     ]
                 ],
                 ["EQUAL", "$ACTIVE_CARD.inDeck", true],
                 [
-                    ["LOG", "{{$ALIAS_N}} discarded {{$ACTIVE_CARD.sides.A.name}} from the top of {{$ACTIVE_GROUP.label}}."],
+                    ["LOG", "{{$ALIAS_N}} discards {{$ACTIVE_CARD.sides.A.name}} from the top of {{$ACTIVE_GROUP.label}}."],
                     ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.discardToPile", 0]
                 ],
                 ["TRUE"],
@@ -114,7 +114,7 @@
                     "label": "Victory Display",
                     "hotkey": "V",
                     "code": [
-                        ["LOG", "{{$ALIAS_N}} moved {{$DISCARDED_CARD.currentFace.name}} to Victory Display."],
+                        ["LOG", "{{$ALIAS_N}} moves {{$DISCARDED_CARD.currentFace.name}} to Victory Display."],
                         ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedVictoryDisplay", -1]
                     ]
                 },
@@ -122,18 +122,18 @@
                     "label": "Discard Pile",
                     "hotkey": "D",
                     "code": [
-                        ["LOG", "{{$ALIAS_N}} discarded {{$DISCARDED_CARD.currentFace.name}}."],
+                        ["LOG", "{{$ALIAS_N}} discards {{$DISCARDED_CARD.sides.A.name}}."],
                         ["COND",
+                            ["EQUAL", "$DISCARDED_CARD.sides.B.name", "Encounter Card"],
+                            ["MOVE_CARD", "$DISCARDED_CARD", "sharedEncounterDiscard", 0],
                             ["EQUAL", "$DISCARDED_CARD.controller", "player1"],
                             ["MOVE_CARD", "$DISCARDED_CARD.id", "player1Discard", 0],
                             ["EQUAL", "$DISCARDED_CARD.controller", "player2"],
                             ["MOVE_CARD", "$DISCARDED_CARD.id", "player2Discard", 0],
                             ["EQUAL", "$DISCARDED_CARD.controller", "player3"],
                             ["MOVE_CARD", "$DISCARDED_CARD.id", "player3Discard", 0],
-                            ["EQUAL", "$DISCARDED_CARD.controller", "player4"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player4Discard", 0],
                             ["TRUE"],
-                            ["MOVE_CARD", "$DISCARDED_CARD.id", "sharedEncounterDiscard", 0]
+                            ["MOVE_CARD", "$DISCARDED_CARD.id", "player4Discard", 0]
                         ]
                     ]
                 }

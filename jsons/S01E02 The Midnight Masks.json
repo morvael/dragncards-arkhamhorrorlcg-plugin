@@ -61,13 +61,13 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "Campaign Log: Your house has burned to the ground."],
+                    ["LOG", "└── Campaign Log: Your house has burned to the ground."],
                     ["DELETE_CARD_BY_TITLE", "Your House"],
                     ["PLACE_MINI_INVESTIGATORS", 45, 43]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
-                    ["LOG", "Campaign Log: Your house is still standing."],
+                    ["LOG", "└── Campaign Log: Your house is still standing."],
                     ["PLACE_MINI_INVESTIGATORS", 70, 76]
                 ]
             ],
@@ -77,8 +77,8 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
-                    ["LOG", "Campaign Log: The Ghoul Priest is still alive."],
-                    ["LOAD_CARDS", "Night of the Zealot - Ghoul Priest"]
+                    ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
+                    ["CREATE_CARDS", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

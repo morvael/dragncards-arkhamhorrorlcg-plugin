@@ -147,12 +147,6 @@
                 {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
-        },
-        "Night of the Zealot - Ghoul Priest": {
-            "label": "Night of the Zealot - Ghoul Priest",
-            "cards": [
-                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
-            ]
         }
     }
 }
