@@ -71,32 +71,34 @@
                                 ["LOG", "{{$ALIAS_O}}'s {{$INVESTIGATOR_CARD.currentFace.name}} {{$REASON}}."],
                                 ["COND",
                                     ["EQUAL", "$GAME.firstPlayer", "$PLAYER_O"],
-                                    ["VAR", "$POSSIBLE_LEADS", ["LIST"]],
-                                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                    [
+                                        ["VAR", "$POSSIBLE_LEADS", ["LIST"]],
+                                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                            ["COND",
+                                                ["AND",
+                                                    ["NOT_EQUAL", "$PLAYER_I", "$PLAYER_O"],
+                                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true]
+                                                ],
+                                                ["UPDATE_VAR", "$POSSIBLE_LEADS", ["APPEND", "$POSSIBLE_LEADS", "$PLAYER_I"]]
+                                            ]
+                                        ]],
                                         ["COND",
-                                            ["AND",
-                                                ["NOT_EQUAL", "$PLAYER_I", "$PLAYER_O"],
-                                                ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true],
+                                            ["GREATER_THAN", ["LENGTH", "$POSSIBLE_LEADS"], 1],
+                                            [
+                                                ["PROMPT", "$PLAYER_O", "chooseNewLeadInvestigator"],
+                                                ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
+                                                    ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                                                    ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                                                    ["PROMPT_ADD_OPTION", "$PLAYER_O", "$ALIAS_I", "{{$LETTER}}", ["LIST", "ELIMINATE_INVESTIGATOR_FINAL", "{{$PLAYER_O}}", "{{$PLAYER_I}}"]]
+                                                ]]
                                             ],
-                                            ["UPDATE_VAR", "$POSSIBLE_LEADS", ["APPEND", "$POSSIBLE_LEADS", ["LIST", "$PLAYER_I"]]]
-                                        ]
-                                    ]],
-                                    ["COND",
-                                        ["GREATER_THAN", ["LENGTH", "$POSSIBLE_LEADS"], 1],
-                                        [
-                                            ["PROMPT", "$PLAYER_O", "chooseNewLeadInvestigator"],
-                                            ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
-                                                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
-                                                ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                                ["PROMPT_ADD_OPTION", "$PLAYER_O", "$ALIAS_I", "{{$LETTER}}", ["LIST", "ELIMINATE_INVESTIGATOR_FINAL", "{{$PLAYER_O}}", "{{$PLAYER_I}}"]]
-                                            ]]
-                                        ],
-                                        ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
-                                        ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$POSSIBLE_LEADS.[0]"],
-                                        ["TRUE"],
-                                        [
-                                            ["LOG", "└── Scenario ends, as there are no remaining players!"],
-                                            ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", null]
+                                            ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
+                                            ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$POSSIBLE_LEADS.[0]"],
+                                            ["TRUE"],
+                                            [
+                                                ["LOG", "└── Scenario ends, as there are no remaining players!"],
+                                                ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", null]
+                                            ]
                                         ]
                                     ],
                                     ["TRUE"],

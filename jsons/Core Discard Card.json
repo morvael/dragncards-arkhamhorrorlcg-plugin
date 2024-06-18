@@ -15,7 +15,11 @@
                 ["LOG", "{{$ACTIVE_FACE.name}} cannot be discarded, {{$ALIAS_N}}."],
                 ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                 ["COND",
-                    ["EQUAL", "$ACTIVE_CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                    ["AND",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                        ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.eliminated", true],
+                        ["NOT_EQUAL", "$GAME.arkhamScenarioInit", true]
+                    ],
                     ["PROMPT", "$PLAYER_N", "eliminateInvestigator", "$ACTIVE_CARD"],
                     ["TRUE"],
                     ["LOG", "{{$ACTIVE_FACE.name}} cannot be eliminated, {{$ALIAS_N}}."]

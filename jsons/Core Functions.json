@@ -30,7 +30,7 @@
         "DISCARD_N_RANDOM_CARDS_FROM_HAND": {
             "args": ["$PLAYER_I", "$NUMBER"],
             "code": [
-                ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", "$GAME.groupById.{{$PLAYER_I}}Deck.parentCards", "$NUMBER"]],
+                ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", "$GAME.groupById.{{$PLAYER_I}}Hand.parentCards", "$NUMBER"]],
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     [
@@ -89,14 +89,15 @@
                 ["VAR", "$X", ["ADD", "$LEFT", 5]],
                 ["VAR", "$Y", ["ADD", "$TOP", 7]],
                 ["FOR_EACH_VAL", "$SELECTED_MINI_INVESTIGATOR", "$SELECTED_MINI_INVESTIGATORS", [
-                    ["SET_CARD_LOCATION", "$SELECTED_MINI_INVESTIGATOR", "{{$X}}%", "{{$Y}}%"],
+                    ["SET_CARD_LOCATION", "$SELECTED_MINI_INVESTIGATOR.id", "{{$X}}%", "{{$Y}}%"],
                     ["INCREASE_VAR", "$X", 3]
                 ]]
             ]
         },
         "SET_CARD_LOCATION": {
-            "args": ["$CARD", "$LEFT", "$TOP"],
+            "args": ["$CARD_ID", "$LEFT", "$TOP"],
             "code": [
+                ["VAR", "$CARD", "$GAME.cardById.$CARD_ID"],
                 ["VAR", "$STACK_ID", "$GAME.groupById.{{$CARD.groupId}}.stackIds.[{{$CARD.stackIndex}}]"],
                 ["SET", "/stackById/$STACK_ID/left", "$LEFT"],
                 ["SET", "/stackById/$STACK_ID/top",  "$TOP"]
@@ -126,9 +127,9 @@
                         ["VAR", "$LL", ["SUBSTRING", "$LL", 0, ["SUBTRACT", ["LENGTH", "$LL"], 1]]],
                         ["VAR", "$LT", "$GAME.stackById.$LOCATION_STACK_ID.top"],
                         ["VAR", "$LT", ["SUBSTRING", "$LT", 0, ["SUBTRACT", ["LENGTH", "$LT"], 1]]],
-                        ["VAR", "$LEFT", ["ADD", "$LL", "$LEFT_MOD"]],
-                        ["VAR", "$TOP", ["ADD", "$LT", "$TOP_MOD"]],
-                        ["SET_CARD_LOCATION", "$MATCHED_CARD", "$LEFT", "$TOP"]
+                        ["VAR", "$LEFT", ["CALC", "{{$LL}}+({{$LEFT_MOD}})"]],
+                        ["VAR", "$TOP", ["CALC", "{{$LT}}+({{$TOP_MOD}})"]],
+                        ["SET_CARD_LOCATION", "$MATCHED_CARD.id", "{{$LEFT}}%", "{{$TOP}}%"]
                     ]
                 ],
                 ["DEFINE", "$SPAWN_CARD_AT_LOCATION_RESULT", "$MATCHED_CARD"]

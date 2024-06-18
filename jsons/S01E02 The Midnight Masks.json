@@ -64,7 +64,7 @@
             ["LOAD_N_CARDS", "The Midnight Masks - Southside", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
-                ["SPAWN_CARD_AT_LOCATION", "Acolyte", "sharedEncounterDeck", "$SPAWN_SITES.[$I]", 5, 7],
+                ["SPAWN_CARD_AT_LOCATION", "Acolyte", "sharedEncounterDeck", "$SPAWN_SITES.[$I]", 3, 3],
                 ["PLACE_DOOM_ON_CARD", "$SPAWN_CARD_AT_LOCATION_RESULT", 1]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "The Midnight Masks Scenario Question 1"]

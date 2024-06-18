@@ -3,11 +3,13 @@
         "postNewGameActionList": [
             ["SET", "/arkhamScenarioInit", true],
             ["LOG", "└── Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
-            ["SET_LAYOUT", "shared", "layout2Player"],
-            ["SET", "/numPlayers", 2],
+            ["SET_LAYOUT", "shared", "layout3Player"],
+            ["SET", "/numPlayers", 3],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
             ["DEFINE", "$PLAYER_N", "player2"],
             ["LOAD_CARDS", "Daisy Walker Starter Deck"],
+            ["DEFINE", "$PLAYER_N", "player3"],
+            ["LOAD_CARDS", "Agnes Baker Starter Deck"],
             ["DEFINE", "$PLAYER_N", "player1"],            
             ["LOAD_CARDS", "The Midnight Masks Scenario"]
         ],
@@ -114,6 +116,17 @@
                 "then": [
                     ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null]
                 ]
+            },
+            {
+                "_comment": "Make sure investigator group table labels show which player they belong to.",
+                "type": "trigger",
+                "listenTo": ["/playerData/*/alias"],
+                "condition": [
+                    ["FALSE"]
+                ],
+                "then": [
+                    ["UPDATE_INVESTIGATOR_NAMES", null]
+                ]
             }
         ]
     },
@@ -145,6 +158,16 @@
                         ]
                     ]
                 ]
+            ]
+        },
+        "UPDATE_INVESTIGATOR_NAMES": {
+            "args": ["$DUMMY"],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                    ["VAR", "$ALIAS_I", ["SUBSTRING", "$ALIAS_I", 7, ["SUBTRACT", ["LENGTH", "$ALIAS_I"], 8]]],
+                    ["SET", "/groupById/{{$PLAYER_I}}Investigator/tableLabel", "$ALIAS_I"]
+                ]]
             ]
         }
     }

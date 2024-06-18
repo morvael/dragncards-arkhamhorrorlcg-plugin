@@ -22,6 +22,7 @@
                     [
                         ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$MATCHED_CARD.currentFace.name}} as the lead investigator."],
                         ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null],
+                        ["UPDATE_INVESTIGATOR_NAMES", null],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/eliminated", false],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
