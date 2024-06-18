@@ -89,6 +89,7 @@
                 ["VAR", "$X", ["ADD", "$LEFT", 5]],
                 ["VAR", "$Y", ["ADD", "$TOP", 7]],
                 ["FOR_EACH_VAL", "$SELECTED_MINI_INVESTIGATOR", "$SELECTED_MINI_INVESTIGATORS", [
+                    ["MOVE_CARD", "$SELECTED_MINI_INVESTIGATOR.id", "sharedLocations", -1],
                     ["SET_CARD_LOCATION", "$SELECTED_MINI_INVESTIGATOR.id", "{{$X}}%", "{{$Y}}%"],
                     ["INCREASE_VAR", "$X", 3]
                 ]]
