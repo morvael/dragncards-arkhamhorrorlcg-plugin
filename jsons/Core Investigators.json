@@ -1,0 +1,208 @@
+{
+    "actionLists": {
+        "investigatorTurn": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                [
+                    ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                        ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                    ]]],
+                    ["COND",
+                        ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
+                        [
+                            ["LOG", "{{$ALIAS_N}} starts {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn."],
+                            ["SET", "/arkhamActiveInvestigator", "$PLAYER_N"],
+                            ["SET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor", "HotPink"]
+                        ],
+                        ["TRUE"],
+                        ["LOG", "You cannot start your Investigator's turn, {{$ALIAS_N}}."]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "{{$GAME.arkhamActiveInvestigator}}Investigator"],
+                        ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                    ]]],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkhamActiveInvestigator", "$PLAYER_N"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} ends {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn."],
+                            ["SET", "/arkhamActiveInvestigator", null],
+                            ["UNSET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor"]
+                        ],
+                        ["TRUE"],
+                        ["LOG", "You cannot end {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn, {{$ALIAS_N}}."]
+                    ]
+                ]
+            ]
+        ]
+    },
+    "functions": {
+        "ELIMINATE_INVESTIGATOR": {
+            "args": ["$INVESTIGATOR_CARD", "$REASON"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$INVESTIGATOR_CARD", null],
+                        ["EQUAL", "$INVESTIGATOR_CARD.currentFace.type", "Investigator"],
+                        ["NOT_EQUAL", "$REASON", null]
+                    ],
+                    [
+                        ["VAR", "$PLAYER_O", null],
+                        ["COND",
+                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player1Investigator"],
+                            ["UPDATE_VAR", "$PLAYER_O", "player1"],
+                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player2Investigator"],
+                            ["UPDATE_VAR", "$PLAYER_O", "player2"],
+                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player3Investigator"],
+                            ["UPDATE_VAR", "$PLAYER_O", "player3"],
+                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player4Investigator"],
+                            ["UPDATE_VAR", "$PLAYER_O", "player4"]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$PLAYER_O", null],
+                            [
+                                ["VAR", "$ALIAS_O", ["GET_ALIAS", "$PLAYER_O"]],
+                                ["LOG", "{{$ALIAS_O}}'s {{$INVESTIGATOR_CARD.currentFace.name}} {{$REASON}}."],
+                                ["COND",
+                                    ["EQUAL", "$GAME.firstPlayer", "$PLAYER_O"],
+                                    ["COND",
+                                        ["GREATER_THAN", "$GAME.numPlayers", 2],
+                                        [
+                                            ["PROMPT", "$PLAYER_O", "chooseNewLeadInvestigator"],
+                                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                                ["COND",
+                                                    ["NOT_EQUAL", "$PLAYER_I", "$PLAYER_O"],
+                                                    [
+                                                        ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                                                        ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                                                        ["PROMPT_ADD_OPTION", "$PLAYER_O", "$ALIAS_I", "{{$LETTER}}", ["LIST", "ELIMINATE_INVESTIGATOR_FINAL", "{{$PLAYER_O}}", "{{$PLAYER_I}}"]]
+                                                    ]
+                                                ]
+                                            ]]
+                                        ],
+                                        ["GREATER_THAN", "$GAME.numPlayers", 1],
+                                        ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$PLAYER_ORDER.[1]"],
+                                        ["TRUE"],
+                                        [
+                                            ["LOG", "└── Scenario ends, as there are no remaining players!"],
+                                            ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", null]
+                                        ]
+                                    ],
+                                    ["TRUE"],
+                                    ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$GAME.firstPlayer"]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "ELIMINATE_INVESTIGATOR_FINAL": {
+            "args": ["$PLAYER_O", "$NEW_LEAD"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$NEW_LEAD", null],
+                    [
+                        ["VAR", "$MATCHED_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "FirstInvestigatorToken"]]],
+                        ["COND",
+                            ["NOT_EQUAL", "$MATCHED_TOKEN", null],
+                            ["MOVE_CARD", "$MATCHED_TOKEN.id", "sharedTokens", -1]
+                        ]
+                    ],
+                    ["NOT_EQUAL", "$NEW_LEAD", "$GAME.firstPlayer"],
+                    ["SET", "/firstPlayer", "$NEW_LEAD"]
+                ],
+                ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "{{$PLAYER_O}}Investigator"],
+                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                ]]],
+                ["COND",
+                    ["EQUAL", "$PLAYER_O", "$GAME.arkhamActiveInvestigator"],
+                    [
+                        ["SET", "/arkhamActiveInvestigator", null],
+                        ["COND",
+                            ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
+                            ["UNSET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor"]
+                        ]
+                    ]
+                ],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.controller", "$PLAYER_O"],
+                    ["NOT_EQUAL", "$CARD.groupId", "{{$PLAYER_O}}Discard"],
+                    ["EQUAL", "$CARD.sides.B.databaseId", null],
+                    ["EQUAL", "$CARD.sides.B.name", "Player Card"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["MOVE_CARD", "$CARD.id", "{{$PLAYER_O}}Discard", 0]
+                ]],
+                ["SET", "/playerData/$PLAYER_O/resources", 0],
+                ["SET", "/playerData/$PLAYER_O/eliminated", true],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
+                    [
+                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/resource", 0],
+                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/doom", 0],
+                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/damage", 0],
+                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/horror", 0],
+                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/currentSide", "B"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "eliminateInvestigator": {
+            "args": ["$DISCARDED_CARD"],
+            "message": "Select fate of eliminated {{$DISCARDED_CARD.currentFace.name}}.",
+            "options": [
+                {
+                    "label": "Resigned",
+                    "hotkey": "R",
+                    "code": [
+                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "resigns"]
+                    ]
+                },
+                {
+                    "label": "Defated by damage",
+                    "hotkey": "D",
+                    "code": [
+                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is defated by damage"]
+                    ]
+                },
+                {
+                    "label": "Defated by horror",
+                    "hotkey": "H",
+                    "code": [
+                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is defated by horror"]
+                    ]
+                },
+                {
+                    "label": "Other",
+                    "hotkey": "O",
+                    "code": [
+                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is eliminated"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "chooseNewLeadInvestigator": {
+            "args": [],
+            "message": "Choose a new lead investigator.",
+            "options": [
+
+             ]
+        }
+    },
+    "labels": {
+        "investigatorTurn": {
+            "English": "Start / End your turn"
+        }
+    }
+}

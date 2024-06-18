@@ -3,7 +3,7 @@
         "discardCard": [
             ["COND",
                 ["OR",
-                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["EQUAL", "$ACTIVE_CARD.sides.A.permanent", true],
                     ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Act"],
@@ -13,6 +13,13 @@
                     ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
                 ],
                 ["LOG", "{{$ACTIVE_FACE.name}} cannot be discarded, {{$ALIAS_N}}."],
+                ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                ["COND",
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "{{$PLAYER_N}}Investigator"],
+                    ["PROMPT", "$PLAYER_N", "eliminateInvestigator", "$ACTIVE_CARD"],
+                    ["TRUE"],
+                    ["LOG", "{{$ACTIVE_FACE.name}} cannot be eliminated, {{$ALIAS_N}}."]
+                ],
                 ["OR",
                     ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],

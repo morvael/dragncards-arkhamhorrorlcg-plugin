@@ -3,9 +3,12 @@
         "postNewGameActionList": [
             ["SET", "/arkhamScenarioInit", true],
             ["LOG", "└── Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
-            ["SET_LAYOUT", "shared", "layout1Player"],
-            ["SET", "/numPlayers", 1],
+            ["SET_LAYOUT", "shared", "layout2Player"],
+            ["SET", "/numPlayers", 2],
             ["LOAD_CARDS", "Roland Banks Starter Deck"],
+            ["DEFINE", "$PLAYER_N", "player2"],
+            ["LOAD_CARDS", "Daisy Walker Starter Deck"],
+            ["DEFINE", "$PLAYER_N", "player1"],            
             ["LOAD_CARDS", "The Midnight Masks Scenario"]
         ],
         "gameRules": [
@@ -40,12 +43,18 @@
                         ["EQUAL", "$GAME.stepId", "U4"],
                         [
                             ["LOG", "└── Each investigator draws 1 card."],
-                            ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
-                                ["DRAW_CARD", 1, "$PLAYER_I"]
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                ["COND",
+                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true],
+                                    ["DRAW_CARD", 1, "$PLAYER_I"]
+                                ]
                             ]],
                             ["LOG", "└── Each investigator gains 1 resource."],
-                            ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
-                                ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                ["COND",
+                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true],
+                                    ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
+                                ]
                             ]]
                         ]
                     ]
@@ -94,7 +103,49 @@
                 "then": [
                     ["SET", "/cardById/$TARGET.id/currentSide", "B"]
                 ]
+            },
+            {
+                "_comment": "Make the Lead Investigator token follow first player (and create it when missing).",
+                "type": "trigger",
+                "listenTo": ["/firstPlayer"],
+                "condition": [
+                    ["NOT_EQUAL", ["PREV", "$GAME.firstPlayer"], "$GAME.firstPlayer"]
+                ],
+                "then": [
+                    ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null]
+                ]
             }
         ]
+    },
+    "functions": {
+        "UPDATE_LEAD_INVESTIGATOR_TOKEN": {
+            "args": ["$DUMMY"],
+            "code": [
+                ["VAR", "$LEAD_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "{{$GAME.firstPlayer}}Investigator"],
+                    ["EQUAL", "$CARD.sides.A.type", "Investigator"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$LEAD_INVESTIGATOR", null],
+                    [
+                        ["VAR", "$LEAD_INVESTIGATOR_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.type", "FirstInvestigatorToken"]]],
+                        ["COND",
+                            ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN", null],
+                            [
+                                ["CREATE_CARDS", "first_investigator", 1, "sharedTokens"],
+                                ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.type", "FirstInvestigatorToken"]]]
+                            ]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$LEAD_INVESTIGATOR.id", "$LEAD_INVESTIGATOR_TOKEN.parentCardId"],
+                            [
+                                ["LOG", "└── {{$LEAD_INVESTIGATOR_TOKEN.sides.A.name}} attached to {{$LEAD_INVESTIGATOR.sides.A.name}}."],
+                                ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN.id", "$LEAD_INVESTIGATOR.id"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        }
     }
 }

@@ -3,6 +3,15 @@
         "The Midnight Masks Scenario": {
             "label": "The Midnight Masks Scenario",
             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Night of the Zealot", "The Midnight Masks", "The Midnight Masks Scenario Init"]
+            ]
+        },
+        "The Midnight Masks": {
+            "label": "The Midnight Masks",
+            "cards": [
                 {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
                 {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
@@ -16,9 +25,6 @@
                 {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
                 {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
-            ],
-            "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "The Midnight Masks", "The Midnight Masks Scenario Init"]
             ]
         },
         "The Midnight Masks - Southside": {
@@ -48,6 +54,7 @@
     },
     "actionLists": {
         "The Midnight Masks Scenario Init": [
+            ["LOAD_CARDS", "The Midnight Masks"],
             ["LOAD_CARDS", "Chilling Cold"],
             ["LOAD_CARDS", "Nightgaunts"],
             ["LOAD_CARDS", "Dark Cult"],
@@ -55,6 +62,11 @@
             ["LOAD_CARDS", "Cult of Umôrdhoth"],
             ["LOAD_N_CARDS", "The Midnight Masks - Downtown", 1],
             ["LOAD_N_CARDS", "The Midnight Masks - Southside", 1],
+            ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
+                ["SPAWN_CARD_AT_LOCATION", "Acolyte", "sharedEncounterDeck", "$SPAWN_SITES.[$I]", 5, 7],
+                ["PLACE_DOOM_ON_CARD", "$SPAWN_CARD_AT_LOCATION_RESULT", 1]
+            ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "The Midnight Masks Scenario Question 1"]
         ],
         "The Midnight Masks Scenario Question 1": [

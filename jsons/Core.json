@@ -53,6 +53,7 @@
             {"key": "+", "actionList": "increaseResources", "label": "id:increaseResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
+            {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
             {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
             {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
@@ -64,8 +65,7 @@
             {"key": "D", "actionList": "discardCard", "label": "id:discardCard"},
             {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
-            {"key": "H", "actionList": "shuffleIntoDeck", "label": "id:shuffleIntoOwnersDeck"},
-            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"}            
+            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"}
         ]
     },
     "imageUrlPrefix": {
@@ -77,8 +77,8 @@
         }
     },
     "spawnExistingCardModal": {
-        "columnProperties": ["name", "packName"],
-        "loadGroupIds": ["player1Play","player2Play","player3Play","player4Play"]
+        "columnProperties": ["name", "faction", "type", "traits", "packName", "numberInPack"],
+        "loadGroupIds": ["player1Hand","player2Hand","player3Hand","player4Hand","sharedLocations","sharedNotInPlay"]
     },
     "stepReminderRegex": [
     ],

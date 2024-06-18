@@ -3,6 +3,15 @@
         "The Gathering Scenario": {
              "label": "The Gathering Scenario",
              "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Night of the Zealot", "The Gathering", "The Gathering Scenario Init"]
+            ]
+        },
+        "The Gathering": {
+             "label": "The Gathering",
+             "cards": [
                 {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
                 {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
@@ -19,14 +28,12 @@
                 {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
-            ],
-            "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "The Gathering", "The Gathering Scenario Init"]
             ]
         }
     },
     "actionLists": {
         "The Gathering Scenario Init": [
+            ["LOAD_CARDS", "The Gathering"],
             ["LOAD_CARDS", "Rats"],
             ["LOAD_CARDS", "Ghouls"],
             ["LOAD_CARDS", "Striking Fear"],

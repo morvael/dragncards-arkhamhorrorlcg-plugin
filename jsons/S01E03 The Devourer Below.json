@@ -3,6 +3,15 @@
         "The Devourer Below Scenario": {
             "label": "The Devourer Below Scenario",
             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Night of the Zealot", "The Devourer Below", "The Devourer Below Scenario Init"]
+            ]
+        },
+        "The Devourer Below": {
+            "label": "The Devourer Below",
+            "cards": [
                 {"databaseId": "01142", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "01143", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
                 {"databaseId": "01144", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
@@ -14,9 +23,6 @@
                 {"databaseId": "01156", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01157", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01158", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
-            ],
-            "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "The Devourer Below", "The Devourer Below Scenario Init"]
             ]
         },
         "The Devourer Below - Woods": {
@@ -33,6 +39,7 @@
     },
     "actionLists": {
         "The Devourer Below Scenario Init": [
+            ["LOAD_CARDS", "The Devourer Below"],
             ["LOAD_CARDS", "Ancient Evils"],
             ["LOAD_CARDS", "Striking Fear"],
             ["LOAD_CARDS", "Ghouls"],
@@ -77,7 +84,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Campaign Log: It is past midnight."],
-                    ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2]
                     ]]
                 ]

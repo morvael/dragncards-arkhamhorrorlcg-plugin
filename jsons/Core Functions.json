@@ -17,6 +17,16 @@
                 ]
             ]
         },
+        "DELETE_CARD_BY_TYPE": {
+            "args": ["$CARD_TYPE"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "$CARD_TYPE"]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    ["DELETE_CARD", "$MATCHED_CARD.id"]
+                ]
+            ]
+        },
         "DISCARD_N_RANDOM_CARDS_FROM_HAND": {
             "args": ["$PLAYER_I", "$NUMBER"],
             "code": [
@@ -45,22 +55,27 @@
                 ["LOAD_CARDS", ["AT_INDEX", "$LIST_OF_LISTS", ["RANDOM_INT", 0, ["LENGTH", "$LIST_OF_LISTS"]]]]
             ]
         },
-        "PLACE_DOOM_ON_CURRENT_AGENDA": {
-            "args": ["$NUMBER_OF_DOOM_TOKENS"],
+        "PLACE_DOOM_ON_CARD": {
+            "args": ["$TARGET_CARD", "$NUMBER_OF_DOOM_TOKENS"],
             "code": [
-                ["VAR", "$AGENDA_CARD", ["GET_CARD", "sharedAgendaDeck", 0, 0]],
                 ["COND",
-                    ["NOT_EQUAL", "$AGENDA_CARD", null],
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["COND",
                             ["GREATER_THAN", "$NUMBER_OF_DOOM_TOKENS", 1],
-                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom are placed on {{$AGENDA_CARD.currentFace.name}}."],
+                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom are placed on {{$TARGET_CARD.currentFace.name}}."],
                             ["TRUE"],
-                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom is placed on {{$AGENDA_CARD.currentFace.name}}."]
+                            ["LOG", "└── {{$NUMBER_OF_DOOM_TOKENS}} doom is placed on {{$TARGET_CARD.currentFace.name}}."]
                         ],
-                        ["INCREASE_VAL", "/cardById/$AGENDA_CARD.id/tokens/doom", "$NUMBER_OF_DOOM_TOKENS"]
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD.id/tokens/doom", "$NUMBER_OF_DOOM_TOKENS"]
                     ]
                 ]
+            ]
+        },
+        "PLACE_DOOM_ON_CURRENT_AGENDA": {
+            "args": ["$NUMBER_OF_DOOM_TOKENS"],
+            "code": [
+                ["PLACE_DOOM_ON_CARD", ["GET_CARD", "sharedAgendaDeck", 0, 0], "$NUMBER_OF_DOOM_TOKENS"]
             ]
         },
         "PLACE_MINI_INVESTIGATORS": {
@@ -85,6 +100,38 @@
                 ["VAR", "$STACK_ID", "$GAME.groupById.{{$CARD.groupId}}.stackIds.[{{$CARD.stackIndex}}]"],
                 ["SET", "/stackById/$STACK_ID/left", "$LEFT"],
                 ["SET", "/stackById/$STACK_ID/top",  "$TOP"]
+            ]
+        },
+        "SPAWN_CARD_AT_LOCATION": {
+            "args": ["$NAME", "$SOURCE_GROUP_ID", "$LOCATION_NAME", "$LEFT_MOD", "$TOP_MOD"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.name", "$NAME"],
+                    ["EQUAL", "$CARD.groupId", "$SOURCE_GROUP_ID"]
+                ]]],
+                ["VAR", "$MATCHED_LOCATION", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.name", "$LOCATION_NAME"],
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"]
+                ]]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$MATCHED_CARD", null],
+                        ["NOT_EQUAL", "$MATCHED_LOCATION", null]
+                    ],                    
+                    [
+                        ["LOG", "└── {{$MATCHED_CARD.sides.A.name}} spawns at {{$MATCHED_LOCATION.currentFace.name}}."],
+                        ["MOVE_CARD", "$MATCHED_CARD.id", "sharedLocations", -1],
+                        ["VAR", "$LOCATION_STACK_ID", "$GAME.groupById.{{$MATCHED_LOCATION.groupId}}.stackIds.[{{$MATCHED_LOCATION.stackIndex}}]"],
+                        ["VAR", "$LL", "$GAME.stackById.$LOCATION_STACK_ID.left"],
+                        ["VAR", "$LL", ["SUBSTRING", "$LL", 0, ["SUBTRACT", ["LENGTH", "$LL"], 1]]],
+                        ["VAR", "$LT", "$GAME.stackById.$LOCATION_STACK_ID.top"],
+                        ["VAR", "$LT", ["SUBSTRING", "$LT", 0, ["SUBTRACT", ["LENGTH", "$LT"], 1]]],
+                        ["VAR", "$LEFT", ["ADD", "$LL", "$LEFT_MOD"]],
+                        ["VAR", "$TOP", ["ADD", "$LT", "$TOP_MOD"]],
+                        ["SET_CARD_LOCATION", "$MATCHED_CARD", "$LEFT", "$TOP"]
+                    ]
+                ],
+                ["DEFINE", "$SPAWN_CARD_AT_LOCATION_RESULT", "$MATCHED_CARD"]
             ]
         }
     }

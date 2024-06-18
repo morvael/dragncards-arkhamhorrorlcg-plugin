@@ -3,38 +3,37 @@
         "SCENARIO_INIT": {
             "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
             "code": [
+                ["SET", "/arkhamScenarioInit", true],
                 ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
                 ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
                 ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
                 ["SET", "/arkhamNumScenarioQuestions", 0],
                 ["SET", "/arkhamScenarioQuestionIndex", 0],
                 ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-                ["SET", "/arkhamTraumaDone", "$GAME.numPlayers"],
-                ["SET", "/arkhamStartingHandDone", "$GAME.numPlayers"],
-                ["SET", "/arkhamPlayerOrder", "$PLAYER_ORDER"],
-                ["SET", "/arkhamLeadPlayer", "$GAME.arkhamPlayerOrder.[0]"],
-                ["SET", "/arkhamLeadPlayerAlias", ["GET_ALIAS", "$GAME.arkhamLeadPlayer"]],
+                ["SET", "/arkhamTraumaDone", 0],
+                ["SET", "/arkhamStartingHandDone", 0],
+                ["SET", "/arkhamActiveInvestigator", null],
                 ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "{{$GAME.arkhamLeadPlayer}}Investigator"],
+                    ["EQUAL", "$CARD.groupId", "{{$GAME.firstPlayer}}Investigator"],
                     ["EQUAL", "$CARD.currentFace.type", "Investigator"]
                 ]]],
                 ["COND",
                     ["NOT_EQUAL", "$MATCHED_CARD", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and {{$GAME.arkhamLeadPlayerAlias}}'s {{$MATCHED_CARD.currentFace.name}} as the lead investigator."],
-                        ["CREATE_CARDS", "first_investigator", 1, "{{$GAME.arkhamLeadPlayer}}Investigator"],
-                        ["VAR", "$MATCHED_TOKEN", ["ONE_CARD", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.groupId", "{{$GAME.arkhamLeadPlayer}}Investigator"],
-                            ["EQUAL", "$CARD.currentFace.type", "FirstInvestigatorToken"]
-                        ]]],
-                        ["COND",
-                            ["NOT_EQUAL", "$MATCHED_TOKEN", null],
-                            [
-                                ["LOG", "{{$ALIAS_N}} attaches {{$MATCHED_TOKEN.currentFace.name}} to {{$MATCHED_CARD.currentFace.name}}."],
-                                ["ATTACH_CARD", "$MATCHED_TOKEN.id", "$MATCHED_CARD.id"]
-                            ]
-                        ],
-                        ["PROMPT", "$GAME.arkhamPlayerOrder", "startingPhysicalTrauma"]
+                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$MATCHED_CARD.currentFace.name}} as the lead investigator."],
+                        ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null],
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["SET", "/playerData/$PLAYER_I/eliminated", false],
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Deck"],
+                                ["EQUAL", "$CARD.sides.A.permanent", true]
+                            ]]],
+                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                ["LOG", "└── Permanent {{$CARD.sides.A.name}} starts the game in play."],
+                                ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Play", -1]
+                            ]]
+                        ]],
+                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
                     ],
                     ["TRUE"],
                     ["LOG", "Lead investigator cannot be found, {{$ALIAS_N}}."]
@@ -82,10 +81,10 @@
                         ]
                     ]
                 ],
-                ["DECREASE_VAL", "/arkhamTraumaDone", 1],
+                ["INCREASE_VAL", "/arkhamTraumaDone", 1],
                 ["COND",
-                    ["LESS_EQUAL", "$GAME.arkhamTraumaDone", 0],
-                    ["PROMPT", "$GAME.arkhamLeadPlayer", "chooseScenarioDifficulty"]
+                    ["GREATER_EQUAL", "$GAME.arkhamTraumaDone", "$GAME.numPlayers"],
+                    ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
                 ]
             ]
         },
@@ -114,7 +113,7 @@
                     ],
                     ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "$SCENARIO_GOOD_SIDE"]
                 ],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$GAME.arkhamPlayerOrder", [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["DRAW_STARTING_HAND", "$PLAYER_I"]
                 ]]
             ]
@@ -197,14 +196,14 @@
                     ["EQUAL", "$DO_MULLIGAN", true],
                     [
                         ["LOG", "{{$ALIAS_N}} decides to take a mulligan."],
-                        ["EXECUTE_DRAW_STARTING_HAND", "$PLAYER_N", " again"]    
+                        ["EXECUTE_DRAW_STARTING_HAND", "$PLAYER_N", " again"]
                     ],
                     ["TRUE"],
                     ["LOG", "{{$ALIAS_N}} decides not to take a mulligan."]
                 ],
-                ["DECREASE_VAL", "/arkhamStartingHandDone", 1],
+                ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
                 ["COND",
-                    ["LESS_EQUAL", "$GAME.arkhamStartingHandDone", 0],
+                    ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
                     ["COND",
                         ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
                         ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
@@ -242,11 +241,11 @@
                 ["COND",
                     ["LESS_THAN", "$GAME.arkhamScenarioQuestionIndex", "$GAME.arkhamNumScenarioQuestions"],
                     [
-                        ["PROMPT", "$GAME.arkhamLeadPlayer", "scenarioQuestion", "$GAME.arkhamScenarioQuestion{{$GAME.arkhamScenarioQuestionIndex}}"],
+                        ["PROMPT", "$GAME.firstPlayer", "scenarioQuestion", "$GAME.arkhamScenarioQuestion{{$GAME.arkhamScenarioQuestionIndex}}"],
                         ["VAR", "$INDEX", 0],
                         ["FOR_EACH_VAL", "$QUESTION_I", "$GAME.arkhamScenarioQuestionList{{$GAME.arkhamScenarioQuestionIndex}}", [
                             ["VAR", "$LETTER", ["SUBSTRING", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "$INDEX", 1]],
-                            ["PROMPT_ADD_OPTION", "$GAME.arkhamLeadPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}"]],
+                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}"]],
                             ["INCREASE_VAR", "$INDEX", 1]
                         ]]
                     ],

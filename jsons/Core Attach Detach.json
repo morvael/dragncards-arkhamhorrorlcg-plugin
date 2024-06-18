@@ -4,7 +4,9 @@
             ["COND",
                 ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
                 ["COND",
-                    ["EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                    ],
                     ["LOG", "{{$ACTIVE_FACE.name}} cannot be detached from {{$ACTIVE_CARD.parentCard.currentFace.name}}, {{$ALIAS_N}}."],
                     ["TRUE"],
                     [
@@ -15,10 +17,17 @@
                 ["TRUE"],
                 ["COND",
                     ["EQUAL", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached", null],
-                    [
-                        ["LOG", "{{$ALIAS_N}} will attach {{$ACTIVE_FACE.name}}."],
-                        ["SET", "/playerData/{{$PLAYER_N}}/cardToBeAttached", "$ACTIVE_CARD"],
-                        ["SET", "/cardById/{{$ACTIVE_CARD_ID}}/borderColor", "LightSkyBlue"]
+                    ["COND",
+                        ["OR",
+                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"]
+                        ],
+                        ["LOG", "{{$ACTIVE_FACE.name}} cannot be attached, {{$ALIAS_N}}."],
+                        ["TRUE"],
+                        [
+                            ["LOG", "{{$ALIAS_N}} will attach {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/playerData/{{$PLAYER_N}}/cardToBeAttached", "$ACTIVE_CARD"],
+                            ["SET", "/cardById/{{$ACTIVE_CARD_ID}}/borderColor", "LightSkyBlue"]
+                        ]
                     ],
                     ["TRUE"],
                     [
