@@ -1,0 +1,209 @@
+{
+    "functions": {
+        "GET_CARD_LEFT": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    [
+                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
+                        ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
+                        ["CALC", "{{$LEFT}}+0"]
+                    ],
+                    ["TRUE"],
+                    0
+                ]
+            ]
+        },
+        "GET_CARD_TOP": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    [
+                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
+                        ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
+                        ["CALC", "{{$TOP}}+0"]
+                    ],
+                    ["TRUE"],
+                    0
+                ]
+            ]
+        },
+        "GET_CHAOS_TOKEN_BAG_CARD_ID": {
+            "args": ["$CHAOS_TOKEN_NAME"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"],
+                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_CHAOS_TOKEN_BAG_COUNT": {
+            "args": ["$CHAOS_TOKEN_NAME"],
+            "code": [
+                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"],
+                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"]
+                ]]],
+                ["LENGTH", "$SELECTED_CHAOS_TOKENS"]
+            ]
+        },
+        "GET_CHAOS_TOKEN_COUNT": {
+            "args": ["$CHAOS_TOKEN_NAME"],
+            "code": [
+                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"]
+                ]]],
+                ["LENGTH", "$SELECTED_CHAOS_TOKENS"]
+            ]
+        },
+        "GET_CURRENT_ACT_ID": {
+            "args": [],
+            "code": [
+                ["GET_TOP_CARD_ID", "sharedActDeck"]
+            ]
+        },
+        "GET_CURRENT_AGENDA_ID": {
+            "args": [],
+            "code": [
+                ["GET_TOP_CARD_ID", "sharedAgendaDeck"]
+            ]
+        },
+        "GET_INVESTIGATOR_CARD_ID": {
+            "args": ["$OWNER_PLAYER"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.cardOwner", "$OWNER_PLAYER"],
+                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID": {
+            "args": [],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "FirstInvestigatorToken"]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_MINI_INVESTIGATOR_CARD_ID": {
+            "args": ["$OWNER_PLAYER"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.cardOwner", "$OWNER_PLAYER"],
+                    ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_NAMED_ENCOUNTER_DECK_CARD_ID": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                    ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_NAMED_MAP_LOCATION_ID": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_SCENARIO_CARD_ID": {
+            "args": [],
+            "code": [
+                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+                ["COND",
+                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    "$MATCHED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_TOP_CARD_ID": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["GET_CARD_ID", "$TARGET_GROUP_ID", 0, 0]
+            ]
+        },
+        "DO_MOVE_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NEW_GROUP_ID", "$NEW_INDEX", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VAR", "$NEW_GROUP", "$GROUP_BY_ID.$NEW_GROUP_ID"],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["NOT_EQUAL", "$NEW_GROUP", null]
+                    ],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "moves {{$TARGET_CARD.currentFace.name}} to {{$NEW_GROUP.label}}.", "{{$TARGET_CARD.currentFace.name}} is moved to {{$NEW_GROUP.label}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$NEW_GROUP_ID", "$NEW_INDEX"]
+                    ]
+                ]
+            ]
+        },
+        "DO_SET_CARD_LOCATION": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    [
+                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
+                        ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
+                    ]
+                ]
+            ]
+        }
+    }
+}

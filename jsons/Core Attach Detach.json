@@ -1,52 +1,92 @@
 {
     "actionLists": {
         "attachDetachCard": [
+            ["VAR", "$CARD_TO_BE_ATTACHED_ID", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId"],
             ["COND",
                 ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
-                ["COND",
-                    ["OR",
-                        ["EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                [
+                    ["COND",
+                        ["NOT_EQUAL", "$CARD_TO_BE_ATTACHED_ID", null],
+                        [
+                            ["UNSET", "/cardById/$CARD_TO_BE_ATTACHED_ID/borderColor"],
+                            ["UNSET", "/playerData/$PLAYER_N/cardToBeAttachedId"]
+                        ]
                     ],
-                    ["LOG", "{{$ACTIVE_FACE.name}} cannot be detached from {{$ACTIVE_CARD.parentCard.currentFace.name}}, {{$ALIAS_N}}."],
-                    ["TRUE"],
-                    [
-                        ["LOG", "{{$ALIAS_N}} detaches {{$ACTIVE_FACE.name}} from {{$ACTIVE_CARD.parentCard.currentFace.name}}."],
-                        ["MOVE_CARD", "$ACTIVE_CARD_ID", "$ACTIVE_CARD.groupId", ["ADD", "$ACTIVE_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
+                        ["DO_DETACH_CARD", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
                     ]
                 ],
                 ["TRUE"],
                 ["COND",
-                    ["EQUAL", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached", null],
+                    ["EQUAL", "$CARD_TO_BE_ATTACHED_ID", null],
                     ["COND",
-                        ["OR",
-                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"]
-                        ],
-                        ["LOG", "{{$ACTIVE_FACE.name}} cannot be attached, {{$ALIAS_N}}."],
-                        ["TRUE"],
+                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         [
-                            ["LOG", "{{$ALIAS_N}} will attach {{$ACTIVE_FACE.name}}."],
-                            ["SET", "/playerData/{{$PLAYER_N}}/cardToBeAttached", "$ACTIVE_CARD"],
-                            ["SET", "/cardById/{{$ACTIVE_CARD_ID}}/borderColor", "LightSkyBlue"]
+                            ["LOG", "{{$ALIAS_N}} wants to attach {{$ACTIVE_FACE.name}}."],
+                            ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSkyBlue"],
+                            ["SET", "/playerData/$PLAYER_N/cardToBeAttachedId", "$ACTIVE_CARD_ID"]
                         ]
                     ],
                     ["TRUE"],
                     [
-                        ["VAR", "$ATTACHED_CARD", "$GAME.playerData.{{$PLAYER_N}}.cardToBeAttached"],
+                        ["VAR", "$CARD_TO_BE_ATTACHED", "$CARD_BY_ID.$CARD_TO_BE_ATTACHED_ID"],
                         ["COND",
-                            ["EQUAL", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"],
-                            ["LOG", "{{$ATTACHED_CARD.currentFace.name}} cannot be attached to {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."],
-                            ["TRUE"],
-                            [
-                                ["LOG", "{{$ALIAS_N}} attaches {{$ATTACHED_CARD.currentFace.name}} to {{$ACTIVE_FACE.name}}."],
-                                ["ATTACH_CARD", "$ATTACHED_CARD.id", "$ACTIVE_CARD_ID"]
-                            ]
+                            ["AND",
+                                ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                                ["NOT_EQUAL", "$CARD_TO_BE_ATTACHED_ID", "$ACTIVE_CARD_ID"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
+                            ],
+                            ["DO_ATTACH_CARD", "$CARD_TO_BE_ATTACHED_ID", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
                         ],
-                        ["UNSET", "/playerData/{{$PLAYER_N}}/cardToBeAttached"],
-                        ["UNSET", "/cardById/{{$ATTACHED_CARD.id}}/borderColor"]
+                        ["UNSET", "/cardById/$CARD_TO_BE_ATTACHED_ID/borderColor"],
+                        ["UNSET", "/playerData/$PLAYER_N/cardToBeAttachedId"]
                     ]
                 ]
             ]
         ]
+    },
+    "functions": {
+        "DO_ATTACH_CARD": {
+            "args": ["$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VAR", "$PARENT_CARD", "$CARD_BY_ID.$PARENT_CARD_ID"],                
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["NOT_EQUAL", "$PARENT_CARD", null],
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
+                    ],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is attached to {{$PARENT_CARD.currentFace.name}}."],
+                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DETACH_CARD": {
+            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0]
+                    ],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "detaches {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is detached from {{$TARGET_CARD.parentCard.currentFace.name}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                    ]
+                ]
+            ]
+        }
     },
     "labels": {
         "attachDetachCard": {

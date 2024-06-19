@@ -1,61 +1,81 @@
 {
     "actionLists": {
         "toggleSideboard": [
-            ["COND",
-                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSideboard", true],
-                [
-                    ["LOG", "{{$ALIAS_N}} browses Sideboard."],
-                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", true],
-                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                        ["COND",
-                            ["EQUAL", "$REGION.layerIndex", 1],
-                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", true]
-                        ]
-                    ]]
-                ],
-                ["TRUE"],
-                [
-                    ["LOG", "{{$ALIAS_N}} closes Sideboard."],
-                    ["SET", "/playerData/$PLAYER_N/viewingSideboard", false],
-                    ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                        ["COND",
-                            ["EQUAL", "$REGION.layerIndex", 1],
-                            ["SET", "/playerData/$PLAYER_N/layout/regions/$REGION_ID/visible", false]
-                        ]
-                    ]]
-                ]
-            ]
+            ["DO_TOGGLE_SIDEBOARD", "$PLAYER_N", true, "$PLAYER_N"]
         ],
         "toggleOffMap": [
-            ["TOGGLE_SIDEBOARD_GROUP", "sharedOffMap"]
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedOffMap", true, "$PLAYER_N"]
         ],
         "toggleNotInPlay": [
-            ["TOGGLE_SIDEBOARD_GROUP", "sharedNotInPlay"]
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedNotInPlay", true, "$PLAYER_N"]
         ],
         "toggleVictoryDisplay": [
-            ["TOGGLE_SIDEBOARD_GROUP", "sharedVictoryDisplay"]
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedVictoryDisplay", true, "$PLAYER_N"]
         ],
         "toggleTokens": [
-            ["TOGGLE_SIDEBOARD_GROUP", "sharedTokens"]
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedTokens", true, "$PLAYER_N"]
         ],
         "toggleChaosBag": [
-            ["TOGGLE_SIDEBOARD_GROUP", "sharedChaosBag"]
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedChaosBag", true, "$PLAYER_N"]
         ]
     },
     "functions": {
-        "TOGGLE_SIDEBOARD_GROUP": {
-            "args": ["$SHOW_GROUP_ID"],
+        "DO_TOGGLE_SIDEBOARD": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["COND",
-                    ["EQUAL", "$GAME.playerData.$PLAYER_N.browseGroup.id", "$SHOW_GROUP_ID"],
+                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} closes {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
-                        ["STOP_LOOKING", "$PLAYER_N", "hide"]
+                        ["COND",
+                            ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.viewingSideboard", true],
+                            [
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browses Sideboard.", "browse Sideboard.", "browses Sideboard."],
+                                ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", true],
+                                ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                                    ["COND",
+                                        ["EQUAL", "$REGION.layerIndex", 1],
+                                        ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", true]
+                                    ]
+                                ]]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "closes Sideboard.", "close Sideboard.", "closes Sideboard."],
+                                ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", false],
+                                ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                                    ["COND",
+                                        ["EQUAL", "$REGION.layerIndex", 1],
+                                        ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", false]
+                                    ]
+                                ]]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_TOGGLE_SIDEBOARD_GROUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_GROUP_ID", null]
                     ],
-                    ["TRUE"],
                     [
-                        ["LOG", "{{$ALIAS_N}} browses {{$GAME.groupById.$SHOW_GROUP_ID.label}}."],
-                        ["LOOK_AT", "$PLAYER_N", "$SHOW_GROUP_ID", -1, false]
+                        ["VAR", "$TARGET_GROUP_LABEL", "$GROUP_BY_ID.$TARGET_GROUP_ID.label"],
+                        ["COND",
+                            ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.browseGroup.id", "$TARGET_GROUP_ID"],
+                            [
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "closes {{$TARGET_GROUP_LABEL}}.", "close {{$TARGET_GROUP_LABEL}}.", "closes {{$TARGET_GROUP_LABEL}}."],
+                                ["STOP_LOOKING", "$TARGET_PLAYER", "hide"]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browses {{$TARGET_GROUP_LABEL}}.", "browse {{$TARGET_GROUP_LABEL}}.", "browses {{$TARGET_GROUP_LABEL}}."],
+                                ["LOOK_AT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", -1, false]
+                            ]
+                        ]
                     ]
                 ]
             ]

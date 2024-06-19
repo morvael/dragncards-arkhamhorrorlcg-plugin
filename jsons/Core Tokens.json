@@ -7,33 +7,120 @@
         "horror":   {"label": "id:horrorToken",   "left": "55%", "top": "25%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png"}
     },
     "actionLists": {
-        "decreaseResources": [
-            ["COND",
-                ["GREATER_THAN", "$GAME.playerData.$PLAYER_N.resources", 0],
-                [
-                    ["LOG", "{{$ALIAS_N}} spends 1 resource."],
-                    ["DECREASE_VAL", "/playerData/$PLAYER_N/resources", 1]
-                ],
-                ["TRUE"],
-                ["LOG", "1 resource cannot be spent, {{$ALIAS_N}}."]
-            ]
+        "gainResources": [
+            ["DO_GAIN_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"]
         ],
-        "increaseResources": [
-            ["LOG", "{{$ALIAS_N}} gains 1 resource."],
-            ["INCREASE_VAL", "/playerData/$PLAYER_N/resources", 1]
+        "spendResources": [
+            ["DO_SPEND_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"]
         ]
+    },
+    "functions": {
+        "DO_GAIN_RESOURCES": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["GREATER_THAN", "$NUMBER", 0]
+                    ],
+                    [
+                        ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"],
+                            ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource", " resources"],
+                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"]
+                        ],
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPEND_RESOURCES": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["GREATER_THAN", "$NUMBER", 0],
+                        ["LESS_EQUAL", "$NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.resources"]
+                    ],
+                    [
+                        ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"],
+                            ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource", " resources"],
+                            ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"]
+                        ],
+                        ["DECREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLACE_TOKEN_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$TOKEN_TYPE", "$LOG_EVENT", "$ACTOR_PLAYER", "$SINGLE", "$MANY"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", null],
+                        ["GREATER_THAN", "$NUMBER", 0]
+                    ],
+                    [
+                        ["VAR", "$TARGET_CARD_NAME", "$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER",
+                            ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"],
+                            ["GET_NUMERIC_LOG", "", "", "$NUMBER", " {{$SINGLE}} is placed on {{$TARGET_CARD_NAME}}", " {{$MANY}} are placed on {{$TARGET_CARD_NAME}}"]
+                        ],
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLACE_RESOURCES_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "resource", "$LOG_EVENT", "$ACTOR_PLAYER", "resource", "resources"]
+            ]
+        },
+        "DO_PLACE_CLUES_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "clue", "$LOG_EVENT", "$ACTOR_PLAYER", "clue", "clues"]
+            ]
+        },
+        "DO_PLACE_DOOM_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "doom", "$LOG_EVENT", "$ACTOR_PLAYER", "doom", "doom"]
+            ]
+        },
+        "DO_PLACE_DAMAGE_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "damage", "$LOG_EVENT", "$ACTOR_PLAYER", "damage", "damage"]
+            ]
+        },
+        "DO_PLACE_HORROR_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
+            ]
+        },
+        "DO_PLACE_DOOM_ON_CURRENT_AGENDA": {
+            "args": ["$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_DOOM_ON_CARD", ["GET_CURRENT_AGENDA_ID"], "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+            ]
+        }        
     },
     "preBuiltDecks": {
         "key_tokens": {
             "label": "key_tokens",
             "cards": [
-                {"databaseId": "key_red", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "key_blue", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "key_green", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_red",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_blue",   "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_green",  "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "key_yellow", "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "key_purple", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "key_black", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "key_white", "quantity": 1, "loadGroupId": "sharedTokens"}
+                {"databaseId": "key_black",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "key_white",  "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
         "flooded_tokens": {
@@ -45,11 +132,11 @@
         "seal_tokens": {
             "label": "seal_tokens",
             "cards": [
-                {"databaseId": "seal_first", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_first",  "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "seal_second", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "seal_third", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "seal_third",  "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "seal_fourth", "quantity": 1, "loadGroupId": "sharedTokens"},
-                {"databaseId": "seal_fifth", "quantity": 1, "loadGroupId": "sharedTokens"}
+                {"databaseId": "seal_fifth",  "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         }
     },
@@ -69,11 +156,11 @@
         "horrorToken": {
             "English": "Horror Token"
         },
-        "decreaseResources": {
-            "English": "Spend 1 resource"
+        "gainResources": {
+            "English": "Gain 1 Resource"
         },
-        "increaseResources": {
-            "English": "Gain 1 resource"
+        "spendResources": {
+            "English": "Spend 1 Resource"
         }
     }
 }

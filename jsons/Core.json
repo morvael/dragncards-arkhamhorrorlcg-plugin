@@ -48,9 +48,9 @@
             {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
         ],
         "game": [
-            {"key": "-", "actionList": "decreaseResources", "label": "id:decreaseResources"},
-            {"key": "=", "actionList": "increaseResources", "label": "id:increaseResources"},
-            {"key": "+", "actionList": "increaseResources", "label": "id:increaseResources"},
+            {"key": "-", "actionList": "spendResources", "label": "id:spendResources"},
+            {"key": "=", "actionList": "gainResources", "label": "id:gainResources"},
+            {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},

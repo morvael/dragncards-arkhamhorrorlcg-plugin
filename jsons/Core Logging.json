@@ -1,0 +1,60 @@
+{
+    "functions": {
+        "DO_LOG": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER", "$TEXT_WITH_ACTOR", "$TEXT_WITHOUT_ACTOR"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$LOG_EVENT", true],
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTOR_PLAYER", null],
+                        ["LOG", ["GET_ALIAS", "$ACTOR_PLAYER"], " ", "$TEXT_WITH_ACTOR"],
+                        ["TRUE"],
+                        ["LOG", "└── ", "$TEXT_WITHOUT_ACTOR"]
+                    ]
+                ]
+            ]
+        },
+        "DO_LOG_TARGET": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "$TEXT_WITH_ONE", "$TEXT_WITH_ACTOR", "$TEXT_WITHOUT_ACTOR"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$LOG_EVENT", true],
+                    ["COND",
+                        ["NOT_EQUAL", "$ACTOR_PLAYER", null],
+                        ["COND",
+                            ["EQUAL", "$ACTOR_PLAYER", "$TARGET_PLAYER"],
+                            ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " ", "$TEXT_WITH_ONE"],
+                            ["TRUE"],
+                            ["LOG", ["GET_ALIAS", "$ACTOR_PLAYER"], " makes ", ["GET_ALIAS", "$TARGET_PLAYER"], " ", "$TEXT_WITH_ACTOR"]
+                        ],
+                        ["TRUE"],
+                        ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"], " ", "$TEXT_WITHOUT_ACTOR"]
+                    ]
+                ]
+            ]
+        },
+        "GET_NUMERIC_LOG": {
+            "args": ["$PREFIX_SINGLE", "$PREFIX_MANY", "$NUMBER", "$SUFFIX_SINGLE", "$SUFFIX_MANY"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$NUMBER", 1],
+                    "{{$PREFIX_SINGLE}}{{$NUMBER}}{{$SUFFIX_SINGLE}}.",
+                    ["TRUE"],
+                    "{{$PREFIX_MANY}}{{$NUMBER}}{{$SUFFIX_MANY}}."
+                ]
+            ]
+        },
+        "GET_FORMATTED_LIST": {
+            "args":["$PREFIX", "$LIST", "$SUFFIX"],
+            "code": [
+                ["VAR", "$MESSAGE", ""],
+                ["VAR", "$SEPARATOR", ""],
+                ["FOR_EACH_VAL", "$ELEMENT", "$LIST", [
+                    ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$ELEMENT}}"],
+                    ["UPDATE_VAR", "$SEPARATOR", ", "]
+                ]],
+                "{{$PREFIX}}{{$MESSAGE}}{{$SUFFIX}}"
+            ]
+        }
+    }
+}

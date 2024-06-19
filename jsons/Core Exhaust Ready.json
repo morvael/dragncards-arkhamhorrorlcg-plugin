@@ -1,77 +1,61 @@
 {
     "actionLists": {
         "exhaustCard": [
-            ["EXHAUST_CARD", "$ACTIVE_CARD", true]
+            ["DO_EXHAUST_CARD", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
         ],
         "readyCard": [
-            ["READY_CARD", "$ACTIVE_CARD", true]
+            ["DO_READY_CARD", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
         ]
     },
     "functions": {
-        "EXHAUST_CARD": {
-            "args": ["$CARD", "$LOG"],
+        "DO_EXHAUST_CARD": {
+            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                 ["COND",
-                    ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"],
-                    [
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["COND",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
                         ["COND",
-                            ["EQUAL", "$CARD.currentSide", "A"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "A"],
                             [
-                                ["COND",
-                                    ["EQUAL", "$LOG", true],
-                                    ["LOG", "{{$ALIAS_N}} exhausts {{$CARD.currentFace.name}}."]
-                                ],
-                                ["SET", "/cardById/$CARD.id/currentSide", "B"],
-                                ["SET", "/cardById/$CARD.id/exhausted", true]
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "exhausts {{$TARGET_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is exhausted."],
+                                ["DO_FLIP_FACEDOWN", "$TARGET_CARD_ID", false, null]
                             ]
-                        ]
-                    ],
-                    ["TRUE"],
-                    [
+                        ],
+                        ["TRUE"],
                         ["COND",
-                            ["EQUAL", "$CARD.rotation", 0],
+                            ["EQUAL", "$TARGET_CARD.rotation", 0],
                             [
-                                ["COND",
-                                    ["EQUAL", "$LOG", true],
-                                    ["LOG", "{{$ALIAS_N}} exhausts {{$CARD.currentFace.name}}."]
-                                ],
-                                ["SET", "/cardById/$CARD.id/rotation", 90],
-                                ["SET", "/cardById/$CARD.id/exhausted", true]
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "exhausts {{$TARGET_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is exhausted."],
+                                ["SET", "/cardById/$TARGET_CARD_ID/rotation", 90]
                             ]
                         ]
                     ]
                 ]
             ]
         },
-        "READY_CARD": {
-            "args": ["$CARD", "$LOG"],
+        "DO_READY_CARD": {
+            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                 ["COND",
-                    ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"],
-                    [
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["COND",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
                         ["COND",
-                            ["NOT_EQUAL", "$CARD.currentSide", "A"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentSide", "A"],
                             [
-                                ["COND",
-                                    ["EQUAL", "$LOG", true],
-                                    ["LOG", "{{$ALIAS_N}} readies {{$CARD.currentFace.name}}."]
-                                ],
-                                ["SET", "/cardById/$CARD.id/currentSide", "A"],
-                                ["SET", "/cardById/$CARD.id/exhausted", false]
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "readies {{$TARGET_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is readied."],
+                                ["DO_FLIP_FACEUP", "$TARGET_CARD_ID", false, null]
                             ]
-                        ]
-                    ],
-                    ["TRUE"],
-                    [
+                        ],
+                        ["TRUE"],
                         ["COND",
-                            ["NOT_EQUAL", "$CARD.rotation", 0],
+                            ["NOT_EQUAL", "$TARGET_CARD.rotation", 0],
                             [
-                                ["COND",
-                                    ["EQUAL", "$LOG", true],
-                                    ["LOG", "{{$ALIAS_N}} readies {{$CARD.currentFace.name}}."]
-                                ],
-                                ["SET", "/cardById/$CARD.id/rotation", 0],
-                                ["SET", "/cardById/$CARD.id/exhausted", false]
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "readies {{$TARGET_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is readied."],
+                                ["SET", "/cardById/$TARGET_CARD_ID/rotation", 0]
                             ]
                         ]
                     ]

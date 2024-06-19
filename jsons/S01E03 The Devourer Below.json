@@ -39,19 +39,19 @@
     },
     "actionLists": {
         "The Devourer Below Scenario Init": [
-            ["LOAD_CARDS", "The Devourer Below"],
-            ["LOAD_CARDS", "Ancient Evils"],
-            ["LOAD_CARDS", "Striking Fear"],
-            ["LOAD_CARDS", "Ghouls"],
-            ["LOAD_CARDS", "Dark Cult"],
-            ["LOAD_N_CARDS", "The Devourer Below - Woods", 4],
+            ["DO_LOAD_CARDS", "The Devourer Below", false],
+            ["DO_LOAD_CARDS", "Ancient Evils", false],
+            ["DO_LOAD_CARDS", "Striking Fear", false],
+            ["DO_LOAD_CARDS", "Ghouls", false],
+            ["DO_LOAD_CARDS", "Dark Cult", false],
+            ["DO_LOAD_N_CARDS", "The Devourer Below - Woods", 4, true],
             ["VAR", "$SELECTED_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.B.name", "Arkham Woods"]]]],
-            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[0].id", "45%", "10%"],
-            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1].id", "70%", "43%"],
-            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2].id", "45%", "76%"],
-            ["SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3].id", "20%", "43%"],
-            ["PLACE_MINI_INVESTIGATORS", 45, 43],
-            ["LOAD_RANDOM_LIST", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"]],
+            ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[0].id", 45, 10],
+            ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1].id", 70, 43],
+            ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2].id", 45, 76],
+            ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3].id", 20, 43],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Main Path", 5, 7, 3],
+            ["DO_LOAD_RANDOM_LIST", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"], true],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Cultists Who Got Away” in your Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "The Devourer Below Scenario Question 1"]
         ],
         "The Devourer Below Scenario Question 1": [
@@ -63,20 +63,20 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
                     ["LOG", "└── Campaign Log: There are exactly 1 or 2 names recorded under “Cultists Who Got Away”."],
-                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 1]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", 1, true, null]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
                 [
                     ["LOG", "└── Campaign Log: There are exactly 3 or 4 names recorded under “Cultists Who Got Away”."],
-                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 2]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", 2, true, null]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
                 [
                     ["LOG", "└── Campaign Log: There are exactly 5 or 6 names recorded under “Cultists Who Got Away”."],
-                    ["PLACE_DOOM_ON_CURRENT_AGENDA", 3]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", 3, true, null]
                 ]
             ],
-            ["CREATE_CARDS", "chaos_elder_thing", 1, "sharedChaosBag"],
+            ["DO_ADD_CHAOS_TOKEN", "Elder Thing Chaos Token", "chaos_elder_thing", 100, true, null],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "The Devourer Below Scenario Question 2"]
         ],
         "The Devourer Below Scenario Question 2": [
@@ -96,7 +96,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
                     ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
-                    ["CREATE_CARDS", "01116", 1, "sharedEncounterDeck"]
+                    ["DO_CREATE_CARDS", "Ghoul Priest", "01116", 1, "sharedEncounterDeck", true]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

@@ -1,10 +1,10 @@
 {
     "cardProperties": {
+        "cardOwner":   {"type": "string",  "default": ""},
         "controller":  {"type": "string",  "default": ""},
         "inDeck":      {"type": "boolean", "default": false},
         "inHand":      {"type": "boolean", "default": false},
-        "inPlay":      {"type": "boolean", "default": false},
-        "exhausted":   {"type": "boolean", "default": false}
+        "inPlay":      {"type": "boolean", "default": false}
     },
     "faceProperties": {
         "subtype":               {"type": "string",  "default": ""},

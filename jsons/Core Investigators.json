@@ -3,106 +3,126 @@
         "investigatorTurn": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
-                [
-                    ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
-                        ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
-                        ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                    ]]],
-                    ["COND",
-                        ["AND",
-                            ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
-                            ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.eliminated", true]
-                        ],
-                        [
-                            ["LOG", "{{$ALIAS_N}} starts {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn."],
-                            ["SET", "/arkhamActiveInvestigator", "$PLAYER_N"],
-                            ["SET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor", "HotPink"]
-                        ],
-                        ["TRUE"],
-                        ["LOG", "You cannot start your Investigator's turn, {{$ALIAS_N}}."]
-                    ]
-                ],
-                ["TRUE"],
-                [
-                    ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
-                        ["EQUAL", "$CARD.groupId", "{{$GAME.arkhamActiveInvestigator}}Investigator"],
-                        ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                    ]]],
-                    ["COND",
-                        ["EQUAL", "$GAME.arkhamActiveInvestigator", "$PLAYER_N"],
-                        [
-                            ["LOG", "{{$ALIAS_N}} ends {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn."],
-                            ["SET", "/arkhamActiveInvestigator", null],
-                            ["UNSET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor"]
-                        ],
-                        ["TRUE"],
-                        ["LOG", "You cannot end {{$MATCHED_INVESTIGATOR.currentFace.name}}'s turn, {{$ALIAS_N}}."]
-                    ]
-                ]
+                ["DO_START_INVESTIGATOR_TURN", "$PLAYER_N", true, true, "$PLAYER_N"],
+                ["EQUAL", "$GAME.arkhamActiveInvestigator", "$PLAYER_N"],
+                ["DO_END_INVESTIGATOR_TURN", true, true, "$PLAYER_N"]
             ]
         ]
     },
     "functions": {
-        "ELIMINATE_INVESTIGATOR": {
-            "args": ["$INVESTIGATOR_CARD", "$REASON"],
+        "DO_ELIMINATE_INVESTIGATOR": {
+            "args": ["$INVESTIGATOR_CARD_ID", "$REASON"],
             "code": [
+                ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$INVESTIGATOR_CARD", null],
                         ["EQUAL", "$INVESTIGATOR_CARD.currentFace.type", "Investigator"],
+                        ["NOT_EQUAL", "$INVESTIGATOR_CARD.cardOwner", null],
                         ["NOT_EQUAL", "$REASON", null]
                     ],
                     [
-                        ["VAR", "$PLAYER_O", null],
+                        ["VAR", "$ELIMINATED_PLAYER", "$INVESTIGATOR_CARD.cardOwner"],
+                        ["VAR", "$ELIMINATED_ALIAS", ["GET_ALIAS", "$ELIMINATED_PLAYER"]],
+                        ["LOG", "{{$ELIMINATED_ALIAS}}'s {{$INVESTIGATOR_CARD.currentFace.name}} {{$REASON}}."],
                         ["COND",
-                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player1Investigator"],
-                            ["UPDATE_VAR", "$PLAYER_O", "player1"],
-                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player2Investigator"],
-                            ["UPDATE_VAR", "$PLAYER_O", "player2"],
-                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player3Investigator"],
-                            ["UPDATE_VAR", "$PLAYER_O", "player3"],
-                            ["EQUAL", "$INVESTIGATOR_CARD.groupId", "player4Investigator"],
-                            ["UPDATE_VAR", "$PLAYER_O", "player4"]
-                        ],
-                        ["COND",
-                            ["NOT_EQUAL", "$PLAYER_O", null],
+                            ["EQUAL", "$GAME.firstPlayer", "$ELIMINATED_PLAYER"],
                             [
-                                ["VAR", "$ALIAS_O", ["GET_ALIAS", "$PLAYER_O"]],
-                                ["LOG", "{{$ALIAS_O}}'s {{$INVESTIGATOR_CARD.currentFace.name}} {{$REASON}}."],
+                                ["VAR", "$POSSIBLE_LEADS", ["LIST"]],
+                                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                    ["COND",
+                                        ["AND",
+                                            ["NOT_EQUAL", "$PLAYER_I", "$ELIMINATED_PLAYER"],
+                                            ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true]
+                                        ],
+                                        ["UPDATE_VAR", "$POSSIBLE_LEADS", ["APPEND", "$POSSIBLE_LEADS", "$PLAYER_I"]]
+                                    ]
+                                ]],
                                 ["COND",
-                                    ["EQUAL", "$GAME.firstPlayer", "$PLAYER_O"],
+                                    ["GREATER_THAN", ["LENGTH", "$POSSIBLE_LEADS"], 1],
                                     [
-                                        ["VAR", "$POSSIBLE_LEADS", ["LIST"]],
-                                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                                            ["COND",
-                                                ["AND",
-                                                    ["NOT_EQUAL", "$PLAYER_I", "$PLAYER_O"],
-                                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true]
-                                                ],
-                                                ["UPDATE_VAR", "$POSSIBLE_LEADS", ["APPEND", "$POSSIBLE_LEADS", "$PLAYER_I"]]
-                                            ]
-                                        ]],
-                                        ["COND",
-                                            ["GREATER_THAN", ["LENGTH", "$POSSIBLE_LEADS"], 1],
-                                            [
-                                                ["PROMPT", "$PLAYER_O", "chooseNewLeadInvestigator"],
-                                                ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
-                                                    ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
-                                                    ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                                    ["PROMPT_ADD_OPTION", "$PLAYER_O", "$ALIAS_I", "{{$LETTER}}", ["LIST", "ELIMINATE_INVESTIGATOR_FINAL", "{{$PLAYER_O}}", "{{$PLAYER_I}}"]]
-                                                ]]
-                                            ],
-                                            ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
-                                            ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$POSSIBLE_LEADS.[0]"],
-                                            ["TRUE"],
-                                            [
-                                                ["LOG", "└── Scenario ends, as there are no remaining players!"],
-                                                ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", null]
-                                            ]
-                                        ]
+                                        ["PROMPT", "$ELIMINATED_PLAYER", "chooseNewLeadInvestigator"],
+                                        ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
+                                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                                            ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                                            ["PROMPT_ADD_OPTION", "$ELIMINATED_PLAYER", "$ALIAS_I", "{{$LETTER}}", ["LIST", "DO_ELIMINATE_INVESTIGATOR_FINAL", "{{$ELIMINATED_PLAYER}}", "{{$PLAYER_I}}"]]
+                                        ]]
                                     ],
+                                    ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
+                                    ["DO_ELIMINATE_INVESTIGATOR_FINAL", "$ELIMINATED_PLAYER", "$POSSIBLE_LEADS.[0]"],
                                     ["TRUE"],
-                                    ["ELIMINATE_INVESTIGATOR_FINAL", "$PLAYER_O", "$GAME.firstPlayer"]
+                                    [
+                                        ["LOG", "└── Scenario ends, as there are no remaining players!"],
+                                        ["DO_ELIMINATE_INVESTIGATOR_FINAL", "$ELIMINATED_PLAYER", null]
+                                    ]
+                                ]
+                            ],
+                            ["TRUE"],
+                            ["DO_ELIMINATE_INVESTIGATOR_FINAL", "$ELIMINATED_PLAYER", "$GAME.firstPlayer"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_ELIMINATE_INVESTIGATOR_FINAL": {
+            "args": ["$ELIMINATED_PLAYER", "$NEW_LEAD_PLAYER"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$NEW_LEAD_PLAYER", null],
+                    ["DO_MOVE_CARD", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"], "sharedTokens", -1, true, null],
+                    ["NOT_EQUAL", "$NEW_LEAD_PLAYER", "$GAME.firstPlayer"],
+                    ["SET", "/firstPlayer", "$NEW_LEAD_PLAYER"]
+                ],
+                ["COND",
+                    ["EQUAL", "$ELIMINATED_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                    ["DO_END_INVESTIGATOR_TURN", false, true, "$PLAYER_N"]
+                ],                
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$ELIMINATED_PLAYER"]],
+                ["COND",
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                    [
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/resource", 0],
+                        ["COND",
+                            ["GREATER_THAN", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.tokens.clue", 0],
+                            ["LOG", "└── Place all {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}'s clues at the location they were at."]
+                        ],
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/doom", 0],
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/damage", 0],
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/horror", 0],
+                        ["DO_FLIP_FACEDOWN", "$INVESTIGATOR_CARD_ID", true, null]
+                    ]
+                ],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.controller", "$ELIMINATED_PLAYER"],
+                    ["NOT_EQUAL", "$CARD.groupId", "{{$ELIMINATED_PLAYER}}Discard"],
+                    ["EQUAL", "$CARD.sides.B.databaseId", null],
+                    ["EQUAL", "$CARD.sides.B.name", "Player Card"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["MOVE_CARD", "$CARD.id", "{{$ELIMINATED_PLAYER}}Discard", 0]
+                ]],
+                ["SET", "/playerData/$ELIMINATED_PLAYER/resources", 0],
+                ["SET", "/playerData/$ELIMINATED_PLAYER/eliminated", true]
+            ]
+        },
+        "DO_END_INVESTIGATOR_TURN": {
+            "args": ["$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                    [
+                        ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                            [
+                                ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn.", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "{{$INVESTIGATOR_CARD_NAME}}'s turn ends."],
+                                ["SET", "/arkhamActiveInvestigator", null],
+                                ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
+                                ["COND",
+                                    ["EQUAL", "$SET_STEP", true],
+                                    ["SET", "/stepId", "I2.2"]
                                 ]
                             ]
                         ]
@@ -110,54 +130,30 @@
                 ]
             ]
         },
-        "ELIMINATE_INVESTIGATOR_FINAL": {
-            "args": ["$PLAYER_O", "$NEW_LEAD"],
+        "DO_START_INVESTIGATOR_TURN": {
+            "args": ["$TARGET_PLAYER", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["COND",
-                    ["EQUAL", "$NEW_LEAD", null],
-                    [
-                        ["VAR", "$MATCHED_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "FirstInvestigatorToken"]]],
-                        ["COND",
-                            ["NOT_EQUAL", "$MATCHED_TOKEN", null],
-                            ["MOVE_CARD", "$MATCHED_TOKEN.id", "sharedTokens", -1]
-                        ]
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true]
                     ],
-                    ["NOT_EQUAL", "$NEW_LEAD", "$GAME.firstPlayer"],
-                    ["SET", "/firstPlayer", "$NEW_LEAD"]
-                ],
-                ["VAR", "$MATCHED_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "{{$PLAYER_O}}Investigator"],
-                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                ]]],
-                ["COND",
-                    ["EQUAL", "$PLAYER_O", "$GAME.arkhamActiveInvestigator"],
                     [
-                        ["SET", "/arkhamActiveInvestigator", null],
+                        ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
                         ["COND",
-                            ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
-                            ["UNSET", "/cardById/{{$MATCHED_INVESTIGATOR.id}}/borderColor"]
+                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                            [
+                                ["DO_END_INVESTIGATOR_TURN", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                                ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
+                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn.", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "{{$INVESTIGATOR_CARD_NAME}}'s turn starts."],
+                                ["SET", "/arkhamActiveInvestigator", "$TARGET_PLAYER"],
+                                ["SET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
+                                ["COND",
+                                    ["EQUAL", "$SET_STEP", true],
+                                    ["SET", "/stepId", "I2"]
+                                ]
+                            ]
                         ]
-                    ]
-                ],
-                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.controller", "$PLAYER_O"],
-                    ["NOT_EQUAL", "$CARD.groupId", "{{$PLAYER_O}}Discard"],
-                    ["EQUAL", "$CARD.sides.B.databaseId", null],
-                    ["EQUAL", "$CARD.sides.B.name", "Player Card"]
-                ]]],
-                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["MOVE_CARD", "$CARD.id", "{{$PLAYER_O}}Discard", 0]
-                ]],
-                ["SET", "/playerData/$PLAYER_O/resources", 0],
-                ["SET", "/playerData/$PLAYER_O/eliminated", true],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_INVESTIGATOR", null],
-                    [
-                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/resource", 0],
-                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/doom", 0],
-                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/damage", 0],
-                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/tokens/horror", 0],
-                        ["SET", "/cardById/$MATCHED_INVESTIGATOR.id/currentSide", "B"]
                     ]
                 ]
             ]
@@ -165,35 +161,35 @@
     },
     "prompts": {
         "eliminateInvestigator": {
-            "args": ["$DISCARDED_CARD"],
-            "message": "Select fate of eliminated {{$DISCARDED_CARD.currentFace.name}}.",
+            "args": ["$INVESTIGATOR_CARD_ID"],
+            "message": "Select fate of eliminated {{$CARD_BY_ID.INVESTIGATOR_CARD_ID.currentFace.name}}.",
             "options": [
                 {
                     "label": "Resigned",
                     "hotkey": "R",
                     "code": [
-                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "resigns"]
+                        ["DO_ELIMINATE_INVESTIGATOR", "$INVESTIGATOR_CARD_ID", "resigns"]
                     ]
                 },
                 {
                     "label": "Defated by damage",
                     "hotkey": "D",
                     "code": [
-                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is defated by damage"]
+                        ["DO_ELIMINATE_INVESTIGATOR", "$INVESTIGATOR_CARD_ID", "is defated by damage"]
                     ]
                 },
                 {
                     "label": "Defated by horror",
                     "hotkey": "H",
                     "code": [
-                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is defated by horror"]
+                        ["DO_ELIMINATE_INVESTIGATOR", "$INVESTIGATOR_CARD_ID", "is defated by horror"]
                     ]
                 },
                 {
                     "label": "Other",
                     "hotkey": "O",
                     "code": [
-                        ["ELIMINATE_INVESTIGATOR", "$DISCARDED_CARD", "is eliminated"]
+                        ["DO_ELIMINATE_INVESTIGATOR", "$INVESTIGATOR_CARD_ID", "is eliminated"]
                     ]
                 },
                 {

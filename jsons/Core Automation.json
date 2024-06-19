@@ -34,12 +34,12 @@
                             ["INCREASE_VAL", "/roundNumber", 1]
                         ],
                         ["EQUAL", "$GAME.stepId", "M2"],
-                        ["PLACE_DOOM_ON_CURRENT_AGENDA", 1],
+                        ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", 1, true, null],
                         ["EQUAL", "$GAME.stepId", "U3"],
                         [
                             ["LOG", "└── Each exhausted card readies."],
                             ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                                ["READY_CARD", "$CARD", false]
+                                ["DO_READY_CARD", "$CARD_ID", false, null]
                             ]]
                         ],
                         ["EQUAL", "$GAME.stepId", "U4"],
@@ -47,14 +47,14 @@
                             ["LOG", "└── Each investigator draws 1 card."],
                             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                                 ["COND",
-                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true],
+                                    ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
                                     ["DRAW_CARD", 1, "$PLAYER_I"]
                                 ]
                             ]],
                             ["LOG", "└── Each investigator gains 1 resource."],
                             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                                 ["COND",
-                                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_I.eliminated", true],
+                                    ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
                                     ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
                                 ]
                             ]]
@@ -68,8 +68,8 @@
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.groupById.{{$TARGET.groupId}}.groupType", "inPlay"],
-                        ["NOT_EQUAL", ["PREV", "$GAME.groupById.{{$TARGET.groupId}}.groupType"], "inPlay"],
+                        ["EQUAL", "$GROUP_BY_ID.{{$TARGET.groupId}}.groupType", "inPlay"],
+                        ["NOT_EQUAL", ["PREV", "$GROUP_BY_ID.{{$TARGET.groupId}}.groupType"], "inPlay"],
                         ["EQUAL", "$TARGET.currentSide", "B"],
                         ["OR",
                             ["EQUAL", "$TARGET.sides.B.databaseId", null],
@@ -85,7 +85,7 @@
                     ["SET", "/cardById/$TARGET.id/peeking/player2", false],
                     ["SET", "/cardById/$TARGET.id/peeking/player3", false],
                     ["SET", "/cardById/$TARGET.id/peeking/player4", false],
-                    ["SET", "/cardById/$TARGET.id/currentSide", "A"]
+                    ["DO_FLIP_FACEUP", "$TARGET.id", false, null]
                 ]
             },
             {
@@ -103,7 +103,27 @@
                     ]
                 ],
                 "then": [
-                    ["SET", "/cardById/$TARGET.id/currentSide", "B"]
+                    ["DO_FLIP_FACEDOWN", "$TARGET.id", false, null]
+                ]
+            },
+            {
+                "_comment": "Flip scenario reference facedown when loading scenario.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", true],
+                        ["EQUAL", "$TARGET.sides.A.type", "Scenario"],
+                        ["EQUAL", "$TARGET.sides.B.type", "Scenario"],
+                        ["EQUAL", "$TARGET.currentSide", "A"],
+                        ["OR",
+                            ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
+                            ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"]
+                        ]
+                    ]
+                ],
+                "then": [
+                    ["DO_FLIP_FACEDOWN", "$TARGET.id", false, null]
                 ]
             },
             {
@@ -114,7 +134,7 @@
                     ["NOT_EQUAL", ["PREV", "$GAME.firstPlayer"], "$GAME.firstPlayer"]
                 ],
                 "then": [
-                    ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null]
+                    ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"]
                 ]
             },
             {
@@ -125,43 +145,37 @@
                     ["FALSE"]
                 ],
                 "then": [
-                    ["UPDATE_INVESTIGATOR_NAMES", null]
+                    ["DO_UPDATE_INVESTIGATOR_NAMES"]
                 ]
             }
         ]
     },
     "functions": {
-        "UPDATE_LEAD_INVESTIGATOR_TOKEN": {
-            "args": ["$DUMMY"],
+        "DO_UPDATE_LEAD_INVESTIGATOR_TOKEN": {
+            "args": [],
             "code": [
-                ["VAR", "$LEAD_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "{{$GAME.firstPlayer}}Investigator"],
-                    ["EQUAL", "$CARD.sides.A.type", "Investigator"]
-                ]]],
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],                
                 ["COND",
-                    ["NOT_EQUAL", "$LEAD_INVESTIGATOR", null],
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                     [
-                        ["VAR", "$LEAD_INVESTIGATOR_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.type", "FirstInvestigatorToken"]]],
+                        ["VAR", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"]],
                         ["COND",
-                            ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN", null],
+                            ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", null],
                             [
-                                ["CREATE_CARDS", "first_investigator", 1, "sharedTokens"],
-                                ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.type", "FirstInvestigatorToken"]]]
+                                ["DO_CREATE_CARDS", null, "first_investigator", 1, "sharedTokens", false],
+                                ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"]]
                             ]
                         ],
                         ["COND",
-                            ["NOT_EQUAL", "$LEAD_INVESTIGATOR.id", "$LEAD_INVESTIGATOR_TOKEN.parentCardId"],
-                            [
-                                ["LOG", "└── {{$LEAD_INVESTIGATOR_TOKEN.sides.A.name}} attached to {{$LEAD_INVESTIGATOR.sides.A.name}}."],
-                                ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN.id", "$LEAD_INVESTIGATOR.id"]
-                            ]
+                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", "$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.parentCardId"],
+                            ["DO_ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID", true, null]
                         ]
                     ]
                 ]
             ]
         },
-        "UPDATE_INVESTIGATOR_NAMES": {
-            "args": ["$DUMMY"],
+        "DO_UPDATE_INVESTIGATOR_NAMES": {
+            "args": [],
             "code": [
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],

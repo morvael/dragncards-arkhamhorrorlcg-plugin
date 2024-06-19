@@ -17,10 +17,10 @@
                 ["COND",
                     ["AND",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "{{$PLAYER_N}}Investigator"],
-                        ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.eliminated", true],
+                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.eliminated", true],
                         ["NOT_EQUAL", "$GAME.arkhamScenarioInit", true]
                     ],
-                    ["PROMPT", "$PLAYER_N", "eliminateInvestigator", "$ACTIVE_CARD"],
+                    ["PROMPT", "$PLAYER_N", "eliminateInvestigator", "$ACTIVE_CARD_ID"],
                     ["TRUE"],
                     ["LOG", "{{$ACTIVE_FACE.name}} cannot be eliminated, {{$ALIAS_N}}."]
                 ],
@@ -59,15 +59,9 @@
                             ["EQUAL", "$ACTIVE_FACE.name", "Bless"],
                             ["EQUAL", "$ACTIVE_FACE.name", "Curse"]
                         ],
-                        [
-                            ["LOG", "{{$ALIAS_N}} removes {{$ACTIVE_FACE.name}} Chaos Token from play."],
-                            ["DELETE_CARD", "$ACTIVE_CARD_ID"]
-                        ],
+                        ["DO_DELETE_CARD", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
                         ["TRUE"],
-                        [
-                            ["LOG", "{{$ALIAS_N}} discards {{$ACTIVE_FACE.name}} Chaos Token."],
-                            ["MOVE_CARD", "$ACTIVE_CARD_ID", "sharedChaosBag", -1]
-                        ]
+                        ["DO_MOVE_CARD", "$ACTIVE_CARD_ID", "sharedChaosBag", -1, true, "$PLAYER_N"]
                     ],
                     ["TRUE"],
                     ["LOG", "{{$ACTIVE_FACE.name}} Chaos Token cannot be removed or discarded from here, {{$ALIAS_N}}."]

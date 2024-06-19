@@ -33,13 +33,13 @@
     },
     "actionLists": {
         "The Gathering Scenario Init": [
-            ["LOAD_CARDS", "The Gathering"],
-            ["LOAD_CARDS", "Rats"],
-            ["LOAD_CARDS", "Ghouls"],
-            ["LOAD_CARDS", "Striking Fear"],
-            ["LOAD_CARDS", "Ancient Evils"],
-            ["LOAD_CARDS", "Chilling Cold"],
-            ["PLACE_MINI_INVESTIGATORS", 45, 43],
+            ["DO_LOAD_CARDS", "The Gathering", false],
+            ["DO_LOAD_CARDS", "Rats", false],
+            ["DO_LOAD_CARDS", "Ghouls", false],
+            ["DO_LOAD_CARDS", "Striking Fear", false],
+            ["DO_LOAD_CARDS", "Ancient Evils", false],
+            ["DO_LOAD_CARDS", "Chilling Cold", false],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

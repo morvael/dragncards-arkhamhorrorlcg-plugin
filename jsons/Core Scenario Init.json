@@ -1,5 +1,122 @@
 {
     "functions": {
+        "DO_CREATE_CARDS": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT"],
+            "code": [
+                ["DO_LOG", "$LOG_EVENT", null, "", "Loading {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} into {{$GROUP_BY_ID.label}}."],
+                ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$TARGET_DATABASE_ID", "quantity": "$TARGET_QUANTITY", "loadGroupId": "$TARGET_GROUP_ID"}]],
+                ["LOAD_CARDS", ["LIST", "$LOAD_LIST_ITEM"]]
+            ]
+        },
+        "DO_LOAD_CARDS": {
+            "args": ["$LOAD_LIST_ID", "$LOG_EVENT"],
+            "code": [
+                ["DO_LOG", "$LOG_EVENT", null, "", "Loading cards from {{$LOAD_LIST_ID}}."],
+                ["LOAD_CARDS", "$LOAD_LIST_ID"]
+            ]
+        },
+        "DO_LOAD_N_CARDS": {
+            "args": ["$LOAD_LIST_ID", "$NUMBER_TO_LOAD", "$LOG_EVENT"],
+            "code": [
+                ["DO_LOG", "$LOG_EVENT", null, "", ["GET_NUMERIC_LOG", "Loading ", "Loading ", "$NUMBER_TO_LOAD", " random card from {{$LOAD_LIST_ID}}.", " random cards from {{$LOAD_LIST_ID}}."]],
+                ["LOAD_CARDS", ["CHOOSE_N", ["GET_LOAD_LIST", "$LOAD_LIST_ID"], "$NUMBER_TO_LOAD"]]
+            ]
+        },
+        "DO_LOAD_RANDOM_LIST": {
+            "args": ["$LIST_OF_LOAD_LIST_IDS", "$LOG_EVENT"],
+            "code": [
+                ["DO_LOG", "$LOG_EVENT", null, "", ["GET_FORMATTED_LIST", "Loading cards from one of: ", "$LIST_OF_LOAD_LIST_IDS", "."]],
+                ["LOAD_CARDS", ["AT_INDEX", "$LIST_OF_LOAD_LIST_IDS", ["RANDOM_INT", 0, ["LENGTH", "$LIST_OF_LOAD_LIST_IDS"]]]]
+            ]
+        },
+        "DO_DELETE_CARD": {
+            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD_ID", null],
+                    [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "removes {{$TARGET_CARD.currentFace.name}} from the game.", "{{$TARGET_CARD.currentFace.name}} is removed from the game."],
+                        ["DELETE_CARD", "$TARGET_CARD_ID"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_LOCATION": {
+            "args": ["$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_DELETE_CARD", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"], true, null]
+            ]
+        },
+        "DO_SPAWN_ENCOUNTER_AT_LOCATION": {
+            "args": ["$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD"],
+            "code": [
+                ["VAR", "$TARGET_CARD_ID", ["GET_NAMED_ENCOUNTER_DECK_CARD_ID", "$TARGET_CARD_NAME"]],
+                ["VAR", "$LOCATION_CARD_ID", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", null],
+                        ["NOT_EQUAL", "$LOCATION_CARD_ID", null]
+                    ],
+                    [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["LOG", "└── {{$TARGET_CARD.sides.A.name}} spawns at {{$LOCATION_CARD_NAME}}."],
+                        ["DO_MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1, false, null],
+                        ["DO_FLIP_FACEUP", "$TARGET_CARD_ID", false, null],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]]                        
+                    ],
+                    ["TRUE"],
+                    ["UPDATE_VAR", "$TARGET_CARD_ID", null]
+                ],
+                ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD_ID"]
+            ]
+        },
+        "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
+            "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE"],
+            "code": [
+                ["VAR", "$LOCATION_CARD_ID", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"]],
+                ["COND",
+                    ["NOT_EQUAL", "$LOCATION_CARD_ID", null],
+                    [
+                        ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"]],
+                        ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]],
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                            ["COND",
+                                ["EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null],
+                                [
+                                    ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                                    ["COND",
+                                        ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                                        [
+                                            ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
+                                            ["DO_CREATE_CARDS", null, "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "sharedLocations", false],
+                                            ["VAR", "$MINI_INVESTIGATOR_CARD", ["ONE_CARD", "$CARD", ["AND",
+                                                ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}"],
+                                                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                                                ["EQUAL", "$CARD.cardOwner", ""],
+                                                ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
+                                            ]]],
+                                            ["COND",
+                                                ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD", null],
+                                                [
+                                                    ["SET", "/cardById/$MINI_INVESTIGATOR_CARD.id/cardOwner", "$PLAYER_I"],
+                                                    ["LOG", "└── {{$MINI_INVESTIGATOR_CARD.sides.A.name}} spawns at {{$LOCATION_CARD_NAME}}."],
+                                                    ["DO_MOVE_CARD", "$MINI_INVESTIGATOR_CARD.id", "sharedLocations", -1, false, null],
+                                                    ["DO_FLIP_FACEUP", "$MINI_INVESTIGATOR_CARD.id", false, null],
+                                                    ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR_CARD.id", "$X", "$Y"],
+                                                    ["INCREASE_VAR", "$X", "$X_CHANGE"]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]]
+                    ]
+                ]
+            ]
+        },
         "SCENARIO_INIT": {
             "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
             "code": [
@@ -7,22 +124,20 @@
                 ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
                 ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
                 ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
+                ["SET", "/arkhamScenarioDifficulty", "Normal"],
                 ["SET", "/arkhamNumScenarioQuestions", 0],
                 ["SET", "/arkhamScenarioQuestionIndex", 0],
                 ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
                 ["SET", "/arkhamTraumaDone", 0],
                 ["SET", "/arkhamStartingHandDone", 0],
                 ["SET", "/arkhamActiveInvestigator", null],
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "{{$GAME.firstPlayer}}Investigator"],
-                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                ]]],
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],
                 ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$MATCHED_CARD.currentFace.name}} as the lead investigator."],
-                        ["UPDATE_LEAD_INVESTIGATOR_TOKEN", null],
-                        ["UPDATE_INVESTIGATOR_NAMES", null],
+                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}} as the lead investigator."],
+                        ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
+                        ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/eliminated", false],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -44,44 +159,14 @@
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
-                ["COND",
-                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    [
-                        ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
-                            ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                        ]]],
-                        ["COND",
-                            ["NOT_EQUAL", "$MATCHED_CARD", null],
-                            [
-                                ["LOG", "{{$ALIAS_N}}'s {{$MATCHED_CARD.currentFace.name}} physical trauma is {{$NUMBER_OF_TOKENS}}."],
-                                ["INCREASE_VAL", "/cardById/$MATCHED_CARD.id/tokens/damage", "$NUMBER_OF_TOKENS"]
-                            ]
-                        ]
-                    ]
-                ],
+                ["DO_PLACE_DAMAGE_ON_CARD", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
                 ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
             ]
         },
         "PLACE_STARTING_HORROR_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
-                ["COND",
-                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    [
-                        ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.groupId", "{{$PLAYER_N}}Investigator"],
-                            ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                        ]]],
-                        ["COND",
-                            ["NOT_EQUAL", "$MATCHED_CARD", null],
-                            [
-                                ["LOG", "{{$ALIAS_N}}'s {{$MATCHED_CARD.currentFace.name}} mental trauma is {{$NUMBER_OF_TOKENS}}."],
-                                ["INCREASE_VAL", "/cardById/$MATCHED_CARD.id/tokens/horror", "$NUMBER_OF_TOKENS"]
-                            ]
-                        ]
-                    ]
-                ],
+                ["DO_PLACE_HORROR_ON_CARD", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
                 ["INCREASE_VAL", "/arkhamTraumaDone", 1],
                 ["COND",
                     ["GREATER_EQUAL", "$GAME.arkhamTraumaDone", "$GAME.numPlayers"],
@@ -93,27 +178,8 @@
             "args": ["$DIFFICULTY_NAME"],
             "code": [
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
-                ["LOAD_CARDS", "{{$GAME.arkhamCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}"],
-                ["VAR", "$SCENARIO_BAD_SIDE", "B"],
-                ["VAR", "$SCENARIO_GOOD_SIDE", "A"],
-                ["COND",
-                    ["OR",
-                        ["EQUAL", "$DIFFICULTY_NAME", "Hard"],
-                        ["EQUAL", "$DIFFICULTY_NAME", "Expert"]
-                    ],
-                    [
-                        ["UPDATE_VAR", "$SCENARIO_BAD_SIDE", "A"],
-                        ["UPDATE_VAR", "$SCENARIO_GOOD_SIDE", "B"]
-                    ]
-                ],
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
-                ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$MATCHED_CARD", null],
-                        ["EQUAL", "$MATCHED_CARD.currentSide", "$SCENARIO_BAD_SIDE"]
-                    ],
-                    ["SET", "/cardById/$MATCHED_CARD.id/currentSide", "$SCENARIO_GOOD_SIDE"]
-                ],
+                ["SET", "/arkhamScenarioDifficulty", "$DIFFICULTY_NAME"],
+                ["DO_LOAD_CARDS", "{{$GAME.arkhamCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", false],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["DRAW_STARTING_HAND", "$PLAYER_I"]
                 ]]
@@ -123,7 +189,7 @@
             "args": ["$PLAYER_I", "$COMMENT"],
             "code": [
                 ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
-                ["VAR", "$SELECTED_CARDS", "$GAME.groupById.{{$PLAYER_I}}Hand.parentCards"],
+                ["VAR", "$SELECTED_CARDS", "$GROUP_BY_ID.{{$PLAYER_I}}Hand.parentCards"],
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     [
@@ -134,7 +200,7 @@
                     ]
                 ],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Deck.stackIds"], 1],
+                    ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.{{$PLAYER_I}}Deck.stackIds"], 1],
                     [
                         ["LOG", "└── {{$ALIAS_I}} shuffles their deck."],
                         ["SHUFFLE_GROUP", "{{$PLAYER_I}}Deck"]
@@ -143,7 +209,7 @@
                 ["LOG", "└── {{$ALIAS_I}} draws opening hand{{$COMMENT}}."],
                 ["DRAW_CARD", 5, "$PLAYER_I"],
                 ["WHILE",
-                    ["LESS_THAN", ["SUBTRACT", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Hand.stackIds"], ["LENGTH", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["LESS_THAN", ["SUBTRACT", ["LENGTH", "$GROUP_BY_ID.{{$PLAYER_I}}Hand.stackIds"], ["LENGTH", ["FILTER_CARDS", "$CARD", ["AND",
                         ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Hand"],
                         ["OR",
                             ["EQUAL", "$CARD.sides.A.subtype", "Weakness"],
@@ -170,7 +236,7 @@
                             ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Deck", 0]
                         ]],
                         ["COND",
-                            ["GREATER_THAN", ["LENGTH", "$GAME.groupById.{{$PLAYER_I}}Deck.stackIds"], 1],
+                            ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.{{$PLAYER_I}}Deck.stackIds"], 1],
                             [
                                 ["LOG", "└── {{$ALIAS_I}} shuffles their deck again."],
                                 ["SHUFFLE_GROUP", "{{$PLAYER_I}}Deck"]
@@ -273,19 +339,19 @@
             "args": ["$DUMMY"],
             "code": [
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedEncounterDeck.stackIds"], 1],
+                    ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedEncounterDeck.stackIds"], 1],
                     ["SHUFFLE_GROUP", "sharedEncounterDeck"]
                 ],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckA.stackIds"], 1],
+                    ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedDeckA.stackIds"], 1],
                     ["SHUFFLE_GROUP", "sharedDeckA"]
                 ],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckB.stackIds"], 1],
+                    ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedDeckB.stackIds"], 1],
                     ["SHUFFLE_GROUP", "sharedDeckB"]
                 ],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$GAME.groupById.sharedDeckC.stackIds"], 1],
+                    ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedDeckC.stackIds"], 1],
                     ["SHUFFLE_GROUP", "sharedDeckC"]
                 ],
                 ["SET", "/roundNumber", 1],
