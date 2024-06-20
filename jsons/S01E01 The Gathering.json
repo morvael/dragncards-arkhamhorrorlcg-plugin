@@ -33,12 +33,12 @@
     },
     "actionLists": {
         "The Gathering Scenario Init": [
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "The Gathering", true, null],
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Rats", true, null],
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Ghouls", true, null],
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Striking Fear", true, null],
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Ancient Evils", true, null],
-            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Chilling Cold", true, null],
+            ["DO_LOAD_CARDS_SCN", "The Gathering"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

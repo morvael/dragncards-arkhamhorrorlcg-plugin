@@ -20,6 +20,12 @@
                 ]
             ]
         },
+        "DO_CREATE_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_LOAD_CARDS": {
             "args": ["$TARGET_PLAYER", "$LOAD_LIST_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -33,6 +39,12 @@
                         ["LOAD_CARDS", "$LOAD_LIST_ID"]
                     ]
                 ]
+            ]
+        },
+        "DO_LOAD_CARDS_SCN": {
+            "args": ["$LOAD_LIST_ID"],
+            "code": [
+                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "$LOAD_LIST_ID", true, null]
             ]
         },
         "DO_LOAD_N_CARDS": {
@@ -55,6 +67,12 @@
                 ]
             ]
         },
+        "DO_LOAD_N_CARDS_SCN": {
+            "args": ["$LOAD_LIST_ID", "$NUMBER_TO_LOAD"],
+            "code": [
+                ["DO_LOAD_N_CARDS", "$GAME.firstPlayer", "$LOAD_LIST_ID", "$NUMBER_TO_LOAD", true, null]
+            ]
+        },        
         "DO_LOAD_RANDOM_LIST": {
             "args": ["$TARGET_PLAYER", "$LIST_OF_LOAD_LIST_IDS", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -71,6 +89,12 @@
                 ]
             ]
         },
+        "DO_LOAD_RANDOM_LIST_SCN": {
+            "args": ["$LIST_OF_LOAD_LIST_IDS"],
+            "code": [
+                ["DO_LOAD_RANDOM_LIST", "$GAME.firstPlayer", "$LIST_OF_LOAD_LIST_IDS", true, null]
+            ]
+        },        
         "DO_DELETE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -91,6 +115,12 @@
             "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["DO_DELETE_CARD", "$TARGET_PLAYER", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"], "$LOG_EVENT", "$ACTOR_PLAYER"]
+            ]
+        },
+        "DO_DELETE_LOCATION_SCN": {
+            "args": ["$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_DELETE_LOCATION", "$GAME.firstPlayer", "$LOCATION_CARD_NAME", true, null]
             ]
         },
         "DO_SPAWN_ENCOUNTER_AT_LOCATION": {
@@ -124,6 +154,12 @@
                         ]
                     ]
                 ]
+            ]
+        },
+        "DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN": {
+            "args": ["$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
             ]
         },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
