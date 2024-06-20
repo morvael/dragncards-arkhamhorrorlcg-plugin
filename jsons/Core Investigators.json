@@ -113,13 +113,19 @@
                     ["NOT_EQUAL", "$TARGET_PLAYER", null],
                     [
                         ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                        ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
                         ["COND",
-                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                            ["AND",
+                                ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                                ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
+                            ],                            
                             [
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn."],
+                                ["DO_EXHAUST_CARD", "$TARGET_PLAYER", "$MINI_INVESTIGATOR_CARD_ID", true, null],
                                 ["SET", "/arkhamActiveInvestigator", null],
                                 ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
+                                ["UNSET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor"],
                                 ["COND",
                                     ["EQUAL", "$SET_STEP", true],
                                     ["SET", "/stepId", "I2.2"]
@@ -140,14 +146,20 @@
                     ],
                     [
                         ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                        ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
                         ["COND",
-                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                            ["AND",
+                                ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                                ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
+                            ],                            
                             [
                                 ["DO_END_INVESTIGATOR_TURN", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn."],
+                                ["DO_READY_CARD", "$TARGET_PLAYER", "$MINI_INVESTIGATOR_CARD_ID", true, null],
                                 ["SET", "/arkhamActiveInvestigator", "$TARGET_PLAYER"],
                                 ["SET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
+                                ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
                                 ["COND",
                                     ["EQUAL", "$SET_STEP", true],
                                     ["SET", "/stepId", "I2"]
