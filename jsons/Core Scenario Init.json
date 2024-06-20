@@ -153,7 +153,7 @@
                                                 ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                                                 [
                                                     ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
-                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "sharedLocations", false, "$PLAYER_I"],
+                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "sharedLocations", false, "$PLAYER_I"],
                                                     ["VAR", "$MINI_INVESTIGATOR_CARD", ["ONE_CARD", "$CARD", ["AND",
                                                         ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}"],
                                                         ["EQUAL", "$CARD.groupId", "sharedLocations"],

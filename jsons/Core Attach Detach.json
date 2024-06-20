@@ -19,7 +19,9 @@
                     ["COND",
                         ["AND",
                             ["NOT_EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
+                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
                         ],
                         [
                             ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSkyBlue"],
@@ -59,6 +61,8 @@
                                     ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
                                     ["EQUAL", "$ACTOR_PLAYER", null]
                                 ],
+                                ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
+                                ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
                                 ["EQUAL", "$PARENT_CARD.cardIndex", 0],
                                 ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "ChaosToken"],
                                 ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "FirstInvestigatorToken"],
@@ -74,7 +78,17 @@
                                     ["DO_DETACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                                 ],
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
-                                ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
+                                ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                                ["COND",
+                                    ["AND",
+                                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
+                                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                                    ],
+                                    ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"]
+                                ]
                             ]
                         ]
                     ]

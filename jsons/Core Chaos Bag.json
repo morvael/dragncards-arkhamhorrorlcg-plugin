@@ -67,7 +67,7 @@
                             ["GREATER_THAN", "$LEFT_TO_ADD", 0],
                             [
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "add {{$CHAOS_TOKEN_NAME}} to the Chaos Bag.", "adds {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."],
-                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID", 1, "sharedChaosBag", false, "$ACTOR_PLAYER"]
+                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "{{$CHAOS_TOKEN_NAME}} Chaos Token", "$CHAOS_TOKEN_DATABASE_ID", 1, "sharedChaosBag", false, "$ACTOR_PLAYER"]
                             ]
                         ]
                     ]
