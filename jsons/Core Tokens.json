@@ -24,7 +24,9 @@
                         ["GREATER_THAN", "$NUMBER", 0]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource", " resources"], ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource.", " resources."],
+                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource.", " resources."]],
                         ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
                     ]
                 ]
@@ -40,7 +42,9 @@
                         ["LESS_EQUAL", "$NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.resources"]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource", " resources"], ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource.", " resources."],
+                            ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource.", " resources."]],
                         ["DECREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
                     ]
                 ]
@@ -61,7 +65,9 @@
                     ],
                     [
                         ["VAR", "$TARGET_CARD_NAME", "$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name"],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "place ", "place ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"], ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "place ", "place ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."],
+                            ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."]],
                         ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
                     ]
                 ]

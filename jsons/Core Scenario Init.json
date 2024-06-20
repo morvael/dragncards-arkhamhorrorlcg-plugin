@@ -72,7 +72,7 @@
             "code": [
                 ["DO_LOAD_N_CARDS", "$GAME.firstPlayer", "$LOAD_LIST_ID", "$NUMBER_TO_LOAD", true, null]
             ]
-        },        
+        },
         "DO_LOAD_RANDOM_LIST": {
             "args": ["$TARGET_PLAYER", "$LIST_OF_LOAD_LIST_IDS", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -94,7 +94,7 @@
             "code": [
                 ["DO_LOAD_RANDOM_LIST", "$GAME.firstPlayer", "$LIST_OF_LOAD_LIST_IDS", true, null]
             ]
-        },        
+        },
         "DO_DELETE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -157,7 +157,7 @@
             ]
         },
         "DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN": {
-            "args": ["$LOCATION_CARD_NAME"],
+            "args": ["$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD"],
             "code": [
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
             ]

@@ -64,7 +64,7 @@
                         ["EQUAL", "$TARGET_CARD.currentSide", "A"]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} facedown.", "flips {{$TARGET_CARD.currentFace.name}} faceup."],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} facedown.", "flips {{$TARGET_CARD.currentFace.name}} facedown."],
                         ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "B"]
                     ]
                 ]

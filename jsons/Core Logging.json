@@ -24,9 +24,9 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$NUMBER", 1],
-                    "{{$PREFIX_SINGLE}}{{$NUMBER}}{{$SUFFIX_SINGLE}}.",
+                    "{{$PREFIX_SINGLE}}{{$NUMBER}}{{$SUFFIX_SINGLE}}",
                     ["TRUE"],
-                    "{{$PREFIX_MANY}}{{$NUMBER}}{{$SUFFIX_MANY}}."
+                    "{{$PREFIX_MANY}}{{$NUMBER}}{{$SUFFIX_MANY}}"
                 ]
             ]
         },

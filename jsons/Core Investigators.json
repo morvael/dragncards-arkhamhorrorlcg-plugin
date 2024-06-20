@@ -118,7 +118,7 @@
                             ["AND",
                                 ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                                 ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
-                            ],                            
+                            ],
                             [
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn."],
@@ -151,7 +151,7 @@
                             ["AND",
                                 ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                                 ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
-                            ],                            
+                            ],
                             [
                                 ["DO_END_INVESTIGATOR_TURN", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
@@ -174,7 +174,7 @@
     "prompts": {
         "eliminateInvestigator": {
             "args": ["$INVESTIGATOR_CARD_ID"],
-            "message": "Select fate of eliminated {{$CARD_BY_ID.INVESTIGATOR_CARD_ID.currentFace.name}}.",
+            "message": "Select fate of eliminated {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}.",
             "options": [
                 {
                     "label": "Resigned",
