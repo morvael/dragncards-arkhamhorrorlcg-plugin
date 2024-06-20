@@ -1,5 +1,11 @@
 {
     "functions": {
+        "DUMMY": {
+            "args": [],
+            "code": [
+                ["VAR", "$DUMMY", false]
+            ]
+        },
         "GET_CARD_LEFT": {
             "args": ["$TARGET_CARD_ID"],
             "code": [
@@ -174,20 +180,37 @@
                 ["GET_CARD_ID", "$TARGET_GROUP_ID", 0, 0]
             ]
         },
-        "DO_MOVE_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NEW_GROUP_ID", "$NEW_INDEX", "$LOG_EVENT", "$ACTOR_PLAYER"],
+        "GET_ALL_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                ["VAR", "$NEW_GROUP", "$GROUP_BY_ID.$NEW_GROUP_ID"],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
+                    ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"]],
+                    ["TRUE"],
+                    ["LIST"]
+                ]
+            ]
+        },
+        "GET_ALL_CARDS_IN_GROUP_COUNT": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
+            ]
+        },
+        "GET_TARGETED_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
+            "code": [
                 ["COND",
                     ["AND",
-                        ["NOT_EQUAL", "$TARGET_CARD", null],
-                        ["NOT_EQUAL", "$NEW_GROUP", null]
+                        ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
+                        ["NOT_EQUAL", "$TARGETING_PLAYER", null]
                     ],
-                    [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "moves {{$TARGET_CARD.currentFace.name}} to {{$NEW_GROUP.label}}.", "{{$TARGET_CARD.currentFace.name}} is moved to {{$NEW_GROUP.label}}."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$NEW_GROUP_ID", "$NEW_INDEX"]
-                    ]
+                    ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                        ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
+                    ]],
+                    ["TRUE"],
+                    ["LIST"]
                 ]
             ]
         },
@@ -202,6 +225,21 @@
                         ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
                         ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
                     ]
+                ]
+            ]
+        },
+        "DO_CLEAR_TARGETED_FROM_LIST": {
+            "args": ["$SELECTED_CARDS", "$TARGETING_PLAYER"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$SELECTED_CARDS", null],
+                        ["NOT_EQUAL", "$TARGETING_PLAYER", null],
+                        ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
+                    ],
+                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                        ["UNSET", "/cardById/$CARD.id/targeting/$TARGETING_PLAYER"]
+                    ]]
                 ]
             ]
         }

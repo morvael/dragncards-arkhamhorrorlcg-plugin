@@ -39,19 +39,19 @@
     },
     "actionLists": {
         "The Devourer Below Scenario Init": [
-            ["DO_LOAD_CARDS", "The Devourer Below", false],
-            ["DO_LOAD_CARDS", "Ancient Evils", false],
-            ["DO_LOAD_CARDS", "Striking Fear", false],
-            ["DO_LOAD_CARDS", "Ghouls", false],
-            ["DO_LOAD_CARDS", "Dark Cult", false],
-            ["DO_LOAD_N_CARDS", "The Devourer Below - Woods", 4, true],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "The Devourer Below", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Ancient Evils", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Striking Fear", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Ghouls", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Dark Cult", true, null],
+            ["DO_LOAD_N_CARDS", "$GAME.firstPlayer", "The Devourer Below - Woods", 4, true, null],
             ["VAR", "$SELECTED_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.B.name", "Arkham Woods"]]]],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[0].id", 45, 10],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1].id", 70, 43],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2].id", 45, 76],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3].id", 20, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Main Path", 5, 7, 3],
-            ["DO_LOAD_RANDOM_LIST", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"], true],
+            ["DO_LOAD_RANDOM_LIST", "$GAME.firstPlayer", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"], true, null],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Cultists Who Got Away” in your Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "The Devourer Below Scenario Question 1"]
         ],
         "The Devourer Below Scenario Question 1": [
@@ -85,7 +85,7 @@
                 [
                     ["LOG", "└── Campaign Log: It is past midnight."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2]
+                        ["DO_DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2, true, null]
                     ]]
                 ]
             ],
@@ -96,7 +96,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
                     ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
-                    ["DO_CREATE_CARDS", "Ghoul Priest", "01116", 1, "sharedEncounterDeck", true]
+                    ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Ghoul Priest", "01116", 1, "sharedEncounterDeck", true, null]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

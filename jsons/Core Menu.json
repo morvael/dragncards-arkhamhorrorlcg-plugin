@@ -2,7 +2,7 @@
     "cardMenu": {
         "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
-            
+
         ]
     },
     "groupMenu": {

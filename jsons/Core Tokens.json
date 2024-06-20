@@ -24,11 +24,7 @@
                         ["GREATER_THAN", "$NUMBER", 0]
                     ],
                     [
-                        ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
-                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"],
-                            ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource", " resources"],
-                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"]
-                        ],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource", " resources"], ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource", " resources"]],
                         ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
                     ]
                 ]
@@ -44,71 +40,69 @@
                         ["LESS_EQUAL", "$NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.resources"]
                     ],
                     [
-                        ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
-                            ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"],
-                            ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource", " resources"],
-                            ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"]
-                        ],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource", " resources"], ["GET_NUMERIC_LOG", "spends ", "spends ", "$NUMBER", " resource", " resources"]],
                         ["DECREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
                     ]
                 ]
             ]
         },
         "DO_PLACE_TOKEN_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$TOKEN_TYPE", "$LOG_EVENT", "$ACTOR_PLAYER", "$SINGLE", "$MANY"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$TOKEN_TYPE", "$LOG_EVENT", "$ACTOR_PLAYER", "$SINGLE", "$MANY"],
             "code": [
                 ["COND",
                     ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
                         ["NOT_EQUAL", "$TARGET_CARD_ID", null],
-                        ["GREATER_THAN", "$NUMBER", 0]
+                        ["NOT_EQUAL", "$NUMBER", null],
+                        ["GREATER_THAN", "$NUMBER", 0],
+                        ["NOT_EQUAL", "$TOKEN_TYPE", null],
+                        ["NOT_EQUAL", "$SINGLE", null],
+                        ["NOT_EQUAL", "$MANY", null]
                     ],
                     [
                         ["VAR", "$TARGET_CARD_NAME", "$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name"],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER",
-                            ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"],
-                            ["GET_NUMERIC_LOG", "", "", "$NUMBER", " {{$SINGLE}} is placed on {{$TARGET_CARD_NAME}}", " {{$MANY}} are placed on {{$TARGET_CARD_NAME}}"]
-                        ],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "place ", "place ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"], ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}", " {{$MANY}} on {{$TARGET_CARD_NAME}}"]],
                         ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
                     ]
                 ]
             ]
         },
         "DO_PLACE_RESOURCES_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "resource", "$LOG_EVENT", "$ACTOR_PLAYER", "resource", "resources"]
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "resource", "$LOG_EVENT", "$ACTOR_PLAYER", "resource", "resources"]
             ]
         },
         "DO_PLACE_CLUES_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "clue", "$LOG_EVENT", "$ACTOR_PLAYER", "clue", "clues"]
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "clue", "$LOG_EVENT", "$ACTOR_PLAYER", "clue", "clues"]
             ]
         },
         "DO_PLACE_DOOM_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "doom", "$LOG_EVENT", "$ACTOR_PLAYER", "doom", "doom"]
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "doom", "$LOG_EVENT", "$ACTOR_PLAYER", "doom", "doom"]
             ]
         },
         "DO_PLACE_DAMAGE_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "damage", "$LOG_EVENT", "$ACTOR_PLAYER", "damage", "damage"]
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "damage", "$LOG_EVENT", "$ACTOR_PLAYER", "damage", "damage"]
             ]
         },
         "DO_PLACE_HORROR_ON_CARD": {
-            "args": ["$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
+                ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
             ]
         },
         "DO_PLACE_DOOM_ON_CURRENT_AGENDA": {
-            "args": ["$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_DOOM_ON_CARD", ["GET_CURRENT_AGENDA_ID"], "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", ["GET_CURRENT_AGENDA_ID"], "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
             ]
-        }        
+        }
     },
     "preBuiltDecks": {
         "key_tokens": {

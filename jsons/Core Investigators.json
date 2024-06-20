@@ -69,14 +69,14 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$NEW_LEAD_PLAYER", null],
-                    ["DO_MOVE_CARD", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"], "sharedTokens", -1, true, null],
+                    ["DO_MOVE_CARD", "$ELIMINATED_PLAYER", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"], "sharedTokens", -1, true, null],
                     ["NOT_EQUAL", "$NEW_LEAD_PLAYER", "$GAME.firstPlayer"],
                     ["SET", "/firstPlayer", "$NEW_LEAD_PLAYER"]
                 ],
                 ["COND",
                     ["EQUAL", "$ELIMINATED_PLAYER", "$GAME.arkhamActiveInvestigator"],
                     ["DO_END_INVESTIGATOR_TURN", false, true, "$PLAYER_N"]
-                ],                
+                ],
                 ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$ELIMINATED_PLAYER"]],
                 ["COND",
                     ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
@@ -89,7 +89,7 @@
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/doom", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/damage", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/horror", 0],
-                        ["DO_FLIP_FACEDOWN", "$INVESTIGATOR_CARD_ID", true, null]
+                        ["DO_FLIP_FACEDOWN", "$ELIMINATED_PLAYER", "$INVESTIGATOR_CARD_ID", true, null]
                     ]
                 ],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -117,7 +117,7 @@
                             ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                             [
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn.", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "{{$INVESTIGATOR_CARD_NAME}}'s turn ends."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn."],
                                 ["SET", "/arkhamActiveInvestigator", null],
                                 ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
                                 ["COND",
@@ -145,7 +145,7 @@
                             [
                                 ["DO_END_INVESTIGATOR_TURN", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
                                 ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn.", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "{{$INVESTIGATOR_CARD_NAME}}'s turn starts."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn."],
                                 ["SET", "/arkhamActiveInvestigator", "$TARGET_PLAYER"],
                                 ["SET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
                                 ["COND",

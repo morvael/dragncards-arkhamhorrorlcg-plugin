@@ -54,18 +54,18 @@
     },
     "actionLists": {
         "The Midnight Masks Scenario Init": [
-            ["DO_LOAD_CARDS", "The Midnight Masks", false],
-            ["DO_LOAD_CARDS", "Chilling Cold", false],
-            ["DO_LOAD_CARDS", "Nightgaunts", false],
-            ["DO_LOAD_CARDS", "Dark Cult", false],
-            ["DO_LOAD_CARDS", "Locked Doors", false],
-            ["DO_LOAD_CARDS", "Cult of Umôrdhoth", false],
-            ["DO_LOAD_N_CARDS", "The Midnight Masks - Downtown", 1, true],
-            ["DO_LOAD_N_CARDS", "The Midnight Masks - Southside", 1, true],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "The Midnight Masks", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Chilling Cold", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Nightgaunts", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Dark Cult", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Locked Doors", true, null],
+            ["DO_LOAD_CARDS", "$GAME.firstPlayer", "Cult of Umôrdhoth", true, null],
+            ["DO_LOAD_N_CARDS", "$GAME.firstPlayer", "The Midnight Masks - Downtown", 1, true, null],
+            ["DO_LOAD_N_CARDS", "$GAME.firstPlayer", "The Midnight Masks - Southside", 1, true, null],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
-                ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "Acolyte", "$SPAWN_SITES.[$I]", 3, 3],
-                ["DO_PLACE_DOOM_ON_CARD", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "Acolyte", "$SPAWN_SITES.[$I]", 3, 3, true, null],
+                ["DO_PLACE_DOOM_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "The Midnight Masks Scenario Question 1"]
         ],
@@ -74,7 +74,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: Your house has burned to the ground."],
-                    ["DO_DELETE_LOCATION", "Your House"],
+                    ["DO_DELETE_LOCATION", "$GAME.firstPlayer", "Your House", true, null],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
@@ -90,7 +90,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
-                    ["DO_CREATE_CARDS", "Ghoul Priest", "01116", 1, "sharedEncounterDeck", true]
+                    ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Ghoul Priest", "01116", 1, "sharedEncounterDeck", true, null]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

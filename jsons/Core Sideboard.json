@@ -29,7 +29,7 @@
                         ["COND",
                             ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.viewingSideboard", true],
                             [
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browses Sideboard.", "browse Sideboard.", "browses Sideboard."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browse Sideboard.", "browses Sideboard."],
                                 ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", true],
                                 ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
                                     ["COND",
@@ -40,7 +40,7 @@
                             ],
                             ["TRUE"],
                             [
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "closes Sideboard.", "close Sideboard.", "closes Sideboard."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "close Sideboard.", "closes Sideboard."],
                                 ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", false],
                                 ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
                                     ["COND",
@@ -67,12 +67,12 @@
                         ["COND",
                             ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.browseGroup.id", "$TARGET_GROUP_ID"],
                             [
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "closes {{$TARGET_GROUP_LABEL}}.", "close {{$TARGET_GROUP_LABEL}}.", "closes {{$TARGET_GROUP_LABEL}}."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "close {{$TARGET_GROUP_LABEL}}.", "closes {{$TARGET_GROUP_LABEL}}."],
                                 ["STOP_LOOKING", "$TARGET_PLAYER", "hide"]
                             ],
                             ["TRUE"],
                             [
-                                ["DO_LOG_TARGET", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browses {{$TARGET_GROUP_LABEL}}.", "browse {{$TARGET_GROUP_LABEL}}.", "browses {{$TARGET_GROUP_LABEL}}."],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browse {{$TARGET_GROUP_LABEL}}.", "browses {{$TARGET_GROUP_LABEL}}."],
                                 ["LOOK_AT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", -1, false]
                             ]
                         ]

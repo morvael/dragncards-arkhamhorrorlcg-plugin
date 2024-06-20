@@ -10,7 +10,7 @@
             ["LOAD_CARDS", "Daisy Walker Starter Deck"],
             ["DEFINE", "$PLAYER_N", "player3"],
             ["LOAD_CARDS", "Agnes Baker Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player1"],            
+            ["DEFINE", "$PLAYER_N", "player1"],
             ["LOAD_CARDS", "The Midnight Masks Scenario"]
         ],
         "gameRules": [
@@ -29,41 +29,18 @@
                 "then": [
                     ["COND",
                         ["EQUAL", "$GAME.stepId", "M1"],
-                        [
-                            ["LOG", "└── Round number advances."],
-                            ["INCREASE_VAL", "/roundNumber", 1]
-                        ],
+                        ["DO_STEP_M1"],
                         ["EQUAL", "$GAME.stepId", "M2"],
-                        ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", 1, true, null],
+                        ["DO_STEP_M2"],
                         ["EQUAL", "$GAME.stepId", "U3"],
-                        [
-                            ["LOG", "└── Each exhausted card readies."],
-                            ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                                ["DO_READY_CARD", "$CARD_ID", false, null]
-                            ]]
-                        ],
+                        ["DO_STEP_U3"],
                         ["EQUAL", "$GAME.stepId", "U4"],
-                        [
-                            ["LOG", "└── Each investigator draws 1 card."],
-                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                                ["COND",
-                                    ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                                    ["DRAW_CARD", 1, "$PLAYER_I"]
-                                ]
-                            ]],
-                            ["LOG", "└── Each investigator gains 1 resource."],
-                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                                ["COND",
-                                    ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                                    ["INCREASE_VAL", "/playerData/$PLAYER_I/resources", 1]
-                                ]
-                            ]]
-                        ]
+                        ["DO_STEP_U4"]
                     ]
                 ]
             },
             {
-                "_comment": "Flip selected cards face up when entering play.",
+                "_comment": "Flip single-sided cards faceup (and disable peeking) when entering play.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
@@ -85,11 +62,11 @@
                     ["SET", "/cardById/$TARGET.id/peeking/player2", false],
                     ["SET", "/cardById/$TARGET.id/peeking/player3", false],
                     ["SET", "/cardById/$TARGET.id/peeking/player4", false],
-                    ["DO_FLIP_FACEUP", "$TARGET.id", false, null]
+                    ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$TARGET.id", false, null]
                 ]
             },
             {
-                "_comment": "Flip locations facedown when loading scenario.",
+                "_comment": "Flip double-sided locations facedown when loading scenario.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
@@ -103,11 +80,11 @@
                     ]
                 ],
                 "then": [
-                    ["DO_FLIP_FACEDOWN", "$TARGET.id", false, null]
+                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
                 ]
             },
             {
-                "_comment": "Flip scenario reference facedown when loading scenario.",
+                "_comment": "Flip scenario reference facedown as needed when loading scenario.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
@@ -123,7 +100,7 @@
                     ]
                 ],
                 "then": [
-                    ["DO_FLIP_FACEDOWN", "$TARGET.id", false, null]
+                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
                 ]
             },
             {
@@ -151,10 +128,49 @@
         ]
     },
     "functions": {
+        "DO_STEP_M1": {
+            "args": [],
+            "code": [
+                ["LOG", "└── Round number advances."],
+                ["INCREASE_VAL", "/roundNumber", 1]
+            ]
+        },
+        "DO_STEP_M2": {
+            "args": [],
+            "code": [
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
+            ]
+        },
+        "DO_STEP_U3": {
+            "args": [],
+            "code": [
+                ["LOG", "└── Each exhausted card readies."],
+                ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
+                    ["DO_READY_CARD", "$GAME.firstPlayer", "$CARD_ID", false, null]
+                ]]
+            ]
+        },
+        "DO_STEP_U4": {
+            "args": [],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
+                        ["DO_DRAW_CARD", "$PLAYER_I", 1, true, "$PLAYER_I"]
+                    ]
+                ]],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
+                        ["DO_GAIN_RESOURCES", "$PLAYER_I", 1, true, "$PLAYER_I"]
+                    ]
+                ]]
+            ]
+        },
         "DO_UPDATE_LEAD_INVESTIGATOR_TOKEN": {
             "args": [],
             "code": [
-                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],                
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],
                 ["COND",
                     ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                     [
@@ -162,13 +178,13 @@
                         ["COND",
                             ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", null],
                             [
-                                ["DO_CREATE_CARDS", null, "first_investigator", 1, "sharedTokens", false],
+                                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "first_investigator", 1, "sharedTokens", true, null],
                                 ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"]]
                             ]
                         ],
                         ["COND",
                             ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", "$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.parentCardId"],
-                            ["DO_ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID", true, null]
+                            ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID", true, null]
                         ]
                     ]
                 ]

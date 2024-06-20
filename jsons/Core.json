@@ -53,6 +53,8 @@
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
+            {"key": "D", "actionList": "drawCard", "label": "id:drawCard"},
+            {"key": "E", "actionList": "drawEncounterCard", "label": "id:drawEncounterCard"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
             {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
@@ -62,10 +64,9 @@
         ],
         "card": [
             {"key": "A", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
-            {"key": "D", "actionList": "discardCard", "label": "id:discardCard"},
-            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
-            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"}
+            {"key": "R", "actionList": "exhaustReadyCard", "label": "id:exhaustReadyCard"},
+            {"key": "S", "actionList": "discardCard", "label": "id:discardCard"}
         ]
     },
     "imageUrlPrefix": {

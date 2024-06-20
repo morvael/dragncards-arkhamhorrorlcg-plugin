@@ -38,7 +38,7 @@
     "labels": {
         "mythosPhase": {
             "English": "Mythos"
-        },        
+        },
         "investigationPhase": {
             "English": "Investigation"
         },
@@ -126,5 +126,5 @@
         "step-U6": {
             "English": "4.6 Upkeep phase ends"
         }
-    }    
+    }
 }

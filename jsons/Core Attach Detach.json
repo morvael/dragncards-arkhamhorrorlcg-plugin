@@ -1,51 +1,35 @@
 {
     "actionLists": {
         "attachDetachCard": [
-            ["VAR", "$CARD_TO_BE_ATTACHED_ID", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId"],
             ["COND",
                 ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
                 [
                     ["COND",
-                        ["NOT_EQUAL", "$CARD_TO_BE_ATTACHED_ID", null],
+                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId", null],
                         [
-                            ["UNSET", "/cardById/$CARD_TO_BE_ATTACHED_ID/borderColor"],
+                            ["UNSET", "/cardById/$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId/borderColor"],
                             ["UNSET", "/playerData/$PLAYER_N/cardToBeAttachedId"]
                         ]
                     ],
-                    ["COND",
-                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
-                        ["DO_DETACH_CARD", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
-                    ]
+                    ["DO_DETACH_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
                 ],
                 ["TRUE"],
                 ["COND",
-                    ["EQUAL", "$CARD_TO_BE_ATTACHED_ID", null],
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId", null],
                     ["COND",
-                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["AND",
+                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                            ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                        ],
                         [
-                            ["LOG", "{{$ALIAS_N}} wants to attach {{$ACTIVE_FACE.name}}."],
                             ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSkyBlue"],
                             ["SET", "/playerData/$PLAYER_N/cardToBeAttachedId", "$ACTIVE_CARD_ID"]
                         ]
                     ],
                     ["TRUE"],
                     [
-                        ["VAR", "$CARD_TO_BE_ATTACHED", "$CARD_BY_ID.$CARD_TO_BE_ATTACHED_ID"],
-                        ["COND",
-                            ["AND",
-                                ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
-                                ["NOT_EQUAL", "$CARD_TO_BE_ATTACHED_ID", "$ACTIVE_CARD_ID"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "SealToken"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
-                                ["NOT_EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
-                            ],
-                            ["DO_ATTACH_CARD", "$CARD_TO_BE_ATTACHED_ID", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
-                        ],
-                        ["UNSET", "/cardById/$CARD_TO_BE_ATTACHED_ID/borderColor"],
+                        ["DO_ATTACH_CARD", "$PLAYER_N", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                        ["UNSET", "/cardById/$PLAYER_DATA.$PLAYER_N.cardToBeAttachedId/borderColor"],
                         ["UNSET", "/playerData/$PLAYER_N/cardToBeAttachedId"]
                     ]
                 ]
@@ -54,35 +38,73 @@
     },
     "functions": {
         "DO_ATTACH_CARD": {
-            "args": ["$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                ["VAR", "$PARENT_CARD", "$CARD_BY_ID.$PARENT_CARD_ID"],                
                 ["COND",
                     ["AND",
-                        ["NOT_EQUAL", "$TARGET_CARD", null],
-                        ["NOT_EQUAL", "$PARENT_CARD", null],
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", null],
+                        ["NOT_EQUAL", "$PARENT_CARD_ID", null],
                         ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is attached to {{$PARENT_CARD.currentFace.name}}."],
-                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["VAR", "$PARENT_CARD", "$CARD_BY_ID.$PARENT_CARD_ID"],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$PARENT_CARD", null],
+                                ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
+                                ["OR",
+                                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                    ["EQUAL", "$ACTOR_PLAYER", null]
+                                ],
+                                ["EQUAL", "$PARENT_CARD.cardIndex", 0],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "ChaosToken"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "KeyToken"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "FloodedToken"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "SealToken"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "MiniConcealed"],
+                                ["NOT_EQUAL", "$PARENT_CARD.currentFace.type", "MiniInvestigator"]
+                            ],
+                            [
+                                ["COND",
+                                    ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
+                                    ["DO_DETACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                ],
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
+                                ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"]
+                            ]
+                        ]
                     ]
                 ]
             ]
         },
         "DO_DETACH_CARD": {
-            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                 ["COND",
                     ["AND",
-                        ["NOT_EQUAL", "$TARGET_CARD", null],
-                        ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0]
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", null]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "detaches {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}}.", "{{$TARGET_CARD.currentFace.name}} is detached from {{$TARGET_CARD.parentCard.currentFace.name}}."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
+                                ["OR",
+                                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
+                                    ["EQUAL", "$ACTOR_PLAYER", null]
+                                ]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "detach {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}}.", "detaches {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}}."],
+                                ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"allowFlip": false}]
+                            ]
+                        ]
                     ]
                 ]
             ]

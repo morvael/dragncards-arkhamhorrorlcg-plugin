@@ -7,19 +7,7 @@
             ["PROMPT", "$PLAYER_N", "removeChaosTokens"]
         ],
         "pickChaosToken": [
-            ["COND",
-                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 1],
-                ["SHUFFLE_GROUP", "sharedChaosBag"]
-            ],
-            ["COND",
-                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 0],
-                [
-                    ["VAR", "$CHAOS_TOKEN_ID", ["GET_CARD_ID", "sharedChaosBag", 0, 0]],
-                    ["LOG", "{{$ALIAS_N}} reveals {{$CARD_BY_ID.$CHAOS_TOKEN_ID.sides.A.name}} from the Chaos Bag."],
-                    ["DO_MOVE_CARD", "$CHAOS_TOKEN_ID", "sharedVoid", 0, false, null],
-                    ["DO_FLIP_FACEUP", "$CHAOS_TOKEN_ID", false, null]
-                ]
-            ]
+            ["DO_PICK_CHAOS_TOKEN", "$PLAYER_N", true, "$PLAYER_N"]
         ],
         "listChaosTokens": [
             ["VAR", "$MESSAGE", ""],
@@ -50,36 +38,64 @@
         "DO_APPEND_CHAOS_TOKEN_COUNT": {
             "args": ["$CHAOS_TOKEN_NAME"],
             "code": [
-                ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
-                ["COND", ["GREATER_THAN", "$CHAOS_TOKEN_COUNT", 0], [
-                    ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$CHAOS_TOKEN_COUNT}}x {{$CHAOS_TOKEN_NAME}}"],
-                    ["UPDATE_VAR", "$SEPARATOR", ", "]
-                ]]
+                ["COND",
+                    ["NOT_EQUAL", "$CHAOS_TOKEN_NAME", null],
+                    [
+                        ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
+                        ["COND", ["GREATER_THAN", "$CHAOS_TOKEN_COUNT", 0], [
+                            ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$CHAOS_TOKEN_COUNT}}x {{$CHAOS_TOKEN_NAME}}"],
+                            ["UPDATE_VAR", "$SEPARATOR", ", "]
+                        ]]
+                    ]
+                ]
             ]
         },
         "DO_ADD_CHAOS_TOKEN": {
-            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
-                ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$CHAOS_TOKEN_COUNT"]],
                 ["COND",
-                    ["GREATER_THAN", "$LEFT_TO_ADD", 0],
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$CHAOS_TOKEN_NAME", null],
+                        ["NOT_EQUAL", "$CHAOS_TOKEN_DATABASE_ID", null],
+                        ["NOT_EQUAL", "$MAX_CHAOS_TOKENS", null]
+                    ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "adds {{$CHAOS_TOKEN_NAME}} to the Chaos Bag.", "{{$CHAOS_TOKEN_NAME}} is added to the Chaos Bag."],
-                        ["DO_CREATE_CARDS", null, "$CHAOS_TOKEN_DATABASE_ID", 1, "sharedChaosBag", false]
+                        ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
+                        ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$CHAOS_TOKEN_COUNT"]],
+                        ["COND",
+                            ["GREATER_THAN", "$LEFT_TO_ADD", 0],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "add {{$CHAOS_TOKEN_NAME}} to the Chaos Bag.", "adds {{$CHAOS_TOKEN_NAME}} to the Chaos Bag."],
+                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID", 1, "sharedChaosBag", false, "$ACTOR_PLAYER"]
+                            ]
+                        ]
                     ]
                 ]
             ]
         },
         "DO_REMOVE_CHAOS_TOKEN": {
-            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DEFINE", "$DO_REMOVE_CHAOS_TOKEN_RESULT", false],
                 ["VAR", "$CHAOS_TOKEN_ID", ["GET_CHAOS_TOKEN_BAG_CARD_ID", "$CHAOS_TOKEN_NAME"]],
                 ["COND",
                     ["NOT_EQUAL", "$CHAOS_TOKEN_ID", null],
-                    ["DO_DELETE_CARD", "$CHAOS_TOKEN_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
-                    ["DEFINE", "$DO_REMOVE_CHAOS_TOKEN_RESULT", true]
+                    ["DO_DELETE_CARD", "$TARGET_PLAYER", "$CHAOS_TOKEN_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "DO_PICK_CHAOS_TOKEN": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedChaosBag", false, "$ACTOR_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", "sharedChaosBag"], 0],
+                    [
+                        ["VAR", "$CHAOS_TOKEN_ID", ["GET_TOP_CARD_ID", "sharedChaosBag"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reveal {{$CARD_BY_ID.$CHAOS_TOKEN_ID.sides.A.name}} from the Chaos Bag.", "reveals {{$CARD_BY_ID.$CHAOS_TOKEN_ID.sides.A.name}} from the Chaos Bag."],
+                        ["DO_MOVE_CARD", "$TARGET_PLAYER", "$CHAOS_TOKEN_ID", "sharedVoid", 0, false, "$ACTOR_PLAYER"],
+                        ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$CHAOS_TOKEN_ID", false, "$ACTOR_PLAYER"]
+                    ]
                 ]
             ]
         }
@@ -93,49 +109,49 @@
                     "label": "Elder Thing",
                     "hotkey": "E",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Elder Thing", "chaos_elder_thing", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Elder Thing", "chaos_elder_thing", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Cultist",
                     "hotkey": "U",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Cultist", "chaos_cultist", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Cultist", "chaos_cultist", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Skull",
                     "hotkey": "S",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Skull", "chaos_skull", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Skull", "chaos_skull", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Tablet",
                     "hotkey": "T",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Tablet", "chaos_tablet", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Tablet", "chaos_tablet", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Bless",
                     "hotkey": "B",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Bless", "chaos_bless", 10, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Bless", "chaos_bless", 10, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Curse",
                     "hotkey": "C",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Curse", "chaos_curse", 10, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Curse", "chaos_curse", 10, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Frost",
                     "hotkey": "F",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "Frost", "chaos_frost", 8, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "Frost", "chaos_frost", 8, true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -159,70 +175,70 @@
                     "label": "+1",
                     "hotkey": "I",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "+1", "chaos_p1", 3, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "+1", "chaos_p1", 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "0",
                     "hotkey": "0",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "0", "chaos_p0", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "0", "chaos_p0", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-1",
                     "hotkey": "1",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-1", "chaos_m1", 5, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-1", "chaos_m1", 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-2",
                     "hotkey": "2",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-2", "chaos_m2", 4, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-2", "chaos_m2", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-3",
                     "hotkey": "3",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-3", "chaos_m3", 3, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-3", "chaos_m3", 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-4",
                     "hotkey": "4",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-4", "chaos_m4", 2, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-4", "chaos_m4", 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-5",
                     "hotkey": "5",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-5", "chaos_m5", 2, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-5", "chaos_m5", 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-6",
                     "hotkey": "6",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-6", "chaos_m6", 1, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-6", "chaos_m6", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-7",
                     "hotkey": "7",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-7", "chaos_m7", 1, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-7", "chaos_m7", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-8",
                     "hotkey": "8",
                     "code": [
-                        ["DO_ADD_CHAOS_TOKEN", "-8", "chaos_m8", 1, true, "$PLAYER_N"]
+                        ["DO_ADD_CHAOS_TOKEN", "$PLAYER_N", "-8", "chaos_m8", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -239,49 +255,49 @@
                     "label": "Elder Thing",
                     "hotkey": "E",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Elder Thing", "chaos_elder_thing", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Elder Thing", "chaos_elder_thing", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Cultist",
                     "hotkey": "U",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Cultist", "chaos_cultist", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Cultist", "chaos_cultist", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Skull",
                     "hotkey": "S",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Skull", "chaos_skull", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Skull", "chaos_skull", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Tablet",
                     "hotkey": "T",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Tablet", "chaos_tablet", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Tablet", "chaos_tablet", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Bless",
                     "hotkey": "B",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Bless", "chaos_bless", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Bless", "chaos_bless", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Curse",
                     "hotkey": "C",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Curse", "chaos_curse", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Curse", "chaos_curse", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Frost",
                     "hotkey": "F",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "Frost", "chaos_frost", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "Frost", "chaos_frost", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -305,70 +321,70 @@
                     "label": "+1",
                     "hotkey": "I",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "+1", "chaos_p1", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "+1", "chaos_p1", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "0",
                     "hotkey": "0",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "0", "chaos_p0", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "0", "chaos_p0", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-1",
                     "hotkey": "1",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-1", "chaos_m1", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-1", "chaos_m1", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-2",
                     "hotkey": "2",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-2", "chaos_m2", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-2", "chaos_m2", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-3",
                     "hotkey": "3",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-3", "chaos_m3", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-3", "chaos_m3", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-4",
                     "hotkey": "4",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-4", "chaos_m4", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-4", "chaos_m4", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-5",
                     "hotkey": "5",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-5", "chaos_m5", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-5", "chaos_m5", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-6",
                     "hotkey": "6",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-6", "chaos_m6", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-6", "chaos_m6", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-7",
                     "hotkey": "7",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-7", "chaos_m7", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-7", "chaos_m7", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "-8",
                     "hotkey": "8",
                     "code": [
-                        ["DO_REMOVE_CHAOS_TOKEN", "-8", "chaos_m8", true, "$PLAYER_N"]
+                        ["DO_REMOVE_CHAOS_TOKEN", "$PLAYER_N", "-8", "chaos_m8", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -391,5 +407,5 @@
         "listChaosTokens": {
             "English": "Count Chaos Tokens"
         }
-    }    
+    }
 }

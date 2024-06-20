@@ -70,7 +70,7 @@
         },
         "sharedEncounterDeckShort": {
             "English": "Encounter"
-        },        
+        },
         "sharedEncounterDiscard": {
             "English": "Encounter Discard"
         },
@@ -88,19 +88,19 @@
         },
         "sharedActDeckShort": {
             "English": "Act"
-        },        
+        },
         "sharedScenarioReference": {
             "English": "Scenario Reference"
-        },        
+        },
         "sharedScenarioReferenceShort": {
             "English": "Scenario"
         },
         "sharedVoid": {
             "English": "Void"
-        },        
+        },
         "sharedVoidShort": {
             "English": "Void"
-        },        
+        },
         "playerHandShort": {
             "English": "Hand"
         },
@@ -199,7 +199,7 @@
         },
         "player1Play": {
             "English": "Player 1 Play Area"
-        },        
+        },
         "sharedOffMap": {
             "English": "Off Map"
         },
@@ -283,7 +283,7 @@
         },
         "sharedTokensShort": {
             "English": "Tokens"
-        },        
+        },
         "sharedPileA": {
             "English": "Pile A"
         },
