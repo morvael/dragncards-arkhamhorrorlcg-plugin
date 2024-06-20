@@ -156,7 +156,7 @@
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["COND",
                         ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                        ["DO_DRAW_CARD", "$PLAYER_I", 1, true, "$PLAYER_I"]
+                        ["DO_DRAW_CARDS", "$PLAYER_I", 1, true, "$PLAYER_I"]
                     ]
                 ]],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
