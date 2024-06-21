@@ -10,6 +10,7 @@
             ]
         },
         "The Devourer Below": {
+            "hideFromSearch": true,
             "label": "The Devourer Below",
             "cards": [
                 {"databaseId": "01142", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
@@ -26,6 +27,7 @@
             ]
         },
         "The Devourer Below - Woods": {
+            "hideFromSearch": true,
             "label": "The Devourer Below - Woods",
             "cards": [
                 {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedLocations"},

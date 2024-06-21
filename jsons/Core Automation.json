@@ -2,16 +2,10 @@
     "automation": {
         "postNewGameActionList": [
             ["SET", "/arkhamScenarioInit", true],
-            ["LOG", "└── Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."],
-            ["SET_LAYOUT", "shared", "layout3Player"],
-            ["SET", "/numPlayers", 3],
-            ["LOAD_CARDS", "Roland Banks Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player2"],
-            ["LOAD_CARDS", "Daisy Walker Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player3"],
-            ["LOAD_CARDS", "Agnes Baker Starter Deck"],
-            ["DEFINE", "$PLAYER_N", "player1"],
-            ["LOAD_CARDS", "The Midnight Masks Scenario"]
+            ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
+        ],
+        "postSitDownActionList": [
+            ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
         "gameRules": [
             {
@@ -112,17 +106,6 @@
                 ],
                 "then": [
                     ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"]
-                ]
-            },
-            {
-                "_comment": "Make sure investigator group table labels show which player they belong to.",
-                "type": "trigger",
-                "listenTo": ["/playerData/*/alias"],
-                "condition": [
-                    ["FALSE"]
-                ],
-                "then": [
-                    ["DO_UPDATE_INVESTIGATOR_NAMES"]
                 ]
             }
         ]

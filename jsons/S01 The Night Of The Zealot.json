@@ -1,12 +1,14 @@
 {
     "preBuiltDecks": {
         "Rats": {
+            "hideFromSearch": true,
             "label": "Rats",
             "cards": [
                 {"databaseId": "01159", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Ghouls": {
+            "hideFromSearch": true,
             "label": "Ghouls",
             "cards": [
                 {"databaseId": "01160", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
@@ -15,6 +17,7 @@
             ]
         },
         "Striking Fear": {
+            "hideFromSearch": true,
             "label": "Striking Fear",
             "cards": [
                 {"databaseId": "01163", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
@@ -23,12 +26,14 @@
             ]
         },
         "Ancient Evils": {
+            "hideFromSearch": true,
             "label": "Ancient Evils",
             "cards": [
                 {"databaseId": "01166", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Chilling Cold": {
+            "hideFromSearch": true,
             "label": "Chilling Cold",
             "cards": [
                 {"databaseId": "01167", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -36,6 +41,7 @@
             ]
         },
         "Dark Cult": {
+            "hideFromSearch": true,
             "label": "Dark Cult",
             "cards": [
                 {"databaseId": "01169", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
@@ -44,6 +50,7 @@
             ]
         },
         "Nightgaunts": {
+            "hideFromSearch": true,
             "label": "Nightgaunts",
             "cards": [
                 {"databaseId": "01172", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -51,12 +58,14 @@
             ]
         },
         "Locked Doors": {
+            "hideFromSearch": true,
             "label": "Locked Doors",
             "cards": [
                 {"databaseId": "01174", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Agents of Hastur": {
+            "hideFromSearch": true,
             "label": "Agents of Hastur",
             "cards": [
                 {"databaseId": "01175", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -64,6 +73,7 @@
             ]
         },
         "Agents of Yog-Sothoth": {
+            "hideFromSearch": true,
             "label": "Agents of Yog-Sothoth",
             "cards": [
                 {"databaseId": "01177", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -71,6 +81,7 @@
             ]
         },
         "Agents of Shub-Niggurath": {
+            "hideFromSearch": true,
             "label": "Agents of Shub-Niggurath",
             "cards": [
                 {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
@@ -78,6 +89,7 @@
             ]
         },
         "Agents of Cthulhu": {
+            "hideFromSearch": true,
             "label": "Agents of Cthulhu",
             "cards": [
                 {"databaseId": "01181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -85,6 +97,7 @@
             ]
         },
         "Night of the Zealot Chaos Bag - Easy": {
+            "hideFromSearch": true,
             "label": "Night of the Zealot Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -99,6 +112,7 @@
             ]
         },
         "Night of the Zealot Chaos Bag - Normal": {
+            "hideFromSearch": true,
             "label": "Night of the Zealot Chaos Bag - Normal",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -115,6 +129,7 @@
             ]
         },
         "Night of the Zealot Chaos Bag - Hard": {
+            "hideFromSearch": true,
             "label": "Night of the Zealot Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -131,6 +146,7 @@
             ]
         },
         "Night of the Zealot Chaos Bag - Expert": {
+            "hideFromSearch": true,
             "label": "Night of the Zealot Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},

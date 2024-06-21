@@ -10,6 +10,7 @@
             ]
         },
         "The Midnight Masks": {
+            "hideFromSearch": true,
             "label": "The Midnight Masks",
             "cards": [
                 {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
@@ -28,6 +29,7 @@
             ]
         },
         "The Midnight Masks - Southside": {
+            "hideFromSearch": true,
             "label": "The Midnight Masks - Southside",
             "cards": [
                 {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
@@ -35,6 +37,7 @@
             ]
         },
         "The Midnight Masks - Downtown": {
+            "hideFromSearch": true,
             "label": "The Midnight Masks - Downtown",
             "cards": [
                 {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
@@ -42,6 +45,7 @@
             ]
         },
         "Cult of Umôrdhoth": {
+            "hideFromSearch": true,
             "label": "Cult of Umôrdhoth",
             "cards": [
                 {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},

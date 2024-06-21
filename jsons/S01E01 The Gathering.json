@@ -10,6 +10,7 @@
             ]
         },
         "The Gathering": {
+            "hideFromSearch": true,
              "label": "The Gathering",
              "cards": [
                 {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},

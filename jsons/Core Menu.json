@@ -1,8 +1,12 @@
 {
     "cardMenu": {
+        "suppress": ["Detach", "Attachment Direction", "Flip", "Delete", "Move To", "Show To", "Toggle Trigger", "Set Rotation"],
         "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
         "options": [
-
+            {
+                "label": "id:flipCard",
+                "actionList": "flipCard"
+            }
         ]
     },
     "groupMenu": {
