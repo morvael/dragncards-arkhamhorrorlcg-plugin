@@ -20,6 +20,45 @@
         {"label": "id:labelMarkAsDefeat",     "actionList": ["ACTION_LIST", "markAsDefeat"]},
         {"label": "id:labelMarkAsIncomplete", "actionList": ["ACTION_LIST", "markAsIncomplete"]}
     ],
+    "saveGame": {
+        "metadata": {
+            "Campaign - Scenario": "{{$GAME.arkhamCampaignName}} - {{$GAME.arkhamScenarioName}}",
+            "Difficulty": "{{$GAME.arkhamScenarioDifficulty}}",
+            "Investigators": [
+                ["VAR", "$INVESTIGATORS", ""],
+                ["VAR", "$SEPARATOR", ""],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$SUFFIX", ""],
+                    ["COND",
+                        ["EQUAL", "$PLAYER_I", "$PLAYER_N"],
+                        ["UPDATE_VAR", "$SUFFIX", " (you)"]
+                    ],
+                    ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                    ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                    ["COND",
+                        ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null],
+                        [
+                            ["VAR", "$NAME", "$CARD_BY_ID.$MINI_INVESTIGATOR_CARD_ID.sides.A.name"],
+                            ["UPDATE_VAR", "$INVESTIGATORS", "{{$INVESTIGATORS}}{{$SEPARATOR}}{{$NAME}}{{$SUFFIX}}"],
+                            ["UPDATE_VAR", "$SEPARATOR", ", "]
+                        ],
+                        ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                        [
+                            ["VAR", "$NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.sides.A.name"],
+                            ["UPDATE_VAR", "$INVESTIGATORS", "{{$INVESTIGATORS}}{{$SEPARATOR}}{{$NAME}}{{$SUFFIX}}"],
+                            ["UPDATE_VAR", "$SEPARATOR", ", "]
+                        ]
+                    ]
+                ]],
+                ["COND",
+                    ["EQUAL", "$INVESTIGATORS", ""],
+                    "No Investigators",
+                    ["TRUE"],
+                    "$INVESTIGATORS"
+                ]
+            ]
+        }
+    },
     "labels": {
         "labelMarkAsVictory": {
             "English": "Mark As Victory"

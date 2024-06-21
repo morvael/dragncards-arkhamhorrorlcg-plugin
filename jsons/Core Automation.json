@@ -1,8 +1,17 @@
 {
     "automation": {
         "postNewGameActionList": [
-            ["SET", "/arkhamScenarioInit", true],
-            ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkhamPostNewGameDone", true],
+                [
+                    ["SET", "/arkhamPostNewGameDone", true],
+                    ["SET", "/arkhamScenarioInit", true],
+                    ["SET", "/arkhamCampaignName", "No Campaign"],
+                    ["SET", "/arkhamScenarioName", "No Scenario"],
+                    ["SET", "/arkhamScenarioDifficulty", "Normal"],
+                    ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
+                ]
+            ]
         ],
         "postSitDownActionList": [
             ["DO_UPDATE_INVESTIGATOR_NAMES"]

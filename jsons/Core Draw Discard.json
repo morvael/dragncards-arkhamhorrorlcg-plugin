@@ -346,19 +346,21 @@
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["COND",
-                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                    ["GREATER_THAN", "$NUMBER", 0],
-                    ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", "{{$TARGET_PLAYER}}Hand"], 0]
-                ],
-                [
-                    ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
-                        ["GET_NUMERIC_LOG", "discard ", "discard ", "$NUMBER", " random card from their hand.", " random cards from their hand."],
-                        ["GET_NUMERIC_LOG", "discards ", "discards ", "$NUMBER", " random card from their hand.", " random cards from their hand."]
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["GREATER_THAN", "$NUMBER", 0],
+                        ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", "{{$TARGET_PLAYER}}Hand"], 0]
                     ],
-                    ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", ["GET_ALL_CARDS_IN_GROUP", "{{$TARGET_PLAYER}}Hand"], "$NUMBER"]],
-                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                        ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null]
-                    ]]
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "discard ", "discard ", "$NUMBER", " random card from their hand.", " random cards from their hand."],
+                            ["GET_NUMERIC_LOG", "discards ", "discards ", "$NUMBER", " random card from their hand.", " random cards from their hand."]
+                        ],
+                        ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", ["GET_ALL_CARDS_IN_GROUP", "{{$TARGET_PLAYER}}Hand"], "$NUMBER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null]
+                        ]]
+                    ]
                 ]
             ]
         }

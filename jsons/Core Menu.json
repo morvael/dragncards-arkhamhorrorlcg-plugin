@@ -1,7 +1,7 @@
 {
     "cardMenu": {
         "suppress": ["Detach", "Attachment Direction", "Flip", "Delete", "Move To", "Show To", "Toggle Trigger", "Set Rotation"],
-        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
+        "moveToGroupIds": [],
         "options": [
             {
                 "label": "id:flipCard",
@@ -10,10 +10,9 @@
         ]
     },
     "groupMenu": {
-        "moveToGroupIds": ["sharedEncounterDeck", "sharedEncounterDiscard"],
-        "options": [
-
-        ]
+        "suppress": ["Browse", "Look at top", "Look at top X", "Choose Random", "Set Visibility", "Move To"],
+        "moveToGroupIds": [],
+        "options": []
     },
     "pluginMenu": {
         "options": [

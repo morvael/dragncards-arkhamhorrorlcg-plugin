@@ -9,14 +9,14 @@
                     {"label": "id:agnesBakerStarterDeck", "deckListId": "Agnes Baker Starter Deck"},
                     {"label": "id:wendyAdamsStarterDeck", "deckListId": "Wendy Adams Starter Deck"}
                 ]
-            },            
+            },
             {   "label": "id:theNightOfTheZealot",
                 "deckLists": [
                     {"label": "id:theGathering", "deckListId": "The Gathering Scenario"},
                     {"label": "id:theMidnightMasks", "deckListId": "The Midnight Masks Scenario"},
                     {"label": "id:theDevourerBelow", "deckListId": "The Devourer Below Scenario"}
                 ]
-            }         
+            }
         ]
     },
     "labels": {
