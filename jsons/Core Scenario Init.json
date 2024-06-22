@@ -13,7 +13,7 @@
                         ["NOT_EQUAL", "$TARGET_GROUP_ID", null]
                     ],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "load {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} into {{$GROUP_BY_ID.label}}.", "loads {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} into {{$GROUP_BY_ID.label}}."],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "load {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "loads {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
                         ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$TARGET_DATABASE_ID", "quantity": "$TARGET_QUANTITY", "loadGroupId": "$TARGET_GROUP_ID"}]],
                         ["LOAD_CARDS", ["LIST", "$LOAD_LIST_ITEM"]]
                     ]

@@ -115,8 +115,8 @@
                                         ]
                                     ],
                                     ["OR",
-                                        ["EQUAL", "$TARGET_CARD.inPlay", true],
-                                        ["EQUAL", "$TARGET_CARD.inHand", true]
+                                        ["EQUAL", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.groupType", "inPlay"],
+                                        ["EQUAL", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.groupType", "hand"]
                                     ],
                                     ["COND",
                                         ["AND",
@@ -145,7 +145,7 @@
                                             ]
                                         ]
                                     ],
-                                    ["EQUAL", "$TARGET_CARD.inDeck", true],
+                                    ["EQUAL", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.groupType", "deck"],
                                     [
                                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}.", "discards {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}."],
                                         ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_CARD.discardToPile", 0, false, null]
