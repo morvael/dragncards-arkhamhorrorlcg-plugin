@@ -189,20 +189,19 @@
                                                 ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                                                 [
                                                     ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
-                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "sharedLocations", false, "$PLAYER_I"],
+                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "{{$PLAYER_I}}Investigator", false, null],
                                                     ["VAR", "$MINI_INVESTIGATOR_CARD", ["ONE_CARD", "$CARD", ["AND",
                                                         ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}"],
-                                                        ["EQUAL", "$CARD.groupId", "sharedLocations"],
-                                                        ["EQUAL", "$CARD.cardOwner", ""],
+                                                        ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Investigator"],
+                                                        ["EQUAL", "$CARD.cardOwner", "{{$PLAYER_I}}"],
                                                         ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
                                                     ]]],
                                                     ["COND",
                                                         ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD", null],
                                                         [
-                                                            ["SET", "/cardById/$MINI_INVESTIGATOR_CARD.id/cardOwner", "$PLAYER_I"],
                                                             ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
-                                                            ["DO_MOVE_CARD", "$PLAYER_I", "$MINI_INVESTIGATOR_CARD.id", "sharedLocations", -1, false, "$PLAYER_I"],
-                                                            ["DO_FLIP_FACEUP", "$PLAYER_I", "$MINI_INVESTIGATOR_CARD.id", false, "$PLAYER_I"],
+                                                            ["DO_MOVE_CARD", "$PLAYER_I", "$MINI_INVESTIGATOR_CARD.id", "sharedLocations", -1, false, null],
+                                                            ["DO_FLIP_FACEUP", "$PLAYER_I", "$MINI_INVESTIGATOR_CARD.id", false, null],
                                                             ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR_CARD.id", "$X", "$Y"],
                                                             ["INCREASE_VAR", "$X", "$X_CHANGE"]
                                                         ]

@@ -134,13 +134,13 @@
                                             ["COND",
                                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                                                 ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, false, null],
-                                                ["EQUAL", "$TARGET_CARD.controller", "player1"],
+                                                ["EQUAL", "$TARGET_CARD.cardOwner", "player1"],
                                                 ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "player1Discard", 0, false, null],
-                                                ["EQUAL", "$TARGET_CARD.controller", "player2"],
+                                                ["EQUAL", "$TARGET_CARD.cardOwner", "player2"],
                                                 ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "player2Discard", 0, false, null],
-                                                ["EQUAL", "$TARGET_CARD.controller", "player3"],
+                                                ["EQUAL", "$TARGET_CARD.cardOwner", "player3"],
                                                 ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "player3Discard", 0, false, null],
-                                                ["EQUAL", "$TARGET_CARD.controller", "player4"],
+                                                ["EQUAL", "$TARGET_CARD.cardOwner", "player4"],
                                                 ["DO_MOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "player4Discard", 0, false, null]
                                             ]
                                         ]
@@ -386,13 +386,13 @@
                         ["COND",
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                             ["DO_MOVE_CARD", "$PLAYER_N", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, false, null],
-                            ["EQUAL", "$TARGET_CARD.controller", "player1"],
+                            ["EQUAL", "$TARGET_CARD.cardOwner", "player1"],
                             ["DO_MOVE_CARD", "$PLAYER_N", "$TARGET_CARD_ID", "player1Discard", 0, false, null],
-                            ["EQUAL", "$TARGET_CARD.controller", "player2"],
+                            ["EQUAL", "$TARGET_CARD.cardOwner", "player2"],
                             ["DO_MOVE_CARD", "$PLAYER_N", "$TARGET_CARD_ID", "player2Discard", 0, false, null],
-                            ["EQUAL", "$TARGET_CARD.controller", "player3"],
+                            ["EQUAL", "$TARGET_CARD.cardOwner", "player3"],
                             ["DO_MOVE_CARD", "$PLAYER_N", "$TARGET_CARD_ID", "player3Discard", 0, false, null],
-                            ["EQUAL", "$TARGET_CARD.controller", "player4"],
+                            ["EQUAL", "$TARGET_CARD.cardOwner", "player4"],
                             ["DO_MOVE_CARD", "$PLAYER_N", "$TARGET_CARD_ID", "player4Discard", 0, false, null]
                         ]
                     ]

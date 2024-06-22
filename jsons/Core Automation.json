@@ -43,67 +43,64 @@
                 ]
             },
             {
-                "_comment": "Flip single-sided cards faceup (and disable peeking) when entering play.",
+                "_comment": "Owner and controller initialization. Includes flipping facedown of Scenario Reference and double-sided Locations.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
-                    ["AND",
-                        ["EQUAL", "$GROUP_BY_ID.{{$TARGET.groupId}}.groupType", "inPlay"],
-                        ["NOT_EQUAL", ["PREV", "$GROUP_BY_ID.{{$TARGET.groupId}}.groupType"], "inPlay"],
-                        ["EQUAL", "$TARGET.currentSide", "B"],
-                        ["OR",
-                            ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                            ["EQUAL", "$TARGET.sides.A.type", "Investigator"],
-                            ["EQUAL", "$TARGET.sides.A.type", "ChaosToken"],
-                            ["EQUAL", "$TARGET.sides.A.type", "FirstInvestigatorToken"]
+                    ["EQUAL", "$TARGET.cardOwner", ""]
+                ],
+                "then": [
+                    ["COND",
+                        ["IN_STRING", "$TARGET.groupId", "player1"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "player1"],
+                            ["SET", "/cardById/$TARGET.id/controller", "player1"]
                         ],
-                        ["NOT_EQUAL", "$TARGET.sides.A.type", "MiniConcealed"]
-                    ]
-                ],
-                "then": [
-                    ["SET", "/cardById/$TARGET.id/peeking/player1", false],
-                    ["SET", "/cardById/$TARGET.id/peeking/player2", false],
-                    ["SET", "/cardById/$TARGET.id/peeking/player3", false],
-                    ["SET", "/cardById/$TARGET.id/peeking/player4", false],
-                    ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$TARGET.id", false, null]
-                ]
-            },
-            {
-                "_comment": "Flip double-sided locations facedown when loading scenario.",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
-                "condition": [
-                    ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", true],
-                        ["EQUAL", "$TARGET.sides.A.type", "Location"],
-                        ["EQUAL", "$TARGET.sides.B.type", "Location"],
-                        ["EQUAL", "$TARGET.currentSide", "A"],
-                        ["EQUAL", "$TARGET.sides.B.clues", null],
-                        ["EQUAL", "$TARGET.sides.B.shroud", null]
-                    ]
-                ],
-                "then": [
-                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
-                ]
-            },
-            {
-                "_comment": "Flip scenario reference facedown as needed when loading scenario.",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
-                "condition": [
-                    ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", true],
-                        ["EQUAL", "$TARGET.sides.A.type", "Scenario"],
-                        ["EQUAL", "$TARGET.sides.B.type", "Scenario"],
-                        ["EQUAL", "$TARGET.currentSide", "A"],
-                        ["OR",
-                            ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                            ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"]
+                        ["IN_STRING", "$TARGET.groupId", "player2"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "player2"],
+                            ["SET", "/cardById/$TARGET.id/controller", "player2"]
+                        ],
+                        ["IN_STRING", "$TARGET.groupId", "player3"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "player3"],
+                            ["SET", "/cardById/$TARGET.id/controller", "player3"]
+                        ],
+                        ["IN_STRING", "$TARGET.groupId", "player4"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "player4"],
+                            ["SET", "/cardById/$TARGET.id/controller", "player4"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "scenario"],
+                            ["SET", "/cardById/$TARGET.id/controller", "scenario"],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$GAME.arkhamScenarioInit", true],
+                                    ["EQUAL", "$TARGET.sides.A.type", "Scenario"],
+                                    ["EQUAL", "$TARGET.sides.B.type", "Scenario"],
+                                    ["EQUAL", "$TARGET.currentSide", "A"],
+                                    ["OR",
+                                        ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
+                                        ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"]
+                                    ]
+                                ],
+                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", true, null]
+                            ],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$GAME.arkhamScenarioInit", true],
+                                    ["EQUAL", "$TARGET.sides.A.type", "Location"],
+                                    ["EQUAL", "$TARGET.sides.B.type", "Location"],
+                                    ["EQUAL", "$TARGET.currentSide", "A"],
+                                    ["EQUAL", "$TARGET.sides.B.clues", null],
+                                    ["EQUAL", "$TARGET.sides.B.shroud", null]
+                                ],
+                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
+                            ]
                         ]
                     ]
-                ],
-                "then": [
-                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
                 ]
             },
             {
