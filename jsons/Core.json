@@ -14,21 +14,22 @@
     },
     "cardBacks": {
         "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
-        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"}
+        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"},
+        "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/concealed.png"}
     },
     "cardTypes": {
         "Investigator":           {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
-        "Asset":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Treachery":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Event":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Skill":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Asset":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Treachery":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Event":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Skill":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Scenario":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
         "Agenda":                 {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Act":                    {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Location":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
         "Story":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
-        "Key":                    {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom"]},
+        "Key":                    {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "ChaosToken":             {"width": 0.28, "height": 0.28,"tokens": []},
         "FirstInvestigatorToken": {"width": 0.57, "height": 0.55,"tokens": []},
         "KeyToken":               {"width": 0.19, "height": 0.19,"tokens": []},
@@ -45,28 +46,31 @@
             {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png)"},
             {"key": "3", "tokenType": "doom", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png)"},
             {"key": "4", "tokenType": "damage", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png)"},
-            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"}
+            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"},
+            {"key": "6", "tokenType": "freeze", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png)"}
         ],
         "game": [
             {"key": "-", "actionList": "spendResources", "label": "id:spendResources"},
             {"key": "=", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
-            {"key": "C", "actionList": "pickChaosToken", "label": "id:pickChaosToken"},
-            {"key": "D", "actionList": "drawCard", "label": "id:drawCard"},
-            {"key": "E", "actionList": "drawEncounterCard", "label": "id:drawEncounterCard"},
+            {"key": "C", "actionList": "revealChaosToken", "label": "id:revealChaosToken"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
             {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
             {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
             {"key": "O", "actionList": "toggleSideboard", "label": "id:toggleSideboard"},
-            {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"}
+            {"key": "Q", "actionList": "drawEncounterCard", "label": "id:drawEncounterCard"},
+            {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"},
+            {"key": "W", "actionList": "drawPlayerCard", "label": "id:drawPlayerCard"}
         ],
         "card": [
-            {"key": "A", "actionList": "attachDetachCard", "label": "id:attachDetachCard"},
+            {"key": "A", "actionList": "attachCard", "label": "id:attachCard"},
+            {"key": "D", "actionList": "detachCard", "label": "id:detachCard"},
+            {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
-            {"key": "R", "actionList": "exhaustReadyCard", "label": "id:exhaustReadyCard"},
-            {"key": "S", "actionList": "discardCard", "label": "id:discardCard"}
+            {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
+            {"key": "X", "actionList": "discardCard", "label": "id:discardCard"}
         ]
     },
     "imageUrlPrefix": {

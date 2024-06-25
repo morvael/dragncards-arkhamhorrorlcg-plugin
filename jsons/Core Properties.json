@@ -1,8 +1,9 @@
 {
     "cardProperties": {
         "cardOwner":     {"type": "string",  "default": ""},
-        "controller":    {"type": "string",  "default": ""},
-        "discardToPile": {"type": "string",  "default": null}
+        "cardDeck":      {"type": "string",  "default": ""},
+        "cardDiscard":   {"type": "string",  "default": ""},
+        "controller":    {"type": "string",  "default": ""}
     },
     "faceProperties": {
         "subtype":               {"type": "string",  "default": ""},

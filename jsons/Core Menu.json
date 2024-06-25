@@ -6,27 +6,55 @@
             {
                 "label": "id:flipCard",
                 "actionList": "flipCard"
+            },
+            {
+                "label": "id:exhaustCard",
+                "actionList": "exhaustCard"
+            },
+            {
+                "label": "id:readyCard",
+                "actionList": "readyCard"
+            },
+            {
+                "label": "id:attachCard",
+                "actionList": "attachCard"
+            },
+            {
+                "label": "id:detachCard",
+                "actionList": "detachCard"
+            },
+            {
+                "label": "id:discardCard",
+                "actionList": "discardCard"
             }
         ]
     },
     "groupMenu": {
-        "suppress": ["Browse", "Look at top", "Look at top X", "Choose Random", "Set Visibility", "Move To"],
+        "suppress": ["Shuffle", "Browse", "Look at top", "Look at top X", "Choose Random", "Set Visibility", "Move To"],
         "moveToGroupIds": [],
         "options": []
     },
     "pluginMenu": {
         "options": [
             {
-                "label": "id:listChaosTokens",
-                "actionList": "listChaosTokens"
+                "label": "id:revealChaosToken",
+                "actionList": "revealChaosToken"
             },
             {
-                "label": "id:addChaosTokens",
-                "actionList": "addChaosTokens"
+                "label": "id:nameChaosToken",
+                "actionList": "nameChaosToken"
             },
             {
-                "label": "id:removeChaosTokens",
-                "actionList": "removeChaosTokens"
+                "label": "id:countChaosTokens",
+                "actionList": "countChaosTokens"
+            },
+            {
+                "label": "id:addChaosToken",
+                "actionList": "addChaosToken"
+            },
+            {
+                "label": "id:removeChaosToken",
+                "actionList": "removeChaosToken"
             }
         ]
     }

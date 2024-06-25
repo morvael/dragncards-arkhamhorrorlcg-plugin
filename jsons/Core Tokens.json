@@ -4,7 +4,8 @@
         "clue":     {"label": "id:clueToken",     "left": "10%", "top": "25%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png"},
         "doom":     {"label": "id:doomToken",     "left": "10%", "top": "50%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png"},
         "damage":   {"label": "id:damageToken",   "left": "55%", "top":  "0%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png"},
-        "horror":   {"label": "id:horrorToken",   "left": "55%", "top": "25%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png"}
+        "horror":   {"label": "id:horrorToken",   "left": "55%", "top": "25%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png"},
+        "freeze":   {"label": "id:freezeCounter", "left": "55%", "top": "50%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png"}
     },
     "actionLists": {
         "gainResources": [
@@ -155,6 +156,9 @@
         },
         "horrorToken": {
             "English": "Horror Token"
+        },
+        "freezeCounter": {
+            "English": "Freeze Counter"
         },
         "gainResources": {
             "English": "Gain 1 Resource"

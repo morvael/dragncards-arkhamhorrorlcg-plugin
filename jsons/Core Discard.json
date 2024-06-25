@@ -1,0 +1,251 @@
+{
+    "actionLists": {
+        "discardCard": [
+            ["COND",
+                ["GREATER_THAN", ["GET_DISCARD_CARD_MODE", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"], 0],
+                ["DO_DISCARD_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot discard {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "DO_DISCARD_CARD_FINAL": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_CARD_FINAL.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DISCARD_CARD_FINAL.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_CARD_FINAL.LOG_EVENT"],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.currentFace.name}}.", "discards {{$TARGET_CARD.currentFace.name}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, 0, {"combine":false}]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                        ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                    ],
+                    ["COND",
+                        ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.currentFace.name}} from the game.", "removes {{$TARGET_CARD.currentFace.name}} from the game."],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "{{$TARGET_CARD.cardOwner}}Removed", -1]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.currentFace.name}}.", "discards {{$TARGET_CARD.currentFace.name}}."],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "{{$TARGET_CARD.cardOwner}}Discard", 0, 0, {"combine":false}]
+                        ]
+                    ],
+                    ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""],
+                    [
+                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.currentFace.name}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_CARD.currentFace.name}} to {{$DISCARD_GROUP.label}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine":false}]
+                    ]
+                ]
+            ]
+        },
+        "GET_DISCARD_CARD_MODE": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_DISCARD_CARD_MODE.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DISCARD_CARD_MODE.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "GET_DISCARD_CARD_MODE.TARGET_CARD.groupId"]],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                    ],
+                    ["COND",
+                        ["AND",
+                            ["EQUAL", "$TARGET_GROUP.groupType", "deck"],
+                            ["NOT_EQUAL", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP.id"], null],
+                            ["OR",
+                                ["IN_STRING", "$TARGET_GROUP.id", "shared"],
+                                ["IN_STRING", "$TARGET_GROUP.id", "$TARGET_PLAYER"]
+                            ]
+                        ],
+                        1,
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
+                            ["NOT_EQUAL", "$TARGET_GROUP.id", "sharedChaosBag"]
+                        ],
+                        2,
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                            ],
+                            ["NOT_EQUAL", "$TARGET_GROUP.id", "sharedTokens"]
+                        ],
+                        3,
+                        ["AND",
+                            ["EQUAL", "$TARGET_GROUP.groupType", "hand"],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["IN_STRING", "$TARGET_GROUP.id", "$TARGET_PLAYER"]
+                        ],
+                        4,
+                        ["AND",
+                            ["EQUAL", "$TARGET_GROUP.groupType", "inPlay"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Scenario"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
+                            ["OR",
+                                ["GREATER_THAN", "$TARGET_CARD.currentFace.victoryPoints", 0],
+                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                                ],
+                                ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
+                            ]
+                        ],
+                        5,
+                        ["TRUE"],
+                        0
+                    ],
+                    ["TRUE"],
+                    0
+                ]
+            ]
+        },
+        "DO_DISCARD_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DISCARD_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "DO_DISCARD_CARD.TARGET_CARD.groupId"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_CARD.LOG_EVENT"],
+                ["VAR", "$DISCARD_CARD_MODE", ["GET_DISCARD_CARD_MODE", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$DISCARD_CARD_MODE", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}.", "discards {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP.id"], 0, 0, {"combine":false}]
+                    ],
+                    ["EQUAL", "$DISCARD_CARD_MODE", 2],
+                    ["COND",
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.currentFace.name", "Bless"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.name", "Curse"]
+                        ],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.currentFace.name}} Chaos Token from the game.", "removes {{$TARGET_CARD.currentFace.name}} Chaos Token from the game."],
+                            ["DELETE_CARD", "$TARGET_CARD_ID"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "return {{$TARGET_CARD.currentFace.name}} Chaos Token to the Chaos Bag.", "returns {{$TARGET_CARD.currentFace.name}} Chaos Token to the Chaos Bag."],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "sharedChaosBag", -1]
+                        ]
+                    ],
+                    ["EQUAL", "$DISCARD_CARD_MODE", 3],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.currentFace.name}} Token.", "removes {{$TARGET_CARD.currentFace.name}} Token."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedTokens", -1]
+                    ],
+                    ["EQUAL", "$DISCARD_CARD_MODE", 4],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.sides.A.name}} from hand.", "discards {{$TARGET_CARD.sides.A.name}} from hand."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "{{$TARGET_PLAYER}}Discard", 0, 0, {"combine":false}]
+                    ],
+                    ["EQUAL", "$DISCARD_CARD_MODE", 5],
+                    ["COND",
+                        ["GREATER_THAN", "$TARGET_CARD.currentFace.victoryPoints", 0],
+                        ["COND",
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                                ],
+                                ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
+                            ],
+                            ["PROMPT", "$TARGET_PLAYER", "victoryOrDiscard", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_CARD.currentFace.name}} to the Victory Display.", "moves {{$TARGET_CARD.currentFace.name}} to the Victory Display."],
+                                ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVictoryDisplay", -1]
+                            ]
+                        ],
+                        ["TRUE"],
+                        ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND.LOG_EVENT"],
+                ["VAR", "$TARGET_GROUP_ID", "{{$TARGET_PLAYER}}Hand"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                ["COND",
+                    ["GREATER_THAN", "$AVAILABLE_NUMBER", 0],
+                    [
+                        ["COND",
+                            ["GREATER_EQUAL", "$AVAILABLE_NUMBER", "$NUMBER"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                ["GET_NUMERIC_LOG", "discard ", "discard ", "$NUMBER", " random card from hand.", " random cards from hand."],
+                                ["GET_NUMERIC_LOG", "discards ", "discards ", "$NUMBER", " random card from hand.", " random cards from hand."]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                    ["GET_NUMERIC_LOG", "discard {{$AVAILABLE_NUMBER}} out of ", "discard {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " random card from hand.", " random cards from hand."],
+                                    ["GET_NUMERIC_LOG", "discards {{$AVAILABLE_NUMBER}} out of ", "discards {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " random card from hand.", " random cards from hand."]
+                                ],
+                                ["UPDATE_VAR", "$NUMBER", "$AVAILABLE_NUMBER"]
+                            ]
+                        ],
+                        ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"], "$NUMBER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null]
+                        ]]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "victoryOrDiscard": {
+            "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "message": "{{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}} is Victory {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.victoryPoints}}. Select destination.",
+            "options": [
+                {
+                    "label": "Victory Display",
+                    "hotkey": "V",
+                    "code": [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$PLAYER_N", "move {{$TARGET_CARD.currentFace.name}} to the Victory Display.", "moves {{$TARGET_CARD.currentFace.name}} to the Victory Display."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVictoryDisplay", -1]
+                    ]
+                },
+                {
+                    "label": "Discard Pile",
+                    "hotkey": "D",
+                    "code": [
+                        ["DO_DISCARD_CARD_FINAL", "$PLAYER_N", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                }
+            ]
+        }
+    },
+    "labels": {
+        "discardCard": {
+            "English": "Discard"
+        }
+    }
+}

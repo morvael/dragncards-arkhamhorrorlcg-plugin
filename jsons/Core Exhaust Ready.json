@@ -1,48 +1,89 @@
 {
     "actionLists": {
-        "exhaustReadyCard": [
+        "exhaustCard": [
             ["COND",
-                ["EQUAL", "$ACTIVE_CARD.currentFace.type", "MiniInvestigator"],
-                ["COND",
-                    ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                    ["DO_EXHAUST_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
-                    ["TRUE"],
-                    ["DO_READY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
-                ],
+                ["CAN_EXHAUST_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_EXHAUST_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
                 ["TRUE"],
-                ["COND",
-                    ["EQUAL", "$ACTIVE_CARD.rotation", 0],
-                    ["DO_EXHAUST_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
-                    ["TRUE"],
-                    ["DO_READY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"]
-                ]
+                ["LOG", "└── You cannot exhaust {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "readyCard": [
+            ["COND",
+                ["CAN_READY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_READY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot ready {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
         ]
     },
     "functions": {
+        "CAN_EXHAUST_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXHAUST_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXHAUST_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_EXHAUST_CARD.TARGET_CARD.groupId"]],
+                ["AND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                    ],
+                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
+                    ]
+                ]
+            ]
+        },
         "DO_EXHAUST_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_EXHAUST_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_EXHAUST_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_EXHAUST_CARD.LOG_EVENT"],
                 ["COND",
-                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["CAN_EXHAUST_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     ["COND",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                        ["COND",
-                            ["EQUAL", "$TARGET_CARD.currentSide", "A"],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exhaust {{$TARGET_CARD.currentFace.name}}.", "exhausts {{$TARGET_CARD.currentFace.name}}."],
-                                ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
-                            ]
+                        ["EQUAL", "$TARGET_CARD.rotation", 0],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exhaust {{$TARGET_CARD.currentFace.name}}.", "exhausts {{$TARGET_CARD.currentFace.name}}."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/rotation", 90]
                         ],
                         ["TRUE"],
-                        ["COND",
-                            ["EQUAL", "$TARGET_CARD.rotation", 0],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exhaust {{$TARGET_CARD.currentFace.name}}.", "exhausts {{$TARGET_CARD.currentFace.name}}."],
-                                ["SET", "/cardById/$TARGET_CARD_ID/rotation", 90]
-                            ]
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "increase freeze counter of {{$TARGET_CARD.currentFace.name}}.", "increases freeze counter of {{$TARGET_CARD.currentFace.name}}."],
+                            ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/freeze", 1]
                         ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_READY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_READY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_READY_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_READY_CARD.TARGET_CARD.groupId"]],
+                ["AND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                    ],
+                    ["EQUAL", "$TARGET_CARD.rotation", 90],
+                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
                     ]
                 ]
             ]
@@ -50,34 +91,66 @@
         "DO_READY_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_READY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_READY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_READY_CARD.LOG_EVENT"],
                 ["COND",
-                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["CAN_READY_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     ["COND",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                        ["COND",
-                            ["NOT_EQUAL", "$TARGET_CARD.currentSide", "A"],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "ready {{$TARGET_CARD.currentFace.name}}.", "readies {{$TARGET_CARD.currentFace.name}}."],
-                                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
-                            ]
+                        ["GREATER_THAN", "$TARGET_CARD.tokens.freeze", 0],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "decrease freeze counter of {{$TARGET_CARD.currentFace.name}}.", "decreases freeze counter of {{$TARGET_CARD.currentFace.name}}."],
+                            ["DECREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/freeze", 1]
                         ],
                         ["TRUE"],
-                        ["COND",
-                            ["NOT_EQUAL", "$TARGET_CARD.rotation", 0],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "ready {{$TARGET_CARD.currentFace.name}}.", "readies {{$TARGET_CARD.currentFace.name}}."],
-                                ["SET", "/cardById/$TARGET_CARD_ID/rotation", 0]
-                            ]
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "ready {{$TARGET_CARD.currentFace.name}}.", "readies {{$TARGET_CARD.currentFace.name}}."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/rotation", 0]
                         ]
                     ]
                 ]
             ]
+        },
+        "DO_READY_ALL_CARDS": {
+            "args": [],
+            "code": [
+                ["LOG", "└── Each exhausted card readies."],
+                ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
+                    ["COND",
+                        ["EQUAL", "$CARD.controller", "scenario"],
+                        ["DO_READY_CARD", "$GAME.firstPlayer", "$CARD_ID", false, null],
+                        ["TRUE"],
+                        ["DO_READY_CARD", "$CARD.controller", "$CARD_ID", false, null]
+                    ]
+                ]]
+            ]
+        }
+    },
+    "prompts": {
+        "askToReadyAllCards": {
+            "args": [],
+            "message": "Step U3 (4.3): ready exhausted cards.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules).",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_READY_ALL_CARDS"]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules).",
+                    "hotkey": "N"
+                }
+            ]
         }
     },
     "labels": {
-        "exhaustReadyCard": {
-            "English": "Exhaust / Ready"
+        "exhaustCard": {
+            "English": "Exhaust"
+        },
+        "readyCard": {
+            "English": "Ready"
         }
     }
 }

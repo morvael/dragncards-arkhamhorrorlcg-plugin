@@ -1,5 +1,117 @@
 {
     "functions": {
+        "VALIDATE_NOT_NULL": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "VALIDATE_NOT_EMPTY": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["EQUAL", "$PARAM", ""],
+                    ["ABORT", "{{$DESCRIPTION}} is empty."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "VALIDATE_PLAYER": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["EQUAL", "$PARAM", ""],
+                    ["ABORT", "{{$DESCRIPTION}} is empty."],
+                    ["AND",
+                        ["NOT_EQUAL", "$PARAM", "player1"],
+                        ["NOT_EQUAL", "$PARAM", "player2"],
+                        ["NOT_EQUAL", "$PARAM", "player3"],
+                        ["NOT_EQUAL", "$PARAM", "player4"]
+                    ],
+                    ["ABORT", "{{$DESCRIPTION}} is not a valid player id."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "VALIDATE_BOOLEAN": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["AND",
+                        ["NOT_EQUAL", "$PARAM", true],
+                        ["NOT_EQUAL", "$PARAM", false]
+                    ],
+                    ["ABORT", "{{$DESCRIPTION}} is not a valid boolean."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "VALIDATE_GT0": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["LESS_THAN", "$PARAM", 1],
+                    ["ABORT", "{{$DESCRIPTION}} is less than 1."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "VALIDATE_INDEX": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["LESS_THAN", "$PARAM", -1],
+                    ["ABORT", "{{$DESCRIPTION}} is less than -1."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
+        "GET_CARD_AND_VALIDATE": {
+            "args": ["$TARGET_CARD_ID", "$DESCRIPTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_CARD_ID", "$DESCRIPTION"],
+                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD", null],
+                    ["ABORT", "{{$DESCRIPTION}} is not a valid card id."],
+                    ["TRUE"],
+                    "$TARGET_CARD"
+                ]
+            ]
+        },
+        "GET_GROUP_AND_VALIDATE": {
+            "args": ["$TARGET_GROUP_ID", "$DESCRIPTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_GROUP_ID", "$DESCRIPTION"],
+                ["VAR", "$TARGET_GROUP", "$GROUP_BY_ID.$TARGET_GROUP_ID"],
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP", null],
+                    ["ABORT", "{{$DESCRIPTION}} is not a valid group id."],
+                    ["TRUE"],
+                    "$TARGET_GROUP"
+                ]
+            ]
+        },
         "DO_LOG": {
             "args": ["$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "$TEXT_WITH_ACTOR", "$TEXT_WITHOUT_ACTOR"],
             "code": [

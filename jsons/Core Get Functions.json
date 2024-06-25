@@ -13,7 +13,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
-                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                         ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
                         ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
                         ["CALC", "{{$LEFT}}+0"]
@@ -30,7 +30,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
-                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                         ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
                         ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
                         ["CALC", "{{$TOP}}+0"]
@@ -38,43 +38,6 @@
                     ["TRUE"],
                     0
                 ]
-            ]
-        },
-        "GET_CHAOS_TOKEN_BAG_CARD_ID": {
-            "args": ["$CHAOS_TOKEN_NAME"],
-            "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
-                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"],
-                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"]
-                ]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
-        "GET_CHAOS_TOKEN_BAG_COUNT": {
-            "args": ["$CHAOS_TOKEN_NAME"],
-            "code": [
-                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
-                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"],
-                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"]
-                ]]],
-                ["LENGTH", "$SELECTED_CHAOS_TOKENS"]
-            ]
-        },
-        "GET_CHAOS_TOKEN_COUNT": {
-            "args": ["$CHAOS_TOKEN_NAME"],
-            "code": [
-                ["VAR", "$SELECTED_CHAOS_TOKENS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
-                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"]
-                ]]],
-                ["LENGTH", "$SELECTED_CHAOS_TOKENS"]
             ]
         },
         "GET_CURRENT_ACT_ID": {
@@ -221,7 +184,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
-                        ["VAR", "$TARGET_CARD_STACK_ID", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.stackIds.[{{$TARGET_CARD.stackIndex}}]"],
+                        ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                         ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
                         ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
                     ]

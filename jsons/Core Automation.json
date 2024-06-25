@@ -63,6 +63,52 @@
                         [
                             ["SET", "/cardById/$TARGET.id/cardOwner", "scenario"],
                             ["COND",
+                                ["OR",
+                                    ["EQUAL", "$TARGET.groupId", "sharedDeckA"],
+                                    ["EQUAL", "$TARGET.groupId", "sharedDiscardA"]
+                                ],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedDeckA"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedDiscardA"]
+                                ],
+                                ["OR",
+                                    ["EQUAL", "$TARGET.groupId", "sharedDeckB"],
+                                    ["EQUAL", "$TARGET.groupId", "sharedDiscardB"]
+                                ],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedDeckB"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedDiscardB"]
+                                ],
+                                ["OR",
+                                    ["EQUAL", "$TARGET.groupId", "sharedDeckC"],
+                                    ["EQUAL", "$TARGET.groupId", "sharedDiscardC"]
+                                ],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedDeckC"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedDiscardC"]
+                                ],
+                                ["EQUAL", "$TARGET.groupId", "sharedPileA"],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedPileA"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedPileA"]
+                                ],
+                                ["EQUAL", "$TARGET.groupId", "sharedPileB"],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedPileB"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedPileB"]
+                                ],
+                                ["EQUAL", "$TARGET.groupId", "sharedPileC"],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedPileC"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedPileC"]
+                                ],
+                                ["EQUAL", "$TARGET.groupId", "sharedPileD"],
+                                [
+                                    ["SET", "/cardById/$TARGET.id/cardDeck", "sharedPileD"],
+                                    ["SET", "/cardById/$TARGET.id/cardDiscard", "sharedPileD"]
+                                ]
+                            ],
+                            ["COND",
                                 ["AND",
                                     ["EQUAL", "$GAME.arkhamScenarioInit", true],
                                     ["EQUAL", "$TARGET.sides.A.type", "Scenario"],
@@ -73,7 +119,7 @@
                                         ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"]
                                     ]
                                 ],
-                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", true, null]
+                                ["SET", "/cardById/$TARGET.id/currentSide", "B"]
                             ],
                             ["COND",
                                 ["AND",
@@ -84,36 +130,46 @@
                                     ["EQUAL", "$TARGET.sides.B.clues", null],
                                     ["EQUAL", "$TARGET.sides.B.shroud", null]
                                 ],
-                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET.id", false, null]
+                                ["SET", "/cardById/$TARGET.id/currentSide", "B"]
                             ]
-                        ],
-                        ["SET", "/cardById/$TARGET.id/controller", "$TARGET.cardOwner"]
-                    ]
+                        ]
+                    ],
+                    ["SET", "/cardById/$TARGET.id/controller", "$CARD_BY_ID.{{$TARGET.id}}.cardOwner"]
                 ]
             },
             {
-                "_comment": "Report controller change.",
+                "_comment": "Change controller.",
                 "type": "trigger",
-                "listenTo": ["/cardById/*/controller"],
+                "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
                         ["NOT_EQUAL", "$TARGET.controller", ""],
-                        ["NOT_EQUAL", ["PREV", "$TARGET.controller"], ""],
-                        ["NOT_EQUAL", ["PREV", "$TARGET.controller"], "$TARGET.controller"]
+                        ["NOT_EQUAL", ["GET_DESIRED_CONTROLLER", "$TARGET.groupId"], null],
+                        ["NOT_EQUAL", "$TARGET.controller", ["GET_DESIRED_CONTROLLER", "$TARGET.groupId"]]
                     ]
                 ],
                 "then": [
-                    ["VAR", "$OLD_CONTROLLER", ["PREV", "$TARGET.controller"]],
+                    ["VAR", "$OLD_CONTROLLER", "$TARGET.controller"],
+                    ["VAR", "$NEW_CONTROLLER", ["GET_DESIRED_CONTROLLER", "$TARGET.groupId"]],
                     ["COND",
-                        ["NOT_EQUAL", "$OLD_CONTROLLER", "scenario"],
-                        ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]]
-                    ],
-                    ["VAR", "$NEW_CONTROLLER", "$TARGET.controller"],
-                    ["COND",
-                        ["NOT_EQUAL", "$NEW_CONTROLLER", "scenario"],
-                        ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]]
-                    ],                    
-                    ["LOG", "└── {{$TARGET.currentFace.name}} changes controller from {{$OLD_CONTROLLER}} to {{$NEW_CONTROLLER}}."]
+                        ["OR",
+                            ["NOT_EQUAL", "$OLD_CONTROLLER", "scenario"],
+                            ["EQUAL", "$TARGET.sides.B.name", "Player Card"]
+                        ],
+                        [
+                            ["COND",
+                                ["NOT_EQUAL", "$OLD_CONTROLLER", "scenario"],
+                                ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]]
+                            ],
+                            ["VAR", "$NEW_CONTROLLER_ORIG", "$NEW_CONTROLLER"],
+                            ["COND",
+                                ["NOT_EQUAL", "$NEW_CONTROLLER", "scenario"],
+                                ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]]
+                            ],
+                            ["LOG", "└── {{$TARGET.currentFace.name}} changes controller from {{$OLD_CONTROLLER}} to {{$NEW_CONTROLLER}}."],
+                            ["SET", "/cardById/$TARGET.id/controller", "$NEW_CONTROLLER_ORIG"]
+                        ]
+                    ]
                 ]
             },
             {
@@ -130,6 +186,30 @@
         ]
     },
     "functions": {
+        "GET_DESIRED_CONTROLLER": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_GROUP_ID", "GET_DESIRED_CONTROLLER.TARGET_GROUP_ID"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_GROUP_ID", "sharedLocations"],
+                        ["EQUAL", "$TARGET_GROUP_ID", "sharedVoid"],
+                        ["EQUAL", "$TARGET_GROUP_ID", "sharedOffMap"]
+                    ],
+                    null,
+                    ["IN_STRING", "$TARGET_GROUP_ID", "player1"],
+                    "player1",
+                    ["IN_STRING", "$TARGET_GROUP_ID", "player2"],
+                    "player2",
+                    ["IN_STRING", "$TARGET_GROUP_ID", "player3"],
+                    "player3",
+                    ["IN_STRING", "$TARGET_GROUP_ID", "player4"],
+                    "player4",
+                    ["TRUE"],
+                    "scenario"
+                ]
+            ]
+        },
         "DO_STEP_M1": {
             "args": [],
             "code": [
@@ -146,10 +226,7 @@
         "DO_STEP_U3": {
             "args": [],
             "code": [
-                ["LOG", "└── Each exhausted card readies."],
-                ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                    ["DO_READY_CARD", "$GAME.firstPlayer", "$CARD_ID", false, null]
-                ]]
+                ["PROMPT", "$GAME.firstPlayer", "askToReadyAllCards"]
             ]
         },
         "DO_STEP_U4": {
@@ -158,7 +235,7 @@
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["COND",
                         ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                        ["DO_DRAW_CARDS", "$PLAYER_I", 1, true, "$PLAYER_I"]
+                        ["DO_DRAW_CARDS", "$PLAYER_I", "{{$PLAYER_I}}Deck", 1, true, "$PLAYER_I"]
                     ]
                 ]],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [

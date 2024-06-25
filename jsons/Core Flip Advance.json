@@ -1,0 +1,188 @@
+{
+    "actionLists": {
+        "flipCard": [
+            ["COND",
+                ["CAN_FLIP_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_FLIP_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot flip {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "advanceStory": [
+            ["COND",
+                ["CAN_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
+                ["DO_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot advance {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "CAN_FLIP_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_FLIP_CARD.TARGET_CARD.groupId"]],
+                ["AND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                    ],
+                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
+                    ["OR",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
+                        ["NOT_EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true]
+                    ],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Scenario"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
+                    ["OR",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                        ["EQUAL", "$ACTOR_PLAYER", null]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "B"]
+                    ]
+                ]
+            ]
+        },
+        "DO_FLIP_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_FLIP_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_FLIP_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_FLIP_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["COND",
+                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} facedown.", "flips {{$TARGET_CARD.currentFace.name}} facedown."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "B"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} faceup.", "flips {{$TARGET_CARD.currentFace.name}} faceup."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_FLIP_CARD_FACEDOWN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEDOWN.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEDOWN.TARGET_CARD_ID"]],
+                ["AND",
+                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["EQUAL", "$TARGET_CARD.currentSide", "A"]
+                ]
+            ]
+        },
+        "DO_FLIP_FACEDOWN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_FLIP_FACEDOWN.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_FLIP_FACEDOWN.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_FLIP_FACEDOWN.LOG_EVENT"],
+                ["COND",
+                    ["CAN_FLIP_CARD_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["DO_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "CAN_FLIP_CARD_FACEUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEUP.TARGET_CARD_ID"]],
+                ["AND",
+                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["EQUAL", "$TARGET_CARD.currentSide", "B"]
+                ]
+            ]
+        },
+        "DO_FLIP_FACEUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_FLIP_FACEUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_FLIP_FACEUP.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_FLIP_FACEUP.LOG_EVENT"],
+                ["COND",
+                    ["CAN_FLIP_CARD_FACEUP", "$TARGET_PLAYER","$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["DO_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "CAN_ADVANCE_STORY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ADVANCE_STORY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_ADVANCE_STORY.TARGET_GROUP_ID"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$TARGET_GROUP.groupType", "story"],
+                        ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
+                    ],
+                    [
+                        ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
+                        ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "CAN_ADVANCE_STORY.TOP_CARD_ID"]],
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$TOP_CARD.currentFace.type", "Agenda"],
+                                ["EQUAL", "$TOP_CARD.currentFace.type", "Act"]
+                            ],
+                            ["OR",
+                                ["EQUAL", "$TOP_CARD.currentSide", "A"],
+                                ["EQUAL", "$TOP_CARD.currentSide", "B"]
+                            ]
+                        ]
+                    ],
+                    ["TRUE"],
+                    false
+                ]
+            ]
+        },
+        "DO_ADVANCE_STORY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ADVANCE_STORY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_ADVANCE_STORY.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ADVANCE_STORY.LOG_EVENT"],
+                ["COND",
+                    ["CAN_ADVANCE_STORY", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
+                        ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_ADVANCE_STORY.TOP_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "advance {{$TOP_CARD.currentFace.name}}.", "advances {{$TOP_CARD.currentFace.name}}."],
+                        ["COND",
+                            ["EQUAL", "$TOP_CARD.currentSide", "A"],
+                            ["SET", "/cardById/$TOP_CARD_ID/currentSide", "B"],
+                            ["TRUE"],
+                            [
+                                ["COND",
+                                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
+                                    ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1, 0, {"combine":false, "allowFlip": false}]
+                                ],
+                                ["SET", "/cardById/$TOP_CARD_ID/currentSide", "A"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        }
+    },
+    "labels": {
+        "flipCard": {
+            "English": "Flip"
+        },
+        "advanceStory": {
+            "English": "Advance"
+        }
+    }
+}

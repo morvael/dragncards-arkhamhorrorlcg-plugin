@@ -69,7 +69,7 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$NEW_LEAD_PLAYER", null],
-                    ["DO_MOVE_CARD", "$ELIMINATED_PLAYER", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"], "sharedTokens", -1, true, null],
+                    ["MOVE_CARD", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"], "sharedTokens", -1, 0],
                     ["NOT_EQUAL", "$NEW_LEAD_PLAYER", "$GAME.firstPlayer"],
                     ["SET", "/firstPlayer", "$NEW_LEAD_PLAYER"]
                 ],
@@ -89,6 +89,7 @@
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/doom", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/damage", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/horror", 0],
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/freeze", 0],
                         ["DO_FLIP_FACEDOWN", "$ELIMINATED_PLAYER", "$INVESTIGATOR_CARD_ID", true, null]
                     ]
                 ],

@@ -56,7 +56,8 @@
                     ["TRUE"],
                     "$INVESTIGATORS"
                 ]
-            ]
+            ],
+            "Round": "{{$GAME.roundNumber}}"
         }
     },
     "labels": {

@@ -1,0 +1,326 @@
+{
+    "actionLists": {
+        "drawCard": [
+            ["COND",
+                ["CAN_DRAW_CARDS", "$PLAYER_N", "$ACTIVE_GROUP_ID", 1, "$PLAYER_N"],
+                ["DO_DRAW_CARDS", "$PLAYER_N", "$ACTIVE_GROUP_ID", 1, true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot draw from {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "drawEncounterCard": [
+            ["COND",
+                ["CAN_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, "$PLAYER_N"],
+                ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot draw from {{$GROUP_BY_ID.sharedEncounterDeck.label}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "drawPlayerCard": [
+            ["VAR", "$TARGET_GROUP_ID", "{{$PLAYER_N}}Deck"],
+            ["COND",
+                ["CAN_DRAW_CARDS", "$PLAYER_N", "$TARGET_GROUP_ID", 1, "$PLAYER_N"],
+                ["DO_DRAW_CARDS", "$PLAYER_N", "$TARGET_GROUP_ID", 1, true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot draw from {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "GET_PAIRED_GROUP_ID": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_GROUP_ID", "GET_PAIRED_GROUP_ID.TARGET_GROUP_ID"],
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedEncounterDeck"],
+                    "sharedEncounterDiscard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedEncounterDiscard"],
+                    "sharedEncounterDeck",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
+                    "player1Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1Discard"],
+                    "player1Deck",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
+                    "player2Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2Discard"],
+                    "player2Deck",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
+                    "player3Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3Discard"],
+                    "player3Deck",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
+                    "player4Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4Discard"],
+                    "player4Deck",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDeckA"],
+                    "sharedDiscardA",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDiscardA"],
+                    "sharedDeckA",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDeckB"],
+                    "sharedDiscardB",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDiscardB"],
+                    "sharedDeckB",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDeckC"],
+                    "sharedDiscardC",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedDiscardC"],
+                    "sharedDeckC",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_PAIRED_PLAYER": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_GROUP_ID", "GET_PAIRED_PLAYER.TARGET_GROUP_ID"],
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
+                    "player1",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1Discard"],
+                    "player1",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
+                    "player2",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2Discard"],
+                    "player2",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
+                    "player3",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3Discard"],
+                    "player3",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
+                    "player4",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4Discard"],
+                    "player4",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "DO_SHUFFLE_GROUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_GROUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_GROUP.LOG_EVENT"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "shuffle {{$TARGET_GROUP.label}}.", "shuffles {{$TARGET_GROUP.label}}."],
+                        ["SHUFFLE_GROUP", "$TARGET_GROUP_ID"]
+                    ]
+                ]
+            ]
+        },
+        "DO_SHUFFLE_GROUP_INTO_GROUP": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_GROUP_INTO_GROUP.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "DO_SHUFFLE_GROUP_INTO_GROUP.SOURCE_GROUP_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_GROUP_INTO_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_GROUP_INTO_GROUP.LOG_EVENT"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SOURCE_GROUP.stackIds"], 0],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "shuffle {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "shuffles {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."],
+                        ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$SOURCE_GROUP_ID"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine":false}]
+                        ]],
+                        ["COND",
+                            ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
+                            ["SHUFFLE_GROUP", "$TARGET_GROUP_ID"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SHUFFLE_LIST_INTO_GROUP": {
+            "args": ["$TARGET_PLAYER", "$SELECTED_CARDS", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_LIST_INTO_GROUP.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "DO_SHUFFLE_LIST_INTO_GROUP.SELECTED_CARDS"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_LIST_INTO_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_LIST_INTO_GROUP.LOG_EVENT"],
+                ["VAR", "$NUMBER", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$NUMBER", 0],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "shuffle ", "shuffle ", "$NUMBER", " card into {{$TARGET_GROUP.label}}.", " cards into {{$TARGET_GROUP.label}}."],
+                            ["GET_NUMERIC_LOG", "shuffles ", "shuffles ", "$NUMBER", " card into {{$TARGET_GROUP.label}}.", " cards into {{$TARGET_GROUP.label}}."]
+                        ],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine":false}]
+                        ]],
+                        ["COND",
+                            ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
+                            ["SHUFFLE_GROUP", "$TARGET_GROUP_ID"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_DRAW_CARDS_EXT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$SKIP_WEAKNESS", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DRAW_CARDS_EXT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DRAW_CARDS_EXT.TARGET_GROUP_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "CAN_DRAW_CARDS_EXT.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$SKIP_WEAKNESS", "CAN_DRAW_CARDS_EXT.SKIP_WEAKNESS"],
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP.groupType", "deck"],
+                    [
+                        ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
+                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$DISCARD_GROUP_ID", "CAN_DRAW_CARDS_EXT.DISCARD_GROUP_ID"]],
+                        ["VAR", "$PAIRED_PLAYER", ["GET_PAIRED_PLAYER", "$TARGET_GROUP_ID"]],
+                        ["AND",
+                            ["OR",
+                                ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0],
+                                ["GREATER_THAN", ["LENGTH", "$DISCARD_GROUP.stackIds"], 0]
+                            ],
+                            ["OR",
+                                ["EQUAL", "$PAIRED_PLAYER", null],
+                                ["EQUAL", "$PAIRED_PLAYER", "$TARGET_PLAYER"]
+                            ]
+                        ]
+                    ],
+                    ["TRUE"],
+                    false
+                ]
+            ]
+        },
+        "CAN_DRAW_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$ACTOR_PLAYER"],
+            "code": [
+                ["CAN_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", false, "$ACTOR_PLAYER"]
+            ]
+        },
+        "DO_DRAW_CARDS_EXT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$SKIP_WEAKNESS", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DRAW_CARDS_EXT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DRAW_CARDS_EXT.TARGET_GROUP_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_DRAW_CARDS_EXT.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$SKIP_WEAKNESS", "DO_DRAW_CARDS_EXT.SKIP_WEAKNESS"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DRAW_CARDS_EXT.LOG_EVENT"],
+                ["COND",
+                    ["CAN_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$SKIP_WEAKNESS", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$HAND_GROUP_ID", "{{$TARGET_PLAYER}}Hand"],
+                        ["VAR", "$HAND_GROUP", ["GET_GROUP_AND_VALIDATE", "$HAND_GROUP_ID", "DO_DRAW_CARDS_EXT.HAND_GROUP_ID"]],
+                        ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
+                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$DISCARD_GROUP_ID", "DO_DRAW_CARDS_EXT.DISCARD_GROUP_ID"]],
+                        ["VAR", "$AVAILABLE_NUMBER", ["ADD", ["LENGTH", "$TARGET_GROUP.stackIds"], ["LENGTH", "$DISCARD_GROUP.stackIds"]]],
+                        ["VAR", "$FROM_SUFFIX", " from {{$TARGET_GROUP.label}}"],
+                        ["COND",
+                            ["EQUAL", "$TARGET_PLAYER", ["GET_PAIRED_PLAYER", "$TARGET_GROUP_ID"]],
+                            ["UPDATE_VAR", "$FROM_SUFFIX", ""]
+                        ],
+                        ["COND",
+                            ["GREATER_EQUAL", "$AVAILABLE_NUMBER", "$NUMBER"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                ["GET_NUMERIC_LOG", "draw ", "draw ", "$NUMBER", " card{{$FROM_SUFFIX}}.", " cards{{$FROM_SUFFIX}}."],
+                                ["GET_NUMERIC_LOG", "draws ", "draws ", "$NUMBER", " card{{$FROM_SUFFIX}}.", " cards{{$FROM_SUFFIX}}."]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                    ["GET_NUMERIC_LOG", "draw {{$AVAILABLE_NUMBER}} out of ", "draw {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " card{{$FROM_SUFFIX}}.", " cards{{$FROM_SUFFIX}}."],
+                                    ["GET_NUMERIC_LOG", "draws {{$AVAILABLE_NUMBER}} out of ", "draws {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " card{{$FROM_SUFFIX}}.", " cards{{$FROM_SUFFIX}}."]
+                                ],
+                                ["UPDATE_VAR", "$NUMBER", "$AVAILABLE_NUMBER"]
+                            ]
+                        ],
+                        ["VAR", "$TAKE_HORROR", false],
+                        ["VAR", "$SHUFFLE_DECK", false],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUMBER", 1, [
+                            ["COND",
+                                ["EQUAL", ["LENGTH", "$TARGET_GROUP.stackIds"], 0],
+                                [
+                                    ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$DISCARD_GROUP_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", null],
+                                    ["UPDATE_VAR", "$TAKE_HORROR", true]
+                                ]
+                            ],
+                            ["VAR", "$CONTINUE", true],
+                            ["WHILE",
+                                ["EQUAL", "$CONTINUE", true],
+                                [
+                                    ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
+                                    ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_DRAW_CARDS_EXT.TOP_CARD_ID"]],
+                                    ["COND",
+                                        ["AND",
+                                            ["EQUAL", "$SKIP_WEAKNESS", true],
+                                            ["OR",
+                                                ["EQUAL", "$TOP_CARD.sides.A.subtype", "Weakness"],
+                                                ["EQUAL", "$TOP_CARD.sides.A.subtype", "Basic Weakness"]
+                                            ]
+                                        ],
+                                        [
+                                            ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"]," ignores a Weakness card."],
+                                            ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1],
+                                            ["UPDATE_VAR", "$SHUFFLE_DECK", true]
+                                        ],
+                                        ["TRUE"],
+                                        [
+                                            ["MOVE_CARD", "$TOP_CARD_ID", "$HAND_GROUP_ID", -1],
+                                            ["UPDATE_VAR", "$CONTINUE", false]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]],
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$SKIP_WEAKNESS", false],
+                                ["EQUAL", "$TAKE_HORROR", true]
+                            ],
+                            ["PROMPT", "$TARGET_PLAYER", "askToTakeHorrorAfterDraw"]
+                        ],
+                        ["COND",
+                            ["EQUAL", "$SHUFFLE_DECK", true],
+                            ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", null]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_DRAW_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", false, "$LOG_EVENT", "$ACTOR_PLAYER"]
+            ]
+        }
+    },
+    "prompts": {
+        "askToTakeHorrorAfterDraw": {
+            "args": [],
+            "message": "You should now take one horror due to empty deck during draw.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules).",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], 1, true, null]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules).",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips taking one horror due to empty deck during draw."]
+                    ]
+                }
+            ]
+        }
+    },
+    "labels": {
+        "drawCard": {
+            "English": "Draw card"
+        },
+        "drawEncounterCard": {
+            "English": "Draw Encounter card"
+        },
+        "drawPlayerCard": {
+            "English": "Draw Player card"
+        }
+    }
+}
