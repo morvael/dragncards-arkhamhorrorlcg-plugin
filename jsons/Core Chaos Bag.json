@@ -25,6 +25,18 @@
         ],
         "toggleChaosBag": [
             ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedChaosBag", true, "$PLAYER_N"]
+        ],
+        "addCurseToken": [
+            ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Curse", "chaos_curse", 10, true, "$PLAYER_N"]
+        ],
+        "removeCurseToken": [
+            ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Curse", "chaos_curse", true, "$PLAYER_N"]
+        ],
+        "addBlessToken": [
+            ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Bless", "chaos_bless", 10, true, "$PLAYER_N"]
+        ],
+        "removeBlessToken": [
+            ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Bless", "chaos_bless", true, "$PLAYER_N"]
         ]
     },
     "functions": {
@@ -670,8 +682,11 @@
         "revealChaosTokenMenu": {
             "English": "Reveal a Chaos Token (C)"
         },
-        "nameChaosTokenMenu": {
+        "nameChaosToken": {
             "English": "Name a Chaos Token"
+        },
+        "nameChaosTokenMenu": {
+            "English": "Name a Chaos Token (H)"
         },
         "browseChaosBagMenu": {
             "English": "Toggle Chaos Bag (B)"
@@ -687,6 +702,18 @@
         },
         "toggleChaosBag": {
             "English": "Toggle Chaos Bag"
+        },
+        "addCurseToken": {
+            "English": "Add Curse Chaos Token"
+        },
+        "removeCurseToken": {
+            "English": "Remove Curse Chaos Token"
+        },
+        "addBlessToken": {
+            "English": "Add Bless Chaos Token"
+        },
+        "removeBlessToken": {
+            "English": "Remove Bless Chaos Token"
         }
     }
 }

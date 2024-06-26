@@ -55,14 +55,19 @@
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "revealChaosToken", "label": "id:revealChaosToken"},
+            {"key": "H", "actionList": "nameChaosToken", "label": "id:nameChaosToken"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
             {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
             {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
             {"key": "O", "actionList": "toggleSideboard", "label": "id:toggleSideboard"},
             {"key": "Q", "actionList": "drawEncounterCard", "label": "id:drawEncounterCard"},
+            {"key": "U", "actionList": "addCurseToken", "label": "id:addCurseToken"},
+            {"key": "Shift+U", "actionList": "removeCurseToken", "label": "id:removeCurseToken"},
             {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"},
-            {"key": "W", "actionList": "drawPlayerCard", "label": "id:drawPlayerCard"}
+            {"key": "W", "actionList": "drawPlayerCard", "label": "id:drawPlayerCard"},
+            {"key": "Y", "actionList": "addBlessToken", "label": "id:addBlessToken"},
+            {"key": "Shift+Y", "actionList": "removeBlessToken", "label": "id:removeBlessToken"}
         ],
         "card": [
             {"key": "A", "actionList": "attachCard", "label": "id:attachCard"},
