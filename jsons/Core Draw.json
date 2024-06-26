@@ -17,7 +17,7 @@
             ]
         ],
         "drawPlayerCard": [
-            ["VAR", "$TARGET_GROUP_ID", "{{$PLAYER_N}}Deck"],
+            ["VAR", "$TARGET_GROUP_ID", ["GET_CONTROLLER_DECK", "$PLAYER_N"]],
             ["COND",
                 ["CAN_DRAW_CARDS", "$PLAYER_N", "$TARGET_GROUP_ID", 1, "$PLAYER_N"],
                 ["DO_DRAW_CARDS", "$PLAYER_N", "$TARGET_GROUP_ID", 1, true, "$PLAYER_N"],
@@ -167,7 +167,7 @@
                 ["VALIDATE_GT0", "$NUMBER", "CAN_DRAW_CARDS_EXT.NUMBER"],
                 ["VALIDATE_BOOLEAN", "$SKIP_WEAKNESS", "CAN_DRAW_CARDS_EXT.SKIP_WEAKNESS"],
                 ["COND",
-                    ["EQUAL", "$TARGET_GROUP.groupType", "deck"],
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     [
                         ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
                         ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$DISCARD_GROUP_ID", "CAN_DRAW_CARDS_EXT.DISCARD_GROUP_ID"]],
@@ -205,7 +205,7 @@
                 ["COND",
                     ["CAN_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$SKIP_WEAKNESS", "$ACTOR_PLAYER"],
                     [
-                        ["VAR", "$HAND_GROUP_ID", "{{$TARGET_PLAYER}}Hand"],
+                        ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
                         ["VAR", "$HAND_GROUP", ["GET_GROUP_AND_VALIDATE", "$HAND_GROUP_ID", "DO_DRAW_CARDS_EXT.HAND_GROUP_ID"]],
                         ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
                         ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$DISCARD_GROUP_ID", "DO_DRAW_CARDS_EXT.DISCARD_GROUP_ID"]],
@@ -313,14 +313,20 @@
         }
     },
     "labels": {
-        "drawCard": {
-            "English": "Draw card"
+        "drawCardMenu": {
+            "English": "Draw a card"
         },
         "drawEncounterCard": {
             "English": "Draw Encounter card"
         },
+        "drawEncounterCardMenu": {
+            "English": "Draw Encounter card (Q)"
+        },
         "drawPlayerCard": {
             "English": "Draw Player card"
+        },
+        "drawPlayerCardMenu": {
+            "English": "Draw Player card (W)"
         }
     }
 }

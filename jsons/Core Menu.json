@@ -4,36 +4,40 @@
         "moveToGroupIds": [],
         "options": [
             {
-                "label": "id:flipCard",
+                "label": "id:flipCardMenu",
                 "actionList": "flipCard"
             },
             {
-                "label": "id:exhaustCard",
+                "label": "id:exhaustCardMenu",
                 "actionList": "exhaustCard"
             },
             {
-                "label": "id:readyCard",
+                "label": "id:readyCardMenu",
                 "actionList": "readyCard"
             },
             {
-                "label": "id:attachCard",
+                "label": "id:attachCardMenu",
                 "actionList": "attachCard"
             },
             {
-                "label": "id:detachCard",
+                "label": "id:detachCardMenu",
                 "actionList": "detachCard"
             },
             {
-                "label": "id:discardCard",
+                "label": "id:discardCardMenu",
                 "actionList": "discardCard"
             },
             {
-                "label": "id:removeCard",
+                "label": "id:removeCardMenu",
                 "actionList": "removeCard"
             },
             {
-                "label": "id:exileCard",
+                "label": "id:exileCardMenu",
                 "actionList": "exileCard"
+            },
+            {
+                "label": "id:viewCardInfoMenu",
+                "actionList": "viewCardInfo"
             }
         ]
     },
@@ -45,23 +49,27 @@
     "pluginMenu": {
         "options": [
             {
-                "label": "id:revealChaosToken",
+                "label": "id:revealChaosTokenMenu",
                 "actionList": "revealChaosToken"
             },
             {
-                "label": "id:nameChaosToken",
+                "label": "id:nameChaosTokenMenu",
                 "actionList": "nameChaosToken"
             },
             {
-                "label": "id:countChaosTokens",
+                "label": "id:browseChaosBagMenu",
+                "actionList": "browseChaosBag"
+            },
+            {
+                "label": "id:countChaosTokensMenu",
                 "actionList": "countChaosTokens"
             },
             {
-                "label": "id:addChaosToken",
+                "label": "id:addChaosTokenMenu",
                 "actionList": "addChaosToken"
             },
             {
-                "label": "id:removeChaosToken",
+                "label": "id:removeChaosTokenMenu",
                 "actionList": "removeChaosToken"
             }
         ]

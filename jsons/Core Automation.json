@@ -1,4 +1,9 @@
 {
+    "actionLists": {
+        "viewCardInfo": [
+            ["DO_VIEW_CARD_INFO", "$ACTIVE_CARD_ID"]
+        ]
+    },
     "automation": {
         "postNewGameActionList": [
             ["COND",
@@ -210,6 +215,72 @@
                 ]
             ]
         },
+        "GET_CONTROLLER_INVESTIGATOR": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_INVESTIGATOR.CONTROLLER"],
+                "{{$CONTROLLER}}Investigator"
+            ]
+        },
+        "GET_CONTROLLER_PLAY": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_PLAY.CONTROLLER"],
+                "{{$CONTROLLER}}Play"
+            ]
+        },
+        "GET_CONTROLLER_THREAT": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_THREAT.CONTROLLER"],
+                "{{$CONTROLLER}}Threat"
+            ]
+        },
+        "GET_CONTROLLER_HAND": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_HAND.CONTROLLER"],
+                "{{$CONTROLLER}}Hand"
+            ]
+        },
+        "GET_CONTROLLER_DECK": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_DECK.CONTROLLER"],
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    "sharedEncounterDeck",
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Deck"
+                ]
+            ]
+        },
+        "GET_CONTROLLER_DISCARD": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_DISCARD.CONTROLLER"],
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    "sharedEncounterDiscard",
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Discard"
+                ]
+            ]
+        },
+        "GET_CONTROLLER_REMOVED": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_REMOVED.CONTROLLER"],
+                "{{$CONTROLLER}}Removed"
+            ]
+        },
+        "GET_CONTROLLER_EXILED": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXILED.CONTROLLER"],
+                "{{$CONTROLLER}}Exiled"
+            ]
+        },
         "DO_STEP_M1": {
             "args": [],
             "code": [
@@ -235,7 +306,7 @@
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["COND",
                         ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                        ["DO_DRAW_CARDS", "$PLAYER_I", "{{$PLAYER_I}}Deck", 1, true, "$PLAYER_I"]
+                        ["DO_DRAW_CARDS", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 1, true, "$PLAYER_I"]
                     ]
                 ]],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -263,7 +334,8 @@
                         ],
                         ["COND",
                             ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", "$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.parentCardId"],
-                            ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID", true, null]
+                            ["LOG", "└── ", ["GET_ALIAS", "$GAME.firstPlayer"], " attaches {{$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.currentFace.name}} to {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}."],
+                            ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID"]
                         ]
                     ]
                 ]
@@ -278,6 +350,56 @@
                     ["SET", "/groupById/{{$PLAYER_I}}Investigator/tableLabel", "$ALIAS_I"]
                 ]]
             ]
+        },
+        "DO_APPEND_CARD_INFO": {
+            "args": ["$TEXT"],
+            "code": [
+                ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}}{{$SEPARATOR}}{{$TEXT}}"],
+                ["UPDATE_VAR", "$SEPARATOR", ", "]
+            ]
+        },
+        "DO_VIEW_CARD_INFO": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_VIEW_CARD_INFO.TARGET_CARD_ID"]],
+                ["VAR", "$MESSAGE", "{{$TARGET_CARD.currentFace.name}} [{{$TARGET_CARD.id}}]"],
+                ["VAR", "$SEPARATOR", " is "],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.cardOwner", null],
+                        ["EQUAL", "$TARGET_CARD.cardOwner", ""]
+                    ],
+                    ["DO_APPEND_CARD_INFO", "not owned by anyone"],
+                    ["EQUAL", "$TARGET_CARD.cardOwner", "shared"],
+                    ["DO_APPEND_CARD_INFO", "owned by the scenario"],
+                    ["TRUE"],
+                    ["DO_APPEND_CARD_INFO", ["JOIN_STRING", "owned by ", ["GET_ALIAS", "$TARGET_CARD.cardOwner"]]]
+                ],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.controller", null],
+                        ["EQUAL", "$TARGET_CARD.controller", ""]
+                    ],
+                    ["DO_APPEND_CARD_INFO", "not controlled by anyone"],
+                    ["EQUAL", "$TARGET_CARD.controller", "shared"],
+                    ["DO_APPEND_CARD_INFO", "controlled by the scenario"],
+                    ["TRUE"],
+                    ["DO_APPEND_CARD_INFO", ["JOIN_STRING", "controlled by ", ["GET_ALIAS", "$TARGET_CARD.controller"]]]
+                ],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.cardDeck", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.cardDeck", ""]
+                    ],
+                    ["DO_APPEND_CARD_INFO", ["JOIN_STRING", "having source in ", "$GROUP_BY_ID.{{$TARGET_CARD.cardDeck}}.label"]]
+                ],
+                ["LOG", "└── {{$MESSAGE}}."]
+            ]
+        }
+    },
+    "labels": {
+        "viewCardInfoMenu": {
+            "English": "Info"
         }
     }
 }

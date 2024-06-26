@@ -15,41 +15,64 @@
         "toggleTokens": [
             ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedTokens", true, "$PLAYER_N"]
         ],
-        "toggleChaosBag": [
-            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedChaosBag", true, "$PLAYER_N"]
+        "browseSideboard": [
+            ["COND",
+                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_N.viewingSideboard", true],
+                ["DO_TOGGLE_SIDEBOARD", "$PLAYER_N", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot browse Sideboard, {{$ALIAS_N}}."]
+            ]
+        ],
+        "browseOffMap": [
+            ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedOffMap"]
+        ],
+        "browseNotInPlay": [
+            ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedNotInPlay"]
+        ],
+        "browseVictoryDisplay": [
+            ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedVictoryDisplay"]
+        ],
+        "browseTokens": [
+            ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedTokens"]
         ]
     },
     "functions": {
+        "DO_BROWSE_GROUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_BROWSE_GROUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_BROWSE_GROUP.TARGET_GROUP_ID"]],
+                ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " fanned out {{$TARGET_GROUP.label}}."],
+                ["LOOK_AT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", -1, false]
+            ]
+        },
         "DO_TOGGLE_SIDEBOARD": {
             "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_TOGGLE_SIDEBOARD.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_TOGGLE_SIDEBOARD.LOG_EVENT"],
                 ["COND",
-                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.viewingSideboard", true],
                     [
-                        ["COND",
-                            ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.viewingSideboard", true],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browse Sideboard.", "browses Sideboard."],
-                                ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", true],
-                                ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                                    ["COND",
-                                        ["EQUAL", "$REGION.layerIndex", 1],
-                                        ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", true]
-                                    ]
-                                ]]
-                            ],
-                            ["TRUE"],
-                            [
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "close Sideboard.", "closes Sideboard."],
-                                ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", false],
-                                ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
-                                    ["COND",
-                                        ["EQUAL", "$REGION.layerIndex", 1],
-                                        ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", false]
-                                    ]
-                                ]]
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "browse Sideboard.", "browses Sideboard."],
+                        ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", true],
+                        ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                            ["COND",
+                                ["EQUAL", "$REGION.layerIndex", 1],
+                                ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", true]
                             ]
-                        ]
+                        ]]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "close Sideboard.", "closes Sideboard."],
+                        ["SET", "/playerData/$TARGET_PLAYER/viewingSideboard", false],
+                        ["FOR_EACH_KEY_VAL", "$REGION_ID", "$REGION", "$GAME.layout.regions", [
+                            ["COND",
+                                ["EQUAL", "$REGION.layerIndex", 1],
+                                ["SET", "/playerData/$TARGET_PLAYER/layout/regions/$REGION_ID/visible", false]
+                            ]
+                        ]]
                     ]
                 ]
             ]
@@ -83,22 +106,34 @@
     },
     "labels": {
         "toggleSideboard": {
-            "English": "Browse / Close Sideboard"
+            "English": "Toggle Sideboard"
         },
         "toggleOffMap": {
-            "English": "Browse / Close Off Map"
+            "English": "Toggle Off Map"
         },
         "toggleNotInPlay": {
-            "English": "Browse / Close Not in Play"
+            "English": "Toggle Not in Play"
         },
         "toggleVictoryDisplay": {
-            "English": "Browse / Close Victory Display"
+            "English": "Toggle Victory Display"
         },
         "toggleTokens": {
-            "English": "Browse / Close Tokens"
+            "English": "Toggle Tokens"
         },
-        "toggleChaosBag": {
-            "English": "Browse / Close Chaos Bag"
+        "browseSideboardMenu": {
+            "English": "Toggle Sideboard (O)"
+        },
+        "browseOffMapMenu": {
+            "English": "Toggle Off Map (M)"
+        },
+        "browseNotInPlayMenu": {
+            "English": "Toggle Not in Play (N)"
+        },
+        "browseVictoryDisplayMenu": {
+            "English": "Toggle Victory Display (V)"
+        },
+        "browseTokensMenu": {
+            "English": "Toggle Tokens (K)"
         }
     }
 }

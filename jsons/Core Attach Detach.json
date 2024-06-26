@@ -37,6 +37,16 @@
         ]
     },
     "functions": {
+        "GET_ATTACHED_CARDS": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_ATTACHED_CARDS.TARGET_CARD_ID"]],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.parentCardId", "$TARGET_CARD_ID"],
+                    ["NOT_EQUAL", "$CARD.id", "$TARGET_CARD_ID"]
+                ]]
+           ]
+        },
         "GET_ATTACHED_CARDS_COUNT": {
             "args": ["$TARGET_CARD_ID"],
             "code": [
@@ -70,14 +80,11 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
-                        ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
-                            ["EQUAL", "$ACTOR_PLAYER", null]
-                        ],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
                     ],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
                     ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
                 ]
             ]
@@ -91,12 +98,12 @@
                 ["VAR", "$PARENT_GROUP", ["GET_GROUP_AND_VALIDATE", "$PARENT_CARD.groupId", "CAN_ATTACH_CARD_TO_PARENT.PARENT_CARD.groupId"]],
                 ["AND",
                     ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
-                    ["EQUAL", "$PARENT_GROUP.canHaveAttachments", true],
-                    ["EQUAL", "$PARENT_CARD.cardIndex", 0],
                     ["OR",
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Investigator"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
@@ -104,6 +111,8 @@
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Story"]
                     ],
+                    ["EQUAL", "$PARENT_GROUP.canHaveAttachments", true],
+                    ["EQUAL", "$PARENT_CARD.cardIndex", 0],
                     ["CAN_ATTACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
@@ -144,10 +153,7 @@
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
-                    ["OR",
-                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
-                        ["EQUAL", "$ACTOR_PLAYER", null]
-                    ]
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"]
                 ]
             ]
         },
@@ -181,8 +187,14 @@
         "attachCard": {
             "English": "Attach"
         },
+        "attachCardMenu": {
+            "English": "Attach (A)"
+        },
         "detachCard": {
             "English": "Detach"
+        },
+        "detachCardMenu": {
+            "English": "Detach (D)"
         }
     }
 }

@@ -147,7 +147,7 @@
                                 ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
                                 ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1, 0],
-                                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, "$ACTOR_PLAYER"],
+                                ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD_ID"]
                             ]
@@ -189,10 +189,10 @@
                                                 ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
                                                 [
                                                     ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
-                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, "{{$PLAYER_I}}Investigator", false, null],
+                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
                                                     ["VAR", "$MINI_INVESTIGATOR_CARD", ["ONE_CARD", "$CARD", ["AND",
                                                         ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}"],
-                                                        ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Investigator"],
+                                                        ["EQUAL", "$CARD.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"]],
                                                         ["EQUAL", "$CARD.cardOwner", "{{$PLAYER_I}}"],
                                                         ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
                                                     ]]],
@@ -201,7 +201,7 @@
                                                         [
                                                             ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
                                                             ["MOVE_CARD", "$MINI_INVESTIGATOR_CARD.id", "sharedLocations", -1, 0],
-                                                            ["DO_FLIP_FACEUP", "$PLAYER_I", "$MINI_INVESTIGATOR_CARD.id", false, null],
+                                                            ["SET", "/cardById/$MINI_INVESTIGATOR_CARD.id/currentSide", "A"],
                                                             ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR_CARD.id", "$X", "$Y"],
                                                             ["INCREASE_VAR", "$X", "$X_CHANGE"]
                                                         ]
@@ -241,12 +241,12 @@
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/eliminated", false],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "{{$PLAYER_I}}Deck"],
+                                ["EQUAL", "$CARD.groupId", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
                                 ["EQUAL", "$CARD.sides.A.permanent", true]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                 ["LOG", "└── Permanent {{$CARD.sides.A.name}} starts the game in play."],
-                                ["MOVE_CARD", "$CARD.id", "{{$PLAYER_I}}Play", -1]
+                                ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
                         ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
@@ -293,10 +293,10 @@
                     ["DO_GAIN_RESOURCES", "$PLAYER_I", 5, true, "$PLAYER_I"]
                 ],
                 ["COND",
-                    ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", "{{$PLAYER_I}}Hand"], 0],
+                    ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
                     [
-                        ["DO_SHUFFLE_GROUP", "$PLAYER_I", "{{$PLAYER_I}}Deck", true, "$PLAYER_I"],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", "{{$PLAYER_I}}Deck", 5, true, true, "$PLAYER_I"]
+                        ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, "$PLAYER_I"],
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, "$PLAYER_I"]
                     ]
                 ],
                 ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
@@ -305,7 +305,7 @@
         "DRAW_MULLIGAN_HAND": {
             "args": ["$DO_MULLIGAN"],
             "code": [
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "{{$PLAYER_N}}Hand", "$PLAYER_N"]],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$PLAYER_N"], "$PLAYER_N"]],
                 ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$PLAYER_N"],
                 ["COND",
                     ["AND",
@@ -314,8 +314,8 @@
                     ],
                     [
                         ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "take a mulligan.", "takes a mulligan."],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_N", "{{$PLAYER_N}}Deck", ["LENGTH", "$SELECTED_CARDS"], true, true, "$PLAYER_N"],
-                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_N", "$SELECTED_CARDS", "{{$PLAYER_N}}Deck", true, "$PLAYER_N"]
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], ["LENGTH", "$SELECTED_CARDS"], true, true, "$PLAYER_N"],
+                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_N", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_N"], true, "$PLAYER_N"]
                     ],
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]

@@ -32,12 +32,9 @@
             ],
             ["COND",
                 ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
-                [
-                    ["LOG", "{{$ALIAS_N}} fanned out {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
-                    ["LOOK_AT", "$PLAYER_N", "$TARGET_GROUP_ID", -1, false]
-                ],
+                ["DO_BROWSE_GROUP", "$PLAYER_N", "$TARGET_GROUP_ID"],
                 ["TRUE"],
-                ["LOG", "└── You cannot browse removed cards from here, {{$ALIAS_N}}."]
+                ["LOG", "└── You cannot browse Removed from here, {{$ALIAS_N}}."]
             ]
         ],
         "browseExiled": [
@@ -54,12 +51,9 @@
             ],
             ["COND",
                 ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
-                [
-                    ["LOG", "{{$ALIAS_N}} fanned out {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
-                    ["LOOK_AT", "$PLAYER_N", "$TARGET_GROUP_ID", -1, false]
-                ],
+                ["DO_BROWSE_GROUP", "$PLAYER_N", "$TARGET_GROUP_ID"],
                 ["TRUE"],
-                ["LOG", "└── You cannot browse exiled cards from here, {{$ALIAS_N}}."]
+                ["LOG", "└── You cannot browse Exiled from here, {{$ALIAS_N}}."]
             ]
         ]
     },
@@ -71,11 +65,12 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_REMOVE_CARD.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_REMOVE_CARD.TARGET_CARD.groupId"]],
                 ["AND",
-                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "removed"],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
+                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "removed"],
+                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "exiled"],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
@@ -84,21 +79,8 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
-                        ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                            ["EQUAL", "$TARGET_CARD.cardOwner", "shared"]
-                        ],
-                        ["AND",
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"]
-                            ],
-                            ["NOT_EQUAL", "$TARGET_CARD.cardOwner", "shared"],
-                            ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true]
-                        ]
-                    ],
-                    ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
+                    ]
                 ]
             ]
         },
@@ -111,8 +93,9 @@
                 ["COND",
                     ["CAN_REMOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.currentFace.name}} from the game.", "removes {{$TARGET_CARD.currentFace.name}} from the game."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "{{$TARGET_CARD.cardOwner}}Removed", -1]
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.sides.A.name}} from the game.", "removes {{$TARGET_CARD.sides.A.name}} from the game."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
                     ]
                 ]
             ]
@@ -124,14 +107,14 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXILE_CARD.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_EXILE_CARD.TARGET_CARD.groupId"]],
                 ["AND",
-                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "exiled"],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
+                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "removed"],
+                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "exiled"],
                     ["NOT_EQUAL", "$TARGET_CARD.cardOwner", "shared"],
-                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                    ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
                 ]
             ]
         },
@@ -144,25 +127,26 @@
                 ["COND",
                     ["CAN_EXILE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_CARD.currentFace.name}} from the game.", "exiles {{$TARGET_CARD.currentFace.name}} from the game."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "{{$TARGET_CARD.cardOwner}}Exiled", -1]
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_CARD.sides.A.name}} from the game.", "exiles {{$TARGET_CARD.sides.A.name}} from the game."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_EXILED", "$TARGET_CARD.cardOwner"], -1]
                     ]
                 ]
             ]
         }
     },
     "labels": {
-        "removeCard": {
+        "removeCardMenu": {
             "English": "Remove from the game"
         },
-        "exileCard": {
+        "exileCardMenu": {
             "English": "Exile from the game"
         },
-        "browseRemoved": {
-            "English": "Browse removed cards"
+        "browseRemovedMenu": {
+            "English": "Browse Removed"
         },
-        "browseExiled": {
-            "English": "Browse exiled cards"
+        "browseExiledMenu": {
+            "English": "Browse Exiled"
         }
     }
 }

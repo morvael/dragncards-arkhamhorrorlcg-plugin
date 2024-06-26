@@ -29,20 +29,22 @@
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
+                    ],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
                     ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
-                    ["OR",
-                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                        ["NOT_EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true]
-                    ],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Scenario"],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"],
-                    ["OR",
-                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                        ["EQUAL", "$ACTOR_PLAYER", null]
-                    ],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentSide", "A"],
                         ["EQUAL", "$TARGET_CARD.currentSide", "B"]
@@ -181,7 +183,10 @@
         "flipCard": {
             "English": "Flip"
         },
-        "advanceStory": {
+        "flipCardMenu": {
+            "English": "Flip (F)"
+        },
+        "advanceStoryMenu": {
             "English": "Advance"
         }
     }

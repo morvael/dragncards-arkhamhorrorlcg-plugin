@@ -149,8 +149,14 @@
         "exhaustCard": {
             "English": "Exhaust"
         },
+        "exhaustCardMenu": {
+            "English": "Exhaust (E)"
+        },
         "readyCard": {
             "English": "Ready"
+        },
+        "readyCardMenu": {
+            "English": "Ready (R)"
         }
     }
 }

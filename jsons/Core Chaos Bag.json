@@ -11,6 +11,9 @@
         "nameChaosToken": [
             ["PROMPT", "$PLAYER_N", "nameChaosToken"]
         ],
+        "browseChaosBag": [
+            ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedChaosBag"]
+        ],
         "countChaosTokens": [
             ["DO_COUNT_CHAOS_TOKENS", "$PLAYER_N", true, "$PLAYER_N"]
         ],
@@ -19,6 +22,9 @@
         ],
         "removeChaosToken": [
             ["PROMPT", "$PLAYER_N", "removeChaosToken"]
+        ],
+        "toggleChaosBag": [
+            ["DO_TOGGLE_SIDEBOARD_GROUP", "$PLAYER_N", "sharedChaosBag", true, "$PLAYER_N"]
         ]
     },
     "functions": {
@@ -661,17 +667,26 @@
         "revealChaosToken": {
             "English": "Reveal a Chaos Token"
         },
-        "nameChaosToken": {
+        "revealChaosTokenMenu": {
+            "English": "Reveal a Chaos Token (C)"
+        },
+        "nameChaosTokenMenu": {
             "English": "Name a Chaos Token"
         },
-        "countChaosTokens": {
+        "browseChaosBagMenu": {
+            "English": "Toggle Chaos Bag (B)"
+        },
+        "countChaosTokensMenu": {
             "English": "Count Chaos Tokens"
         },
-        "addChaosToken": {
+        "addChaosTokenMenu": {
             "English": "Add a Chaos Token"
         },
-        "removeChaosToken": {
+        "removeChaosTokenMenu": {
             "English": "Remove a Chaos Token"
+        },
+        "toggleChaosBag": {
+            "English": "Toggle Chaos Bag"
         }
     }
 }

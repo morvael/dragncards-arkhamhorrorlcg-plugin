@@ -90,17 +90,17 @@
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/damage", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/horror", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/freeze", 0],
-                        ["DO_FLIP_FACEDOWN", "$ELIMINATED_PLAYER", "$INVESTIGATOR_CARD_ID", true, null]
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/currentSide", "B"]
                     ]
                 ],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.controller", "$ELIMINATED_PLAYER"],
-                    ["NOT_EQUAL", "$CARD.groupId", "{{$ELIMINATED_PLAYER}}Discard"],
+                    ["NOT_EQUAL", "$CARD.groupId", ["GET_CONTROLLER_DISCARD", "$ELIMINATED_PLAYER"]],
                     ["EQUAL", "$CARD.sides.B.databaseId", null],
                     ["EQUAL", "$CARD.sides.B.name", "Player Card"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["MOVE_CARD", "$CARD.id", "{{$ELIMINATED_PLAYER}}Discard", 0]
+                    ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_DISCARD", "$ELIMINATED_PLAYER"], 0]
                 ]],
                 ["SET", "/playerData/$ELIMINATED_PLAYER/resources", 0],
                 ["SET", "/playerData/$ELIMINATED_PLAYER/eliminated", true]
