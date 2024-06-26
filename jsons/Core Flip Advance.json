@@ -26,7 +26,7 @@
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_FLIP_CARD.TARGET_CARD.groupId"]],
                 ["AND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],

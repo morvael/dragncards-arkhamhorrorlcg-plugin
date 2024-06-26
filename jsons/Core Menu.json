@@ -26,6 +26,14 @@
             {
                 "label": "id:discardCard",
                 "actionList": "discardCard"
+            },
+            {
+                "label": "id:removeCard",
+                "actionList": "removeCard"
+            },
+            {
+                "label": "id:exileCard",
+                "actionList": "exileCard"
             }
         ]
     },

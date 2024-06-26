@@ -24,7 +24,7 @@
                     ],
                     ["AND",
                         ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                        ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                        ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
                     ],
                     ["COND",
                         ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true],
@@ -55,7 +55,7 @@
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "GET_DISCARD_CARD_MODE.TARGET_CARD.groupId"]],
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["COND",
@@ -104,7 +104,7 @@
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                                 ["AND",
                                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
                                 ],
                                 ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
                             ]
@@ -166,7 +166,7 @@
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                                 ["AND",
                                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "scenario"]
+                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
                                 ],
                                 ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
                             ],

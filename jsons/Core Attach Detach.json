@@ -59,7 +59,7 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD.TARGET_CARD_ID"]],
                 ["AND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["OR",
@@ -140,7 +140,7 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DETACH_CARD.TARGET_CARD_ID"]],
                 ["AND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "scenario"],
+                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],

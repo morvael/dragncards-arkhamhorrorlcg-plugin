@@ -61,7 +61,7 @@
                         ["SET", "/cardById/$TARGET.id/cardOwner", "player4"],
                         ["TRUE"],
                         [
-                            ["SET", "/cardById/$TARGET.id/cardOwner", "scenario"],
+                            ["SET", "/cardById/$TARGET.id/cardOwner", "shared"],
                             ["COND",
                                 ["OR",
                                     ["EQUAL", "$TARGET.groupId", "sharedDeckA"],
@@ -153,17 +153,17 @@
                     ["VAR", "$NEW_CONTROLLER", ["GET_DESIRED_CONTROLLER", "$TARGET.groupId"]],
                     ["COND",
                         ["OR",
-                            ["NOT_EQUAL", "$OLD_CONTROLLER", "scenario"],
+                            ["NOT_EQUAL", "$OLD_CONTROLLER", "shared"],
                             ["EQUAL", "$TARGET.sides.B.name", "Player Card"]
                         ],
                         [
                             ["COND",
-                                ["NOT_EQUAL", "$OLD_CONTROLLER", "scenario"],
+                                ["NOT_EQUAL", "$OLD_CONTROLLER", "shared"],
                                 ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]]
                             ],
                             ["VAR", "$NEW_CONTROLLER_ORIG", "$NEW_CONTROLLER"],
                             ["COND",
-                                ["NOT_EQUAL", "$NEW_CONTROLLER", "scenario"],
+                                ["NOT_EQUAL", "$NEW_CONTROLLER", "shared"],
                                 ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]]
                             ],
                             ["LOG", "└── {{$TARGET.currentFace.name}} changes controller from {{$OLD_CONTROLLER}} to {{$NEW_CONTROLLER}}."],
@@ -206,7 +206,7 @@
                     ["IN_STRING", "$TARGET_GROUP_ID", "player4"],
                     "player4",
                     ["TRUE"],
-                    "scenario"
+                    "shared"
                 ]
             ]
         },
