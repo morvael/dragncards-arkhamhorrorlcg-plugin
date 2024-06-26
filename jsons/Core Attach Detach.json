@@ -67,22 +67,36 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ATTACH_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_ATTACH_CARD.TARGET_CARD.groupId"]],
                 ["AND",
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                        ["AND",
+                            ["IN_STRING", "$TARGET_GROUP.groupType", "hand"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"]
+                            ]
+                        ],
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                        ]
                     ],
                     ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
                     ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
@@ -122,16 +136,22 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ATTACH_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ATTACH_CARD.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "DO_ATTACH_CARD.TARGET_CARD.groupId"]],                
                 ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "DO_ATTACH_CARD.PARENT_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ATTACH_CARD.LOG_EVENT"],
                 ["COND",
                     ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
                     [
+                        ["VAR", "$TARGET_NAME", "$TARGET_CARD.currentFace.name"],
+                        ["COND",
+                            ["IN_STRING", "$TARGET_GROUP.groupType", "hand"],
+                            ["UPDATE_VAR", "$TARGET_NAME", "$TARGET_CARD.sides.A.name"]
+                        ],
                         ["COND",
                             ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reattach {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "reattaches {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reattach {{$TARGET_NAME}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "reattaches {{$TARGET_NAME}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
                             ["TRUE"],
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."]
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}."]
                         ],
                         ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
                         ["COND",
