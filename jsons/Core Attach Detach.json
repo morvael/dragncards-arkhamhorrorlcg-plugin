@@ -136,7 +136,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ATTACH_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ATTACH_CARD.TARGET_CARD_ID"]],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "DO_ATTACH_CARD.TARGET_CARD.groupId"]],                
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "DO_ATTACH_CARD.TARGET_CARD.groupId"]],
                 ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "DO_ATTACH_CARD.PARENT_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ATTACH_CARD.LOG_EVENT"],
                 ["COND",

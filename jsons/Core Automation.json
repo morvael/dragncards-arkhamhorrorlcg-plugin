@@ -164,12 +164,16 @@
                         [
                             ["COND",
                                 ["NOT_EQUAL", "$OLD_CONTROLLER", "shared"],
-                                ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]]
+                                ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]],
+                                ["TRUE"],
+                                ["UPDATE_VAR", "$OLD_CONTROLLER", "the scenario"]
                             ],
                             ["VAR", "$NEW_CONTROLLER_ORIG", "$NEW_CONTROLLER"],
                             ["COND",
                                 ["NOT_EQUAL", "$NEW_CONTROLLER", "shared"],
-                                ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]]
+                                ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]],
+                                ["TRUE"],
+                                ["UPDATE_VAR", "$NEW_CONTROLLER", "the scenario"]
                             ],
                             ["LOG", "└── {{$TARGET.currentFace.name}} changes controller from {{$OLD_CONTROLLER}} to {{$NEW_CONTROLLER}}."],
                             ["SET", "/cardById/$TARGET.id/controller", "$NEW_CONTROLLER_ORIG"]
@@ -279,6 +283,19 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXILED.CONTROLLER"],
                 "{{$CONTROLLER}}Exiled"
+            ]
+        },
+        "GET_PLAYER_CONTROLLER": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_PLAYER_CONTROLLER.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_PLAYER_CONTROLLER.TARGET_CARD_ID"]],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.controller", "shared"],
+                    "$TARGET_PLAYER",
+                    ["TRUE"],
+                    "$TARGET_CARD.controller"
+                ]
             ]
         },
         "DO_STEP_M1": {

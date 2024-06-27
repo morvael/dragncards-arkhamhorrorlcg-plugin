@@ -34,6 +34,29 @@
         ],
         "browseTokens": [
             ["DO_BROWSE_GROUP", "$PLAYER_N", "sharedTokens"]
+        ],
+        "calculateVP": [
+            ["VAR", "$LOCATIONS_VP", 0],
+            ["VAR", "$SELECTED_LOCATIONS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"],
+                ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
+                ["GREATER_THAN", "$CARD.currentFace.victoryPoints", 0],
+                ["EQUAL", "$CARD.tokens.clue", 0]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_LOCATIONS", [
+                ["INCREASE_VAR", "$LOCATIONS_VP", "$CARD.currentFace.victoryPoints"]
+            ]],
+            ["VAR", "$DISPLAY_VP", 0],
+            ["VAR", "$SELECTED_DISPLAY", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
+                ["GREATER_THAN", "$CARD.currentFace.victoryPoints", 0]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_DISPLAY", [
+                ["INCREASE_VAR", "$DISPLAY_VP", "$CARD.currentFace.victoryPoints"]
+            ]],
+            ["LOG", "└── Scored VP: ", ["ADD", "$LOCATIONS_VP", "$DISPLAY_VP"], " (locations: {{$LOCATIONS_VP}}, display: {{$DISPLAY_VP}})."]
         ]
     },
     "functions": {
@@ -134,6 +157,9 @@
         },
         "browseTokensMenu": {
             "English": "Toggle Tokens (K)"
+        },
+        "calculateVPMenu": {
+            "English": "Calculate Victory"
         }
     }
 }

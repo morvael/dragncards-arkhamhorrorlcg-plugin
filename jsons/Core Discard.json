@@ -233,11 +233,7 @@
                     [
                         ["VAR", "$SELECTED_CARDS", ["GET_ATTACHED_CARDS", "$TARGET_CARD_ID"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["VAR", "$CONTROLLER", "$CARD.controller"],
-                            ["COND",
-                                ["EQUAL", "$CONTROLLER", "shared"],
-                                ["UPDATE_VAR", "$CONTROLLER", "$TARGET_PLAYER"]
-                            ],
+                            ["VAR", "$CONTROLLER", ["GET_PLAYER_CONTROLLER", "$TARGET_PLAYER", "$TARGET_CARD_ID"]],
                             ["COND",
                                 ["GREATER_THAN", ["GET_DISCARD_CARD_MODE", "$CONTROLLER", "$CARD.id", "$ACTOR_PLAYER"], 0],
                                 ["DO_DISCARD_CARD", "$CONTROLLER", "$CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"],

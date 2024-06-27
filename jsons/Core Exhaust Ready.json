@@ -29,7 +29,6 @@
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
-                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
@@ -37,7 +36,8 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
-                    ]
+                    ],
+                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true]
                 ]
             ]
         },
@@ -75,8 +75,6 @@
                         ["EQUAL", "$TARGET_CARD.controller", "shared"],
                         ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
                     ],
-                    ["EQUAL", "$TARGET_CARD.rotation", 90],
-                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
@@ -84,7 +82,9 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
-                    ]
+                    ],
+                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
+                    ["EQUAL", "$TARGET_CARD.rotation", 90]
                 ]
             ]
         },
@@ -116,12 +116,7 @@
             "code": [
                 ["LOG", "└── Each exhausted card readies."],
                 ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                    ["COND",
-                        ["EQUAL", "$CARD.controller", "shared"],
-                        ["DO_READY_CARD", "$GAME.firstPlayer", "$CARD_ID", false, null],
-                        ["TRUE"],
-                        ["DO_READY_CARD", "$CARD.controller", "$CARD_ID", false, null]
-                    ]
+                    ["DO_READY_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD_ID"], "$CARD_ID", false, null]
                 ]]
             ]
         }
