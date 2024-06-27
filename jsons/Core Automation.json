@@ -298,6 +298,30 @@
                 ]
             ]
         },
+        "GET_CARD_NAME": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_NAME.TARGET_CARD_ID"]],
+                ["COND",
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Hand"],
+                    "$TARGET_CARD.sides.A.name",
+                    ["TRUE"],
+                    "$TARGET_CARD.currentFace.name"
+                ]
+            ]
+        },
+        "GET_CARD_TYPE": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_TYPE.TARGET_CARD_ID"]],
+                ["COND",
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Hand"],
+                    "$TARGET_CARD.sides.A.type",
+                    ["TRUE"],
+                    "$TARGET_CARD.currentFace.type"
+                ]
+            ]
+        },
         "DO_STEP_M1": {
             "args": [],
             "code": [

@@ -55,6 +55,7 @@
         "GET_INVESTIGATOR_CARD_ID": {
             "args": ["$OWNER_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$OWNER_PLAYER", "GET_INVESTIGATOR_CARD_ID.OWNER_PLAYER"],
                 ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.cardOwner", "$OWNER_PLAYER"],
                     ["EQUAL", "$CARD.currentFace.type", "Investigator"]

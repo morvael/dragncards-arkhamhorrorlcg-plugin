@@ -24,6 +24,19 @@
                 ]
             ]
         },
+        "VALIDATE_EQUAL": {
+            "args": ["$PARAM", "$VALUE", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["NOT_EQUAL", "$PARAM", "$VALUE"],
+                    ["ABORT", "{{$DESCRIPTION}} is not equal {{$VALUE}}."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
         "VALIDATE_PLAYER": {
             "args": ["$PARAM", "$DESCRIPTION"],
             "code": [

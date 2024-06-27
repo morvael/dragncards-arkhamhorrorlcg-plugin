@@ -59,6 +59,10 @@
             {
                 "label": "id:removeChaosTokenMenu",
                 "actionList": "removeChaosToken"
+            },
+            {
+                "label": "id:eliminateInvestigatorMenu",
+                "actionList": "eliminateInvestigator"
             }
         ]
     }
