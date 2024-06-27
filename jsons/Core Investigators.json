@@ -98,7 +98,7 @@
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/resource", 0],
                         ["COND",
                             ["GREATER_THAN", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.tokens.clue", 0],
-                            ["LOG", "└── Place all {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}'s clues at the location they were at."]
+                            ["LOG", "└── Place all {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}'s clues at the location they are at."]
                         ],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/doom", 0],
                         ["SET", "/cardById/$INVESTIGATOR_CARD_ID/tokens/damage", 0],
@@ -136,7 +136,7 @@
                 ]]],
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    ["LOG", "└── Place all {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}'s enemies from their threat area at the location they were at."]
+                    ["LOG", "└── Place all {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}'s enemies from their threat area at the location they are at."]
                 ],
                 ["VAR", "$REMOVED_ID", ["GET_CONTROLLER_REMOVED", "$ELIMINATED_PLAYER"]],
                 ["VAR", "$EXILED_ID", ["GET_CONTROLLER_EXILED", "$ELIMINATED_PLAYER"]],
