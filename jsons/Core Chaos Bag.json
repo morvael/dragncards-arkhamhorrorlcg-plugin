@@ -706,14 +706,26 @@
         "addCurseToken": {
             "English": "Add Curse Chaos Token"
         },
+        "addCurseTokenMenu": {
+            "English": "Add Curse (U)"
+        },
         "removeCurseToken": {
             "English": "Remove Curse Chaos Token"
+        },
+        "removeCurseTokenMenu": {
+            "English": "Remove Curse (Shift+U)"
         },
         "addBlessToken": {
             "English": "Add Bless Chaos Token"
         },
+        "addBlessTokenMenu": {
+            "English": "Add Bless (Y)"
+        },
         "removeBlessToken": {
             "English": "Remove Bless Chaos Token"
+        },
+        "removeBlessTokenMenu": {
+            "English": "Remove Bless (Shift+Y)"
         }
     }
 }

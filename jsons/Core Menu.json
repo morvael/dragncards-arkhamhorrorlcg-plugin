@@ -49,18 +49,6 @@
     "pluginMenu": {
         "options": [
             {
-                "label": "id:revealChaosTokenMenu",
-                "actionList": "revealChaosToken"
-            },
-            {
-                "label": "id:nameChaosTokenMenu",
-                "actionList": "nameChaosToken"
-            },
-            {
-                "label": "id:browseChaosBagMenu",
-                "actionList": "browseChaosBag"
-            },
-            {
                 "label": "id:countChaosTokensMenu",
                 "actionList": "countChaosTokens"
             },

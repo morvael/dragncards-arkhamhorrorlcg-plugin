@@ -2,6 +2,7 @@
     "groupTypes": {
         "inPlay":     {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false},
         "inPlayS":    {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "menuOptions": [{"label": "id:browseSideboardMenu", "actionList": "browseSideboard"}, {"label": "id:browseOffMapMenu", "actionList": "browseOffMap"}, {"label": "id:browseNotInPlayMenu", "actionList": "browseNotInPlay"}, {"label": "id:browseVictoryDisplayMenu", "actionList": "browseVictoryDisplay"}, {"label": "id:browseTokensMenu", "actionList": "browseTokens"}]},
+        "inPlayV":    {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "menuOptions": [{"label": "id:revealChaosTokenMenu", "actionList": "revealChaosToken"}, {"label": "id:nameChaosTokenMenu", "actionList": "nameChaosToken"}, {"label": "id:addCurseTokenMenu", "actionList": "addCurseToken"}, {"label": "id:removeCurseTokenMenu", "actionList": "removeCurseToken"}, {"label": "id:addBlessTokenMenu", "actionList": "addBlessToken"}, {"label": "id:removeBlessTokenMenu", "actionList": "removeBlessToken"}, {"label": "id:browseChaosBagMenu", "actionList": "browseChaosBag"}, {"label": "id:discardVoidMenu", "actionList": "discardVoid"}]},
         "story":      {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "menuOptions": [{"label": "id:advanceStoryMenu", "actionList": "advanceStory"}]},
         "outOfPlay":  {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false},
         "outOfPlayV": {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "menuOptions": [{"label": "id:calculateVPMenu", "actionList": "calculateVP"}]},
@@ -25,7 +26,7 @@
         "sharedAgendaDeck":        {"groupType": "story",      "label": "id:sharedAgendaDeck",        "tableLabel": "id:sharedAgendaDeckShort"},
         "sharedActDeck":           {"groupType": "story",      "label": "id:sharedActDeck",           "tableLabel": "id:sharedActDeckShort"},
         "sharedScenarioReference": {"groupType": "inPlayS",    "label": "id:sharedScenarioReference", "tableLabel": "id:sharedScenarioReferenceShort"},
-        "sharedVoid":              {"groupType": "inPlay",     "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort"},
+        "sharedVoid":              {"groupType": "inPlayV",    "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort"},
         "player4Hand":             {"groupType": "hand",       "label": "id:player4Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player4": true}}},
         "player4Deck":             {"groupType": "deckP",      "label": "id:player4Deck",             "tableLabel": "id:playerDeckShort"},
         "player4Discard":          {"groupType": "discardP",   "label": "id:player4Discard",          "tableLabel": "id:playerDiscardShort"},

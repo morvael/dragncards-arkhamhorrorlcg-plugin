@@ -7,6 +7,23 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot discard {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "discardVoid": [
+            ["VAR", "$SELECTED_VOID", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedVoid"],
+                ["EQUAL", "$CARD.cardIndex", 0]
+            ]]],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$SELECTED_VOID"], 0],
+                [
+                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "discard Void.", "discards Void."],
+                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_VOID", [
+                        ["DO_DISCARD_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$CARD.id"], "$CARD.id", true, null]
+                    ]]
+                ],
+                ["TRUE"],
+                ["LOG", "└── You cannot discard Void, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -333,6 +350,12 @@
         },
         "discardCardMenu": {
             "English": "Discard (X)"
+        },
+        "discardVoid": {
+            "English": "Discard Void"
+        },
+        "discardVoidMenu": {
+            "English": "Discard Void (Shift+X)"
         }
     }
 }

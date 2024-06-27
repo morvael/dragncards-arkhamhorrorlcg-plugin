@@ -66,6 +66,7 @@
             {"key": "Shift+U", "actionList": "removeCurseToken", "label": "id:removeCurseToken"},
             {"key": "V", "actionList": "toggleVictoryDisplay", "label": "id:toggleVictoryDisplay"},
             {"key": "W", "actionList": "drawPlayerCard", "label": "id:drawPlayerCard"},
+            {"key": "Shift+X", "actionList": "discardVoid", "label": "id:discardVoid"},
             {"key": "Y", "actionList": "addBlessToken", "label": "id:addBlessToken"},
             {"key": "Shift+Y", "actionList": "removeBlessToken", "label": "id:removeBlessToken"}
         ],
