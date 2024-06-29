@@ -35,7 +35,7 @@
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_CARD_FINAL.LOG_EVENT"],
                 ["VAR", "$TARGET_NAME", "$TARGET_CARD.currentFace.name"],
                 ["COND",
-                    ["EQUAL", "$SUFFIX", " from hand "],
+                    ["EQUAL", "$SUFFIX", " from hand"],
                     ["UPDATE_VAR", "$TARGET_NAME", "$TARGET_CARD.sides.A.name"]
                 ],
                 ["COND",
@@ -199,7 +199,7 @@
                             ]
                         ],
                         ["TRUE"],
-                        ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", " from hand ", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                        ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", " from hand", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ],
                     ["EQUAL", "$DISCARD_CARD_MODE", 5],
                     ["COND",
@@ -295,6 +295,26 @@
                     ]
                 ]
             ]
+        },
+        "DISCARD_EXCESS_CARDS": {
+            "args": ["$TARGET_PLAYER", "$CARDS_TO_DISCARD"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DISCARD_EXCESS_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$CARDS_TO_DISCARD", "DISCARD_EXCESS_CARDS.CARDS_TO_DISCARD"],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], "$TARGET_PLAYER"]],
+                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " discards ", ["LENGTH", "$SELECTED_CARDS"], " of {{$CARDS_TO_DISCARD}} excess card(s) from hand."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                        ]]
+                    ],
+                    ["TRUE"],
+                    ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " skips discarding {{$CARDS_TO_DISCARD}} excess card(s) from hand."]
+                ]
+            ]
         }
     },
     "prompts": {
@@ -315,7 +335,7 @@
                     "label": "Discard Pile",
                     "hotkey": "D",
                     "code": [
-                        ["DO_DISCARD_CARD_FINAL", "$PLAYER_N", "$TARGET_CARD_ID", " from hand ", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                        ["DO_DISCARD_CARD_FINAL", "$PLAYER_N", "$TARGET_CARD_ID", " from hand", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 }
             ]
@@ -339,6 +359,27 @@
                     "hotkey": "D",
                     "code": [
                         ["DO_DISCARD_CARD_FINAL", "$PLAYER_N", "$TARGET_CARD_ID", "", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                }
+            ]
+        },
+        "askToDiscardExcessCards": {
+            "args": ["$CARDS_TO_DISCARD"],
+            "message": "You should discard {{$CARDS_TO_DISCARD}} excess card(s) from hand. Target cards to discard.",
+            "options": [
+                {
+                    "label": "Yes, discard targeted cards (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DISCARD_EXCESS_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD"],
+                        ["DO_CHECK_HAND_SIZE", ["GET_NEXT_ACTIVE_PLAYER", "$PLAYER_N"]]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "{{$ALIAS_N}} skips discarding {{$CARDS_TO_DISCARD}} excess card(s) from hand."]
                     ]
                 }
             ]

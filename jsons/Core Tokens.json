@@ -62,7 +62,7 @@
             "code": [
                 ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "horror"]
             ]
-        },        
+        },
         "DO_GAIN_RESOURCES": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -195,6 +195,50 @@
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
+            ]
+        }
+    },
+    "prompts": {
+        "askToPlaceDoomOnCurrentAgenda": {
+            "args": [],
+            "message": "You should now place 1 doom on the current agenda.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$PLAYER_N", 1, true, null]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips placing 1 doom on the current agenda."]
+                    ]
+                }
+            ]
+        },
+        "askToGainResource": {
+            "args": [],
+            "message": "You should now gain 1 reource.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_GAIN_RESOURCES", "$PLAYER_N", 1, true, null],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToGainResource", null]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips gaining 1 resource."],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToGainResource", null]
+                    ]
+                }
             ]
         }
     },

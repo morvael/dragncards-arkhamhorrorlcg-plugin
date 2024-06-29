@@ -387,6 +387,50 @@
                     ]
                 }
             ]
+        },
+        "askToDrawEncounterCard": {
+            "args": [],
+            "message": "You should now draw 1 encounter card.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, null],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawEncounterCard", null]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips drawing 1 encounter card."],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawEncounterCard", null]
+                    ]
+                }
+            ]
+        },
+        "askToDrawPlayerCard": {
+            "args": [],
+            "message": "You should now draw 1 card.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_DRAW_CARDS", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], 1, true, null],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips drawing 1 card."],
+                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
+                    ]
+                }
+            ]
         }
     },
     "labels": {

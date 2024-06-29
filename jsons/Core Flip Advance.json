@@ -255,12 +255,12 @@
                                         ["GREATER_THAN", "$DOOM_REQUIRED", 0],
                                         ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$ACTOR_PLAYER", "enoughDoom", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "enoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
                                     ["AND",
                                         ["GREATER_THAN", "$DOOM_REQUIRED", 0],
                                         ["LESS_THAN", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$ACTOR_PLAYER", "notEnoughDoom", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
                                     ["TRUE"],
                                     ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                                 ]
@@ -278,12 +278,12 @@
                                         ["GREATER_THAN", "$CLUES_REQUIRED", 0],
                                         ["GREATER_EQUAL", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$ACTOR_PLAYER", "enoughClues", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "enoughClues", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
                                     ["AND",
                                         ["GREATER_THAN", "$CLUES_REQUIRED", 0],
                                         ["LESS_THAN", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$ACTOR_PLAYER", "notEnoughClues", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughClues", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
                                     ["TRUE"],
                                     ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                                 ]
@@ -320,15 +320,15 @@
     },
     "prompts": {
         "enoughDoom": {
-            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+            "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
             "options": [
                 {
                     "label": "Clear doom from cards in play and advance (follow the rules)",
                     "hotkey": "D",
                     "code": [
-                        ["DO_CLEAR_DOOM", "$TARGET_PLAYER", "$LOG_EVENT", "$PLAYER_N"],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_CLEAR_DOOM", "$PLAYER_N", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {
@@ -336,7 +336,7 @@
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {
@@ -346,7 +346,7 @@
             ]
         },
         "notEnoughDoom": {
-            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+            "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
             "options": [
                 {
@@ -354,7 +354,7 @@
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {
@@ -364,15 +364,15 @@
             ]
         },
         "enoughClues": {
-            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+            "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
             "options": [
                 {
                     "label": "Spend clues from the Act card and advance (follow the rules)",
                     "hotkey": "C",
                     "code": [
-                        ["DO_REMOVE_CLUES_FROM_CARD", "$TARGET_PLAYER", "$TOP_CARD_ID", "$CLUES_REQUIRED", "$LOG_EVENT", "$PLAYER_N"],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_REMOVE_CLUES_FROM_CARD", "$PLAYER_N", "$TOP_CARD_ID", "$CLUES_REQUIRED", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {
@@ -380,7 +380,7 @@
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {
@@ -390,7 +390,7 @@
             ]
         },
         "notEnoughClues": {
-            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+            "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
             "options": [
                 {
@@ -398,7 +398,7 @@
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
-                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                        ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
                 {

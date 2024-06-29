@@ -124,7 +124,7 @@
     "prompts": {
         "askToReadyAllCards": {
             "args": [],
-            "message": "Step U3 (4.3): ready exhausted cards.",
+            "message": "You should now ready exhausted cards.",
             "options": [
                 {
                     "label": "Yes, proceed (follow the rules)",
@@ -135,7 +135,10 @@
                 },
                 {
                     "label": "No, skip that (ignore the rules)",
-                    "hotkey": "N"
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips readying exhausted cards."]
+                    ]
                 }
             ]
         }

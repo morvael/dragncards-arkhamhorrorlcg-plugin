@@ -215,6 +215,24 @@
                     ]]
                 ]
             ]
+        },
+        "GET_READY_ENEMIES_COUNT": {
+            "args": [],
+            "code": [
+                ["VAR", "$ENEMIES", 0],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["AND",
+                            ["EQUAL", "$CARD.currentFace.type", "Enemy"],
+                            ["EQUAL", "$CARD.rotation", 0],
+                            ["NOT_EQUAL", "$CARD.groupId", "sharedOffMap"]
+                        ],
+                        ["INCREASE_VAR", "$ENEMIES", 1]
+                    ]
+                ]],
+                "$ENEMIES"
+            ]
         }
     }
 }

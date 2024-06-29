@@ -30,8 +30,13 @@
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "M1"],
                         ["EQUAL", "$GAME.stepId", "M2"],
+                        ["EQUAL", "$GAME.stepId", "M3"],
+                        ["EQUAL", "$GAME.stepId", "M4"],
+                        ["EQUAL", "$GAME.stepId", "E2"],
+                        ["EQUAL", "$GAME.stepId", "E3"],
                         ["EQUAL", "$GAME.stepId", "U3"],
-                        ["EQUAL", "$GAME.stepId", "U4"]
+                        ["EQUAL", "$GAME.stepId", "U4"],
+                        ["EQUAL", "$GAME.stepId", "U5"]
                     ]
                 ],
                 "then": [
@@ -40,10 +45,20 @@
                         ["DO_STEP_M1"],
                         ["EQUAL", "$GAME.stepId", "M2"],
                         ["DO_STEP_M2"],
+                        ["EQUAL", "$GAME.stepId", "M3"],
+                        ["DO_STEP_M3"],
+                        ["EQUAL", "$GAME.stepId", "M4"],
+                        ["DO_STEP_M4"],
+                        ["EQUAL", "$GAME.stepId", "E2"],
+                        ["DO_STEP_E2"],
+                        ["EQUAL", "$GAME.stepId", "E3"],
+                        ["DO_STEP_E3"],
                         ["EQUAL", "$GAME.stepId", "U3"],
                         ["DO_STEP_U3"],
                         ["EQUAL", "$GAME.stepId", "U4"],
-                        ["DO_STEP_U4"]
+                        ["DO_STEP_U4"],
+                        ["EQUAL", "$GAME.stepId", "U5"],
+                        ["DO_STEP_U5"]
                     ]
                 ]
             },
@@ -332,7 +347,60 @@
         "DO_STEP_M2": {
             "args": [],
             "code": [
-                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
+                ["PROMPT", "$GAME.firstPlayer", "askToPlaceDoomOnCurrentAgenda"]
+            ]
+        },
+        "DO_STEP_M3": {
+            "args": [],
+            "code": [
+                ["VAR", "$CURRENT_AGENDA_ID", ["GET_CURRENT_AGENDA_ID"]],
+                ["VAR", "$CURRENT_AGENDA", "$CARD_BY_ID.$CURRENT_AGENDA_ID"],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$CURRENT_AGENDA_ID", null],
+                        ["NOT_EQUAL", "$CURRENT_AGENDA", null],
+                        ["EQUAL", "$CURRENT_AGENDA.currentFace.type", "Agenda"],
+                        ["EQUAL", "$CURRENT_AGENDA.currentSide", "A"]
+                    ],
+                    [
+                        ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CURRENT_AGENDA_ID"]],
+                        ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
+                        ["COND",
+                            ["AND",
+                                ["GREATER_THAN", "$DOOM_REQUIRED", 0],
+                                ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
+                            ],
+                            [
+                                ["LOG", "└── {{$CURRENT_AGENDA.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}."],
+                                ["DO_ADVANCE_STORY", "$GAME.firstPlayer", "sharedAgendaDeck", true, null]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_STEP_M4": {
+            "args": [],
+            "code": [
+                ["PROMPT", "$GAME.firstPlayer", "askToDrawEncounterCard"]
+            ]
+        },
+        "DO_STEP_E2": {
+            "args": [],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", ["GET_READY_ENEMIES_COUNT"], 0],
+                    ["LOG", "└── Hunter or Patrol enemies move."]
+                ]
+            ]
+        },
+        "DO_STEP_E3": {
+            "args": [],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", ["GET_READY_ENEMIES_COUNT"], 0],
+                    ["LOG", "└── Engaged enemies attack."]
+                ]
             ]
         },
         "DO_STEP_U3": {
@@ -344,18 +412,35 @@
         "DO_STEP_U4": {
             "args": [],
             "code": [
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["COND",
-                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                        ["DO_DRAW_CARDS", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 1, true, "$PLAYER_I"]
+                ["PROMPT", "$GAME.firstPlayer", "askToDrawPlayerCard"]
+            ]
+        },
+        "DO_STEP_U5": {
+            "args": [],
+            "code": [
+                ["DO_CHECK_HAND_SIZE", "$GAME.firstPlayer"]
+            ]
+        },
+        "DO_CHECK_HAND_SIZE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                    [
+                        ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHECK_HAND_SIZE.TARGET_PLAYER"],
+                        ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                        ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
+                        ["COND",
+                            ["GREATER_THAN", "$CARDS_IN_HAND", 8],
+                            [
+                                ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", 8]],
+                                ["PROMPT", "$TARGET_PLAYER", "askToDiscardExcessCards", "$CARDS_TO_DISCARD"]
+                            ],
+                            ["TRUE"],
+                            ["DO_CHECK_HAND_SIZE", ["GET_NEXT_ACTIVE_PLAYER", "$TARGET_PLAYER"]]
+                        ]
                     ]
-                ]],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["COND",
-                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                        ["DO_GAIN_RESOURCES", "$PLAYER_I", 1, true, "$PLAYER_I"]
-                    ]
-                ]]
+                ]
             ]
         },
         "DO_UPDATE_LEAD_INVESTIGATOR_TOKEN": {
@@ -435,6 +520,46 @@
                     ["DO_APPEND_CARD_INFO", ["JOIN_STRING", "having source in ", "$GROUP_BY_ID.{{$TARGET_CARD.cardDeck}}.label"]]
                 ],
                 ["LOG", "└── {{$MESSAGE}}."]
+            ]
+        },
+        "GET_NEXT_ACTIVE_PLAYER": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_NEXT_ACTIVE_PLAYER.TARGET_PLAYER"],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["WHILE",
+                    ["AND",
+                        ["NOT_EQUAL", "$NEXT_PLAYER", "$TARGET_PLAYER"],
+                        ["NOT_EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                        ["EQUAL", "$PLAYER_DATA.$NEXT_PLAYER.eliminated", true]
+                    ],
+                    ["UPDATE_VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$NEXT_PLAYER"]]
+                ],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$NEXT_PLAYER", "$TARGET_PLAYER"],
+                        ["NOT_EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"]
+                    ],
+                    "$NEXT_PLAYER",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "PROMPT_NEXT_ACTIVE_PLAYER": {
+            "args": ["$TARGET_PLAYER", "$PROMPT_NAME", "$FOLLOWUP_PROMPT"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "PROMPT_NEXT_ACTIVE_PLAYER.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$PROMPT_NAME", "PROMPT_NEXT_ACTIVE_PLAYER.PROMPT_NAME"],
+                ["VAR", "$NEXT_PLAYER", ["GET_NEXT_ACTIVE_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["NOT_EQUAL", "$NEXT_PLAYER", null],
+                    ["PROMPT", "$NEXT_PLAYER", "$PROMPT_NAME"],
+                    ["NOT_EQUAL", "$FOLLOWUP_PROMPT", null],
+                    ["PROMPT", "$GAME.firstPlayer", "$FOLLOWUP_PROMPT"],
+                    ["TRUE"],
+                    "$GAME"
+                ]
             ]
         }
     },
