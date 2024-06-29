@@ -373,14 +373,14 @@
             "message": "You should now take one horror due to empty deck during draw.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules).",
+                    "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
                         ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], 1, true, null]
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules).",
+                    "label": "No, skip that (ignore the rules)",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips taking one horror due to empty deck during draw."]

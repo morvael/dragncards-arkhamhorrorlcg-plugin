@@ -16,32 +16,73 @@
         ]
     },
     "functions": {
+        "GET_TOKENS_ON_CARD": {
+            "args": ["$TARGET_CARD_ID", "$TOKEN_TYPE"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_TOKENS_ON_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$TOKEN_TYPE", "DO_REMOVE_TOKEN_FROM_CARD.TOKEN_TYPE"],
+                ["VAR", "$TOKENS", 0],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.tokens.$TOKEN_TYPE", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.tokens.$TOKEN_TYPE", ""],
+                        ["GREATER_THAN", "$TARGET_CARD.tokens.$TOKEN_TYPE", 0]
+                    ],
+                    ["UPDATE_VAR", "$TOKENS", "$TARGET_CARD.tokens.$TOKEN_TYPE"]
+                ],
+                "$TOKENS"
+            ]
+        },
+        "GET_RESOURCES_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "resource"]
+            ]
+        },
+        "GET_CLUES_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "clue"]
+            ]
+        },
+        "GET_DOOM_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "doom"]
+            ]
+        },
+        "GET_DAMAGE_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "damage"]
+            ]
+        },
+        "GET_HORROR_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "horror"]
+            ]
+        },        
         "DO_GAIN_RESOURCES": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                        ["GREATER_THAN", "$NUMBER", 0]
-                    ],
-                    [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
-                            ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource.", " resources."],
-                            ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource.", " resources."]],
-                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
-                    ]
-                ]
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_GAIN_RESOURCES.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_GAIN_RESOURCES.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_GAIN_RESOURCES.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                    ["GET_NUMERIC_LOG", "gain ", "gain ", "$NUMBER", " resource.", " resources."],
+                    ["GET_NUMERIC_LOG", "gains ", "gains ", "$NUMBER", " resource.", " resources."]],
+                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/resources", "$NUMBER"]
             ]
         },
         "DO_SPEND_RESOURCES": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPEND_RESOURCES.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_SPEND_RESOURCES.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SPEND_RESOURCES.LOG_EVENT"],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                        ["GREATER_THAN", "$NUMBER", 0],
-                        ["LESS_EQUAL", "$NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.resources"]
-                    ],
+                    ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.resources", "$NUMBER"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
                             ["GET_NUMERIC_LOG", "spend ", "spend ", "$NUMBER", " resource.", " resources."],
@@ -54,24 +95,18 @@
         "DO_PLACE_TOKEN_ON_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$TOKEN_TYPE", "$LOG_EVENT", "$ACTOR_PLAYER", "$SINGLE", "$MANY"],
             "code": [
-                ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                        ["NOT_EQUAL", "$TARGET_CARD_ID", null],
-                        ["NOT_EQUAL", "$NUMBER", null],
-                        ["GREATER_THAN", "$NUMBER", 0],
-                        ["NOT_EQUAL", "$TOKEN_TYPE", null],
-                        ["NOT_EQUAL", "$SINGLE", null],
-                        ["NOT_EQUAL", "$MANY", null]
-                    ],
-                    [
-                        ["VAR", "$TARGET_CARD_NAME", "$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name"],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
-                            ["GET_NUMERIC_LOG", "place ", "place ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."],
-                            ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."]],
-                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
-                    ]
-                ]
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_TOKEN_ON_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLACE_TOKEN_ON_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_PLACE_TOKEN_ON_CARD.NUMBER"],
+                ["VALIDATE_NOT_EMPTY", "$TOKEN_TYPE", "DO_PLACE_TOKEN_ON_CARD.TOKEN_TYPE"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PLACE_TOKEN_ON_CARD.LOG_EVENT"],
+                ["VALIDATE_NOT_EMPTY", "$SINGLE", "DO_PLACE_TOKEN_ON_CARD.SINGLE"],
+                ["VALIDATE_NOT_EMPTY", "$MANY", "DO_PLACE_TOKEN_ON_CARD.MANY"],
+                ["VAR", "$TARGET_CARD_NAME", "$TARGET_CARD.currentFace.name"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                    ["GET_NUMERIC_LOG", "place ", "place ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."],
+                    ["GET_NUMERIC_LOG", "places ", "places ", "$NUMBER", " {{$SINGLE}} on {{$TARGET_CARD_NAME}}.", " {{$MANY}} on {{$TARGET_CARD_NAME}}."]],
+                ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
             ]
         },
         "DO_PLACE_RESOURCES_ON_CARD": {
@@ -108,6 +143,58 @@
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", ["GET_CURRENT_AGENDA_ID"], "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+            ]
+        },
+        "DO_REMOVE_TOKEN_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$TOKEN_TYPE", "$LOG_EVENT", "$ACTOR_PLAYER", "$SINGLE", "$MANY"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_TOKEN_FROM_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_REMOVE_TOKEN_FROM_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_REMOVE_TOKEN_FROM_CARD.NUMBER"],
+                ["VALIDATE_NOT_EMPTY", "$TOKEN_TYPE", "DO_REMOVE_TOKEN_FROM_CARD.TOKEN_TYPE"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_TOKEN_FROM_CARD.LOG_EVENT"],
+                ["VALIDATE_NOT_EMPTY", "$SINGLE", "DO_REMOVE_TOKEN_FROM_CARD.SINGLE"],
+                ["VALIDATE_NOT_EMPTY", "$MANY", "DO_REMOVE_TOKEN_FROM_CARD.MANY"],
+                ["COND",
+                    ["GREATER_EQUAL", ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "$TOKEN_TYPE"], "$NUMBER"],
+                    [
+                        ["VAR", "$TARGET_CARD_NAME", "$TARGET_CARD.currentFace.name"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "remove ", "remove ", "$NUMBER", " {{$SINGLE}} from {{$TARGET_CARD_NAME}}.", " {{$MANY}} from {{$TARGET_CARD_NAME}}."],
+                            ["GET_NUMERIC_LOG", "removes ", "removes ", "$NUMBER", " {{$SINGLE}} from {{$TARGET_CARD_NAME}}.", " {{$MANY}} from {{$TARGET_CARD_NAME}}."]],
+                        ["DECREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/$TOKEN_TYPE", "$NUMBER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_REMOVE_RESOURCES_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "resource", "$LOG_EVENT", "$ACTOR_PLAYER", "resource", "resources"]
+            ]
+        },
+        "DO_REMOVE_CLUES_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "clue", "$LOG_EVENT", "$ACTOR_PLAYER", "clue", "clues"]
+            ]
+        },
+        "DO_REMOVE_DOOM_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "doom", "$LOG_EVENT", "$ACTOR_PLAYER", "doom", "doom"]
+            ]
+        },
+        "DO_REMOVE_DAMAGE_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "damage", "$LOG_EVENT", "$ACTOR_PLAYER", "damage", "damage"]
+            ]
+        },
+        "DO_REMOVE_HORROR_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
             ]
         }
     },

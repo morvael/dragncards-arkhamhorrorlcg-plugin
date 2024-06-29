@@ -178,6 +178,15 @@
                 ]
             ]
         },
+        "GET_ALL_CARDS_IN_PLAY": {
+            "args": [],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["OR",
+                    ["IN_STRING", "$GROUP_BY_ID.{{$CARD.groupId}}.groupType", "inPlay"],
+                    ["IN_STRING", "$GROUP_BY_ID.{{$CARD.groupId}}.groupType", "story"]
+                ]]
+            ]
+        },
         "DO_SET_CARD_LOCATION": {
             "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
             "code": [

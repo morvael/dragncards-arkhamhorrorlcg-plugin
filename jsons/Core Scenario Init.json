@@ -259,14 +259,20 @@
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
-                ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
+                ["COND",
+                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
+                    ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                ],
                 ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
             ]
         },
         "PLACE_STARTING_HORROR_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
-                ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
+                ["COND",
+                    ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
+                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                ],
                 ["INCREASE_VAL", "/arkhamTraumaDone", 1],
                 ["COND",
                     ["GREATER_EQUAL", "$GAME.arkhamTraumaDone", "$GAME.numPlayers"],

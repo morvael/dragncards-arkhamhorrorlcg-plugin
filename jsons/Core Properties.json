@@ -35,6 +35,7 @@
         "enemyFight":            {"type": "integer", "default": null},
         "enemyEvade":            {"type": "integer", "default": null},
         "shroud":                {"type": "integer", "default": null},
+        "doom":                  {"type": "integer", "default": null},
         "clues":                 {"type": "integer", "default": null},
         "cluesFixed":            {"type": "boolean", "default": false},
         "victoryPoints":         {"type": "integer", "default": null},

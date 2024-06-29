@@ -127,14 +127,14 @@
             "message": "Step U3 (4.3): ready exhausted cards.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules).",
+                    "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
                         ["DO_READY_ALL_CARDS"]
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules).",
+                    "label": "No, skip that (ignore the rules)",
                     "hotkey": "N"
                 }
             ]

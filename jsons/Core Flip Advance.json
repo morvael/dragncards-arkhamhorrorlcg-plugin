@@ -121,6 +121,87 @@
                 ]
             ]
         },
+        "GET_CARD_DOOM_REQUIREMENT": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_DOOM_REQUIREMENT.TARGET_CARD_ID"]],
+                ["VAR", "$DOOM", 0],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.doom", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.doom", ""],
+                        ["GREATER_THAN", "$TARGET_CARD.currentFace.doom", 0]
+                    ],
+                    ["UPDATE_VAR", "$DOOM", "$TARGET_CARD.currentFace.doom"]
+                ],
+                "$DOOM"
+            ]
+        },
+        "GET_DOOM_ACCRUED": {
+            "args": [],
+            "code": [
+                ["VAR", "$DOOM", 0],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["INCREASE_VAR", "$DOOM", "$CARD.tokens.doom"]
+                ]],
+                "$DOOM"
+            ]
+        },
+        "DO_CLEAR_DOOM": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CLEAR_DOOM.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CLEAR_DOOM.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "clear doom from cards in play.", "clears doom from cards in play."],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["GREATER_THAN", "$CARD.tokens.doom", 0],
+                        ["DO_REMOVE_DOOM_FROM_CARD", "$TARGET_PLAYER", "$CARD.id", "$CARD.tokens.doom", false, null]
+                    ]
+                ]]
+            ]
+        },
+        "GET_CARD_CLUES_REQUIREMENT": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_CLUES.TARGET_CARD_ID"]],
+                ["VAR", "$CLUES", 0],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.clues", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.clues", ""],
+                        ["GREATER_THAN", "$TARGET_CARD.currentFace.clues", 0]
+                    ],
+                    ["UPDATE_VAR", "$CLUES", "$TARGET_CARD.currentFace.clues"]
+                ],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.cluesFixed", true],
+                        ["GREATER_THAN", "$GAME.arkhamNumPlayers", 0]
+                    ],
+                    ["UPDATE_VAR", "$CLUES", ["CALC", "{{$CLUES}}*{{$GAME.arkhamNumPlayers}}"]]
+                ],
+                "$CLUES"
+            ]
+        },
+        "GET_CLUES_COLLECTED": {
+            "args": [],
+            "code": [
+                ["VAR", "$CLUES", 0],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
+                        [
+                            ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                            ["INCREASE_VAR", "$CLUES", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.tokens.clue"]
+                        ]
+                    ]
+                ]],
+                "$CLUES"
+            ]
+        },
         "CAN_ADVANCE_STORY": {
             "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -161,21 +242,169 @@
                     [
                         ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
                         ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_ADVANCE_STORY.TOP_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "advance {{$TOP_CARD.currentFace.name}}.", "advances {{$TOP_CARD.currentFace.name}}."],
                         ["COND",
-                            ["EQUAL", "$TOP_CARD.currentSide", "A"],
-                            ["SET", "/cardById/$TOP_CARD_ID/currentSide", "B"],
-                            ["TRUE"],
+                            ["AND",
+                                ["EQUAL", "$TOP_CARD.currentFace.type", "Agenda"],
+                                ["EQUAL", "$TOP_CARD.currentSide", "A"]
+                            ],
                             [
+                                ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$TOP_CARD_ID"]],
+                                ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
                                 ["COND",
-                                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
-                                    ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1, 0, {"combine":false, "allowFlip": false}]
-                                ],
-                                ["SET", "/cardById/$TOP_CARD_ID/currentSide", "A"]
-                            ]
+                                    ["AND",
+                                        ["GREATER_THAN", "$DOOM_REQUIRED", 0],
+                                        ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
+                                    ],
+                                    ["PROMPT", "$ACTOR_PLAYER", "enoughDoom", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["AND",
+                                        ["GREATER_THAN", "$DOOM_REQUIRED", 0],
+                                        ["LESS_THAN", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
+                                    ],
+                                    ["PROMPT", "$ACTOR_PLAYER", "notEnoughDoom", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["TRUE"],
+                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                ]
+                            ],
+                            ["AND",
+                                ["EQUAL", "$TOP_CARD.currentFace.type", "Act"],
+                                ["EQUAL", "$TOP_CARD.currentSide", "A"]
+                            ],
+                            [
+                                ["VAR", "$CLUES_REQUIRED", ["GET_CARD_CLUES_REQUIREMENT", "$TOP_CARD_ID"]],
+                                ["VAR", "$CLUES_PRESENT", ["GET_CLUES_ON_CARD", "$TOP_CARD_ID"]],
+                                ["VAR", "$CLUES_COLLECTED", ["GET_CLUES_COLLECTED"]],
+                                ["COND",
+                                    ["AND",
+                                        ["GREATER_THAN", "$CLUES_REQUIRED", 0],
+                                        ["GREATER_EQUAL", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
+                                    ],
+                                    ["PROMPT", "$ACTOR_PLAYER", "enoughClues", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["AND",
+                                        ["GREATER_THAN", "$CLUES_REQUIRED", 0],
+                                        ["LESS_THAN", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
+                                    ],
+                                    ["PROMPT", "$ACTOR_PLAYER", "notEnoughClues", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["TRUE"],
+                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                ]
+                            ],
+                            ["TRUE"],
+                            ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                         ]
                     ]
                 ]
+            ]
+        },
+        "DO_ADVANCE_STORY_FINAL": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ADVANCE_STORY_FINAL.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_ADVANCE_STORY_FINAL.TARGET_GROUP_ID"]],
+                ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_ADVANCE_STORY_FINAL.TOP_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ADVANCE_STORY_FINAL.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "advance {{$TOP_CARD.currentFace.name}}.", "advances {{$TOP_CARD.currentFace.name}}."],
+                ["COND",
+                    ["EQUAL", "$TOP_CARD.currentSide", "A"],
+                    ["SET", "/cardById/$TOP_CARD_ID/currentSide", "B"],
+                    ["TRUE"],
+                    [
+                        ["COND",
+                            ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
+                            ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1, 0, {"combine":false, "allowFlip": false}]
+                        ],
+                        ["SET", "/cardById/$TOP_CARD_ID/currentSide", "A"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "enoughDoom": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
+            "options": [
+                {
+                    "label": "Clear doom from cards in play and advance (follow the rules)",
+                    "hotkey": "D",
+                    "code": [
+                        ["DO_CLEAR_DOOM", "$TARGET_PLAYER", "$LOG_EVENT", "$PLAYER_N"],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Advance (ignore the rules)",
+                    "hotkey": "A",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "notEnoughDoom": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
+            "options": [
+                {
+                    "label": "Advance (ignore the rules)",
+                    "hotkey": "A",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "enoughClues": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
+            "options": [
+                {
+                    "label": "Spend clues from the Act card and advance (follow the rules)",
+                    "hotkey": "C",
+                    "code": [
+                        ["DO_REMOVE_CLUES_FROM_CARD", "$TARGET_PLAYER", "$TOP_CARD_ID", "$CLUES_REQUIRED", "$LOG_EVENT", "$PLAYER_N"],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Advance (ignore the rules)",
+                    "hotkey": "A",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "notEnoughClues": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
+            "options": [
+                {
+                    "label": "Advance (ignore the rules)",
+                    "hotkey": "A",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
+                        ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
             ]
         }
     },
