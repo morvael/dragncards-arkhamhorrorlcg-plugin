@@ -30,6 +30,7 @@
         "health":                {"type": "integer", "default": null},
         "healthPerInvestigator": {"type": "boolean", "default": false},
         "sanity":                {"type": "integer", "default": null},
+        "uses":                  {"type": "integer", "default": null},
         "enemyDamage":           {"type": "integer", "default": null},
         "enemyHorror":           {"type": "integer", "default": null},
         "enemyFight":            {"type": "integer", "default": null},
