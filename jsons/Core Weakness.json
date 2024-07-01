@@ -1,0 +1,16 @@
+{
+    "functions": {
+        "GET_LIST_OF_WEAKNESSES": {
+            "args": ["$SET_UUID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$SET_UUID", "GET_LIST_OF_WEAKNESSES.SET_UUID"],
+                ["COND",
+                    ["EQUAL", "$SET_UUID", "core"],
+                    ["LIST", "01096", "01097", "01098", "01099", "01100", "01101", "01102", "01103"],
+                    ["TRUE"],
+                    ["LIST"]
+                ]
+            ]
+        }
+    }
+}

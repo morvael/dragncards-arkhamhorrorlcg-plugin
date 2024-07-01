@@ -38,7 +38,8 @@
         ],
         "spawnGroups": [
             {"loadGroupId": "playerNInvestigator", "label": "id:dbMyInvestigator"},
-            {"loadGroupId": "playerNDeck", "label": "id:dbMyDeck"}
+            {"loadGroupId": "playerNDeck", "label": "id:dbMyDeck"},
+            {"loadGroupId": "playerNRemoved", "label": "id:dbMySideDeck"}
         ]
     },
     "labels": {
@@ -65,6 +66,9 @@
         },
         "dbMyDeck": {
             "English": "My Deck"
+        },
+        "dbMySideDeck": {
+            "English": "My Side Deck"
         }
     }
 }
