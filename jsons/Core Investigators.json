@@ -15,10 +15,10 @@
         ],
         "investigatorTurn": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
-                ["DO_START_INVESTIGATOR_TURN", "$PLAYER_N", true, true, "$PLAYER_N"],
-                ["EQUAL", "$GAME.arkhamActiveInvestigator", "$PLAYER_N"],
-                ["DO_END_INVESTIGATOR_TURN", true, true, "$PLAYER_N"]
+                ["CAN_START_INVESTIGATOR_TURN", "$PLAYER_N", "$PLAYER_N"],
+                ["DO_START_INVESTIGATOR_TURN", "$PLAYER_N", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot start your investigator's turn, {{$ALIAS_N}}."]
             ]
         ]
     },
@@ -89,7 +89,7 @@
                 ],
                 ["COND",
                     ["EQUAL", "$ELIMINATED_PLAYER", "$GAME.arkhamActiveInvestigator"],
-                    ["DO_END_INVESTIGATOR_TURN", false, true, null]
+                    ["DO_END_INVESTIGATOR_TURN", "$ELIMINATED_PLAYER", true, null]
                 ],
                 ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$ELIMINATED_PLAYER"]],
                 ["COND",
@@ -154,66 +154,89 @@
                 ["SET", "/playerData/$ELIMINATED_PLAYER/eliminated", true]
             ]
         },
-        "DO_END_INVESTIGATOR_TURN": {
-            "args": ["$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+        "GET_ACTIVE_MINI_INVESTIGATORS": {
+            "args": [],
             "code": [
-                ["VAR", "$TARGET_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$CARD.currentSide", "A"],
+                    ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
+                ]]
+            ]
+        },
+        "CAN_END_INVESTIGATOR_TURN": {
+            "args": ["$TARGET_PLAYER", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_END_INVESTIGATOR_TURN.TARGET_PLAYER"],
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkhamActiveInvestigator", "$TARGET_PLAYER"],
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                    ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
+                ]
+            ]
+        },
+        "DO_END_INVESTIGATOR_TURN": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_END_INVESTIGATOR_TURN.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_END_INVESTIGATOR_TURN.LOG_EVENT"],
                 ["COND",
-                    ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                    ["CAN_END_INVESTIGATOR_TURN", "$TARGET_PLAYER", "$ACTOR_PLAYER"],
                     [
                         ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
                         ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
-                        ["COND",
-                            ["AND",
-                                ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
-                                ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
-                            ],
-                            [
-                                ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn."],
-                                ["DO_EXHAUST_CARD", "$TARGET_PLAYER", "$MINI_INVESTIGATOR_CARD_ID", true, null],
-                                ["SET", "/arkhamActiveInvestigator", null],
-                                ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
-                                ["UNSET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor"],
-                                ["COND",
-                                    ["EQUAL", "$SET_STEP", true],
-                                    ["SET", "/stepId", "I2.2"]
-                                ]
-                            ]
-                        ]
+                        ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$INVESTIGATOR_CARD_NAME}}'s turn.", "ends {{$INVESTIGATOR_CARD_NAME}}'s turn."],
+                        ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/currentSide", "B"],
+                        ["SET", "/arkhamActiveInvestigator", null],
+                        ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
+                        ["UNSET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor"]
+                    ]
+                ]
+            ]
+        },
+        "CAN_START_INVESTIGATOR_TURN": {
+            "args": ["$TARGET_PLAYER", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_START_INVESTIGATOR_TURN.TARGET_PLAYER"],
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                    ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null],
+                    ["EQUAL", "$CARD_BY_ID.$MINI_INVESTIGATOR_CARD_ID.currentSide", "A"],
+                    ["OR",
+                        ["EQUAL", "$GAME.stepId", "I1"],
+                        ["EQUAL", "$GAME.stepId", "W2"],
+                        ["EQUAL", "$GAME.stepId", "I2"]
                     ]
                 ]
             ]
         },
         "DO_START_INVESTIGATOR_TURN": {
-            "args": ["$TARGET_PLAYER", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_START_INVESTIGATOR_TURN.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_START_INVESTIGATOR_TURN.LOG_EVENT"],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                        ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true]
-                    ],
+                    ["CAN_START_INVESTIGATOR_TURN", "$TARGET_PLAYER", "$ACTOR_PLAYER"],
                     [
                         ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
                         ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                        ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn."],
+                        ["SET", "/arkhamActiveInvestigator", "$TARGET_PLAYER"],
+                        ["SET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
+                        ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
                         ["COND",
-                            ["AND",
-                                ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
-                                ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
-                            ],
-                            [
-                                ["DO_END_INVESTIGATOR_TURN", "$SET_STEP", "$LOG_EVENT", "$ACTOR_PLAYER"],
-                                ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start {{$INVESTIGATOR_CARD_NAME}}'s turn.", "starts {{$INVESTIGATOR_CARD_NAME}}'s turn."],
-                                ["DO_READY_CARD", "$TARGET_PLAYER", "$MINI_INVESTIGATOR_CARD_ID", true, null],
-                                ["SET", "/arkhamActiveInvestigator", "$TARGET_PLAYER"],
-                                ["SET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
-                                ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor", "HotPink"],
-                                ["COND",
-                                    ["EQUAL", "$SET_STEP", true],
-                                    ["SET", "/stepId", "I2"]
-                                ]
-                            ]
+                            ["NOT_EQUAL", "$GAME.stepId", "I2"],
+                            ["SET", "/stepId", "I2"]
                         ]
                     ]
                 ]
@@ -269,10 +292,10 @@
     },
     "labels": {
         "eliminateInvestigatorMenu": {
-            "English": "Eliminate your Investigator"
+            "English": "Eliminate your investigator"
         },
         "investigatorTurn": {
-            "English": "Start / End your turn"
+            "English": "Start your investigator's turn"
         }
     }
 }

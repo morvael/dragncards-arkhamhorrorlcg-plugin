@@ -27,16 +27,22 @@
                 "type": "trigger",
                 "listenTo": ["/stepId"],
                 "condition": [
-                    ["OR",
-                        ["EQUAL", "$GAME.stepId", "M1"],
-                        ["EQUAL", "$GAME.stepId", "M2"],
-                        ["EQUAL", "$GAME.stepId", "M3"],
-                        ["EQUAL", "$GAME.stepId", "M4"],
-                        ["EQUAL", "$GAME.stepId", "E2"],
-                        ["EQUAL", "$GAME.stepId", "E3"],
-                        ["EQUAL", "$GAME.stepId", "U3"],
-                        ["EQUAL", "$GAME.stepId", "U4"],
-                        ["EQUAL", "$GAME.stepId", "U5"]
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["OR",
+                            ["EQUAL", "$GAME.stepId", "M1"],
+                            ["EQUAL", "$GAME.stepId", "M2"],
+                            ["EQUAL", "$GAME.stepId", "M3"],
+                            ["EQUAL", "$GAME.stepId", "M4"],
+                            ["EQUAL", "$GAME.stepId", "I2"],
+                            ["EQUAL", "$GAME.stepId", "I2.2"],
+                            ["EQUAL", "$GAME.stepId", "E2"],
+                            ["EQUAL", "$GAME.stepId", "E3"],
+                            ["EQUAL", "$GAME.stepId", "U2"],
+                            ["EQUAL", "$GAME.stepId", "U3"],
+                            ["EQUAL", "$GAME.stepId", "U4"],
+                            ["EQUAL", "$GAME.stepId", "U5"]
+                        ]
                     ]
                 ],
                 "then": [
@@ -49,10 +55,16 @@
                         ["DO_STEP_M3"],
                         ["EQUAL", "$GAME.stepId", "M4"],
                         ["DO_STEP_M4"],
+                        ["EQUAL", "$GAME.stepId", "I2"],
+                        ["DO_STEP_I2"],
+                        ["EQUAL", "$GAME.stepId", "I2.2"],
+                        ["DO_STEP_I2_2"],
                         ["EQUAL", "$GAME.stepId", "E2"],
                         ["DO_STEP_E2"],
                         ["EQUAL", "$GAME.stepId", "E3"],
                         ["DO_STEP_E3"],
+                        ["EQUAL", "$GAME.stepId", "U2"],
+                        ["DO_STEP_U2"],
                         ["EQUAL", "$GAME.stepId", "U3"],
                         ["DO_STEP_U3"],
                         ["EQUAL", "$GAME.stepId", "U4"],
@@ -385,6 +397,33 @@
                 ["PROMPT", "$GAME.firstPlayer", "askToDrawEncounterCard"]
             ]
         },
+        "DO_STEP_I2": {
+            "args": [],
+            "code": [
+                ["VAR", "$REMAINING", ["LENGTH", ["GET_ACTIVE_MINI_INVESTIGATORS"]]],
+                ["COND",
+                    ["GREATER_THAN", "$REMAINING", 0],
+                    ["LOG", "└── ", ["GET_NUMERIC_LOG", "There is ", "There are ", "$REMAINING", " investigator left who didn't take their turn yet", " investigators left who didn't take their turn yet"], "."],
+                    ["TRUE"],
+                    ["SET", "/stepId", "I3"]
+                ]
+            ]
+        },
+        "DO_STEP_I2_2": {
+            "args": [],
+            "code": [
+                ["COND",
+                    ["NOT_EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["DO_END_INVESTIGATOR_TURN", "$GAME.arkhamActiveInvestigator", true, "$PLAYER_N"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", ["GET_ACTIVE_MINI_INVESTIGATORS"]], 0],
+                    ["SET", "/stepId", "I2"],
+                    ["TRUE"],
+                    ["SET", "/stepId", "I3"]
+                ]
+            ]
+        },
         "DO_STEP_E2": {
             "args": [],
             "code": [
@@ -401,6 +440,29 @@
                     ["GREATER_THAN", ["GET_READY_ENEMIES_COUNT"], 0],
                     ["LOG", "└── Engaged enemies attack."]
                 ]
+            ]
+        },
+        "DO_STEP_U2": {
+            "args": [],
+            "code": [
+                ["LOG", "└── Actions are reset."],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                    ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
+                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                            ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
+                        ],
+                        [
+                            ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
+                            ["UNSET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor"],
+                            ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/currentSide", "A"]
+                        ]
+                    ]
+                ]],
+                ["SET", "/arkhamActiveInvestigator", null]
             ]
         },
         "DO_STEP_U3": {
