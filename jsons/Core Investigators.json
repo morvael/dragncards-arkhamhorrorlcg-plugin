@@ -20,6 +20,38 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot start your investigator's turn, {{$ALIAS_N}}."]
             ]
+        ],
+        "calculateWillpower": [
+            ["COND",
+                ["CAN_CALCULATE_SKILL", "$PLAYER_N", "willpower", "skillWillpower", "$PLAYER_N"],
+                ["DO_CALCULATE_SKILL", "$PLAYER_N", "willpower", "skillWillpower", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot calculate your investigator's willpower, {{$ALIAS_N}}."]
+            ]
+        ],
+        "calculateIntellect": [
+            ["COND",
+                ["CAN_CALCULATE_SKILL", "$PLAYER_N", "intellect", "skillIntellect", "$PLAYER_N"],
+                ["DO_CALCULATE_SKILL", "$PLAYER_N", "intellect", "skillIntellect", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot calculate your investigator's intellect, {{$ALIAS_N}}."]
+            ]
+        ],
+        "calculateCombat": [
+            ["COND",
+                ["CAN_CALCULATE_SKILL", "$PLAYER_N", "combat", "skillCombat", "$PLAYER_N"],
+                ["DO_CALCULATE_SKILL", "$PLAYER_N", "combat", "skillCombat", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot calculate your investigator's combat, {{$ALIAS_N}}."]
+            ]
+        ],
+        "calculateAgility": [
+            ["COND",
+                ["CAN_CALCULATE_SKILL", "$PLAYER_N", "agility", "skillAgility", "$PLAYER_N"],
+                ["DO_CALCULATE_SKILL", "$PLAYER_N", "agility", "skillAgility", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot calculate your investigator's agility, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -241,6 +273,123 @@
                     ]
                 ]
             ]
+        },
+        "GET_CARD_SKILL": {
+            "args": ["$TARGET_CARD_ID", "$SKILL_PROPERTY"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_SKILL.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "GET_CARD_SKILL.SKILL_PROPERTY"],
+                ["VAR", "$SKILL", 0],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$SKILL_PROPERTY", "skillWild"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"]
+                    ],
+                    ["COND",
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Bless"],
+                        ["UPDATE_VAR", "$SKILL", 2],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Curse"],
+                        ["UPDATE_VAR", "$SKILL", -2],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "+1"],
+                        ["UPDATE_VAR", "$SKILL", 1],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-1"],
+                        ["UPDATE_VAR", "$SKILL", -1],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-2"],
+                        ["UPDATE_VAR", "$SKILL", -2],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-3"],
+                        ["UPDATE_VAR", "$SKILL", -3],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-4"],
+                        ["UPDATE_VAR", "$SKILL", -4],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-5"],
+                        ["UPDATE_VAR", "$SKILL", -5],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-6"],
+                        ["UPDATE_VAR", "$SKILL", -6],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-7"],
+                        ["UPDATE_VAR", "$SKILL", -7],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "-8"],
+                        ["UPDATE_VAR", "$SKILL", -8]
+                    ],
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.$SKILL_PROPERTY", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.$SKILL_PROPERTY", ""],
+                        ["GREATER_THAN", "$TARGET_CARD.currentFace.$SKILL_PROPERTY", 0]
+                    ],
+                    ["UPDATE_VAR", "$SKILL", "$TARGET_CARD.currentFace.$SKILL_PROPERTY"]
+                ],
+                "$SKILL"
+            ]
+        },
+        "CAN_CALCULATE_SKILL": {
+            "args": ["$TARGET_PLAYER", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_CALCULATE_SKILL.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$SKILL_NAME", "CAN_CALCULATE_SKILL.SKILL_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "CAN_CALCULATE_SKILL.SKILL_PROPERTY"],
+                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
+                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null]
+                ]
+            ]
+        },
+        "DO_CALCULATE_SKILL": {
+            "args": ["$TARGET_PLAYER", "$SKILL_NAME", "$SKILL_PROPERTY", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CALCULATE_SKILL.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$SKILL_NAME", "DO_CALCULATE_SKILL.SKILL_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "DO_CALCULATE_SKILL.SKILL_PROPERTY"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CALCULATE_SKILL.LOG_EVENT"],
+                ["COND",
+                    ["CAN_CALCULATE_SKILL", "$TARGET_PLAYER", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$TARGET_PLAYER"]],
+                        ["VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$INVESTIGATOR_CARD_ID", "$SKILL_PROPERTY"]],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedVoid"]]],
+                        ["VAR", "$AUTO_FAIL", false],
+                        ["VAR", "$SUFFIX", ""],
+                        ["VAR", "$SEPARATOR", " (apply "],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["INCREASE_VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$CARD.id", "$SKILL_PROPERTY"]],
+                            ["INCREASE_VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                                    ["EQUAL", "$CARD.currentFace.name", "Auto Fail"]
+                                ],
+                                ["UPDATE_VAR", "$AUTO_FAIL", true],
+                                ["AND",
+                                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                                    ["OR",
+                                        ["EQUAL", "$CARD.currentFace.name", "Elder Sign"],
+                                        ["EQUAL", "$CARD.currentFace.name", "Cultist"],
+                                        ["EQUAL", "$CARD.currentFace.name", "Elder Thing"],
+                                        ["EQUAL", "$CARD.currentFace.name", "Skull"],
+                                        ["EQUAL", "$CARD.currentFace.name", "Tablet"],
+                                        ["EQUAL", "$CARD.currentFace.name", "Frost"]
+                                    ]
+                                ],
+                                [
+                                    ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}}{{$SEPARATOR}}{{$CARD.currentFace.name}}"],
+                                    ["UPDATE_VAR", "$SEPARATOR", ", "]
+                                ]
+                            ]
+                        ]],
+                        ["COND",
+                            ["EQUAL", "$AUTO_FAIL", true],
+                            ["UPDATE_VAR", "$SUM_SKILL", 0]
+                        ],
+                        ["COND",
+                            ["GREATER_THAN", ["LENGTH", "$SUFFIX"], 1],
+                            ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} chaos symbol effects)"],
+                            ["EQUAL", ["LENGTH", "$SUFFIX"], 1],
+                            ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} chaos symbol effect)"]
+                        ],
+                        ["VAR", "$INVESTIGATOR_CARD_NAME", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name"],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "calculate {{$INVESTIGATOR_CARD_NAME}}'s {{$SKILL_NAME}} value: {{$SUM_SKILL}}{{$SUFFIX}}.", "calculates {{$INVESTIGATOR_CARD_NAME}}'s {{$SKILL_NAME}} value: {{$SUM_SKILL}}{{$SUFFIX}}."]
+                    ]
+                ]
+            ]
         }
     },
     "prompts": {
@@ -296,6 +445,18 @@
         },
         "investigatorTurn": {
             "English": "Start your investigator's turn"
+        },
+        "calculateWillpower": {
+            "English": "Calculate your investigator's willpower"
+        },
+        "calculateIntellect": {
+            "English": "Calculate your investigator's intellect"
+        },
+        "calculateCombat": {
+            "English": "Calculate your investigator's combat"
+        },
+        "calculateAgility": {
+            "English": "Calculate your investigator's agility"
         }
     }
 }

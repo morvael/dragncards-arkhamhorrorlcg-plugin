@@ -50,6 +50,10 @@
             {"key": "6", "tokenType": "freeze", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png)"}
         ],
         "game": [
+            {"key": "7", "actionList": "calculateWillpower", "label": "id:calculateWillpower"},
+            {"key": "8", "actionList": "calculateIntellect", "label": "id:calculateIntellect"},
+            {"key": "9", "actionList": "calculateCombat", "label": "id:calculateCombat"},
+            {"key": "0", "actionList": "calculateAgility", "label": "id:calculateAgility"},
             {"key": "-", "actionList": "spendResources", "label": "id:spendResources"},
             {"key": "=", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
