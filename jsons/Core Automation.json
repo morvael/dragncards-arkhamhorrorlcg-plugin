@@ -209,6 +209,30 @@
                 ]
             },
             {
+                "_comment": "Add uses resource tokens.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["NOT_EQUAL", ["PREV", "$TARGET.groupId"], "$TARGET.groupId"],
+                        ["NOT_EQUAL", "$TARGET.currentFace", null],
+                        ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.uses", 0]
+                    ]
+                ],
+                "then": [
+                    ["VAR", "$OLD_GROUP_ID", ["PREV", "$TARGET.groupId"]],
+                    ["VAR", "$NEW_GROUP_ID", "$TARGET.groupId"],
+                    ["COND",
+                        ["AND",
+                            ["EQUAL", "$GROUP_BY_ID.$OLD_GROUP_ID.canHaveTokens", false],
+                            ["EQUAL", "$GROUP_BY_ID.$NEW_GROUP_ID.canHaveTokens", true]
+                        ],
+                        ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N"], "$TARGET.id", "$TARGET.currentFace.uses", true, "$PLAYER_N"]
+                    ]
+                ]
+            },
+            {
                 "_comment": "Make the Lead Investigator token follow first player (and create it when missing).",
                 "type": "trigger",
                 "listenTo": ["/firstPlayer"],
