@@ -214,7 +214,9 @@
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
-                        ["NOT_EQUAL", ["PREV", "$TARGET.groupId"], "$TARGET.groupId"],
+                        ["NOT_EQUAL", "$TARGET", null],
+                        ["NOT_EQUAL", "$TARGET.groupId", null],
+                        ["NOT_EQUAL", "$TARGET.groupId", ""],
                         ["NOT_EQUAL", "$TARGET.currentFace", null],
                         ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
                         ["GREATER_THAN", "$TARGET.currentFace.uses", 0]
@@ -225,6 +227,9 @@
                     ["VAR", "$NEW_GROUP_ID", "$TARGET.groupId"],
                     ["COND",
                         ["AND",
+                            ["NOT_EQUAL", "$OLD_GROUP_ID", null],
+                            ["NOT_EQUAL", "$OLD_GROUP_ID", ""],
+                            ["NOT_EQUAL", "$NEW_GROUP_ID", "$OLD_GROUP_ID"],
                             ["EQUAL", "$GROUP_BY_ID.$OLD_GROUP_ID.canHaveTokens", false],
                             ["EQUAL", "$GROUP_BY_ID.$NEW_GROUP_ID.canHaveTokens", true]
                         ],
