@@ -52,6 +52,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}} into deck, {{$ALIAS_N}}."]
             ]
+        ],
+        "lookAtTopCards": [
+            ["COND",
+                ["CAN_LOOK_AT_TOP_CARDS", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
+                ["DO_LOOK_AT_TOP_CARDS", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot look at top N cards of {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -365,6 +373,66 @@
             "code": [
                 ["DO_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", false, "$LOG_EVENT", "$ACTOR_PLAYER"]
             ]
+        },
+        "CAN_LOOK_AT_TOP_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
+                    ["OR",
+                        ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
+                        ["EQUAL", "$TARGET_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]]
+                    ],
+                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
+                ]
+            ]
+        },
+        "DO_LOOK_AT_TOP_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_LOOK_AT_TOP_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_LOOK_AT_TOP_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_LOOK_AT_TOP_CARDS.LOG_EVENT"],
+                ["COND",
+                    ["CAN_LOOK_AT_TOP_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                        ["COND",
+                            ["GREATER_THAN", "$AVAILABLE_NUMBER", 11],
+                            ["UPDATE_VAR", "$AVAILABLE_NUMBER", 11]
+                        ],
+                        ["PROMPT", "$TARGET_PLAYER", "askHowManyToLookAt", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 1, "$AVAILABLE_NUMBER", 1, [
+                            ["VAR", "$LETTER", ["SUBSTRING", "X1234567890", "$I", 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_LOOK_AT_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_LOOK_AT_TOP_N_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_LOOK_AT_TOP_N_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_LOOK_AT_TOP_N_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_LOOK_AT_TOP_N_CARDS.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_LOOK_AT_TOP_N_CARDS.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                    ["GET_NUMERIC_LOG", "look at top ", "look at top ", "$NUMBER", " card from {{$TARGET_GROUP.label}}.", " cards from {{$TARGET_GROUP.label}}."],
+                    ["GET_NUMERIC_LOG", "looks at top ", "looks at top ", "$NUMBER", " card from {{$TARGET_GROUP.label}}.", " cards from {{$TARGET_GROUP.label}}."]
+                ],
+                ["LOOK_AT", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", true]
+            ]
+        },
+        "DO_LOOK_AT_TOP_N_CARDS_STR": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_LOOK_AT_TOP_N_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+            ]
         }
     },
     "prompts": {
@@ -431,6 +499,12 @@
                     ]
                 }
             ]
+        },
+        "askHowManyToLookAt": {
+            "args": ["$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "message": "At how many top cards do you want to look?",
+            "options": [
+            ]
         }
     },
     "labels": {
@@ -457,6 +531,9 @@
         },
         "shuffleDiscardIntoDeckMenu": {
             "English": "Shuffle into deck"
+        },
+        "lookAtTopCardsMenu": {
+            "English": "Look at top N cards"
         }
     }
 }

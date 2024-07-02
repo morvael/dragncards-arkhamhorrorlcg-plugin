@@ -24,6 +24,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot discard Void, {{$ALIAS_N}}."]
             ]
+        ],
+        "discardRandomCardsFromHand": [
+            ["COND",
+                ["CAN_DISCARD_RANDOM_CARDS_FROM_HAND", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
+                ["DO_DISCARD_RANDOM_CARDS_FROM_HAND", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot discard N random cards from {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -227,6 +235,42 @@
                 ]
             ]
         },
+        "CAN_DISCARD_RANDOM_CARDS_FROM_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
+                    ["EQUAL", "$TARGET_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1]
+                ]
+            ]
+        },
+        "DO_DISCARD_RANDOM_CARDS_FROM_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_RANDOM_CARDS_FROM_HAND.LOG_EVENT"],
+                ["COND",
+                    ["CAN_DISCARD_RANDOM_CARDS_FROM_HAND", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                        ["COND",
+                            ["GREATER_THAN", "$AVAILABLE_NUMBER", 11],
+                            ["UPDATE_VAR", "$AVAILABLE_NUMBER", 11]
+                        ],
+                        ["PROMPT", "$TARGET_PLAYER", "askHowManyToDiscard", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 1, "$AVAILABLE_NUMBER", 1, [
+                            ["VAR", "$LETTER", ["SUBSTRING", "X1234567890", "$I", 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND_STR", "{{$TARGET_PLAYER}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
         "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -260,6 +304,12 @@
                         ]]
                     ]
                 ]
+            ]
+        },
+        "DO_DISCARD_N_RANDOM_CARDS_FROM_HAND_STR": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_DISCARD_N_RANDOM_CARDS_FROM_HAND", "$TARGET_PLAYER", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
         },
         "DO_FORCE_DISCARD_ALL_ATTACHED_CARDS": {
@@ -383,6 +433,12 @@
                     ]
                 }
             ]
+        },
+        "askHowManyToDiscard": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER"],
+            "message": "How many random cards do you want to discard from hand?",
+            "options": [
+            ]
         }
     },
     "labels": {
@@ -397,6 +453,9 @@
         },
         "discardVoidMenu": {
             "English": "Discard Void (Shift+X)"
+        },
+        "discardRandomCardsFromHandMenu": {
+            "English": "Discard N random cards"
         }
     }
 }
