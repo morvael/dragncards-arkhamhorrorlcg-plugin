@@ -67,25 +67,23 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ATTACH_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD.TARGET_CARD_ID"]],
-                ["OR",
-                    ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
-                    ["AND",
-                        ["OR",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"]
-                        ],
-                        ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
-                    ]
+                ["AND",
+                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"]
+                    ],
+                    ["EQUAL", ["GET_ATTACHED_CARDS_COUNT", "$TARGET_CARD_ID"], 0]
                 ]
             ]
         },
@@ -95,30 +93,25 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ATTACH_CARD_TO_PARENT.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD_TO_PARENT.TARGET_CARD_ID"]],
                 ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "CAN_ATTACH_CARD_TO_PARENT.PARENT_CARD_ID"]],
-                ["VAR", "$PARENT_GROUP", ["GET_GROUP_AND_VALIDATE", "$PARENT_CARD.groupId", "CAN_ATTACH_CARD_TO_PARENT.PARENT_CARD.groupId"]],
                 ["AND",
                     ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
-                    ["EQUAL", "$PARENT_GROUP.canHaveAttachments", true],
+                    ["EQUAL", "$PARENT_CARD.inAdvanced", true],
                     ["EQUAL", "$PARENT_CARD.cardIndex", 0],
-                    ["CAN_ATTACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
-                        ["AND",
-                            ["OR",
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Investigator"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Asset"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Treachery"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Event"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Act"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],
-                                ["EQUAL", "$PARENT_CARD.currentFace.type", "Story"]
-                            ]
-                        ]
-                    ]
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Investigator"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Act"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Story"]
+                    ],
+                    ["CAN_ATTACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
         },
@@ -157,9 +150,7 @@
                     ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
-                        ["AND",
-                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"]
-                        ]
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"]
                     ]
                 ]
             ]

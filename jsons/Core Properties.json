@@ -1,9 +1,11 @@
 {
     "cardProperties": {
-        "cardOwner":     {"type": "string",  "default": ""},
-        "cardDeck":      {"type": "string",  "default": ""},
-        "cardDiscard":   {"type": "string",  "default": ""},
-        "controller":    {"type": "string",  "default": ""}
+        "cardOwner":     {"type": "string",   "default": ""},
+        "cardDeck":      {"type": "string",   "default": ""},
+        "cardDiscard":   {"type": "string",   "default": ""},
+        "controller":    {"type": "string",   "default": ""},
+        "inPlay":        {"type": "boolean",  "default": false},
+        "inAdvanced":    {"type": "boolean",  "default": false}        
     },
     "faceProperties": {
         "subtype":               {"type": "string",  "default": ""},

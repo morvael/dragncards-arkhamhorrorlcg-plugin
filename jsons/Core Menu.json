@@ -5,23 +5,112 @@
         "options": [
             {
                 "label": "id:flipCardMenu",
-                "actionList": "flipCard"
+                "actionList": "flipCard",
+                "showIf": ["AND",
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"]
+                    ]
+                ]
             },
             {
                 "label": "id:exhaustCardMenu",
-                "actionList": "exhaustCard"
+                "actionList": "exhaustCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"]
+                    ]
+                ]
             },
             {
                 "label": "id:readyCardMenu",
-                "actionList": "readyCard"
+                "actionList": "readyCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                    ["EQUAL", "$ACTIVE_CARD.rotation", 90],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"]
+                    ]
+                ]
             },
             {
                 "label": "id:attachCardMenu",
-                "actionList": "attachCard"
+                "actionList": "attachCard",
+                "showIf": ["OR",
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                            ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                            ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"]                            
+                        ]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                        ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],                        
+                        ["OR",
+                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Story"]
+                        ]
+                    ]
+                ]
             },
             {
                 "label": "id:detachCardMenu",
-                "actionList": "detachCard"
+                "actionList": "detachCard",
+                "showIf": ["AND",
+                    ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                    ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                ]
             },
             {
                 "label": "id:discardCardMenu",

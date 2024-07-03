@@ -209,6 +209,28 @@
                 ]
             },
             {
+                "_comment": "Change inPlay.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["NOT_EQUAL", "$TARGET.inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.groupId"]]
+                ],
+                "then": [
+                    ["SET", "/cardById/$TARGET.id/inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.groupId"]]
+                ]
+            },
+            {
+                "_comment": "Change inAdvanced.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["NOT_EQUAL", "$TARGET.inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                ],
+                "then": [
+                    ["SET", "/cardById/$TARGET.id/inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                ]
+            },
+            {
                 "_comment": "Add uses resource tokens.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
@@ -250,6 +272,23 @@
         ]
     },
     "functions": {
+        "GET_DESIRED_IN_PLAY": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
+                ["OR",
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "inPlay"],
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
+                ]
+            ]
+        },
+        "GET_DESIRED_IN_ADVANCED": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
+                ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true]
+            ]
+        },
         "GET_DESIRED_CONTROLLER": {
             "args": ["$TARGET_GROUP_ID"],
             "code": [

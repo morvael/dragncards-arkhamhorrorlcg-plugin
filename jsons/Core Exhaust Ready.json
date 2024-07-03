@@ -23,21 +23,17 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXHAUST_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXHAUST_CARD.TARGET_CARD_ID"]],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_EXHAUST_CARD.TARGET_CARD.groupId"]],
                 ["AND",
+                    ["EQUAL", "$TARGET_CARD.inAdvanced", true],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
-                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
-                    ],
-                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
-                    ],
-                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true]
+                    ]
                 ]
             ]
         },
@@ -69,22 +65,18 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_READY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_READY_CARD.TARGET_CARD_ID"]],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_READY_CARD.TARGET_CARD.groupId"]],
                 ["AND",
+                    ["EQUAL", "$TARGET_CARD.inAdvanced", true],
+                    ["EQUAL", "$TARGET_CARD.rotation", 90],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
-                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
-                    ],
-                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
-                    ],
-                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
-                    ["EQUAL", "$TARGET_CARD.rotation", 90]
+                    ]
                 ]
             ]
         },

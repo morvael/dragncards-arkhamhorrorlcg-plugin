@@ -26,28 +26,30 @@
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_FLIP_CARD.TARGET_CARD.groupId"]],
                 ["AND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
-                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                        ["EQUAL", "$TARGET_CARD.inAdvanced", true],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
+                        ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"],
+                        ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
                     ],
                     ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Scenario"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
-                    ],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
-                    ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true],
-                    ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
-                        ["EQUAL", "$TARGET_CARD.currentSide", "B"]
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Concealed Card"]
                     ]
                 ]
             ]
@@ -81,8 +83,8 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEDOWN.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEDOWN.TARGET_CARD_ID"]],
                 ["AND",
-                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
-                    ["EQUAL", "$TARGET_CARD.currentSide", "A"]
+                    ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
         },
@@ -104,8 +106,8 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEUP.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEUP.TARGET_CARD_ID"]],
                 ["AND",
-                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
-                    ["EQUAL", "$TARGET_CARD.currentSide", "B"]
+                    ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                    ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
         },
