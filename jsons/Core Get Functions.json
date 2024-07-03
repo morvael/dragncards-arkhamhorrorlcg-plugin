@@ -233,6 +233,16 @@
                 ]],
                 "$ENEMIES"
             ]
+        },
+        "GET_UNSAFE_ALLOWED": {
+            "args": ["$ACTOR_PLAYER"],
+            "code": [
+                ["OR",
+                    ["EQUAL", "$ACTOR_PLAYER", null],
+                    ["EQUAL", "$ACTOR_PLAYER", ""],
+                    ["EQUAL", "$GAME.playerData.$ACTOR_PLAYER.blockUnsafeActions", false]
+                ]
+            ]
         }
     }
 }

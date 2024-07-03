@@ -44,7 +44,11 @@
         "text":                  {"type": "string",  "default": null}
     },
     "gameProperties": {
-
+        "loopUntilInvestigatorsDone": {
+            "label": "id:loopUntilInvestigatorsDone",
+            "type": "boolean",
+            "default": true
+        }
     },
     "playerProperties": {
         "resources": {
@@ -52,11 +56,26 @@
             "type": "integer",
             "default": 0,
             "min": 0
+        },
+        "blockUnsafeActions": {
+            "label": "id:blockUnsafeActions",
+            "type": "boolean",
+            "default": true
         }
     },
+    "preferences": {
+        "game": ["loopUntilInvestigatorsDone"],
+        "player": ["blockUnsafeActions"]
+    },    
     "labels": {
         "resources": {
             "English": "Resources"
+        },
+        "loopUntilInvestigatorsDone": {
+            "English": "Loop until investigators done"
+        },
+        "blockUnsafeActions": {
+            "English": "Block unsafe actions"
         }
     }
 }
