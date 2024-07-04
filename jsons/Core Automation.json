@@ -553,18 +553,18 @@
             "code": [
                 ["LOG", "└── Actions are reset."],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
-                    ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                    ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$PLAYER_I"]],
                     ["COND",
                         ["AND",
-                            ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
-                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
-                            ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null]
+                            ["NOT_EQUAL", "$INVESTIGATOR", null],
+                            ["NOT_EQUAL", "$INVESTIGATOR.eliminated", true],
+                            ["NOT_EQUAL", "$MINI_INVESTIGATOR", null]
                         ],
                         [
-                            ["UNSET", "/cardById/$INVESTIGATOR_CARD_ID/borderColor"],
-                            ["UNSET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/borderColor"],
-                            ["SET", "/cardById/$MINI_INVESTIGATOR_CARD_ID/currentSide", "A"]
+                            ["UNSET", "/cardById/$INVESTIGATOR.id/borderColor"],
+                            ["UNSET", "/cardById/$MINI_INVESTIGATOR.id/borderColor"],
+                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"]
                         ]
                     ]
                 ]],
@@ -614,22 +614,22 @@
         "DO_UPDATE_LEAD_INVESTIGATOR_TOKEN": {
             "args": [],
             "code": [
-                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                 ["COND",
-                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                    ["NOT_EQUAL", "$INVESTIGATOR", null],
                     [
-                        ["VAR", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"]],
+                        ["VAR", "$LEAD_INVESTIGATOR_TOKEN", ["GET_LEAD_INVESTIGATOR_TOKEN"]],
                         ["COND",
-                            ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", null],
+                            ["EQUAL", "$LEAD_INVESTIGATOR_TOKEN", null],
                             [
                                 ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Lead investigator Token", "first_investigator", 1, "sharedTokens", true, null],
-                                ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", ["GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID"]]
+                                ["UPDATE_VAR", "$LEAD_INVESTIGATOR_TOKEN", ["GET_LEAD_INVESTIGATOR_TOKEN"]]
                             ]
                         ],
                         ["COND",
-                            ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", "$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.parentCardId"],
-                            ["LOG", "└── ", ["GET_ALIAS", "$GAME.firstPlayer"], " attaches {{$CARD_BY_ID.$LEAD_INVESTIGATOR_TOKEN_CARD_ID.currentFace.name}} to {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}}."],
-                            ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN_CARD_ID", "$INVESTIGATOR_CARD_ID"]
+                            ["NOT_EQUAL", "$INVESTIGATOR.id", "$LEAD_INVESTIGATOR_TOKEN.parentCardId"],
+                            ["LOG", "└── ", ["GET_ALIAS", "$GAME.firstPlayer"], " attaches {{$LEAD_INVESTIGATOR_TOKEN.currentFace.name}} to {{$INVESTIGATOR.currentFace.name}}."],
+                            ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN.id", "$INVESTIGATOR.id"]
                         ]
                     ]
                 ]
@@ -699,7 +699,7 @@
                     ["AND",
                         ["NOT_EQUAL", "$NEXT_PLAYER", "$TARGET_PLAYER"],
                         ["NOT_EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
-                        ["EQUAL", "$PLAYER_DATA.$NEXT_PLAYER.eliminated", true]
+                        ["EQUAL", ["GET_PLAYER_ELIMINATED", "$NEXT_PLAYER"], true]
                     ],
                     ["UPDATE_VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$NEXT_PLAYER"]]
                 ],

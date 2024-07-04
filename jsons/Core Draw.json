@@ -380,8 +380,6 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
                     ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     ["OR",
                         ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
@@ -444,7 +442,8 @@
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], 1, true, null]
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", 1, true, null]
                     ]
                 },
                 {

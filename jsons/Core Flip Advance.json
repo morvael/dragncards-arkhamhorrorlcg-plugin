@@ -196,10 +196,10 @@
                 ["VAR", "$CLUES", 0],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["COND",
-                        ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.eliminated", true],
+                        ["NOT_EQUAL", ["GET_PLAYER_ELIMINATED", "$PLAYER_I"], true],
                         [
-                            ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
-                            ["INCREASE_VAR", "$CLUES", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID.tokens.clue"]
+                            ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                            ["INCREASE_VAR", "$CLUES", "$INVESTIGATOR.tokens.clue"]
                         ]
                     ]
                 ]],

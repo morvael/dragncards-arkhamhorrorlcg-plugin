@@ -194,7 +194,7 @@
                         ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
                     ],
                     ["COND",
-                        ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true],
+                        ["EQUAL", ["GET_PLAYER_ELIMINATED", "$TARGET_CARD.cardOwner"], true],
                         [
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}}{{$SUFFIX}} from the game.", "removes {{$TARGET_NAME}}{{$SUFFIX}} from the game."],
                             ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
@@ -223,8 +223,6 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.eliminated", true],
                     ["EQUAL", "$TARGET_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
                     ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1]
                 ]
@@ -311,7 +309,7 @@
                                 ["DO_DISCARD_CARD", "$CONTROLLER", "$CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"],
                                 ["TRUE"],
                                 ["COND",
-                                    ["EQUAL", "$PLAYER_DATA.{{$CARD.cardOwner}}.eliminated", true],
+                                    ["EQUAL", ["GET_PLAYER_ELIMINATED", "$CARD.cardOwner"], true],
                                     [
                                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$CONTROLLER", "remove {{$CARD.currentFace.name}} from the game.", "removes {{$CARD.currentFace.name}} from the game."],
                                         ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_REMOVED", "$CARD.cardOwner"], -1]

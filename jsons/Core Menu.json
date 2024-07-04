@@ -209,6 +209,15 @@
                 ]
             },
             {
+                "label": "id:eliminateInvestigatorMenu",
+                "actionList": "eliminateInvestigator",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Investigator"]
+                ]
+            },            
+            {
                 "label": "id:viewCardInfoMenu",
                 "actionList": "viewCardInfo",
                 "showIf": ["AND",
@@ -235,10 +244,6 @@
             {
                 "label": "id:removeChaosTokenMenu",
                 "actionList": "removeChaosToken"
-            },
-            {
-                "label": "id:eliminateInvestigatorMenu",
-                "actionList": "eliminateInvestigator"
             }
         ]
     }

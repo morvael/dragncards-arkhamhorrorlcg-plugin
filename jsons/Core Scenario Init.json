@@ -180,29 +180,28 @@
                                 ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"]],
                                 ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]],
                                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                                    ["VAR", "$MINI_INVESTIGATOR_CARD_ID", ["GET_MINI_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                                    ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$PLAYER_I"]],
                                     ["COND",
-                                        ["EQUAL", "$MINI_INVESTIGATOR_CARD_ID", null],
+                                        ["EQUAL", "$MINI_INVESTIGATOR", null],
                                         [
-                                            ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_I"]],
+                                            ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                                             ["COND",
-                                                ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                                                ["NOT_EQUAL", "$INVESTIGATOR", null],
                                                 [
-                                                    ["VAR", "$INVESTIGATOR_CARD", "$CARD_BY_ID.$INVESTIGATOR_CARD_ID"],
-                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR_CARD.sides.A.name}}", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
-                                                    ["VAR", "$MINI_INVESTIGATOR_CARD", ["ONE_CARD", "$CARD", ["AND",
-                                                        ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR_CARD.sides.A.databaseId}}"],
+                                                    ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR.sides.A.name}}", "m{{$INVESTIGATOR.sides.A.databaseId}}", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
+                                                    ["VAR", "$MINI_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
+                                                        ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR.sides.A.databaseId}}"],
                                                         ["EQUAL", "$CARD.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"]],
                                                         ["EQUAL", "$CARD.cardOwner", "{{$PLAYER_I}}"],
                                                         ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
                                                     ]]],
                                                     ["COND",
-                                                        ["NOT_EQUAL", "$MINI_INVESTIGATOR_CARD", null],
+                                                        ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
                                                         [
-                                                            ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$MINI_INVESTIGATOR_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
-                                                            ["MOVE_CARD", "$MINI_INVESTIGATOR_CARD.id", "sharedLocations", -1, 0],
-                                                            ["SET", "/cardById/$MINI_INVESTIGATOR_CARD.id/currentSide", "A"],
-                                                            ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR_CARD.id", "$X", "$Y"],
+                                                            ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
+                                                            ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
+                                                            ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
                                                             ["INCREASE_VAR", "$X", "$X_CHANGE"]
                                                         ]
                                                     ]
@@ -267,11 +266,11 @@
                 ["SET", "/arkhamTraumaDone", 0],
                 ["SET", "/arkhamStartingHandDone", 0],
                 ["SET", "/arkhamActiveInvestigator", null],
-                ["VAR", "$INVESTIGATOR_CARD_ID", ["GET_INVESTIGATOR_CARD_ID", "$GAME.firstPlayer"]],
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                 ["COND",
-                    ["NOT_EQUAL", "$INVESTIGATOR_CARD_ID", null],
+                    ["NOT_EQUAL", "$INVESTIGATOR", null],
                     [
-                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$CARD_BY_ID.$INVESTIGATOR_CARD_ID.currentFace.name}} as the lead investigator."],
+                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -309,7 +308,10 @@
             "code": [
                 ["COND",
                     ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                    [
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+                        ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                    ]
                 ],
                 ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
             ]
@@ -319,7 +321,10 @@
             "code": [
                 ["COND",
                     ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", ["GET_INVESTIGATOR_CARD_ID", "$PLAYER_N"], "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                    [
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
+                    ]
                 ],
                 ["INCREASE_VAL", "/arkhamTraumaDone", 1],
                 ["COND",

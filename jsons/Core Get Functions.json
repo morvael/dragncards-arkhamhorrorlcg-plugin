@@ -52,49 +52,6 @@
                 ["GET_TOP_CARD_ID", "sharedAgendaStory"]
             ]
         },
-        "GET_INVESTIGATOR_CARD_ID": {
-            "args": ["$OWNER_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$OWNER_PLAYER", "GET_INVESTIGATOR_CARD_ID.OWNER_PLAYER"],
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.cardOwner", "$OWNER_PLAYER"],
-                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
-                ]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
-        "GET_LEAD_INVESTIGATOR_TOKEN_CARD_ID": {
-            "args": [],
-            "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "FirstInvestigatorToken"]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
-        "GET_MINI_INVESTIGATOR_CARD_ID": {
-            "args": ["$OWNER_PLAYER"],
-            "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.cardOwner", "$OWNER_PLAYER"],
-                    ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
-                ]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
         "GET_NAMED_ENCOUNTER_DECK_CARD_ID": {
             "args": ["$TARGET_NAME"],
             "code": [
