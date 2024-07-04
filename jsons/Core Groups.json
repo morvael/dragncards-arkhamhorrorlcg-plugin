@@ -23,8 +23,8 @@
         "sharedLocations":         {"groupType": "inPlay",     "label": "id:sharedLocations",         "tableLabel": ""},
         "sharedEncounterDeck":     {"groupType": "deckS",      "label": "id:sharedEncounterDeck",     "tableLabel": "id:sharedEncounterDeckShort"},
         "sharedEncounterDiscard":  {"groupType": "discardS",   "label": "id:sharedEncounterDiscard",  "tableLabel": "id:sharedEncounterDiscardShort"},
-        "sharedAgendaDeck":        {"groupType": "story",      "label": "id:sharedAgendaDeck",        "tableLabel": "id:sharedAgendaDeckShort"},
-        "sharedActDeck":           {"groupType": "story",      "label": "id:sharedActDeck",           "tableLabel": "id:sharedActDeckShort"},
+        "sharedAgendaStory":       {"groupType": "story",      "label": "id:sharedAgendaStory",       "tableLabel": "id:sharedAgendaStoryShort"},
+        "sharedActStory":          {"groupType": "story",      "label": "id:sharedActStory",          "tableLabel": "id:sharedActStoryShort"},
         "sharedScenarioReference": {"groupType": "inPlayS",    "label": "id:sharedScenarioReference", "tableLabel": "id:sharedScenarioReferenceShort"},
         "sharedVoid":              {"groupType": "inPlayV",    "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort"},
         "player4Hand":             {"groupType": "hand",       "label": "id:player4Hand",             "tableLabel": "id:playerHandShort",              "onCardEnter": {"peeking": {"player4": true}}},
@@ -52,10 +52,10 @@
         "player1Investigator":     {"groupType": "inPlay",     "label": "id:player1Investigator",     "tableLabel": "id:player1InvestigatorShort"},
         "player1Play":             {"groupType": "inPlay",     "label": "id:player1Play",             "tableLabel": "id:playerPlayShort"},
         "sharedOffMap":            {"groupType": "inPlay",     "label": "id:sharedOffMap",            "tableLabel": "id:sharedOffMapShort"},
-        "sharedActDeckB":          {"groupType": "story",      "label": "id:sharedActDeckB",          "tableLabel": "id:sharedActDeckBShort"},
-        "sharedActDeckC":          {"groupType": "story",      "label": "id:sharedActDeckC",          "tableLabel": "id:sharedActDeckCShort"},
-        "sharedActDeckD":          {"groupType": "story",      "label": "id:sharedActDeckD",          "tableLabel": "id:sharedActDeckDShort"},
-        "sharedActDeckE":          {"groupType": "story",      "label": "id:sharedActDeckE",          "tableLabel": "id:sharedActDeckEShort"},
+        "sharedActStoryB":         {"groupType": "story",      "label": "id:sharedActStoryB",         "tableLabel": "id:sharedActStoryBShort"},
+        "sharedActStoryC":         {"groupType": "story",      "label": "id:sharedActStoryC",         "tableLabel": "id:sharedActStoryCShort"},
+        "sharedActStoryD":         {"groupType": "story",      "label": "id:sharedActStoryD",         "tableLabel": "id:sharedActStoryDShort"},
+        "sharedActStoryE":         {"groupType": "story",      "label": "id:sharedActStoryE",         "tableLabel": "id:sharedActStoryEShort"},
         "sharedNotInPlay":         {"groupType": "outOfPlay",  "label": "id:sharedNotInPlay",         "tableLabel": "id:sharedNotInPlayShort"},
         "sharedDeckA":             {"groupType": "deck",       "label": "id:sharedDeckA",             "tableLabel": "id:sharedDeckAShort"},
         "sharedDiscardA":          {"groupType": "discard",    "label": "id:sharedDiscardA",          "tableLabel": "id:sharedDiscardAShort"},
@@ -96,16 +96,16 @@
         "sharedEncounterDiscardShort": {
             "English": "Discard"
         },
-        "sharedAgendaDeck": {
+        "sharedAgendaStory": {
             "English": "Agenda Deck"
         },
-        "sharedAgendaDeckShort": {
+        "sharedAgendaStoryShort": {
             "English": "Agenda"
         },
-        "sharedActDeck": {
+        "sharedActStory": {
             "English": "Act Deck"
         },
-        "sharedActDeckShort": {
+        "sharedActStoryShort": {
             "English": "Act"
         },
         "sharedScenarioReference": {
@@ -255,28 +255,28 @@
         "sharedOffMapShort": {
             "English": "Off Map"
         },
-        "sharedActDeckB": {
+        "sharedActStoryB": {
             "English": "Act Deck B"
         },
-        "sharedActDeckBShort": {
+        "sharedActStoryBShort": {
             "English": "Act B"
         },
-        "sharedActDeckC": {
+        "sharedActStoryC": {
             "English": "Act Deck C"
         },
-        "sharedActDeckCShort": {
+        "sharedActStoryCShort": {
             "English": "Act C"
         },
-        "sharedActDeckD": {
+        "sharedActStoryD": {
             "English": "Act Deck D"
         },
-        "sharedActDeckDShort": {
+        "sharedActStoryDShort": {
             "English": "Act D"
         },
-        "sharedActDeckE": {
+        "sharedActStoryE": {
             "English": "Act Deck E"
         },
-        "sharedActDeckEShort": {
+        "sharedActStoryEShort": {
             "English": "Act E"
         },
         "sharedNotInPlay": {

@@ -231,6 +231,62 @@
                 ]
             },
             {
+                "_comment": "Change attachedCount.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/parentCardId"],
+                "condition": [
+                    ["NOT_EQUAL", ["PREV", "$TARGET.parentCardId"], "$TARGET.parentCardId"]
+                ],
+                "then": [
+                    ["VAR", "$OLD_PARENT_ID", ["PREV", "$TARGET.parentCardId"]],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$OLD_PARENT_ID", null],
+                            ["NOT_EQUAL", "$OLD_PARENT_ID", ""],
+                            ["NOT_EQUAL", "$OLD_PARENT_ID", "$TARGET.id"]
+                        ],
+                        ["DECREASE_VAL", "/cardById/$OLD_PARENT_ID/attachedCount", 1]
+                    ],
+                    ["VAR", "$NEW_PARENT_ID", "$TARGET.parentCardId"],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$NEW_PARENT_ID", null],
+                            ["NOT_EQUAL", "$NEW_PARENT_ID", ""],
+                            ["NOT_EQUAL", "$NEW_PARENT_ID", "$TARGET.id"]
+                        ],
+                        ["INCREASE_VAL", "/cardById/$NEW_PARENT_ID/attachedCount", 1]
+                    ]
+                ]
+            },
+            {
+                "_comment": "Change inHand and type.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["NOT_EQUAL", "$TARGET.inHand", ["GET_DESIRED_IN_HAND", "$TARGET.groupId"]]
+                ],
+                "then": [
+                    ["COND",
+                        ["GET_DESIRED_IN_HAND", "$TARGET.groupId"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/inHand", true],
+                            ["COND",
+                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                                ["SET", "/cardById/$TARGET.id/sides/B/type", "$TARGET.sides.A.type"]
+                            ]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/inHand", false],
+                            ["COND",
+                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                                ["SET", "/cardById/$TARGET.id/sides/B/type", null]
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            {
                 "_comment": "Add uses resource tokens.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
@@ -287,6 +343,13 @@
             "code": [
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
                 ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true]
+            ]
+        },
+        "GET_DESIRED_IN_HAND": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_HAND.TARGET_GROUP_ID"]],
+                ["EQUAL", "$TARGET_GROUP.groupType", "hand"]
             ]
         },
         "GET_DESIRED_CONTROLLER": {
@@ -392,30 +455,6 @@
                 ]
             ]
         },
-        "GET_CARD_NAME": {
-            "args": ["$TARGET_CARD_ID"],
-            "code": [
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_NAME.TARGET_CARD_ID"]],
-                ["COND",
-                    ["IN_STRING", "$TARGET_CARD.groupId", "Hand"],
-                    "$TARGET_CARD.sides.A.name",
-                    ["TRUE"],
-                    "$TARGET_CARD.currentFace.name"
-                ]
-            ]
-        },
-        "GET_CARD_TYPE": {
-            "args": ["$TARGET_CARD_ID"],
-            "code": [
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_TYPE.TARGET_CARD_ID"]],
-                ["COND",
-                    ["IN_STRING", "$TARGET_CARD.groupId", "Hand"],
-                    "$TARGET_CARD.sides.A.type",
-                    ["TRUE"],
-                    "$TARGET_CARD.currentFace.type"
-                ]
-            ]
-        },
         "DO_STEP_M1": {
             "args": [],
             "code": [
@@ -451,7 +490,7 @@
                             ],
                             [
                                 ["LOG", "└── {{$CURRENT_AGENDA.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}."],
-                                ["DO_ADVANCE_STORY", "$GAME.firstPlayer", "sharedAgendaDeck", true, null]
+                                ["DO_ADVANCE_STORY", "$GAME.firstPlayer", "sharedAgendaStory", true, null]
                             ]
                         ]
                     ]

@@ -28,6 +28,7 @@
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.inAdvanced", true],
                         ["EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
                         ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"],
                         ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
                     ],
@@ -43,6 +44,7 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],

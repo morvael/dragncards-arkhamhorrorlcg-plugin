@@ -35,121 +35,57 @@
         ]
     },
     "functions": {
-        "DO_DISCARD_CARD_FINAL": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SUFFIX", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_CARD_FINAL.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DISCARD_CARD_FINAL.TARGET_CARD_ID"]],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_CARD_FINAL.LOG_EVENT"],
-                ["VAR", "$TARGET_NAME", "$TARGET_CARD.currentFace.name"],
-                ["COND",
-                    ["EQUAL", "$SUFFIX", " from hand"],
-                    ["UPDATE_VAR", "$TARGET_NAME", "$TARGET_CARD.sides.A.name"]
-                ],
-                ["COND",
-                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
-                    [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, 0, {"combine":false}]
-                    ],
-                    ["AND",
-                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                        ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
-                    ],
-                    ["COND",
-                        ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true],
-                        [
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}}{{$SUFFIX}} from the game.", "removes {{$TARGET_NAME}}{{$SUFFIX}} from the game."],
-                            ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
-                        ],
-                        ["TRUE"],
-                        [
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
-                            ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0, {"combine":false}]
-                        ]
-                    ],
-                    ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""],
-                    [
-                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine":false}]
-                    ]
-                ]
-            ]
-        },
         "GET_DISCARD_CARD_MODE": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_DISCARD_CARD_MODE.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DISCARD_CARD_MODE.TARGET_CARD_ID"]],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "GET_DISCARD_CARD_MODE.TARGET_CARD.groupId"]],
                 ["COND",
-                    ["OR",
-                        ["EQUAL", "$TARGET_CARD.controller", "shared"],
-                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Deck"],
+                    1,
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"]
                     ],
-                    ["COND",
-                        ["AND",
-                            ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
-                            ["NOT_EQUAL", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP.id"], null]
-                        ],
-                        1,
-                        ["AND",
-                            ["NOT_EQUAL", "$TARGET_GROUP.id", "sharedChaosBag"],
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"]
-                        ],
-                        2,
-                        ["AND",
-                            ["NOT_EQUAL", "$TARGET_GROUP.id", "sharedTokens"],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
-                            ]
-                        ],
-                        3,
-                        ["AND",
-                            ["IN_STRING", "$TARGET_GROUP.groupType", "hand"],
-                            ["OR",
-                                ["GREATER_THAN", "$TARGET_CARD.sides.A.victoryPoints", 0],
-                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
-                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                                ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
-                            ]
-                        ],
-                        4,
-                        ["AND",
-                            ["OR",
-                                ["IN_STRING", "$TARGET_GROUP.groupType", "inPlay"],
-                                ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
-                            ],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
-                            ],
-                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
-                            ["OR",
-                                ["GREATER_THAN", "$TARGET_CARD.currentFace.victoryPoints", 0],
-                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
-                                ],
-                                ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
-                            ]
-                        ],
-                        5,
-                        ["TRUE"],
-                        0
+                    2,
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                        ]
                     ],
+                    3,
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.inHand", true],
+                        ["OR",
+                            ["GREATER_THAN", "$TARGET_CARD.sides.A.victoryPoints", 0],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
+                        ]
+                    ],
+                    4,
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.inPlay", true],
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
+                        ],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
+                        ["OR",
+                            ["GREATER_THAN", "$TARGET_CARD.currentFace.victoryPoints", 0],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
+                        ]
+                    ],
+                    5,
                     ["TRUE"],
                     0
                 ]
@@ -231,6 +167,52 @@
                         ],
                         ["TRUE"],
                         ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DISCARD_CARD_FINAL": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SUFFIX", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_CARD_FINAL.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DISCARD_CARD_FINAL.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DISCARD_CARD_FINAL.LOG_EVENT"],
+                ["VAR", "$TARGET_NAME", "$TARGET_CARD.currentFace.name"],
+                ["COND",
+                    ["EQUAL", "$SUFFIX", " from hand"],
+                    ["UPDATE_VAR", "$TARGET_NAME", "$TARGET_CARD.sides.A.name"]
+                ],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, 0, {"combine":false}]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                        ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
+                    ],
+                    ["COND",
+                        ["EQUAL", "$PLAYER_DATA.{{$TARGET_CARD.cardOwner}}.eliminated", true],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}}{{$SUFFIX}} from the game.", "removes {{$TARGET_NAME}}{{$SUFFIX}} from the game."],
+                            ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
+                            ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0, {"combine":false}]
+                        ]
+                    ],
+                    ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""],
+                    [
+                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine":false}]
                     ]
                 ]
             ]

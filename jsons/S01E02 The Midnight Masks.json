@@ -14,9 +14,9 @@
             "label": "The Midnight Masks",
             "cards": [
                 {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
-                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaDeck"},
-                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActDeck"},
+                {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},
                 {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
                 {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},

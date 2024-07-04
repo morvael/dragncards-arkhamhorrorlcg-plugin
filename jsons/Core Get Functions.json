@@ -43,13 +43,13 @@
         "GET_CURRENT_ACT_ID": {
             "args": [],
             "code": [
-                ["GET_TOP_CARD_ID", "sharedActDeck"]
+                ["GET_TOP_CARD_ID", "sharedActStory"]
             ]
         },
         "GET_CURRENT_AGENDA_ID": {
             "args": [],
             "code": [
-                ["GET_TOP_CARD_ID", "sharedAgendaDeck"]
+                ["GET_TOP_CARD_ID", "sharedAgendaStory"]
             ]
         },
         "GET_INVESTIGATOR_CARD_ID": {
