@@ -87,9 +87,9 @@
                             ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.sharedChaosBag.stackIds"], 1],
                             ["SHUFFLE_GROUP", "sharedChaosBag"]
                         ],
-                        ["VAR", "$CHAOS_TOKEN_ID", ["GET_TOP_CARD_ID", "sharedChaosBag"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reveal {{$CARD_BY_ID.$CHAOS_TOKEN_ID.sides.A.name}} Chaos Token from the Chaos Bag.", "reveals {{$CARD_BY_ID.$CHAOS_TOKEN_ID.sides.A.name}} Chaos Token from the Chaos Bag."],
-                        ["MOVE_CARD", "$CHAOS_TOKEN_ID", "sharedVoid", 0, 0, {"combine":false, "allowFlip": false}]
+                        ["VAR", "$CHAOS_TOKEN", ["GET_TOP_CARD", "sharedChaosBag"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reveal {{$CHAOS_TOKEN.sides.A.name}} Chaos Token from the Chaos Bag.", "reveals {{$CHAOS_TOKEN.sides.A.name}} Chaos Token from the Chaos Bag."],
+                        ["MOVE_CARD", "$CHAOS_TOKEN.id", "sharedVoid", 0, 0, {"combine":false, "allowFlip": false}]
                     ]
                 ]
             ]

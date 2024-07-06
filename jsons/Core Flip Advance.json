@@ -217,8 +217,7 @@
                         ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
                     ],
                     [
-                        ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
-                        ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "CAN_ADVANCE_STORY.TOP_CARD_ID"]],
+                        ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$TARGET_GROUP_ID"]],
                         ["AND",
                             ["OR",
                                 ["EQUAL", "$TOP_CARD.currentFace.type", "Agenda"],
@@ -244,29 +243,28 @@
                 ["COND",
                     ["CAN_ADVANCE_STORY", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
                     [
-                        ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
-                        ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_ADVANCE_STORY.TOP_CARD_ID"]],
+                        ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$TARGET_GROUP_ID"]],
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$TOP_CARD.currentFace.type", "Agenda"],
                                 ["EQUAL", "$TOP_CARD.currentSide", "A"]
                             ],
                             [
-                                ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$TOP_CARD_ID"]],
+                                ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$TOP_CARD.id"]],
                                 ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
                                 ["COND",
                                     ["AND",
                                         ["GREATER_THAN", "$DOOM_REQUIRED", 0],
                                         ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$TARGET_PLAYER", "enoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "enoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
                                     ["AND",
                                         ["GREATER_THAN", "$DOOM_REQUIRED", 0],
                                         ["LESS_THAN", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughDoom", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
                                     ["TRUE"],
-                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"]
                                 ]
                             ],
                             ["AND",
@@ -274,26 +272,26 @@
                                 ["EQUAL", "$TOP_CARD.currentSide", "A"]
                             ],
                             [
-                                ["VAR", "$CLUES_REQUIRED", ["GET_CARD_CLUES_REQUIREMENT", "$TOP_CARD_ID"]],
-                                ["VAR", "$CLUES_PRESENT", ["GET_CLUES_ON_CARD", "$TOP_CARD_ID"]],
+                                ["VAR", "$CLUES_REQUIRED", ["GET_CARD_CLUES_REQUIREMENT", "$TOP_CARD.id"]],
+                                ["VAR", "$CLUES_PRESENT", ["GET_CLUES_ON_CARD", "$TOP_CARD.id"]],
                                 ["VAR", "$CLUES_COLLECTED", ["GET_CLUES_COLLECTED"]],
                                 ["COND",
                                     ["AND",
                                         ["GREATER_THAN", "$CLUES_REQUIRED", 0],
                                         ["GREATER_EQUAL", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$TARGET_PLAYER", "enoughClues", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "enoughClues", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
                                     ["AND",
                                         ["GREATER_THAN", "$CLUES_REQUIRED", 0],
                                         ["LESS_THAN", "$CLUES_PRESENT", "$CLUES_REQUIRED"]
                                     ],
-                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughClues", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
+                                    ["PROMPT", "$TARGET_PLAYER", "notEnoughClues", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER", "$CLUES_REQUIRED", "$CLUES_PRESENT", "$CLUES_COLLECTED"],
                                     ["TRUE"],
-                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                    ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"]
                                 ]
                             ],
                             ["TRUE"],
-                            ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                            ["DO_ADVANCE_STORY_FINAL", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"]
                         ]
                     ]
                 ]

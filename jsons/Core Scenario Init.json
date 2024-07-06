@@ -114,7 +114,8 @@
         "DO_DELETE_LOCATION": {
             "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_DELETE_CARD", "$TARGET_PLAYER", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"], "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                ["DO_DELETE_CARD", "$TARGET_PLAYER", "$LOCATION_CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"]
             ]
         },
         "DO_DELETE_LOCATION_SCN": {
@@ -136,20 +137,19 @@
                         ["NOT_EQUAL", "$TOP_MOD", null]
                     ],
                     [
-                        ["VAR", "$TARGET_CARD_ID", ["GET_NAMED_ENCOUNTER_DECK_CARD_ID", "$TARGET_CARD_NAME"]],
-                        ["VAR", "$LOCATION_CARD_ID", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"]],
+                        ["VAR", "$TARGET_CARD", ["GET_NAMED_ENCOUNTER_DECK_CARD", "$TARGET_CARD_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
                         ["COND",
                             ["AND",
-                                ["NOT_EQUAL", "$TARGET_CARD_ID", null],
-                                ["NOT_EQUAL", "$LOCATION_CARD_ID", null]
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$LOCATION_CARD", null]
                             ],
                             [
-                                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
-                                ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1, 0],
-                                ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"],
-                                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]],
-                                ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD_ID"]
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1, 0],
+                                ["SET", "/cardById/$TARGET_CARD.id/currentSide", "A"],
+                                ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
+                                ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
                             ]
                         ]
                     ]
@@ -173,12 +173,12 @@
                         ["NOT_EQUAL", "$X_CHANGE", null]
                     ],
                     [
-                        ["VAR", "$LOCATION_CARD_ID", ["GET_NAMED_MAP_LOCATION_ID", "$LOCATION_CARD_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
                         ["COND",
-                            ["NOT_EQUAL", "$LOCATION_CARD_ID", null],
+                            ["NOT_EQUAL", "$LOCATION_CARD", null],
                             [
-                                ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD_ID"], "$LEFT_MOD"]],
-                                ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD_ID"], "$TOP_MOD"]],
+                                ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"]],
+                                ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                                     ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$PLAYER_I"]],
                                     ["COND",
@@ -189,16 +189,14 @@
                                                 ["NOT_EQUAL", "$INVESTIGATOR", null],
                                                 [
                                                     ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR.sides.A.name}}", "m{{$INVESTIGATOR.sides.A.databaseId}}", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
-                                                    ["VAR", "$MINI_INVESTIGATOR", ["ONE_CARD", "$CARD", ["AND",
-                                                        ["EQUAL", "$CARD.sides.A.databaseId", "m{{$INVESTIGATOR.sides.A.databaseId}}"],
-                                                        ["EQUAL", "$CARD.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"]],
-                                                        ["EQUAL", "$CARD.cardOwner", "{{$PLAYER_I}}"],
-                                                        ["EQUAL", "$CARD.currentFace.type", "MiniInvestigator"]
-                                                    ]]],
                                                     ["COND",
-                                                        ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
+                                                        ["AND",
+                                                            ["NOT_EQUAL", "$GAME.lastLoadedCardIds", null],
+                                                            ["EQUAL", ["LENGTH", "$GAME.lastLoadedCardIds"], 1]
+                                                        ],
                                                         [
-                                                            ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD_NAME}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD_NAME}}."],
+                                                            ["VAR", "$MINI_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
+                                                            ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
                                                             ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
                                                             ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],

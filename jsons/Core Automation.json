@@ -21,6 +21,9 @@
         "postSitDownActionList": [
             ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
+        "postLoadActionList": [
+            ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"]
+        ],
         "gameRules": [
             {
                 "_comment": "Game step helpers.",
@@ -471,17 +474,15 @@
         "DO_STEP_M3": {
             "args": [],
             "code": [
-                ["VAR", "$CURRENT_AGENDA_ID", ["GET_CURRENT_AGENDA_ID"]],
-                ["VAR", "$CURRENT_AGENDA", "$CARD_BY_ID.$CURRENT_AGENDA_ID"],
+                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
                 ["COND",
                     ["AND",
-                        ["NOT_EQUAL", "$CURRENT_AGENDA_ID", null],
                         ["NOT_EQUAL", "$CURRENT_AGENDA", null],
                         ["EQUAL", "$CURRENT_AGENDA.currentFace.type", "Agenda"],
                         ["EQUAL", "$CURRENT_AGENDA.currentSide", "A"]
                     ],
                     [
-                        ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CURRENT_AGENDA_ID"]],
+                        ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CURRENT_AGENDA.id"]],
                         ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
                         ["COND",
                             ["AND",

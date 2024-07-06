@@ -142,7 +142,8 @@
         "DO_PLACE_DOOM_ON_CURRENT_AGENDA": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", ["GET_CURRENT_AGENDA_ID"], "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
+                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$CURRENT_AGENDA.id", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
             ]
         },
         "DO_REMOVE_TOKEN_FROM_CARD": {

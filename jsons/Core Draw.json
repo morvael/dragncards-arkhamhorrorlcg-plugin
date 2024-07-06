@@ -329,8 +329,7 @@
                             ["WHILE",
                                 ["EQUAL", "$CONTINUE", true],
                                 [
-                                    ["VAR", "$TOP_CARD_ID", ["GET_TOP_CARD_ID", "$TARGET_GROUP_ID"]],
-                                    ["VAR", "$TOP_CARD", ["GET_CARD_AND_VALIDATE", "$TOP_CARD_ID", "DO_DRAW_CARDS_EXT.TOP_CARD_ID"]],
+                                    ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$TARGET_GROUP_ID"]],
                                     ["COND",
                                         ["AND",
                                             ["EQUAL", "$SKIP_WEAKNESS", true],
@@ -341,12 +340,12 @@
                                         ],
                                         [
                                             ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"]," ignores a Weakness card."],
-                                            ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1],
+                                            ["MOVE_CARD", "$TOP_CARD.id", "$TARGET_GROUP_ID", -1],
                                             ["UPDATE_VAR", "$SHUFFLE_DECK", true]
                                         ],
                                         ["TRUE"],
                                         [
-                                            ["MOVE_CARD", "$TOP_CARD_ID", "$HAND_GROUP_ID", -1],
+                                            ["MOVE_CARD", "$TOP_CARD.id", "$HAND_GROUP_ID", -1],
                                             ["UPDATE_VAR", "$CONTINUE", false]
                                         ]
                                     ]

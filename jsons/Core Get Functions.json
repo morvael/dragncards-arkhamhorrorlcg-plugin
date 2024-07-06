@@ -1,22 +1,17 @@
 {
     "functions": {
-        "DUMMY": {
-            "args": [],
-            "code": [
-                ["VAR", "$DUMMY", false]
-            ]
-        },
         "GET_CARD_LEFT": {
+            "_comment": "Returns integer left coordinate of given card or its parent card (if attached).",
             "args": ["$TARGET_CARD_ID"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_LEFT.TARGET_CARD_ID"]],
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                         ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
                         ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
-                        ["CALC", "{{$LEFT}}+0"]
+                        ["CALC", "{{$LEFT}}"]
                     ],
                     ["TRUE"],
                     0
@@ -24,149 +19,116 @@
             ]
         },
         "GET_CARD_TOP": {
+            "_comment": "Returns integer top coordinate of given card or its parent card (if attached).",
             "args": ["$TARGET_CARD_ID"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_TOP.TARGET_CARD_ID"]],
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                         ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
                         ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
-                        ["CALC", "{{$TOP}}+0"]
+                        ["CALC", "{{$TOP}}"]
                     ],
                     ["TRUE"],
                     0
                 ]
             ]
         },
-        "GET_CURRENT_ACT_ID": {
-            "args": [],
+        "GET_TOP_CARD": {
+            "_comment": "Returns top card of given group, or null.",
+            "args": ["$TARGET_GROUP_ID"],
             "code": [
-                ["GET_TOP_CARD_ID", "sharedActStory"]
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TOP_CARD.TARGET_GROUP_ID"]],
+                ["GET_CARD", "$TARGET_GROUP.id", 0, 0]
             ]
         },
-        "GET_CURRENT_AGENDA_ID": {
+        "GET_CURRENT_AGENDA": {
+            "_comment": "Returns top card of sharedAgendaStory, or null.",
             "args": [],
             "code": [
-                ["GET_TOP_CARD_ID", "sharedAgendaStory"]
+                ["GET_TOP_CARD", "sharedAgendaStory"]
             ]
         },
-        "GET_NAMED_ENCOUNTER_DECK_CARD_ID": {
+        "GET_NAMED_ENCOUNTER_DECK_CARD": {
+            "_comment": "Returns a card from sharedEncounterDeck with given side A name, or null.",
             "args": ["$TARGET_NAME"],
             "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_ENCOUNTER_DECK_CARD.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
                     ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"]
-                ]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
+                ]]
             ]
         },
-        "GET_NAMED_MAP_LOCATION_ID": {
+        "GET_NAMED_MAP_LOCATION": {
+            "_comment": "Returns Location type card from sharedLocations with given currentFace name, or null.",
             "args": ["$TARGET_NAME"],
             "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
                     ["EQUAL", "$CARD.currentFace.type", "Location"],
                     ["EQUAL", "$CARD.groupId", "sharedLocations"]
-                ]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
-        "GET_SCENARIO_CARD_ID": {
-            "args": [],
-            "code": [
-                ["VAR", "$MATCHED_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
-                ["COND",
-                    ["NOT_EQUAL", "$MATCHED_CARD", null],
-                    "$MATCHED_CARD.id",
-                    ["TRUE"],
-                    null
-                ]
-            ]
-        },
-        "GET_TOP_CARD_ID": {
-            "args": ["$TARGET_GROUP_ID"],
-            "code": [
-                ["GET_CARD_ID", "$TARGET_GROUP_ID", 0, 0]
+                ]]
             ]
         },
         "GET_ALL_CARDS_IN_GROUP": {
+            "_comment": "Returns list of all cards in given group.",
             "args": ["$TARGET_GROUP_ID"],
             "code": [
-                ["COND",
-                    ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
-                    ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"]],
-                    ["TRUE"],
-                    ["LIST"]
-                ]
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_ALL_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"]]
             ]
         },
         "GET_ALL_CARDS_IN_GROUP_COUNT": {
+            "_comment": "Returns integer count of all cards in given group.",
             "args": ["$TARGET_GROUP_ID"],
             "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_ALL_CARDS_IN_GROUP_COUNT.TARGET_GROUP_ID"]],
                 ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
             ]
         },
         "GET_TARGETED_CARDS_IN_GROUP": {
+            "_comment": "Returns list of cards in given group targeted by given player.",
             "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
             "code": [
-                ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
-                        ["NOT_EQUAL", "$TARGETING_PLAYER", null]
-                    ],
-                    ["FILTER_CARDS", "$CARD", ["AND",
-                        ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
-                        ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
-                    ]],
-                    ["TRUE"],
-                    ["LIST"]
-                ]
-            ]
-        },
-        "GET_ALL_CARDS_IN_PLAY": {
-            "args": [],
-            "code": [
-                ["FILTER_CARDS", "$CARD", ["OR",
-                    ["IN_STRING", "$GROUP_BY_ID.{{$CARD.groupId}}.groupType", "inPlay"],
-                    ["IN_STRING", "$GROUP_BY_ID.{{$CARD.groupId}}.groupType", "story"]
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "GET_TARGETED_CARDS_IN_GROUP.TARGETING_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
                 ]]
             ]
         },
+        "GET_ALL_CARDS_IN_PLAY": {
+            "_comment": "Returns list of all cards with inPlay true.",
+            "args": [],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.inPlay", true]]
+            ]
+        },
         "DO_SET_CARD_LOCATION": {
+            "_comment": "Sets percent coordinates of given card or its parent card (if attached).",
             "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
             "code": [
-                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                ["COND",
-                    ["NOT_EQUAL", "$TARGET_CARD", null],
-                    [
-                        ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
-                        ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
-                        ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
-                    ]
-                ]
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SET_CARD_LOCATION.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$LEFT", "DO_SET_CARD_LOCATION.LEFT"],
+                ["VALIDATE_NOT_NULL", "$TOP", "DO_SET_CARD_LOCATION.TOP"],
+                ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
+                ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
+                ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
             ]
         },
         "DO_CLEAR_TARGETED_FROM_LIST": {
+            "_comment": "Unsets given player targeting cards from given list.",
             "args": ["$SELECTED_CARDS", "$TARGETING_PLAYER"],
             "code": [
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "DO_CLEAR_TARGETED_FROM_LIST.SELECTED_CARDS"],
+                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "DO_CLEAR_TARGETED_FROM_LIST.TARGETING_PLAYER"],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$SELECTED_CARDS", null],
-                        ["NOT_EQUAL", "$TARGETING_PLAYER", null],
-                        ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
-                    ],
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                         ["UNSET", "/cardById/$CARD.id/targeting/$TARGETING_PLAYER"]
                     ]]
@@ -174,6 +136,7 @@
             ]
         },
         "GET_READY_ENEMIES_COUNT": {
+            "_comment": "Returns integer count of all ready Enemy type cards in play (except those in sharedOffMap).",
             "args": [],
             "code": [
                 ["VAR", "$ENEMIES", 0],
@@ -192,6 +155,7 @@
             ]
         },
         "GET_UNSAFE_ALLOWED": {
+            "_comment": "Returns boolean blockUnsafeActions preference of given player (false when player is null).",
             "args": ["$ACTOR_PLAYER"],
             "code": [
                 ["AND",
