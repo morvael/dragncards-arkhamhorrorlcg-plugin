@@ -290,31 +290,97 @@
                 ]
             },
             {
-                "_comment": "Add uses resource tokens.",
+                "_comment": "Pay resource cost.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
-                        ["NOT_EQUAL", "$TARGET", null],
-                        ["NOT_EQUAL", "$TARGET.groupId", null],
-                        ["NOT_EQUAL", "$TARGET.groupId", ""],
-                        ["NOT_EQUAL", "$TARGET.sides.A.uses", null],
-                        ["GREATER_THAN", "$TARGET.sides.A.uses", 0]
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.sides.B.name", "Player Card"],
+                        ["NOT_EQUAL", "$TARGET.currentFace.cost", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.cost", 0],
+                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
+                        ["EQUAL", ["GET_GROUP_IN_PLAY", ["PREV", "$TARGET.groupId"]], false]
                     ]
                 ],
                 "then": [
-                    ["VAR", "$OLD_GROUP_ID", ["PREV", "$TARGET.groupId"]],
-                    ["VAR", "$NEW_GROUP_ID", "$TARGET.groupId"],
+                    ["LOG", "zonk1 {{$TARGET.sides.B.name}} {{$TARGET.currentFace.cost}}"],
+                    ["VAR", "$TARGET_PLAYER", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$TARGET.id"]],
                     ["COND",
-                        ["AND",
-                            ["NOT_EQUAL", "$OLD_GROUP_ID", null],
-                            ["NOT_EQUAL", "$OLD_GROUP_ID", ""],
-                            ["NOT_EQUAL", "$NEW_GROUP_ID", "$OLD_GROUP_ID"],
-                            ["EQUAL", "$GROUP_BY_ID.$OLD_GROUP_ID.canHaveTokens", false],
-                            ["EQUAL", "$GROUP_BY_ID.$NEW_GROUP_ID.canHaveTokens", true]
-                        ],
-                        ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$TARGET.id"], "$TARGET.id", "$TARGET.sides.A.uses", true, null]
+                        ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.resources", "$TARGET.currentFace.cost"],
+                        ["PROMPT", "$TARGET_PLAYER", "askToPayCost", "$TARGET.id", "$TARGET.currentFace.cost"],
+                        ["TRUE"],
+                        ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"], " skips spending {{$TARGET.currentFace.cost}} resource token(s) for {{$TARGET.currentFace.name}}."]
                     ]
+                ]
+            },
+            {
+                "_comment": "Add Uses resource tokens (1).",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.uses", 0],
+                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
+                        ["EQUAL", ["GET_GROUP_IN_PLAY", ["PREV", "$TARGET.groupId"]], false],
+                        ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
+                    ]
+                ],
+                "then": [
+                    ["PROMPT", "$PLAYER_N", "askToPlaceResources", "$TARGET.id", "$TARGET.currentFace.uses"]
+                ]
+            },
+            {
+                "_comment": "Add Uses resource tokens (2).",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/currentSide"],
+                "condition": [
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.uses", 0],
+                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
+                        ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
+                    ]
+                ],
+                "then": [
+                    ["PROMPT", "$PLAYER_N", "askToPlaceResources", "$TARGET.id", "$TARGET.currentFace.uses"]
+                ]
+            },
+            {
+                "_comment": "Add Location clue tokens (1).",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.currentFace.type", "Location"],
+                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0],
+                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
+                        ["NOT_EQUAL", ["PREV", "$TARGET.groupId"], "sharedLocations"],
+                        ["EQUAL", ["GET_CLUES_ON_CARD", "$TARGET.id"], 0]
+                    ]
+                ],
+                "then": [
+                    ["PROMPT", "$PLAYER_N", "askToPlaceClues", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"]]
+                ]
+            },
+            {
+                "_comment": "Add Location clue tokens (2).",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/currentSide"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$TARGET.currentFace.type", "Location"],
+                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0],
+                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
+                        ["EQUAL", ["GET_CLUES_ON_CARD", "$TARGET.id"], 0]
+                    ]
+                ],
+                "then": [
+                    ["PROMPT", "$PLAYER_N", "askToPlaceClues", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"]]
                 ]
             },
             {
@@ -331,6 +397,16 @@
         ]
     },
     "functions": {
+        "GET_GROUP_IN_PLAY": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
+                    ["NOT_EQUAL", "$TARGET_GROUP_ID", ""],
+                    ["GET_DESIRED_IN_PLAY", "$TARGET_GROUP_ID"]
+                ]
+            ]
+        },
         "GET_DESIRED_IN_PLAY": {
             "args": ["$TARGET_GROUP_ID"],
             "code": [
@@ -344,7 +420,7 @@
         "GET_DESIRED_IN_ADVANCED": {
             "args": ["$TARGET_GROUP_ID"],
             "code": [
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_ADVANCED.TARGET_GROUP_ID"]],
                 ["EQUAL", "$TARGET_GROUP.canHaveAttachments", true]
             ]
         },

@@ -15,6 +15,7 @@
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
                     ],
                     ["OR",
+	                    ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -42,6 +43,7 @@
                 "showIf": ["AND",
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["OR",
+                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Event"],
@@ -58,6 +60,7 @@
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["EQUAL", "$ACTIVE_CARD.rotation", 90],
                     ["OR",
+                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Event"],
@@ -71,8 +74,10 @@
                 "label": "id:attachCardMenu",
                 "actionList": "attachCard",
                 "showIf": ["AND",
+                	["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
                     ["EQUAL", "$ACTIVE_CARD.attachedCount", 0],
                     ["OR",
+                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Event"],
@@ -90,9 +95,12 @@
                 "label": "id:attachToCardMenu",
                 "actionList": "attachCard",
                 "showIf": ["AND",
+                	["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
+                	["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", "$ACTIVE_CARD.id"],
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["OR",
+                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -112,7 +120,10 @@
                 "actionList": "detachCard",
                 "showIf": ["AND",
                     ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
-                    ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                    ["OR",
+                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+	                    ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+	                ]
                 ]
             },
             {

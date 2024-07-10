@@ -20,7 +20,7 @@
             "args": ["$TARGET_CARD_ID", "$TOKEN_TYPE"],
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_TOKENS_ON_CARD.TARGET_CARD_ID"]],
-                ["VALIDATE_NOT_EMPTY", "$TOKEN_TYPE", "DO_REMOVE_TOKEN_FROM_CARD.TOKEN_TYPE"],
+                ["VALIDATE_NOT_EMPTY", "$TOKEN_TYPE", "GET_TOKENS_ON_CARD.TOKEN_TYPE"],
                 ["VAR", "$TOKENS", 0],
                 ["COND",
                     ["AND",
@@ -238,6 +238,66 @@
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips gaining 1 resource."],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToGainResource", null]
+                    ]
+                }
+            ]
+        },
+        "askToPayCost": {
+            "args": ["$TARGET_CARD_ID", "$RESOURCES"],
+            "message": "You should now spend {{$RESOURCES}} resource token(s) for {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_SPEND_RESOURCES", "$PLAYER_N", "$RESOURCES", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips spending {{$RESOURCES}} resource token(s) for {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}."]
+                    ]
+                }
+            ]
+        },
+        "askToPlaceResources": {
+            "args": ["$TARGET_CARD_ID", "$RESOURCES"],
+            "message": "You should now place {{$RESOURCES}} resource token(s) on {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$TARGET_CARD_ID"], "$TARGET_CARD_ID", "$RESOURCES", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips placing {{$RESOURCES}} resource token(s) on {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}."]
+                    ]
+                }
+            ]
+        },
+        "askToPlaceClues": {
+            "args": ["$TARGET_CARD_ID", "$CLUES"],
+            "message": "You should now place {{$CLUES}} clue token(s) on {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
+            "options": [
+                {
+                    "label": "Yes, proceed (follow the rules)",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_PLACE_CLUES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$TARGET_CARD_ID"], "$TARGET_CARD_ID", "$CLUES", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No, skip that (ignore the rules)",
+                    "hotkey": "N",
+                    "code": [
+                        ["LOG", "└── {{$ALIAS_N}} skips placing {{$CLUES}} clue token(s) on {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}."]
                     ]
                 }
             ]

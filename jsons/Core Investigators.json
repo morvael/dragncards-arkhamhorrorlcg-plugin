@@ -87,7 +87,7 @@
                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
                 ["OR",
                     ["EQUAL", "$INVESTIGATOR", null],
-                    ["NOT_EQUAL", "$INVESTIGATOR.eliminated", true]
+                    ["EQUAL", "$INVESTIGATOR.eliminated", true]
                 ]
             ]
         },
