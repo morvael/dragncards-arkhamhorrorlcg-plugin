@@ -100,7 +100,8 @@
                 ["COND",
                     ["CAN_REMOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_CARD.currentFace.name}} from the game.", "removes {{$TARGET_CARD.currentFace.name}} from the game."],
+                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}} from the game.", "removes {{$TARGET_NAME}} from the game."],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
                         ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
                     ]
@@ -137,7 +138,8 @@
                 ["COND",
                     ["CAN_EXILE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_CARD.currentFace.name}} from the game.", "exiles {{$TARGET_CARD.currentFace.name}} from the game."],
+                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_NAME}} from the game.", "exiles {{$TARGET_NAME}} from the game."],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
                         ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_EXILED", "$TARGET_CARD.cardOwner"], -1]
                     ]

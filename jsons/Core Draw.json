@@ -60,6 +60,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot look at top N cards of {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "playCard": [
+            ["COND",
+                ["CAN_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -430,6 +438,52 @@
             "code": [
                 ["DO_LOOK_AT_TOP_N_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
+        },
+        "CAN_PLAY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_PLAY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PLAY_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.inHand", true],
+                    ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLAY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLAY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLAY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PLAY_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_PLAY_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "play {{$TARGET_CARD.sides.A.name}}.", "plays {{$TARGET_CARD.sides.A.name}}."],
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], -1],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"]
+                            ],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"]
+                            ],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_THREAT", "$TARGET_PLAYER"], -1]
+                        ]
+                    ]
+                ]
+            ]
         }
     },
     "prompts": {
@@ -532,6 +586,12 @@
         },
         "lookAtTopCardsMenu": {
             "English": "Look at top N cards"
+        },
+        "playCard": {
+            "English": "Play card"
+        },
+        "playCardMenu": {
+            "English": "Play card (P)"
         }
     }
 }

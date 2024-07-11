@@ -65,6 +65,7 @@
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
             {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
             {"key": "O", "actionList": "toggleSideboard", "label": "id:toggleSideboard"},
+            {"key": "P", "actionList": "playCard", "label": "id:playCard"},
             {"key": "Q", "actionList": "drawEncounterCard", "label": "id:drawEncounterCard"},
             {"key": "U", "actionList": "addCurseToken", "label": "id:addCurseToken"},
             {"key": "Shift+U", "actionList": "removeCurseToken", "label": "id:removeCurseToken"},

@@ -499,6 +499,18 @@
                 ]
             ]
         },
+        "GET_CARD_NAME": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_NAME.TARGET_CARD_ID"]],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.inHand", true],
+                    "$TARGET_CARD.sides.A.name",
+                    ["TRUE"],
+                    "$TARGET_CARD.currentFace.name"
+                ]
+            ]
+        },
         "DO_STEP_M1": {
             "args": [],
             "code": [

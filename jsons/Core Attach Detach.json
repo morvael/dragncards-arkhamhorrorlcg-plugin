@@ -123,11 +123,12 @@
                 ["COND",
                     ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
                     [
+                    	["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
                         ["COND",
                             ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reattach {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "reattaches {{$TARGET_CARD.currentFace.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reattach {{$TARGET_NAME}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "reattaches {{$TARGET_NAME}} from {{$TARGET_CARD.parentCard.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."],
                             ["TRUE"],
-                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.currentFace.name}} to {{$PARENT_CARD.currentFace.name}}."]
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}."]
                         ],
                         ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
                         ["COND",

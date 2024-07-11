@@ -4,6 +4,21 @@
         "moveToGroupIds": [],
         "options": [
             {
+                "label": "id:playCardMenu",
+                "actionList": "playCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                    ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:flipCardMenu",
                 "actionList": "flipCard",
                 "showIf": ["AND",
