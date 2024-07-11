@@ -199,6 +199,7 @@
                                                             ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
                                                             ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
+                                                        	["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
                                                             ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
                                                             ["INCREASE_VAR", "$X", "$X_CHANGE"]
                                                         ]
@@ -253,26 +254,44 @@
         "SCENARIO_INIT": {
             "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
             "code": [
-                ["SET", "/arkhamScenarioInit", true],
-                ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
-                ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
-                ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
-                ["SET", "/arkhamScenarioDifficulty", "Normal"],
-                ["SET", "/arkhamNumScenarioQuestions", 0],
-                ["SET", "/arkhamScenarioQuestionIndex", 0],
-                ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-                ["SET", "/arkhamTraumaDone", 0],
-                ["SET", "/arkhamStartingHandDone", 0],
-                ["SET", "/arkhamActiveInvestigator", null],
-                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
-                ["COND",
-                    ["NOT_EQUAL", "$INVESTIGATOR", null],
-                    [
+            	["VAR", "$PRESENT_INVESTIGATORS", 0],
+            	["VAR", "$PRESENT_DECKS", 0],
+            	["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+            		["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+            		["COND",
+            			["NOT_EQUAL", "$INVESTIGATOR_I", null],
+            			["INCREASE_VAR", "$PRESENT_INVESTIGATORS", 1]
+            		],
+            		["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
+            		["COND",
+            			["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$PLAYER_I_DECK.stackIds"], 20],
+            			["INCREASE_VAR", "$PRESENT_DECKS", 1]
+            		]
+            	]],
+            	["COND",
+            		["AND",
+            			["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
+            			["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
+            		],
+            		[
+		                ["SET", "/arkhamScenarioInit", true],
+		                ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
+		                ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
+		                ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
+		                ["SET", "/arkhamScenarioDifficulty", "Normal"],
+		                ["SET", "/arkhamNumScenarioQuestions", 0],
+		                ["SET", "/arkhamScenarioQuestionIndex", 0],
+		                ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
+		                ["SET", "/arkhamTraumaDone", 0],
+		                ["SET", "/arkhamStartingHandDone", 0],
+		                ["SET", "/arkhamActiveInvestigator", null],
+		                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["SET", "/playerData/$PLAYER_I/eliminated", false],
+                            ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                            ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
                             ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
                             ["VAR", "$PLAYER_I_ALIAS", ["GET_ALIAS", "$PLAYER_I"]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -287,18 +306,26 @@
                             ]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                ["EQUAL", "$CARD.sides.A.type", "Key"]
+                            ]]],
+                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                ["LOG", "└── {{$CARD.sides.A.name}} key starts the game attached to {{$INVESTIGATOR_I.currentFace.name}}."],
+                                ["ATTACH_CARD", "$CARD.id", "$INVESTIGATOR_I.id"]
+                            ]],
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
                                 ["EQUAL", "$CARD.sides.A.permanent", true]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["LOG", "└── Permanent {{$CARD.sides.A.name}} starts the game in play."],
+                                ["LOG", "└── {{$CARD.sides.A.name}} permanent starts the game in play."],
                                 ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
-                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
-                    ],
-                    ["TRUE"],
-                    ["LOG", "Lead investigator cannot be found, {{$ALIAS_N}}."]
-                ]
+                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]            			
+            		],
+            		["TRUE"],
+            		["LOG", "└── Not all players have loaded their investigators and/or decks."]
+            	]
             ]
         },
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {

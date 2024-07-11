@@ -103,12 +103,23 @@
                 ]
             ]
         },
-        "DO_READY_ALL_CARDS": {
-            "args": [],
+        "GET_ALL_EXHAUSTED_CARDS": {
+            "args": ["$TARGET_PLAYER", "$ACTOR_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_ALL_EXHAUSTED_CARDS.TARGET_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                	["CAN_READY_CARD", "$TARGET_PLAYER", "$CARD.id", "$ACTOR_PLAYER"]
+                ]]
+            ]
+        },
+        "DO_READY_ALL_CARDS": {
+            "args": ["$TARGET_PLAYER", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_READY_ALL_CARDS.TARGET_PLAYER"],
                 ["LOG", "└── Each exhausted card readies."],
-                ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$CARD_BY_ID", [
-                    ["DO_READY_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD_ID"], "$CARD_ID", false, null]
+                ["VAR", "$ALL_EXHAUSTED_CARDS", ["GET_ALL_EXHAUSTED_CARDS", "$TARGET_PLAYER", "$ACTOR_PLAYER"]],
+                ["FOR_EACH_VAL", "$CARD", "$ALL_EXHAUSTED_CARDS", [
+                	["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
                 ]]
             ]
         }
@@ -122,7 +133,7 @@
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_READY_ALL_CARDS"]
+                        ["DO_READY_ALL_CARDS", "$PLAYER_N", "$PLAYER_N"]
                     ]
                 },
                 {

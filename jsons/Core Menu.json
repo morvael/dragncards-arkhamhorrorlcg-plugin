@@ -227,7 +227,7 @@
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true],
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Investigator"]
                 ]
-            },            
+            },
             {
                 "label": "id:viewCardInfoMenu",
                 "actionList": "viewCardInfo",

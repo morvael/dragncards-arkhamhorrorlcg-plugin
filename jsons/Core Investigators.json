@@ -177,7 +177,7 @@
                         ]
                     ],
                     ["NOT_EQUAL", "$LEAD_PLAYER", "$GAME.firstPlayer"],
-                    [                        
+                    [
                         ["VAR", "$LEAD_PLAYER_ALIAS", ["GET_ALIAS", "$LEAD_PLAYER"]],
                         ["VAR", "$LEAD_INVESTIGATOR", ["GET_INVESTIGATOR", "$LEAD_PLAYER"]],
                         ["LOG", "└── {{$LEAD_PLAYER_ALIAS}}'s {{$LEAD_INVESTIGATOR.currentFace.name}} is the new lead investigator."],
@@ -241,7 +241,7 @@
                 ["COND",
                     ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
                     ["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", true]
-                ],                
+                ],
                 ["SET", "/cardById/$TARGET_CARD_ID/eliminated", true],
                 ["SET", "/playerData/$TARGET_PLAYER/resources", 0]
             ]

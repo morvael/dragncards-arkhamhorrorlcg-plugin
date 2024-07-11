@@ -212,6 +212,17 @@
                 ]
             },
             {
+                "_comment": "Change inAdvanced.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["NOT_EQUAL", "$TARGET.inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                ],
+                "then": [
+                    ["SET", "/cardById/$TARGET.id/inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                ]
+            },
+            {
                 "_comment": "Change inPlay.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
@@ -223,14 +234,31 @@
                 ]
             },
             {
-                "_comment": "Change inAdvanced.",
+                "_comment": "Change inHand and type (hack to be able to check currentFace.type of cards in hand).",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
-                    ["NOT_EQUAL", "$TARGET.inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                    ["NOT_EQUAL", "$TARGET.inHand", ["GET_DESIRED_IN_HAND", "$TARGET.groupId"]]
                 ],
                 "then": [
-                    ["SET", "/cardById/$TARGET.id/inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET.groupId"]]
+                    ["COND",
+                        ["GET_DESIRED_IN_HAND", "$TARGET.groupId"],
+                        [
+                            ["COND",
+                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                                ["SET", "/cardById/$TARGET.id/sides/B/type", "$TARGET.sides.A.type"]
+                            ],
+                            ["SET", "/cardById/$TARGET.id/inHand", true]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["SET", "/cardById/$TARGET.id/inHand", false],
+                            ["COND",
+                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
+                                ["SET", "/cardById/$TARGET.id/sides/B/type", null]
+                            ]
+                        ]
+                    ]
                 ]
             },
             {
@@ -262,125 +290,72 @@
                 ]
             },
             {
-                "_comment": "Change inHand and type.",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
-                "condition": [
-                    ["NOT_EQUAL", "$TARGET.inHand", ["GET_DESIRED_IN_HAND", "$TARGET.groupId"]]
-                ],
-                "then": [
-                    ["COND",
-                        ["GET_DESIRED_IN_HAND", "$TARGET.groupId"],
-                        [
-                            ["SET", "/cardById/$TARGET.id/inHand", true],
-                            ["COND",
-                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                                ["SET", "/cardById/$TARGET.id/sides/B/type", "$TARGET.sides.A.type"]
-                            ]
-                        ],
-                        ["TRUE"],
-                        [
-                            ["SET", "/cardById/$TARGET.id/inHand", false],
-                            ["COND",
-                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                                ["SET", "/cardById/$TARGET.id/sides/B/type", null]
-                            ]
-                        ]
-                    ]
-                ]
-            },
-            {
                 "_comment": "Pay resource cost.",
                 "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
+                "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                        ["EQUAL", "$TARGET.sides.B.name", "Player Card"],
+                        ["NOT_EQUAL", "$TARGET.controller", "shared"],
                         ["NOT_EQUAL", "$TARGET.currentFace.cost", null],
                         ["GREATER_THAN", "$TARGET.currentFace.cost", 0],
-                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
-                        ["EQUAL", ["GET_GROUP_IN_PLAY", ["PREV", "$TARGET.groupId"]], false]
+                        ["EQUAL", "$TARGET.inPlay", true],
+                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false]
                     ]
                 ],
                 "then": [
-                    ["LOG", "zonk1 {{$TARGET.sides.B.name}} {{$TARGET.currentFace.cost}}"],
-                    ["VAR", "$TARGET_PLAYER", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$TARGET.id"]],
+                    ["VAR", "$TARGET_PLAYER", "$TARGET.controller"],
+                    ["VAR", "$COST", "$TARGET.currentFace.cost"],
+                    ["VAR", "$NAME", "$TARGET.currentFace.name"],
                     ["COND",
-                        ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.resources", "$TARGET.currentFace.cost"],
-                        ["PROMPT", "$TARGET_PLAYER", "askToPayCost", "$TARGET.id", "$TARGET.currentFace.cost"],
+                        ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.resources", "$COST"],
+                        [
+                            ["DO_LOG", true, "$PLAYER_N", "$TARGET_PLAYER",
+                                ["GET_NUMERIC_LOG", "spend ", "spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
+                                ["GET_NUMERIC_LOG", "spends ", "spends ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]],
+                            ["DO_SPEND_RESOURCES", "$TARGET_PLAYER", "$COST", false, "$PLAYER_N"]
+                        ],
                         ["TRUE"],
-                        ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"], " skips spending {{$TARGET.currentFace.cost}} resource token(s) for {{$TARGET.currentFace.name}}."]
+                        ["DO_LOG", true, "$PLAYER_N", "$TARGET_PLAYER",
+                            ["GET_NUMERIC_LOG", "obliged to spend ", "obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
+                            ["GET_NUMERIC_LOG", "is obliged to spend ", "is obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]]
                     ]
                 ]
             },
             {
-                "_comment": "Add Uses resource tokens (1).",
+                "_comment": "Add Uses resource tokens.",
                 "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
+                "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
                         ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
                         ["GREATER_THAN", "$TARGET.currentFace.uses", 0],
-                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
-                        ["EQUAL", ["GET_GROUP_IN_PLAY", ["PREV", "$TARGET.groupId"]], false],
+                        ["EQUAL", "$TARGET.inPlay", true],
+                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
                         ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
                     ]
                 ],
                 "then": [
-                    ["PROMPT", "$PLAYER_N", "askToPlaceResources", "$TARGET.id", "$TARGET.currentFace.uses"]
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", "$TARGET.currentFace.uses", true, "$PLAYER_N"]
                 ]
             },
             {
-                "_comment": "Add Uses resource tokens (2).",
+                "_comment": "Add Location clue tokens.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/currentSide"],
-                "condition": [
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.uses", 0],
-                        ["EQUAL", ["GET_GROUP_IN_PLAY", "$TARGET.groupId"], true],
-                        ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
-                    ]
-                ],
-                "then": [
-                    ["PROMPT", "$PLAYER_N", "askToPlaceResources", "$TARGET.id", "$TARGET.currentFace.uses"]
-                ]
-            },
-            {
-                "_comment": "Add Location clue tokens (1).",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["AND",
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
                         ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
                         ["GREATER_THAN", "$TARGET.currentFace.clues", 0],
-                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
-                        ["NOT_EQUAL", ["PREV", "$TARGET.groupId"], "sharedLocations"],
                         ["EQUAL", ["GET_CLUES_ON_CARD", "$TARGET.id"], 0]
                     ]
                 ],
                 "then": [
-                    ["PROMPT", "$PLAYER_N", "askToPlaceClues", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"]]
-                ]
-            },
-            {
-                "_comment": "Add Location clue tokens (2).",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/currentSide"],
-                "condition": [
-                    ["AND",
-                        ["EQUAL", "$TARGET.currentFace.type", "Location"],
-                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0],
-                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
-                        ["EQUAL", ["GET_CLUES_ON_CARD", "$TARGET.id"], 0]
-                    ]
-                ],
-                "then": [
-                    ["PROMPT", "$PLAYER_N", "askToPlaceClues", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"]]
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", "$TARGET.currentFace.clues", true, "$PLAYER_N"]
                 ]
             },
             {
@@ -397,16 +372,6 @@
         ]
     },
     "functions": {
-        "GET_GROUP_IN_PLAY": {
-            "args": ["$TARGET_GROUP_ID"],
-            "code": [
-                ["AND",
-                    ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
-                    ["NOT_EQUAL", "$TARGET_GROUP_ID", ""],
-                    ["GET_DESIRED_IN_PLAY", "$TARGET_GROUP_ID"]
-                ]
-            ]
-        },
         "GET_DESIRED_IN_PLAY": {
             "args": ["$TARGET_GROUP_ID"],
             "code": [
@@ -583,10 +548,16 @@
         "DO_STEP_I2": {
             "args": [],
             "code": [
-                ["VAR", "$REMAINING", ["LENGTH", ["GET_ACTIVE_MINI_INVESTIGATORS"]]],
+                ["VAR", "$ACTIVE_MINI_INVESTIGATORS", ["GET_ACTIVE_MINI_INVESTIGATORS"]],
+                ["VAR", "$REMAINING", ["LENGTH", "$ACTIVE_MINI_INVESTIGATORS"]],
                 ["COND",
-                    ["GREATER_THAN", "$REMAINING", 0],
-                    ["LOG", "└── ", ["GET_NUMERIC_LOG", "There is ", "There are ", "$REMAINING", " investigator left who didn't take their turn yet", " investigators left who didn't take their turn yet"], "."],
+                    ["GREATER_THAN", "$REMAINING", 1],
+                    ["LOG", "└── There are {{$REMAINING}} investigators left who didn't take their turn yet."],
+                    ["EQUAL", "$REMAINING", 1],
+                    [
+                        ["LOG", "└── There is 1 investigator left who didn't take their turn yet."],
+                        ["DO_START_INVESTIGATOR_TURN", "$ACTIVE_MINI_INVESTIGATORS.[0].cardOwner", true, "$PLAYER_N"]
+                    ],
                     ["TRUE"],
                     ["SET", "/stepId", "I3"]
                 ]
@@ -600,7 +571,10 @@
                     ["DO_END_INVESTIGATOR_TURN", "$GAME.arkhamActiveInvestigator", true, "$PLAYER_N"]
                 ],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", ["GET_ACTIVE_MINI_INVESTIGATORS"]], 0],
+                    ["AND",
+                        ["EQUAL", "$GAME.loopUntilInvestigatorsDone", true],
+                        ["GREATER_THAN", ["LENGTH", ["GET_ACTIVE_MINI_INVESTIGATORS"]], 0]
+                    ],
                     ["SET", "/stepId", "I2"],
                     ["TRUE"],
                     ["SET", "/stepId", "I3"]
@@ -651,7 +625,11 @@
         "DO_STEP_U3": {
             "args": [],
             "code": [
-                ["PROMPT", "$GAME.firstPlayer", "askToReadyAllCards"]
+                ["VAR", "$EXHAUSTED", ["LENGTH", ["GET_ALL_EXHAUSTED_CARDS", "$PLAYER_N", "$PLAYER_N"]]],
+                ["COND",
+                    ["GREATER_THAN", "$EXHAUSTED", 0],
+                    ["PROMPT", "$PLAYER_N", "askToReadyAllCards"]
+                ]
             ]
         },
         "DO_STEP_U4": {
@@ -705,8 +683,10 @@
                         ],
                         ["COND",
                             ["NOT_EQUAL", "$INVESTIGATOR.id", "$LEAD_INVESTIGATOR_TOKEN.parentCardId"],
-                            ["LOG", "└── ", ["GET_ALIAS", "$GAME.firstPlayer"], " attaches {{$LEAD_INVESTIGATOR_TOKEN.currentFace.name}} to {{$INVESTIGATOR.currentFace.name}}."],
-                            ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN.id", "$INVESTIGATOR.id"]
+                            [
+                                ["LOG", "└── ", ["GET_ALIAS", "$GAME.firstPlayer"], " attaches {{$LEAD_INVESTIGATOR_TOKEN.currentFace.name}} to {{$INVESTIGATOR.currentFace.name}}."],
+                                ["ATTACH_CARD", "$LEAD_INVESTIGATOR_TOKEN.id", "$INVESTIGATOR.id"]
+                            ]
                         ]
                     ]
                 ]
