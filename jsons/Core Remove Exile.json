@@ -113,6 +113,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXILE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXILE_CARD.TARGET_CARD_ID"]],
                 ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
@@ -123,7 +124,7 @@
                         ["EQUAL", "$TARGET_CARD.currentSide", "A"],
                         ["EQUAL", "$TARGET_CARD.inHand", true]
                     ],
-                    ["IN_STRING", "$TARGET_CARD.sides.B.name", "Player Card"]
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
                 ]
             ]
         },

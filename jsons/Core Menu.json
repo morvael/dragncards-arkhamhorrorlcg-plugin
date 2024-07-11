@@ -206,6 +206,7 @@
                 "label": "id:exileCardMenu",
                 "actionList": "exileCard",
                 "showIf": ["AND",
+                	["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
@@ -216,7 +217,64 @@
                         ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
                         ["EQUAL", "$ACTIVE_CARD.inHand", true]
                     ],
-                    ["IN_STRING", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                ]
+            },
+            {
+                "label": "id:investigatorTurnMenu",
+                "actionList": "investigatorTurn",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true],
+                    ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                    ["OR",
+                        ["EQUAL", "$GAME.stepId", "I1"],
+                        ["EQUAL", "$GAME.stepId", "W2"],
+                        ["EQUAL", "$GAME.stepId", "I2"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:calculateWillpowerMenu",
+                "actionList": "calculateWillpower",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
+                ]
+            },
+            {
+                "label": "id:calculateIntellectMenu",
+                "actionList": "calculateIntellect",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
+                ]
+            },
+            {
+                "label": "id:calculateCombatMenu",
+                "actionList": "calculateCombat",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
+                ]
+            },
+            {
+                "label": "id:calculateAgilityMenu",
+                "actionList": "calculateAgility",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
             },
             {
@@ -224,8 +282,9 @@
                 "actionList": "eliminateInvestigator",
                 "showIf": ["AND",
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true],
-                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Investigator"]
+                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
             },
             {

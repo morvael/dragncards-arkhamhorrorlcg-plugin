@@ -97,9 +97,9 @@
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ELIMINATE_INVESTIGATOR.TARGET_CARD_ID"]],
                 ["AND",
+                	["EQUAL", "$GAME.arkhamScenarioInit", false],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                    ["NOT_EQUAL", "$TARGET_CARD.eliminated", true],
-                    ["IN_STRING", "$TARGET_CARD.groupId", "Investigator"]
+                    ["NOT_EQUAL", "$TARGET_CARD.eliminated", true]
                 ]
             ]
         },
@@ -503,17 +503,32 @@
         "investigatorTurn": {
             "English": "Start your investigator's turn"
         },
+        "investigatorTurnMenu": {
+            "English": "Start turn (I)"
+        },
         "calculateWillpower": {
             "English": "Calculate your investigator's willpower"
+        },
+        "calculateWillpowerMenu": {
+            "English": "Calculate willpower (7)"
         },
         "calculateIntellect": {
             "English": "Calculate your investigator's intellect"
         },
+        "calculateIntellectMenu": {
+            "English": "Calculate intellect (8)"
+        },
         "calculateCombat": {
             "English": "Calculate your investigator's combat"
         },
+        "calculateCombatMenu": {
+            "English": "Calculate combat (9)"
+        },
         "calculateAgility": {
             "English": "Calculate your investigator's agility"
+        },
+        "calculateAgilityMenu": {
+            "English": "Calculate agility (0)"
         }
     }
 }
