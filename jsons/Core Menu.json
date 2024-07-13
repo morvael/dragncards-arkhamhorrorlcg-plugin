@@ -292,9 +292,8 @@
                 "label": "id:eliminateInvestigatorMenu",
                 "actionList": "eliminateInvestigator",
                 "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                    ["EQUAL", "$ACTIVE_CARD.cardOwner", "$PLAYER_N"],
                     ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
             },
