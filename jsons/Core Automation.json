@@ -571,7 +571,7 @@
                             ["EQUAL", "$REMAINING", 1],
                             [
                                 ["LOG", "└── There is 1 investigator left who didn't take their turn yet."],
-                                ["DO_START_INVESTIGATOR_TURN", "$ACTIVE_MINI_INVESTIGATORS.[0].cardOwner", true, "$PLAYER_N"]
+                                ["DO_START_INVESTIGATOR_TURN", "$ACTIVE_MINI_INVESTIGATORS.[0].cardOwner", "$ACTIVE_MINI_INVESTIGATORS.[0].id", true, "$PLAYER_N"]
                             ],
                             ["TRUE"],
                             ["SET", "/stepId", "I3"]
@@ -585,7 +585,10 @@
             "code": [
                 ["COND",
                     ["NOT_EQUAL", "$GAME.arkhamActiveInvestigator", null],
-                    ["DO_END_INVESTIGATOR_TURN", "$GAME.arkhamActiveInvestigator", true, "$PLAYER_N"]
+                    [
+                        ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$GAME.arkhamActiveInvestigator"]],
+                        ["DO_END_INVESTIGATOR_TURN", "$MINI_INVESTIGATOR.cardOwner", "$MINI_INVESTIGATOR.id", true, "$PLAYER_N"]
+                    ]
                 ],
                 ["COND",
                     ["AND",
