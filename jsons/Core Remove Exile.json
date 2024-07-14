@@ -71,21 +71,48 @@
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                            ["EQUAL", "$TARGET_CARD.eliminated", true]
+                            ["EQUAL", "$TARGET_CARD.inHand", false],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
+                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
+                                ]
+                            ]
                         ],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                            ["EQUAL", "$TARGET_CARD.eliminated", true]
+                            ["EQUAL", "$TARGET_CARD.inHand", true],
+                            ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Location"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Story"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "Investigator"],
+                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "MiniInvestigator"],
+                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
+                                ]
+                            ]                            
                         ]
                     ]
                 ]
@@ -123,7 +150,10 @@
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentSide", "A"],
-                        ["EQUAL", "$TARGET_CARD.inHand", true]
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", true],
+                            ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                        ]
                     ],
                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
                 ]

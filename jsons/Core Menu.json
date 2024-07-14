@@ -10,11 +10,11 @@
                     ["EQUAL", "$ACTIVE_CARD.inHand", true],
                     ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"]
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"]
                     ]
                 ]
             },
@@ -92,17 +92,39 @@
                 	["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
                     ["EQUAL", "$ACTIVE_CARD.attachedCount", 0],
                     ["OR",
-                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Key"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "SealToken"]
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
+                            ["OR",
+                                ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "SealToken"]
+                            ]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                            ["OR",
+                                ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "ChaosToken"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "KeyToken"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "FloodedToken"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "SealToken"]
+                            ]
+                        ]
                     ]
                 ]
             },
@@ -160,6 +182,7 @@
                     ],
                     ["AND",
                         ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                        ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
                         ["OR",
                             ["GREATER_THAN", "$ACTIVE_CARD.sides.A.victoryPoints", 0],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
@@ -198,21 +221,48 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
-                        ["EQUAL", "$ACTIVE_FACE.type", "Key"],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
+                            ["OR",
+                                ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                                ["AND",
+                                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                                ]
+                            ]
                         ],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
-                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                            ["OR",
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Story"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"],
+                                ["AND",
+                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Investigator"],
+                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "MiniInvestigator"],
+                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
+                                ]
+                            ]
                         ]
                     ]
                 ]
@@ -230,7 +280,10 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                        ["EQUAL", "$ACTIVE_CARD.inHand", true]
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                        ]
                     ],
                     ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
                 ]

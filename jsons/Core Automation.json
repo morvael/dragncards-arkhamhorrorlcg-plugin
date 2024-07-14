@@ -234,31 +234,14 @@
                 ]
             },
             {
-                "_comment": "Change inHand and type (hack to be able to check currentFace.type of cards in hand).",
+                "_comment": "Change inHand.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["NOT_EQUAL", "$TARGET.inHand", ["GET_DESIRED_IN_HAND", "$TARGET.groupId"]]
                 ],
                 "then": [
-                    ["COND",
-                        ["GET_DESIRED_IN_HAND", "$TARGET.groupId"],
-                        [
-                            ["COND",
-                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                                ["SET", "/cardById/$TARGET.id/sides/B/type", "$TARGET.sides.A.type"]
-                            ],
-                            ["SET", "/cardById/$TARGET.id/inHand", true]
-                        ],
-                        ["TRUE"],
-                        [
-                            ["SET", "/cardById/$TARGET.id/inHand", false],
-                            ["COND",
-                                ["EQUAL", "$TARGET.sides.B.databaseId", null],
-                                ["SET", "/cardById/$TARGET.id/sides/B/type", null]
-                            ]
-                        ]
-                    ]
+                    ["SET", "/cardById/$TARGET.id/inHand", ["GET_DESIRED_IN_HAND", "$TARGET.groupId"]]
                 ]
             },
             {
@@ -521,7 +504,15 @@
         "DO_STEP_M2": {
             "args": [],
             "code": [
-                ["PROMPT", "$GAME.firstPlayer", "askToPlaceDoomOnCurrentAgenda"]
+                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$CURRENT_AGENDA", null],
+                        ["EQUAL", "$CURRENT_AGENDA.currentFace.type", "Agenda"],
+                        ["EQUAL", "$CURRENT_AGENDA.currentSide", "A"]
+                    ],
+                    ["PROMPT", "$PLAYER_N", "askToPlaceDoomOnCurrentAgenda"]
+                ]
             ]
         },
         "DO_STEP_M3": {
@@ -544,7 +535,7 @@
                             ],
                             [
                                 ["LOG", "└── {{$CURRENT_AGENDA.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}."],
-                                ["DO_ADVANCE_STORY", "$GAME.firstPlayer", "sharedAgendaStory", true, null]
+                                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, null]
                             ]
                         ]
                     ]
@@ -630,7 +621,9 @@
                         ["AND",
                             ["NOT_EQUAL", "$INVESTIGATOR", null],
                             ["NOT_EQUAL", "$INVESTIGATOR.eliminated", true],
-                            ["NOT_EQUAL", "$MINI_INVESTIGATOR", null]
+                            ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
+                            ["NOT_EQUAL", "$MINI_INVESTIGATOR.eliminated", true],
+                            ["EQUAL", "$MINI_INVESTIGATOR.groupId", "sharedLocations"]                            
                         ],
                         [
                             ["UNSET", "/cardById/$INVESTIGATOR.id/borderColor"],

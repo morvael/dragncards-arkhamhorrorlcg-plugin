@@ -448,11 +448,11 @@
                     ["EQUAL", "$TARGET_CARD.inHand", true],
                     ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"]
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"]
                     ]
                 ]
             ]

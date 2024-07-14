@@ -59,6 +59,7 @@
                     3,
                     ["AND",
                         ["EQUAL", "$TARGET_CARD.inHand", true],
+                        ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"],
                         ["OR",
                             ["GREATER_THAN", "$TARGET_CARD.sides.A.victoryPoints", 0],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
