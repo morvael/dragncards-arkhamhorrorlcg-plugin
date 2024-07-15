@@ -112,7 +112,7 @@
                                     ["EQUAL", "$TARGET_CARD.sides.A.type", "MiniInvestigator"],
                                     ["EQUAL", "$TARGET_CARD.eliminated", true]
                                 ]
-                            ]                            
+                            ]
                         ]
                     ]
                 ]

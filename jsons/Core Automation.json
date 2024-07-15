@@ -338,7 +338,8 @@
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", "$TARGET.currentFace.clues", true, "$PLAYER_N"]
+                    ["VAR", "$CLUES", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", "$CLUES", true, "$PLAYER_N"]
                 ]
             },
             {
@@ -535,7 +536,7 @@
                             ],
                             [
                                 ["LOG", "└── {{$CURRENT_AGENDA.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}."],
-                                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, null]
+                                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, "$PLAYER_N"]
                             ]
                         ]
                     ]
@@ -623,7 +624,7 @@
                             ["NOT_EQUAL", "$INVESTIGATOR.eliminated", true],
                             ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
                             ["NOT_EQUAL", "$MINI_INVESTIGATOR.eliminated", true],
-                            ["EQUAL", "$MINI_INVESTIGATOR.groupId", "sharedLocations"]                            
+                            ["EQUAL", "$MINI_INVESTIGATOR.groupId", "sharedLocations"]
                         ],
                         [
                             ["UNSET", "/cardById/$INVESTIGATOR.id/borderColor"],
@@ -726,7 +727,7 @@
             "args": ["$TARGET_CARD_ID"],
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_VIEW_CARD_INFO.TARGET_CARD_ID"]],
-                ["VAR", "$MESSAGE", "{{$TARGET_CARD.currentFace.name}} [{{$TARGET_CARD.id}}]"],
+                ["VAR", "$MESSAGE", "{{$TARGET_CARD.currentFace.name}}"],
                 ["VAR", "$SEPARATOR", " is "],
                 ["COND",
                     ["OR",

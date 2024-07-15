@@ -4,6 +4,108 @@
         "moveToGroupIds": [],
         "options": [
             {
+                "label": "id:investigateActionMenu",
+                "actionList": "investigateAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
+                ]
+            },
+            {
+                "label": "id:moveActionMenu",
+                "actionList": "moveAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
+                ]
+            },
+            {
+                "label": "id:actionActionMenu",
+                "actionList": "actionAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
+                        ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                    ],
+                    ["IN_STRING", "$ACTIVE_FACE.text", "[action]"]
+                ]
+            },
+            {
+                "label": "id:freeActionMenu",
+                "actionList": "freeAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
+                        ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                    ],
+                    ["IN_STRING", "$ACTIVE_FACE.text", "[free]"]
+                ]
+            },
+            {
+                "label": "id:reactionActionMenu",
+                "actionList": "reactionAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
+                        ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                    ],
+                    ["IN_STRING", "$ACTIVE_FACE.text", "[reaction]"]
+                ]
+            },
+            {
+                "label": "id:fightActionMenu",
+                "actionList": "fightAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Threat"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:engageActionMenu",
+                "actionList": "engageAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                        ["AND",
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "Threat"],
+                            ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"], true]
+                        ]
+                    ]
+                ]
+            },
+            {
+                "label": "id:evadeActionMenu",
+                "actionList": "evadeAction",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Threat"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:playCardMenu",
                 "actionList": "playCard",
                 "showIf": ["AND",

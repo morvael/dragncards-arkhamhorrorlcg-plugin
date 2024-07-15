@@ -1,0 +1,233 @@
+{
+    "actionLists": {
+        "investigateAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "investigate"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "investigate"],
+                ["TRUE"],
+                ["LOG", "└── You cannot attempt to investigate {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "moveAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "move"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "move"],
+                ["TRUE"],
+                ["LOG", "└── You cannot move to {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "actionAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "action"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "action"],
+                ["TRUE"],
+                ["LOG", "└── You cannot trigger {{$ACTIVE_FACE.name}}'s action ability, {{$ALIAS_N}}."]
+            ]
+        ],
+        "freeAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "free"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "free"],
+                ["TRUE"],
+                ["LOG", "└── You cannot trigger {{$ACTIVE_FACE.name}}'s free ability, {{$ALIAS_N}}."]
+            ]
+        ],
+        "reactionAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "reaction"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "reaction"],
+                ["TRUE"],
+                ["LOG", "└── You cannot trigger {{$ACTIVE_FACE.name}}'s reaction ability, {{$ALIAS_N}}."]
+            ]
+        ],
+        "fightAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "fight"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "fight"],
+                ["TRUE"],
+                ["LOG", "└── You cannot attempt to fight {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "engageAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "engage"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "engage"],
+                ["TRUE"],
+                ["LOG", "└── You cannot engage {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "evadeAction": [
+            ["COND",
+                ["CAN_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "evade"],
+                ["DO_DECLARE_ACTION", "$PLAYER_N", "$ACTIVE_CARD_ID", "evade"],
+                ["TRUE"],
+                ["LOG", "└── You cannot attempt to evade {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "GET_CARD_AT_LOCATION_EXCEPT": {
+            "args": ["$X", "$Y", "$EXCEPT_CARD_ID"],
+            "code": [
+                ["VALIDATE_NOT_NULL", "$X", "GET_CARD_AT_LOCATION_EXCEPT.X"],
+                ["VALIDATE_NOT_NULL", "$Y", "GET_CARD_AT_LOCATION_EXCEPT.Y"],
+                ["VAR", "$EXCEPT_CARD", ["GET_CARD_AND_VALIDATE", "$EXCEPT_CARD_ID", "GET_CARD_AT_LOCATION_EXCEPT.EXCEPT_CARD_ID"]],
+                ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["NOT_EQUAL", "$CARD.id", "$EXCEPT_CARD_ID"],
+                    ["EQUAL", ["GET_CARD_LEFT", "$CARD.id"], "$X"],
+                    ["EQUAL", ["GET_CARD_TOP", "$CARD.id"], "$Y"]
+                ]]
+            ]
+        },
+        "CAN_DECLARE_ACTION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DECLARE_ACTION.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DECLARE_ACTION.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$ACTION", "CAN_DECLARE_ACTION.ACTION"],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["OR",
+                        ["EQUAL", "$TARGET_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                        ["EQUAL", "$ACTION", "free"],
+                        ["EQUAL", "$ACTION", "reaction"]
+                    ],
+                    ["OR",
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$ACTION", "investigate"],
+                                ["AND",
+                                    ["EQUAL", "$ACTION", "move"],
+                                    ["NOT_EQUAL", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"], null]
+                                ]
+                            ],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                            ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inPlay", true],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.controller", "shared"],
+                                ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                            ],
+                            ["OR",
+                                ["AND",
+                                    ["EQUAL", "$ACTION", "action"],
+                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[action]"]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$ACTION", "free"],
+                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[free]"]
+                                ],
+                                ["AND",
+                                    ["EQUAL", "$ACTION", "reaction"],
+                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[reaction]"]
+                                ]
+                            ]
+                        ],
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$ACTION", "fight"],
+                                ["EQUAL", "$ACTION", "evade"]
+                            ],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                                ["IN_STRING", "$TARGET_CARD.groupId", "Threat"]
+                            ]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$ACTION", "engage"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                                ["AND",
+                                    ["IN_STRING", "$TARGET_CARD.groupId", "Threat"],
+                                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"], true]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_DECLARE_ACTION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DECLARE_ACTION.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DECLARE_ACTION.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$ACTION", "DO_DECLARE_ACTION.ACTION"],
+                ["COND",
+                    ["CAN_DECLARE_ACTION", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTION"],
+                    ["COND",
+                        ["EQUAL", "$ACTION", "investigate"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "attempt to investigate {{$TARGET_CARD.currentFace.name}}.", "attempts to investigate {{$TARGET_CARD.currentFace.name}}."],
+                        ["EQUAL", "$ACTION", "move"],
+                        [
+                            ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "move to {{$TARGET_CARD.currentFace.name}}.", "moves to {{$TARGET_CARD.currentFace.name}}."],
+                            ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"]],
+                            ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$TARGET_CARD_ID"], 5]],
+                            ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$TARGET_CARD_ID"], 7]],
+                            ["WHILE",
+                                ["NOT_EQUAL", ["GET_CARD_AT_LOCATION_EXCEPT", "$X", "$Y", "$MINI_INVESTIGATOR.id"], null],
+                                ["INCREASE_VAR", "$X", 3]
+                            ],
+                            ["COND",
+                                ["OR",
+                                    ["NOT_EQUAL", ["GET_CARD_LEFT", "$MINI_INVESTIGATOR.id"], "$X"],
+                                    ["NOT_EQUAL", ["GET_CARD_TOP", "$MINI_INVESTIGATOR.id"], "$Y"]
+                                ],
+                                [
+                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                    ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"]
+                                ]
+                            ]
+                        ],
+                        ["EQUAL", "$ACTION", "action"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "trigger {{$TARGET_CARD.currentFace.name}}'s action ability.", "triggers {{$TARGET_CARD.currentFace.name}}'s action ability."],
+                        ["EQUAL", "$ACTION", "free"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "trigger {{$TARGET_CARD.currentFace.name}}'s free ability.", "triggers {{$TARGET_CARD.currentFace.name}}'s free ability."],
+                        ["EQUAL", "$ACTION", "reaction"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "trigger {{$TARGET_CARD.currentFace.name}}'s reaction ability.", "triggers {{$TARGET_CARD.currentFace.name}}'s reaction ability."],
+                        ["EQUAL", "$ACTION", "fight"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "attempt to fight {{$TARGET_CARD.currentFace.name}}.", "attempts to fight {{$TARGET_CARD.currentFace.name}}."],
+                        ["EQUAL", "$ACTION", "engage"],
+                        [
+                            ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "engage {{$TARGET_CARD.currentFace.name}}.", "engages {{$TARGET_CARD.currentFace.name}}."],
+                            ["MOVE_STACK", "$TARGET_CARD.stackId", ["GET_CONTROLLER_THREAT", "$TARGET_PLAYER"], -1]
+                        ],
+                        ["EQUAL", "$ACTION", "evade"],
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "attempt to evade {{$TARGET_CARD.currentFace.name}}.", "attempts to evade {{$TARGET_CARD.currentFace.name}}."]
+                    ]
+                ]
+            ]
+        }
+    },
+    "labels": {
+        "investigateActionMenu": {
+            "English": "Attempt to investigate"
+        },
+        "moveActionMenu": {
+            "English": "Move to"
+        },
+        "actionActionMenu": {
+            "English": "Trigger action ability"
+        },
+        "freeActionMenu": {
+            "English": "Trigger free ability"
+        },
+        "reactionActionMenu": {
+            "English": "Trigger reaction ability"
+        },
+        "fightActionMenu": {
+            "English": "Attempt to fight"
+        },
+        "engageActionMenu": {
+            "English": "Engage"
+        },
+        "evadeActionMenu": {
+            "English": "Attempt to evade"
+        }
+    }
+}

@@ -375,7 +375,7 @@
             "code": [
                 ["DO_SELECT_N_RANDOM_CARDS_IN_HAND", "$TARGET_PLAYER", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
-        },        
+        },
         "DO_FORCE_DISCARD_ALL_ATTACHED_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [

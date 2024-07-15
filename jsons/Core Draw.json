@@ -207,7 +207,7 @@
             "code": [
                 ["DO_SHUFFLE_TOP_N_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
-        },        
+        },
         "CAN_SHUFFLE_GROUP_INTO_GROUP": {
             "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -492,16 +492,16 @@
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "play {{$TARGET_CARD.sides.A.name}}.", "plays {{$TARGET_CARD.sides.A.name}}."],
                         ["COND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
                             ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], -1],
                             ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"]
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"]
                             ],
                             ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
                             ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"]
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"]
                             ],
                             ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_THREAT", "$TARGET_PLAYER"], -1]
                         ]
@@ -526,7 +526,7 @@
                     "hotkey": "Y",
                     "code": [
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
-                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", 1, true, null]
+                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -546,7 +546,7 @@
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, null],
+                        ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, "$PLAYER_N"],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawEncounterCard", null]
                     ]
                 },
@@ -568,7 +568,7 @@
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_DRAW_CARDS", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], 1, true, null],
+                        ["DO_DRAW_CARDS", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], 1, true, "$PLAYER_N"],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
                     ]
                 },
