@@ -32,6 +32,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot discard N random cards from {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "selectRandomCardsInHand": [
+            ["COND",
+                ["CAN_SELECT_RANDOM_CARDS_IN_HAND", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
+                ["DO_SELECT_RANDOM_CARDS_IN_HAND", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot target N random cards in {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -293,6 +301,81 @@
                 ["DO_DISCARD_N_RANDOM_CARDS_FROM_HAND", "$TARGET_PLAYER", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
         },
+        "CAN_SELECT_RANDOM_CARDS_IN_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SELECT_RANDOM_CARDS_IN_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_SELECT_RANDOM_CARDS_IN_HAND.TARGET_GROUP_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                    ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1]
+                ]
+            ]
+        },
+        "DO_SELECT_RANDOM_CARDS_IN_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SELECT_RANDOM_CARDS_IN_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SELECT_RANDOM_CARDS_IN_HAND.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SELECT_RANDOM_CARDS_IN_HAND.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SELECT_RANDOM_CARDS_IN_HAND", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                        ["COND",
+                            ["GREATER_THAN", "$AVAILABLE_NUMBER", 11],
+                            ["UPDATE_VAR", "$AVAILABLE_NUMBER", 11]
+                        ],
+                        ["PROMPT", "$TARGET_PLAYER", "askHowManyToSelect", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 1, "$AVAILABLE_NUMBER", 1, [
+                            ["VAR", "$LETTER", ["SUBSTRING", "X1234567890", "$I", 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_SELECT_N_RANDOM_CARDS_IN_HAND_STR", "{{$TARGET_PLAYER}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_SELECT_N_RANDOM_CARDS_IN_HAND": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SELECT_N_RANDOM_CARDS_IN_HAND.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_SELECT_N_RANDOM_CARDS_IN_HAND.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SELECT_N_RANDOM_CARDS_IN_HAND.LOG_EVENT"],
+                ["VAR", "$TARGET_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SELECT_N_RANDOM_CARDS_IN_HAND.TARGET_GROUP_ID"]],
+                ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                ["COND",
+                    ["GREATER_THAN", "$AVAILABLE_NUMBER", 0],
+                    [
+                        ["COND",
+                            ["GREATER_EQUAL", "$AVAILABLE_NUMBER", "$NUMBER"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                ["GET_NUMERIC_LOG", "target ", "target ", "$NUMBER", " random card in hand.", " random cards in hand."],
+                                ["GET_NUMERIC_LOG", "targets ", "targets ", "$NUMBER", " random card in hand.", " random cards in hand."]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                                    ["GET_NUMERIC_LOG", "target {{$AVAILABLE_NUMBER}} out of ", "target {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " random card in hand.", " random cards in hand."],
+                                    ["GET_NUMERIC_LOG", "targets {{$AVAILABLE_NUMBER}} out of ", "targets {{$AVAILABLE_NUMBER}} out of ", "$NUMBER", " random card in hand.", " random cards in hand."]
+                                ],
+                                ["UPDATE_VAR", "$NUMBER", "$AVAILABLE_NUMBER"]
+                            ]
+                        ],
+                        ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"], "$NUMBER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["TARGET", "$CARD.id"]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_SELECT_N_RANDOM_CARDS_IN_HAND_STR": {
+            "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_SELECT_N_RANDOM_CARDS_IN_HAND", "$TARGET_PLAYER", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+            ]
+        },        
         "DO_FORCE_DISCARD_ALL_ATTACHED_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -420,6 +503,12 @@
             "message": "How many random cards do you want to discard from hand?",
             "options": [
             ]
+        },
+        "askHowManyToSelect": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER"],
+            "message": "How many random cards do you want to target in hand?",
+            "options": [
+            ]
         }
     },
     "labels": {
@@ -437,6 +526,9 @@
         },
         "discardRandomCardsFromHandMenu": {
             "English": "Discard N random cards"
+        },
+        "selectRandomCardsInHandMenu": {
+            "English": "Target N random cards"
         }
     }
 }

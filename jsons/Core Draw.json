@@ -27,14 +27,16 @@
         ],
         "shuffleDeck": [
             ["COND",
-                ["AND",
-                    ["OR",
-                        ["IN_STRING", "$GROUP_BY_ID.$ACTIVE_GROUP_ID.groupType", "deck"],
-                        ["IN_STRING", "$GROUP_BY_ID.$ACTIVE_GROUP_ID.groupType", "pile"]
-                    ],
-                    ["CAN_SHUFFLE_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"]
-                ],
+                ["CAN_SHUFFLE_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
                 ["DO_SHUFFLE_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "shuffleDeckTop": [
+            ["COND",
+                ["CAN_SHUFFLE_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
+                ["DO_SHUFFLE_GROUP_TOP", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
                 ["TRUE"],
                 ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
             ]
@@ -44,13 +46,11 @@
             ["COND",
                 ["AND",
                     ["NOT_EQUAL", "$PAIRED_GROUP_ID", null],
-                    ["IN_STRING", "$GROUP_BY_ID.$ACTIVE_GROUP_ID.groupType", "discard"],
-                    ["IN_STRING", "$GROUP_BY_ID.$PAIRED_GROUP_ID.groupType", "deck"],
                     ["CAN_SHUFFLE_GROUP_INTO_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PAIRED_GROUP_ID", "$PLAYER_N"]
                 ],
                 ["DO_SHUFFLE_GROUP_INTO_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PAIRED_GROUP_ID", true, "$PLAYER_N"],
                 ["TRUE"],
-                ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}} into deck, {{$ALIAS_N}}."]
+                ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}} into a deck, {{$ALIAS_N}}."]
             ]
         ],
         "lookAtTopCards": [
@@ -145,10 +145,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SHUFFLE_GROUP.TARGET_PLAYER"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_SHUFFLE_GROUP.TARGET_GROUP_ID"]],
                 ["AND",
-                    ["OR",
-                        ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
-                        ["IN_STRING", "$TARGET_GROUP_ID", "$TARGET_PLAYER"]
-                    ],
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1]
                 ]
             ]
@@ -168,6 +165,49 @@
                 ]
             ]
         },
+        "DO_SHUFFLE_GROUP_TOP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_GROUP_TOP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_GROUP_TOP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_GROUP_TOP.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SHUFFLE_GROUP", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                        ["COND",
+                            ["GREATER_THAN", "$AVAILABLE_NUMBER", 12],
+                            ["UPDATE_VAR", "$AVAILABLE_NUMBER", 12]
+                        ],
+                        ["PROMPT", "$TARGET_PLAYER", "askHowManyToShuffle", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 2, "$AVAILABLE_NUMBER", 1, [
+                            ["VAR", "$LETTER", ["SUBSTRING", "XX2345678901", "$I", 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_SHUFFLE_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_SHUFFLE_TOP_N_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_TOP_N_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_TOP_N_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_SHUFFLE_TOP_N_CARDS.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_TOP_N_CARDS.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER",
+                    ["GET_NUMERIC_LOG", "shuffle top ", "shuffle top ", "$NUMBER", " card from {{$TARGET_GROUP.label}}.", " cards from {{$TARGET_GROUP.label}}."],
+                    ["GET_NUMERIC_LOG", "shuffles top ", "shuffles top ", "$NUMBER", " card from {{$TARGET_GROUP.label}}.", " cards from {{$TARGET_GROUP.label}}."]
+                ],
+                ["SHUFFLE_TOP_X", "$TARGET_GROUP_ID", "$NUMBER"]
+            ]
+        },
+        "DO_SHUFFLE_TOP_N_CARDS_STR": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_SHUFFLE_TOP_N_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+            ]
+        },        
         "CAN_SHUFFLE_GROUP_INTO_GROUP": {
             "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -175,14 +215,8 @@
                 ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "CAN_SHUFFLE_GROUP_INTO_GROUP.SOURCE_GROUP_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_SHUFFLE_GROUP_INTO_GROUP.TARGET_GROUP_ID"]],
                 ["AND",
-                    ["OR",
-                        ["IN_STRING", "$SOURCE_GROUP_ID", "shared"],
-                        ["IN_STRING", "$SOURCE_GROUP_ID", "$TARGET_PLAYER"]
-                    ],
-                    ["OR",
-                        ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
-                        ["IN_STRING", "$TARGET_GROUP_ID", "$TARGET_PLAYER"]
-                    ],
+                    ["IN_STRING", "$SOURCE_GROUP.groupType", "discard"],
+                    ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     ["GREATER_THAN", ["LENGTH", "$SOURCE_GROUP.stackIds"], 0]
                 ]
             ]
@@ -217,13 +251,7 @@
                 ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "CAN_SHUFFLE_LIST_INTO_GROUP.SELECTED_CARDS"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_SHUFFLE_LIST_INTO_GROUP.TARGET_GROUP_ID"]],
                 ["VAR", "$NUMBER", ["LENGTH", "$SELECTED_CARDS"]],
-                ["AND",
-                    ["OR",
-                        ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
-                        ["IN_STRING", "$TARGET_GROUP_ID", "$TARGET_PLAYER"]
-                    ],
-                    ["GREATER_THAN", "$NUMBER", 0]
-                ]
+                ["GREATER_THAN", "$NUMBER", 0]
             ]
         },
         "DO_SHUFFLE_LIST_INTO_GROUP": {
@@ -388,10 +416,6 @@
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
                 ["AND",
                     ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
-                    ["OR",
-                        ["IN_STRING", "$TARGET_GROUP_ID", "shared"],
-                        ["EQUAL", "$TARGET_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]]
-                    ],
                     ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
                 ]
             ]
@@ -487,6 +511,12 @@
         }
     },
     "prompts": {
+        "askHowManyToShuffle": {
+            "args": ["$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "message": "How many top cards do you want to shuffle?",
+            "options": [
+            ]
+        },
         "askToTakeHorrorAfterDraw": {
             "args": [],
             "message": "You should now take one horror due to empty deck during draw.",
@@ -577,6 +607,9 @@
         },
         "shuffleDeckMenu": {
             "English": "Shuffle deck"
+        },
+        "shuffleDeckTopMenu": {
+            "English": "Shuffle top N cards"
         },
         "shufflePileMenu": {
             "English": "Shuffle pile"
