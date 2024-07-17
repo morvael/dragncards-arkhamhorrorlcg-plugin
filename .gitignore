@@ -1,7 +1,6 @@
 # generated files
-images/*.png
-images/*/*.png
-images/*/*/*.png
+images/
+images_src/
 jsons.tar.gz
 upload.sh
 
