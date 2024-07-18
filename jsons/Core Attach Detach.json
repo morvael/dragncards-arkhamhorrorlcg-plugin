@@ -88,7 +88,7 @@
                         ],
                         ["AND",
                             ["EQUAL", "$TARGET_CARD.inHand", true],
-                            ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"],
+                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
                             ["OR",
                                 ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],

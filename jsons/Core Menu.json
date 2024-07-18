@@ -110,7 +110,7 @@
                 "actionList": "playCard",
                 "showIf": ["AND",
                     ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                    ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
                         ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
@@ -212,7 +212,7 @@
                         ],
                         ["AND",
                             ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                             ["OR",
                                 ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
@@ -284,7 +284,7 @@
                     ],
                     ["AND",
                         ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                        ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                         ["OR",
                             ["GREATER_THAN", "$ACTIVE_CARD.sides.A.victoryPoints", 0],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
@@ -346,7 +346,7 @@
                         ],
                         ["AND",
                             ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"],
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                             ["OR",
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
@@ -384,7 +384,7 @@
                         ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
                         ["AND",
                             ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
                         ]
                     ],
                     ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
