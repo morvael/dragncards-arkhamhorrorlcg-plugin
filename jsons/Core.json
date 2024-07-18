@@ -5,6 +5,7 @@
     "maxPlayers": 4,
     "backgroundUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/background.webp",
     "announcements": [
+        "2024-07-18: Plugin beta made public",
         "2024-03-24: Plugin beta development begun"
     ],
     "browse": {
