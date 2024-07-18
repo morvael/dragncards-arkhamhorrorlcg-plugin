@@ -1,11 +1,11 @@
 {
     "tokens": {
-        "resource": {"label": "id:resourceToken", "left": "10%", "top":  "0%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png"},
-        "clue":     {"label": "id:clueToken",     "left": "10%", "top": "28%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png"},
-        "doom":     {"label": "id:doomToken",     "left": "10%", "top": "56%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png"},
-        "damage":   {"label": "id:damageToken",   "left": "55%", "top":  "0%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png"},
-        "horror":   {"label": "id:horrorToken",   "left": "55%", "top": "28%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png"},
-        "freeze":   {"label": "id:freezeCounter", "left": "55%", "top": "56%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png"}
+        "resource": {"label": "id:resourceToken", "left": "10%", "top":  "0%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.webp"},
+        "clue":     {"label": "id:clueToken",     "left": "10%", "top": "28%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.webp"},
+        "doom":     {"label": "id:doomToken",     "left": "10%", "top": "56%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.webp"},
+        "damage":   {"label": "id:damageToken",   "left": "55%", "top":  "0%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.webp"},
+        "horror":   {"label": "id:horrorToken",   "left": "55%", "top": "28%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.webp"},
+        "freeze":   {"label": "id:freezeCounter", "left": "55%", "top": "56%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp"}
     },
     "actionLists": {
         "gainResources": [

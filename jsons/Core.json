@@ -3,19 +3,19 @@
     "tutorialUrl": "https://www.youtube.com/watch?v=zzliu_-xNNQ",
     "minPlayers": 1,
     "maxPlayers": 4,
-    "backgroundUrl": "https://i.imgur.com/luvXy07.jpeg",
+    "backgroundUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/background.webp",
     "announcements": [
         "2024-03-24: Plugin beta development begun"
     ],
     "browse": {
         "filterPropertySideA": "type",
         "filterValuesSideA": ["Asset", "Enemy", "Event", "Skill", "Treachery"],
-        "textPropertiesSideA": ["name", "faction", "traits", "text"]
+        "textPropertiesSideA": ["name", "faction", "traits"]
     },
     "cardBacks": {
-        "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.png"},
-        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.png"},
-        "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/concealed.png"}
+        "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.webp"},
+        "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.webp"},
+        "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/concealed.webp"}
     },
     "cardTypes": {
         "Investigator":           {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
@@ -42,12 +42,12 @@
     ],
     "hotkeys": {
         "token": [
-            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png)"},
-            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.png)"},
-            {"key": "3", "tokenType": "doom", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.png)"},
-            {"key": "4", "tokenType": "damage", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.png)"},
-            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.png)"},
-            {"key": "6", "tokenType": "freeze", "label": "icon(https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png)"}
+            {"key": "1", "tokenType": "resource", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.webp)"},
+            {"key": "2", "tokenType": "clue", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.webp)"},
+            {"key": "3", "tokenType": "doom", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.webp)"},
+            {"key": "4", "tokenType": "damage", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.webp)"},
+            {"key": "5", "tokenType": "horror", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.webp)"},
+            {"key": "6", "tokenType": "freeze", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp)"}
         ],
         "game": [
             {"key": "-", "actionList": "spendResources", "label": "id:spendResources"},
@@ -85,8 +85,8 @@
         ]
     },
     "imageUrlPrefix": {
-        "Default": "https://arkhamdb.com/bundles/cards/",
-        "English": "https://arkhamdb.com/bundles/cards/"
+        "Default": "https://dragncards-ahlcg.s3.amazonaws.com/images/",
+        "English": "https://dragncards-ahlcg.s3.amazonaws.com/images/"
     },
     "saveGame": {
         "metadata": {
@@ -102,14 +102,14 @@
         "shared": [
             {
                 "label": "id:roundCounter",
-                "imageUrl": "https://dragncards-lotrlcg.s3.amazonaws.com/tokens/time.png",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp",
                 "gameProperty": "roundNumber"
             }
         ],
         "player": [
             {
                 "label": "id:resourcesCounter",
-                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.png",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.webp",
                 "playerProperty": "resources"
             }
         ]

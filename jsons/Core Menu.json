@@ -34,7 +34,7 @@
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
                         ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
                     ],
-                    ["IN_STRING", "$ACTIVE_FACE.text", "[action]"]
+                    ["EQUAL", "$ACTIVE_FACE.action", true]
                 ]
             },
             {
@@ -47,7 +47,7 @@
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
                         ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
                     ],
-                    ["IN_STRING", "$ACTIVE_FACE.text", "[free]"]
+                    ["EQUAL", "$ACTIVE_FACE.free", true]
                 ]
             },
             {
@@ -60,7 +60,7 @@
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
                         ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
                     ],
-                    ["IN_STRING", "$ACTIVE_FACE.text", "[reaction]"]
+                    ["EQUAL", "$ACTIVE_FACE.reaction", true]
                 ]
             },
             {

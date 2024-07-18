@@ -114,15 +114,15 @@
                             ["OR",
                                 ["AND",
                                     ["EQUAL", "$ACTION", "action"],
-                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[action]"]
+                                    ["EQUAL", "$TARGET_CARD.currentFace.action", true]
                                 ],
                                 ["AND",
                                     ["EQUAL", "$ACTION", "free"],
-                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[free]"]
+                                    ["EQUAL", "$TARGET_CARD.currentFace.free", true]
                                 ],
                                 ["AND",
                                     ["EQUAL", "$ACTION", "reaction"],
-                                    ["IN_STRING", "$TARGET_CARD.currentFace.text", "[reaction]"]
+                                    ["EQUAL", "$TARGET_CARD.currentFace.reaction", true]
                                 ]
                             ]
                         ],
