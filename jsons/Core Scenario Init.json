@@ -252,7 +252,7 @@
             ]
         },
         "SCENARIO_INIT": {
-            "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
+            "args": ["$CHAOS_BAG_CAMPAIGN_NAME", "$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
             "code": [
             	["VAR", "$PRESENT_INVESTIGATORS", 0],
             	["VAR", "$PRESENT_DECKS", 0],
@@ -275,6 +275,7 @@
             		],
             		[
 		                ["SET", "/arkhamScenarioInit", true],
+                        ["SET", "/arkhamChaosBagCampaignName", "$CHAOS_BAG_CAMPAIGN_NAME"],
 		                ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
 		                ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
 		                ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
@@ -363,7 +364,7 @@
             "code": [
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
                 ["SET", "/arkhamScenarioDifficulty", "$DIFFICULTY_NAME"],
-                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkhamCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
+                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkhamChaosBagCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["DRAW_STARTING_HAND", "$PLAYER_I"]
                 ]]

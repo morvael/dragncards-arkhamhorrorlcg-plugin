@@ -126,6 +126,7 @@
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Reference"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Act"],
                         ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],

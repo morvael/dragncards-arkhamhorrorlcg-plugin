@@ -1,0 +1,22 @@
+{
+    "preBuiltDecks": {
+        "Ghouls of Umôrdhoth": {
+            "hideFromSearch": true,
+            "label": "Ghouls of Umôrdhoth",
+            "cards": [
+                {"databaseId": "50038", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "50039", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "50040", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Devourers Cult": {
+            "hideFromSearch": true,
+            "label": "The Devourers Cult",
+            "cards": [
+                {"databaseId": "50041", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "50042", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "50043", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    }
+}

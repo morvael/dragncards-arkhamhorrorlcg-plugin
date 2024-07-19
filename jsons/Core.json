@@ -26,6 +26,7 @@
         "Skill":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Scenario":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Reference":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Agenda":                 {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Act":                    {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Location":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},

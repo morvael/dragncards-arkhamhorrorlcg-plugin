@@ -11,6 +11,7 @@
                 [
                     ["SET", "/arkhamPostNewGameDone", true],
                     ["SET", "/arkhamScenarioInit", true],
+                    ["SET", "/arkhamChaosBagCampaignName", "No Campaign"],
                     ["SET", "/arkhamCampaignName", "No Campaign"],
                     ["SET", "/arkhamScenarioName", "No Scenario"],
                     ["SET", "/arkhamScenarioDifficulty", "Normal"],

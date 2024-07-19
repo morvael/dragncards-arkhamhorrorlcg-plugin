@@ -16,6 +16,13 @@
                     {"label": "id:theMidnightMasks", "deckListId": "The Midnight Masks Scenario"},
                     {"label": "id:theDevourerBelow", "deckListId": "The Devourer Below Scenario"}
                 ]
+            },
+            {   "label": "id:returnToTheNightOfTheZealot",
+                "deckLists": [
+                    {"label": "id:returnToTheGathering", "deckListId": "Return to the Gathering Scenario"},
+                    {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to the Midnight Masks Scenario"},
+                    {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to the Devourer Below Scenario"}
+                ]
             }
         ]
     },
@@ -49,6 +56,18 @@
         },
         "theDevourerBelow": {
             "English": "The Devourer Below"
+        },
+        "returnToTheNightOfTheZealot": {
+            "English": "Return to the Night of the Zealot"
+        },
+        "returnToTheGathering": {
+            "English": "Return to the Gathering"
+        },
+        "returnToTheMidnightMasks": {
+            "English": "Return to the Midnight Masks"
+        },
+        "returnToTheDevourerBelow": {
+            "English": "Return to the Devourer Below"
         }
     }
 }

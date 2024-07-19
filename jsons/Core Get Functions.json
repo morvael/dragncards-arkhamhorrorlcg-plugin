@@ -51,6 +51,14 @@
                 ["GET_TOP_CARD", "sharedAgendaStory"]
             ]
         },
+        "GET_CARD_BY_DATABASE_ID": {
+            "_comment": "Returns a card given databaseId, or null.",
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "GET_CARD_BY_DATABASE_ID.DATABASE_ID"],
+                ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID"]]
+            ]
+        },
         "GET_NAMED_ENCOUNTER_DECK_CARD": {
             "_comment": "Returns a card from sharedEncounterDeck with given side A name, or null.",
             "args": ["$TARGET_NAME"],

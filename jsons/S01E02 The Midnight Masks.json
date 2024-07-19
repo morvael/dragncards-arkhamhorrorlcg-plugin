@@ -6,26 +6,26 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "The Midnight Masks", "The Midnight Masks Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Night of the Zealot", "The Midnight Masks", "The Midnight Masks Scenario Init"]
             ]
         },
         "The Midnight Masks": {
             "hideFromSearch": true,
             "label": "The Midnight Masks",
             "cards": [
-                {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "01120",  "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},
-                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
-                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
-                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
-                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
-                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01122",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "01123",  "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "01124",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},
+                {"databaseId": "01125",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "01128",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
+                {"databaseId": "01129",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "01132",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
+                {"databaseId": "01133",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
+                {"databaseId": "01134",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
+                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "The Midnight Masks - Southside": {
@@ -44,9 +44,9 @@
                 {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
             ]
         },
-        "Cult of Umôrdhoth": {
+        "The Midnight Masks - Cult of Umôrdhoth": {
             "hideFromSearch": true,
-            "label": "Cult of Umôrdhoth",
+            "label": "The Midnight Masks - Cult of Umôrdhoth",
             "cards": [
                 {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedDeckA"},
@@ -63,7 +63,7 @@
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
-            ["DO_LOAD_CARDS_SCN", "Cult of Umôrdhoth"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Cult of Umôrdhoth"],
             ["DO_LOAD_N_CARDS_SCN", "The Midnight Masks - Downtown", 1],
             ["DO_LOAD_N_CARDS_SCN", "The Midnight Masks - Southside", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
