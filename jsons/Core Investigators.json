@@ -163,7 +163,6 @@
             "args": ["$TARGET_CARD_ID", "$LEAD_PLAYER"],
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ELIMINATE_INVESTIGATOR_FINAL.TARGET_CARD_ID"]],
-                ["VALIDATE_PLAYER", "$LEAD_PLAYER", "DO_ELIMINATE_INVESTIGATOR_FINAL.LEAD_PLAYER"],
                 ["VAR", "$TARGET_PLAYER", "$TARGET_CARD.cardOwner"],
                 ["COND",
                     ["EQUAL", "$LEAD_PLAYER", null],

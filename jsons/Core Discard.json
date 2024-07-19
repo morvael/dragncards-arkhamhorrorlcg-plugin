@@ -464,7 +464,7 @@
                     "code": [
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$PLAYER_N", "move {{$TARGET_CARD.currentFace.name}} to the Victory Display.", "moves {{$TARGET_CARD.currentFace.name}} to the Victory Display."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$PLAYER_N", "$TARGET_CARD_ID", "$LOG_EVENT", null],
                         ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVictoryDisplay", -1]
                     ]
                 },
