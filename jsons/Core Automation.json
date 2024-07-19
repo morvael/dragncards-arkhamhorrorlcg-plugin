@@ -617,6 +617,7 @@
             "code": [
                 ["LOG", "└── Actions are reset."],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["SET", "/playerData/$PLAYER_I/actionsTaken", 0],
                     ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                     ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$PLAYER_I"]],
                     ["COND",

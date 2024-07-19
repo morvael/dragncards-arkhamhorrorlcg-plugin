@@ -64,6 +64,12 @@
             "default": 0,
             "min": 0
         },
+        "actionsTaken": {
+            "label": "id:actionsTaken",
+            "type": "integer",
+            "default": 0,
+            "min": 0
+        },
         "blockUnsafeActions": {
             "label": "id:blockUnsafeActions",
             "type": "boolean",
@@ -77,6 +83,9 @@
     "labels": {
         "resources": {
             "English": "Resources"
+        },
+        "actionsTaken": {
+            "English": "Actions Taken"
         },
         "loopUntilInvestigatorsDone": {
             "English": "Loop until investigators done"

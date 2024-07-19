@@ -52,6 +52,8 @@
             {"key": "6", "tokenType": "freeze", "label": "icon(https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp)"}
         ],
         "game": [
+            {"key": ">", "actionList": "takeAction", "label": "id:takeAction"},
+            {"key": ".", "actionList": "takeAction", "label": "id:takeAction"},
             {"key": "-", "actionList": "spendResources", "label": "id:spendResources"},
             {"key": "=", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
@@ -113,6 +115,11 @@
                 "label": "id:resourcesCounter",
                 "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.webp",
                 "playerProperty": "resources"
+            },
+            {
+                "label": "id:actionsTakenCounter",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/action.webp",
+                "playerProperty": "actionsTaken"
             }
         ]
     },
@@ -124,6 +131,9 @@
         },
         "resourcesCounter": {
             "English": "Resources"
+        },
+        "actionsTakenCounter": {
+            "English": "Actions Taken"
         }
     }
 }

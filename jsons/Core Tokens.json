@@ -8,6 +8,9 @@
         "freeze":   {"label": "id:freezeCounter", "left": "55%", "top": "56%", "height": "4vh", "width": "4vh", "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp"}
     },
     "actionLists": {
+        "takeAction": [
+            ["DO_TAKE_ACTION", "$PLAYER_N", true, "$PLAYER_N"]
+        ],
         "gainResources": [
             ["DO_GAIN_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"]
         ],
@@ -61,6 +64,15 @@
             "args": ["$TARGET_CARD_ID"],
             "code": [
                 ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "horror"]
+            ]
+        },
+        "DO_TAKE_ACTION": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_TAKE_ACTION.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_TAKE_ACTION.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "take an action.", "takes an action."],
+                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/actionsTaken", 1]
             ]
         },
         "DO_GAIN_RESOURCES": {
@@ -291,6 +303,9 @@
         },
         "freezeCounter": {
             "English": "Freeze Counter"
+        },
+        "takeAction": {
+            "English": "Take an action"
         },
         "gainResources": {
             "English": "Gain 1 Resource"
