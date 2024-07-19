@@ -92,7 +92,16 @@
         "DO_LOAD_RANDOM_LIST_SCN": {
             "args": ["$LIST_OF_LOAD_LIST_IDS"],
             "code": [
-                ["DO_LOAD_RANDOM_LIST", "$GAME.firstPlayer", "$LIST_OF_LOAD_LIST_IDS", true, null]
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$LIST_OF_LOAD_LIST_IDS", null],
+                        ["GREATER_THAN", ["LENGTH", "$LIST_OF_LOAD_LIST_IDS"], 0]
+                    ],
+                    [
+                        ["DO_LOG", true, null, "$GAME.firstPlayer", ["GET_FORMATTED_LIST", "load cards from one of: ", "$LIST_OF_LOAD_LIST_IDS", "."], ["GET_FORMATTED_LIST", "loads cards from one of: ", "$LIST_OF_LOAD_LIST_IDS", "."]],
+                        ["LOAD_CARDS", ["AT_INDEX", "$LIST_OF_LOAD_LIST_IDS", ["RANDOM_INT", 0, ["LENGTH", "$LIST_OF_LOAD_LIST_IDS"]]]]
+                    ]
+                ]
             ]
         },
         "DO_DELETE_CARD": {
