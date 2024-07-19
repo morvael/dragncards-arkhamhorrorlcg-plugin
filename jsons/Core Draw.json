@@ -68,6 +68,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "spawnCard": [
+            ["COND",
+                ["CAN_SPAWN_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SPAWN_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot spawn {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -508,6 +516,35 @@
                     ]
                 ]
             ]
+        },
+        "CAN_SPAWN_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                    ["GREATER_THAN", "$TARGET_CARD.spawnLeft", 0],
+                    ["GREATER_THAN", "$TARGET_CARD.spawnTop", 0]
+                ]
+            ]
+        },
+        "DO_SPAWN_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SPAWN_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SPAWN_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SPAWN_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1, 0],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_CARD.spawnLeft", "$TARGET_CARD.spawnTop"]
+                    ]
+                ]
+            ]
         }
     },
     "prompts": {
@@ -625,6 +662,12 @@
         },
         "playCardMenu": {
             "English": "Play card (P)"
+        },
+        "spawnCard": {
+            "English": "Spawn card"
+        },
+        "spawnCardMenu": {
+            "English": "Spawn card (S)"
         }
     }
 }

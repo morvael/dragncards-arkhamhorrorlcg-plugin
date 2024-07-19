@@ -121,6 +121,16 @@
                 ]
             },
             {
+                "label": "id:spawnCardMenu",
+                "actionList": "spawnCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                    ["GREATER_THAN", "$ACTIVE_CARD.spawnLeft", 0],
+                    ["GREATER_THAN", "$ACTIVE_CARD.spawnTop", 0]
+                ]
+            },
+            {
                 "label": "id:flipCardMenu",
                 "actionList": "flipCard",
                 "showIf": ["AND",

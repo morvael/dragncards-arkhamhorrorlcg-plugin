@@ -85,6 +85,7 @@
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
             {"key": "P", "actionList": "playCard", "label": "id:playCard"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
+            {"key": "S", "actionList": "spawnCard", "label": "id:spawnCard"},
             {"key": "X", "actionList": "discardCard", "label": "id:discardCard"}
         ]
     },

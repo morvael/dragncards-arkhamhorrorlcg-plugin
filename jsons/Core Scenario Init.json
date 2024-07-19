@@ -215,6 +215,22 @@
                 ]
             ]
         },
+        "DO_SET_SPAWN_LOCATION": {
+            "args": ["$DATABASE_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_SET_SPAWN_LOCATION.DATABASE_ID"],
+                ["VALIDATE_GT0", "$LEFT", "DO_SET_SPAWN_LOCATION.LEFT"],
+                ["VALIDATE_GT0", "$TOP", "DO_SET_SPAWN_LOCATION.TOP"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_BY_DATABASE_ID", "$DATABASE_ID"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    [
+                        ["SET", "/cardById/$TARGET_CARD.id/spawnLeft", "$LEFT"],
+                        ["SET", "/cardById/$TARGET_CARD.id/spawnTop", "$TOP"]
+                    ]
+                ]
+            ]
+        },        
         "GET_RANDOM_WEAKNESS_DATABASE_ID": {
             "args": [],
             "code": [

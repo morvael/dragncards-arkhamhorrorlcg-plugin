@@ -52,6 +52,7 @@
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1].id", 70, 43],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2].id", 45, 76],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3].id", 20, 43],
+            ["DO_SET_SPAWN_LOCATION", "01156", 70, 76],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Main Path", 5, 7, 3],
             ["DO_LOAD_RANDOM_LIST_SCN", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Cultists Who Got Away” in your Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "The Devourer Below Scenario Question 1"]

@@ -3,4 +3,6 @@ images/
 images_src/
 jsons.tar.gz
 upload.sh
+sync_images.sh
+
 

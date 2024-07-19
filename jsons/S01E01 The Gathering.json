@@ -20,7 +20,7 @@
                 {"databaseId": "01108", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01111", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "01111", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
                 {"databaseId": "01112", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
@@ -40,6 +40,10 @@
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_SET_SPAWN_LOCATION", "01112", 45, 43],
+            ["DO_SET_SPAWN_LOCATION", "01113", 45, 10],
+            ["DO_SET_SPAWN_LOCATION", "01114", 45, 76],
+            ["DO_SET_SPAWN_LOCATION", "01115", 70, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
