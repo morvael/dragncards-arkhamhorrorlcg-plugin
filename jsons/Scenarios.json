@@ -27,6 +27,11 @@
                     {"label": "id:theDevourerBelow", "deckListId": "The Devourer Below Scenario"}
                 ]
             },
+            {   "label": "id:theDunwichLegacy",
+                "deckLists": [
+                    {"label": "id:extracurricularActivity", "deckListId": "Extracurricular Activity Scenario"}
+                ]
+            },
             {   "label": "id:returnToTheNightOfTheZealot",
                 "deckLists": [
                     {"label": "id:returnToTheGathering", "deckListId": "Return to the Gathering Scenario"},
@@ -99,6 +104,12 @@
         },
         "returnToTheNightOfTheZealot": {
             "English": "Return to the Night of the Zealot"
+        },
+        "theDunwichLegacy": {
+            "English": "The Dunwich Legacy"
+        },
+        "extracurricularActivity": {
+            "English": "Extracurricular Activity"
         },
         "returnToTheGathering": {
             "English": "Return to the Gathering"
