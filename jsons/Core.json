@@ -5,6 +5,8 @@
     "maxPlayers": 4,
     "backgroundUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/background.webp",
     "announcements": [
+        "2024-07-20: 10 new starter decks",
+        "2024-07-19: Return to the Night of the Zealot",
         "2024-07-18: Plugin beta made public",
         "2024-03-24: Plugin beta development begun"
     ],
