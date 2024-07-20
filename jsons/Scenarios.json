@@ -7,7 +7,17 @@
                     {"label": "id:daisyWalkerStarterDeck", "deckListId": "Daisy Walker Starter Deck"},
                     {"label": "id:skidsOTooleStarterDeck", "deckListId": "\"Skids\" O'Toole Starter Deck"},
                     {"label": "id:agnesBakerStarterDeck", "deckListId": "Agnes Baker Starter Deck"},
-                    {"label": "id:wendyAdamsStarterDeck", "deckListId": "Wendy Adams Starter Deck"}
+                    {"label": "id:wendyAdamsStarterDeck", "deckListId": "Wendy Adams Starter Deck"},
+                    {"label": "id:zoeySamarasStarterDeck", "deckListId": "Zoey Samaras Starter Deck"},
+                    {"label": "id:rexMurphyStarterDeck", "deckListId": "Rex Murphy Starter Deck"},
+                    {"label": "id:jennyBarnesStarterDeck", "deckListId": "Jenny Barnes Starter Deck"},
+                    {"label": "id:jimCulverStarterDeck", "deckListId": "Jim Culver Starter Deck"},
+                    {"label": "id:ashcanPeteStarterDeck", "deckListId": "\"Ashcan\" Pete Starter Deck"},
+                    {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
+                    {"label": "id:harveyWaltersStarterDeck", "deckListId": "Harvey Walters Starter Deck"},
+                    {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
+                    {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
+                    {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
                 ]
             },
             {   "label": "id:theNightOfTheZealot",
@@ -44,6 +54,36 @@
         },
         "wendyAdamsStarterDeck": {
             "English": "Wendy Adams Starter Deck"
+        },
+        "zoeySamarasStarterDeck": {
+            "English": "Zoey Samaras Starter Deck"
+        },
+        "rexMurphyStarterDeck": {
+            "English": "Rex Murphy Starter Deck"
+        },
+        "jennyBarnesStarterDeck": {
+            "English": "Jenny Barnes Starter Deck"
+        },
+        "jimCulverStarterDeck": {
+            "English": "Jim Culver Starter Deck"
+        },
+        "ashcanPeteStarterDeck": {
+            "English": "\"Ashcan\" Pete Starter Deck"
+        },
+        "nathanielChoStarterDeck": {
+            "English": "Nathaniel Cho Starter Deck"
+        },
+        "harveyWaltersStarterDeck": {
+            "English": "Harvey Walters Starter Deck"
+        },
+        "winifredHabbamockStarterDeck": {
+            "English": "Winifred Habbamock Starter Deck"
+        },
+        "jacquelineFineStarterDeck": {
+            "English": "Jacqueline Fine Starter Deck"
+        },
+        "stellaClarkStarterDeck": {
+            "English": "Stella Clark Starter Deck"
         },
         "theNightOfTheZealot": {
             "English": "The Night of the Zealot"
