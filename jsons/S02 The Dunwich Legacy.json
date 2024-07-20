@@ -1,0 +1,144 @@
+{
+    "preBuiltDecks": {
+        "Sorcery": {
+            "hideFromSearch": true,
+            "label": "Sorcery",
+            "cards": [
+                {"databaseId": "02083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02084", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Bishop's Thralls": {
+            "hideFromSearch": true,
+            "label": "Bishop's Thralls",
+            "cards": [
+                {"databaseId": "02085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02086", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Dunwich": {
+            "hideFromSearch": true,
+            "label": "Dunwich",
+            "cards": [
+                {"databaseId": "02088", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Whippoorwills": {
+            "hideFromSearch": true,
+            "label": "Whippoorwills",
+            "cards": [
+                {"databaseId": "02090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Bad Luck": {
+            "hideFromSearch": true,
+            "label": "Bad Luck",
+            "cards": [
+                {"databaseId": "02092", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02093", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Beast Thralls": {
+            "hideFromSearch": true,
+            "label": "Beast Thralls",
+            "cards": [
+                {"databaseId": "02094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Naomi's Crew": {
+            "hideFromSearch": true,
+            "label": "Naomi's Crew",
+            "cards": [
+                {"databaseId": "02097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Beyond": {
+            "hideFromSearch": true,
+            "label": "The Beyond",
+            "cards": [
+                {"databaseId": "02100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Hideous Abominations": {
+            "hideFromSearch": true,
+            "label": "Hideous Abominations",
+            "cards": [
+                {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Dunwich Legacy Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Dunwich Legacy Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dunwich Legacy Chaos Bag - Normal": {
+            "hideFromSearch": true,
+            "label": "The Dunwich Legacy Chaos Bag - Normal",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dunwich Legacy Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Dunwich Legacy Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dunwich Legacy Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Dunwich Legacy Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }        
+    }
+}
