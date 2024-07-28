@@ -76,6 +76,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot spawn {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "shuffleIntoEncounterDeck": [
+            ["COND",
+                ["CAN_SHUFFLE_GROUP_INTO_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "sharedEncounterDeck", "$PLAYER_N"],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP", "$PLAYER_N", "$ACTIVE_GROUP_ID", "sharedEncounterDeck", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}} into {{$GROUP_BY_ID.sharedEncounterDeck.label}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -223,8 +231,19 @@
                 ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "CAN_SHUFFLE_GROUP_INTO_GROUP.SOURCE_GROUP_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_SHUFFLE_GROUP_INTO_GROUP.TARGET_GROUP_ID"]],
                 ["AND",
-                    ["IN_STRING", "$SOURCE_GROUP.groupType", "discard"],
-                    ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
+                    ["OR",
+                        ["AND",
+                            ["IN_STRING", "$SOURCE_GROUP.groupType", "discard"],
+                            ["IN_STRING", "$TARGET_GROUP.groupType", "deck"]
+                        ],
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "deck"],
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "pile"]
+                            ],
+                            ["EQUAL", "$TARGET_GROUP.id", "sharedEncounterDeck"]
+                        ]
+                    ],
                     ["GREATER_THAN", ["LENGTH", "$SOURCE_GROUP.stackIds"], 0]
                 ]
             ]
@@ -668,6 +687,9 @@
         },
         "spawnCardMenu": {
             "English": "Spawn card (S)"
+        },
+        "shuffleIntoEncounterDeckMenu": {
+            "English": "Shuffle into Encounter Deck"
         }
     }
 }

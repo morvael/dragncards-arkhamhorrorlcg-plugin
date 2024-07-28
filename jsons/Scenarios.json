@@ -29,7 +29,10 @@
             },
             {   "label": "id:theDunwichLegacy",
                 "deckLists": [
-                    {"label": "id:extracurricularActivity", "deckListId": "Extracurricular Activity Scenario"}
+                    {"label": "id:extracurricularActivity", "deckListId": "Extracurricular Activity Scenario"},
+                    {"label": "id:theHouseAlwaysWins", "deckListId": "The House Always Wins Scenario"},
+                    {"label": "id:theMiskatonicMuseum", "deckListId": "The Miskatonic Museum Scenario"},
+                    {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"}
                 ]
             },
             {   "label": "id:returnToTheNightOfTheZealot",
@@ -102,14 +105,23 @@
         "theDevourerBelow": {
             "English": "The Devourer Below"
         },
-        "returnToTheNightOfTheZealot": {
-            "English": "Return to the Night of the Zealot"
-        },
         "theDunwichLegacy": {
             "English": "The Dunwich Legacy"
         },
         "extracurricularActivity": {
             "English": "Extracurricular Activity"
+        },
+        "theHouseAlwaysWins": {
+            "English": "The House Always Wins"
+        },
+        "theMiskatonicMuseum": {
+            "English": "The Miskatonic Museum"
+        },
+        "theEssexCountyExpress": {
+            "English": "The Essex County Express"
+        },
+        "returnToTheNightOfTheZealot": {
+            "English": "Return to the Night of the Zealot"
         },
         "returnToTheGathering": {
             "English": "Return to the Gathering"

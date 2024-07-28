@@ -1,0 +1,81 @@
+{
+    "preBuiltDecks": {
+        "The Miskatonic Museum Scenario": {
+             "label": "The Miskatonic Museum Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Miskatonic Museum", "The Miskatonic Museum Scenario Init"]
+            ]
+        },
+        "The Miskatonic Museum": {
+            "hideFromSearch": true,
+             "label": "The Miskatonic Museum",
+             "cards": [
+                {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02122", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02123", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02124", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02125", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},
+                {"databaseId": "02127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
+                {"databaseId": "02138", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02141", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02143", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Miskatonic Museum - Security Office": {
+            "hideFromSearch": true,
+            "label": "The Miskatonic Museum - Security Office",
+            "cards": [
+                {"databaseId": "02128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},
+                {"databaseId": "02129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"}
+            ]
+        },
+        "The Miskatonic Museum - Administration Office": {
+            "hideFromSearch": true,
+            "label": "The Miskatonic Museum - Administration Office",
+            "cards": [
+                {"databaseId": "02130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
+                {"databaseId": "02131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The Miskatonic Museum Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Miskatonic Museum"],
+            ["DO_LOAD_CARDS_SCN", "Bad Luck"],
+            ["DO_LOAD_CARDS_SCN", "Sorcery"],
+            ["DO_LOAD_CARDS_SCN", "The Beyond"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Administration Office", 1],
+            ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Security Office", 1],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Museum Entrance", 5, 7, 3],
+            ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136"]]],
+            ["VAR", "$EXHIBIT_HALL_0", "$EXHIBIT_HALLS.[0]"],
+            ["VAR", "$EXHIBIT_HALL_1", "$EXHIBIT_HALLS.[1]"],
+            ["VAR", "$EXHIBIT_HALLS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$EXHIBIT_HALL_0}}", "{{$EXHIBIT_HALL_1}}", "02137"]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 2, 5, 1, [
+                ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS.[{{$I}}]"],
+                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS_BOTTOM.[{{$I}}]"],
+                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
+            ]],
+            ["LOG", "└── Exhibit Hall cards are in Deck A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

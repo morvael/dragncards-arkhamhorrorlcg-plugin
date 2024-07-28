@@ -205,7 +205,7 @@
                                                         ],
                                                         [
                                                             ["VAR", "$MINI_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
-                                                            ["DO_LOG", true, "$PLAYER_I", "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                                            ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
                                                             ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
                                                         	["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
@@ -312,7 +312,7 @@
 		                ["SET", "/arkhamStartingHandDone", 0],
 		                ["SET", "/arkhamActiveInvestigator", null],
 		                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
-                        ["LOG", "{{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
+                        ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -357,12 +357,12 @@
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
                 ["COND",
                     ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    [
-                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
-                        ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
-                    ]
+                    ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
+                    ["TRUE"],
+                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "declare no physical trauma of {{$INVESTIGATOR.currentFace.name}}.", "declares no physical trauma of {{$INVESTIGATOR.currentFace.name}}."]
                 ],
                 ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
             ]
@@ -370,12 +370,12 @@
         "PLACE_STARTING_HORROR_ON_INVESTIGATOR": {
             "args": ["$NUMBER_OF_TOKENS"],
             "code": [
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
                 ["COND",
                     ["GREATER_THAN", "$NUMBER_OF_TOKENS", 0],
-                    [
-                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
-                        ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"]
-                    ]
+                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_N", "$INVESTIGATOR.id", "$NUMBER_OF_TOKENS", true, "$PLAYER_N"],
+                    ["TRUE"],
+                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "declare no mental trauma of {{$INVESTIGATOR.currentFace.name}}.", "declares no mental trauma of {{$INVESTIGATOR.currentFace.name}}."]
                 ],
                 ["INCREASE_VAL", "/arkhamTraumaDone", 1],
                 ["COND",
@@ -400,13 +400,13 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.resources", 0],
-                    ["DO_GAIN_RESOURCES", "$PLAYER_I", 5, true, "$PLAYER_I"]
+                    ["DO_GAIN_RESOURCES", "$PLAYER_I", 5, true, null]
                 ],
                 ["COND",
                     ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
                     [
-                        ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, "$PLAYER_I"],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, "$PLAYER_I"]
+                        ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, null]
                     ]
                 ],
                 ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
@@ -424,8 +424,8 @@
                     ],
                     [
                         ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "take a mulligan.", "takes a mulligan."],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], ["LENGTH", "$SELECTED_CARDS"], true, true, "$PLAYER_N"],
-                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_N", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_N"], true, "$PLAYER_N"]
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], ["LENGTH", "$SELECTED_CARDS"], true, true, null],
+                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_N", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_N"], true, null]
                     ],
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
