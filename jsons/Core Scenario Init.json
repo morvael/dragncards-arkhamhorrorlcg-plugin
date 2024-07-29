@@ -26,6 +26,34 @@
                 ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
+        "DO_MOVE_DECK_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$SOURCE_GROUP_ID", null],
+                        ["NOT_EQUAL", "$TARGET_QUANTITY", null],
+                        ["GREATER_THAN", "$TARGET_QUANTITY", 0],
+                        ["NOT_EQUAL", "$TARGET_GROUP_ID", null]
+                    ],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} from {{$GROUP_BY_ID.$SOURCE_GROUP_ID.label}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "moves {{$TARGET_QUANTITY}}x {{$TARGET_NAME}} from {{$GROUP_BY_ID.$SOURCE_GROUP_ID.label}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, "$TARGET_QUANTITY", 1, [
+                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$SOURCE_GROUP_ID"]],
+                            ["MOVE_CARD", "$TOP_CARD.id", "$TARGET_GROUP_ID", -1]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_MOVE_DECK_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_LOAD_CARDS": {
             "args": ["$TARGET_PLAYER", "$LOAD_LIST_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -171,6 +199,43 @@
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
             ]
         },
+        "DO_SPAWN_HIDDEN_AT_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_HIDDEN_AT_LOCATION_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_CARD_ID", null],
+                        ["NOT_EQUAL", "$LOCATION_CARD_NAME", null],
+                        ["NOT_EQUAL", "$LEFT_MOD", null],
+                        ["NOT_EQUAL", "$TOP_MOD", null]
+                    ],
+                    [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$LOCATION_CARD", null]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.B.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.sides.B.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", 0, 0, {"combine": false, "allowFlip": false}],
+                                ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
+                                ["DEFINE", "$DO_SPAWN_HIDDEN_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_HIDDEN_AT_LOCATION_SCN": {
+            "args": ["$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD"],
+            "code": [
+                ["DO_SPAWN_HIDDEN_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
+            ]
+        },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
             "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE"],
             "code": [
@@ -311,6 +376,7 @@
 		                ["SET", "/arkhamTraumaDone", 0],
 		                ["SET", "/arkhamStartingHandDone", 0],
 		                ["SET", "/arkhamActiveInvestigator", null],
+                        ["SET", "/arkhamSkipShufflingEncounterDeck", false],
 		                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
@@ -500,7 +566,10 @@
         "SCENARIO_INIT_FINISH": {
             "args": ["$DUMMY"],
             "code": [
-                ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null],
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamSkipShufflingEncounterDeck", false],
+                    ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null]
+                ],
                 ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
                 ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null],
                 ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckC", true, null],

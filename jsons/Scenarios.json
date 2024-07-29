@@ -1,45 +1,75 @@
 {
     "deckMenu": {
         "subMenus": [
-            {   "label": "id:starterDecks",
-                "deckLists": [
-                    {"label": "id:rolandBanksStarterDeck", "deckListId": "Roland Banks Starter Deck"},
-                    {"label": "id:daisyWalkerStarterDeck", "deckListId": "Daisy Walker Starter Deck"},
-                    {"label": "id:skidsOTooleStarterDeck", "deckListId": "\"Skids\" O'Toole Starter Deck"},
-                    {"label": "id:agnesBakerStarterDeck", "deckListId": "Agnes Baker Starter Deck"},
-                    {"label": "id:wendyAdamsStarterDeck", "deckListId": "Wendy Adams Starter Deck"},
-                    {"label": "id:zoeySamarasStarterDeck", "deckListId": "Zoey Samaras Starter Deck"},
-                    {"label": "id:rexMurphyStarterDeck", "deckListId": "Rex Murphy Starter Deck"},
-                    {"label": "id:jennyBarnesStarterDeck", "deckListId": "Jenny Barnes Starter Deck"},
-                    {"label": "id:jimCulverStarterDeck", "deckListId": "Jim Culver Starter Deck"},
-                    {"label": "id:ashcanPeteStarterDeck", "deckListId": "\"Ashcan\" Pete Starter Deck"},
-                    {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
-                    {"label": "id:harveyWaltersStarterDeck", "deckListId": "Harvey Walters Starter Deck"},
-                    {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
-                    {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
-                    {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
+            {
+                "label": "id:starterDecks",
+                "subMenus": [
+                    {
+                        "label": "id:coreDecks",
+                        "deckLists": [
+                            {"label": "id:rolandBanksStarterDeck", "deckListId": "Roland Banks Starter Deck"},
+                            {"label": "id:daisyWalkerStarterDeck", "deckListId": "Daisy Walker Starter Deck"},
+                            {"label": "id:skidsOTooleStarterDeck", "deckListId": "\"Skids\" O'Toole Starter Deck"},
+                            {"label": "id:agnesBakerStarterDeck", "deckListId": "Agnes Baker Starter Deck"},
+                            {"label": "id:wendyAdamsStarterDeck", "deckListId": "Wendy Adams Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theDunwichLegacy",
+                        "deckLists": [
+                            {"label": "id:zoeySamarasStarterDeck", "deckListId": "Zoey Samaras Starter Deck"},
+                            {"label": "id:rexMurphyStarterDeck", "deckListId": "Rex Murphy Starter Deck"},
+                            {"label": "id:jennyBarnesStarterDeck", "deckListId": "Jenny Barnes Starter Deck"},
+                            {"label": "id:jimCulverStarterDeck", "deckListId": "Jim Culver Starter Deck"},
+                            {"label": "id:ashcanPeteStarterDeck", "deckListId": "\"Ashcan\" Pete Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:standaloneDecks",
+                        "deckLists": [
+                            {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
+                            {"label": "id:harveyWaltersStarterDeck", "deckListId": "Harvey Walters Starter Deck"},
+                            {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
+                            {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
+                            {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
+                        ]
+                    }                    
                 ]
             },
-            {   "label": "id:theNightOfTheZealot",
-                "deckLists": [
-                    {"label": "id:theGathering", "deckListId": "The Gathering Scenario"},
-                    {"label": "id:theMidnightMasks", "deckListId": "The Midnight Masks Scenario"},
-                    {"label": "id:theDevourerBelow", "deckListId": "The Devourer Below Scenario"}
+            {
+                "label": "id:campaigns",
+                "subMenus": [
+                    {
+                        "label": "id:theNightOfTheZealot",
+                        "deckLists": [
+                            {"label": "id:theGathering", "deckListId": "The Gathering Scenario"},
+                            {"label": "id:theMidnightMasks", "deckListId": "The Midnight Masks Scenario"},
+                            {"label": "id:theDevourerBelow", "deckListId": "The Devourer Below Scenario"}
+                        ]
+                    },
+                    {
+                        "label": "id:theDunwichLegacy",
+                        "deckLists": [
+                            {"label": "id:extracurricularActivity", "deckListId": "Extracurricular Activity Scenario"},
+                            {"label": "id:theHouseAlwaysWins", "deckListId": "The House Always Wins Scenario"},
+                            {"label": "id:theMiskatonicMuseum", "deckListId": "The Miskatonic Museum Scenario"},
+                            {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"},
+                            {"label": "id:bloodOnTheAltar", "deckListId": "Blood on the Altar Scenario"}
+                        ]
+                    }
                 ]
             },
-            {   "label": "id:theDunwichLegacy",
-                "deckLists": [
-                    {"label": "id:extracurricularActivity", "deckListId": "Extracurricular Activity Scenario"},
-                    {"label": "id:theHouseAlwaysWins", "deckListId": "The House Always Wins Scenario"},
-                    {"label": "id:theMiskatonicMuseum", "deckListId": "The Miskatonic Museum Scenario"},
-                    {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"}
-                ]
-            },
-            {   "label": "id:returnToTheNightOfTheZealot",
-                "deckLists": [
-                    {"label": "id:returnToTheGathering", "deckListId": "Return to the Gathering Scenario"},
-                    {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to the Midnight Masks Scenario"},
-                    {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to the Devourer Below Scenario"}
+            {
+                "label": "id:returnToCampaigns",
+                "subMenus": [
+                    {
+                        "label": "id:returnToTheNightOfTheZealot",
+                        "deckLists": [
+                            {"label": "id:returnToTheGathering", "deckListId": "Return to the Gathering Scenario"},
+                            {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to the Midnight Masks Scenario"},
+                            {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to the Devourer Below Scenario"}
+                        ]
+                    }
                 ]
             }
         ]
@@ -47,6 +77,9 @@
     "labels": {
         "starterDecks": {
             "English": "Starter Decks"
+        },
+        "coreDecks": {
+            "English": "Core Decks"
         },
         "rolandBanksStarterDeck": {
             "English": "Roland Banks Starter Deck"
@@ -78,6 +111,9 @@
         "ashcanPeteStarterDeck": {
             "English": "\"Ashcan\" Pete Starter Deck"
         },
+        "standaloneDecks": {
+            "English": "Standalone Decks"
+        },
         "nathanielChoStarterDeck": {
             "English": "Nathaniel Cho Starter Deck"
         },
@@ -92,6 +128,9 @@
         },
         "stellaClarkStarterDeck": {
             "English": "Stella Clark Starter Deck"
+        },
+        "campaigns": {
+            "English": "Campaigns"
         },
         "theNightOfTheZealot": {
             "English": "The Night of the Zealot"
@@ -119,6 +158,12 @@
         },
         "theEssexCountyExpress": {
             "English": "The Essex County Express"
+        },
+        "bloodOnTheAltar": {
+            "English": "Blood on the Altar"
+        },
+        "returnToCampaigns": {
+            "English": "Return to… Campaigns"
         },
         "returnToTheNightOfTheZealot": {
             "English": "Return to the Night of the Zealot"
