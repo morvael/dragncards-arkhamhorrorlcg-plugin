@@ -304,7 +304,7 @@
                     ]
                 ]
             ]
-        },        
+        },
         "GET_RANDOM_WEAKNESS_DATABASE_ID": {
             "args": [],
             "code": [
@@ -440,14 +440,17 @@
                             ]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                ["EQUAL", "$CARD.sides.A.permanent", true]
+                                ["OR",
+                                    ["EQUAL", "$CARD.sides.A.permanent", true],
+                                    ["EQUAL", "$CARD.sides.A.databaseId", "02014"]
+                                ]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["LOG", "└── {{$CARD.sides.A.name}} permanent starts the game in play."],
+                                ["LOG", "└── {{$CARD.sides.A.name}} starts the game in play."],
                                 ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
-                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]            			
+                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
             		],
             		["TRUE"],
             		["LOG", "└── Not all players have loaded their investigators and/or decks."]

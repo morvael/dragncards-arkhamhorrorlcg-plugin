@@ -23,14 +23,7 @@
             ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
         "postLoadActionList": [
-            ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"],
-            ["FOR_EACH_VAL", "$LOADED_CARD_ID", "$GAME.loadedCardIds", [
-                ["VAR", "$LOADED_CARD", "$CARD_BY_ID.$LOADED_CARD_ID"],
-                ["COND",
-                    ["EQUAL", "$LOADED_CARD.sides.A.databaseId", "02014"],
-                    ["MOVE_CARD", "$LOADED_CARD_ID", ["GET_CONTROLLER_PLAY", "$LOADED_CARD.cardOwner"], -1]
-                ]
-            ]]
+            ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"]
         ],
         "gameRules": [
             {

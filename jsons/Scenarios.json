@@ -33,7 +33,7 @@
                             {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
                             {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
                         ]
-                    }                    
+                    }
                 ]
             },
             {
@@ -55,7 +55,8 @@
                             {"label": "id:theMiskatonicMuseum", "deckListId": "The Miskatonic Museum Scenario"},
                             {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"},
                             {"label": "id:bloodOnTheAltar", "deckListId": "Blood on the Altar Scenario"},
-                            {"label": "id:undimensionedAndUnseen", "deckListId": "Undimensioned and Unseen Scenario"}
+                            {"label": "id:undimensionedAndUnseen", "deckListId": "Undimensioned and Unseen Scenario"},
+                            {"label": "id:whereDoomAwaits", "deckListId": "Where Doom Awaits Scenario"}
                         ]
                     }
                 ]
@@ -165,6 +166,9 @@
         },
         "undimensionedAndUnseen": {
             "English": "Undimensioned and Unseen"
+        },
+        "whereDoomAwaits": {
+            "English": "Where Doom Awaits"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
