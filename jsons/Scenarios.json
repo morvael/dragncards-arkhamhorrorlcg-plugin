@@ -56,7 +56,8 @@
                             {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"},
                             {"label": "id:bloodOnTheAltar", "deckListId": "Blood on the Altar Scenario"},
                             {"label": "id:undimensionedAndUnseen", "deckListId": "Undimensioned and Unseen Scenario"},
-                            {"label": "id:whereDoomAwaits", "deckListId": "Where Doom Awaits Scenario"}
+                            {"label": "id:whereDoomAwaits", "deckListId": "Where Doom Awaits Scenario"},
+                            {"label": "id:lostInTimeAndSpace", "deckListId": "Lost in Time and Space Scenario"}
                         ]
                     }
                 ]
@@ -169,6 +170,9 @@
         },
         "whereDoomAwaits": {
             "English": "Where Doom Awaits"
+        },
+        "lostInTimeAndSpace": {
+            "English": "Lost in Time and Space"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

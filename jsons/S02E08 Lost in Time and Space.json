@@ -1,0 +1,53 @@
+{
+    "preBuiltDecks": {
+        "Lost in Time and Space Scenario": {
+             "label": "Lost in Time and Space Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Lost in Time and Space", "Lost in Time and Space Scenario Init"]
+            ]
+        },
+        "Lost in Time and Space": {
+            "hideFromSearch": true,
+             "label": "Lost in Time and Space",
+             "cards": [
+                {"databaseId": "02311", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "02312", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02313", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02314", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02316", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02317", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02318", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02319", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02320", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "02321", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02322", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02323", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02324", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02325", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02326", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02327", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02328", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02329", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02330", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02331", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02332", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02333", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Lost in Time and Space Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Lost in Time and Space"],
+            ["DO_LOAD_CARDS_SCN", "Sorcery"],
+            ["DO_LOAD_CARDS_SCN", "The Beyond"],
+            ["DO_LOAD_CARDS_SCN", "Hideous Abominations"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Another Dimension", 5, 7, 3],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
