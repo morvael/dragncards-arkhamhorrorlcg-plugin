@@ -68,9 +68,9 @@
                     {
                         "label": "id:returnToTheNightOfTheZealot",
                         "deckLists": [
-                            {"label": "id:returnToTheGathering", "deckListId": "Return to the Gathering Scenario"},
-                            {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to the Midnight Masks Scenario"},
-                            {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to the Devourer Below Scenario"}
+                            {"label": "id:returnToTheGathering", "deckListId": "Return to The Gathering Scenario"},
+                            {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to The Midnight Masks Scenario"},
+                            {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to The Devourer Below Scenario"}
                         ]
                     }
                 ]
@@ -181,13 +181,13 @@
             "English": "Return to the Night of the Zealot"
         },
         "returnToTheGathering": {
-            "English": "Return to the Gathering"
+            "English": "Return to The Gathering"
         },
         "returnToTheMidnightMasks": {
-            "English": "Return to the Midnight Masks"
+            "English": "Return to The Midnight Masks"
         },
         "returnToTheDevourerBelow": {
-            "English": "Return to the Devourer Below"
+            "English": "Return to The Devourer Below"
         }
     }
 }

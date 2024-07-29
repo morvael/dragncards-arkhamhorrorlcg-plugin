@@ -1,17 +1,17 @@
 {
     "preBuiltDecks": {
-        "Return to the Midnight Masks Scenario": {
-            "label": "Return to the Midnight Masks Scenario",
+        "Return to The Midnight Masks Scenario": {
+            "label": "Return to The Midnight Masks Scenario",
             "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to the Midnight Masks", "Return to the Midnight Masks Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to The Midnight Masks", "Return to The Midnight Masks Scenario Init"]
             ]
         },
-        "Return to the Midnight Masks": {
+        "Return to The Midnight Masks": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks",
+            "label": "Return to The Midnight Masks",
             "cards": [
                 {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "50025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
@@ -25,65 +25,65 @@
                 {"databaseId": "50031", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
-        "Return to the Midnight Masks - Predator or Prey?": {
+        "Return to The Midnight Masks - Predator or Prey?": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Predator or Prey?",
+            "label": "Return to The Midnight Masks - Predator or Prey?",
             "cards": [
                 {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "50026a", "quantity": 1, "loadGroupId": "sharedAgendaStory"}
             ]
         },
-        "Return to the Midnight Masks - Southside": {
+        "Return to The Midnight Masks - Southside": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Southside",
+            "label": "Return to The Midnight Masks - Southside",
             "cards": [
                 {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
                 {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}
             ]
         },
-        "Return to the Midnight Masks - Downtown": {
+        "Return to The Midnight Masks - Downtown": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Downtown",
+            "label": "Return to The Midnight Masks - Downtown",
             "cards": [
                 {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
                 {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
             ]
         },
-        "Return to the Midnight Masks - Easttown": {
+        "Return to The Midnight Masks - Easttown": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Easttown",
+            "label": "Return to The Midnight Masks - Easttown",
             "cards": [
                 {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
                 {"databaseId": "50027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}
             ]
         },
-        "Return to the Midnight Masks - Northside": {
+        "Return to The Midnight Masks - Northside": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Northside",
+            "label": "Return to The Midnight Masks - Northside",
             "cards": [
                 {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
                 {"databaseId": "50028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"}
             ]
         },
-        "Return to the Midnight Masks - Rivertown": {
+        "Return to The Midnight Masks - Rivertown": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Rivertown",
+            "label": "Return to The Midnight Masks - Rivertown",
             "cards": [
                 {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
                 {"databaseId": "50030", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
             ]
         },
-        "Return to the Midnight Masks - Miskatonic University": {
+        "Return to The Midnight Masks - Miskatonic University": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Miskatonic University",
+            "label": "Return to The Midnight Masks - Miskatonic University",
             "cards": [
                 {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
                 {"databaseId": "50029", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
             ]
         },
-        "Return to the Midnight Masks - Cult of Umôrdhoth": {
+        "Return to The Midnight Masks - Cult of Umôrdhoth": {
             "hideFromSearch": true,
-            "label": "Return to the Midnight Masks - Cult of Umôrdhoth",
+            "label": "Return to The Midnight Masks - Cult of Umôrdhoth",
             "cards": [
                 {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedDeckA"},
@@ -97,28 +97,28 @@
         }
     },
     "actionLists": {
-        "Return to the Midnight Masks Scenario Init": [
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Predator or Prey?", 1],
-            ["DO_LOAD_CARDS_SCN", "Return to the Midnight Masks"],
+        "Return to The Midnight Masks Scenario Init": [
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Predator or Prey?", 1],
+            ["DO_LOAD_CARDS_SCN", "Return to The Midnight Masks"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
             ["DO_LOAD_CARDS_SCN", "The Devourers Cult"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Cult of Umôrdhoth", 5],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Downtown", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Southside", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Easttown", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Northside", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Rivertown", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Midnight Masks - Miskatonic University", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Cult of Umôrdhoth", 5],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Downtown", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Southside", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Easttown", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Northside", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Rivertown", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Miskatonic University", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Disciple of the Devourer", "$SPAWN_SITES.[$I]", 3, 3],
                 ["DO_PLACE_DOOM_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
             ]],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "Return to the Midnight Masks Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "Return to The Midnight Masks Scenario Question 1"]
         ],
-        "Return to the Midnight Masks Scenario Question 1": [
+        "Return to The Midnight Masks Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
@@ -132,9 +132,9 @@
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "Return to the Midnight Masks Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "Return to The Midnight Masks Scenario Question 2"]
         ],
-        "Return to the Midnight Masks Scenario Question 2": [
+        "Return to The Midnight Masks Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [

@@ -1,17 +1,17 @@
 {
     "preBuiltDecks": {
-        "Return to the Gathering Scenario": {
-             "label": "Return to the Gathering Scenario",
+        "Return to The Gathering Scenario": {
+             "label": "Return to The Gathering Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to the Gathering", "Return to the Gathering Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to The Gathering", "Return to The Gathering Scenario Init"]
             ]
         },
-        "Return to the Gathering": {
+        "Return to The Gathering": {
             "hideFromSearch": true,
-             "label": "Return to the Gathering",
+             "label": "Return to The Gathering",
              "cards": [
                 {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "50011", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
@@ -38,17 +38,17 @@
                 {"databaseId": "50024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
-        "Return to the Gathering - Attic": {
+        "Return to The Gathering - Attic": {
             "hideFromSearch": true,
-            "label": "Return to the Gathering - Attic",
+            "label": "Return to The Gathering - Attic",
             "cards": [
                 {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "50018", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
             ]
         },
-        "Return to the Gathering - Cellar": {
+        "Return to The Gathering - Cellar": {
             "hideFromSearch": true,
-            "label": "Return to the Gathering - Cellar",
+            "label": "Return to The Gathering - Cellar",
             "cards": [
                 {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "50020", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
@@ -56,15 +56,15 @@
         }
     },
     "actionLists": {
-        "Return to the Gathering Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "Return to the Gathering"],
+        "Return to The Gathering Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Gathering"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["DO_LOAD_CARDS_SCN", "Ghouls of Umôrdhoth"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Gathering - Attic", 1],
-            ["DO_LOAD_N_CARDS_SCN", "Return to the Gathering - Cellar", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Gathering - Attic", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Gathering - Cellar", 1],
             ["DO_SET_SPAWN_LOCATION", "50017", 55, 43],
             ["DO_SET_SPAWN_LOCATION", "01115", 75, 43],
             ["DO_SET_SPAWN_LOCATION", "50019", 75, 10],
