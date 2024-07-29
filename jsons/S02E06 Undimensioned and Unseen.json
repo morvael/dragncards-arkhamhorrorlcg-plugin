@@ -1,0 +1,171 @@
+{
+    "preBuiltDecks": {
+        "Undimensioned and Unseen Scenario": {
+             "label": "Undimensioned and Unseen Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Undimensioned and Unseen", "Undimensioned and Unseen Scenario Init"]
+            ]
+        },
+        "Undimensioned and Unseen": {
+            "hideFromSearch": true,
+             "label": "Undimensioned and Unseen",
+             "cards": [
+                {"databaseId": "02236", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "02237", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02240", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02241", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02254", "quantity": 4, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02256", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02257", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02259", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Undimensioned and Unseen - Dunwich Village": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Dunwich Village",
+            "cards": [
+                {"databaseId": "02242", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "02243", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+            ]
+        },
+        "Undimensioned and Unseen - Cold Spring Glen": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Cold Spring Glen",
+            "cards": [
+                {"databaseId": "02244", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
+                {"databaseId": "02245", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}
+            ]
+        },
+        "Undimensioned and Unseen - Ten-Acre Meadow": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Ten-Acre Meadow",
+            "cards": [
+                {"databaseId": "02246", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "02247", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
+            ]
+        },
+        "Undimensioned and Unseen - Blasted Heath": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Blasted Heath",
+            "cards": [
+                {"databaseId": "02248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
+                {"databaseId": "02249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+            ]
+        },
+        "Undimensioned and Unseen - Whateley Ruins": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Whateley Ruins",
+            "cards": [
+                {"databaseId": "02250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"},
+                {"databaseId": "02251", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"}
+            ]
+        },
+        "Undimensioned and Unseen - Devil's Hop Yard": {
+            "hideFromSearch": true,
+            "label": "Undimensioned and Unseen - Devil's Hop Yard",
+            "cards": [
+                {"databaseId": "02252", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
+                {"databaseId": "02253", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Undimensioned and Unseen Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Undimensioned and Unseen"],
+            ["DO_LOAD_CARDS_SCN", "Whippoorwills"],
+            ["DO_LOAD_CARDS_SCN", "Beast Thralls"],
+            ["DO_LOAD_CARDS_SCN", "Dunwich"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Dunwich Village", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Cold Spring Glen", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Blasted Heath", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Ten-Acre Meadow", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Devil's Hop Yard", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Whateley Ruins", 1],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dunwich Village", 5, 7, 3],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Sacrificed to Yog‐Sothoth” in your Campaign Log.", ["LIST", "There are 4 or more names.", "There are exactly 3 names.", "There are exactly 2 names.", "There are 1 or fewer names."], "Undimensioned and Unseen Scenario Question 1"]
+        ],
+        "Undimensioned and Unseen Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: There are 4 or more names recorded under “Sacrificed to Yog‐Sothoth”."],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedNotInPlay"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["LOG", "└── Campaign Log: There are exactly 3 names recorded under “Sacrificed to Yog‐Sothoth”."],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 1, "sharedEncounterDeck"],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedNotInPlay"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                [
+                    ["LOG", "└── Campaign Log: There are exactly 2 names recorded under “Sacrificed to Yog‐Sothoth”."],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 1, "sharedEncounterDeck"],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 3, "sharedNotInPlay"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                [
+                    ["LOG", "└── Campaign Log: There are 1 or fewer names recorded under “Sacrificed to Yog‐Sothoth”."],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedEncounterDeck"],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Blasted Heath", 3, 3],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 3, "sharedNotInPlay"]
+                ]
+            ],
+            ["VAR", "$POWDER_CARD", ["ONE_CARD", "$CARD", ["AND",
+                ["IN_STRING", "$CARD.sides.A.name", "Powder of Ibn Ghazi"],
+                ["IN_STRING", "$CARD.groupId", "player"],
+                ["IN_STRING", "$CARD.groupId", "Deck"]
+            ]]],
+            ["COND",
+                ["NOT_EQUAL", "$POWDER_CARD", null],
+                ["PROMPT", "$POWDER_CARD.cardOwner", "undimensionedAndUnseenPowderOfIbnGhazi", "$POWDER_CARD.id"],
+                ["TRUE"],
+                ["ACTION_LIST", "Undimensioned and Unseen Scenario Init Continue 1"]
+            ]
+        ],
+        "Undimensioned and Unseen Scenario Init Continue 1": [
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["DO_CREATE_CARDS", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_MADNESS_INJURY_PACT_WEAKNESS_DATABASE_ID"], 1, ["GET_CONTROLLER_DECK", "$PLAYER_I"], false, null],
+                ["VAR", "$NEW_WEAKNESS_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                ["DO_LOG", true, null, "$PLAYER_I", "add {{$CARD_BY_ID.$NEW_WEAKNESS_ID.sides.A.name}} to their deck.", "adds {{$CARD_BY_ID.$NEW_WEAKNESS_ID.sides.A.name}} to their deck."],
+                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null]
+            ]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "prompts": {
+        "undimensionedAndUnseenPowderOfIbnGhazi": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "Do you want to put Powder of Ibn-Ghazi from your deck into play?",
+            "options": [
+                {
+                    "label": "Yes",
+                    "hotkey": "Y",
+                    "code": [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "puts {{$TARGET_CARD.sides.A.name}} from their deck into play."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$PLAYER_N"], -1],
+                        ["ACTION_LIST", "Undimensioned and Unseen Scenario Init Continue 1"]
+                    ]
+                },
+                {
+                    "label": "No",
+                    "hotkey": "N",
+                    "code": [
+                        ["ACTION_LIST", "Undimensioned and Unseen Scenario Init Continue 1"]
+                    ]
+                }
+            ]
+        }
+    }
+}

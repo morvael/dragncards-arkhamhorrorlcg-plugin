@@ -54,7 +54,8 @@
                             {"label": "id:theHouseAlwaysWins", "deckListId": "The House Always Wins Scenario"},
                             {"label": "id:theMiskatonicMuseum", "deckListId": "The Miskatonic Museum Scenario"},
                             {"label": "id:theEssexCountyExpress", "deckListId": "The Essex County Express Scenario"},
-                            {"label": "id:bloodOnTheAltar", "deckListId": "Blood on the Altar Scenario"}
+                            {"label": "id:bloodOnTheAltar", "deckListId": "Blood on the Altar Scenario"},
+                            {"label": "id:undimensionedAndUnseen", "deckListId": "Undimensioned and Unseen Scenario"}
                         ]
                     }
                 ]
@@ -161,6 +162,9 @@
         },
         "bloodOnTheAltar": {
             "English": "Blood on the Altar"
+        },
+        "undimensionedAndUnseen": {
+            "English": "Undimensioned and Unseen"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

@@ -171,6 +171,28 @@
                     ["EQUAL", "$GAME.playerData.$ACTOR_PLAYER.blockUnsafeActions", false]
                 ]
             ]
+        },
+        "REMOVE_FIRST_FROM_LIST_BY_VALUE": {
+            "_comment": "Returns boolean blockUnsafeActions preference of given player (false when player is null).",
+            "args": ["$LIST", "$VALUE"],
+            "code": [
+                ["VAR", "$NEW_LIST", ["LIST"]],
+                ["VAR", "$REMOVED", false],
+                ["FOR_EACH_VAL", "$VAL", "$LIST", [
+                    ["COND",
+                        ["EQUAL", "$VAL", "$VALUE"],
+                        ["COND",
+                            ["EQUAL", "$REMOVED", false],
+                            ["UPDATE_VAR", "$REMOVED", true],
+                            ["TRUE"],
+                            ["UPDATE_VAR", "$NEW_LIST", ["APPEND", "$NEW_LIST", "$VAL"]]
+                        ],
+                        ["TRUE"],
+                        ["UPDATE_VAR", "$NEW_LIST", ["APPEND", "$NEW_LIST", "$VAL"]]
+                    ]
+                ]],
+                "$NEW_LIST"
+            ]
         }
     }
 }

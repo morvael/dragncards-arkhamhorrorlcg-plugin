@@ -322,8 +322,7 @@
                     ["COND",
                         ["AND",
                             ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"],
-                            ["NOT_EQUAL", "$CARD.sides.A.name", "Random Basic Weakness"],
-                            ["NOT_EQUAL", ["IN_LIST", "$USED_WEAKNESSES", "$CARD.sides.A.databaseId"], true]
+                            ["NOT_EQUAL", "$CARD.sides.A.name", "Random Basic Weakness"]
                         ],
                         ["UPDATE_VAR", "$USED_WEAKNESSES", ["APPEND", "$USED_WEAKNESSES", "$CARD.sides.A.databaseId"]]
                     ]
@@ -336,7 +335,42 @@
                     ]]
                 ]],
                 ["FOR_EACH_VAL", "$WEAKNESS_ID", "$USED_WEAKNESSES", [
-                    ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
+                    ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
+                ]],
+                ["AT_INDEX", "$AVAILABLE_WEAKNESSES", ["RANDOM_INT", 0, ["LENGTH", "$AVAILABLE_WEAKNESSES"]]]
+            ]
+        },
+        "GET_RANDOM_MADNESS_INJURY_PACT_WEAKNESS_DATABASE_ID": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.groupId", "player"],
+                    ["IN_STRING", "$CARD.groupId", "Deck"]
+                ]]],
+                ["VAR", "$USED_SET_UUIDS", ["LIST", "core"]],
+                ["VAR", "$USED_WEAKNESSES", ["LIST"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["NOT_EQUAL", ["IN_LIST", "$USED_SET_UUIDS", "$CARD.sides.A.setUuid"], true],
+                        ["UPDATE_VAR", "$USED_SET_UUIDS", ["APPEND", "$USED_SET_UUIDS", "$CARD.sides.A.setUuid"]]
+                    ],
+                    ["COND",
+                        ["AND",
+                            ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"],
+                            ["NOT_EQUAL", "$CARD.sides.A.name", "Random Basic Weakness"]
+                        ],
+                        ["UPDATE_VAR", "$USED_WEAKNESSES", ["APPEND", "$USED_WEAKNESSES", "$CARD.sides.A.databaseId"]]
+                    ]
+                ]],
+                ["VAR", "$AVAILABLE_WEAKNESSES", ["LIST"]],
+                ["FOR_EACH_VAL", "$SET_UUID", "$USED_SET_UUIDS", [
+                    ["VAR", "$SET_WEAKNESSES", ["GET_LIST_OF_MADNESS_INJURY_PACT_WEAKNESSES", "$SET_UUID"]],
+                    ["FOR_EACH_VAL", "$WEAKNESS_ID", "$SET_WEAKNESSES", [
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["APPEND", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
+                    ]]
+                ]],
+                ["FOR_EACH_VAL", "$WEAKNESS_ID", "$USED_WEAKNESSES", [
+                    ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
                 ]],
                 ["AT_INDEX", "$AVAILABLE_WEAKNESSES", ["RANDOM_INT", 0, ["LENGTH", "$AVAILABLE_WEAKNESSES"]]]
             ]
@@ -394,7 +428,7 @@
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                 ["LOG", "└── Replacing Random Basic Weakness in {{$PLAYER_I_ALIAS}}'s deck."],
                                 ["DELETE_CARD", "$CARD.id"],
-                                ["DO_CREATE_CARDS", "$PLAYER_I", "Random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID"], 1, "$PLAYER_I_DECK", false, null]
+                                ["DO_CREATE_CARDS", "$PLAYER_I", "random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID"], 1, "$PLAYER_I_DECK", false, null]
                             ]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
