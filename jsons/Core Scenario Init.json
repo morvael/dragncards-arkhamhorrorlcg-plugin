@@ -314,8 +314,8 @@
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$SCENARIO_CARD", null],
-                        ["NOT_EQUAL", "$REFERENCE_CARD", null]    
-                    ],                    
+                        ["NOT_EQUAL", "$REFERENCE_CARD", null]
+                    ],
                     [
                         ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$REFERENCE_CARD.id", "$SCENARIO_CARD.id", true, null],
                         ["COND",

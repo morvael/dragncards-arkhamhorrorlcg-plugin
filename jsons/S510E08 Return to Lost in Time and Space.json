@@ -19,7 +19,7 @@
                 {"databaseId": "02313", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "51054", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02316", "quantity": 1, "loadGroupId": "sharedActStory"},                
+                {"databaseId": "02316", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "02318", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "02319", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "51057", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},

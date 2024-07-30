@@ -35,6 +35,40 @@
         "U6":   {"phaseId": "Upkeep",        "label": "id:step-U6"}
     },
     "stepOrder": ["M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6"],
+    "stepReminderRegex": [
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) enemy phase", "stepId": "E1"},
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) investigation phase", "stepId": "I1"},
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) mythos phase", "stepId": "M1"},
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) round", "stepId": "M1"},
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) upkeep phase", "stepId": "U1"},
+        {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the|your) turn", "stepId": "I2"},
+        {"faceProperty": "text", "regex": "at the end of (each|the) enemy phase", "stepId": "E4"},
+        {"faceProperty": "text", "regex": "at the end of (each|the) investigation phase", "stepId": "I3"},
+        {"faceProperty": "text", "regex": "at the end of (each|the) mythos phase", "stepId": "M5"},
+        {"faceProperty": "text", "regex": "at the end of (each|the) round", "stepId": "U6"},
+        {"faceProperty": "text", "regex": "at the end of (each|the) upkeep phase", "stepId": "U6"},
+        {"faceProperty": "text", "regex": "at the end of (each|the|your) turn", "stepId": "I2.2"},
+        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "E2"},
+        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "E3"},
+        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "W4"},
+        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "W5"},
+        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2"},
+        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2.1"},
+        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2.2"},
+        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "W2"},
+        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "W3"},
+        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M2"},
+        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M3"},
+        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M4"},
+        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "W1"},
+        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U2"},
+        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U3"},
+        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U4"},
+        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U5"},
+        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "W6"},
+        {"faceProperty": "text", "regex": "during your turn", "stepId": "I2.1"},
+        {"faceProperty": "text", "regex": "during your turn", "stepId": "W3"}
+    ],
     "labels": {
         "mythosPhase": {
             "English": "Mythos"
@@ -49,82 +83,82 @@
             "English": "Upkeep"
         },
         "step-M1": {
-            "English": "1.1 Mythos phase begins"
+            "English": "1.1 Round begins. Mythos phase begins."
         },
         "step-M2": {
-            "English": "1.2 Place 1 doom on the current agenda"
+            "English": "1.2 Place 1 doom on the current agenda."
         },
         "step-M3": {
-            "English": "1.3 Check doom threshold"
+            "English": "1.3 Check doom threshold."
         },
         "step-M4": {
-            "English": "1.4 Each investigator draws 1 encounter card"
+            "English": "1.4 Each investigator draws 1 encounter card."
         },
         "step-W1": {
             "English": "Player Window 1"
         },
         "step-M5": {
-            "English": "1.5 Mythos phase ends"
+            "English": "1.5 Mythos phase ends."
         },
         "step-I1": {
-            "English": "2.1 Investigation phase begins"
+            "English": "2.1 Investigation phase begins."
         },
         "step-W2": {
             "English": "Player Window 2"
         },
         "step-I2": {
-            "English": "2.2 Next investigator’s turn begins"
+            "English": "2.2 Next investigator’s turn begins."
         },
         "step-W3": {
             "English": "Player Window 3"
         },
         "step-I2.1": {
-            "English": "2.2.1 Investigator takes an action, if able"
+            "English": "2.2.1 Active investigator takes an action, if able."
         },
         "step-I2.2": {
-            "English": "2.2.2 Investigator’s turn ends"
+            "English": "2.2.2 Investigator’s turn ends."
         },
         "step-I3": {
-            "English": "2.3 Investigation phase ends"
+            "English": "2.3 Investigation phase ends."
         },
         "step-E1": {
-            "English": "3.1 Enemy phase begins"
+            "English": "3.1 Enemy phase begins."
         },
         "step-E2": {
-            "English": "3.2 Hunter enemies move"
+            "English": "3.2 Hunter enemies move."
         },
         "step-W4": {
             "English": "Player Window 4"
         },
         "step-E3": {
-            "English": "3.3 Next investigator resolves engaged enemy attacks"
+            "English": "3.3 Next investigator resolves engaged enemy attacks."
         },
         "step-W5": {
             "English": "Player Window 5"
         },
         "step-E4": {
-            "English": "3.4 Enemy phase ends"
+            "English": "3.4 Enemy phase ends."
         },
         "step-U1": {
-            "English": "4.1 Upkeep phase begins"
+            "English": "4.1 Upkeep phase begins."
         },
         "step-W6": {
             "English": "Player Window 6"
         },
         "step-U2": {
-            "English": "4.2 Reset actions"
+            "English": "4.2 Reset actions."
         },
         "step-U3": {
-            "English": "4.3 Ready exhausted cards"
+            "English": "4.3 Ready each exhausted card."
         },
         "step-U4": {
-            "English": "4.4 Each investigator draws 1 card and gains 1 resource"
+            "English": "4.4 Each investigator draws 1 card and gains 1 resource."
         },
         "step-U5": {
-            "English": "4.5 Each investigator checks hand size"
+            "English": "4.5 Each investigator checks hand size."
         },
         "step-U6": {
-            "English": "4.6 Upkeep phase ends"
+            "English": "4.6 Upkeep phase ends. Round ends."
         }
     }
 }

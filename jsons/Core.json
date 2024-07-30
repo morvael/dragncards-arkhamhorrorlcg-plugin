@@ -65,7 +65,9 @@
             {"key": "+", "actionList": "gainResources", "label": "id:gainResources"},
             {"key": "B", "actionList": "toggleChaosBag", "label": "id:toggleChaosBag"},
             {"key": "C", "actionList": "revealChaosToken", "label": "id:revealChaosToken"},
+            {"key": "G", "actionList": "advanceAgenda", "label": "id:advanceAgenda"},
             {"key": "H", "actionList": "nameChaosToken", "label": "id:nameChaosToken"},
+            {"key": "J", "actionList": "advanceAct", "label": "id:advanceAct"},
             {"key": "K", "actionList": "toggleTokens", "label": "id:toggleTokens"},
             {"key": "M", "actionList": "toggleOffMap", "label": "id:toggleOffMap"},
             {"key": "N", "actionList": "toggleNotInPlay", "label": "id:toggleNotInPlay"},
@@ -107,8 +109,6 @@
         "columnProperties": ["name", "faction", "type", "traits", "packName", "numberInPack"],
         "loadGroupIds": ["player1Hand","player2Hand","player3Hand","player4Hand","sharedLocations","sharedNotInPlay"]
     },
-    "stepReminderRegex": [
-    ],
     "topBarCounters": {
         "shared": [
             {

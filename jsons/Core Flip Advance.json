@@ -15,6 +15,22 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot advance {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "advanceAgenda": [
+            ["COND",
+                ["CAN_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", "$PLAYER_N"],
+                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot advance {{$GROUP_BY_ID.sharedAgendaStory.label}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "advanceAct": [
+            ["COND",
+                ["CAN_ADVANCE_STORY", "$PLAYER_N", "sharedActStory", "$PLAYER_N"],
+                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedActStory", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot advance {{$GROUP_BY_ID.sharedActStory.label}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -214,7 +230,7 @@
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_ADVANCE_STORY.TARGET_GROUP_ID"]],
                 ["COND",
                     ["AND",
-                        ["EQUAL", "$TARGET_GROUP.groupType", "story"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"],
                         ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
                     ],
                     [
@@ -420,6 +436,18 @@
         },
         "advanceStoryMenu": {
             "English": "Advance"
+        },
+        "advanceAgenda": {
+            "English": "Advance agenda"
+        },
+        "advanceAgendaMenu": {
+            "English": "Advance (G)"
+        },
+        "advanceAct": {
+            "English": "Advance act"
+        },
+        "advanceActMenu": {
+            "English": "Advance (J)"
         }
     }
 }

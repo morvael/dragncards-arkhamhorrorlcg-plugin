@@ -2,7 +2,7 @@
     "actionLists": {
         "zeroTokens": [
             ["LOG", "$ALIAS_N", " removes all tokens from ", "$ACTIVE_FACE.name", "."],
-            ["SET", "/cardById/$ACTIVE_CARD_ID/tokens", {}]            
+            ["SET", "/cardById/$ACTIVE_CARD_ID/tokens", {}]
         ]
     },
     "touchBar": [

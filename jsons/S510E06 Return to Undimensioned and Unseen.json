@@ -172,7 +172,7 @@
                     "hotkey": "N",
                     "code": [
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "pick not to put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "picks not to put {{$TARGET_CARD.sides.A.name}} from their deck into play."],
+                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "decide not to put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "decides not to put {{$TARGET_CARD.sides.A.name}} from their deck into play."],
                         ["ACTION_LIST", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
                     ]
                 }

@@ -50,7 +50,8 @@
         "stage":                 {"type": "integer", "default": null},
         "action":                {"type": "boolean", "default": false},
         "reaction":              {"type": "boolean", "default": false},
-        "free":                  {"type": "boolean", "default": false}
+        "free":                  {"type": "boolean", "default": false},
+        "text":                  {"type": "string",  "default": ""}
     },
     "gameProperties": {
         "loopUntilInvestigatorsDone": {
