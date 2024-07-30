@@ -1,0 +1,154 @@
+{
+    "actionLists": {
+        "zeroTokens": [
+            ["LOG", "$ALIAS_N", " removes all tokens from ", "$ACTIVE_FACE.name", "."],
+            ["SET", "/cardById/$ACTIVE_CARD_ID/tokens", {}]            
+        ]
+    },
+    "touchBar": [
+        [
+            {
+                "id": "removeTokens",
+                "label": "id:removeTokens",
+                "actionType": "card",
+                "actionList": "zeroTokens"
+            },
+            {
+                "id": "incrementResource",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/resource.webp",
+                "actionType": "token",
+                "tokenType": "resource"
+            },
+            {
+                "id": "incrementClue",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/clue.webp",
+                "actionType": "token",
+                "tokenType": "clue"
+            },
+            {
+                "id": "incrementDoom",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/doom.webp",
+                "actionType": "token",
+                "tokenType": "doom"
+            },
+            {
+                "id": "incrementDamage",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/damage.webp",
+                "actionType": "token",
+                "tokenType": "damage"
+            },
+            {
+                "id": "incrementHorror",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/horror.webp",
+                "actionType": "token",
+                "tokenType": "horror"
+            },
+            {
+                "id": "incrementFreeze",
+                "label": "",
+                "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/tokens/time.webp",
+                "actionType": "token",
+                "tokenType": "freeze"
+            },
+            {
+                "id": "undo",
+                "label": "id:undo",
+                "actionType": "engine",
+                "actionList": "undo"
+            },
+            {
+                "id": "undoMany",
+                "label": "id:undoMany",
+                "actionType": "engine",
+                "actionList": "undoMany"
+            }
+        ],
+        [
+            {
+                "id": "nextStep",
+                "label": "id:nextStep",
+                "actionType": "game",
+                "actionList": "nextStep"
+            },
+            {
+                "id": "gainResources",
+                "label": "id:gainResources",
+                "actionType": "game",
+                "actionList": "gainResources"
+            },
+            {
+                "id": "spendResources",
+                "label": "id:spendResources",
+                "actionType": "game",
+                "actionList": "spendResources"
+            },
+            {
+                "id": "takeAction",
+                "label": "id:takeAction",
+                "actionType": "game",
+                "actionList": "takeAction"
+            },
+            {
+                "id": "retractAction",
+                "label": "id:retractAction",
+                "actionType": "game",
+                "actionList": "retractAction"
+            },
+            {
+                "id": "target",
+                "label": "id:target",
+                "actionType": "card",
+                "actionList": "targetCard"
+            },
+            {
+                "id": "drawArrow",
+                "label": "id:drawArrow",
+                "actionType": "card",
+                "actionList": "drawArrow"
+            },
+            {
+                "id": "clearTargets",
+                "label": "id:clearTargets",
+                "actionType": "game",
+                "actionList": "clearTargets"
+            },
+            {
+                "id": "save",
+                "label": "id:save",
+                "actionType": "engine",
+                "actionList": "save"
+            }
+        ]
+    ],
+    "labels": {
+        "removeTokens": {
+            "English": "Remove tokens"
+        },
+        "target": {
+            "English": "Target"
+        },
+        "drawArrow": {
+            "English": "Draw Arrow"
+        },
+        "clearTargets": {
+            "English": "Clear targets"
+        },
+        "undo": {
+            "English": "Undo"
+        },
+        "undoMany": {
+            "English": "Undo many"
+        },
+        "nextStep": {
+            "English": "Next step"
+        },
+        "save": {
+            "English": "Save"
+        }
+    }
+}

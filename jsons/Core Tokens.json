@@ -11,6 +11,9 @@
         "takeAction": [
             ["DO_TAKE_ACTION", "$PLAYER_N", true, "$PLAYER_N"]
         ],
+        "retractAction": [
+            ["DO_RETRACT_ACTION", "$PLAYER_N", true, "$PLAYER_N"]
+        ],
         "gainResources": [
             ["DO_GAIN_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"]
         ],
@@ -73,6 +76,20 @@
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_TAKE_ACTION.LOG_EVENT"],
                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "take an action.", "takes an action."],
                 ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/actionsTaken", 1]
+            ]
+        },
+        "DO_RETRACT_ACTION": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_RETRACT_ACTION.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_RETRACT_ACTION.LOG_EVENT"],
+                ["COND",
+                    ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.actionsTaken", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "retract an action.", "retracts an action."],
+                        ["DECREASE_VAL", "/playerData/$TARGET_PLAYER/actionsTaken", 1]
+                    ]
+                ]
             ]
         },
         "DO_GAIN_RESOURCES": {
@@ -306,6 +323,9 @@
         },
         "takeAction": {
             "English": "Take an action"
+        },
+        "retractAction": {
+            "English": "Retract an action"
         },
         "gainResources": {
             "English": "Gain 1 Resource"
