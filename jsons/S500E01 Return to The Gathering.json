@@ -74,6 +74,7 @@
             ["DO_SET_SPAWN_LOCATION", "01114", 55, 76],
             ["DO_SET_SPAWN_LOCATION", "50020", 55, 76],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

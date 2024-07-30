@@ -72,6 +72,19 @@
                             {"label": "id:returnToTheMidnightMasks", "deckListId": "Return to The Midnight Masks Scenario"},
                             {"label": "id:returnToTheDevourerBelow", "deckListId": "Return to The Devourer Below Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:returnToTheDunwichLegacy",
+                        "deckLists": [
+                            {"label": "id:returnToExtracurricularActivities", "deckListId": "Return to Extracurricular Activities Scenario"},
+                            {"label": "id:returnToTheHouseAlwaysWins", "deckListId": "Return to The House Always Wins Scenario"},
+                            {"label": "id:returnToTheMiskatonicMuseum", "deckListId": "Return to The Miskatonic Museum Scenario"},
+                            {"label": "id:returnToTheEssexCountyExpress", "deckListId": "Return to The Essex County Express Scenario"},
+                            {"label": "id:returnToBloodOnTheAltar", "deckListId": "Return to Blood on the Altar Scenario"},
+                            {"label": "id:returnToUndimensionedAndUnseen", "deckListId": "Return to Undimensioned and Unseen Scenario"},
+                            {"label": "id:returnToWhereDoomAwaits", "deckListId": "Return to Where Doom Awaits Scenario"},
+                            {"label": "id:returnToLostInTimeAndSpace", "deckListId": "Return to Lost in Time and Space Scenario"}
+                        ]
                     }
                 ]
             }
@@ -188,6 +201,33 @@
         },
         "returnToTheDevourerBelow": {
             "English": "Return to The Devourer Below"
+        },
+        "returnToTheDunwichLegacy": {
+            "English": "Return to the Dunwich Legacy"
+        },
+        "returnToExtracurricularActivities": {
+            "English": "Return to Extracurricular Activities"
+        },
+        "returnToTheHouseAlwaysWins": {
+            "English": "Return to The House Always Wins"
+        },
+        "returnToTheMiskatonicMuseum": {
+            "English": "Return to The Miskatonic Museum"
+        },
+        "returnToTheEssexCountyExpress": {
+            "English": "Return to The Essex County Express"
+        },
+        "returnToBloodOnTheAltar": {
+            "English": "Return to Blood on the Altar"
+        },
+        "returnToUndimensionedAndUnseen": {
+            "English": "Return to Undimensioned and Unseen"
+        },
+        "returnToWhereDoomAwaits": {
+            "English": "Return to Where Doom Awaits"
+        },
+        "returnToLostInTimeAndSpace": {
+            "English": "Return to Lost in Time and Space"
         }
     }
 }

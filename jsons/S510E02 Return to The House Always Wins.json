@@ -1,19 +1,20 @@
 {
     "preBuiltDecks": {
-        "The House Always Wins Scenario": {
-             "label": "The House Always Wins Scenario",
+        "Return to The House Always Wins Scenario": {
+             "label": "Return to The House Always Wins Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The House Always Wins", "The House Always Wins Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to The House Always Wins", "Return to The House Always Wins Scenario Init"]
             ]
         },
-        "The House Always Wins": {
+        "Return to The House Always Wins": {
             "hideFromSearch": true,
-             "label": "The House Always Wins",
+             "label": "Return to The House Always Wins",
              "cards": [
                 {"databaseId": "02062", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51015", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "02063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02064", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02065", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
@@ -22,44 +23,56 @@
                 {"databaseId": "02068", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "02069", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "02070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
-                {"databaseId": "02071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
                 {"databaseId": "02072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
                 {"databaseId": "02073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
                 {"databaseId": "02074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "02079", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "02080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "51017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "02078", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "02081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51018", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51019", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
-        "The House Always Wins - Hideous Abominations": {
+        "Return to The House Always Wins - Clover Club Lounge": {
             "hideFromSearch": true,
-            "label": "The House Always Wins - Hideous Abominations",
+            "label": "Return to The House Always Wins - Clover Club Lounge",
+            "cards": [
+                {"databaseId": "02071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "51016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+            ]
+        },
+        "Return to The House Always Wins - Hideous Abominations": {
+            "hideFromSearch": true,
+            "label": "Return to The House Always Wins - Hideous Abominations",
             "cards": [
                 {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedDeckA"}
             ]
         },
-        "The House Always Wins - Striking Fear": {
+        "Return to The House Always Wins - Erratic Fear": {
             "hideFromSearch": true,
-            "label": "The House Always Wins - Striking Fear",
+            "label": "Return to The House Always Wins - Erratic Fear",
             "cards": [
-                {"databaseId": "01163", "quantity": 3, "loadGroupId": "sharedPileA"},
-                {"databaseId": "01164", "quantity": 2, "loadGroupId": "sharedPileA"},
-                {"databaseId": "01165", "quantity": 2, "loadGroupId": "sharedPileA"}
+                {"databaseId": "51068", "quantity": 2, "loadGroupId": "sharedPileA"},
+                {"databaseId": "51069", "quantity": 2, "loadGroupId": "sharedPileA"},
+                {"databaseId": "51070", "quantity": 3, "loadGroupId": "sharedPileA"}
             ]
         }
     },
     "actionLists": {
-        "The House Always Wins Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "The House Always Wins"],
+        "Return to The House Always Wins Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The House Always Wins - Clover Club Lounge", 1],
             ["DO_LOAD_CARDS_SCN", "Bad Luck"],
             ["DO_LOAD_CARDS_SCN", "Naomi's Crew"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
-            ["DO_LOAD_CARDS_SCN", "The House Always Wins - Hideous Abominations"],
-            ["DO_LOAD_CARDS_SCN", "The House Always Wins - Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins - Hideous Abominations"],
+            ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins - Erratic Fear"],
             ["DO_SET_SPAWN_LOCATION", "02074", 45, 76],
+            ["DO_SET_SPAWN_LOCATION", "51017", 3, 59],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "La Bella Luna", 5, 7, 3],
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Clover Club Pit Boss", "Clover Club Lounge", 3, 3],
             ["VAR", "$BACK_HALL_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "02075", "02076", "02077"]]],
@@ -69,7 +82,8 @@
                 ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "{{$BACK_HALL_DOORWAY}}", 1, "sharedNotInPlay"],
                 ["DO_SET_SPAWN_LOCATION", "{{$BACK_HALL_DOORWAY}}", 70, "$SPAWN_TOPS.[{{$I}}]"]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Hideous Abominations cards are in Deck A, Striking Fear cards are in Pile A."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
+            ["SET", "/arkhamFinalScenarioMessage", "Hideous Abominations cards are in Deck A, Erratic Fear cards are in Pile A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

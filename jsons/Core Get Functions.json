@@ -65,7 +65,10 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_ENCOUNTER_DECK_CARD.TARGET_NAME"],
                 ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"]
+                    ],
                     ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"]
                 ]]
             ]

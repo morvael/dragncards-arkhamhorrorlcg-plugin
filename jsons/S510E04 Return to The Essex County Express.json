@@ -1,0 +1,83 @@
+{
+    "preBuiltDecks": {
+        "Return to The Essex County Express Scenario": {
+             "label": "Return to The Essex County Express Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to The Essex County Express", "Return to The Essex County Express Scenario Init"]
+            ]
+        },
+        "Return to The Essex County Express": {
+            "hideFromSearch": true,
+             "label": "Return to The Essex County Express",
+             "cards": [
+                {"databaseId": "02159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51026", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "51027", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02164", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02165", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02166", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02178", "quantity": 4, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "51031", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02179", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02180", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02181", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to The Essex County Express - Engine Car": {
+            "hideFromSearch": true,
+            "label": "Return to The Essex County Express - Engine Car",
+            "cards": [
+                {"databaseId": "02175", "quantity": 1, "loadGroupId": "sharedLocations", "left": "85%", "top": "43%"},
+                {"databaseId": "02176", "quantity": 1, "loadGroupId": "sharedLocations", "left": "85%", "top": "43%"},
+                {"databaseId": "02177", "quantity": 1, "loadGroupId": "sharedLocations", "left": "85%", "top": "43%"},
+                {"databaseId": "51028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "85%", "top": "43%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to The Essex County Express Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Essex County Express"],
+            ["DO_LOAD_CARDS_SCN", "Beyond the Threshold"],
+            ["DO_LOAD_CARDS_SCN", "Erratic Fear"],
+            ["DO_LOAD_CARDS_SCN", "Resurgent Evils"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Essex County Express - Engine Car", 1],
+            ["VAR", "$TRAIN_CARS", ["SHUFFLE_LIST", ["LIST", "02167", "02168", "02169", "02170", "02171", "02172", "02173", "02174", "51029", "51030"]]],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 1, 15, 29, 43, 57, 71]],
+            ["VAR", "$LAST_CAR_ID", null],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["VAR", "$TRAIN_CAR", "$TRAIN_CARS.[{{$I}}]"],
+                ["DO_CREATE_CARDS_SCN", "Train Car", "{{$TRAIN_CAR}}", 1, "sharedLocations"],
+                ["VAR", "$TRAIN_CAR_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                ["COND",
+                    ["EQUAL", "$LAST_CAR_ID", null],
+                    ["UPDATE_VAR", "$LAST_CAR_ID", "$TRAIN_CAR_ID"]
+                ],
+                ["DO_SET_CARD_LOCATION", "$TRAIN_CAR_ID", "$SPAWN_LEFTS.[{{$I}}]", 43]
+            ]],
+            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$LAST_CAR_ID", true, null],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "{{$CARD_BY_ID.$LAST_CAR_ID.currentFace.name}}", 5, 7, 3],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-2", "chaos_m2", 100, true, null],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Normal"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-3", "chaos_m3", 100, true, null],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-4", "chaos_m4", 100, true, null],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-5", "chaos_m5", 100, true, null]
+            ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

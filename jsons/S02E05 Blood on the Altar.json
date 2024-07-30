@@ -158,7 +158,7 @@
                 ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckB"]],
                 ["DO_SPAWN_HIDDEN_AT_LOCATION_SCN", "$TOP_CARD.id", "$LOCATIONS.[{{$I}}]", -3, -3]
             ]],
-            ["LOG", "└── Potential sacrifices cards are in Deck A."],
+            ["SET", "/arkhamFinalScenarioMessage", "Potential sacrifices cards are in Deck A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

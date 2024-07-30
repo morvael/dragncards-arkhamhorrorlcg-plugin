@@ -305,6 +305,39 @@
                 ]
             ]
         },
+        "DO_ATTACH_REFERENCE_TO_SCENARIO": {
+            "args": ["$FLIP_FACEDOWN"],
+            "code": [
+                ["VALIDATE_BOOLEAN", "$FLIP_FACEDOWN", "DO_ATTACH_REFERENCE_TO_SCENARIO.FLIP_FACEDOWN"],
+                ["VAR", "$SCENARIO_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+                ["VAR", "$REFERENCE_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Reference"]]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$SCENARIO_CARD", null],
+                        ["NOT_EQUAL", "$REFERENCE_CARD", null]    
+                    ],                    
+                    [
+                        ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$REFERENCE_CARD.id", "$SCENARIO_CARD.id", true, null],
+                        ["COND",
+                            ["EQUAL", "$FLIP_FACEDOWN", true],
+                            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$REFERENCE_CARD.id", true, null]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_CREATE_DECK_CARD_SCN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CREATE_DECK_CARD_SCN.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_DECK_CARD_SCN.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_DECK_CARD_SCN.TARGET_DATABASE_ID"],
+                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], false, null],
+                ["VAR", "$NEW_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                ["DO_LOG", true, null, "$TARGET_PLAYER", "add {{$CARD_BY_ID.$NEW_CARD_ID.sides.A.name}} to their deck.", "adds {{$CARD_BY_ID.$NEW_CARD_ID.sides.A.name}} to their deck."],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], true, null]
+            ]
+        },
         "GET_RANDOM_WEAKNESS_DATABASE_ID": {
             "args": [],
             "code": [
@@ -411,6 +444,7 @@
 		                ["SET", "/arkhamStartingHandDone", 0],
 		                ["SET", "/arkhamActiveInvestigator", null],
                         ["SET", "/arkhamSkipShufflingEncounterDeck", false],
+                        ["SET", "/arkhamFinalScenarioMessage", null],
 		                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
@@ -613,7 +647,12 @@
                 ["SET", "/roundNumber", 1],
                 ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],
-                ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign."]
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamFinalScenarioMessage", null],
+                    ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign."],
+                    ["TRUE"],
+                    ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign. {{$GAME.arkhamFinalScenarioMessage}}"]
+                ]
             ]
         }
     },

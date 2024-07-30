@@ -1,25 +1,26 @@
 {
     "preBuiltDecks": {
-        "Where Doom Awaits Scenario": {
-             "label": "Where Doom Awaits Scenario",
+        "Return to Where Doom Awaits Scenario": {
+             "label": "Return to Where Doom Awaits Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Where Doom Awaits", "Where Doom Awaits Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Where Doom Awaits", "Return to Where Doom Awaits Scenario Init"]
             ]
         },
-        "Where Doom Awaits": {
+        "Return to Where Doom Awaits": {
             "hideFromSearch": true,
-             "label": "Where Doom Awaits",
+             "label": "Return to Where Doom Awaits",
              "cards": [
                 {"databaseId": "02274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51047", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "02275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02276", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02277", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "02281", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02282", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
-                {"databaseId": "02283", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},
+                {"databaseId": "51048", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
+                {"databaseId": "51049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},
                 {"databaseId": "02284", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},
                 {"databaseId": "02293", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "02294", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
@@ -29,29 +30,31 @@
                 {"databaseId": "02298", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
-        "Where Doom Awaits - Diverging Path": {
+        "Return to Where Doom Awaits - Diverging Path": {
             "hideFromSearch": true,
-            "label": "Where Doom Awaits - Diverging Path",
+            "label": "Return to Where Doom Awaits - Diverging Path",
             "cards": [
                 {"databaseId": "02285", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "02286", "quantity": 1, "loadGroupId": "sharedDeckA"},
                 {"databaseId": "02287", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "02288", "quantity": 1, "loadGroupId": "sharedDeckA"}
+                {"databaseId": "02288", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "51050", "quantity": 1, "loadGroupId": "sharedDeckA"}
             ]
         },
-        "Where Doom Awaits - Altered Path": {
+        "Return to Where Doom Awaits - Altered Path": {
             "hideFromSearch": true,
-            "label": "Where Doom Awaits - Altered Path",
+            "label": "Return to Where Doom Awaits - Altered Path",
             "cards": [
                 {"databaseId": "02289", "quantity": 1, "loadGroupId": "sharedDeckB"},
                 {"databaseId": "02290", "quantity": 1, "loadGroupId": "sharedDeckB"},
                 {"databaseId": "02291", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "02292", "quantity": 1, "loadGroupId": "sharedDeckB"}
+                {"databaseId": "02292", "quantity": 1, "loadGroupId": "sharedDeckB"},
+                {"databaseId": "51051", "quantity": 1, "loadGroupId": "sharedDeckB"}
             ]
         },
-        "Where Doom Awaits - Hideous Abominations": {
+        "Return to Where Doom Awaits - Hideous Abominations": {
             "hideFromSearch": true,
-            "label": "Where Doom Awaits - Hideous Abominations",
+            "label": "Return to Where Doom Awaits - Hideous Abominations",
             "cards": [
                 {"databaseId": "02103", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
@@ -59,33 +62,36 @@
         }
     },
     "actionLists": {
-        "Where Doom Awaits Scenario Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Naomi has the investigators’ back.", "The above is not true."], "Where Doom Awaits Scenario Question 1"]
+        "Return to Where Doom Awaits Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Naomi has the investigators’ back.", "The above is not true."], "Return to Where Doom Awaits Scenario Question 1"]
         ],
-        "Where Doom Awaits Scenario Question 1": [
+        "Return to Where Doom Awaits Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: Naomi has the investigators’ back."],
-                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
-                    ["COND",
-                        ["GREATER_EQUAL", "$GAME.arkhamNumPlayers", 3],
-                        ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 2, true, null],
-                        ["TRUE"],
-                        ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 1, true, null]
-                    ]
-                ]
-            ],
-            ["DO_LOAD_CARDS_SCN", "Where Doom Awaits"],
+                    ["PROMPT", "$GAME.firstPlayer", "returnToWhereDoomAwaitsNaomi"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                        ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                        ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$ALIAS_I}} adds Naomi O'Bannion to their deck.", "{{$LETTER}}", ["LIST", "RETURN_TO_WHERE_DOOM_AWAITS_NAOMI", "{{$PLAYER_I}}"]]
+                    ]]
+                ],
+                ["TRUE"],
+                ["ACTION_LIST", "Return to Where Doom Awaits Scenario Init Continue 1"]
+            ]
+        ],
+        "Return to Where Doom Awaits Scenario Init Continue 1": [
+            ["DO_LOAD_CARDS_SCN", "Return to Where Doom Awaits"],
             ["DO_LOAD_CARDS_SCN", "Beast Thralls"],
             ["DO_LOAD_CARDS_SCN", "Sorcery"],
             ["DO_LOAD_CARDS_SCN", "Bishop's Thralls"],
-            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
-            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
-            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Erratic Fear"],
+            ["DO_LOAD_CARDS_SCN", "Resurgent Evils"],
+            ["DO_LOAD_CARDS_SCN", "Creeping Cold"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Base of the Hill", 5, 7, 3],
-            ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Diverging Path", 3],
-            ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Altered Path", 3],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Where Doom Awaits - Diverging Path", 3],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Where Doom Awaits - Altered Path", 3],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
                 ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-3", "chaos_m3", 100, true, null],
@@ -96,9 +102,9 @@
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
                 ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-7", "chaos_m7", 100, true, null]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log and pick first that applies.", ["LIST", "The investigators restored Silas Bishop.", "The investigators failed to recover the Necronomicon.", "The Necronomicon was stolen.", "All of the above is not true."], "Where Doom Awaits Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log and pick first that applies.", ["LIST", "The investigators restored Silas Bishop.", "The investigators failed to recover the Necronomicon.", "The Necronomicon was stolen.", "All of the above is not true."], "Return to Where Doom Awaits Scenario Question 2"]
         ],
-        "Where Doom Awaits Scenario Question 2": [
+        "Return to Where Doom Awaits Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
@@ -120,9 +126,9 @@
             ],
             ["VAR", "$ASCENDING_THE_HILL_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
             ["MOVE_CARD", "$ASCENDING_THE_HILL_ID", "sharedActStory", 1, 0, {"combine": false, "allowFlip": false}],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 brood escaped into the wild.", "4 brood escaped into the wild.", "3 brood escaped into the wild.", "2 brood escaped into the wild.", "1 brood escaped into the wild.", "No brood escaped into the wild."], "Where Doom Awaits Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 brood escaped into the wild.", "4 brood escaped into the wild.", "3 brood escaped into the wild.", "2 brood escaped into the wild.", "1 brood escaped into the wild.", "No brood escaped into the wild."], "Return to Where Doom Awaits Scenario Question 3"]
         ],
-        "Where Doom Awaits Scenario Question 3": [
+        "Return to Where Doom Awaits Scenario Question 3": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
@@ -150,20 +156,64 @@
                     ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators put Silas Bishop out of his misery.", "The above is not true."], "Where Doom Awaits Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators put Silas Bishop out of his misery.", "The above is not true."], "Return to Where Doom Awaits Scenario Question 4"]
+
         ],
-        "Where Doom Awaits Scenario Question 4": [
+        "Return to Where Doom Awaits Scenario Question 4": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
                 [
                     ["LOG", "└── Campaign Log: The investigators put Silas Bishop out of his misery."],
                     ["DO_CREATE_CARDS_SCN", "Conglomeration of Spheres", "02103", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Conglomeration of Spheres", "Ascending Path", 3, 3],
-                    ["DO_LOAD_CARDS_SCN", "Where Doom Awaits - Hideous Abominations"]
+                    ["DO_LOAD_CARDS_SCN", "Return to Where Doom Awaits - Hideous Abominations"]
                 ]
             ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SET", "/arkhamFinalScenarioMessage", "Diverging Path cards are in Deck A, Altered Path cards are in Deck B."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
+    },
+    "functions": {
+        "RETURN_TO_WHERE_DOOM_AWAITS_NAOMI": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TARGET_PLAYER", null],
+                    [
+                        ["DO_LOG", true, "$GAME.firstPlayer", "$GAME.firstPlayer", "decide the lead investigator gains clue(s).", "decides the lead investigator gains clue(s)."],
+                        ["DO_CREATE_CARDS_SCN", "Naomi O'Bannion", "51052", 1, "sharedNotInPlay"],
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
+                        ["COND",
+                            ["GREATER_EQUAL", "$GAME.arkhamNumPlayers", 3],
+                            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 2, true, null],
+                            ["TRUE"],
+                            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 1, true, null]
+                        ]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_LOG", true, "$GAME.firstPlayer", "$TARGET_PLAYER", "add Naomi O'Bannion to their deck.", "adds Naomi O'Bannion to their deck."],
+                        ["DO_CREATE_DECK_CARD_SCN", "$TARGET_PLAYER", "Naomi O'Bannion", "51052"]
+                    ]
+                ],
+                ["ACTION_LIST", "Return to Where Doom Awaits Scenario Init Continue 1"]
+            ]
+        }
+    },
+    "prompts": {
+        "returnToWhereDoomAwaitsNaomi": {
+            "args": [],
+            "message": "Choose the effect of “Naomi has the investigators’ back”.",
+            "options": [
+                {
+                    "label": "The lead investigator gains clue(s).",
+                    "hotkey": "0",
+                    "code": [
+                        ["RETURN_TO_WHERE_DOOM_AWAITS_NAOMI", null]
+                    ]
+                }
+            ]
+        }
     }
 }

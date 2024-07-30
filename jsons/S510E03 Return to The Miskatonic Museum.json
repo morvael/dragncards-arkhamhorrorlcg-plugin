@@ -1,19 +1,20 @@
 {
     "preBuiltDecks": {
-        "The Miskatonic Museum Scenario": {
-             "label": "The Miskatonic Museum Scenario",
+        "Return to The Miskatonic Museum Scenario": {
+             "label": "Return to The Miskatonic Museum Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Miskatonic Museum", "The Miskatonic Museum Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to The Miskatonic Museum", "Return to The Miskatonic Museum Scenario Init"]
             ]
         },
-        "The Miskatonic Museum": {
+        "Return to The Miskatonic Museum": {
             "hideFromSearch": true,
-             "label": "The Miskatonic Museum",
+             "label": "Return to The Miskatonic Museum",
              "cards": [
                 {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51020", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "02121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
@@ -31,20 +32,22 @@
                 {"databaseId": "02143", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "02144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "02145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51023", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
-        "The Miskatonic Museum - Security Office": {
+        "Return to The Miskatonic Museum - Security Office": {
             "hideFromSearch": true,
-            "label": "The Miskatonic Museum - Security Office",
+            "label": "Return to The Miskatonic Museum - Security Office",
             "cards": [
                 {"databaseId": "02128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},
                 {"databaseId": "02129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"}
             ]
         },
-        "The Miskatonic Museum - Administration Office": {
+        "Return to The Miskatonic Museum - Administration Office": {
             "hideFromSearch": true,
-            "label": "The Miskatonic Museum - Administration Office",
+            "label": "Return to The Miskatonic Museum - Administration Office",
             "cards": [
                 {"databaseId": "02130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
                 {"databaseId": "02131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"}
@@ -52,17 +55,17 @@
         }
     },
     "actionLists": {
-        "The Miskatonic Museum Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "The Miskatonic Museum"],
+        "Return to The Miskatonic Museum Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Miskatonic Museum"],
             ["DO_LOAD_CARDS_SCN", "Bad Luck"],
             ["DO_LOAD_CARDS_SCN", "Sorcery"],
-            ["DO_LOAD_CARDS_SCN", "The Beyond"],
-            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
-            ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Administration Office", 1],
-            ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Security Office", 1],
+            ["DO_LOAD_CARDS_SCN", "Beyond the Threshold"],
+            ["DO_LOAD_CARDS_SCN", "Creeping Cold"],
+            ["DO_LOAD_CARDS_SCN", "Secret Doors"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Miskatonic Museum - Administration Office", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Miskatonic Museum - Security Office", 1],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Museum Entrance", 5, 7, 3],
-            ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136"]]],
+            ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136", "51021", "51022"]]],
             ["VAR", "$EXHIBIT_HALL_0", "$EXHIBIT_HALLS.[0]"],
             ["VAR", "$EXHIBIT_HALL_1", "$EXHIBIT_HALLS.[1]"],
             ["VAR", "$EXHIBIT_HALLS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$EXHIBIT_HALL_0}}", "{{$EXHIBIT_HALL_1}}", "02137"]]],
@@ -74,7 +77,8 @@
                 ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS_BOTTOM.[{{$I}}]"],
                 ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
+            ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

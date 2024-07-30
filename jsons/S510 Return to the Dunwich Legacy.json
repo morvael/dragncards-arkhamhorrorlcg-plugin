@@ -1,0 +1,52 @@
+{
+    "preBuiltDecks": {
+        "Beyond the Threshold": {
+            "hideFromSearch": true,
+            "label": "Beyond the Threshold",
+            "cards": [
+                {"databaseId": "51061", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51062", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51063", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Resurgent Evils": {
+            "hideFromSearch": true,
+            "label": "Resurgent Evils",
+            "cards": [
+                {"databaseId": "51064", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Secret Doors": {
+            "hideFromSearch": true,
+            "label": "Secret Doors",
+            "cards": [
+                {"databaseId": "51065", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Creeping Cold": {
+            "hideFromSearch": true,
+            "label": "Creeping Cold",
+            "cards": [
+                {"databaseId": "51066", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51067", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Erratic Fear": {
+            "hideFromSearch": true,
+            "label": "Erratic Fear",
+            "cards": [
+                {"databaseId": "51068", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51069", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51070", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Yog-Sothoth's Emissaries": {
+            "hideFromSearch": true,
+            "label": "Yog-Sothoth's Emissaries",
+            "cards": [
+                {"databaseId": "51071", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "51072", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    }
+}

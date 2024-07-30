@@ -1,0 +1,83 @@
+{
+    "preBuiltDecks": {
+        "Return to Extracurricular Activities Scenario": {
+             "label": "Return to Extracurricular Activities Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Extracurricular Activities", "Return to Extracurricular Activities Scenario Init"]
+            ]
+        },
+        "Return to Extracurricular Activities": {
+            "hideFromSearch": true,
+             "label": "Return to Extracurricular Activities",
+             "cards": [
+                {"databaseId": "02041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51012", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "02042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02045", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02046", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02047", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02048", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},
+                {"databaseId": "02049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},
+                {"databaseId": "02051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
+                {"databaseId": "02056", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},
+                {"databaseId": "02053", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},
+                {"databaseId": "02060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02058", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02052", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "51014", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Extracurricular Activities - Library/Observatory": {
+            "hideFromSearch": true,
+            "label": "Return to Extracurricular Activities - Library/Observatory",
+            "cards": [
+                {"databaseId": "02050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
+                {"databaseId": "51013", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Extracurricular Activities Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Extracurricular Activities"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Extracurricular Activities - Library/Observatory", 1],
+            ["DO_LOAD_CARDS_SCN", "Sorcery"],
+            ["DO_LOAD_CARDS_SCN", "Beyond the Threshold"],
+            ["DO_LOAD_CARDS_SCN", "Bishop's Thralls"],
+            ["DO_LOAD_CARDS_SCN", "Whippoorwills"],
+            ["DO_LOAD_CARDS_SCN", "Resurgent Evils"],
+            ["DO_LOAD_CARDS_SCN", "Secret Doors"],
+            ["DO_LOAD_CARDS_SCN", "Yog-Sothoth's Emissaries"],
+            ["DO_SET_SPAWN_LOCATION", "02052", 35, 76],
+            ["DO_SET_SPAWN_LOCATION", "02057", 75, 10],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "What is (or was) the first scenario of the campaign?", ["LIST", "Return to Extracurricular Activities is the first.", "Return to The House Always Wins was the first."], "Return to Extracurricular Activities Scenario Question 1"]
+        ],
+        "Return to Extracurricular Activities Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Return to Extracurricular Activities is the first scenario of the campaign."],
+                    ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Night is Still Young", "02054", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "02054", 55, 76]
+                ],
+                ["TRUE"],
+                [
+                    ["LOG", "└── Campaign Log: Return to The House Always Wins was the first scenario of the campaign."],
+                    ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Hour is Late", "02055", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "02055", 55, 76],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Enthralled Security Guard", "Administration Building", 3, 3]
+                ]
+            ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

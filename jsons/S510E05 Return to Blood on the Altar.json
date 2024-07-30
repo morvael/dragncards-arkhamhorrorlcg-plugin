@@ -1,0 +1,193 @@
+{
+    "preBuiltDecks": {
+        "Return to Blood on the Altar Scenario": {
+             "label": "Return to Blood on the Altar Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Blood on the Altar", "Return to Blood on the Altar Scenario Init"]
+            ]
+        },
+        "Return to Blood on the Altar": {
+            "hideFromSearch": true,
+             "label": "Return to Blood on the Altar",
+             "cards": [
+                {"databaseId": "02195", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "51032", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "02196", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02197", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02198", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "02199", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "02200", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "51033", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "02216", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02219", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "02217", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "02218", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "02220", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02221", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02223", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "02224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Blood on the Altar - Bishop's Brook": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Bishop's Brook",
+            "cards": [
+                {"databaseId": "02202", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "76%"},
+                {"databaseId": "02203", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "76%"},
+                {"databaseId": "51034", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "76%"}
+            ]
+        },
+        "Return to Blood on the Altar - Burned Ruins": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Burned Ruins",
+            "cards": [
+                {"databaseId": "02204", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "76%"},
+                {"databaseId": "02205", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "76%"},
+                {"databaseId": "51035", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "76%"}
+            ]
+        },
+        "Return to Blood on the Altar - Osborn's General Store": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Osborn's General Store",
+            "cards": [
+                {"databaseId": "02206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
+                {"databaseId": "02207", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
+                {"databaseId": "51036", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"}
+            ]
+        },
+        "Return to Blood on the Altar - Congregational Church": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Congregational Church",
+            "cards": [
+                {"databaseId": "02208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "02209", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
+                {"databaseId": "51037", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+            ]
+        },
+        "Return to Blood on the Altar - House in the Reeds": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - House in the Reeds",
+            "cards": [
+                {"databaseId": "02210", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "10%"},
+                {"databaseId": "02211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "10%"},
+                {"databaseId": "51038", "quantity": 1, "loadGroupId": "sharedLocations", "left": "32%", "top": "10%"}
+            ]
+        },
+        "Return to Blood on the Altar - Schoolhouse": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Schoolhouse",
+            "cards": [
+                {"databaseId": "02212", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "10%"},
+                {"databaseId": "02213", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "10%"},
+                {"databaseId": "51039", "quantity": 1, "loadGroupId": "sharedLocations", "left": "58%", "top": "10%"}
+            ]
+        },
+        "Return to Blood on the Altar - Hired Guns": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Hired Guns",
+            "cards": [
+                {"databaseId": "51040", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Blood on the Altar - Hired Guns (aside)": {
+            "hideFromSearch": true,
+            "label": "Return to Blood on the Altar - Hired Guns (aside)",
+            "cards": [
+                {"databaseId": "51040", "quantity": 2, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Blood on the Altar Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Blood on the Altar"],
+            ["DO_LOAD_CARDS_SCN", "Whippoorwills"],
+            ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
+            ["DO_LOAD_CARDS_SCN", "Resurgent Evils"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Village Commons", 5, 7, 3],
+            ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "Bishop's Brook", "Burned Ruins", "Osborn's General Store", "Congregational Church", "House in the Reeds", "Schoolhouse"]]],
+            ["VAR", "$LOCATION_0", "$LOCATIONS.[0]"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - Bishop's Brook", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - Burned Ruins", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - Osborn's General Store", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - Congregational Church", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - House in the Reeds", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Blood on the Altar - Schoolhouse", 1],
+            ["DO_DELETE_LOCATION_SCN", "{{$LOCATION_0}}"],
+            ["SET", "/arkhamScenarioBloodOnTheAltarRemovedLocation", "{{$LOCATION_0}}"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Dr. Henry Armitage was kidnapped.", "The above is not true."], "Return to Blood on the Altar Scenario Question 1"]
+        ],
+        "Return to Blood on the Altar Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Dr. Henry Armitage was kidnapped."],
+                    ["DO_CREATE_CARDS_SCN", "Dr. Henry Armitage", "02040", 1, "sharedDeckA"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Professor Warren Rice was kidnapped.", "The above is not true."], "Return to Blood on the Altar Scenario Question 2"]
+        ],
+        "Return to Blood on the Altar Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Professor Warren Rice was kidnapped."],
+                    ["DO_CREATE_CARDS_SCN", "Professor Warren Rice", "02061", 1, "sharedDeckA"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Dr. Francis Morgan was kidnapped.", "The above is not true."], "Return to Blood on the Altar Scenario Question 3"]
+        ],
+        "Return to Blood on the Altar Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Dr. Francis Morgan was kidnapped."],
+                    ["DO_CREATE_CARDS_SCN", "Dr. Francis Morgan", "02080", 1, "sharedDeckA"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators were delayed on their way to Dunwich.", "The above is not true."], "Return to Blood on the Altar Scenario Question 4"]
+        ],
+        "Return to Blood on the Altar Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: The investigators were delayed on their way to Dunwich."],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The O’Bannion gang has a bone to pick with the investigators.", "The above is not true."], "Return to Blood on the Altar Scenario Question 5"]
+        ],
+        "Return to Blood on the Altar Scenario Question 5": [
+            ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null],
+            ["SET", "/arkhamSkipShufflingEncounterDeck", true],
+            ["DO_MOVE_DECK_CARDS_SCN", "Encounter Card", "sharedEncounterDeck", 3, "sharedDeckB"],
+            ["DO_CREATE_CARDS_SCN", "The Hidden Chamber", "02214", 1, "sharedDeckB"],
+            ["DO_CREATE_CARDS_SCN", "Key to the Chamber", "02215", 1, "sharedDeckB"],
+            ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null],
+            ["VAR", "$LOCATIONS", ["REMOVE_FROM_LIST_BY_VALUE", ["LIST", "Bishop's Brook", "Burned Ruins", "Osborn's General Store", "Congregational Church", "House in the Reeds", "Schoolhouse"], "{{$GAME.arkhamScenarioBloodOnTheAltarRemovedLocation}}"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckB"]],
+                ["DO_SPAWN_HIDDEN_AT_LOCATION_SCN", "$TOP_CARD.id", "$LOCATIONS.[{{$I}}]", -3, -3]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Campaign Log: The O’Bannion gang has a bone to pick with the investigators."],
+                    ["DO_LOAD_CARDS_SCN", "Naomi's Crew"],
+                    ["DO_LOAD_CARDS_SCN", "Return to Blood on the Altar - Hired Guns"],
+                    ["VAR", "$SPAWN_LOCATIONS", ["SHUFFLE_LIST", ["REMOVE_FROM_LIST_BY_VALUE", ["LIST", "Burned Ruins", "Congregational Church", "House in the Reeds"], "{{$GAME.arkhamScenarioBloodOnTheAltarRemovedLocation}}"]]],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Hired Gun", "$SPAWN_LOCATIONS.[0]", 3, 3],
+                    ["SET", "/arkhamSkipShufflingEncounterDeck", false]
+                ],
+                ["TRUE"],
+                ["DO_LOAD_CARDS_SCN", "Return to Blood on the Altar - Hired Guns (aside)"]
+            ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
+            ["SET", "/arkhamFinalScenarioMessage", "Potential sacrifices cards are in Deck A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
