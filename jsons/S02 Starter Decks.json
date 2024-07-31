@@ -174,8 +174,8 @@
                         "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
                         "condition": [
                             ["AND",
-                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
-                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
                                 ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
                             ]
                         ],
