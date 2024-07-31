@@ -692,6 +692,7 @@
                 ["SET", "/roundNumber", 1],
                 ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],
+                ["DO_REFRESH_ALL_STORIES_IN_PLAY"],
                 ["SCENARIO_INIT_RESOURCES"],
                 ["SCENARIO_INIT_CLUES"],
                 ["COND",
