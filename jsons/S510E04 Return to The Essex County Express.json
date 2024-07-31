@@ -65,7 +65,7 @@
                 ["DO_SET_CARD_LOCATION", "$TRAIN_CAR_ID", "$SPAWN_LEFTS.[{{$I}}]", 43]
             ]],
             ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$LAST_CAR_ID", true, null],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "{{$CARD_BY_ID.$LAST_CAR_ID.currentFace.name}}", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "{{$CARD_BY_ID.$LAST_CAR_ID.currentFace.name}}", 5, 7, 0, 3],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
                 ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-2", "chaos_m2", 100, true, null],

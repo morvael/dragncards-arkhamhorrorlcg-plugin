@@ -61,7 +61,7 @@
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Administration Office", 1],
             ["DO_LOAD_N_CARDS_SCN", "The Miskatonic Museum - Security Office", 1],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Museum Entrance", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Museum Entrance", 5, 7, 3, 0],
             ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136"]]],
             ["VAR", "$EXHIBIT_HALL_0", "$EXHIBIT_HALLS.[0]"],
             ["VAR", "$EXHIBIT_HALL_1", "$EXHIBIT_HALLS.[1]"],

@@ -79,12 +79,12 @@
                 [
                     ["LOG", "└── Campaign Log: Your house has burned to the ground."],
                     ["DO_DELETE_LOCATION_SCN", "Your House"],
-                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3]
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
                     ["LOG", "└── Campaign Log: Your house is still standing."],
-                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3]
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3, 0]
                 ]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "The Midnight Masks Scenario Question 2"]

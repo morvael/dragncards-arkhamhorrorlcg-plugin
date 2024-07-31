@@ -47,7 +47,7 @@
             ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
             ["DO_SET_SPAWN_LOCATION", "02052", 35, 76],
             ["DO_SET_SPAWN_LOCATION", "02057", 75, 10],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3, 0],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "What is (or was) the first scenario of the campaign?", ["LIST", "Extracurricular Activity is the first.", "The House Always Wins was the first."], "Extracurricular Activity Scenario Question 1"]
         ],
         "Extracurricular Activity Scenario Question 1": [

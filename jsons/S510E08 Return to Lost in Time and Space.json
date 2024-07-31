@@ -51,7 +51,7 @@
             ["DO_LOAD_CARDS_SCN", "Beyond the Threshold"],
             ["DO_LOAD_CARDS_SCN", "Hideous Abominations"],
             ["DO_LOAD_CARDS_SCN", "Yog-Sothoth's Emissaries"],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Another Dimension", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Another Dimension", 5, 7, 3, 0],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ritual was completed.", "The above is not true."], "Return to Lost in Time and Space Scenario Question 1"]
         ],
         "Return to Lost in Time and Space Scenario Question 1": [

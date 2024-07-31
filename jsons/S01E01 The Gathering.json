@@ -44,7 +44,7 @@
             ["DO_SET_SPAWN_LOCATION", "01113", 45, 10],
             ["DO_SET_SPAWN_LOCATION", "01114", 45, 76],
             ["DO_SET_SPAWN_LOCATION", "01115", 70, 43],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3, 0],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

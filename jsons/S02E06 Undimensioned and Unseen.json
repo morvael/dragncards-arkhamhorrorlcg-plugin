@@ -88,7 +88,7 @@
             ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Ten-Acre Meadow", 1],
             ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Devil's Hop Yard", 1],
             ["DO_LOAD_N_CARDS_SCN", "Undimensioned and Unseen - Whateley Ruins", 1],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dunwich Village", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dunwich Village", 5, 7, 3, 0],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Sacrificed to Yog‐Sothoth” in your Campaign Log.", ["LIST", "There are 4 or more names.", "There are exactly 3 names.", "There are exactly 2 names.", "There are 1 or fewer names."], "Undimensioned and Unseen Scenario Question 1"]
         ],
         "Undimensioned and Unseen Scenario Question 1": [

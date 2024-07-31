@@ -83,7 +83,7 @@
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Base of the Hill", 5, 7, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Base of the Hill", 5, 7, 3, 0],
             ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Diverging Path", 3],
             ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Altered Path", 3],
             ["COND",

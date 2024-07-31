@@ -237,14 +237,15 @@
             ]
         },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
-            "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE"],
+            "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE", "$Y_CHANGE"],
             "code": [
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$LOCATION_CARD_NAME", null],
                         ["NOT_EQUAL", "$LEFT_MOD", null],
                         ["NOT_EQUAL", "$TOP_MOD", null],
-                        ["NOT_EQUAL", "$X_CHANGE", null]
+                        ["NOT_EQUAL", "$X_CHANGE", null],
+                        ["NOT_EQUAL", "$Y_CHANGE", null]
                     ],
                     [
                         ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
@@ -275,7 +276,8 @@
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
                                                         	["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
                                                             ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
-                                                            ["INCREASE_VAR", "$X", "$X_CHANGE"]
+                                                            ["INCREASE_VAR", "$X", "$X_CHANGE"],
+                                                            ["INCREASE_VAR", "$Y", "$Y_CHANGE"]
                                                         ]
                                                     ]
                                                 ]
