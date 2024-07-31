@@ -226,7 +226,7 @@
             {
                 "_comment": "Change inPlay.",
                 "type": "trigger",
-                "listenTo": ["/cardById/*/groupId"],
+                "listenTo": ["/cardById/*/groupId", "/cardById/*/attachmentDirection"],
                 "condition": [
                     ["NOT_EQUAL", "$TARGET.inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.id", "$TARGET.groupId"]]
                 ],
@@ -406,12 +406,15 @@
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DESIRED_IN_PLAY.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
-                ["OR",
-                    ["IN_STRING", "$TARGET_GROUP.groupType", "inPlay"],
-                    ["AND",
-                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"],
-                        ["EQUAL", "$TARGET_CARD.stackIndex", 0]
-                    ]
+                ["AND",
+                    ["OR",
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "inPlay"],
+                        ["AND",
+                            ["IN_STRING", "$TARGET_GROUP.groupType", "story"],
+                            ["EQUAL", "$TARGET_CARD.stackIndex", 0]
+                        ]
+                    ],
+                    ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
                 ]
             ]
         },
@@ -775,9 +778,13 @@
                     ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
                     ["FOR_EACH_VAL", "$CARD_ID", "$STACK.cardIds", [
                         ["VAR", "$CARD", "$CARD_BY_ID.$CARD_ID"],
+                        ["VAR", "$CARD_IN_PLAY", ["AND",
+                            ["EQUAL", "$IN_PLAY", true],
+                            ["NOT_EQUAL", "$CARD.attachmentDirection", "behind"]
+                        ]],
                         ["COND",
-                            ["NOT_EQUAL", "$CARD.inPlay", "$IN_PLAY"],
-                            ["SET", "/cardById/$CARD.id/inPlay", "$IN_PLAY"]
+                            ["NOT_EQUAL", "$CARD.inPlay", "$CARD_IN_PLAY"],
+                            ["SET", "/cardById/$CARD.id/inPlay", "$CARD_IN_PLAY"]
                         ]
                     ]],
                     ["UPDATE_VAR", "$IN_PLAY", false]
