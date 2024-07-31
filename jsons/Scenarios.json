@@ -25,6 +25,17 @@
                         ]
                     },
                     {
+                        "label": "id:thePathToCarcosa",
+                        "deckLists": [
+                            {"label": "id:markHarriganStarterDeck", "deckListId": "Mark Harrigan Starter Deck"},
+                            {"label": "id:minhThiPhanStarterDeck", "deckListId": "Minh Thi Phan Starter Deck"},
+                            {"label": "id:sefinaRousseauStarterDeck", "deckListId": "Sefina Rousseau Starter Deck"},
+                            {"label": "id:akachiOnyeleStarterDeck", "deckListId": "Akachi Onyele Starter Deck"},
+                            {"label": "id:williamYorickStarterDeck", "deckListId": "William Yorick Starter Deck"},
+                            {"label": "id:lolaHayesStarterDeck", "deckListId": "Lola Hayes Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -127,6 +138,24 @@
         "ashcanPeteStarterDeck": {
             "English": "\"Ashcan\" Pete Starter Deck"
         },
+        "markHarriganStarterDeck": {
+            "English": "Mark Harrigan Starter Deck"
+        },
+        "minhThiPhanStarterDeck": {
+            "English": "Minh Thi Phan Starter Deck"
+        },
+        "sefinaRousseauStarterDeck": {
+            "English": "Sefina Rousseau Starter Deck"
+        },
+        "akachiOnyeleStarterDeck": {
+            "English": "Akachi Onyele Starter Deck"
+        },
+        "williamYorickStarterDeck": {
+            "English": "William Yorick Starter Deck"
+        },
+        "lolaHayesStarterDeck": {
+            "English": "Lola Hayes Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -186,6 +215,9 @@
         },
         "lostInTimeAndSpace": {
             "English": "Lost in Time and Space"
+        },
+        "thePathToCarcosa": {
+            "English": "The Path to Carcosa"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

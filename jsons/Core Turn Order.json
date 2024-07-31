@@ -47,27 +47,7 @@
         {"faceProperty": "text", "regex": "at the end of (each|the) mythos phase", "stepId": "M5"},
         {"faceProperty": "text", "regex": "at the end of (each|the) round", "stepId": "U6"},
         {"faceProperty": "text", "regex": "at the end of (each|the) upkeep phase", "stepId": "U6"},
-        {"faceProperty": "text", "regex": "at the end of (each|the|your) turn", "stepId": "I2.2"},
-        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "E2"},
-        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "E3"},
-        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "W4"},
-        {"faceProperty": "text", "regex": "during (each|the) enemy phase", "stepId": "W5"},
-        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2"},
-        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2.1"},
-        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "I2.2"},
-        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "W2"},
-        {"faceProperty": "text", "regex": "during (each|the) investigation phase", "stepId": "W3"},
-        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M2"},
-        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M3"},
-        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "M4"},
-        {"faceProperty": "text", "regex": "during (each|the) mythos phase", "stepId": "W1"},
-        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U2"},
-        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U3"},
-        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U4"},
-        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "U5"},
-        {"faceProperty": "text", "regex": "during (each|the) upkeep phase", "stepId": "W6"},
-        {"faceProperty": "text", "regex": "during your turn", "stepId": "I2.1"},
-        {"faceProperty": "text", "regex": "during your turn", "stepId": "W3"}
+        {"faceProperty": "text", "regex": "at the end of (each|the|your) turn", "stepId": "I2.2"}
     ],
     "labels": {
         "mythosPhase": {

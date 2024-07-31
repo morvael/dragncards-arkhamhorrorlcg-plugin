@@ -1,0 +1,501 @@
+{
+    "preBuiltDecks": {
+        "Mark Harrigan Starter Deck": {
+             "label": "Mark Harrigan Starter Deck",
+             "cards": [
+                {"databaseId": "03001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01024", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03007", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03022", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Minh Thi Phan Starter Deck": {
+             "label": "Minh Thi Phan Starter Deck",
+             "cards": [
+                {"databaseId": "03002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01035", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01076", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03011", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03024", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03026", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03038", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Sefina Rousseau Starter Deck": {
+             "label": "Sefina Rousseau Starter Deck",
+             "cards": [
+                {"databaseId": "03003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01044", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01047", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01053", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03012", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03029", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03030", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Akachi Onyele Starter Deck": {
+             "label": "Akachi Onyele Starter Deck",
+             "cards": [
+                {"databaseId": "03004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03015", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03034", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "William Yorick Starter Deck": {
+             "label": "William Yorick Starter Deck",
+             "cards": [
+                {"databaseId": "03005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01076", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03036", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03039", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Lola Hayes Starter Deck": {
+             "label": "Lola Hayes Starter Deck",
+             "cards": [
+                {"databaseId": "03006", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01076", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03018", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03019", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03021", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03026", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03038", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "03009": {
+                "_comment": "Mark Harrigan & Sophie",
+                "rules": [
+                    {
+                        "_comment": "Put Sophie into play",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["MOVE_CARD", "$THIS.id", ["GET_CONTROLLER_PLAY", "$THIS.controller"], -1]
+                        ]
+                    }
+                ]
+            },
+            "03003": {
+                "_comment": "Sefina Rousseau",
+                "rules": [
+                    {
+                        "_comment": "Set custom draw mode flag",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["SET", "/playerData/$THIS.controller/arkhamCustomDraw", true]
+                        ]
+                    },
+                    {
+                        "_comment": "Perform custom draw",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventCustomDraw"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventCustomDraw", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventCustomDraw", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventCustomDraw"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["COND",
+                                ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$THIS.controller"]], 0],
+                                [
+                                    ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_DECK", "$THIS.controller"], true, null],
+                                    ["DO_DRAW_CARDS_EXT", "$THIS.controller", ["GET_CONTROLLER_DECK", "$THIS.controller"], 13, true, true, null]
+                                ]
+                            ],
+                            ["PROMPT", "$THIS.controller", "decideAboutSefinaHand1"]
+                        ]
+                    }
+                ]
+            },
+            "03004": {
+                "_comment": "Akachi Onyele",
+                "rules": [
+                    {
+                        "_comment": "Set Uses (charges) bonus",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["SET", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                        ]
+                    }
+                ]
+            },
+            "03006": {
+                "_comment": "Lola Hayes",
+                "rules": [
+                    {
+                        "_comment": "Create Lola Hayes Role card",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
+                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "actionLists": {
+        "lolaGuardianRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "A", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "A", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Guardian role, {{$ALIAS_N}}."]
+            ]
+        ],
+        "lolaSeekerRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "B", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "B", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Seeker role, {{$ALIAS_N}}."]
+            ]
+        ],
+        "lolaRogueRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "C", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "C", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Rogue role, {{$ALIAS_N}}."]
+            ]
+        ],
+        "lolaMysticRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "D", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "D", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Mystic role, {{$ALIAS_N}}."]
+            ]
+        ],
+        "lolaSurvivorRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "E", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "E", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Survivor role, {{$ALIAS_N}}."]
+            ]
+        ],
+        "lolaNeutralRole": [
+            ["COND",
+                ["CAN_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "F", "$PLAYER_N"],
+                ["DO_SWITCH_ROLE", "$PLAYER_N", "$ACTIVE_CARD_ID", "F", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot change Lola to the Neutral role, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "DO_PLACE_EVENTS_BENEATH_SEFINA": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_EVENTS_BENEATH_SEFINA.TARGET_PLAYER"],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], "$TARGET_PLAYER"]],
+                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "place events beneath Sefina Rousseau.", "places events beneath Sefina Rousseau."],
+                        ["VAR", "$EVENTS", 0],
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$CARD.sides.A.type", "Event"],
+                                    ["LESS_THAN", "$EVENTS", 5]
+                                ],
+                                [
+                                    ["DO_PUT_CARD_BENEATH", "$TARGET_PLAYER", "$CARD.id", "$INVESTIGATOR.id", true, null],
+                                    ["INCREASE_VAR", "$EVENTS", 1]
+                                ]
+                            ]
+                        ]]
+                    ]
+                ],
+                ["DO_DISCARD_EXCESS_SEFINA_CARDS", "$TARGET_PLAYER", 100]
+            ]
+        },
+        "DO_DISCARD_EXCESS_SEFINA_CARDS": {
+            "args": ["$TARGET_PLAYER", "$CARDS_TO_DISCARD"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_EXCESS_SEFINA_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$CARDS_TO_DISCARD", "DO_DISCARD_EXCESS_SEFINA_CARDS.CARDS_TO_DISCARD"],
+                ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_ID", "$TARGET_PLAYER"]],
+                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " discards ", ["LENGTH", "$SELECTED_CARDS"], " of {{$CARDS_TO_DISCARD}} excess card(s) from hand."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                        ]]
+                    ]
+                ],
+                ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$CARDS_IN_HAND", 8],
+                    [
+                        ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", 8]],
+                        ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", "$CARDS_TO_DISCARD"]
+                    ],
+                    ["TRUE"],
+                    ["STARTING_HAND_DONE"]
+                ]
+            ]
+        },
+        "CAN_SWITCH_ROLE": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NEW_SIDE", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SWITCH_ROLE.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SWITCH_ROLE.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$NEW_SIDE", "CAN_SWITCH_ROLE.NEW_SIDE"],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Role"],
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Play"],
+                    ["IN_STRING", "ABCDEF", "$NEW_SIDE"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$NEW_SIDE"]
+                ]
+            ]
+        },
+        "DO_SWITCH_ROLE": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NEW_SIDE", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SWITCH_ROLE.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SWITCH_ROLE.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$NEW_SIDE", "DO_SWITCH_ROLE.NEW_SIDE"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SWITCH_ROLE.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SWITCH_ROLE", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NEW_SIDE", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "change Lola to the {{$TARGET_CARD.sides.$NEW_SIDE.name}}.", "changes Lola to the {{$TARGET_CARD.sides.$NEW_SIDE.name}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "$NEW_SIDE"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "decideAboutSefinaHand1": {
+            "args": [],
+            "message": "Target cards in hand. First 5 event cards will be placed beneath Sefina Rousseau.",
+            "options": [
+                {
+                    "label": "Proceed.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_PLACE_EVENTS_BENEATH_SEFINA", "$PLAYER_N"]
+                    ]
+                }
+            ]
+        },
+        "decideAboutSefinaHand2": {
+            "args": ["$CARDS_TO_DISCARD"],
+            "message": "You should discard {{$CARDS_TO_DISCARD}} excess card(s) from hand. Target cards to discard.",
+            "options": [
+                {
+                    "label": "Proceed.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_DISCARD_EXCESS_SEFINA_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD"]
+                    ]
+                }
+            ]
+        }
+    },
+    "labels": {
+        "lolaGuardianRoleMenu": {
+            "English": "Switch to Guardian"
+        },
+        "lolaSeekerRoleMenu": {
+            "English": "Switch to Seeker"
+        },
+        "lolaRogueRoleMenu": {
+            "English": "Switch to Rogue"
+        },
+        "lolaMysticRoleMenu": {
+            "English": "Switch to Mystic"
+        },
+        "lolaSurvivorRoleMenu": {
+            "English": "Switch to Survivor"
+        },
+        "lolaNeutralRoleMenu": {
+            "English": "Switch to Neutral"
+        }
+    }
+}

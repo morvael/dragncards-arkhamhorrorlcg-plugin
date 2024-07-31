@@ -27,6 +27,33 @@
                 ]
             ]
         ],
+        "putCardBeneath": [
+            ["COND",
+                ["EQUAL", "$PLAYER_DATA.$PLAYER_N.cardToBePutBeneathId", null],
+                ["COND",
+                    ["CAN_PUT_CARD_BENEATH", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                    [
+                        ["LOG", "└── {{$ALIAS_N}} wants to place {{$ACTIVE_FACE.name}} beneath a card."],
+                        ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSeaGreen"],
+                        ["SET", "/playerData/$PLAYER_N/cardToBePutBeneathId", "$ACTIVE_CARD_ID"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── You cannot place {{$ACTIVE_FACE.name}} beneath a card, {{$ALIAS_N}}."]
+                ],
+                ["TRUE"],
+                [
+                    ["VAR", "$ATTACHED_CARD_ID", "$PLAYER_DATA.$PLAYER_N.cardToBePutBeneathId"],
+                    ["COND",
+                        ["CAN_PUT_CARD_BENEATH_PARENT", "$PLAYER_N", "$ATTACHED_CARD_ID", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                        ["DO_PUT_CARD_BENEATH", "$PLAYER_N", "$ATTACHED_CARD_ID", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                        ["TRUE"],
+                        ["LOG", "└── You cannot place {{$CARD_BY_ID.$ATTACHED_CARD_ID.currentFace.name}} beneath {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                    ],
+                    ["UNSET", "/cardById/$ATTACHED_CARD_ID/borderColor"],
+                    ["UNSET", "/playerData/$PLAYER_N/cardToBePutBeneathId"]
+                ]
+            ]
+        ],
         "detachCard": [
             ["COND",
                 ["CAN_DETACH_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
@@ -163,6 +190,91 @@
                 ]
             ]
         },
+        "CAN_PUT_CARD_BENEATH": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_PUT_CARD_BENEATH.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PUT_CARD_BENEATH.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.attachedCount", 0],
+                    ["OR",
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", false],
+                            ["OR",
+                                ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Reference"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
+                            ]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", true],
+                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
+                            ["OR",
+                                ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Reference"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_PUT_CARD_BENEATH_PARENT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_PUT_CARD_BENEATH_PARENT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PUT_CARD_BENEATH_PARENT.TARGET_CARD_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "CAN_PUT_CARD_BENEATH_PARENT.PARENT_CARD_ID"]],
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                    ["EQUAL", "$PARENT_CARD.inAdvanced", true],
+                    ["EQUAL", "$PARENT_CARD.cardIndex", 0],
+                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Investigator"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Act"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Story"]
+                    ],
+                    ["CAN_PUT_CARD_BENEATH", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "DO_PUT_CARD_BENEATH": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PUT_CARD_BENEATH.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PUT_CARD_BENEATH.TARGET_CARD_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "DO_PUT_CARD_BENEATH.PARENT_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_CARD_BENEATH.LOG_EVENT"],
+                ["COND",
+                    ["CAN_PUT_CARD_BENEATH_PARENT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "place {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}.", "places {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}."],
+                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "behind"]
+                    ]
+                ]
+            ]
+        },
         "CAN_DETACH_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -212,6 +324,15 @@
         },
         "attachToCardMenu": {
             "English": "Attach to (A)"
+        },
+        "putCardBeneath": {
+            "English": "Place beneath"
+        },
+        "putCardBeneathMenu": {
+            "English": "Place beneath (Z)"
+        },
+        "putBeneathCardMenu": {
+            "English": "Place beneath this (Z)"
         },
         "detachCard": {
             "English": "Detach"

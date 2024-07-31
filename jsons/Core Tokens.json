@@ -226,6 +226,34 @@
             "code": [
                 ["DO_REMOVE_TOKEN_FROM_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
             ]
+        },
+        "GET_CARD_USES": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_USES.TARGET_CARD_ID"]],
+                ["VAR", "$USES", 0],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", null],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", ""],
+                        ["GREATER_THAN", "$TARGET_CARD.currentFace.uses", 0]
+                    ],
+                    ["UPDATE_VAR", "$USES", "$TARGET_CARD.currentFace.uses"]
+                ],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
+                        ["GREATER_THAN", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkhamBonusCharges", 0],
+                        ["IN_STRING", "$TARGET_CARD.currentFace.text", "Uses ("],
+                        ["OR",
+                            ["IN_STRING", "$TARGET_CARD.currentFace.text", " charges)."],
+                            ["IN_STRING", "$TARGET_CARD.currentFace.text", " charge)."]
+                        ]
+                    ],
+                    ["INCREASE_VAR", "$USES", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkhamBonusCharges"]
+                ],
+                "$USES"
+            ]
         }
     },
     "prompts": {

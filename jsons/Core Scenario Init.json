@@ -450,6 +450,11 @@
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
+                            ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
+                            ["SET", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 0],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                             ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
                             ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
@@ -469,18 +474,14 @@
                                 ["EQUAL", "$CARD.sides.A.type", "Key"]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["LOG", "└── {{$CARD.sides.A.name}} key starts the game attached to {{$INVESTIGATOR_I.currentFace.name}}."],
                                 ["ATTACH_CARD", "$CARD.id", "$INVESTIGATOR_I.id"]
                             ]],
+                            ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 1],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                ["OR",
-                                    ["EQUAL", "$CARD.sides.A.permanent", true],
-                                    ["EQUAL", "$CARD.sides.A.databaseId", "02014"]
-                                ]
+                                ["EQUAL", "$CARD.sides.A.permanent", true]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["LOG", "└── {{$CARD.sides.A.name}} starts the game in play."],
                                 ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
@@ -540,13 +541,20 @@
                     ["DO_GAIN_RESOURCES", "$PLAYER_I", 5, true, null]
                 ],
                 ["COND",
-                    ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", true],
+                    ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 1],
+                    ["TRUE"],
                     [
-                        ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, null]
+                        ["COND",
+                            ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
+                            [
+                                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
+                                ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, null]
+                            ]
+                        ],
+                        ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
                     ]
-                ],
-                ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
+                ]
             ]
         },
         "DRAW_MULLIGAN_HAND": {
@@ -567,6 +575,12 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
                 ],
+                ["STARTING_HAND_DONE"]
+            ]
+        },
+        "STARTING_HAND_DONE": {
+            "args": [],
+            "code": [
                 ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
                 ["COND",
                     ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
@@ -634,6 +648,35 @@
                 ["SHOW_SCENARIO_QUESTION_PROMPT", null]
             ]
         },
+        "SCENARIO_INIT_RESOURCES": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["GREATER_THAN", ["GET_CARD_USES", "$CARD.id"], 0],
+                    ["EQUAL", ["GET_RESOURCES_ON_CARD", "$CARD.id"], 0]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", ["GET_CARD_USES", "$CARD.id"], true, null]
+                ]]
+            ]
+        },
+        "SCENARIO_INIT_CLUES": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["NOT_EQUAL", "$CARD.currentFace.clues", null],
+                    ["GREATER_THAN", "$CARD.currentFace.clues", 0],
+                    ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["VAR", "$CLUES", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"]],
+                    ["DO_PLACE_CLUES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", "$CLUES", true, null]
+                ]]
+            ]
+        },
         "SCENARIO_INIT_FINISH": {
             "args": ["$DUMMY"],
             "code": [
@@ -647,6 +690,8 @@
                 ["SET", "/roundNumber", 1],
                 ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],
+                ["SCENARIO_INIT_RESOURCES"],
+                ["SCENARIO_INIT_CLUES"],
                 ["COND",
                     ["EQUAL", "$GAME.arkhamFinalScenarioMessage", null],
                     ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign."],
@@ -845,7 +890,7 @@
         },
         "decideAboutMulligan": {
             "args": [],
-            "message": "Do you want to take a mulligan? Target cards to mulligan.",
+            "message": "Do you want to take a mulligan? Target cards in hand to mulligan.",
             "options": [
                 {
                     "label": "Yes, mulligan targeted cards.",

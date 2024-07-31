@@ -162,5 +162,29 @@
                 {"databaseId": "02034", "quantity": 2, "loadGroupId": "playerNDeck"}
             ]
         }
+    },
+    "automation": {
+        "cards": {
+            "02014": {
+                "_comment": "\"Ashcan\" Pete & Duke",
+                "rules": [
+                    {
+                        "_comment": "Put Duke into play",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", 0],
+                                ["GREATER_THAN", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay", ["PREV", "$PLAYER_DATA.{{$THIS.controller}}.arkhamEventPutCardsIntoPlay"]],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["MOVE_CARD", "$THIS.id", ["GET_CONTROLLER_PLAY", "$THIS.controller"], -1]
+                        ]
+                    }
+                ]
+            }
+        }
     }
 }

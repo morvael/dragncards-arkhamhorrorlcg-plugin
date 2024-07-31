@@ -31,6 +31,7 @@
         "Enemy":                  {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Scenario":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Reference":              {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Role":                   {"width": 0.69, "height": 1.0, "tokens": []},
         "Agenda":                 {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Act":                    {"width":  1.0, "height": 0.69,"tokens": ["resource","clue","damage","horror","doom"]},
         "Location":               {"width": 0.69, "height": 1.0, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
@@ -94,7 +95,8 @@
             {"key": "P", "actionList": "playCard", "label": "id:playCard"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
             {"key": "S", "actionList": "spawnCard", "label": "id:spawnCard"},
-            {"key": "X", "actionList": "discardCard", "label": "id:discardCard"}
+            {"key": "X", "actionList": "discardCard", "label": "id:discardCard"},
+            {"key": "Z", "actionList": "putCardBeneath", "label": "id:putCardBeneath"}
         ]
     },
     "imageUrlPrefix": {

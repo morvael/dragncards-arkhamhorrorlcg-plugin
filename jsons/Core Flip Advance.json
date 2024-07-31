@@ -39,7 +39,6 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD.TARGET_CARD_ID"]],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_FLIP_CARD.TARGET_CARD.groupId"]],
                 ["AND",
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.inAdvanced", true],

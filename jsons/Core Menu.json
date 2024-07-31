@@ -4,6 +4,60 @@
         "moveToGroupIds": [],
         "options": [
             {
+                "label": "id:lolaGuardianRoleMenu",
+                "actionList": "lolaGuardianRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "A"]
+                ]
+            },
+            {
+                "label": "id:lolaSeekerRoleMenu",
+                "actionList": "lolaSeekerRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "B"]
+                ]
+            },
+            {
+                "label": "id:lolaRogueRoleMenu",
+                "actionList": "lolaRogueRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "C"]
+                ]
+            },
+            {
+                "label": "id:lolaMysticRoleMenu",
+                "actionList": "lolaMysticRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "D"]
+                ]
+            },
+            {
+                "label": "id:lolaSurvivorRoleMenu",
+                "actionList": "lolaSurvivorRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "E"]
+                ]
+            },
+            {
+                "label": "id:lolaNeutralRoleMenu",
+                "actionList": "lolaNeutralRole",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Role"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Play"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.currentSide", "F"]
+                ]
+            },
+            {
                 "label": "id:investigateActionMenu",
                 "actionList": "investigateAction",
                 "showIf": ["AND",
@@ -253,6 +307,67 @@
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["OR",
                     	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:putCardBeneathMenu",
+                "actionList": "putCardBeneath",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBePutBeneathId", null],
+                    ["EQUAL", "$ACTIVE_CARD.attachedCount", 0],
+                    ["OR",
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
+                            ["OR",
+                                ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Key"]
+                            ]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
+                            ["OR",
+                                ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"]
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            {
+                "label": "id:putBeneathCardMenu",
+                "actionList": "putCardBeneath",
+                "showIf": ["AND",
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBePutBeneathId", null],
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBePutBeneathId", "$ACTIVE_CARD.id"],
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],

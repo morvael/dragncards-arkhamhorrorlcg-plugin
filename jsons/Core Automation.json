@@ -228,10 +228,55 @@
                 "type": "trigger",
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
-                    ["NOT_EQUAL", "$TARGET.inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.groupId"]]
+                    ["NOT_EQUAL", "$TARGET.inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.id", "$TARGET.groupId"]]
                 ],
                 "then": [
-                    ["SET", "/cardById/$TARGET.id/inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.groupId"]]
+                    ["SET", "/cardById/$TARGET.id/inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET.id", "$TARGET.groupId"]]
+                ]
+            },
+            {
+                "_comment": "Change inPlay for old card group.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["NOT_EQUAL", ["PREV", "$TARGET.groupId"], null],
+                        ["OR",
+                            ["EQUAL", ["PREV", "$TARGET.groupId"], "sharedAgendaStory"],
+                            ["IN_STRING", ["PREV", "$TARGET.groupId"], "sharedActStory"]
+                        ]
+                    ]
+                ],
+                "then": [
+                    ["DO_UPDATE_STORY_IN_PLAY", ["PREV", "$TARGET.groupId"]]
+                ]
+            },
+            {
+                "_comment": "Change inPlay for new card group.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET.groupId", null],
+                        ["OR",
+                            ["EQUAL", "$TARGET.groupId", "sharedAgendaStory"],
+                            ["IN_STRING", "$TARGET.groupId", "sharedActStory"]
+                        ]
+                    ]
+                ],
+                "then": [
+                    ["DO_UPDATE_STORY_IN_PLAY", "$TARGET.groupId"]
+                ]
+            },
+            {
+                "_comment": "Change inPlay for story stacks.",
+                "type": "trigger",
+                "listenTo": ["/groupById/sharedAgendaStory/stackIds", "/groupById/sharedActStory/stackIds", "/groupById/sharedActStoryB/stackIds", "/groupById/sharedActStoryC/stackIds", "/groupById/sharedActStoryD/stackIds", "/groupById/sharedActStoryE/stackIds"],
+                "condition": [
+                    ["TRUE"]
+                ],
+                "then": [
+                    ["DO_UPDATE_STORY_IN_PLAY", "$TARGET.id"]
                 ]
             },
             {
@@ -313,15 +358,14 @@
                 "condition": [
                     ["AND",
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                        ["NOT_EQUAL", "$TARGET.currentFace.uses", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.uses", 0],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
+                        ["GREATER_THAN", ["GET_CARD_USES", "$TARGET.id"], 0],
                         ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", "$TARGET.currentFace.uses", true, "$PLAYER_N"]
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_USES", "$TARGET.id"], true, "$PLAYER_N"]
                 ]
             },
             {
@@ -358,12 +402,16 @@
     },
     "functions": {
         "GET_DESIRED_IN_PLAY": {
-            "args": ["$TARGET_GROUP_ID"],
+            "args": ["$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
             "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DESIRED_IN_PLAY.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_DESIRED_IN_PLAY.TARGET_GROUP_ID"]],
                 ["OR",
                     ["IN_STRING", "$TARGET_GROUP.groupType", "inPlay"],
-                    ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
+                    ["AND",
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"],
+                        ["EQUAL", "$TARGET_CARD.stackIndex", 0]
+                    ]
                 ]
             ]
         },
@@ -718,6 +766,24 @@
                 ]]
             ]
         },
+        "DO_UPDATE_STORY_IN_PLAY": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_UPDATE_STORY_IN_PLAY.TARGET_GROUP_ID"]],
+                ["VAR", "$IN_PLAY", true],
+                ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
+                    ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
+                    ["FOR_EACH_VAL", "$CARD_ID", "$STACK.cardIds", [
+                        ["VAR", "$CARD", "$CARD_BY_ID.$CARD_ID"],
+                        ["COND",
+                            ["NOT_EQUAL", "$CARD.inPlay", "$IN_PLAY"],
+                            ["SET", "/cardById/$CARD.id/inPlay", "$IN_PLAY"]
+                        ]
+                    ]],
+                    ["UPDATE_VAR", "$IN_PLAY", false]
+                ]]
+            ]
+        },
         "DO_APPEND_CARD_INFO": {
             "args": ["$TEXT"],
             "code": [
@@ -759,6 +825,12 @@
                         ["NOT_EQUAL", "$TARGET_CARD.cardDeck", ""]
                     ],
                     ["DO_APPEND_CARD_INFO", ["JOIN_STRING", "having source in ", "$GROUP_BY_ID.{{$TARGET_CARD.cardDeck}}.label"]]
+                ],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.inPlay", true],
+                    ["DO_APPEND_CARD_INFO", "in play"],
+                    ["TRUE"],
+                    ["DO_APPEND_CARD_INFO", "not in play"]
                 ],
                 ["LOG", "└── {{$MESSAGE}}."]
             ]
