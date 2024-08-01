@@ -164,26 +164,7 @@
                         ["EQUAL", "$ACTION", "investigate"],
                         ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "attempt to investigate {{$TARGET_CARD.currentFace.name}}.", "attempts to investigate {{$TARGET_CARD.currentFace.name}}."],
                         ["EQUAL", "$ACTION", "move"],
-                        [
-                            ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "move to {{$TARGET_CARD.currentFace.name}}.", "moves to {{$TARGET_CARD.currentFace.name}}."],
-                            ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"]],
-                            ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$TARGET_CARD_ID"], 5]],
-                            ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$TARGET_CARD_ID"], 7]],
-                            ["WHILE",
-                                ["NOT_EQUAL", ["GET_CARD_AT_LOCATION_EXCEPT", "$X", "$Y", "$MINI_INVESTIGATOR.id"], null],
-                                ["INCREASE_VAR", "$X", 3]
-                            ],
-                            ["COND",
-                                ["OR",
-                                    ["NOT_EQUAL", ["GET_CARD_LEFT", "$MINI_INVESTIGATOR.id"], "$X"],
-                                    ["NOT_EQUAL", ["GET_CARD_TOP", "$MINI_INVESTIGATOR.id"], "$Y"]
-                                ],
-                                [
-                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
-                                    ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"]
-                                ]
-                            ]
-                        ],
+                        ["DO_MOVE_MINI_INVESTIGATOR_TO", "$TARGET_PLAYER", "$TARGET_CARD_ID", true],
                         ["EQUAL", "$ACTION", "action"],
                         ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "trigger {{$TARGET_CARD.currentFace.name}}'s action ability.", "triggers {{$TARGET_CARD.currentFace.name}}'s action ability."],
                         ["EQUAL", "$ACTION", "free"],
@@ -199,6 +180,32 @@
                         ],
                         ["EQUAL", "$ACTION", "evade"],
                         ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "attempt to evade {{$TARGET_CARD.currentFace.name}}.", "attempts to evade {{$TARGET_CARD.currentFace.name}}."]
+                    ]
+                ]
+            ]
+        },
+        "DO_MOVE_MINI_INVESTIGATOR_TO": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_MINI_INVESTIGATOR_TO.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_MINI_INVESTIGATOR_TO.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_MINI_INVESTIGATOR_TO.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$TARGET_PLAYER", "$TARGET_PLAYER", "move to {{$TARGET_CARD.currentFace.name}}.", "moves to {{$TARGET_CARD.currentFace.name}}."],
+                ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$TARGET_CARD_ID"], 5]],
+                ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$TARGET_CARD_ID"], 7]],
+                ["WHILE",
+                    ["NOT_EQUAL", ["GET_CARD_AT_LOCATION_EXCEPT", "$X", "$Y", "$MINI_INVESTIGATOR.id"], null],
+                    ["INCREASE_VAR", "$X", 3]
+                ],
+                ["COND",
+                    ["OR",
+                        ["NOT_EQUAL", ["GET_CARD_LEFT", "$MINI_INVESTIGATOR.id"], "$X"],
+                        ["NOT_EQUAL", ["GET_CARD_TOP", "$MINI_INVESTIGATOR.id"], "$Y"]
+                    ],
+                    [
+                        ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                        ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"]
                     ]
                 ]
             ]

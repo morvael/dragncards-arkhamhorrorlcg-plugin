@@ -70,6 +70,12 @@
                             {"label": "id:whereDoomAwaits", "deckListId": "Where Doom Awaits Scenario"},
                             {"label": "id:lostInTimeAndSpace", "deckListId": "Lost in Time and Space Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:thePathToCarcosa",
+                        "deckLists": [
+                            {"label": "id:curtainCall", "deckListId": "Curtain Call Scenario"}
+                        ]
                     }
                 ]
             },
@@ -218,6 +224,9 @@
         },
         "thePathToCarcosa": {
             "English": "The Path to Carcosa"
+        },
+        "curtainCall": {
+            "English": "Curtain Call"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

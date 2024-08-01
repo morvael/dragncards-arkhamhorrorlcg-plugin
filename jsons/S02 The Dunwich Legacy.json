@@ -140,5 +140,29 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
+    },
+    "automation": {
+        "cards": {
+            "02037": {
+                "_comment": "Indebted",
+                "rules": [
+                    {
+                        "_comment": "Decreases starting resources",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResources", 2]
+                        ]
+                    }
+                ]
+            }
+        }
     }
 }

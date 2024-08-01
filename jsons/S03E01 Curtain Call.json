@@ -1,0 +1,52 @@
+{
+    "preBuiltDecks": {
+        "Curtain Call Scenario": {
+             "label": "Curtain Call Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Curtain Call", "Curtain Call Scenario Init"]
+            ]
+        },
+        "Curtain Call": {
+            "hideFromSearch": true,
+             "label": "Curtain Call",
+             "cards": [
+                {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03046", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03048", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "43%"},
+                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "43%"},
+                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "10%"},
+                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "43%"},
+                {"databaseId": "03053", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "03054", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "03055", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "03056", "quantity": 1, "loadGroupId": "sharedDeckB"},
+                {"databaseId": "03057", "quantity": 1, "loadGroupId": "sharedDeckB"},
+                {"databaseId": "03058", "quantity": 1, "loadGroupId": "sharedDeckB"},
+                {"databaseId": "03059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03060", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Curtain Call Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Curtain Call"],
+            ["DO_LOAD_CARDS_SCN", "Evil Portents"],
+            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Hauntings"],
+            ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],
+            ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "{{$SECOND_ACTS.[0]}}", 1, "sharedActStory"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
+            ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

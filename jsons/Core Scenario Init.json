@@ -279,13 +279,26 @@
                                                         ],
                                                         [
                                                             ["VAR", "$MINI_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
-                                                            ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
-                                                            ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
-                                                        	["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
-                                                            ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
-                                                            ["INCREASE_VAR", "$X", "$X_CHANGE"],
-                                                            ["INCREASE_VAR", "$Y", "$Y_CHANGE"]
+                                                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
+                                                            ["COND",
+                                                                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomSpawnLocation", null],
+                                                                [
+                                                                    ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$PLAYER_DATA.$PLAYER_I.arkhamCustomSpawnLocation"]],
+                                                                    ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}."],
+                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                                                    ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
+                                                                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false]
+                                                                ],
+                                                                ["TRUE"],
+                                                                [
+                                                                    ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                                                    ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
+                                                                    ["INCREASE_VAR", "$X", "$X_CHANGE"],
+                                                                    ["INCREASE_VAR", "$Y", "$Y_CHANGE"]
+                                                                ]
+                                                            ]
                                                         ]
                                                     ]
                                                 ]
@@ -421,48 +434,50 @@
         "SCENARIO_INIT": {
             "args": ["$CHAOS_BAG_CAMPAIGN_NAME", "$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
             "code": [
-            	["VAR", "$PRESENT_INVESTIGATORS", 0],
-            	["VAR", "$PRESENT_DECKS", 0],
-            	["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-            		["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
-            		["COND",
-            			["NOT_EQUAL", "$INVESTIGATOR_I", null],
-            			["INCREASE_VAR", "$PRESENT_INVESTIGATORS", 1]
-            		],
-            		["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
-            		["COND",
-            			["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$PLAYER_I_DECK.stackIds"], 20],
-            			["INCREASE_VAR", "$PRESENT_DECKS", 1]
-            		]
-            	]],
-            	["COND",
-            		["AND",
-            			["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
-            			["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
-            		],
-            		[
-		                ["SET", "/arkhamScenarioInit", true],
+                ["VAR", "$PRESENT_INVESTIGATORS", 0],
+                ["VAR", "$PRESENT_DECKS", 0],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                    ["COND",
+                        ["NOT_EQUAL", "$INVESTIGATOR_I", null],
+                        ["INCREASE_VAR", "$PRESENT_INVESTIGATORS", 1]
+                    ],
+                    ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
+                    ["COND",
+                        ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$PLAYER_I_DECK.stackIds"], 20],
+                        ["INCREASE_VAR", "$PRESENT_DECKS", 1]
+                    ]
+                ]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
+                        ["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
+                    ],
+                    [
+                        ["SET", "/arkhamScenarioInit", true],
                         ["SET", "/arkhamChaosBagCampaignName", "$CHAOS_BAG_CAMPAIGN_NAME"],
-		                ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
-		                ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
-		                ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
-		                ["SET", "/arkhamScenarioDifficulty", "Normal"],
-		                ["SET", "/arkhamNumScenarioQuestions", 0],
-		                ["SET", "/arkhamScenarioQuestionIndex", 0],
-		                ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-		                ["SET", "/arkhamTraumaDone", 0],
-		                ["SET", "/arkhamStartingHandDone", 0],
-		                ["SET", "/arkhamActiveInvestigator", null],
+                        ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
+                        ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
+                        ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
+                        ["SET", "/arkhamScenarioDifficulty", "Normal"],
+                        ["SET", "/arkhamNumScenarioQuestions", 0],
+                        ["SET", "/arkhamScenarioQuestionIndex", 0],
+                        ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
+                        ["SET", "/arkhamTraumaDone", 0],
+                        ["SET", "/arkhamStartingHandDone", 0],
+                        ["SET", "/arkhamActiveInvestigator", null],
                         ["SET", "/arkhamSkipShufflingEncounterDeck", false],
                         ["SET", "/arkhamFinalScenarioMessage", null],
-		                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingResources", 5],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
+                            ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 0],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
@@ -506,10 +521,10 @@
                             ]]
                         ]],
                         ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
-            		],
-            		["TRUE"],
-            		["LOG", "└── Not all players have loaded their investigators and/or decks."]
-            	]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── Not all players have loaded their investigators and/or decks."]
+                ]
             ]
         },
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
@@ -558,7 +573,7 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.resources", 0],
-                    ["DO_GAIN_RESOURCES", "$PLAYER_I", 5, true, null]
+                    ["DO_GAIN_RESOURCES", "$PLAYER_I", "$PLAYER_DATA.$PLAYER_I.arkhamStartingResources", true, null]
                 ],
                 ["COND",
                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", true],

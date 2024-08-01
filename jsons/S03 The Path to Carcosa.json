@@ -1,0 +1,143 @@
+{
+    "preBuiltDecks": {
+        "Delusions": {
+            "hideFromSearch": true,
+            "label": "Delusions",
+            "cards": [
+                {"databaseId": "03084a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03084b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03084c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03084d", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Byakhee": {
+            "hideFromSearch": true,
+            "label": "Byakhee",
+            "cards": [
+                {"databaseId": "03086", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03087", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Inhabitants of Carcosa": {
+            "hideFromSearch": true,
+            "label": "Inhabitants of Carcosa",
+            "cards": [
+                {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Evil Portents": {
+            "hideFromSearch": true,
+            "label": "Evil Portents",
+            "cards": [
+                {"databaseId": "03090", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03092", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Hauntings": {
+            "hideFromSearch": true,
+            "label": "Hauntings",
+            "cards": [
+                {"databaseId": "03093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Hastur's Gift": {
+            "hideFromSearch": true,
+            "label": "Hastur's Gift",
+            "cards": [
+                {"databaseId": "03095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Cult of the Yellow Sign": {
+            "hideFromSearch": true,
+            "label": "Cult of the Yellow Sign",
+            "cards": [
+                {"databaseId": "03098", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03099", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Decay & Filth": {
+            "hideFromSearch": true,
+            "label": "Decay & Filth",
+            "cards": [
+                {"databaseId": "03101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Stranger": {
+            "hideFromSearch": true,
+            "label": "The Stranger",
+            "cards": [
+                {"databaseId": "03104", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03105", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Path to Carcosa Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Path to Carcosa Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Path to Carcosa Chaos Bag - Normal": {
+            "hideFromSearch": true,
+            "label": "The Path to Carcosa Chaos Bag - Normal",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Path to Carcosa Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Path to Carcosa Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Path to Carcosa Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Path to Carcosa Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}

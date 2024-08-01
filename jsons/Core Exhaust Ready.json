@@ -108,7 +108,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_ALL_EXHAUSTED_CARDS.TARGET_PLAYER"],
                 ["FILTER_CARDS", "$CARD", ["AND",
-                	["CAN_READY_CARD", "$TARGET_PLAYER", "$CARD.id", "$ACTOR_PLAYER"]
+                    ["CAN_READY_CARD", "$TARGET_PLAYER", "$CARD.id", "$ACTOR_PLAYER"]
                 ]]
             ]
         },
@@ -119,7 +119,7 @@
                 ["LOG", "└── Each exhausted card readies."],
                 ["VAR", "$ALL_EXHAUSTED_CARDS", ["GET_ALL_EXHAUSTED_CARDS", "$TARGET_PLAYER", "$ACTOR_PLAYER"]],
                 ["FOR_EACH_VAL", "$CARD", "$ALL_EXHAUSTED_CARDS", [
-                	["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                    ["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
                 ]]
             ]
         }

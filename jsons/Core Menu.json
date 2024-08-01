@@ -198,7 +198,7 @@
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"]
                     ],
                     ["OR",
-	                    ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -227,7 +227,7 @@
                 "showIf": ["AND",
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["OR",
-                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Event"],
@@ -244,7 +244,7 @@
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["EQUAL", "$ACTIVE_CARD.rotation", 90],
                     ["OR",
-                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Event"],
@@ -258,7 +258,7 @@
                 "label": "id:attachCardMenu",
                 "actionList": "attachCard",
                 "showIf": ["AND",
-                	["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
                     ["EQUAL", "$ACTIVE_CARD.attachedCount", 0],
                     ["OR",
                         ["AND",
@@ -303,12 +303,12 @@
                 "label": "id:attachToCardMenu",
                 "actionList": "attachCard",
                 "showIf": ["AND",
-                	["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
-                	["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", "$ACTIVE_CARD.id"],
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", "$ACTIVE_CARD.id"],
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["OR",
-                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -390,9 +390,9 @@
                 "showIf": ["AND",
                     ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
                     ["OR",
-                    	["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
-	                    ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
-	                ]
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                    ]
                 ]
             },
             {
@@ -528,7 +528,7 @@
                 "label": "id:exileCardMenu",
                 "actionList": "exileCard",
                 "showIf": ["AND",
-                	["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],

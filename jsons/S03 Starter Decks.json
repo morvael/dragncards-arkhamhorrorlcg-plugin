@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Mark Harrigan Starter Deck": {
-             "label": "Mark Harrigan Starter Deck",
-             "cards": [
+            "label": "Mark Harrigan Starter Deck",
+            "cards": [
                 {"databaseId": "03001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -34,8 +34,8 @@
             ]
         },
         "Minh Thi Phan Starter Deck": {
-             "label": "Minh Thi Phan Starter Deck",
-             "cards": [
+            "label": "Minh Thi Phan Starter Deck",
+            "cards": [
                 {"databaseId": "03002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -67,8 +67,8 @@
             ]
         },
         "Sefina Rousseau Starter Deck": {
-             "label": "Sefina Rousseau Starter Deck",
-             "cards": [
+            "label": "Sefina Rousseau Starter Deck",
+            "cards": [
                 {"databaseId": "03003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01044", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -103,8 +103,8 @@
             ]
         },
         "Akachi Onyele Starter Deck": {
-             "label": "Akachi Onyele Starter Deck",
-             "cards": [
+            "label": "Akachi Onyele Starter Deck",
+            "cards": [
                 {"databaseId": "03004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -133,8 +133,8 @@
             ]
         },
         "William Yorick Starter Deck": {
-             "label": "William Yorick Starter Deck",
-             "cards": [
+            "label": "William Yorick Starter Deck",
+            "cards": [
                 {"databaseId": "03005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -166,8 +166,8 @@
             ]
         },
         "Lola Hayes Starter Deck": {
-             "label": "Lola Hayes Starter Deck",
-             "cards": [
+            "label": "Lola Hayes Starter Deck",
+            "cards": [
                 {"databaseId": "03006", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -291,7 +291,7 @@
                 "_comment": "Lola Hayes",
                 "rules": [
                     {
-                        "_comment": "Create Lola Hayes Role card",
+                        "_comment": "Create Lola Hayes Role card and set custom spawn location if needed",
                         "type": "trigger",
                         "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
                         "condition": [
@@ -303,7 +303,20 @@
                         ],
                         "then": [
                             ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
-                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
+                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"],
+                            ["COND",
+                                ["OR",
+                                    ["AND",
+                                        ["EQUAL", "$GAME.arkhamCampaignName", "The Path to Carcosa"],
+                                        ["EQUAL", "$GAME.arkhamScenarioName", "Curtain Call"]
+                                    ],
+                                    ["AND",
+                                        ["EQUAL", "$GAME.arkhamCampaignName", "Return to The Path to Carcosa"],
+                                        ["EQUAL", "$GAME.arkhamScenarioName", "Return to Curtain Call"]
+                                    ]
+                                ],
+                                ["SET", "/playerData/$THIS.controller/arkhamCustomSpawnLocation", "Backstage"]
+                            ]
                         ]
                     }
                 ]

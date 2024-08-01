@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Nathaniel Cho Starter Deck": {
-             "label": "Nathaniel Cho Starter Deck",
-             "cards": [
+            "label": "Nathaniel Cho Starter Deck",
+            "cards": [
                 {"databaseId": "60101", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "60102", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "60103", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -38,8 +38,8 @@
             ]
         },
         "Harvey Walters Starter Deck": {
-             "label": "Harvey Walters Starter Deck",
-             "cards": [
+            "label": "Harvey Walters Starter Deck",
+            "cards": [
                 {"databaseId": "60201", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "60202", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "60203", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -76,8 +76,8 @@
             ]
         },
         "Winifred Habbamock Starter Deck": {
-             "label": "Winifred Habbamock Starter Deck",
-             "cards": [
+            "label": "Winifred Habbamock Starter Deck",
+            "cards": [
                 {"databaseId": "60301", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "60302", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "60303", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -113,8 +113,8 @@
             ]
         },
         "Jacqueline Fine Starter Deck": {
-             "label": "Jacqueline Fine Starter Deck",
-             "cards": [
+            "label": "Jacqueline Fine Starter Deck",
+            "cards": [
                 {"databaseId": "60401", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "60402", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "60403", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -150,8 +150,8 @@
             ]
         },
         "Stella Clark Starter Deck": {
-             "label": "Stella Clark Starter Deck",
-             "cards": [
+            "label": "Stella Clark Starter Deck",
+            "cards": [
                 {"databaseId": "60501", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "60502", "quantity": 3, "loadGroupId": "playerNDeck"},
                 {"databaseId": "60503", "quantity": 1, "loadGroupId": "playerNDeck"},

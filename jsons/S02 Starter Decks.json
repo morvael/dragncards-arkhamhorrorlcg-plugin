@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Zoey Samaras Starter Deck": {
-             "label": "Zoey Samaras Starter Deck",
-             "cards": [
+            "label": "Zoey Samaras Starter Deck",
+            "cards": [
                 {"databaseId": "02001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -34,8 +34,8 @@
             ]
         },
         "Rex Murphy Starter Deck": {
-             "label": "Rex Murphy Starter Deck",
-             "cards": [
+            "label": "Rex Murphy Starter Deck",
+            "cards": [
                 {"databaseId": "02002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -66,8 +66,8 @@
             ]
         },
         "Jenny Barnes Starter Deck": {
-             "label": "Jenny Barnes Starter Deck",
-             "cards": [
+            "label": "Jenny Barnes Starter Deck",
+            "cards": [
                 {"databaseId": "02003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -98,8 +98,8 @@
             ]
         },
         "Jim Culver Starter Deck": {
-             "label": "Jim Culver Starter Deck",
-             "cards": [
+            "label": "Jim Culver Starter Deck",
+            "cards": [
                 {"databaseId": "02004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -131,8 +131,8 @@
             ]
         },
         "\"Ashcan\" Pete Starter Deck": {
-             "label": "\"Ashcan\" Pete Starter Deck",
-             "cards": [
+            "label": "\"Ashcan\" Pete Starter Deck",
+            "cards": [
                 {"databaseId": "02005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
