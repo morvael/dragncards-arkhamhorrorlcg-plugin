@@ -74,7 +74,8 @@
                     {
                         "label": "id:thePathToCarcosa",
                         "deckLists": [
-                            {"label": "id:curtainCall", "deckListId": "Curtain Call Scenario"}
+                            {"label": "id:curtainCall", "deckListId": "Curtain Call Scenario"},
+                            {"label": "id:theLastKing", "deckListId": "The Last King Scenario"}
                         ]
                     }
                 ]
@@ -227,6 +228,9 @@
         },
         "curtainCall": {
             "English": "Curtain Call"
+        },
+        "theLastKing": {
+            "English": "The Last King"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
