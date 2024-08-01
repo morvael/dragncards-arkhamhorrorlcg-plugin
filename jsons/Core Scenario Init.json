@@ -247,6 +247,33 @@
                 ["DO_SPAWN_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
             ]
         },
+        "DO_SPAWN_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_LOCATION_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$TARGET_DATABASE_ID", null],
+                        ["NOT_EQUAL", "$LEFT", null],
+                        ["NOT_EQUAL", "$TOP", null]
+                    ],
+                    [
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "sharedLocations", true, null],
+                        ["VAR", "$TARGET_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+                        ["DEFINE", "$DO_SPAWN_LOCATION_RESULT", "$TARGET_CARD_ID"]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_LOCATION_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_SPAWN_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
         "DO_SPAWN_HIDDEN_AT_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [

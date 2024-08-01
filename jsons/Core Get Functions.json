@@ -79,7 +79,11 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
                 ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"]
+                    ],
                     ["EQUAL", "$CARD.currentFace.type", "Location"],
                     ["EQUAL", "$CARD.groupId", "sharedLocations"]
                 ]]

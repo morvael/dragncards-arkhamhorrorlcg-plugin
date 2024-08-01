@@ -36,7 +36,7 @@
     },
     "actionLists": {
         "The Last King Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "The Last King"],            
+            ["DO_LOAD_CARDS_SCN", "The Last King"],
             ["DO_LOAD_CARDS_SCN", "Hastur's Gift"],
             ["DO_LOAD_CARDS_SCN", "Decay & Filth"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],

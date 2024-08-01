@@ -75,7 +75,8 @@
                         "label": "id:thePathToCarcosa",
                         "deckLists": [
                             {"label": "id:curtainCall", "deckListId": "Curtain Call Scenario"},
-                            {"label": "id:theLastKing", "deckListId": "The Last King Scenario"}
+                            {"label": "id:theLastKing", "deckListId": "The Last King Scenario"},
+                            {"label": "id:echoesOfThePast", "deckListId": "Echoes of the Past Scenario"}
                         ]
                     }
                 ]
@@ -231,6 +232,9 @@
         },
         "theLastKing": {
             "English": "The Last King"
+        },
+        "echoesOfThePast": {
+            "English": "Echoes of the Past"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
