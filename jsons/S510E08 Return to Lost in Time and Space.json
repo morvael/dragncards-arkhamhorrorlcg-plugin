@@ -59,13 +59,11 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: The Ritual was completed."],
-                    ["DO_CREATE_CARDS_SCN", "Into the Beyond (v. II)", "51055", 1, "sharedActStory"]
+                    ["DO_CREATE_STORY_CARD_SCN", "Into the Beyond (v. II)", "51055", 1, "sharedActStory"]
                 ],
                 ["TRUE"],
-                ["DO_CREATE_CARDS_SCN", "Into the Beyond", "02317", 1, "sharedActStory"]
+                ["DO_CREATE_STORY_CARD_SCN", "Into the Beyond", "02317", 1, "sharedActStory"]
             ],
-            ["VAR", "$INTO_THE_BEYOND_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
-            ["MOVE_CARD", "$INTO_THE_BEYOND_ID", "sharedActStory", 1, 0, {"combine": false, "allowFlip": false}],
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Yog-Sothoth: The Lurker Beyond the Threshold", "Realms Beyond: All-In-One", 3, 3],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]

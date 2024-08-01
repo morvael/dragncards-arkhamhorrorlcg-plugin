@@ -109,23 +109,21 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Campaign Log: The investigators restored Silas Bishop."],
-                    ["DO_CREATE_CARDS_SCN", "Ascending the Hill (v. I)", "02278", 1, "sharedActStory"]
+                    ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. I)", "02278", 1, "sharedActStory"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
                 [
                     ["LOG", "└── Campaign Log: The investigators failed to recover the Necronomicon."],
-                    ["DO_CREATE_CARDS_SCN", "Ascending the Hill (v. II)", "02279", 1, "sharedActStory"]
+                    ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. II)", "02279", 1, "sharedActStory"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "C"],
                 [
                     ["LOG", "└── Campaign Log: The Necronomicon was stolen."],
-                    ["DO_CREATE_CARDS_SCN", "Ascending the Hill (v. II)", "02279", 1, "sharedActStory"]
+                    ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. II)", "02279", 1, "sharedActStory"]
                 ],
                 ["TRUE"],
-                ["DO_CREATE_CARDS_SCN", "Ascending the Hill (v. III)", "02280", 1, "sharedActStory"]
+                ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. III)", "02280", 1, "sharedActStory"]
             ],
-            ["VAR", "$ASCENDING_THE_HILL_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
-            ["MOVE_CARD", "$ASCENDING_THE_HILL_ID", "sharedActStory", 1, 0, {"combine": false, "allowFlip": false}],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 brood escaped into the wild.", "4 brood escaped into the wild.", "3 brood escaped into the wild.", "2 brood escaped into the wild.", "1 brood escaped into the wild.", "No brood escaped into the wild."], "Return to Where Doom Awaits Scenario Question 3"]
         ],
         "Return to Where Doom Awaits Scenario Question 3": [

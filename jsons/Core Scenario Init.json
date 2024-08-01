@@ -26,6 +26,14 @@
                 ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
+        "DO_CREATE_STORY_CARD_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_INDEX", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "$TARGET_GROUP_ID"],
+                ["VAR", "$CREATED_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                ["MOVE_CARD", "$CREATED_CARD_ID", "$TARGET_GROUP_ID", "$TARGET_INDEX", 0, {"combine": false, "allowFlip": false}]
+            ]
+        },
         "DO_MOVE_DECK_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
