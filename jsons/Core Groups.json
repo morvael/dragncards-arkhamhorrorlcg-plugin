@@ -13,13 +13,15 @@
         "deckP":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "B", "rotation": 0}, "onCardLeave": {"currentSide": "A"}, "menuOptions": [{"label": "id:drawPlayerCardMenu", "actionList": "drawCard"}, {"label": "id:shuffleDeckMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleDeckTopMenu", "actionList": "shuffleDeckTop"}, {"label": "id:lookAtTopCardsMenu", "actionList": "lookAtTopCards"}]},
         "discard":    {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}, "menuOptions": [{"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
         "discardS":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}, "menuOptions": [{"label": "id:browseRemovedMenu", "actionList": "browseRemoved"}, {"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
-        "discardP":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}, "menuOptions": [{"label": "id:browseRemovedMenu", "actionList": "browseRemoved"}, {"label": "id:browseExiledMenu", "actionList": "browseExiled"}, {"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
+        "discardP":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}, "menuOptions": [{"label": "id:browseAsideMenu", "actionList": "browseAside"}, {"label": "id:browseRemovedMenu", "actionList": "browseRemoved"}, {"label": "id:browseExiledMenu", "actionList": "browseExiled"}, {"label": "id:browseSideDeckMenu", "actionList": "browseSideDeck"}, {"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
         "pile":       {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}, "menuOptions": [{"label": "id:shufflePileMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleIntoEncounterDeckMenu", "actionList": "shuffleIntoEncounterDeck"}]},
         "hand":       {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "B", "rotation": 0}, "onCardLeave": {"currentSide": "A", "peeking": {}}, "menuOptions": [{"label": "id:discardRandomCardsFromHandMenu", "actionList": "discardRandomCardsFromHand"}, {"label": "id:selectRandomCardsInHandMenu", "actionList": "selectRandomCardsInHand"}]},
         "tokens":     {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}},
         "chaosBag":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}},
+        "aside":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}},
         "removed":    {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}},
-        "exiled":     {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}}
+        "exiled":     {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}},
+        "sideDeck":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "onCardEnter": {"currentSide": "A", "rotation": 0}}
     },
     "groups": {
         "sharedLocations":         {"groupType": "inPlay",     "label": "id:sharedLocations",         "tableLabel": ""},
@@ -72,14 +74,22 @@
         "sharedPileC":             {"groupType": "pile",       "label": "id:sharedPileC",             "tableLabel": "id:sharedPileCShort"},
         "sharedPileD":             {"groupType": "pile",       "label": "id:sharedPileD",             "tableLabel": "id:sharedPileDShort"},
         "sharedChaosBag":          {"groupType": "chaosBag",   "label": "id:sharedChaosBag",          "tableLabel": "id:sharedChaosBagShort"},
+        "player4Aside":            {"groupType": "aside",      "label": "id:player4Aside",            "tableLabel": "id:playerAsideShort"},
         "player4Removed":          {"groupType": "removed",    "label": "id:player4Removed",          "tableLabel": "id:playerRemovedShort"},
         "player4Exiled":           {"groupType": "exiled",     "label": "id:player4Exiled",           "tableLabel": "id:playerExiledShort"},
+        "player4SideDeck":         {"groupType": "sideDeck",   "label": "id:player4SideDeck",         "tableLabel": "id:playerSideDeckShort"},
+        "player3Aside":            {"groupType": "aside",      "label": "id:player3Aside",            "tableLabel": "id:playerAsideShort"},
         "player3Removed":          {"groupType": "removed",    "label": "id:player3Removed",          "tableLabel": "id:playerRemovedShort"},
         "player3Exiled":           {"groupType": "exiled",     "label": "id:player3Exiled",           "tableLabel": "id:playerExiledShort"},
+        "player3SideDeck":         {"groupType": "sideDeck",   "label": "id:player3SideDeck",         "tableLabel": "id:playerSideDeckShort"},
+        "player2Aside":            {"groupType": "aside",      "label": "id:player2Aside",            "tableLabel": "id:playerAsideShort"},
         "player2Removed":          {"groupType": "removed",    "label": "id:player2Removed",          "tableLabel": "id:playerRemovedShort"},
         "player2Exiled":           {"groupType": "exiled",     "label": "id:player2Exiled",           "tableLabel": "id:playerExiledShort"},
+        "player2SideDeck":         {"groupType": "sideDeck",   "label": "id:player2SideDeck",         "tableLabel": "id:playerSideDeckShort"},
+        "player1Aside":            {"groupType": "aside",      "label": "id:player1Aside",            "tableLabel": "id:playerAsideShort"},
         "player1Removed":          {"groupType": "removed",    "label": "id:player1Removed",          "tableLabel": "id:playerRemovedShort"},
         "player1Exiled":           {"groupType": "exiled",     "label": "id:player1Exiled",           "tableLabel": "id:playerExiledShort"},
+        "player1SideDeck":         {"groupType": "sideDeck",   "label": "id:player1SideDeck",         "tableLabel": "id:playerSideDeckShort"},
         "sharedRemoved":           {"groupType": "removed",    "label": "id:sharedRemoved",           "tableLabel": "id:sharedRemovedShort"}
     },
     "labels": {
@@ -149,11 +159,17 @@
         "playerPlayShort": {
             "English": "Play Area"
         },
+        "playerAsideShort": {
+            "English": "Set Aside"
+        },
         "playerRemovedShort": {
             "English": "Removed"
         },
         "playerExiledShort": {
             "English": "Exiled"
+        },
+        "playerSideDeckShort": {
+            "English": "Side Deck"
         },
         "player4Hand": {
             "English": "Player 4 Hand"
@@ -173,11 +189,17 @@
         "player4Play": {
             "English": "Player 4 Play Area"
         },
+        "player4Aside": {
+            "English": "Player 4 Set Aside"
+        },
         "player4Removed": {
             "English": "Player 4 Removed"
         },
         "player4Exiled": {
             "English": "Player 4 Exiled"
+        },
+        "player4SideDeck": {
+            "English": "Player 4 Side Deck"
         },
         "player3Hand": {
             "English": "Player 3 Hand"
@@ -197,11 +219,17 @@
         "player3Play": {
             "English": "Player 3 Play Area"
         },
+        "player3Aside": {
+            "English": "Player 3 Set Aside"
+        },
         "player3Removed": {
             "English": "Player 3 Removed"
         },
         "player3Exiled": {
             "English": "Player 3 Exiled"
+        },
+        "player3SideDeck": {
+            "English": "Player 3 Side Deck"
         },
         "player2Hand": {
             "English": "Player 2 Hand"
@@ -221,11 +249,17 @@
         "player2Play": {
             "English": "Player 2 Play Area"
         },
+        "player2Aside": {
+            "English": "Player 2 Set Aside"
+        },
         "player2Removed": {
             "English": "Player 2 Removed"
         },
         "player2Exiled": {
             "English": "Player 2 Exiled"
+        },
+        "player2SideDeck": {
+            "English": "Player 2 Side Deck"
         },
         "player1Hand": {
             "English": "Player 1 Hand"
@@ -245,11 +279,17 @@
         "player1Play": {
             "English": "Player 1 Play Area"
         },
+        "player1Aside": {
+            "English": "Player 1 Set Aside"
+        },
         "player1Removed": {
             "English": "Player 1 Removed"
         },
         "player1Exiled": {
             "English": "Player 1 Exiled"
+        },
+        "player1SideDeck": {
+            "English": "Player 1 Side Deck"
         },
         "sharedOffMap": {
             "English": "Off Map"

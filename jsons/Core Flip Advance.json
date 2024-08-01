@@ -44,8 +44,10 @@
                         ["EQUAL", "$TARGET_CARD.inAdvanced", true],
                         ["EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
                         ["EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
+                        ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"],
                         ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"],
-                        ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
+                        ["IN_STRING", "$TARGET_CARD.groupId", "Removed"],
+                        ["IN_STRING", "$TARGET_CARD.groupId", "Aside"]
                     ],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],

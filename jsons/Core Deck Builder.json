@@ -39,7 +39,7 @@
         "spawnGroups": [
             {"loadGroupId": "playerNInvestigator", "label": "id:dbMyInvestigator"},
             {"loadGroupId": "playerNDeck", "label": "id:dbMyDeck"},
-            {"loadGroupId": "playerNRemoved", "label": "id:dbMySideDeck"}
+            {"loadGroupId": "playerNSideDeck", "label": "id:dbMySideDeck"}
         ]
     },
     "labels": {

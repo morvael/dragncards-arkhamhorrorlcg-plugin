@@ -1,5 +1,13 @@
 {
     "actionLists": {
+        "setAsideCard": [
+            ["COND",
+                ["CAN_SET_ASIDE_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SET_ASIDE_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot set {{$ACTIVE_FACE.name}} aside, {{$ALIAS_N}}."]
+            ]
+        ],
         "removeCard": [
             ["COND",
                 ["CAN_REMOVE_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
@@ -14,6 +22,25 @@
                 ["DO_EXILE_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
                 ["TRUE"],
                 ["LOG", "└── You cannot exile {{$ACTIVE_FACE.name}} from the game, {{$ALIAS_N}}."]
+            ]
+        ],
+        "browseAside": [
+            ["VAR", "$TARGET_GROUP_ID", null],
+            ["COND",
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player1Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player1Aside"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player2Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player2Aside"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player3Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player3Aside"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player4Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player4Aside"]
+            ],
+            ["COND",
+                ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
+                ["DO_BROWSE_GROUP", "$PLAYER_N", "$TARGET_GROUP_ID"],
+                ["TRUE"],
+                ["LOG", "└── You cannot browse Set Aside from here, {{$ALIAS_N}}."]
             ]
         ],
         "browseRemoved": [
@@ -55,9 +82,71 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot browse Exiled from here, {{$ALIAS_N}}."]
             ]
+        ],
+        "browseSideDeck": [
+            ["VAR", "$TARGET_GROUP_ID", null],
+            ["COND",
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player1Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player1SideDeck"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player2Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player2SideDeck"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player3Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player3SideDeck"],
+                ["EQUAL", "$ACTIVE_GROUP_ID", "player4Discard"],
+                ["UPDATE_VAR", "$TARGET_GROUP_ID", "player4SideDeck"]
+            ],
+            ["COND",
+                ["NOT_EQUAL", "$TARGET_GROUP_ID", null],
+                ["DO_BROWSE_GROUP", "$PLAYER_N", "$TARGET_GROUP_ID"],
+                ["TRUE"],
+                ["LOG", "└── You cannot browse Side Deck from here, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
+        "CAN_SET_ASIDE_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SET_ASIDE_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SET_ASIDE_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
+                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
+                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
+                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Aside"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", true],
+                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"]
+                        ]
+                    ],
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
+                ]
+            ]
+        },
+        "DO_SET_ASIDE_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SET_ASIDE_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SET_ASIDE_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SET_ASIDE_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SET_ASIDE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "set {{$TARGET_NAME}} aside.", "sets {{$TARGET_NAME}} aside."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_ASIDE", "$TARGET_CARD.cardOwner"], -1]
+                    ]
+                ]
+            ]
+        },
         "CAN_REMOVE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -68,8 +157,10 @@
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Aside"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
                     ["OR",
                         ["AND",
                             ["EQUAL", "$TARGET_CARD.inHand", false],
@@ -146,8 +237,10 @@
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Aside"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentSide", "A"],
                         ["AND",
@@ -178,17 +271,26 @@
         }
     },
     "labels": {
+        "setAsideCardMenu": {
+            "English": "Set aside"
+        },
         "removeCardMenu": {
             "English": "Remove from the game"
         },
         "exileCardMenu": {
             "English": "Exile from the game"
         },
+        "browseAsideMenu": {
+            "English": "Browse Set Aside"
+        },
         "browseRemovedMenu": {
             "English": "Browse Removed"
         },
         "browseExiledMenu": {
             "English": "Browse Exiled"
+        },
+        "browseSideDeckMenu": {
+            "English": "Browse Side Deck"
         }
     }
 }

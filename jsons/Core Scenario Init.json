@@ -472,13 +472,23 @@
                                 ["DO_CREATE_CARDS", "$PLAYER_I", "random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID"], 1, "$PLAYER_I_DECK", false, null]
                             ]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                ["OR",
+                                    ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                    ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"],
+                                ],
+                                ["EQUAL", "$CARD.sides.A.hasBonded", true]
+                            ]]],
+                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                ["DO_SPAWN_BONDED" , "$CARD.sides.A.databaseId", "$PLAYER_I"]
+                            ]],
+                            ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 1],
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
                                 ["EQUAL", "$CARD.sides.A.type", "Key"]
                             ]]],
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                 ["ATTACH_CARD", "$CARD.id", "$INVESTIGATOR_I.id"]
                             ]],
-                            ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 1],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
                                 ["EQUAL", "$CARD.sides.A.permanent", true]

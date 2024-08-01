@@ -1,0 +1,16 @@
+{
+    "functions": {
+        "DO_SPAWN_BONDED": {
+            "args": ["$DATABASE_ID", "$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_SPAWN_BONDED.DATABASE_ID"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_BONDED.TARGET_PLAYER"],
+                ["VAR", "$TARGET_PLAYER_ASIDE", ["GET_CONTROLLER_ASIDE", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        }
+    }
+}

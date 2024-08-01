@@ -569,6 +569,13 @@
                 ]
             ]
         },
+        "GET_CONTROLLER_ASIDE": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_ASIDE.CONTROLLER"],
+                "{{$CONTROLLER}}Aside"
+            ]
+        },
         "GET_CONTROLLER_REMOVED": {
             "args": ["$CONTROLLER"],
             "code": [
@@ -581,6 +588,13 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXILED.CONTROLLER"],
                 "{{$CONTROLLER}}Exiled"
+            ]
+        },
+        "GET_CONTROLLER_SIDE_DECK": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_SIDE_DECK.CONTROLLER"],
+                "{{$CONTROLLER}}SideDeck"
             ]
         },
         "GET_PLAYER_CONTROLLER": {

@@ -230,12 +230,16 @@
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     ["LOG", "└── Place all {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}'s enemies from their threat area at the location they are at."]
                 ],
+                ["VAR", "$ASIDE_ID", ["GET_CONTROLLER_ASIDE", "$TARGET_PLAYER"]],
                 ["VAR", "$REMOVED_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_PLAYER"]],
                 ["VAR", "$EXILED_ID", ["GET_CONTROLLER_EXILED", "$TARGET_PLAYER"]],
+                ["VAR", "$SIDE_DECK_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.controller", "$TARGET_PLAYER"],
+                    ["NOT_EQUAL", "$CARD.groupId", "$ASIDE_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$REMOVED_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$EXILED_ID"],
+                    ["NOT_EQUAL", "$CARD.groupId", "$SIDE_DECK_ID"],
                     ["EQUAL", "$CARD.sides.B.databaseId", null],
                     ["EQUAL", "$CARD.sides.B.name", "Player Card"]
                 ]]],

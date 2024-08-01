@@ -192,8 +192,10 @@
                         ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedChaosBag"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"],
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"],
-                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"]
                     ],
                     ["OR",
 	                    ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
@@ -441,6 +443,29 @@
                 ]
             },
             {
+                "label": "id:setAsideCardMenu",
+                "actionList": "setAsideCard",
+                "showIf": ["AND",
+                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
+                        ]
+                    ],
+                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                ]
+            },
+            {
                 "label": "id:removeCardMenu",
                 "actionList": "removeCard",
                 "showIf": ["AND",
@@ -448,8 +473,10 @@
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
                         ["AND",
                             ["EQUAL", "$ACTIVE_CARD.inHand", false],
@@ -506,8 +533,10 @@
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedChaosBag"],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
+                    ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
                         ["AND",
