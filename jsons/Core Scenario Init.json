@@ -474,7 +474,7 @@
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["OR",
                                     ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                    ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"],
+                                    ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"]
                                 ],
                                 ["EQUAL", "$CARD.sides.A.hasBonded", true]
                             ]]],
