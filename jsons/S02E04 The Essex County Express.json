@@ -64,13 +64,13 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "{{$CARD_BY_ID.$LAST_CAR_ID.currentFace.name}}", 5, 7, 0, 3],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-2", "chaos_m2", 100, true, null],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-2", "chaos_m2"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Normal"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-3", "chaos_m3", 100, true, null],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-3", "chaos_m3"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-4", "chaos_m4", 100, true, null],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-4", "chaos_m4"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "-5", "chaos_m5", 100, true, null]
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-5", "chaos_m5"]
             ],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

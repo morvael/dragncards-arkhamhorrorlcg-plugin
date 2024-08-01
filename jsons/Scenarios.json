@@ -76,7 +76,8 @@
                         "deckLists": [
                             {"label": "id:curtainCall", "deckListId": "Curtain Call Scenario"},
                             {"label": "id:theLastKing", "deckListId": "The Last King Scenario"},
-                            {"label": "id:echoesOfThePast", "deckListId": "Echoes of the Past Scenario"}
+                            {"label": "id:echoesOfThePast", "deckListId": "Echoes of the Past Scenario"},
+                            {"label": "id:theUnspeakableOath", "deckListId": "The Unspeakable Oath Scenario"}
                         ]
                     }
                 ]
@@ -235,6 +236,9 @@
         },
         "echoesOfThePast": {
             "English": "Echoes of the Past"
+        },
+        "theUnspeakableOath": {
+            "English": "The Unspeakable Oath"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

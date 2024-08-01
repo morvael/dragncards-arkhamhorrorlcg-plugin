@@ -195,6 +195,12 @@
                 ]
             ]
         },
+        "DO_ADD_CHAOS_TOKEN_ACTION_SCN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", 100, true, null]
+            ]
+        },
         "CAN_REMOVE_CHAOS_TOKEN": {
             "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$ACTOR_PLAYER"],
             "code": [

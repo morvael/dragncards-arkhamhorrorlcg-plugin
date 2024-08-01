@@ -144,6 +144,12 @@
                 ]
             ]
         },
+        "DO_LOG_SCN": {
+            "args": ["$TARGET_PLAYER", "$TEXT_WITHOUT_ACTOR"],
+            "code": [
+                ["DO_LOG", true, null, "$TARGET_PLAYER", "dummy", "$TEXT_WITHOUT_ACTOR"]
+            ]
+        },
         "GET_NUMERIC_LOG": {
             "args": ["$PREFIX_SINGLE", "$PREFIX_MANY", "$NUMBER", "$SUFFIX_SINGLE", "$SUFFIX_MANY"],
             "code": [

@@ -48,7 +48,7 @@
         {"faceProperty": "text", "regex": "at the end of (each|the) round", "stepId": "U6"},
         {"faceProperty": "text", "regex": "at the end of (each|the) upkeep phase", "stepId": "U6"},
         {"faceProperty": "text", "regex": "at the end of (each|the|your) turn", "stepId": "I2.2"},
-        {"faceProperty": "text", "regex": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.", "stepId": "M2"}        
+        {"faceProperty": "text", "regex": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.", "stepId": "M2"}
     ],
     "labels": {
         "mythosPhase": {
