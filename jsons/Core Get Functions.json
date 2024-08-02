@@ -65,11 +65,12 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_ENCOUNTER_DECK_CARD.TARGET_NAME"],
                 ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
                     ["OR",
                         ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
-                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"]
-                    ],
-                    ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"]
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"]
+                    ]                    
                 ]]
             ]
         },
@@ -79,13 +80,13 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
                 ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
                     ["OR",
                         ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
                         ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
                         ["EQUAL", "$CARD.id", "$TARGET_NAME"]
-                    ],
-                    ["EQUAL", "$CARD.currentFace.type", "Location"],
-                    ["EQUAL", "$CARD.groupId", "sharedLocations"]
+                    ]
                 ]]
             ]
         },

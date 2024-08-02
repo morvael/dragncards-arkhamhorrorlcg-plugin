@@ -1,0 +1,176 @@
+{
+    "preBuiltDecks": {
+        "A Phantom of Truth Scenario": {
+             "label": "A Phantom of Truth Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "A Phantom of Truth", "A Phantom of Truth Scenario Init"]
+            ]
+        },
+        "A Phantom of Truth": {
+            "hideFromSearch": true,
+             "label": "A Phantom of Truth",
+             "cards": [
+                {"databaseId": "03200", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03202", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03225", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03226", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "A Phantom of Truth - Montmartre": {
+            "hideFromSearch": true,
+            "label": "A Phantom of Truth - Montmartre",
+            "cards": [
+                {"databaseId": "03209", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "12%"},
+                {"databaseId": "03210", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "12%"}
+            ]
+        },
+        "A Phantom of Truth - Opéra Garnier": {
+            "hideFromSearch": true,
+            "label": "A Phantom of Truth - Opéra Garnier",
+            "cards": [
+                {"databaseId": "03212", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"},
+                {"databaseId": "03213", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"}
+            ]
+        },
+        "A Phantom of Truth - Le Marais": {
+            "hideFromSearch": true,
+            "label": "A Phantom of Truth - Le Marais",
+            "cards": [
+                {"databaseId": "03217", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"},
+                {"databaseId": "03218", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"}
+            ]
+        },
+        "A Phantom of Truth - Paris": {
+            "hideFromSearch": true,
+            "label": "A Phantom of Truth - Paris",
+            "cards": [
+                {"databaseId": "03208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"},
+                {"databaseId": "03211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},
+                {"databaseId": "03214", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"},
+                {"databaseId": "03215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"},
+                {"databaseId": "03216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"},
+                {"databaseId": "03219", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},
+                {"databaseId": "03220", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "A Phantom of Truth Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 1.", ["LIST", "Each investigator earns the Lost Soul weakness.", "Skip."], "A Phantom of Truth Scenario Question 1"]
+        ],
+        "A Phantom of Truth Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Lost Soul", "03227", 1]
+                ]]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 4.", ["LIST", "Each investigator suffers 1 mental trauma.", "Skip."], "A Phantom of Truth Scenario Question 2"]
+        ],
+        "A Phantom of Truth Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR_I.id", 1, true, null]
+                ]]
+            ],
+            ["VAR", "$DREAM_7_QUESTIONS", ["LIST"]],
+            ["VAR", "$DREAM_7_ANSWERS", ["LIST"]],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                ["UPDATE_VAR", "$DREAM_7_QUESTIONS", ["APPEND", "$DREAM_7_QUESTIONS", "{{$ALIAS_I}} earns the Paranoia weakness."]],
+                ["UPDATE_VAR", "$DREAM_7_ANSWERS", ["APPEND", "$DREAM_7_ANSWERS", "$PLAYER_I"]]
+            ]],
+            ["UPDATE_VAR", "$DREAM_7_QUESTIONS", ["APPEND", "$DREAM_7_QUESTIONS", "Skip."]],
+            ["UPDATE_VAR", "$DREAM_7_ANSWERS", ["APPEND", "$DREAM_7_ANSWERS", "-"]],
+            ["SET", "/arkhamScenarioAPhantomofTruthDream7Answers", "$DREAM_7_ANSWERS"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 7.", "$DREAM_7_QUESTIONS", "A Phantom of Truth Scenario Question 3"]
+        ],
+        "A Phantom of Truth Scenario Question 3": [
+            ["VAR", "$DREAM_7_PLAYER", "-"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[0]"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[1]"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
+                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[2]"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
+                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[3]"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
+                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[4]"]
+            ],
+            ["COND",
+                ["NOT_EQUAL", "$DREAM_7_PLAYER", "-"],
+                ["DO_CREATE_DECK_CARDS_SCN", "$DREAM_7_PLAYER", "Paranoia", "01097", 1]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Jordan Perry is listed under VIPs Interviewed.", "The above is not true."], "A Phantom of Truth Scenario Question 4"]
+        ],
+        "A Phantom of Truth Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Jordan Perry is listed under VIPs Interviewed."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["DO_GAIN_RESOURCES", "$PLAYER_I", 3, true, null],
+                        ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", "Montparnasse"]
+                    ]]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "A Phantom of Truth"],
+            ["DO_LOAD_CARDS_SCN", "Evil Portents"],
+            ["DO_LOAD_CARDS_SCN", "Byakhee"],
+            ["DO_LOAD_CARDS_SCN", "The Stranger"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
+            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "A Phantom of Truth Scenario Question 5"]
+        ],
+        "A Phantom of Truth Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You have more (or equal) Doubt than Conviction."],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Twin Suns", "03223"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Hunting Shadow", "01135"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. I)", "03204", 0, "sharedActStory"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                [
+                    ["LOG", "└── Campaign Log: You have more Conviction than Doubt."],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Black Stars Rise", "03090"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "False Lead", "01136"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. II)", "03205", 0, "sharedActStory"]
+                ]
+            ],
+            ["DO_LOAD_N_CARDS_SCN", "A Phantom of Truth - Montmartre", 1],
+            ["DO_LOAD_N_CARDS_SCN", "A Phantom of Truth - Opéra Garnier", 1],
+            ["DO_LOAD_N_CARDS_SCN", "A Phantom of Truth - Le Marais", 1],
+            ["DO_LOAD_CARDS_SCN", "A Phantom of Truth - Paris"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.sides.A.databaseId", "03227"]
+            ]]],
+            ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+            ["COND",
+                ["LESS_THAN", "$SELECTED_COUNT", 4],
+                [
+                    ["VAR", "$CARDS_TO_ADD", ["SUBTRACT", 4, "$SELECTED_COUNT"]],
+                    ["DO_CREATE_CARDS_SCN", "Lost Soul", "03227", "$CARDS_TO_ADD", "sharedNotInPlay"]
+                ]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

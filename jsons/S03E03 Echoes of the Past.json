@@ -32,14 +32,6 @@
                 {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
-        },
-        "Echoes of the Past - The Midnight Masks": {
-            "hideFromSearch": true,
-            "label": "Echoes of the Past - The Midnight Masks",
-            "cards": [
-                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
-            ]
         }
     },
     "actionLists": {
@@ -47,7 +39,7 @@
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Delusions"],
-            ["DO_LOAD_CARDS_SCN", "Echoes of the Past - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]],
