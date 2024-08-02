@@ -674,7 +674,7 @@
                                     ["PROMPT_ADD_OPTION", "$PLAYER_N", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_ADVANCE_STORY_STR", "{{$PLAYER_N}}", "{{$CARD.groupId}}", "true", "{{$PLAYER_N}}"]],
                                     ["INCREASE_VAR", "$INDEX", 1]
                                 ]],
-                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel", "X"]
+                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel", "X", ["LIST"]]
                             ],
                             ["EQUAL", "$ADVANCABLE_AGENDAS_COUNT", 1],
                             [

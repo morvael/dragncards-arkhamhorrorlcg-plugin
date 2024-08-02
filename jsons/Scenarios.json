@@ -79,7 +79,8 @@
                             {"label": "id:echoesOfThePast", "deckListId": "Echoes of the Past Scenario"},
                             {"label": "id:theUnspeakableOath", "deckListId": "The Unspeakable Oath Scenario"},
                             {"label": "id:aPhantomOfTruth", "deckListId": "A Phantom of Truth Scenario"},
-                            {"label": "id:thePallidMask", "deckListId": "The Pallid Mask Scenario"}
+                            {"label": "id:thePallidMask", "deckListId": "The Pallid Mask Scenario"},
+                            {"label": "id:blackStarsRise", "deckListId": "Black Stars Rise Scenario"}
                         ]
                     }
                 ]
@@ -247,6 +248,9 @@
         },
         "thePallidMask": {
             "English": "The Pallid Mask"
+        },
+        "blackStarsRise": {
+            "English": "Black Stars Rise"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

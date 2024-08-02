@@ -135,7 +135,7 @@
         ],
         "Undimensioned and Unseen Scenario Init Continue 1": [
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_MADNESS_INJURY_PACT_WEAKNESS_DATABASE_ID"]]
+                ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_INJURY_PACT_WEAKNESSES"]]
             ]],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
