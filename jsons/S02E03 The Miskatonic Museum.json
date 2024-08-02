@@ -74,6 +74,7 @@
                 ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS_BOTTOM.[{{$I}}]"],
                 ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
             ]],
+            ["SET", "/arkhamSkipShufflingSharedDeckA", true],
             ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

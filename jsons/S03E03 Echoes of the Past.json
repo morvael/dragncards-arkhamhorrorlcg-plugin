@@ -20,9 +20,6 @@
                 {"databaseId": "03124", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "03125", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "03126", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
-                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
                 {"databaseId": "03139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03141", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
@@ -32,10 +29,26 @@
                 {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
+        },
+        "Echoes of the Past - Historical Society": {
+            "hideFromSearch": true,
+            "label": "Echoes of the Past - Historical Society",
+            "cards": [
+                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
+                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+            ]
         }
     },
     "actionLists": {
         "Echoes of the Past Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Sebastien Moreau is listed under VIPs Interviewed.", "The above is not true."], "Echoes of the Past Scenario Question 1"]
+        ],
+        "Echoes of the Past Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: Sebastien Moreau is listed under VIPs Interviewed."]
+            ],
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Delusions"],
@@ -51,13 +64,10 @@
                 ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 43],
                 ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 10]
             ]],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Sebastien Moreau is listed under VIPs Interviewed.", "The above is not true."], "Echoes of the Past Scenario Question 1"]
-        ],
-        "Echoes of the Past Scenario Question 1": [
+            ["DO_LOAD_CARDS_SCN", "Echoes of the Past - Historical Society"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: Sebastien Moreau is listed under VIPs Interviewed."],
                     ["VAR", "$ENTRY_HALL_CARD", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL_CARD.id", "$GAME.arkhamNumPlayers", true, null]
                 ]

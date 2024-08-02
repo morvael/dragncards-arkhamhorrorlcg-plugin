@@ -561,6 +561,9 @@
                         ["SET", "/arkhamStartingHandDone", 0],
                         ["SET", "/arkhamActiveInvestigator", null],
                         ["SET", "/arkhamSkipShufflingEncounterDeck", false],
+                        ["SET", "/arkhamSkipShufflingSharedDeckA", false],
+                        ["SET", "/arkhamSkipShufflingSharedDeckB", false],
+                        ["SET", "/arkhamSkipShufflingSharedDeckC", false],
                         ["SET", "/arkhamFinalScenarioMessage", null],
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
@@ -813,9 +816,18 @@
                     ["EQUAL", "$GAME.arkhamSkipShufflingEncounterDeck", false],
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null]
                 ],
-                ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
-                ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null],
-                ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckC", true, null],
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckA", false],
+                    ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckB", false],
+                    ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckC", false],
+                    ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckC", true, null]
+                ],
                 ["SET", "/roundNumber", 1],
                 ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],

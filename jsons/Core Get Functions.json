@@ -70,7 +70,7 @@
                         ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
                         ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
                         ["EQUAL", "$CARD.id", "$TARGET_NAME"]
-                    ]                    
+                    ]
                 ]]
             ]
         },
@@ -181,7 +181,7 @@
             ]
         },
         "REMOVE_FIRST_FROM_LIST_BY_VALUE": {
-            "_comment": "Returns boolean blockUnsafeActions preference of given player (false when player is null).",
+            "_comment": "Returns the given list with first occurence of given value removed.",
             "args": ["$LIST", "$VALUE"],
             "code": [
                 ["VAR", "$NEW_LIST", ["LIST"]],

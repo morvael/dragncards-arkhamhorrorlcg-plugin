@@ -78,7 +78,8 @@
                             {"label": "id:theLastKing", "deckListId": "The Last King Scenario"},
                             {"label": "id:echoesOfThePast", "deckListId": "Echoes of the Past Scenario"},
                             {"label": "id:theUnspeakableOath", "deckListId": "The Unspeakable Oath Scenario"},
-                            {"label": "id:aPhantomOfTruth", "deckListId": "A Phantom of Truth Scenario"}
+                            {"label": "id:aPhantomOfTruth", "deckListId": "A Phantom of Truth Scenario"},
+                            {"label": "id:thePallidMask", "deckListId": "The Pallid Mask Scenario"}
                         ]
                     }
                 ]
@@ -243,6 +244,9 @@
         },
         "aPhantomOfTruth": {
             "English": "A Phantom of Truth"
+        },
+        "thePallidMask": {
+            "English": "The Pallid Mask"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
