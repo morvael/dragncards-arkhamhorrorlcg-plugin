@@ -168,11 +168,52 @@
                 ["DO_PLACE_TOKEN_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "horror", "$LOG_EVENT", "$ACTOR_PLAYER", "horror", "horror"]
             ]
         },
+        "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA.TARGET_CARD_ID"]],
+                ["VALIDATE_GT0", "$NUMBER", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA.LOG_EVENT"],
+                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+            ]
+        },
+        "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_PLACE_DOOM_ON_SPECIFIC_AGENDA", "$TARGET_PLAYER", "$TARGET_CARD_ID", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+            ]
+        },
         "DO_PLACE_DOOM_ON_CURRENT_AGENDA": {
             "args": ["$TARGET_PLAYER", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
-                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$CURRENT_AGENDA.id", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_DOOM_ON_CURRENT_AGENDA.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_PLACE_DOOM_ON_CURRENT_AGENDA.NUMBER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PLACE_DOOM_ON_CURRENT_AGENDA.LOG_EVENT"],
+                ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
+                ["VAR", "$CURRENT_AGENDAS_COUNT", ["LENGTH", "$CURRENT_AGENDAS"]],
+                ["COND",
+                    ["GREATER_THAN", "$CURRENT_AGENDAS_COUNT", 1],
+                    [
+                        ["PROMPT", "$TARGET_PLAYER", "pickAgendaToPlaceDoomOn", "$NUMBER"],
+                        ["VAR", "$INDEX", 0],
+                        ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                            ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
+                            ["INCREASE_VAR", "$INDEX", 1]
+                        ]]
+                    ],
+                    ["EQUAL", "$CURRENT_AGENDAS_COUNT", 1],
+                    ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$CURRENT_AGENDAS.[0].id", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN": {
+            "args": ["$NUMBER"],
+            "code": [
+                ["VALIDATE_GT0", "$NUMBER", "DO_PLACE_DOOM_ON_CURRENT_AGENDA.NUMBER"],
+                ["VAR", "$AGENDA_CARD", ["GET_TOP_CARD", "sharedAgendaStory"]],
+                ["DO_PLACE_DOOM_ON_SPECIFIC_AGENDA", "$GAME.firstPlayer", "$AGENDA_CARD.id", "$NUMBER", true, null]
             ]
         },
         "DO_REMOVE_TOKEN_FROM_CARD": {
@@ -257,6 +298,12 @@
         }
     },
     "prompts": {
+        "pickAgendaToPlaceDoomOn": {
+            "args": ["$NUMBER"],
+            "message": "Pick current agenda to place {{$NUMBER}} doom on.",
+            "options": [
+            ]
+        },
         "askToPlaceDoomOnCurrentAgenda": {
             "args": [],
             "message": "You should now place 1 doom on the current agenda.",

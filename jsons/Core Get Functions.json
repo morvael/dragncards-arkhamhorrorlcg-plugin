@@ -44,11 +44,19 @@
                 ["GET_CARD", "$TARGET_GROUP.id", 0, 0]
             ]
         },
-        "GET_CURRENT_AGENDA": {
-            "_comment": "Returns top card of sharedAgendaStory, or null.",
+        "GET_CURRENT_AGENDAS": {
+            "_comment": "Returns a list of all Agenda cards that are the top cards of any story deck.",
             "args": [],
             "code": [
-                ["GET_TOP_CARD", "sharedAgendaStory"]
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.currentFace.type", "Agenda"],
+                    ["EQUAL", "$CARD.currentSide", "A"],
+                    ["OR",
+                        ["EQUAL", "$CARD.groupId", "sharedAgendaStory"],
+                        ["IN_STRING", "$CARD.groupId", "sharedActStory"]
+                    ],
+                    ["EQUAL", "$CARD.id", ["GET_CARD_ID", "$CARD.groupId", 0, 0]]
+                ]]
             ]
         },
         "GET_CARD_BY_DATABASE_ID": {

@@ -131,27 +131,27 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
                     ["LOG", "└── Campaign Log: 5 brood escaped into the wild."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 5, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 5]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
                 [
                     ["LOG", "└── Campaign Log: 4 brood escaped into the wild."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 4, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 4]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
                 [
                     ["LOG", "└── Campaign Log: 3 brood escaped into the wild."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 3, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
                 [
                     ["LOG", "└── Campaign Log: 2 brood escaped into the wild."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 2, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
                 [
                     ["LOG", "└── Campaign Log: 1 brood escaped into the wild."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
                 ]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators put Silas Bishop out of his misery.", "The above is not true."], "Return to Where Doom Awaits Scenario Question 4"]

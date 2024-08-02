@@ -134,7 +134,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
                 [
                     ["LOG", "└── Campaign Log: The investigators were delayed on their way to Dunwich."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$GAME.firstPlayer", 1, true, null]
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
                 ]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The O’Bannion gang has a bone to pick with the investigators.", "The above is not true."], "Blood on the Altar Scenario Question 5"]

@@ -160,26 +160,40 @@
             ]
         },
         "GET_DOOM_ACCRUED": {
-            "args": [],
+            "args": ["$TARGET_CARD_ID"],
             "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DOOM_ACCRUED.TARGET_CARD_ID"]],
                 ["VAR", "$DOOM", 0],
                 ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["INCREASE_VAR", "$DOOM", "$CARD.tokens.doom"]
+                    ["COND",
+                        ["OR",
+                            ["EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
+                            ["NOT_EQUAL", "$CARD.currentFace.type", "Agenda"]
+                        ],
+                        ["INCREASE_VAR", "$DOOM", "$CARD.tokens.doom"]
+                    ]
                 ]],
                 "$DOOM"
             ]
         },
         "DO_CLEAR_DOOM": {
-            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CLEAR_DOOM.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CLEAR_DOOM.TARGET_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CLEAR_DOOM.LOG_EVENT"],
                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "clear doom from cards in play.", "clears doom from cards in play."],
                 ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["COND",
-                        ["GREATER_THAN", "$CARD.tokens.doom", 0],
+                        ["AND",
+                            ["GREATER_THAN", "$CARD.tokens.doom", 0],
+                            ["OR",
+                                ["EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
+                                ["NOT_EQUAL", "$CARD.currentFace.type", "Agenda"]
+                            ]
+                        ],
                         ["DO_REMOVE_DOOM_FROM_CARD", "$TARGET_PLAYER", "$CARD.id", "$CARD.tokens.doom", false, null]
                     ]
                 ]]
@@ -269,7 +283,7 @@
                             ],
                             [
                                 ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$TOP_CARD.id"]],
-                                ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
+                                ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED", "$TOP_CARD.id"]],
                                 ["COND",
                                     ["AND",
                                         ["GREATER_THAN", "$DOOM_REQUIRED", 0],
@@ -315,6 +329,12 @@
                 ]
             ]
         },
+        "DO_ADVANCE_STORY_STR": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "$TARGET_GROUP_ID", ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+            ]
+        },
         "DO_ADVANCE_STORY_FINAL": {
             "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -339,15 +359,21 @@
         }
     },
     "prompts": {
+        "pickAgendaToAdvance": {
+            "args": [],
+            "message": "Pick current agenda to advance.",
+            "options": [
+            ]
+        },
         "enoughDoom": {
             "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
-            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
+            "message": "{{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} to advance was accrued.",
             "options": [
                 {
                     "label": "Clear doom from cards in play and advance (follow the rules)",
                     "hotkey": "D",
                     "code": [
-                        ["DO_CLEAR_DOOM", "$PLAYER_N", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                        ["DO_CLEAR_DOOM", "$PLAYER_N", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
                         ["DO_ADVANCE_STORY_FINAL", "$PLAYER_N", "$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 },
@@ -367,7 +393,7 @@
         },
         "notEnoughDoom": {
             "args": ["$TARGET_GROUP_ID", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER", "$DOOM_REQUIRED", "$DOOM_ACCRUED"],
-            "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}.",
+            "message": "{{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} to advance was accrued.",
             "options": [
                 {
                     "label": "Advance (ignore the rules)",

@@ -632,13 +632,9 @@
         "DO_STEP_M2": {
             "args": [],
             "code": [
-                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
+                ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$CURRENT_AGENDA", null],
-                        ["EQUAL", "$CURRENT_AGENDA.currentFace.type", "Agenda"],
-                        ["EQUAL", "$CURRENT_AGENDA.currentSide", "A"]
-                    ],
+                    ["GREATER_THAN", ["LENGTH", "$CURRENT_AGENDAS"], 0],
                     ["PROMPT", "$PLAYER_N", "askToPlaceDoomOnCurrentAgenda"]
                 ]
             ]
@@ -646,24 +642,44 @@
         "DO_STEP_M3": {
             "args": [],
             "code": [
-                ["VAR", "$CURRENT_AGENDA", ["GET_CURRENT_AGENDA"]],
+                ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$CURRENT_AGENDA", null],
-                        ["EQUAL", "$CURRENT_AGENDA.currentFace.type", "Agenda"],
-                        ["EQUAL", "$CURRENT_AGENDA.currentSide", "A"]
-                    ],
+                    ["GREATER_THAN", ["LENGTH", "$CURRENT_AGENDAS"], 0],
                     [
-                        ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CURRENT_AGENDA.id"]],
-                        ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED"]],
+                        ["VAR", "$MESSAGE", "└──"],
+                        ["VAR", "$ADVANCABLE_AGENDAS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                            ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CARD.id"]],
+                            ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED", "$CARD.id"]],
+                            ["COND",
+                                ["AND",
+                                    ["GREATER_THAN", "$DOOM_REQUIRED", 0],
+                                    ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
+                                ],
+                                [
+                                    ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}} {{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD.currentFace.name}} to advance was accrued."],
+                                    ["UPDATE_VAR", "$ADVANCABLE_AGENDAS", ["APPEND", "$ADVANCABLE_AGENDAS", "$CARD"]]
+                                ]
+                            ]
+                        ]],
+                        ["VAR", "$ADVANCABLE_AGENDAS_COUNT", ["LENGTH", "$ADVANCABLE_AGENDAS"]],
                         ["COND",
-                            ["AND",
-                                ["GREATER_THAN", "$DOOM_REQUIRED", 0],
-                                ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
-                            ],
+                            ["GREATER_THAN", "$ADVANCABLE_AGENDAS_COUNT", 1],
                             [
-                                ["LOG", "└── {{$CURRENT_AGENDA.currentFace.name}} requires {{$DOOM_REQUIRED}} doom to advance. Doom on cards in play: {{$DOOM_ACCRUED}}."],
-                                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, "$PLAYER_N"]
+                                ["LOG", "$MESSAGE"],
+                                ["PROMPT", "$PLAYER_N", "pickAgendaToAdvance"],
+                                ["VAR", "$INDEX", 0],
+                                ["FOR_EACH_VAL", "$CARD", "$ADVANCABLE_AGENDAS", [
+                                    ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
+                                    ["PROMPT_ADD_OPTION", "$PLAYER_N", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_ADVANCE_STORY_STR", "{{$PLAYER_N}}", "{{$CARD.groupId}}", "true", "{{$PLAYER_N}}"]],
+                                    ["INCREASE_VAR", "$INDEX", 1]
+                                ]],
+                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel", "X"]
+                            ],
+                            ["EQUAL", "$ADVANCABLE_AGENDAS_COUNT", 1],
+                            [
+                                ["LOG", "$MESSAGE"],
+                                ["DO_ADVANCE_STORY", "$PLAYER_N", "$ADVANCABLE_AGENDAS.[0].groupId", true, "$PLAYER_N"]
                             ]
                         ]
                     ]
