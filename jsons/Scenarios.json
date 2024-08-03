@@ -80,7 +80,8 @@
                             {"label": "id:theUnspeakableOath", "deckListId": "The Unspeakable Oath Scenario"},
                             {"label": "id:aPhantomOfTruth", "deckListId": "A Phantom of Truth Scenario"},
                             {"label": "id:thePallidMask", "deckListId": "The Pallid Mask Scenario"},
-                            {"label": "id:blackStarsRise", "deckListId": "Black Stars Rise Scenario"}
+                            {"label": "id:blackStarsRise", "deckListId": "Black Stars Rise Scenario"},
+                            {"label": "id:dimCarcosa", "deckListId": "Dim Carcosa Scenario"}
                         ]
                     }
                 ]
@@ -251,6 +252,9 @@
         },
         "blackStarsRise": {
             "English": "Black Stars Rise"
+        },
+        "dimCarcosa": {
+            "English": "Dim Carcosa"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

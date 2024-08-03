@@ -96,6 +96,7 @@
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["LOG", "└── Choosing between The Flood Below and The Vortex Above."],
             ["VAR", "$COIN", ["RANDOM_INT", 0, 1]],
             ["COND",
                 ["EQUAL", "$COIN", 0],

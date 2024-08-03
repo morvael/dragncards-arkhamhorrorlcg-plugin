@@ -1,0 +1,194 @@
+{
+    "preBuiltDecks": {
+        "Dim Carcosa Scenario": {
+             "label": "Dim Carcosa Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Dim Carcosa", "Dim Carcosa Scenario Init"]
+            ]
+        },
+        "Dim Carcosa": {
+            "hideFromSearch": true,
+             "label": "Dim Carcosa",
+             "cards": [
+                {"databaseId": "03316", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03317", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03318", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03319", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03320", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03324", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03335", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03336", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03337", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03338", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03339", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03340", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03341", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03342", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Dim Carcosa - Inhabitants of Carcosa": {
+            "hideFromSearch": true,
+            "label": "Dim Carcosa - Inhabitants of Carcosa",
+            "cards": [
+                {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Dim Carcosa - Carcosa": {
+            "hideFromSearch": true,
+            "label": "Dim Carcosa - Carcosa",
+            "cards": [
+                {"databaseId": "03325", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},
+                {"databaseId": "03330", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},
+                {"databaseId": "03331", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
+            ]
+        },
+        "Dim Carcosa - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Dim Carcosa - Set Aside",
+            "cards": [
+                {"databaseId": "03332", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03333", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03334", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Dim Carcosa Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Dim Carcosa"],
+            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
+            ["DO_LOAD_CARDS_SCN", "Dim Carcosa - Inhabitants of Carcosa"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have 5 or less total Doubt and Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Doubt than Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Conviction than Doubt.", "You have 6 or more total Doubt and Conviction, and you have exactly equal Doubt and Conviction."], "Dim Carcosa Scenario Question 1"]
+        ],
+        "Dim Carcosa Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You have 5 or less total Doubt and Conviction."],
+                    ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.I)", "03321a", 1, "sharedActStory"],
+                    ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue 1"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["LOG", "└── Campaign Log: You have 6 or more total Doubt and Conviction, and you have more Doubt than Conviction."],
+                    ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.II)", "03322a", 1, "sharedActStory"],
+                    ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue 1"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                [
+                    ["LOG", "└── Campaign Log: You have 6 or more total Doubt and Conviction, and you have more Conviction than Doubt."],
+                    ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.III)", "03323a", 1, "sharedActStory"],
+                    ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue 1"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                [
+                    ["LOG", "└── Campaign Log: You have 6 or more total Doubt and Conviction, and you have exactly equal Doubt and Conviction."],
+                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Choose which Act 2 to use.", ["LIST", "Search For the Stranger (v.II)", "Search For the Stranger (v.III)"], "Dim Carcosa Scenario Question 2"]
+                ]
+            ]
+        ],
+        "Dim Carcosa Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["DO_LOG_SCN", "$GAME.firstPlayer", "picks Search For the Stranger (v.II)."],
+                    ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.II)", "03322a", 1, "sharedActStory"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                [
+                    ["DO_LOG_SCN", "$GAME.firstPlayer", "picks Search For the Stranger (v.III)."],
+                    ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.III)", "03323a", 1, "sharedActStory"]
+                ]
+            ],
+            ["ACTION_LIST", "Dim Carcosa Scenario Init Continue 1"]
+        ],
+        "Dim Carcosa Scenario Init Continue 1": [
+            ["VAR", "$BLEAK_PLAINS", ["SHUFFLE_LIST", ["LIST", "03326a", "03326c"]]],
+            ["VAR", "$DIM_STREETS", ["SHUFFLE_LIST", ["LIST", "03328a", "03328c", "03328e"]]],
+            ["VAR", "$RUINS_OF_CARCOSA", ["SHUFFLE_LIST", ["LIST", "03327a", "03327c", "03327e"]]],
+            ["VAR", "$DEPTHS_OF_DEMHE", ["SHUFFLE_LIST", ["LIST", "03329a", "03329c"]]],
+            ["DO_SPAWN_LOCATION_SCN", "Bleak Plains", "$BLEAK_PLAINS.[0]", 45, 62],
+            ["DO_SPAWN_LOCATION_SCN", "Dim Streets", "$DIM_STREETS.[0]", 20, 43],
+            ["DO_SPAWN_LOCATION_SCN", "Ruins of Carcosa", "$RUINS_OF_CARCOSA.[0]", 70, 43],
+            ["DO_SPAWN_LOCATION_SCN", "Depths of Demhe", "$DEPTHS_OF_DEMHE.[0]", 45, 24],
+            ["DO_CREATE_CARDS_SCN", "Bleak Plains", "$BLEAK_PLAINS.[1]", 1, "sharedNotInPlay"],
+            ["DO_SET_SPAWN_LOCATION", "$BLEAK_PLAINS.[1]", 45, 62],
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Dim Streets", "$DIM_STREETS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$DIM_STREETS.[$I]", 20, 43]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Ruins of Carcosa", "$RUINS_OF_CARCOSA.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$RUINS_OF_CARCOSA.[$I]", 70, 43]
+            ]],
+            ["DO_CREATE_CARDS_SCN", "Depths of Demhe", "$DEPTHS_OF_DEMHE.[1]", 1, "sharedNotInPlay"],
+            ["DO_SET_SPAWN_LOCATION", "$DEPTHS_OF_DEMHE.[1]", 45, 24],
+            ["DO_LOAD_CARDS_SCN", "Dim Carcosa - Carcosa"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You opened the path below.", "You opened the path above."], "Dim Carcosa Scenario Question 3"]
+        ],
+        "Dim Carcosa Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You opened the path below."],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Shores of Hali", 5, 3, 3, 0]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                [
+                    ["LOG", "└── Campaign Log: You opened the path above."],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dark Spires", 5, 3, 3, 0]
+                ]
+            ],
+            ["VAR", "$MAN_IN_THE_PALLID_MASK", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.databaseId", "03059"]]],
+            ["COND",
+                ["EQUAL", "$MAN_IN_THE_PALLID_MASK", null],
+                ["DO_CREATE_CARDS_SCN", "The Man in the Pallid Mask", "03059", 1, "sharedNotInPlay"],
+                ["TRUE"],
+                [
+                    ["DO_LOG_SCN", "$MAN_IN_THE_PALLID_MASK.controller", "moves {{$MAN_IN_THE_PALLID_MASK.sides.A.name}} from their deck to {{$GROUP_BY_ID.sharedNotInPlay.label}}."],
+                    ["MOVE_CARD", "$MAN_IN_THE_PALLID_MASK.id", "$sharedNotInPlay", -1]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Dim Carcosa - Set Aside"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of tally marks under “Chasing the Stranger” in your Campaign Log.", ["LIST", "There are 2 or fewer tally marks.", "There are between 3-5 tally marks.", "There are between 6-8 tally marks.", "There are 9 or more tally marks."], "Dim Carcosa Scenario Question 4"]
+        ],
+        "Dim Carcosa Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: There are 2 or fewer tally marks."],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                [
+                    ["LOG", "└── Campaign Log: There are between 3-5 tally marks."],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "C"],
+                [
+                    ["LOG", "└── Campaign Log: There are between 6-8 tally marks."],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "D"],
+                ["LOG", "└── Campaign Log: There are 9 or more tally marks."]
+            ],
+            ["LOG", "└── Each investigator takes direct horror equal to half his or her sanity, rounded down (cannot be prevented)."],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                ["VAR", "$HORROR", ["DIVIDE", "$INVESTIGATOR.sides.A.sanity", 2]],
+                ["COND",
+                    ["GREATER_THAN", "$HORROR", 0],
+                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$HORROR", true, null]
+                ]
+            ]],
+            ["SET", "/arkhamFinalScenarioMessage", "During this scenario, investigators are not defeated when they have horror on them equal to or greater than their sanity."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

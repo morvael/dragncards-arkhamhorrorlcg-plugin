@@ -294,30 +294,54 @@
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
-                        ["GREATER_THAN", ["GET_CARD_USES", "$TARGET.id"], 0],
-                        ["EQUAL", ["GET_RESOURCES_ON_CARD", "$TARGET.id"], 0]
+                        ["EQUAL", "$TARGET.usesPlaced", false],
+                        ["GREATER_THAN", ["GET_CARD_USES", "$TARGET.id"], 0]
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_USES", "$TARGET.id"], true, "$PLAYER_N"]
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_USES", "$TARGET.id"], true, "$PLAYER_N"],
+                    ["SET", "/cardById/$TARGET.id/usesPlaced", true]
                 ]
             },
             {
-                "_comment": "Add Location clue tokens.",
+                "_comment": "Add Location clue tokens (when entering play).",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/inPlay"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.inPlay", true],
+                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
+                        ["EQUAL", "$TARGET.cluesPlaced", false],
+                        ["EQUAL", "$TARGET.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
+                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
+                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0]
+                    ]
+                ],
+                "then": [
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, "$PLAYER_N"],
+                    ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
+                ]
+            },
+            {
+                "_comment": "Add Location clue tokens (when flipping).",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/currentSide"],
                 "condition": [
                     ["AND",
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.inPlay", true],
+                        ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET.groupId", "sharedLocations"],
                         ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0],
-                        ["EQUAL", ["GET_CLUES_ON_CARD", "$TARGET.id"], 0]
+                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0]
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, "$PLAYER_N"]
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, "$PLAYER_N"],
+                    ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
                 ]
             },
             {
@@ -481,13 +505,41 @@
             "args": ["$TARGET_CARD_ID"],
             "code": [
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CHANGE_IN_PLAY.TARGET_CARD_ID"]],
-                ["SET", "/cardById/$TARGET_CARD_ID/inPlay", ["GET_DESIRED_IN_PLAY", "$TARGET_CARD_ID"]]
+                ["VAR", "$DESIRED_IN_PLAY", ["GET_DESIRED_IN_PLAY", "$TARGET_CARD_ID"]],
+                ["SET", "/cardById/$TARGET_CARD_ID/inPlay", "$DESIRED_IN_PLAY"],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                        ["EQUAL", "$TARGET_CARD.cluesPlaced", true]
+                    ],
+                    ["SET", "/cardById/$TARGET_CARD_ID/cluesPlaced", false]
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                        ["EQUAL", "$TARGET_CARD.usesPlaced", true]
+                    ],
+                    ["SET", "/cardById/$TARGET_CARD_ID/usesPlaced", false]
+                ]
             ]
         },
         "DO_REFRESH_STORY_IN_PLAY": {
             "args": ["$TARGET_GROUP_ID"],
             "code": [
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_REFRESH_STORY_IN_PLAY.TARGET_GROUP_ID"]],
+                ["VAR", "$SORT_ORDER", 0],
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedActStory"],
+                    ["UPDATE_VAR", "$SORT_ORDER", 1],
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedActStoryB"],
+                    ["UPDATE_VAR", "$SORT_ORDER", 2],
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedActStoryC"],
+                    ["UPDATE_VAR", "$SORT_ORDER", 3],
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedActStoryD"],
+                    ["UPDATE_VAR", "$SORT_ORDER", 4],
+                    ["EQUAL", "$TARGET_GROUP_ID", "sharedActStoryE"],
+                    ["UPDATE_VAR", "$SORT_ORDER", 5]
+                ],
                 ["VAR", "$IN_PLAY", true],
                 ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
                     ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
@@ -499,7 +551,27 @@
                         ]],
                         ["COND",
                             ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],
-                            ["SET", "/cardById/$TARGET_CARD_ID/inPlay", "$DESIRED_IN_PLAY"]
+                            [
+                                ["SET", "/cardById/$TARGET_CARD_ID/inPlay", "$DESIRED_IN_PLAY"],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                                        ["EQUAL", "$TARGET_CARD.cluesPlaced", true]
+                                    ],
+                                    ["SET", "/cardById/$TARGET_CARD_ID/cluesPlaced", false]
+                                ],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                                        ["EQUAL", "$TARGET_CARD.usesPlaced", true]
+                                    ],
+                                    ["SET", "/cardById/$TARGET_CARD_ID/usesPlaced", false]
+                                ]
+                            ]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.sortOrder", "$SORT_ORDER"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/sortOrder", "$SORT_ORDER"]
                         ]
                     ]],
                     ["UPDATE_VAR", "$IN_PLAY", false]

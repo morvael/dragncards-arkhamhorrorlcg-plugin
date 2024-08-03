@@ -747,16 +747,29 @@
                 ["SHOW_SCENARIO_QUESTION_PROMPT", null]
             ]
         },
+        "SCENARIO_SKIP_QUESTION": {
+            "args": ["$NEXT_SCENARIO_ACTION"],
+            "code": [
+                ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "dummy"],
+                ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
+                ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1],
+                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
+                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "A"],
+                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+            ]
+        },
         "SCENARIO_INIT_RESOURCES": {
             "args": [],
             "code": [
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.inPlay", true],
-                    ["GREATER_THAN", ["GET_CARD_USES", "$CARD.id"], 0],
-                    ["EQUAL", ["GET_RESOURCES_ON_CARD", "$CARD.id"], 0]
+                    ["EQUAL", "$CARD.usesPlaced", false],
+                    ["GREATER_THAN", ["GET_CARD_USES", "$CARD.id"], 0]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", ["GET_CARD_USES", "$CARD.id"], true, null]
+                    ["DO_PLACE_RESOURCES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", ["GET_CARD_USES", "$CARD.id"], true, null],
+                    ["SET", "/cardById/$CARD.id/usesPlaced", true]
                 ]]
             ]
         },
@@ -764,15 +777,16 @@
             "args": [],
             "code": [
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.cluesPlaced", false],
                     ["EQUAL", "$CARD.currentFace.type", "Location"],
                     ["EQUAL", "$CARD.groupId", "sharedLocations"],
                     ["NOT_EQUAL", "$CARD.currentFace.clues", null],
-                    ["GREATER_THAN", "$CARD.currentFace.clues", 0],
-                    ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
+                    ["GREATER_THAN", "$CARD.currentFace.clues", 0]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["VAR", "$CLUES", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"]],
-                    ["DO_PLACE_CLUES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", "$CLUES", true, null]
+                    ["DO_PLACE_CLUES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], true, null],
+                    ["SET", "/cardById/$CARD.id/cluesPlaced", true]
                 ]]
             ]
         },

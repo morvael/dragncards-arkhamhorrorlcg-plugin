@@ -10,7 +10,10 @@
         "inHand":        {"type": "boolean",  "default": false},
         "eliminated":    {"type": "boolean",  "default": false},
         "spawnLeft":     {"type": "integer",  "default": 0},
-        "spawnTop":      {"type": "integer",  "default": 0}
+        "spawnTop":      {"type": "integer",  "default": 0},
+        "cluesPlaced":   {"type": "boolean",  "default": false},
+        "usesPlaced":    {"type": "boolean",  "default": false},
+        "sortOrder":     {"type": "integer",  "default": 0}
     },
     "faceProperties": {
         "subtype":               {"type": "string",  "default": ""},
