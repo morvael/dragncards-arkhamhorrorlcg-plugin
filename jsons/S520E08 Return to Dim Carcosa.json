@@ -59,11 +59,11 @@
     "actionLists": {
         "Return to Dim Carcosa Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to Dim Carcosa"],
-            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Maddening Delusions"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Return to Dim Carcosa - Inhabitants of Carcosa"],
-            ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
-            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Hastur's Envoys"],
+            ["DO_LOAD_CARDS_SCN", "Neurotic Fear"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have 5 or less total Doubt and Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Doubt than Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Conviction than Doubt.", "You have 6 or more total Doubt and Conviction, and you have exactly equal Doubt and Conviction."], "Return to Dim Carcosa Scenario Question 1"]
         ],
         "Return to Dim Carcosa Scenario Question 1": [

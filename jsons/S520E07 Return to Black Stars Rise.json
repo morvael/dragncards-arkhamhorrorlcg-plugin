@@ -95,7 +95,7 @@
             ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise - Inhabitants of Carcosa"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
-            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Delusory Evils"],
             ["LOG", "└── Choosing between The Flood Below and The Vortex Above."],
             ["VAR", "$COIN", ["RANDOM_INT", 0, 1]],
             ["COND",

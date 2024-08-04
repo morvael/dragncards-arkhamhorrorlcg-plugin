@@ -38,9 +38,9 @@
         "Return to The Last King Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to The Last King"],
             ["DO_LOAD_CARDS_SCN", "Hastur's Gift"],
-            ["DO_LOAD_CARDS_SCN", "Decay & Filth"],
+            ["DO_LOAD_CARDS_SCN", "Decaying Reality"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
-            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Delusory Evils"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Foyer", 5, 7, 3, 0],
             ["VAR", "$BYSTANDERS", ["SHUFFLE_LIST", ["LIST", "03076a", "03077", "03078", "03079", "03080"]]],
             ["VAR", "$LOCATIONS", ["LIST", "Ballroom", "Living Room", "Gallery", "Courtyard", "Dining Room"]],

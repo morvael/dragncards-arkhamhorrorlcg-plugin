@@ -37,10 +37,10 @@
         "Return to Curtain Call Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to Curtain Call"],
             ["DO_LOAD_CARDS_SCN", "Evil Portents"],
-            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Maddening Delusions"],
             ["DO_LOAD_CARDS_SCN", "Hauntings"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
-            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Neurotic Fear"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],
             ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "{{$SECOND_ACTS.[0]}}", 1, "sharedActStory"],

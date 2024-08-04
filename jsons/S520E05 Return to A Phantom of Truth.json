@@ -133,7 +133,7 @@
             ["DO_LOAD_CARDS_SCN", "Evil Portents"],
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
-            ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
+            ["DO_LOAD_CARDS_SCN", "Hastur's Envoys"],
             ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "Return to A Phantom of Truth Scenario Question 5"]
         ],
