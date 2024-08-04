@@ -147,8 +147,8 @@
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_INJURY_PACT_WEAKNESSES"]]
             ]],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SET", "/arkhamFinalScenarioMessage", "Brood of Yog-Sothoth cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },

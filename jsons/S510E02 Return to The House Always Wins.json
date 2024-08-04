@@ -82,8 +82,8 @@
                 ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "{{$BACK_HALL_DOORWAY}}", 1, "sharedNotInPlay"],
                 ["DO_SET_SPAWN_LOCATION", "{{$BACK_HALL_DOORWAY}}", 70, "$SPAWN_TOPS.[{{$I}}]"]
             ]],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SET", "/arkhamFinalScenarioMessage", "Hideous Abominations cards are in Deck A, Erratic Fear cards are in Pile A."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

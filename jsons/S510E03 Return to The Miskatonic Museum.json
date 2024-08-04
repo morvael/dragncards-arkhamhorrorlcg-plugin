@@ -78,8 +78,8 @@
                 ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
             ]],
             ["SET", "/arkhamSkipShufflingSharedDeckA", true],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

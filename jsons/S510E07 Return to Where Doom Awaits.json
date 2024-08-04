@@ -167,8 +167,8 @@
                     ["DO_LOAD_CARDS_SCN", "Return to Where Doom Awaits - Hideous Abominations"]
                 ]
             ],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SET", "/arkhamFinalScenarioMessage", "Diverging Path cards are in Deck A, Altered Path cards are in Deck B."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },

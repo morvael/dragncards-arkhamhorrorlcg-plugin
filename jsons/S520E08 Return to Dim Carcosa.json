@@ -14,6 +14,7 @@
              "label": "Return to Dim Carcosa",
              "cards": [
                 {"databaseId": "03316", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "52059", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "03317", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03318", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03319", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
@@ -26,7 +27,8 @@
                 {"databaseId": "03339", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03340", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03341", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03342", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03342", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52064", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Return to Dim Carcosa - Inhabitants of Carcosa": {
@@ -36,13 +38,22 @@
                 {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
+        "Return to Dim Carcosa - New locations": {
+            "hideFromSearch": true,
+            "label": "Return to Dim Carcosa - New locations",
+            "cards": [
+                {"databaseId": "52061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "52062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "52063", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        },
         "Return to Dim Carcosa - Carcosa": {
             "hideFromSearch": true,
             "label": "Return to Dim Carcosa - Carcosa",
             "cards": [
                 {"databaseId": "03325", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},
                 {"databaseId": "03330", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},
-                {"databaseId": "03331", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
+                {"databaseId": "52060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
             ]
         },
         "Return to Dim Carcosa - Set Aside": {
@@ -129,6 +140,10 @@
             ]],
             ["DO_CREATE_CARDS_SCN", "Depths of Demhe", "$DEPTHS_OF_DEMHE.[1]", 1, "sharedNotInPlay"],
             ["DO_SET_SPAWN_LOCATION", "$DEPTHS_OF_DEMHE.[1]", 45, 24],
+            ["DO_LOAD_CARDS_SCN", "Return to Dim Carcosa - New locations"],
+            ["DO_SET_SPAWN_LOCATION", "52061", 20, 24],
+            ["DO_SET_SPAWN_LOCATION", "52062", 70, 24],
+            ["DO_SET_SPAWN_LOCATION", "52063", 70, 62],
             ["DO_LOAD_CARDS_SCN", "Return to Dim Carcosa - Carcosa"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You opened the path below.", "You opened the path above."], "Return to Dim Carcosa Scenario Question 3"]
         ],
@@ -187,7 +202,8 @@
                     ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$HORROR", true, null]
                 ]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "During this scenario, investigators are not defeated when they have horror on them equal to or greater than their sanity."],
+            ["SET", "/arkhamFinalScenarioMessage", "During this scenario, investigators are not defeated when they have horror on them equal to or greater than their sanity. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

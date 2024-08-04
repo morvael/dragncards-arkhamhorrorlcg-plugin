@@ -14,6 +14,7 @@
              "label": "Return to Echoes of the Past",
              "cards": [
                 {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "52028", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03123", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
@@ -25,6 +26,7 @@
                 {"databaseId": "03141", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "52033", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
@@ -34,9 +36,10 @@
             "hideFromSearch": true,
             "label": "Return to Echoes of the Past - Historical Society",
             "cards": [
-                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
-                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+                {"databaseId": "52029", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "79%"},
+                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},
+                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"},
+                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"}
             ]
         }
     },
@@ -55,14 +58,16 @@
             ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["VAR", "$SOCIETIES_B", ["SHUFFLE_LIST", ["LIST", "52030", "52031", "52032"]]],
             ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]],
             ["VAR", "$SOCIETIES_1", ["SHUFFLE_LIST", ["LIST", "03132", "03133", "03134"]]],
             ["VAR", "$SOCIETIES_2", ["SHUFFLE_LIST", ["LIST", "03136", "03137", "03138"]]],
             ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 76],
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 43],
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 10]
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_B.[$I]", "$SPAWN_LEFTS.[$I]", 79],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[$I]", "$SPAWN_LEFTS.[$I]", 55],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[$I]", "$SPAWN_LEFTS.[$I]", 31],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[$I]", "$SPAWN_LEFTS.[$I]", 7]
             ]],
             ["DO_LOAD_CARDS_SCN", "Return to Echoes of the Past - Historical Society"],
             ["COND",
@@ -111,9 +116,12 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Campaign Log: You fled the dinner party."],
-                    ["SET", "/arkhamFinalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game."]
-                ]
+                    ["SET", "/arkhamFinalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game. Remember the rule from the back of the “Return to…” scenario card."]
+                ],
+                ["TRUE"],
+                ["SET", "/arkhamFinalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."]
             ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

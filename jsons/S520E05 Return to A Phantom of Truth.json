@@ -14,12 +14,14 @@
              "label": "Return to A Phantom of Truth",
              "cards": [
                 {"databaseId": "03200", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "52040", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "03201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03202", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},
                 {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "52047", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
@@ -51,17 +53,59 @@
                 {"databaseId": "03218", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"}
             ]
         },
+        "Return to A Phantom of Truth - Montparnasse": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Montparnasse",
+            "cards": [
+                {"databaseId": "03208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"},
+                {"databaseId": "52041", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"}
+            ]
+        },
+        "Return to A Phantom of Truth - Grand Guignol": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Grand Guignol",
+            "cards": [
+                {"databaseId": "03211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},
+                {"databaseId": "52042", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"}
+            ]
+        },
+        "Return to A Phantom of Truth - Père Lachaise Cemetery": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Père Lachaise Cemetery",
+            "cards": [
+                {"databaseId": "03215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"},
+                {"databaseId": "52043", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"}
+            ]
+        },
+        "Return to A Phantom of Truth - Canal Saint-Martin": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Canal Saint-Martin",
+            "cards": [
+                {"databaseId": "03216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"},
+                {"databaseId": "52044", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"}
+            ]
+        },
+        "Return to A Phantom of Truth - Notre-Dame": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Notre-Dame",
+            "cards": [
+                {"databaseId": "03219", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},
+                {"databaseId": "52045", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"}
+            ]
+        },
+        "Return to A Phantom of Truth - Gardens of Luxembourg": {
+            "hideFromSearch": true,
+            "label": "Return to A Phantom of Truth - Gardens of Luxembourg",
+            "cards": [
+                {"databaseId": "03220", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},
+                {"databaseId": "52046", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"}
+            ]
+        },
         "Return to A Phantom of Truth - Paris": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Paris",
             "cards": [
-                {"databaseId": "03208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"},
-                {"databaseId": "03211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},
-                {"databaseId": "03214", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"},
-                {"databaseId": "03215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"},
-                {"databaseId": "03216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"},
-                {"databaseId": "03219", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},
-                {"databaseId": "03220", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"}
+                {"databaseId": "03214", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"}
             ]
         }
     },
@@ -157,6 +201,12 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Montmartre", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Opéra Garnier", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Le Marais", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Montparnasse", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Grand Guignol", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Père Lachaise Cemetery", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Canal Saint-Martin", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Notre-Dame", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Gardens of Luxembourg", 1],
             ["DO_LOAD_CARDS_SCN", "Return to A Phantom of Truth - Paris"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0],
             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -170,6 +220,8 @@
                     ["DO_CREATE_CARDS_SCN", "Lost Soul", "03227", "$CARDS_TO_ADD", "sharedNotInPlay"]
                 ]
             ],
+            ["SET", "/arkhamFinalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

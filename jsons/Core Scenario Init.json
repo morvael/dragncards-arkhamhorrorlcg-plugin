@@ -443,6 +443,27 @@
                 ]
             ]
         },
+        "DO_ATTACH_REFERENCE_TO_ID": {
+            "args": ["$DATABASE_ID", "$FLIP_FACEDOWN"],
+            "code": [
+                ["VALIDATE_BOOLEAN", "$FLIP_FACEDOWN", "DO_ATTACH_REFERENCE_TO_ID.FLIP_FACEDOWN"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_BY_DATABASE_ID", "$DATABASE_ID"]],
+                ["VAR", "$REFERENCE_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Reference"]]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["NOT_EQUAL", "$REFERENCE_CARD", null]
+                    ],
+                    [
+                        ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$REFERENCE_CARD.id", "$TARGET_CARD.id", true, null],
+                        ["COND",
+                            ["EQUAL", "$FLIP_FACEDOWN", true],
+                            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$REFERENCE_CARD.id", true, null]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "DO_CREATE_DECK_CARD_SCN": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
             "code": [

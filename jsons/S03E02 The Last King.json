@@ -46,8 +46,8 @@
             ["VAR", "$LOCATIONS", ["LIST", "Ballroom", "Living Room", "Gallery", "Courtyard", "Dining Room"]],
             ["VAR", "$CLUES_TO_ADD", ["ADD", 1, "$GAME.arkhamNumPlayers"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
-                ["VAR", "$BYSTANDER", "$BYSTANDERS.[{{$I}}]"],
-                ["DO_SPAWN_AT_LOCATION_SCN", "Bystander", "{{$BYSTANDER}}", "$LOCATIONS.[{{$I}}]", 3, 3],
+                ["VAR", "$BYSTANDER", "$BYSTANDERS.[$I]"],
+                ["DO_SPAWN_AT_LOCATION_SCN", "Bystander", "$BYSTANDER", "$LOCATIONS.[$I]", 3, 3],
                 ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_AT_LOCATION_RESULT", "$CLUES_TO_ADD", true, null]
             ]],
             ["SET", "/arkhamFinalScenarioMessage", "Sickening Reality cards are in Deck A. Each time you're forced to randomly resolve one of those cards, shuffle the deck before picking the top card."],

@@ -60,9 +60,9 @@
             ["VAR", "$SOCIETIES_2", ["SHUFFLE_LIST", ["LIST", "03136", "03137", "03138"]]],
             ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 76],
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 43],
-                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 10]
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[$I]", "$SPAWN_LEFTS.[$I]", 76],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[$I]", "$SPAWN_LEFTS.[$I]", 43],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[$I]", "$SPAWN_LEFTS.[$I]", 10]
             ]],
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past - Historical Society"],
             ["COND",

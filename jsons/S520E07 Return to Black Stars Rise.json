@@ -14,6 +14,7 @@
              "label": "Return to Black Stars Rise",
              "cards": [
                 {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "52054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03278", "quantity": 1, "loadGroupId": "sharedActStory"},
@@ -23,10 +24,10 @@
                 {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03300", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03301", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03294", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03295", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "03302", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03303", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03303", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52057", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52058", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Return to Black Stars Rise - Inhabitants of Carcosa": {
@@ -88,8 +89,24 @@
                 ["LOG", "└── Campaign Log: Ashleigh Clarke is listed under VIPs Interviewed."]
             ],
             ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise"],
-            ["DO_SET_SPAWN_LOCATION", "03294", 5, 31],
-            ["DO_SET_SPAWN_LOCATION", "03295", 5, 55],
+            ["LOG", "└── Choosing between the two versions of Cloister and Knight's Hall."],
+            ["VAR", "$COIN", ["RANDOM_INT", 0, 1]],
+            ["COND",
+                ["EQUAL", "$COIN", 0],
+                [
+                    ["DO_CREATE_CARDS_SCN", "Cloister", "03294", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03294", 5, 31],
+                    ["DO_CREATE_CARDS_SCN", "Knight's Hall", "03295", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03295", 5, 55]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_CREATE_CARDS_SCN", "Cloister", "52055", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "52055", 5, 31],
+                    ["DO_CREATE_CARDS_SCN", "Knight's Hall", "52056", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "52056", 5, 55]
+                ]
+            ],
             ["DO_LOAD_CARDS_SCN", "Evil Portents"],
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise - Inhabitants of Carcosa"],
@@ -133,6 +150,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 ["SET", "/arkhamFinalScenarioMessage", "During this scenario, as a triggered ability, an investigator may remove 1 doom from an agenda in play. (Group limit once per game.)"]
             ],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

@@ -185,8 +185,8 @@
                 ["TRUE"],
                 ["DO_LOAD_CARDS_SCN", "Return to Blood on the Altar - Hired Guns (aside)"]
             ],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SET", "/arkhamFinalScenarioMessage", "Potential sacrifices cards are in Deck A."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

@@ -14,6 +14,7 @@
              "label": "Return to The Pallid Mask",
              "cards": [
                 {"databaseId": "03240", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "52048", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "03241", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03242", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "03243", "quantity": 1, "loadGroupId": "sharedActStory"},
@@ -24,7 +25,8 @@
                 {"databaseId": "03259", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
                 {"databaseId": "03261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03262", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03262", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52053", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
             ]
         }
     },
@@ -44,7 +46,7 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You awoke inside the catacombs.", "You entered the catacombs on your own."], "Return to The Pallid Mask Scenario Question 2"]
         ],
         "Return to The Pallid Mask Scenario Question 2": [
-            ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255"]]],
+            ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255", "52049", "52050", "52051", "52052"]]],
             ["VAR", "$STARTING_LOCATION", "$CATACOMBS.[0]"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
@@ -64,15 +66,13 @@
             ["VAR", "$CATACOMB_0", "$CATACOMBS.[0]"],
             ["VAR", "$CATACOMB_1", "$CATACOMBS.[1]"],
             ["VAR", "$CATACOMB_2", "$CATACOMBS.[2]"],
-            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$CATACOMB_0}}", "{{$CATACOMB_1}}", "{{$CATACOMB_2}}", "03256", "03257"]]],
-            ["VAR", "$CATACOMBS_COUNT", ["LENGTH", "$CATACOMBS"]],
+            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$CATACOMB_0", "$CATACOMB_1", "$CATACOMB_2", "03256", "03257"]]],
+            ["VAR", "$CATACOMBS_COUNT", ["SUBTRACT", ["LENGTH", "$CATACOMBS"], 4]],
             ["FOR_EACH_START_STOP_STEP", "$I", 3, "$CATACOMBS_COUNT", 1, [
-                ["VAR", "$CATACOMB", "$CATACOMBS.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS.[$I]", 1, "sharedDeckA"]
             ]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
-                ["VAR", "$CATACOMB", "$CATACOMBS_BOTTOM.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS_BOTTOM.[$I]", 1, "sharedDeckA"]
             ]],
             ["SET", "/arkhamSkipShufflingSharedDeckA", true],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
@@ -91,7 +91,8 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Then, choose a Catacombs location adjacent to the starting location and reveal it."]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "$FINAL_MESSAGE"],
+            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

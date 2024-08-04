@@ -43,9 +43,9 @@
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],
-            ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "{{$SECOND_ACTS.[0]}}", 1, "sharedActStory"],
+            ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "$SECOND_ACTS.[0]", 1, "sharedActStory"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Pile A."],
+            ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

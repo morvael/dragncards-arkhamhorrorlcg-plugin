@@ -64,15 +64,13 @@
             ["VAR", "$CATACOMB_0", "$CATACOMBS.[0]"],
             ["VAR", "$CATACOMB_1", "$CATACOMBS.[1]"],
             ["VAR", "$CATACOMB_2", "$CATACOMBS.[2]"],
-            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$CATACOMB_0}}", "{{$CATACOMB_1}}", "{{$CATACOMB_2}}", "03256", "03257"]]],
+            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$CATACOMB_0", "$CATACOMB_1", "$CATACOMB_2", "03256", "03257"]]],
             ["VAR", "$CATACOMBS_COUNT", ["LENGTH", "$CATACOMBS"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 3, "$CATACOMBS_COUNT", 1, [
-                ["VAR", "$CATACOMB", "$CATACOMBS.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS.[$I]", 1, "sharedDeckA"]
             ]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
-                ["VAR", "$CATACOMB", "$CATACOMBS_BOTTOM.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS_BOTTOM.[$I]", 1, "sharedDeckA"]
             ]],
             ["SET", "/arkhamSkipShufflingSharedDeckA", true],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
