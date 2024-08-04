@@ -36,6 +36,16 @@
                         ]
                     },
                     {
+                        "label": "id:theForgottenAge",
+                        "deckLists": [
+                            {"label": "id:leoAndersonStarterDeck", "deckListId": "Leo Anderson Starter Deck"},
+                            {"label": "id:ursulaDownsStarterDeck", "deckListId": "Ursula Downs Starter Deck"},
+                            {"label": "id:finnEdwardsStarterDeck", "deckListId": "Finn Edwards Starter Deck"},
+                            {"label": "id:fatherMateoStarterDeck", "deckListId": "Father Mateo Starter Deck"},
+                            {"label": "id:calvinWrightStarterDeck", "deckListId": "Calvin Wright Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -182,6 +192,21 @@
         "lolaHayesStarterDeck": {
             "English": "Lola Hayes Starter Deck"
         },
+        "leoAndersonStarterDeck": {
+            "English": "Leo Anderson Starter Deck"
+        },
+        "ursulaDownsStarterDeck": {
+            "English": "Ursula Downs Starter Deck"
+        },
+        "finnEdwardsStarterDeck": {
+            "English": "Finn Edwards Starter Deck"
+        },
+        "fatherMateoStarterDeck": {
+            "English": "Father Mateo Starter Deck"
+        },
+        "calvinWrightStarterDeck": {
+            "English": "Calvin Wright Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -268,6 +293,9 @@
         },
         "dimCarcosa": {
             "English": "Dim Carcosa"
+        },
+        "theForgottenAge": {
+            "English": "The Forgotten Age"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

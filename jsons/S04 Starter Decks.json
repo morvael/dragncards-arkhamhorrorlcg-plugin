@@ -1,0 +1,203 @@
+{
+    "preBuiltDecks": {
+        "Leo Anderson Starter Deck": {
+            "label": "Leo Anderson Starter Deck",
+            "cards": [
+                {"databaseId": "04001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01516", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01517", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01518", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01519", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01520", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01521", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01522", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01523", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01524", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01525", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01544", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01547", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01548", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01549", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01550", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01553", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01591", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04006", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04007", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04017", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04018", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04019", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04026", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Ursula Downs Starter Deck": {
+            "label": "Ursula Downs Starter Deck",
+            "cards": [
+                {"databaseId": "04002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01530", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01531", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01532", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01533", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01534", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01535", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01536", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01537", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01538", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01539", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01589", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01592", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01593", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04023", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04024", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Finn Edwards Starter Deck": {
+            "label": "Finn Edwards Starter Deck",
+            "cards": [
+                {"databaseId": "04003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01544", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01545", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01546", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01547", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01548", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01549", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01550", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01551", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01552", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01553", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01573", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01575", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01577", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01580", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01581", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01591", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04011", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04012", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04026", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04027", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Father Mateo Starter Deck": {
+            "label": "Father Mateo Starter Deck",
+            "cards": [
+                {"databaseId": "04004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01559", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01560", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01561", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01562", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01563", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01564", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01565", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01566", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01567", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01571", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01589", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01592", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01593", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04029", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Calvin Wright Starter Deck": {
+            "label": "Calvin Wright Starter Deck",
+            "cards": [
+                {"databaseId": "04005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01565", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01572", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01573", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01574", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01575", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01576", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01577", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01578", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01579", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01580", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01581", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01586", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01587", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01588", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01589", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01590", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01591", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01592", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01593", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04015", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04034", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04036", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "04005": {
+                "_comment": "Calvin Wright",
+                "rules": [
+                    {
+                        "_comment": "Set damage dependent skills",
+                        "type": "trigger",
+                        "listenTo": ["/cardById/*/tokens/damage"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.id", "$THIS.id"]
+                            ]
+                        ],
+                        "then": [
+                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$TARGET.tokens.damage"],
+                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$TARGET.tokens.damage"]
+                        ]
+                    },
+                    {
+                        "_comment": "Set horror dependent skills",
+                        "type": "trigger",
+                        "listenTo": ["/cardById/*/tokens/horror"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.id", "$THIS.id"]
+                            ]
+                        ],
+                        "then": [
+                            ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$TARGET.tokens.horror"],
+                            ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$TARGET.tokens.horror"]
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
