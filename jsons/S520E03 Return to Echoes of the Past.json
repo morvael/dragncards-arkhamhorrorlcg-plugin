@@ -1,0 +1,120 @@
+{
+    "preBuiltDecks": {
+        "Return to Echoes of the Past Scenario": {
+             "label": "Return to Echoes of the Past Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Echoes of the Past", "Return to Echoes of the Past Scenario Init"]
+            ]
+        },
+        "Return to Echoes of the Past": {
+            "hideFromSearch": true,
+             "label": "Return to Echoes of the Past",
+             "cards": [
+                {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03123", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03124", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03125", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03126", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03141", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Echoes of the Past - Historical Society": {
+            "hideFromSearch": true,
+            "label": "Return to Echoes of the Past - Historical Society",
+            "cards": [
+                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
+                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Echoes of the Past Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Sebastien Moreau is listed under VIPs Interviewed.", "The above is not true."], "Return to Echoes of the Past Scenario Question 1"]
+        ],
+        "Return to Echoes of the Past Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: Sebastien Moreau is listed under VIPs Interviewed."]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Return to Echoes of the Past"],
+            ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
+            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]],
+            ["VAR", "$SOCIETIES_1", ["SHUFFLE_LIST", ["LIST", "03132", "03133", "03134"]]],
+            ["VAR", "$SOCIETIES_2", ["SHUFFLE_LIST", ["LIST", "03136", "03137", "03138"]]],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 76],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_1.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 43],
+                ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_2.[{{$I}}]", "$SPAWN_LEFTS.[{{$I}}]", 10]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Return to Echoes of the Past - Historical Society"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["VAR", "$ENTRY_HALL_CARD", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL_CARD.id", "$GAME.arkhamNumPlayers", true, null]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entry Hall", 5, 7, 3, 0],
+            ["VAR", "$SEEKERS_TO_SPAWN", 0],
+            ["VAR", "$SPAWN_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.name", "Historical Society"],
+                ["IN_STRING", "$CARD.currentFace.traits", "Third Floor."]
+            ]]]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamNumPlayers", 2],
+                [
+                    ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 1]
+                ],
+                ["EQUAL", "$GAME.arkhamNumPlayers", 3],
+                [
+                    ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 2]
+                ],
+                ["EQUAL", "$GAME.arkhamNumPlayers", 4],
+                [
+                    ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 3],
+                    ["UPDATE_VAR", "$SPAWN_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                        ["EQUAL", "$CARD.currentFace.name", "Historical Society"],
+                        ["OR",
+                            ["IN_STRING", "$CARD.currentFace.traits", "Third Floor."],
+                            ["IN_STRING", "$CARD.currentFace.traits", "Second Floor."]
+                        ]
+                    ]]]]
+                ]
+            ],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$SEEKERS_TO_SPAWN", 1, [
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Seeker of Carcosa", "$SPAWN_LOCATIONS.[$I].id", 3, 3]
+            ]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You fled the dinner party.", "The above is not true."], "Return to Echoes of the Past Scenario Question 2"]
+        ],
+        "Return to Echoes of the Past Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You fled the dinner party."],
+                    ["SET", "/arkhamFinalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game."]
+                ]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

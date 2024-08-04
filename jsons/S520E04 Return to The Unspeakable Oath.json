@@ -1,0 +1,180 @@
+{
+    "preBuiltDecks": {
+        "Return to The Unspeakable Oath Scenario": {
+             "label": "Return to The Unspeakable Oath Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to The Unspeakable Oath", "Return to The Unspeakable Oath Scenario Init"]
+            ]
+        },
+        "Return to The Unspeakable Oath": {
+            "hideFromSearch": true,
+             "label": "Return to The Unspeakable Oath",
+             "cards": [
+                {"databaseId": "03159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03160", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03163", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03166", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03167", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03182a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03178", "quantity": 1, "loadGroupId": "sharedDeckC"},
+                {"databaseId": "03179", "quantity": 1, "loadGroupId": "sharedDeckC"},
+                {"databaseId": "03180", "quantity": 1, "loadGroupId": "sharedDeckC"},
+                {"databaseId": "03181", "quantity": 1, "loadGroupId": "sharedDeckC"},
+                {"databaseId": "03183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03184", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03186", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03187", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03188", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to The Unspeakable Oath - Western Patient Wing": {
+            "hideFromSearch": true,
+            "label": "Return to The Unspeakable Oath - Western Patient Wing",
+            "cards": [
+                {"databaseId": "03168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "55%"},
+                {"databaseId": "03169", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "55%"}
+            ]
+        },
+        "Return to The Unspeakable Oath - Eastern Patient Wing": {
+            "hideFromSearch": true,
+            "label": "Return to The Unspeakable Oath - Eastern Patient Wing",
+            "cards": [
+                {"databaseId": "03170", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "55%"},
+                {"databaseId": "03171", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "55%"}
+            ]
+        },
+        "Return to The Unspeakable Oath - Asylum": {
+            "hideFromSearch": true,
+            "label": "Return to The Unspeakable Oath - Asylum",
+            "cards": [
+                {"databaseId": "03172", "quantity": 1, "loadGroupId": "sharedLocations", "left": "5%", "top": "55%"},
+                {"databaseId": "03173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "55%"},
+                {"databaseId": "03174", "quantity": 1, "loadGroupId": "sharedLocations", "left": "81%", "top": "55%"},
+                {"databaseId": "03175", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "31%"},
+                {"databaseId": "03176", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "7%"},
+                {"databaseId": "03177", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "79%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to The Unspeakable Oath Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Constance Dumaine is listed under VIPs Interviewed.", "The above is not true."], "Return to The Unspeakable Oath Scenario Question 1"]
+        ],
+        "Return to The Unspeakable Oath Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: Constance Dumaine is listed under VIPs Interviewed."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$TOP_CARD", ["GET_TOP_CARD", ["GET_CONTROLLER_DECK", "$PLAYER_I"]]],
+                        ["DO_LOG_SCN", "$PLAYER_I", "places the top card of their deck facedown in their play area as Courage asset."],
+                        ["MOVE_CARD", "$TOP_CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1],
+                        ["SET", "/cardById/$TOP_CARD.id/currentSide", "B"]
+                    ]]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Return to The Unspeakable Oath"],
+            ["DO_LOAD_CARDS_SCN", "Hastur's Gift"],
+            ["DO_LOAD_CARDS_SCN", "Inhabitants of Carcosa"],
+            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Decay & Filth"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
+            ["VAR", "$MONSTERS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                ["EQUAL", "$CARD.sides.A.type", "Enemy"],
+                ["IN_STRING", "$CARD.sides.A.traits", "Monster."]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$MONSTERS", [
+                ["MOVE_CARD", "$CARD.id", "sharedDeckA", -1]
+            ]],
+            ["VAR", "$POSSESSED", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                ["EQUAL", "$CARD.sides.A.type", "Enemy"],
+                ["OR",
+                    ["IN_STRING", "$CARD.sides.A.traits", "Possessed."],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Lunatic."]
+                ]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$POSSESSED", [
+                ["MOVE_CARD", "$CARD.id", "sharedDeckB", -1]
+            ]],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Unspeakable Oath - Western Patient Wing", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Unspeakable Oath - Eastern Patient Wing", 1],
+            ["SET", "/arkhamTheUnspeakableOathSpawnChoiceDone", 0],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["PROMPT", "$PLAYER_I", "theUnspeakableOathSpawnChoice"]
+            ]]
+        ],
+        "Return to The Unspeakable Oath Scenario Init Continue 1": [
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Asylum Halls: Western Patient Wing", 5, 7, 3, 0],
+            ["DO_LOAD_CARDS_SCN", "Return to The Unspeakable Oath - Asylum"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-2", "chaos_m2"],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Normal"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-3", "chaos_m3"],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-4", "chaos_m4"],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
+                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-5", "chaos_m5"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You took the onyx clasp.", "The above is not true."], "Return to The Unspeakable Oath Scenario Question 2"]
+        ],
+        "Return to The Unspeakable Oath Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You took the onyx clasp."],
+                    ["DO_CREATE_STORY_CARD_SCN", "\"The Really Bad Ones\" (v. I)", "03164", 1, "sharedActStory"]
+                ],
+                ["TRUE"],
+                ["DO_CREATE_STORY_CARD_SCN", "\"The Really Bad Ones\" (v. II)", "03165", 1, "sharedActStory"]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Monster enemy cards are in Deck A, Possessed (Lunatic) enemy cards are in Deck B, Patient Confinement cards are in Deck C."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "DO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE.LOCATION_CARD_NAME"],
+                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
+                ["INCREASE_VAL", "/arkhamTheUnspeakableOathSpawnChoiceDone", 1],
+                ["COND",
+                    ["GREATER_EQUAL", "$GAME.arkhamTheUnspeakableOathSpawnChoiceDone", "$GAME.numPlayers"],
+                    ["ACTION_LIST", "Return to The Unspeakable Oath Scenario Init Continue 1"]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "theUnspeakableOathSpawnChoice": {
+            "args": [],
+            "message": "Where do you want to begin the game?",
+            "options": [
+                {
+                    "label": "Western Patient Wing.",
+                    "hotkey": "W",
+                    "code": [
+                        ["DO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE", "$PLAYER_N", "Asylum Halls: Western Patient Wing"]
+                    ]
+                },
+                {
+                    "label": "Eastern Patient Wing.",
+                    "hotkey": "E",
+                    "code": [
+                        ["DO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE", "$PLAYER_N", "Asylum Halls: Eastern Patient Wing"]
+                    ]
+                }
+            ]
+        }
+    }
+}

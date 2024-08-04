@@ -1,0 +1,98 @@
+{
+    "preBuiltDecks": {
+        "Return to The Pallid Mask Scenario": {
+             "label": "Return to The Pallid Mask Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to The Pallid Mask", "Return to The Pallid Mask Scenario Init"]
+            ]
+        },
+        "Return to The Pallid Mask": {
+            "hideFromSearch": true,
+             "label": "Return to The Pallid Mask",
+             "cards": [
+                {"databaseId": "03240", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03241", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03242", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03243", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03244", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03245", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03246", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03258", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03259", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03262", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to The Pallid Mask Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Ishimaru Haruko is listed under VIPs Interviewed.", "The above is not true."], "Return to The Pallid Mask Scenario Question 1"]
+        ],
+        "Return to The Pallid Mask Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: Ishimaru Haruko is listed under VIPs Interviewed."]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Return to The Pallid Mask"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
+            ["DO_LOAD_CARDS_SCN", "Hauntings"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You awoke inside the catacombs.", "You entered the catacombs on your own."], "Return to The Pallid Mask Scenario Question 2"]
+        ],
+        "Return to The Pallid Mask Scenario Question 2": [
+            ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255"]]],
+            ["VAR", "$STARTING_LOCATION", "$CATACOMBS.[0]"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You awoke inside the catacombs."]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                [
+                    ["LOG", "└── Campaign Log: You entered the catacombs on your own."],
+                    ["UPDATE_VAR", "$STARTING_LOCATION", "03247"]
+                ]
+            ],
+            ["UPDATE_VAR", "$CATACOMBS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$CATACOMBS", "$STARTING_LOCATION"]],
+            ["DO_SPAWN_LOCATION_SCN", "Catacombs", "$STARTING_LOCATION", 24, 31],
+            ["VAR", "$STARTING_LOCATION_ID", "$DO_SPAWN_LOCATION_RESULT"],
+            ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$STARTING_LOCATION_ID", 1, true, null],
+            ["VAR", "$CATACOMB_0", "$CATACOMBS.[0]"],
+            ["VAR", "$CATACOMB_1", "$CATACOMBS.[1]"],
+            ["VAR", "$CATACOMB_2", "$CATACOMBS.[2]"],
+            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$CATACOMB_0}}", "{{$CATACOMB_1}}", "{{$CATACOMB_2}}", "03256", "03257"]]],
+            ["VAR", "$CATACOMBS_COUNT", ["LENGTH", "$CATACOMBS"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 3, "$CATACOMBS_COUNT", 1, [
+                ["VAR", "$CATACOMB", "$CATACOMBS.[{{$I}}]"],
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
+                ["VAR", "$CATACOMB", "$CATACOMBS_BOTTOM.[{{$I}}]"],
+                ["DO_CREATE_CARDS_SCN", "Catacombs", "{{$CATACOMB}}", 1, "sharedDeckA"]
+            ]],
+            ["SET", "/arkhamSkipShufflingSharedDeckA", true],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
+            ["VAR", "$MAN_IN_THE_PALLID_MASK", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.databaseId", "03059"]]],
+            ["COND",
+                ["EQUAL", "$MAN_IN_THE_PALLID_MASK", null],
+                ["DO_CREATE_CARDS_SCN", "The Man in Return to The Pallid Mask", "03059", 1, "sharedNotInPlay"],
+                ["TRUE"],
+                [
+                    ["DO_LOG_SCN", "$MAN_IN_THE_PALLID_MASK.controller", "moves {{$MAN_IN_THE_PALLID_MASK.sides.A.name}} from their deck to {{$GROUP_BY_ID.sharedNotInPlay.label}}."],
+                    ["MOVE_CARD", "$MAN_IN_THE_PALLID_MASK.id", "$sharedNotInPlay", -1]
+                ]
+            ],
+            ["VAR", "$FINAL_MESSAGE", "Catacombs cards are in Deck A. Remember to trigger the Forced effect on the starting location when revealed."],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Then, choose a Catacombs location adjacent to the starting location and reveal it."]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "$FINAL_MESSAGE"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "preBuiltDecks": {
+        "Delusory Evils": {
+            "hideFromSearch": true,
+            "label": "Delusory Evils",
+            "cards": [
+                {"databaseId": "52065", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Decaying Reality": {
+            "hideFromSearch": true,
+            "label": "Decaying Reality",
+            "cards": [
+                {"databaseId": "52066", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52067", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52068", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Hastur's Envoys": {
+            "hideFromSearch": true,
+            "label": "Hastur's Envoys",
+            "cards": [
+                {"databaseId": "52069", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52070", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Maddening Delusions": {
+            "hideFromSearch": true,
+            "label": "Maddening Delusions",
+            "cards": [
+                {"databaseId": "52071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52075", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Neurotic Fear": {
+            "hideFromSearch": true,
+            "label": "Neurotic Fear",
+            "cards": [
+                {"databaseId": "52076", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "52078", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    }
+}

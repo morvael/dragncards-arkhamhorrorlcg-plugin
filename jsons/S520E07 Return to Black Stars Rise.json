@@ -1,0 +1,139 @@
+{
+    "preBuiltDecks": {
+        "Return to Black Stars Rise Scenario": {
+             "label": "Return to Black Stars Rise Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Black Stars Rise", "Return to Black Stars Rise Scenario Init"]
+            ]
+        },
+        "Return to Black Stars Rise": {
+            "hideFromSearch": true,
+             "label": "Return to Black Stars Rise",
+             "cards": [
+                {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "03278", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03280", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "03281", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03282", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03300", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03301", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03294", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03295", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03302", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "03303", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Black Stars Rise - Inhabitants of Carcosa": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - Inhabitants of Carcosa",
+            "cards": [
+                {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Return to Black Stars Rise - Choeur Gothique": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - Choeur Gothique",
+            "cards": [
+                {"databaseId": "03292", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "03293", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        },
+        "Return to Black Stars Rise - North Tower": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - North Tower",
+            "cards": [
+                {"databaseId": "03287", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "7%"},
+                {"databaseId": "03288", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "7%"}
+            ]
+        },
+        "Return to Black Stars Rise - Outer Wall": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - Outer Wall",
+            "cards": [
+                {"databaseId": "03285", "quantity": 1, "loadGroupId": "sharedLocations", "left": "81%", "top": "31%"},
+                {"databaseId": "03286", "quantity": 1, "loadGroupId": "sharedLocations", "left": "81%", "top": "31%"}
+            ]
+        },
+        "Return to Black Stars Rise - Broken Steps": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - Broken Steps",
+            "cards": [
+                {"databaseId": "03289", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "31%"},
+                {"databaseId": "03290", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "31%"}
+            ]
+        },
+        "Return to Black Stars Rise - Abbey": {
+            "hideFromSearch": true,
+            "label": "Return to Black Stars Rise - Abbey",
+            "cards": [
+                {"databaseId": "03283", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "79%"},
+                {"databaseId": "03284", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "55%"},
+                {"databaseId": "03291", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "31%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Black Stars Rise Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Ashleigh Clarke is listed under VIPs Interviewed.", "The above is not true."], "Return to Black Stars Rise Scenario Question 1"]
+        ],
+        "Return to Black Stars Rise Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: Ashleigh Clarke is listed under VIPs Interviewed."]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise"],
+            ["DO_SET_SPAWN_LOCATION", "03294", 5, 31],
+            ["DO_SET_SPAWN_LOCATION", "03295", 5, 55],
+            ["DO_LOAD_CARDS_SCN", "Evil Portents"],
+            ["DO_LOAD_CARDS_SCN", "Byakhee"],
+            ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise - Inhabitants of Carcosa"],
+            ["DO_LOAD_CARDS_SCN", "The Stranger"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["LOG", "└── Choosing between The Flood Below and The Vortex Above."],
+            ["VAR", "$COIN", ["RANDOM_INT", 0, 1]],
+            ["COND",
+                ["EQUAL", "$COIN", 0],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Let The Storm Rage", "03276a", 1, "sharedAgendaStory"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Entity Above", "03279b", 1, "sharedActStory"],
+                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03298", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03298", 5, 7],
+                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03297", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03297", 24, 55]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Let The Storm Rage", "03276b", 1, "sharedAgendaStory"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Entity Above", "03279a", 1, "sharedActStory"],
+                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03299", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03299", 5, 7],
+                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03296", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "03296", 24, 55]
+                ]
+            ],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Black Stars Rise - Choeur Gothique", 1],
+            ["DO_SET_SPAWN_LOCATION", "03292", 24, 7],
+            ["DO_SET_SPAWN_LOCATION", "03293", 24, 7],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Black Stars Rise - North Tower", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Black Stars Rise - Outer Wall", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Black Stars Rise - Broken Steps", 1],
+            ["DO_LOAD_CARDS_SCN", "Return to Black Stars Rise - Abbey"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Porte de l'Avancée", 5, 7, 3, 0],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Pact, Cultist, or Detective weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_PACT_CULTIST_DETECTIVE_WEAKNESSES"]]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["SET", "/arkhamFinalScenarioMessage", "During this scenario, as a triggered ability, an investigator may remove 1 doom from an agenda in play. (Group limit once per game.)"]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

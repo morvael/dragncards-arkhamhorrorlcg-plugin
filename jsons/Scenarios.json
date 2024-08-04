@@ -109,6 +109,19 @@
                             {"label": "id:returnToWhereDoomAwaits", "deckListId": "Return to Where Doom Awaits Scenario"},
                             {"label": "id:returnToLostInTimeAndSpace", "deckListId": "Return to Lost in Time and Space Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:returnToThePathToCarcosa",
+                        "deckLists": [
+                            {"label": "id:returnToCurtainCall", "deckListId": "Return to Curtain Call Scenario"},
+                            {"label": "id:returnToTheLastKing", "deckListId": "Return to The Last King Scenario"},
+                            {"label": "id:returnToEchoesOfThePast", "deckListId": "Return to Echoes of the Past Scenario"},
+                            {"label": "id:returnToTheUnspeakableOath", "deckListId": "Return to The Unspeakable Oath Scenario"},
+                            {"label": "id:returnToAPhantomOfTruth", "deckListId": "Return to A Phantom of Truth Scenario"},
+                            {"label": "id:returnToThePallidMask", "deckListId": "Return to The Pallid Mask Scenario"},
+                            {"label": "id:returnToBlackStarsRise", "deckListId": "Return to Black Stars Rise Scenario"},
+                            {"label": "id:returnToDimCarcosa", "deckListId": "Return to Dim Carcosa Scenario"}
+                        ]
                     }
                 ]
             }
@@ -297,6 +310,33 @@
         },
         "returnToLostInTimeAndSpace": {
             "English": "Return to Lost in Time and Space"
+        },
+        "returnToThePathToCarcosa": {
+            "English": "Return to the Path to Carcosa"
+        },
+        "returnToCurtainCall": {
+            "English": "Return to Curtain Call"
+        },
+        "returnToTheLastKing": {
+            "English": "Return to The Last King"
+        },
+        "returnToEchoesOfThePast": {
+            "English": "Return to Echoes of the Past"
+        },
+        "returnToTheUnspeakableOath": {
+            "English": "Return to The Unspeakable Oath"
+        },
+        "returnToAPhantomOfTruth": {
+            "English": "Return to A Phantom of Truth"
+        },
+        "returnToThePallidMask": {
+            "English": "Return to The Pallid Mask"
+        },
+        "returnToBlackStarsRise": {
+            "English": "Return to Black Stars Rise"
+        },
+        "returnToDimCarcosa": {
+            "English": "Return to Dim Carcosa"
         }
     }
 }
