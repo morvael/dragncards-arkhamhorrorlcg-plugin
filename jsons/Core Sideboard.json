@@ -56,7 +56,32 @@
             ["FOR_EACH_VAL", "$CARD", "$SELECTED_DISPLAY", [
                 ["INCREASE_VAR", "$DISPLAY_VP", "$CARD.currentFace.victoryPoints"]
             ]],
-            ["LOG", "└── Scored VP: ", ["ADD", "$LOCATIONS_VP", "$DISPLAY_VP"], " (locations: {{$LOCATIONS_VP}}, display: {{$DISPLAY_VP}})."]
+            ["VAR", "$LOCATIONS_VENGEANCE", 0],
+            ["VAR", "$SELECTED_LOCATIONS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"],
+                ["NOT_EQUAL", "$CARD.currentFace.vengeance", null],
+                ["GREATER_THAN", "$CARD.currentFace.vengeance", 0],
+                ["EQUAL", "$CARD.tokens.clue", 0]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_LOCATIONS", [
+                ["INCREASE_VAR", "$LOCATIONS_VENGEANCE", "$CARD.currentFace.vengeance"]
+            ]],
+            ["VAR", "$DISPLAY_VENGEANCE", 0],
+            ["VAR", "$SELECTED_DISPLAY", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                ["NOT_EQUAL", "$CARD.currentFace.vengeance", null],
+                ["GREATER_THAN", "$CARD.currentFace.vengeance", 0]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_DISPLAY", [
+                ["INCREASE_VAR", "$DISPLAY_VENGEANCE", "$CARD.currentFace.vengeance"]
+            ]],
+            ["COND",
+                ["GREATER_THAN", ["ADD", "$LOCATIONS_VENGEANCE", "$DISPLAY_VENGEANCE"], 0],
+                ["LOG", "└── Scored VP: ", ["ADD", "$LOCATIONS_VP", "$DISPLAY_VP"], " (locations: {{$LOCATIONS_VP}}, display: {{$DISPLAY_VP}}). Accrued Vengeance: ", ["ADD", "$LOCATIONS_VENGEANCE", "$DISPLAY_VENGEANCE"], " (locations: {{$LOCATIONS_VENGEANCE}}, display: {{$DISPLAY_VENGEANCE}})."],
+                ["TRUE"],
+                ["LOG", "└── Scored VP: ", ["ADD", "$LOCATIONS_VP", "$DISPLAY_VP"], " (locations: {{$LOCATIONS_VP}}, display: {{$DISPLAY_VP}})."]
+            ]
         ]
     },
     "functions": {

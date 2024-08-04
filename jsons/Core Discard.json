@@ -70,6 +70,7 @@
                         ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.sides.A.victoryPoints", null],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.A.vengeance", null],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
                             ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
@@ -89,6 +90,7 @@
                         ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.currentFace.victoryPoints", null],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.vengeance", null],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
                             ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
@@ -137,7 +139,10 @@
                     ],
                     ["EQUAL", "$DISCARD_CARD_MODE", 4],
                     ["COND",
-                        ["NOT_EQUAL", "$TARGET_CARD.sides.A.victoryPoints", null],
+                        ["OR",
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.A.victoryPoints", null],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.A.vengeance", null]
+                        ],
                         ["COND",
                             ["OR",
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
@@ -156,7 +161,10 @@
                     ],
                     ["EQUAL", "$DISCARD_CARD_MODE", 5],
                     ["COND",
-                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.victoryPoints", null],
+                        ["OR",
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.victoryPoints", null],
+                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.vengeance", null]
+                        ],                        
                         ["COND",
                             ["OR",
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
@@ -434,7 +442,7 @@
     "prompts": {
         "victoryOrDiscardHand": {
             "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "message": "{{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} is Victory {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.victoryPoints}}. Select destination.",
+            "message": "{{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} is Victory or Vengeance card. Select destination.",
             "options": [
                 {
                     "label": "Victory Display",
@@ -456,7 +464,7 @@
         },
         "victoryOrDiscardPlay": {
             "args": ["$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "message": "{{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}} is Victory {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.victoryPoints}}. Select destination.",
+            "message": "{{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}} is Victory or Vengeance card. Select destination.",
             "options": [
                 {
                     "label": "Victory Display",

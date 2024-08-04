@@ -417,6 +417,7 @@
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                         ["OR",
                             ["NOT_EQUAL", "$ACTIVE_CARD.sides.A.victoryPoints", null],
+                            ["NOT_EQUAL", "$ACTIVE_CARD.sides.A.vengeance", null],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
                             ["NOT_EQUAL", "$ACTIVE_CARD.cardDiscard", ""]
@@ -435,6 +436,7 @@
                         ["NOT_EQUAL", "$ACTIVE_FACE.permanent", true],
                         ["OR",
                             ["NOT_EQUAL", "$ACTIVE_FACE.victoryPoints", null],
+                            ["NOT_EQUAL", "$ACTIVE_FACE.vengeance", null],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
                             ["NOT_EQUAL", "$ACTIVE_CARD.cardDiscard", ""]

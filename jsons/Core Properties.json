@@ -50,6 +50,7 @@
         "clues":                 {"type": "integer", "default": null},
         "cluesFixed":            {"type": "boolean", "default": false},
         "victoryPoints":         {"type": "integer", "default": null},
+        "vengeance":             {"type": "integer", "default": null},
         "stage":                 {"type": "integer", "default": null},
         "action":                {"type": "boolean", "default": false},
         "reaction":              {"type": "boolean", "default": false},
