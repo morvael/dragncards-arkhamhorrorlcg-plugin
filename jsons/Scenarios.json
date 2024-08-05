@@ -98,7 +98,8 @@
                         "label": "id:theForgottenAge",
                         "deckLists": [
                             {"label": "id:theUntamedWilds", "deckListId": "The Untamed Wilds Scenario"},
-                            {"label": "id:theDoomOfEztli", "deckListId": "The Doom of Eztli Scenario"}
+                            {"label": "id:theDoomOfEztli", "deckListId": "The Doom of Eztli Scenario"},
+                            {"label": "id:threadsOfFate", "deckListId": "Threads of Fate Scenario"}
                         ]
                     }
                 ]
@@ -315,6 +316,9 @@
         },
         "theDoomOfEztli": {
             "English": "The Doom of Eztli"
+        },
+        "threadsOfFate": {
+            "English": "Threads of Fate"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

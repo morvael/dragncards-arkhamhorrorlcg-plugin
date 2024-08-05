@@ -160,16 +160,7 @@
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dark Spires", 5, 3, 3, 0]
                 ]
             ],
-            ["VAR", "$MAN_IN_THE_PALLID_MASK", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.databaseId", "03059"]]],
-            ["COND",
-                ["EQUAL", "$MAN_IN_THE_PALLID_MASK", null],
-                ["DO_CREATE_CARDS_SCN", "The Man in the Pallid Mask", "03059", 1, "sharedNotInPlay"],
-                ["TRUE"],
-                [
-                    ["DO_LOG_SCN", "$MAN_IN_THE_PALLID_MASK.controller", "moves {{$MAN_IN_THE_PALLID_MASK.sides.A.name}} from their deck to {{$GROUP_BY_ID.sharedNotInPlay.label}}."],
-                    ["MOVE_CARD", "$MAN_IN_THE_PALLID_MASK.id", "$sharedNotInPlay", -1]
-                ]
-            ],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Man in the Pallid Mask", "03059", "sharedNotInPlay"],
             ["DO_LOAD_CARDS_SCN", "Return to Dim Carcosa - Set Aside"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of tally marks under “Chasing the Stranger” in your Campaign Log.", ["LIST", "There are 2 or fewer tally marks.", "There are between 3-5 tally marks.", "There are between 6-8 tally marks.", "There are 9 or more tally marks."], "Return to Dim Carcosa Scenario Question 4"]
         ],

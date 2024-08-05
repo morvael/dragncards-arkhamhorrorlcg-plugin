@@ -170,6 +170,8 @@
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],

@@ -505,6 +505,8 @@
                                 ["EQUAL", "$ACTIVE_FACE.type", "Event"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Act"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Story"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Key"],

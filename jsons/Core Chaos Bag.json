@@ -179,6 +179,12 @@
                 ]
             ]
         },
+        "DO_ADD_CHAOS_TOKEN_SCN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["DO_ADD_CHAOS_TOKEN", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", 100, true, null]
+            ]
+        },
         "DO_ADD_CHAOS_TOKEN_ACTION": {
             "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -193,12 +199,6 @@
                     ["TRUE"],
                     ["LOG", "└── You cannot add {{$CHAOS_TOKEN_NAME}} Chaos Token to the Chaos Bag, ", ["GET_ALIAS", "$ACTOR_PLAYER"],"."]
                 ]
-            ]
-        },
-        "DO_ADD_CHAOS_TOKEN_ACTION_SCN": {
-            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
-            "code": [
-                ["DO_ADD_CHAOS_TOKEN_ACTION", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", 100, true, null]
             ]
         },
         "CAN_REMOVE_CHAOS_TOKEN": {
@@ -225,6 +225,12 @@
                 ]
             ]
         },
+        "DO_REMOVE_CHAOS_TOKEN_SCN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["DO_REMOVE_CHAOS_TOKEN", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", true, null]
+            ]
+        },
         "DO_REMOVE_CHAOS_TOKEN_ACTION": {
             "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -238,6 +244,36 @@
                     ["TRUE"],
                     ["LOG", "└── You cannot remove {{$CHAOS_TOKEN_NAME}} Chaos Token from the Chaos Bag, ", ["GET_ALIAS", "$ACTOR_PLAYER"],"."]
                 ]
+            ]
+        },
+        "DO_REMOVE_ALL_CHAOS_TOKENS": {
+            "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_ALL_CHAOS_TOKENS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CHAOS_TOKEN_NAME", "DO_REMOVE_ALL_CHAOS_TOKENS.CHAOS_TOKEN_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$CHAOS_TOKEN_DATABASE_ID", "DO_REMOVE_ALL_CHAOS_TOKENS.CHAOS_TOKEN_DATABASE_ID"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_ALL_CHAOS_TOKENS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
+                    ["EQUAL", "$CARD.sides.A.name", "$CHAOS_TOKEN_NAME"],
+                    ["EQUAL", "$CARD.groupId", "sharedChaosBag"]
+                ]]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$CHAOS_TOKEN_NAME}} Chaos Token from the Chaos Bag.", "removes {{$SELECTED_COUNT}}x {{$CHAOS_TOKEN_NAME}} Chaos Token from the Chaos Bag."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_DELETE_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_REMOVE_ALL_CHAOS_TOKENS_SCN": {
+            "args": ["$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["DO_REMOVE_ALL_CHAOS_TOKENS", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", true, null]
             ]
         }
     },

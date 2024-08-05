@@ -74,16 +74,7 @@
             ]],
             ["SET", "/arkhamSkipShufflingSharedDeckA", true],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
-            ["VAR", "$MAN_IN_THE_PALLID_MASK", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.sides.A.databaseId", "03059"]]],
-            ["COND",
-                ["EQUAL", "$MAN_IN_THE_PALLID_MASK", null],
-                ["DO_CREATE_CARDS_SCN", "The Man in the Pallid Mask", "03059", 1, "sharedNotInPlay"],
-                ["TRUE"],
-                [
-                    ["DO_LOG_SCN", "$MAN_IN_THE_PALLID_MASK.controller", "moves {{$MAN_IN_THE_PALLID_MASK.sides.A.name}} from their deck to {{$GROUP_BY_ID.sharedNotInPlay.label}}."],
-                    ["MOVE_CARD", "$MAN_IN_THE_PALLID_MASK.id", "$sharedNotInPlay", -1]
-                ]
-            ],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Man in the Pallid Mask", "03059", "sharedNotInPlay"],
             ["VAR", "$FINAL_MESSAGE", "Catacombs cards are in Deck A. Remember to trigger the Forced effect on the starting location when revealed."],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],

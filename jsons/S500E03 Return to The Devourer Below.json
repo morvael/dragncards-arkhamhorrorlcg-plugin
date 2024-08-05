@@ -89,7 +89,7 @@
                     ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
                 ]
             ],
-            ["DO_ADD_CHAOS_TOKEN", "$GAME.firstPlayer", "Elder Thing Chaos Token", "chaos_elder_thing", 100, true, null],
+            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "Return to The Devourer Below Scenario Question 2"]
         ],
         "Return to The Devourer Below Scenario Question 2": [

@@ -88,13 +88,13 @@
             ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Altered Path", 3],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-3", "chaos_m3"],
+                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Normal"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-5", "chaos_m5"],
+                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-6", "chaos_m6"],
+                ["DO_ADD_CHAOS_TOKEN_SCN", "-6", "chaos_m6"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_ACTION_SCN", "-7", "chaos_m7"]
+                ["DO_ADD_CHAOS_TOKEN_SCN", "-7", "chaos_m7"]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log and pick first that applies.", ["LIST", "The investigators restored Silas Bishop.", "The investigators failed to recover the Necronomicon.", "The Necronomicon was stolen.", "All of the above is not true."], "Where Doom Awaits Scenario Question 2"]
         ],
