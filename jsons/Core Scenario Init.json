@@ -137,6 +137,25 @@
                 ]
             ]
         },
+        "DO_REPLACE_CARD_SCN": {
+            "args": ["$REPLACED_NAME", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$REPLACED_NAME", "DO_REPLACE_CARD_SCN.REPLACED_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_REPLACE_CARD_SCN.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_REPLACE_CARD_SCN.TARGET_DATABASE_ID"],
+                ["VAR", "$REPLACED_CARD", ["GET_NAMED_CARD", "$REPLACED_NAME"]],
+                ["COND",
+                    ["NOT_EQUAL", "$REPLACED_CARD", null],
+                    [
+                        ["VAR", "$TARGET_PLAYER", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$REPLACED_CARD.id"]],
+                        ["VAR", "$TARGET_GROUP_ID", "$REPLACED_CARD.groupId"],
+                        ["DO_LOG_SCN", "$TARGET_PLAYER", "replaces {{$REPLACED_CARD.sides.A.name}} with {{$TARGET_NAME}} in {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "$TARGET_GROUP_ID", false, null],
+                        ["DO_DELETE_CARD", "$TARGET_PLAYER", "$REPLACED_CARD.id", false, null]
+                    ]
+                ]
+            ]
+        },
         "DO_LOAD_CARDS": {
             "args": ["$TARGET_PLAYER", "$LOAD_LIST_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -612,6 +631,8 @@
                         ["SET", "/arkhamNumScenarioQuestions", 0],
                         ["SET", "/arkhamScenarioQuestionIndex", 0],
                         ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
+                        ["SET", "/arkhamEventEarlyInit", 0],
+                        ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", false],
                         ["SET", "/arkhamTraumaDone", 0],
                         ["SET", "/arkhamStartingHandDone", 0],
                         ["SET", "/arkhamActiveInvestigator", null],
@@ -628,6 +649,8 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingResources", 5],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingCards", 5],
+                            ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 0],
@@ -672,11 +695,22 @@
                                 ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
-                        ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
+                        ["INCREASE_VAL", "/arkhamEventEarlyInit", 1],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkhamSkipStartingPhysicalTraumaPrompt", false],
+                            ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
+                        ]
                     ],
                     ["TRUE"],
                     ["LOG", "└── Not all players have loaded their investigators and/or decks."]
                 ]
+            ]
+        },
+        "SCENARIO_INIT_RESUME": {
+            "args": ["$NEXT_SCENARIO_ACTION"],
+            "code": [
+                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
             ]
         },
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
@@ -736,10 +770,15 @@
                             ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
                             [
                                 ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                                ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], 5, true, true, null]
+                                ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$PLAYER_DATA.$PLAYER_I.arkhamStartingCards", true, true, null]
                             ]
                         ],
-                        ["PROMPT", "$PLAYER_I", "decideAboutMulligan"]
+                        ["COND",
+                            ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
+                            ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
+                            ["TRUE"],
+                            ["STARTING_HAND_DONE"]
+                        ]
                     ]
                 ]
             ]

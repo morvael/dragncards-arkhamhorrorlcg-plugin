@@ -1,0 +1,220 @@
+{
+    "preBuiltDecks": {
+        "The Boundary Beyond Scenario": {
+             "label": "The Boundary Beyond Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Boundary Beyond", "The Boundary Beyond Scenario Init"]
+            ]
+        },
+        "The Boundary Beyond": {
+            "hideFromSearch": true,
+             "label": "The Boundary Beyond",
+             "cards": [
+                {"databaseId": "04161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04165", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04166", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04186", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04167", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04164", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04174", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04175", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04176", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04177", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04178", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04179", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04180", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04181", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04182", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04183", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04184", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04185", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04187", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04188", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04189", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04190", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The Boundary Beyond - Mexico City": {
+            "hideFromSearch": true,
+            "label": "The Boundary Beyond - Mexico City",
+            "cards": [
+                {"databaseId": "04168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
+                {"databaseId": "04169", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "43%"},
+                {"databaseId": "04170", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},
+                {"databaseId": "04171", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},
+                {"databaseId": "04172", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
+                {"databaseId": "04173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The Boundary Beyond Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators forged a bond with Ichtaca.", "Ichtaca is in the dark."], "The Boundary Beyond Scenario Question 1"]
+        ],
+        "The Boundary Beyond Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: The investigators forged a bond with Ichtaca."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["LOG", "└── Campaign Log: Ichtaca is in the dark."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCards", 2]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators found the missing relic.", "The relic is missing."], "The Boundary Beyond Scenario Question 2"]
+        ],
+        "The Boundary Beyond Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: The investigators found the missing relic."],
+                    ["DO_REPLACE_CARD_SCN", "04061", "Relic of Ages: Forestalling the Future", "04191"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["LOG", "└── Campaign Log: The relic is missing."]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators rescued Alejandro.", "Alejandro is missing."], "The Boundary Beyond Scenario Question 3"]
+        ],
+        "The Boundary Beyond Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: The investigators rescued Alejandro."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResources", 2]
+                    ]]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["LOG", "└── Campaign Log: Alejandro is missing."]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check supplies.", ["LIST", "No gasoline was crossed off.", "The above is not true."], "The Boundary Beyond Scenario Question 4"]
+        ],
+        "The Boundary Beyond Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Supplies: No gasoline was crossed off."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", true]
+                    ]]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "The Boundary Beyond Scenario Init"]
+        ],
+        "The Boundary Beyond Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Boundary Beyond"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Cultist tokens in the chaos bag.", "The above is not true."], "The Boundary Beyond Scenario Question 5"]
+        ],
+        "The Boundary Beyond Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Chaos Bag: There are 2 or more Cultist tokens in the chaos bag."],
+                    ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
+                    ["DO_LOAD_CARDS_SCN", "Dark Cult"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Tablet tokens in the chaos bag.", "The above is not true."], "The Boundary Beyond Scenario Question 6"]
+        ],
+        "The Boundary Beyond Scenario Question 6": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                [
+                    ["LOG", "└── Chaos Bag: There are 2 or more Tablet tokens in the chaos bag."],
+                    ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
+                    ["DO_LOAD_CARDS_SCN", "Guardians of Time"]
+                ]
+            ],
+            ["COND",
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer6", "B"]
+                ],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
+                    ["DO_LOAD_CARDS_SCN", "Guardians of Time"]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "The Boundary Beyond - Mexico City"],
+            ["SET", "/arkhamTheBoundaryBeyondSpawnChoiceDone", 0],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["PROMPT", "$PLAYER_I", "theBoundaryBeyondSpawnChoice"]
+            ]]
+        ],
+        "The Boundary Beyond Scenario Init Continue 1": [
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04189", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04190", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04090", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04091", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "automation": {
+        "gameRules": [
+            {
+                "_comment": "Launches early init procedure",
+                "type": "trigger",
+                "listenTo": ["/arkhamEventEarlyInit"],
+                "condition": [
+                    ["AND",
+                        ["GREATER_THAN", "$GAME.arkhamEventEarlyInit", 0],
+                        ["EQUAL", "$GAME.arkhamCampaignName", "The Forgotten Age"],
+                        ["EQUAL", "$GAME.arkhamScenarioName", "The Boundary Beyond"]
+                    ]
+                ],
+                "then": [
+                    ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", true],
+                    ["ACTION_LIST", "The Boundary Beyond Scenario Early Init"]
+                ]
+            }
+        ]
+    },
+    "functions": {
+        "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE.LOCATION_CARD_NAME"],
+                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
+                ["INCREASE_VAL", "/arkhamTheBoundaryBeyondSpawnChoiceDone", 1],
+                ["COND",
+                    ["GREATER_EQUAL", "$GAME.arkhamTheBoundaryBeyondSpawnChoiceDone", "$GAME.numPlayers"],
+                    ["ACTION_LIST", "The Boundary Beyond Scenario Init Continue 1"]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "theBoundaryBeyondSpawnChoice": {
+            "args": [],
+            "message": "Where do you want to begin the game?",
+            "options": [
+                {
+                    "label": "Zócalo.",
+                    "hotkey": "Z",
+                    "code": [
+                        ["DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE", "$PLAYER_N", "Zócalo"]
+                    ]
+                },
+                {
+                    "label": "Coyoacán.",
+                    "hotkey": "C",
+                    "code": [
+                        ["DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE", "$PLAYER_N", "Coyoacán"]
+                    ]
+                }
+            ]
+        }
+    }
+}

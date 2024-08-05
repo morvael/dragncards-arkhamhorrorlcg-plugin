@@ -99,7 +99,8 @@
                         "deckLists": [
                             {"label": "id:theUntamedWilds", "deckListId": "The Untamed Wilds Scenario"},
                             {"label": "id:theDoomOfEztli", "deckListId": "The Doom of Eztli Scenario"},
-                            {"label": "id:threadsOfFate", "deckListId": "Threads of Fate Scenario"}
+                            {"label": "id:threadsOfFate", "deckListId": "Threads of Fate Scenario"},
+                            {"label": "id:theBoundaryBeyond", "deckListId": "The Boundary Beyond Scenario"}
                         ]
                     }
                 ]
@@ -319,6 +320,9 @@
         },
         "threadsOfFate": {
             "English": "Threads of Fate"
+        },
+        "theBoundaryBeyond": {
+            "English": "The Boundary Beyond"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

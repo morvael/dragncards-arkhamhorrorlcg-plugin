@@ -67,6 +67,19 @@
                 ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID"]]
             ]
         },
+        "GET_NAMED_CARD": {
+            "_comment": "Returns a card with given side A name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_CARD.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["OR",
+                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                ]]
+            ]
+        },
         "GET_NAMED_DECK_CARD": {
             "_comment": "Returns a card from given group with given side A name/databaseId/id, or null.",
             "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
