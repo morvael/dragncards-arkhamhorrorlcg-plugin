@@ -28,22 +28,22 @@
                 {"databaseId": "04143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "04147", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
                 {"databaseId": "04148", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "04144",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04145",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04146",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "Threads of Fate - The Midnight Masks": {
             "hideFromSearch": true,
             "label": "Threads of Fate - The Midnight Masks",
             "cards": [
-                {"databaseId": "01125",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "53%", "top": "76%"},
-                {"databaseId": "01129",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "33%", "top": "76%"},
-                {"databaseId": "01130",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "43%"},
-                {"databaseId": "01132",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "43%"},
-                {"databaseId": "01134",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "43%"},
-                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "53%", "top": "76%"},
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "33%", "top": "76%"},
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "43%"},
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "43%"},
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "43%"},
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         }
     },

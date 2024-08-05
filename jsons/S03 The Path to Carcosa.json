@@ -83,8 +83,8 @@
             "hideFromSearch": true,
             "label": "The Path to Carcosa - The Midnight Masks",
             "cards": [
-                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
             ]
         },
         "The Path to Carcosa Chaos Bag - Easy": {
