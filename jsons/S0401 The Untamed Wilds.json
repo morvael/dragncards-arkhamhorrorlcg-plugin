@@ -1,0 +1,73 @@
+{
+    "preBuiltDecks": {
+        "The Untamed Wilds Scenario": {
+             "label": "The Untamed Wilds Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Untamed Wilds", "The Untamed Wilds Scenario Init"]
+            ]
+        },
+        "The Untamed Wilds": {
+            "hideFromSearch": true,
+             "label": "The Untamed Wilds",
+             "cards": [
+                {"databaseId": "04043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04046", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04047", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04048", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04049", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "04053", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        },
+        "The Untamed Wilds - Agents of Yig": {
+            "hideFromSearch": true,
+            "label": "The Untamed Wilds - Agents of Yig",
+            "cards": [
+                {"databaseId": "04083", "quantity": 3, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04084", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04085", "quantity": 2, "loadGroupId": "sharedPileA"}
+            ]
+        },
+        "The Untamed Wilds - Set Aside": {
+            "hideFromSearch": true,
+             "label": "The Untamed Wilds - Set Aside",
+             "cards": [
+                {"databaseId": "04051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04052", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The Untamed Wilds Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Untamed Wilds"],
+            ["DO_LOAD_CARDS_SCN", "Rainforest"],
+            ["DO_LOAD_CARDS_SCN", "Serpents"],
+            ["DO_LOAD_CARDS_SCN", "Expedition"],
+            ["DO_LOAD_CARDS_SCN", "Guardians of Time"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Expedition Camp", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04069", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04070", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04071", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04072", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04073", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04081", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04076", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04080", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04082", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04087", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04074", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04075", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["DO_LOAD_CARDS_SCN", "The Untamed Wilds - Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["DO_LOAD_CARDS_SCN", "The Untamed Wilds - Set Aside"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Agents of Yig cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

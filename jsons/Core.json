@@ -47,7 +47,8 @@
         "FloodedToken":           {"width": 0.20, "height": 0.20,"tokens": []},
         "SealToken":              {"width": 0.20, "height": 0.42,"tokens": []},
         "MiniConcealed":          {"width": 0.47, "height": 0.72,"tokens": []},
-        "MiniInvestigator":       {"width": 0.47, "height": 0.72,"tokens": []}
+        "MiniInvestigator":       {"width": 0.47, "height": 0.72,"tokens": []},
+        "Supplies":               {"width": 0.47, "height": 0.72,"tokens": []}
     },
     "defaultActions": [
     ],

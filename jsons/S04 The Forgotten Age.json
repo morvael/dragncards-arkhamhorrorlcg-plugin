@@ -1,0 +1,190 @@
+{
+    "preBuiltDecks": {
+        "Rainforest": {
+            "hideFromSearch": true,
+            "label": "Rainforest",
+            "cards": [
+                {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04070", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04075", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04076", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Serpents": {
+            "hideFromSearch": true,
+            "label": "Serpents",
+            "cards": [
+                {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04079", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04080", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Expedition": {
+            "hideFromSearch": true,
+            "label": "Expedition",
+            "cards": [
+                {"databaseId": "04081", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Agents of Yig": {
+            "hideFromSearch": true,
+            "label": "Agents of Yig",
+            "cards": [
+                {"databaseId": "04083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04084", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Guardians of Time": {
+            "hideFromSearch": true,
+            "label": "Guardians of Time",
+            "cards": [
+                {"databaseId": "04086", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04087", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Deadly Traps": {
+            "hideFromSearch": true,
+            "label": "Deadly Traps",
+            "cards": [
+                {"databaseId": "04088", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Temporal Flux": {
+            "hideFromSearch": true,
+            "label": "Temporal Flux",
+            "cards": [
+                {"databaseId": "04090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Forgotten Ruins": {
+            "hideFromSearch": true,
+            "label": "Forgotten Ruins",
+            "cards": [
+                {"databaseId": "04092", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04094", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Pnakotic Brotherhood": {
+            "hideFromSearch": true,
+            "label": "Pnakotic Brotherhood",
+            "cards": [
+                {"databaseId": "04095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Yig's Venom": {
+            "hideFromSearch": true,
+            "label": "Yig's Venom",
+            "cards": [
+                {"databaseId": "04098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04100", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "Poison": {
+            "hideFromSearch": true,
+            "label": "Poison",
+            "cards": [
+                {"databaseId": "04101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ],
+            "postLoadActionList": [
+                ["DO_CREATE_MISSING_CARDS_SCN", "Poisoned", "04102", 4, "sharedNotInPlay"]
+            ]
+        },
+        "The Forgotten Age Supplies": {
+            "label": "The Forgotten Age Supplies",
+            "cards": [
+                {"databaseId": "tfa_binoculars", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_blanket", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_canteen", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_chalk", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_compass", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_gasoline", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_map", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_medicine", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_pendant", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_pickaxe", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_pocketknife", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_provisions", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_rope", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_torches", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        },
+        "The Forgotten Age Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Forgotten Age Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Forgotten Age Chaos Bag - Normal": {
+            "hideFromSearch": true,
+            "label": "The Forgotten Age Chaos Bag - Normal",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Forgotten Age Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Forgotten Age Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Forgotten Age Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Forgotten Age Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}

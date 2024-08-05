@@ -111,7 +111,8 @@
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
                             ]
                         ],
                         ["AND",
@@ -129,7 +130,8 @@
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "ChaosToken"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "KeyToken"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "FloodedToken"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "SealToken"]
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "SealToken"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Supplies"]
                             ]
                         ]
                     ]
@@ -183,7 +185,10 @@
                         ],
                         ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
                         ["COND",
-                            ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.currentFace.type", "Token"], true],
+                            ["AND",
+                                ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.currentFace.type", "Token"], true],
+                                ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
+                            ],
                             ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"]
                         ]
                     ]

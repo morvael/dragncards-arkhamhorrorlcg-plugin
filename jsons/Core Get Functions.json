@@ -67,23 +67,32 @@
                 ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID"]]
             ]
         },
-        "GET_NAMED_ENCOUNTER_DECK_CARD": {
-            "_comment": "Returns a card from sharedEncounterDeck with given side A name, or null.",
-            "args": ["$TARGET_NAME"],
+        "GET_NAMED_DECK_CARD": {
+            "_comment": "Returns a card from given group with given side A name/databaseId/id, or null.",            
+            "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
             "code": [
-                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_ENCOUNTER_DECK_CARD.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_DECK_CARD.TARGET_NAME"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NAMED_DECK_CARD.TARGET_GROUP_ID"]],
                 ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
                     ["OR",
                         ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
                         ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
-                        ["EQUAL", "$CARD.id", "$TARGET_NAME"]
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
                     ]
                 ]]
             ]
         },
+        "GET_NAMED_ENCOUNTER_DECK_CARD": {
+            "_comment": "Returns a card from sharedEncounterDeck with given side A name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["GET_NAMED_DECK_CARD", "$TARGET_NAME", "sharedEncounterDeck"]
+            ]
+        },
         "GET_NAMED_MAP_LOCATION": {
-            "_comment": "Returns Location type card from sharedLocations with given currentFace name, or null.",
+            "_comment": "Returns Location type card from sharedLocations with given currentFace name/databaseId/id, or null.",
             "args": ["$TARGET_NAME"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
@@ -93,7 +102,8 @@
                     ["OR",
                         ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
                         ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
-                        ["EQUAL", "$CARD.id", "$TARGET_NAME"]
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
                     ]
                 ]]
             ]

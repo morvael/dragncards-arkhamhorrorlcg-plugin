@@ -392,7 +392,8 @@
                         ["NOT_EQUAL", "$TARGET_CARD.groupId", null],
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Supplies"]
                         ]
                     ],
                     [

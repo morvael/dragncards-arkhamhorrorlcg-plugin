@@ -4,6 +4,20 @@
         "moveToGroupIds": [],
         "options": [
             {
+                "label": "id:cloneSupplyCardMenu",
+                "actionList": "cloneSupplyCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
+                ]
+            },
+            {
+                "label": "id:deleteSupplyCardMenu",
+                "actionList": "deleteSupplyCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
+                ]
+            },
+            {
                 "label": "id:lolaGuardianRoleMenu",
                 "actionList": "lolaGuardianRole",
                 "showIf": ["AND",
@@ -215,6 +229,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"]
@@ -275,7 +290,8 @@
                                 ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "SealToken"]
+                                ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
                             ]
                         ],
                         ["AND",
@@ -293,7 +309,8 @@
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "ChaosToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "FloodedToken"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "SealToken"]
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "SealToken"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Supplies"]
                             ]
                         ]
                     ]

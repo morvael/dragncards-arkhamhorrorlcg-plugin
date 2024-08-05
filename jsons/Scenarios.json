@@ -93,6 +93,12 @@
                             {"label": "id:blackStarsRise", "deckListId": "Black Stars Rise Scenario"},
                             {"label": "id:dimCarcosa", "deckListId": "Dim Carcosa Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:theForgottenAge",
+                        "deckLists": [
+                            {"label": "id:theUntamedWilds", "deckListId": "The Untamed Wilds Scenario"}
+                        ]
                     }
                 ]
             },
@@ -133,6 +139,12 @@
                             {"label": "id:returnToDimCarcosa", "deckListId": "Return to Dim Carcosa Scenario"}
                         ]
                     }
+                ]
+            },
+            {
+                "label": "id:miscellaneous",
+                "deckLists": [
+                    {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"}
                 ]
             }
         ]
@@ -297,6 +309,9 @@
         "theForgottenAge": {
             "English": "The Forgotten Age"
         },
+        "theUntamedWilds": {
+            "English": "The Untamed Wilds"
+        },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
         },
@@ -365,6 +380,12 @@
         },
         "returnToDimCarcosa": {
             "English": "Return to Dim Carcosa"
+        },
+        "miscellaneous": {
+            "English": "Miscellaneous"
+        },
+        "theForgottenAgeSupplies": {
+            "English": "The Forgotten Age Supplies"
         }
     }
 }

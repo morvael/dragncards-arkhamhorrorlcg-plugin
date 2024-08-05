@@ -209,17 +209,7 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Gardens of Luxembourg", 1],
             ["DO_LOAD_CARDS_SCN", "Return to A Phantom of Truth - Paris"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0],
-            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                ["EQUAL", "$CARD.sides.A.databaseId", "03227"]
-            ]]],
-            ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
-            ["COND",
-                ["LESS_THAN", "$SELECTED_COUNT", 4],
-                [
-                    ["VAR", "$CARDS_TO_ADD", ["SUBTRACT", 4, "$SELECTED_COUNT"]],
-                    ["DO_CREATE_CARDS_SCN", "Lost Soul", "03227", "$CARDS_TO_ADD", "sharedNotInPlay"]
-                ]
-            ],
+            ["DO_CREATE_MISSING_CARDS_SCN", "Lost Soul", "03227", 4, "sharedNotInPlay"],
             ["SET", "/arkhamFinalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]

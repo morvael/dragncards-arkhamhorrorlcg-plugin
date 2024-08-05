@@ -67,6 +67,7 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Concealed Card"]

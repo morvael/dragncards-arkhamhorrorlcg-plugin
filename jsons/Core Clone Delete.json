@@ -1,0 +1,94 @@
+{
+    "actionLists": {
+        "cloneSupplyCard": [
+            ["COND",
+                ["CAN_CLONE_SUPPLY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_CLONE_SUPPLY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot clone {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "deleteSupplyCard": [
+            ["COND",
+                ["CAN_DELETE_SUPPLY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_DELETE_SUPPLY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot delete {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "CAN_CLONE_SUPPLY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_CLONE_SUPPLY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_CLONE_SUPPLY_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
+                ]
+            ]
+        },
+        "DO_CLONE_SUPPLY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CLONE_SUPPLY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CLONE_SUPPLY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CLONE_SUPPLY_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_CLONE_SUPPLY_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "clone {{$TARGET_CARD.currentFace.name}}.", "clones {{$TARGET_CARD.currentFace.name}}."],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_CARD.currentFace.name", "$TARGET_CARD.currentFace.databaseId", 1, "$TARGET_CARD.groupId", false, "$ACTOR_PLAYER"],
+                        ["VAR", "$NEW_CARD_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["SET", "/cardById/$NEW_CARD_ID/cardOwner", "shared"],
+                        ["SET", "/cardById/$NEW_CARD_ID/controller", "$TARGET_CARD.controller"],
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                            [
+                                ["VAR", "$LEFT", ["GET_CARD_LEFT", "$TARGET_CARD_ID"]],
+                                ["VAR", "$TOP", ["GET_CARD_TOP", "$TARGET_CARD_ID"]],
+                                ["MOVE_CARD", "$NEW_CARD_ID", "$TARGET_CARD.groupId", -1],
+                                ["DO_SET_CARD_LOCATION", "$NEW_CARD_ID", ["ADD", "$LEFT", 3], ["ADD", "$TOP", 3]]
+                            ],
+                            ["TRUE"],
+                            ["MOVE_CARD", "$NEW_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"combine": false, "allowFlip": false}]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_DELETE_SUPPLY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DELETE_SUPPLY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
+                ]
+            ]
+        },
+        "DO_DELETE_SUPPLY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DELETE_SUPPLY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DELETE_SUPPLY_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_DELETE_SUPPLY_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "delete {{$TARGET_CARD.currentFace.name}}.", "deletes {{$TARGET_CARD.currentFace.name}}."],
+                        ["DELETE_CARD", "$TARGET_CARD_ID"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "labels": {
+        "cloneSupplyCardMenu": {
+            "English": "Clone"
+        },
+        "deleteSupplyCardMenu": {
+            "English": "Delete"
+        }
+    }
+}
