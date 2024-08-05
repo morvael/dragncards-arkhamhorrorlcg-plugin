@@ -1,0 +1,54 @@
+{
+    "preBuiltDecks": {
+        "The Doom of Eztli Scenario": {
+             "label": "The Doom of Eztli Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Doom of Eztli", "The Doom of Eztli Scenario Init"]
+            ]
+        },
+        "The Doom of Eztli": {
+            "hideFromSearch": true,
+             "label": "The Doom of Eztli",
+             "cards": [
+                {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04057", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04058", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04059", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
+                {"databaseId": "04062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04068", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04063", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04066", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04067", "quantity": 1, "loadGroupId": "sharedDeckA"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The Doom of Eztli Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Doom of Eztli"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04092", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04094", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04088", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04089", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "01167", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

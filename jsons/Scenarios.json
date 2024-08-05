@@ -97,7 +97,8 @@
                     {
                         "label": "id:theForgottenAge",
                         "deckLists": [
-                            {"label": "id:theUntamedWilds", "deckListId": "The Untamed Wilds Scenario"}
+                            {"label": "id:theUntamedWilds", "deckListId": "The Untamed Wilds Scenario"},
+                            {"label": "id:theDoomOfEztli", "deckListId": "The Doom of Eztli Scenario"}
                         ]
                     }
                 ]
@@ -311,6 +312,9 @@
         },
         "theUntamedWilds": {
             "English": "The Untamed Wilds"
+        },
+        "theDoomOfEztli": {
+            "English": "The Doom of Eztli"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

@@ -164,7 +164,7 @@
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.currentFace.victoryPoints", null],
                             ["NOT_EQUAL", "$TARGET_CARD.currentFace.vengeance", null]
-                        ],                        
+                        ],
                         ["COND",
                             ["OR",
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],

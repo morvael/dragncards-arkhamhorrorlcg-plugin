@@ -68,7 +68,7 @@
             ]
         },
         "GET_NAMED_DECK_CARD": {
-            "_comment": "Returns a card from given group with given side A name/databaseId/id, or null.",            
+            "_comment": "Returns a card from given group with given side A name/databaseId/id, or null.",
             "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_DECK_CARD.TARGET_NAME"],
