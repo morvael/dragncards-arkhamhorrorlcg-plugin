@@ -16,7 +16,8 @@
                             ]
                         ],
                         "then": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1],
+                            ["DO_REFRESH_TOP_CARD_REVEALED", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
                         ]
                     }
                 ]
@@ -36,7 +37,8 @@
                             ]
                         ],
                         "then": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1],
+                            ["DO_REFRESH_TOP_CARD_REVEALED", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
                         ]
                     }
                 ]

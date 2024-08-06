@@ -859,7 +859,7 @@
                     ["TRUE"],
                     0
                 ]
-             ]   
+             ]
         },
         "DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],

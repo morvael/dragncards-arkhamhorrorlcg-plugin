@@ -13,7 +13,7 @@
             "hideFromSearch": true,
              "label": "Heart of the Elders Pt 1",
              "cards": [
-                {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},            
+                {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
                 {"databaseId": "04207", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "04208", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
                 {"databaseId": "04209", "quantity": 1, "loadGroupId": "sharedActStory"},
@@ -108,7 +108,7 @@
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 2, true, null],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 1, true, null]
-            ],            
+            ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Have you played this scenario before during this campaign and have reached act 2 before?", ["LIST", "Yes.", "No."], "Heart of the Elders Pt 1 Scenario Question 4"]
         ],
         "Heart of the Elders Pt 1 Scenario Question 4": [
