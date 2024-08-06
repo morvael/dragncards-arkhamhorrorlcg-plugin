@@ -263,22 +263,53 @@
                 ["DO_DELETE_LOCATION", "$GAME.firstPlayer", "$LOCATION_CARD_NAME", true, null]
             ]
         },
-        "DO_DELETE_ENCOUNTER_CARDS_SCN": {
-            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID"],
+        "DO_DELETE_ENCOUNTER_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
-                    ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_DATABASE_ID"]
-                ]]],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "sharedEncounterDeck"]],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
                     ["GREATER_THAN", "$SELECTED_COUNT", 0],
                     [
-                        ["DO_LOG_SCN", "$GAME.firstPlayer", "removes {{$SELECTED_COUNT}}x {{$TARGET_NAME}} from the game."],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game.", "removes {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game."],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DELETE_CARD", "$CARD.id"]
                         ]]
                     ]
+                ]
+            ]
+        },
+        "DO_DELETE_ENCOUNTER_CARDS_SCN": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["DO_DELETE_ENCOUNTER_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN.TARGET_NAME"],
+                ["VAR", "$TARGET_CARD", ["GET_NAMED_PLAYER_DECK_CARD", "$TARGET_NAME"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    [
+                        ["DO_LOG", true, "$TARGET_CARD.controller", "$TARGET_CARD.controller", "put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "puts {{$TARGET_CARD.sides.A.name}} from their deck into play."],
+                        ["MOVE_CARD", "$TARGET_CARD.id", ["GET_CONTROLLER_PLAY", "$TARGET_CARD.controller"], -1]
+                    ]
+                ]
+            ]
+        },
+        "DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
+            "args": ["$TARGET_NAME", "$SCENARIO_ACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$SCENARIO_ACTION", "DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN.SCENARIO_ACTION"],
+                ["VAR", "$TARGET_CARD", ["GET_NAMED_PLAYER_DECK_CARD", "$TARGET_NAME"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["PROMPT", "$TARGET_CARD.controller", "askToPutPlayerDeckCardIntoPlay", "$TARGET_CARD.id", "$SCENARIO_ACTION"],
+                    ["TRUE"],
+                    ["ACTION_LIST", "$SCENARIO_ACTION"]
                 ]
             ]
         },
@@ -885,7 +916,7 @@
                         ["VAR", "$INDEX", 0],
                         ["FOR_EACH_VAL", "$QUESTION_I", "$GAME.arkhamScenarioQuestionList{{$GAME.arkhamScenarioQuestionIndex}}", [
                             ["VAR", "$LETTER", ["SUBSTRING", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "$INDEX", 1]],
-                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}"]],
+                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}", "{{$QUESTION_I}}"]],
                             ["INCREASE_VAR", "$INDEX", 1]
                         ]]
                     ],
@@ -900,16 +931,17 @@
             ]
         },
         "SCENARIO_QUESTION_ANSWER": {
-            "args": ["$QUESTION_ANSWER"],
+            "args": ["$QUESTION_ANSWER", "$QUESTION_TEXT"],
             "code": [
                 ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
                 ["LOG", "{{$ALIAS_N}} picks option {{$QUESTION_ANSWER}} in scenario question {{$GAME.arkhamScenarioQuestionIndex}}."],
                 ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "$QUESTION_ANSWER"],
+                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "$QUESTION_TEXT"],
                 ["SHOW_SCENARIO_QUESTION_PROMPT", null]
             ]
         },
         "SCENARIO_SKIP_QUESTION_WITH_ANSWER": {
-            "args": ["$ANSWER", "$NEXT_SCENARIO_ACTION"],
+            "args": ["$ANSWER", "$TEXT", "$NEXT_SCENARIO_ACTION"],
             "code": [
                 ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "dummy"],
                 ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
@@ -917,13 +949,14 @@
                 ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
                 ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
                 ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "$ANSWER"],
+                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "$TEXT"],
                 ["SHOW_SCENARIO_QUESTION_PROMPT", null]
             ]
         },
         "SCENARIO_SKIP_QUESTION": {
             "args": ["$NEXT_SCENARIO_ACTION"],
             "code": [
-                ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "X", "$NEXT_SCENARIO_ACTION"]
+                ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "X", "dummy", "$NEXT_SCENARIO_ACTION"]
             ]
         },
         "SCENARIO_SKIP_QUESTIONS": {
@@ -936,7 +969,8 @@
                     ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1],
                     ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
                     ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
-                    ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "X"]
+                    ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "X"],
+                    ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "dummy"]
                 ]],
                 ["SHOW_SCENARIO_QUESTION_PROMPT", null]
             ]
@@ -1224,6 +1258,28 @@
             "args": ["$MESSAGE"],
             "message": "{{$MESSAGE}}",
             "options": [
+            ]
+        },
+        "askToPutPlayerDeckCardIntoPlay": {
+            "args": ["$TARGET_CARD_ID", "$SCENARIO_ACTION"],
+            "message": "Do you want to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from your deck into play?",
+            "options": [
+                {
+                    "label": "Yes",
+                    "hotkey": "Y",
+                    "code": [
+                        ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "$TARGET_CARD_ID"],
+                        ["ACTION_LIST", "$SCENARIO_ACTION"]
+                    ]
+                },
+                {
+                    "label": "No",
+                    "hotkey": "N",
+                    "code": [
+                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "decide not to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from their deck into play.", "decides not to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from their deck into play."],
+                        ["ACTION_LIST", "$SCENARIO_ACTION"]
+                    ]
+                }
             ]
         }
     }

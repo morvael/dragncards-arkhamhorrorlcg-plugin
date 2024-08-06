@@ -80,6 +80,23 @@
                 ]]
             ]
         },
+        "GET_NAMED_PLAYER_DECK_CARD": {
+            "_comment": "Returns a card from any player deck with given side A name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_PLAYER_DECK_CARD.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.groupId", "player"],
+                    ["IN_STRING", "$CARD.groupId", "Deck"],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
         "GET_NAMED_DECK_CARD": {
             "_comment": "Returns a card from given group with given side A name/databaseId/id, or null.",
             "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
@@ -87,6 +104,23 @@
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_DECK_CARD.TARGET_NAME"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NAMED_DECK_CARD.TARGET_GROUP_ID"]],
                 ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
+        "GET_NAMED_DECK_CARDS": {
+            "_comment": "Returns all cards from given group with given side A name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_DECK_CARDS.TARGET_NAME"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NAMED_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
                     ["OR",
                         ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],

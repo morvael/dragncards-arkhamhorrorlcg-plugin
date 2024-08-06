@@ -433,8 +433,7 @@
                             ["ATTACH_CARD", "$CARD.id", "$TARGET_CARD_ID"],
                             ["SET", "/cardById/$CARD.id/attachmentDirection", "$CARD.attachmentDirection"]
                         ]],
-                        ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}],
-                        ["SET", "/cardById/$REPLACED_CARD_ID/tokens", {}]
+                        ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}]
                     ]
                 ]
             ]

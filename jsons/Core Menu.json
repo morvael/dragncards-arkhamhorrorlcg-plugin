@@ -436,6 +436,7 @@
                         ],
                         ["AND",
                             ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
                             ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"]
                         ]
                     ]

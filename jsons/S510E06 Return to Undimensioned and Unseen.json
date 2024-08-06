@@ -131,17 +131,7 @@
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[4]}}", 1, "sharedDeckA"]
                 ]
             ],
-            ["VAR", "$POWDER_CARD", ["ONE_CARD", "$CARD", ["AND",
-                ["IN_STRING", "$CARD.sides.A.name", "Powder of Ibn Ghazi"],
-                ["IN_STRING", "$CARD.groupId", "player"],
-                ["IN_STRING", "$CARD.groupId", "Deck"]
-            ]]],
-            ["COND",
-                ["NOT_EQUAL", "$POWDER_CARD", null],
-                ["PROMPT", "$POWDER_CARD.cardOwner", "returnToUndimensionedAndUnseenPowderOfIbnGhazi", "$POWDER_CARD.id"],
-                ["TRUE"],
-                ["ACTION_LIST", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
-            ]
+            ["DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Powder of Ibn Ghazi", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
         ],
         "Return to Undimensioned and Unseen Scenario Init Continue 1": [
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -151,32 +141,5 @@
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
-    },
-    "prompts": {
-        "returnToUndimensionedAndUnseenPowderOfIbnGhazi": {
-            "args": ["$TARGET_CARD_ID"],
-            "message": "Do you want to put Powder of Ibn-Ghazi from your deck into play?",
-            "options": [
-                {
-                    "label": "Yes",
-                    "hotkey": "Y",
-                    "code": [
-                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "puts {{$TARGET_CARD.sides.A.name}} from their deck into play."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$PLAYER_N"], -1],
-                        ["ACTION_LIST", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
-                    ]
-                },
-                {
-                    "label": "No",
-                    "hotkey": "N",
-                    "code": [
-                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
-                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "decide not to put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "decides not to put {{$TARGET_CARD.sides.A.name}} from their deck into play."],
-                        ["ACTION_LIST", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
-                    ]
-                }
-            ]
-        }
     }
 }

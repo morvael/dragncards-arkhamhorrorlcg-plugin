@@ -186,15 +186,15 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
                 [
                     ["LOG", "└── Campaign Log: You have more (or equal) Doubt than Conviction."],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Twin Suns", "03223"],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Hunting Shadow", "01135"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03223"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01135"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. I)", "03204", 0, "sharedActStory"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
                 [
                     ["LOG", "└── Campaign Log: You have more Conviction than Doubt."],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Black Stars Rise", "03090"],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "False Lead", "01136"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03090"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01136"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. II)", "03205", 0, "sharedActStory"]
                 ]
             ],
