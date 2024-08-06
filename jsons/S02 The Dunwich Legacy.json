@@ -158,7 +158,7 @@
                             ]
                         ],
                         "then": [
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResources", 2]
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     }
                 ]

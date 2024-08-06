@@ -61,6 +61,49 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot detach {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "replaceLocation": [
+            ["COND",
+                ["EQUAL", "$PLAYER_DATA.$PLAYER_N.locationToBeReplacedId", null],
+                ["COND",
+                    ["CAN_REPLACE_LOCATION", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                    [
+                        ["LOG", "└── {{$ALIAS_N}} wants to replace {{$ACTIVE_FACE.name}}."],
+                        ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightPink"],
+                        ["SET", "/playerData/$PLAYER_N/locationToBeReplacedId", "$ACTIVE_CARD_ID"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── You cannot replace {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                ],
+                ["TRUE"],
+                [
+                    ["VAR", "$REPLACED_CARD_ID", "$PLAYER_DATA.$PLAYER_N.locationToBeReplacedId"],
+                    ["COND",
+                        ["CAN_REPLACE_LOCATION_WITH", "$PLAYER_N", "$ACTIVE_CARD_ID", "$REPLACED_CARD_ID", "$PLAYER_N"],
+                        ["DO_REPLACE_LOCATION", "$PLAYER_N", "$ACTIVE_CARD_ID", "$REPLACED_CARD_ID", true, "$PLAYER_N"],
+                        ["TRUE"],
+                        ["LOG", "└── You cannot replace {{$CARD_BY_ID.$REPLACED_CARD_ID.currentFace.name}} with {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                    ],
+                    ["UNSET", "/cardById/$REPLACED_CARD_ID/borderColor"],
+                    ["UNSET", "/playerData/$PLAYER_N/locationToBeReplacedId"]
+                ]
+            ]
+        ],
+        "sendToBack": [
+            ["COND",
+                ["CAN_SEND_TO_BACK", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SEND_TO_BACK", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot send {{$ACTIVE_FACE.name}} to back, {{$ALIAS_N}}."]
+            ]
+        ],
+        "bringToFront": [
+            ["COND",
+                ["CAN_BRING_TO_FRONT", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_BRING_TO_FRONT", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot bring {{$ACTIVE_FACE.name}} to front, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -318,6 +361,141 @@
                     ]
                 ]
             ]
+        },
+        "CAN_REPLACE_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$REPLACED_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_REPLACE_LOCATION.TARGET_PLAYER"],
+                ["VAR", "$REPLACED_CARD", ["GET_CARD_AND_VALIDATE", "$REPLACED_CARD_ID", "CAN_REPLACE_LOCATION.REPLACED_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$REPLACED_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$REPLACED_CARD.cardIndex", 0],
+                    ["EQUAL", "$REPLACED_CARD.currentFace.type", "Location"]
+                ]
+            ]
+        },
+        "CAN_REPLACE_LOCATION_WITH": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$REPLACED_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_REPLACE_LOCATION_WITH.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_REPLACE_LOCATION_WITH.TARGET_CARD_ID"]],
+                ["VAR", "$REPLACED_CARD", ["GET_CARD_AND_VALIDATE", "$REPLACED_CARD_ID", "CAN_REPLACE_LOCATION_WITH.REPLACED_CARD_ID"]],
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD_ID", "$REPLACED_CARD_ID"],
+                    ["EQUAL", "$TARGET_CARD.cardIndex", 0],
+                    ["OR",
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", false],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.inHand", true],
+                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Location"]
+                        ]
+                    ],
+                    ["CAN_REPLACE_LOCATION", "$TARGET_PLAYER", "$REPLACED_CARD_ID", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "DO_REPLACE_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$REPLACED_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REPLACE_LOCATION.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_REPLACE_LOCATION.TARGET_CARD_ID"]],
+                ["VAR", "$REPLACED_CARD", ["GET_CARD_AND_VALIDATE", "$REPLACED_CARD_ID", "DO_REPLACE_LOCATION.REPLACED_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REPLACE_LOCATION.LOG_EVENT"],
+                ["COND",
+                    ["CAN_REPLACE_LOCATION_WITH", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$REPLACED_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "replace {{$REPLACED_CARD.currentFace.name}} with {{$TARGET_NAME}}.", "replaces {{$REPLACED_CARD.currentFace.name}} with {{$TARGET_NAME}}."],
+                        ["VAR", "$REPLACED_ATTACHED", ["LIST"]],
+                        ["FOR_EACH_KEY_VAL", "$CARD_ID", "$CARD", "$GAME.cardById", [
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$CARD.parentCardId", "$REPLACED_CARD_ID"],
+                                    ["NOT_EQUAL", "$CARD_ID", "$REPLACED_CARD_ID"]
+                                ],
+                                ["UPDATE_VAR", "$REPLACED_ATTACHED", ["APPEND", "$REPLACED_ATTACHED", "$CARD"]]
+                            ]
+                        ]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$REPLACED_CARD.groupId", ["ADD", "$REPLACED_CARD.stackIndex", 1], 0, {"combine": false, "allowFlip": false}],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["GET_CARD_LEFT", "$REPLACED_CARD_ID"], ["GET_CARD_TOP", "$REPLACED_CARD_ID"]],
+                        ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$REPLACED_CARD.rotation"],
+                        ["SET", "/cardById/$TARGET_CARD_ID/targeting", "$REPLACED_CARD.targeting"],
+                        ["COND",
+                            ["NOT_EQUAL", "$CARD_BY_ID.$TARGET_CARD_ID.currentFace.type", "Location"],
+                            ["DO_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
+                        ],
+                        ["DO_MOVE_TOKENS", "$REPLACED_CARD_ID", "$TARGET_CARD_ID"],
+                        ["FOR_EACH_VAL", "$CARD", "$REPLACED_ATTACHED", [
+                            ["ATTACH_CARD", "$CARD.id", "$TARGET_CARD_ID"],
+                            ["SET", "/cardById/$CARD.id/attachmentDirection", "$CARD.attachmentDirection"]
+                        ]],
+                        ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}],
+                        ["SET", "/cardById/$REPLACED_CARD_ID/tokens", {}]
+                    ]
+                ]
+            ]
+        },
+        "CAN_SEND_TO_BACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SEND_TO_BACK.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SEND_TO_BACK.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$TARGET_CARD.cardIndex", 0]
+                ]
+            ]
+        },
+        "DO_SEND_TO_BACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SEND_TO_BACK.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SEND_TO_BACK.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SEND_TO_BACK.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SEND_TO_BACK", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "send {{$TARGET_CARD.currentFace.name}} to back.", "sends {{$TARGET_CARD.currentFace.name}} to back."],
+                        ["VAR", "$TARGET_LEFT", ["GET_CARD_LEFT", "$TARGET_CARD_ID"]],
+                        ["VAR", "$TARGET_TOP", ["GET_CARD_TOP", "$TARGET_CARD_ID"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", 0, 0, {"combine": false, "allowFlip": false}],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_LEFT", "$TARGET_TOP"]
+                    ]
+                ]
+            ]
+        },
+        "CAN_BRING_TO_FRONT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_BRING_TO_FRONT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_BRING_TO_FRONT.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$TARGET_CARD.cardIndex", 0]
+                ]
+            ]
+        },
+        "DO_BRING_TO_FRONT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_BRING_TO_FRONT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_BRING_TO_FRONT.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_BRING_TO_FRONT.LOG_EVENT"],
+                ["COND",
+                    ["CAN_BRING_TO_FRONT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "bring {{$TARGET_CARD.currentFace.name}} to front.", "brings {{$TARGET_CARD.currentFace.name}} to front."],
+                        ["VAR", "$TARGET_LEFT", ["GET_CARD_LEFT", "$TARGET_CARD_ID"]],
+                        ["VAR", "$TARGET_TOP", ["GET_CARD_TOP", "$TARGET_CARD_ID"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", -1, 0],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_LEFT", "$TARGET_TOP"]
+                    ]
+                ]
+            ]
         }
     },
     "labels": {
@@ -344,6 +522,27 @@
         },
         "detachCardMenu": {
             "English": "Detach (D)"
+        },
+        "replaceLocation": {
+            "English": "Replace"
+        },
+        "replaceLocationMenu": {
+            "English": "Replace (L)"
+        },
+        "replaceLocationWithMenu": {
+            "English": "Replace with (L)"
+        },
+        "sendToBack": {
+            "English": "To back"
+        },
+        "sendToBackMenu": {
+            "English": "To back ([)"
+        },
+        "bringToFront": {
+            "English": "To front"
+        },
+        "bringToFrontMenu": {
+            "English": "To front (])"
         }
     }
 }

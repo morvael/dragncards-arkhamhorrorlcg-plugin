@@ -97,11 +97,14 @@
             {"key": "E", "actionList": "exhaustCard", "label": "id:exhaustCard"},
             {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
+            {"key": "L", "actionList": "replaceLocation", "label": "id:replaceLocation"},
             {"key": "P", "actionList": "playCard", "label": "id:playCard"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
             {"key": "S", "actionList": "spawnCard", "label": "id:spawnCard"},
             {"key": "X", "actionList": "discardCard", "label": "id:discardCard"},
-            {"key": "Z", "actionList": "putCardBeneath", "label": "id:putCardBeneath"}
+            {"key": "Z", "actionList": "putCardBeneath", "label": "id:putCardBeneath"},
+            {"key": "[", "actionList": "sendToBack", "label": "id:sendToBack"},
+            {"key": "]", "actionList": "bringToFront", "label": "id:bringToFront"}
         ]
     },
     "imageUrlPrefix": {
@@ -114,7 +117,7 @@
     },
     "spawnExistingCardModal": {
         "columnProperties": ["name", "faction", "type", "traits", "packName", "numberInPack"],
-        "loadGroupIds": ["player1Hand","player2Hand","player3Hand","player4Hand","sharedLocations","sharedNotInPlay"]
+        "loadGroupIds": ["sharedNotInPlay","sharedLocations","player1Hand","player2Hand","player3Hand","player4Hand"]
     },
     "topBarCounters": {
         "shared": [

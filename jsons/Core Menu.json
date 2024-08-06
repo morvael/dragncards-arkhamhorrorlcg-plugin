@@ -413,6 +413,51 @@
                 ]
             },
             {
+                "label": "id:replaceLocationMenu",
+                "actionList": "replaceLocation",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.locationToBeReplacedId", null],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Location"]
+                ]
+            },
+            {
+                "label": "id:replaceLocationWithMenu",
+                "actionList": "replaceLocation",
+                "showIf": ["AND",
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.locationToBeReplacedId", null],
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.locationToBeReplacedId", "$ACTIVE_CARD.id"],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
+                            ["EQUAL", "$ACTIVE_FACE.type", "Location"]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                            ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"]
+                        ]
+                    ]
+                ]
+            },
+            {
+                "label": "id:sendToBackMenu",
+                "actionList": "sendToBack",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0]
+                ]
+            },
+            {
+                "label": "id:bringToFrontMenu",
+                "actionList": "bringToFront",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0]
+                ]
+            },
+            {
                 "label": "id:discardCardMenu",
                 "actionList": "discardCard",
                 "showIf": ["OR",

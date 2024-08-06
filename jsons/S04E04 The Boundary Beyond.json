@@ -64,7 +64,7 @@
                 [
                     ["LOG", "└── Campaign Log: Ichtaca is in the dark."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCards", 2]
+                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 2]
                     ]]
                 ]
             ],
@@ -88,7 +88,7 @@
                 [
                     ["LOG", "└── Campaign Log: The investigators rescued Alejandro."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResources", 2]
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 2]
                     ]]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],

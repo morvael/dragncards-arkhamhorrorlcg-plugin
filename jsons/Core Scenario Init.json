@@ -648,8 +648,8 @@
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingResources", 5],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingCards", 5],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
@@ -754,24 +754,58 @@
                 ]]
             ]
         },
+        "GET_STARTING_RESOURCES": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_STARTING_RESOURCES.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_STARTING_RESOURCES.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingResourcesMod"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
+        "GET_STARTING_CARDS": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_STARTING_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_STARTING_CARDS.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingCardsMod"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
         "DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
             "code": [
+                ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
                 ["COND",
-                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.resources", 0],
-                    ["DO_GAIN_RESOURCES", "$PLAYER_I", "$PLAYER_DATA.$PLAYER_I.arkhamStartingResources", true, null]
+                    ["AND",
+                        ["GREATER_THAN", "$STARTING_RESOURCES", 0],
+                        ["EQUAL", "$PLAYER_DATA.$PLAYER_I.resources", 0]
+                    ],
+                    ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
                 ],
+                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
                 ["COND",
                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", true],
                     ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 1],
                     ["TRUE"],
                     [
+                        ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
                         ["COND",
-                            ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0],
-                            [
-                                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                                ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$PLAYER_DATA.$PLAYER_I.arkhamStartingCards", true, true, null]
-                            ]
+                            ["AND",
+                                ["GREATER_THAN", "$STARTING_CARDS", 0],
+                                ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0]
+                            ],
+                            ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
                         ],
                         ["COND",
                             ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],

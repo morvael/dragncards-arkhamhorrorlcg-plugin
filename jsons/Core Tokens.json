@@ -69,6 +69,12 @@
                 ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "horror"]
             ]
         },
+        "GET_FREEZE_ON_CARD": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["GET_TOKENS_ON_CARD", "$TARGET_CARD_ID", "freeze"]
+            ]
+        },
         "DO_TAKE_ACTION": {
             "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -294,6 +300,61 @@
                     ["INCREASE_VAR", "$USES", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkhamBonusCharges"]
                 ],
                 "$USES"
+            ]
+        },
+        "DO_MOVE_TOKENS": {
+            "args": ["$SOURCE_CARD_ID", "$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "DO_MOVE_TOKENS.SOURCE_CARD_ID"]],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TOKENS.TARGET_CARD_ID"]],
+                ["VAR", "$RESOURCES", ["GET_RESOURCES_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$RESOURCES", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/resource", "$RESOURCES"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/resource", 0]
+                    ]
+                ],
+                ["VAR", "$CLUES", ["GET_CLUES_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$CLUES", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/clue", "$CLUES"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/clue", 0]
+                    ]
+                ],
+                ["VAR", "$DOOM", ["GET_DOOM_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$DOOM", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/doom", "$DOOM"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/doom", 0]
+                    ]
+                ],
+                ["VAR", "$DAMAGE", ["GET_DAMAGE_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$DAMAGE", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/damage", "$DAMAGE"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/damage", 0]
+                    ]
+                ],
+                ["VAR", "$HORROR", ["GET_HORROR_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$HORROR", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/horror", "$HORROR"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/horror", 0]
+                    ]
+                ],
+                ["VAR", "$FREEZE", ["GET_FREEZE_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", "$FREEZE", 0],
+                    [
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/freeze", "$FREEZE"],
+                        ["SET", "/cardById/$SOURCE_CARD_ID/tokens/freeze", 0]
+                    ]
+                ]
             ]
         }
     },
