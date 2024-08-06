@@ -679,8 +679,11 @@
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopDeckCardRevealed", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamUpkeepResourcesMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
@@ -799,6 +802,20 @@
                 ]
             ]
         },
+        "GET_UPKEEP_RESOURCES": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_UPKEEP_RESOURCES.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_UPKEEP_RESOURCES.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamUpkeepResourcesMod"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
         "GET_STARTING_CARDS": {
             "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
             "code": [
@@ -812,6 +829,37 @@
                     "$NUMBER"
                 ]
             ]
+        },
+        "GET_UPKEEP_CARDS": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_UPKEEP_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_UPKEEP_CARDS.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamUpkeepCardsMod"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
+        "GET_TOP_DECK_CARD_REVEALED": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
+                    "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
+                    "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
+                    "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
+                    "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
+                    ["TRUE"],
+                    0
+                ]
+             ]   
         },
         "DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],

@@ -165,6 +165,46 @@
     },
     "automation": {
         "cards": {
+            "02003": {
+                "_comment": "Jenny Barnes",
+                "rules": [
+                    {
+                        "_comment": "Set upkeep resource bonus",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                        ]
+                    }
+                ]
+            },
+            "98001": {
+                "_comment": "Jenny Barnes (promo)",
+                "rules": [
+                    {
+                        "_comment": "Set upkeep resource bonus",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                        ]
+                    }
+                ]
+            },
             "02014": {
                 "_comment": "\"Ashcan\" Pete & Duke",
                 "rules": [

@@ -386,14 +386,17 @@
             ]
         },
         "askToGainResource": {
-            "args": [],
-            "message": "You should now gain 1 reource.",
+            "args": ["$NUMBER", "$TEXT"],
+            "message": "You should now gain {{$TEXT}}.",
             "options": [
                 {
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_GAIN_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"],
+                        ["COND",
+                            ["GREATER_THAN", "$NUMBER", 0],
+                            ["DO_GAIN_RESOURCES", "$PLAYER_N", "$NUMBER", true, "$PLAYER_N"]
+                        ],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToGainResource", null]
                     ]
                 },
@@ -401,7 +404,7 @@
                     "label": "No, skip that (ignore the rules)",
                     "hotkey": "N",
                     "code": [
-                        ["LOG", "└── {{$ALIAS_N}} skips gaining 1 resource."],
+                        ["LOG", "└── {{$ALIAS_N}} skips gaining {{$TEXT}}."],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToGainResource", null]
                     ]
                 }

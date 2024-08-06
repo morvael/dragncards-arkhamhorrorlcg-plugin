@@ -1,0 +1,46 @@
+{
+    "automation": {
+        "cards": {
+            "08004": {
+                "_comment": "Norman Withers",
+                "rules": [
+                    {
+                        "_comment": "Set deck reveal flag",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                        ]
+                    }
+                ]
+            },
+            "98007": {
+                "_comment": "Norman Withers (promo)",
+                "rules": [
+                    {
+                        "_comment": "Set deck reveal flag",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                            ]
+                        ],
+                        "then": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -617,14 +617,17 @@
             ]
         },
         "askToDrawPlayerCard": {
-            "args": [],
-            "message": "You should now draw 1 card.",
+            "args": ["$NUMBER", "$TEXT"],
+            "message": "You should now draw {{$TEXT}}.",
             "options": [
                 {
                     "label": "Yes, proceed (follow the rules)",
                     "hotkey": "Y",
                     "code": [
-                        ["DO_DRAW_CARDS", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], 1, true, "$PLAYER_N"],
+                        ["COND",
+                            ["GREATER_THAN", "$NUMBER", 0],
+                            ["DO_DRAW_CARDS", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], "$NUMBER", true, "$PLAYER_N"]
+                        ],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
                     ]
                 },
@@ -632,7 +635,7 @@
                     "label": "No, skip that (ignore the rules)",
                     "hotkey": "N",
                     "code": [
-                        ["LOG", "└── {{$ALIAS_N}} skips drawing 1 card."],
+                        ["LOG", "└── {{$ALIAS_N}} skips drawing {{$TEXT}}."],
                         ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
                     ]
                 }

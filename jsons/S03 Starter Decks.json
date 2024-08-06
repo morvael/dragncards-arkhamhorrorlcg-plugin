@@ -283,7 +283,7 @@
                             ]
                         ],
                         "then": [
-                            ["SET", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ]
                     }
                 ]

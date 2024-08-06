@@ -225,6 +225,17 @@
                 ]
             },
             {
+                "_comment": "Play with the top card of your deck revealed.",
+                "type": "trigger",
+                "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player4Deck/stackIds"],
+                "condition": [
+                    ["CAN_REFRESH_TOP_CARD_REVEALED", "$TARGET.id"]
+                ],
+                "then": [
+                    ["DO_REFRESH_TOP_CARD_REVEALED", "$TARGET.id"]
+                ]
+            },
+            {
                 "_comment": "Change attachedCount.",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/parentCardId"],
@@ -579,6 +590,66 @@
                 ]]
             ]
         },
+        "CAN_REFRESH_TOP_CARD_REVEALED": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_REFRESH_TOP_CARD_REVEALED.TARGET_GROUP_ID"]],
+                ["VAR", "$TOP_CARD", ["GET_CARD", "$TARGET_GROUP_ID", 0, 0]],
+                ["COND",
+                    ["NOT_EQUAL", "$TOP_CARD", null],
+                    [
+                        ["VAR", "$TOP_SIDE", "B"],
+                        ["COND",
+                            ["GREATER_THAN", ["GET_TOP_DECK_CARD_REVEALED", "$TARGET_GROUP_ID"], 0],
+                            ["UPDATE_VAR", "$TOP_SIDE", "A"]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$TOP_CARD.currentSide", "$TOP_SIDE"],
+                            true,
+                            ["TRUE"],
+                            [
+                                ["VAR", "$TOP_2_CARD", ["GET_CARD", "$TARGET_GROUP_ID", 1, 0]],
+                                ["AND",
+                                    ["NOT_EQUAL", "$TOP_2_CARD", null],
+                                    ["NOT_EQUAL", "$TOP_2_CARD.currentSide", "B"]
+                                ]
+                            ]
+                        ]
+                    ],
+                    ["TRUE"],
+                    false
+                ]
+            ]
+        },
+        "DO_REFRESH_TOP_CARD_REVEALED": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_REFRESH_TOP_CARD_REVEALED.TARGET_GROUP_ID"]],
+                ["VAR", "$TOP_CARD", ["GET_CARD", "$TARGET_GROUP_ID", 0, 0]],
+                ["COND",
+                    ["NOT_EQUAL", "$TOP_CARD", null],
+                    [
+                        ["VAR", "$TOP_SIDE", "B"],
+                        ["COND",
+                            ["GREATER_THAN", ["GET_TOP_DECK_CARD_REVEALED", "$TARGET_GROUP_ID"], 0],
+                            ["UPDATE_VAR", "$TOP_SIDE", "A"]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$TOP_CARD.currentSide", "$TOP_SIDE"],
+                            ["SET", "/cardById/$TOP_CARD.id/currentSide", "$TOP_SIDE"]
+                        ],
+                        ["VAR", "$TOP_2_CARD", ["GET_CARD", "$TARGET_GROUP_ID", 1, 0]],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TOP_2_CARD", null],
+                                ["NOT_EQUAL", "$TOP_2_CARD.currentSide", "B"]
+                            ],
+                            ["SET", "/cardById/$TOP_2_CARD.id/currentSide", "B"]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "DO_REFRESH_ALL_STORIES_IN_PLAY": {
             "args": [],
             "code": [
@@ -866,7 +937,7 @@
         "DO_STEP_U4": {
             "args": [],
             "code": [
-                ["PROMPT", "$GAME.firstPlayer", "askToDrawPlayerCard"]
+                ["EXECUTE_PROMPT", "$GAME.firstPlayer", "askToDrawPlayerCard"]
             ]
         },
         "DO_STEP_U5": {
@@ -1016,11 +1087,32 @@
                 ["VAR", "$NEXT_PLAYER", ["GET_NEXT_ACTIVE_PLAYER", "$TARGET_PLAYER"]],
                 ["COND",
                     ["NOT_EQUAL", "$NEXT_PLAYER", null],
-                    ["PROMPT", "$NEXT_PLAYER", "$PROMPT_NAME"],
+                    ["EXECUTE_PROMPT", "$NEXT_PLAYER", "$PROMPT_NAME"],
                     ["NOT_EQUAL", "$FOLLOWUP_PROMPT", null],
-                    ["PROMPT", "$GAME.firstPlayer", "$FOLLOWUP_PROMPT"],
+                    ["EXECUTE_PROMPT", "$GAME.firstPlayer", "$FOLLOWUP_PROMPT"],
                     ["TRUE"],
                     "$GAME"
+                ]
+            ]
+        },
+        "EXECUTE_PROMPT": {
+            "args": ["$TARGET_PLAYER", "$PROMPT_NAME"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EXECUTE_PROMPT.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$PROMPT_NAME", "EXECUTE_PROMPT.PROMPT_NAME"],
+                ["COND",
+                    ["EQUAL", "$PROMPT_NAME", "askToDrawPlayerCard"],
+                    [
+                        ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
+                        ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+                    ],
+                    ["EQUAL", "$PROMPT_NAME", "askToGainResource"],
+                    [
+                        ["VAR", "$UPKEEP_RESOURCES", ["GET_UPKEEP_RESOURCES", "$TARGET_PLAYER", 1]],
+                        ["PROMPT", "$TARGET_PLAYER", "askToGainResource", "$UPKEEP_RESOURCES", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_RESOURCES", " resource", " resources"]]
+                    ],
+                    ["TRUE"],
+                    ["PROMPT", "$TARGET_PLAYER", "$PROMPT_NAME"]
                 ]
             ]
         }
