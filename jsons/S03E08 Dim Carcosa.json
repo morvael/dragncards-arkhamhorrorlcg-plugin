@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Dim Carcosa", "Dim Carcosa Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Dim Carcosa", null, "Dim Carcosa Scenario Init"]
             ]
         },
         "Dim Carcosa": {

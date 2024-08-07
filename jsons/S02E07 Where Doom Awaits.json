@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Where Doom Awaits", "Where Doom Awaits Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Where Doom Awaits", null, "Where Doom Awaits Scenario Init"]
             ]
         },
         "Where Doom Awaits": {

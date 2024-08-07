@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Untamed Wilds", "The Untamed Wilds Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Untamed Wilds", null, "The Untamed Wilds Scenario Init"]
             ]
         },
         "The Untamed Wilds": {

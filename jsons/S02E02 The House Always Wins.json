@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The House Always Wins", "The House Always Wins Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The House Always Wins", null, "The House Always Wins Scenario Init"]
             ]
         },
         "The House Always Wins": {

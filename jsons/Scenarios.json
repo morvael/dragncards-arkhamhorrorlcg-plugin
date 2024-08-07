@@ -101,7 +101,8 @@
                             {"label": "id:theDoomOfEztli", "deckListId": "The Doom of Eztli Scenario"},
                             {"label": "id:threadsOfFate", "deckListId": "Threads of Fate Scenario"},
                             {"label": "id:theBoundaryBeyond", "deckListId": "The Boundary Beyond Scenario"},
-                            {"label": "id:heartOfTheEldersPt1", "deckListId": "Heart of the Elders Pt 1 Scenario"}
+                            {"label": "id:heartOfTheEldersPt1", "deckListId": "Heart of the Elders Pt 1 Scenario"},
+                            {"label": "id:heartOfTheEldersPt2", "deckListId": "Heart of the Elders Pt 2 Scenario"}
                         ]
                     }
                 ]
@@ -327,6 +328,9 @@
         },
         "heartOfTheEldersPt1": {
             "English": "Heart of the Elders, Part 1"
+        },
+        "heartOfTheEldersPt2": {
+            "English": "Heart of the Elders, Part 2"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

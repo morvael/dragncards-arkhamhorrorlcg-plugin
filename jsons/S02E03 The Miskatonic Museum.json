@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Miskatonic Museum", "The Miskatonic Museum Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Miskatonic Museum", null, "The Miskatonic Museum Scenario Init"]
             ]
         },
         "The Miskatonic Museum": {

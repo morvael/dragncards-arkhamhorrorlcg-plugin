@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to The Unspeakable Oath", "Return to The Unspeakable Oath Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to The Unspeakable Oath", null, "Return to The Unspeakable Oath Scenario Init"]
             ]
         },
         "Return to The Unspeakable Oath": {
@@ -110,10 +110,7 @@
             ]],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Unspeakable Oath - Western Patient Wing", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Unspeakable Oath - Eastern Patient Wing", 1],
-            ["SET", "/arkhamReturnToTheUnspeakableOathSpawnChoiceDone", 0],
-            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                ["PROMPT", "$PLAYER_I", "returnToTheUnspeakableOathSpawnChoice"]
-            ]]
+            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Asylum Halls: Western Patient Wing", "Asylum Halls: Eastern Patient Wing"], "Return to The Unspeakable Oath Scenario Init Continue 1"]
         ],
         "Return to The Unspeakable Oath Scenario Init Continue 1": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Asylum Halls: Western Patient Wing", 5, 7, 3, 0],
@@ -147,42 +144,5 @@
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
-    },
-    "functions": {
-        "DO_RETURN_TO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE": {
-            "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_RETURN_TO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE.TARGET_PLAYER"],
-                ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_RETURN_TO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE.LOCATION_CARD_NAME"],
-                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
-                ["INCREASE_VAL", "/arkhamReturnToTheUnspeakableOathSpawnChoiceDone", 1],
-                ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamReturnToTheUnspeakableOathSpawnChoiceDone", "$GAME.numPlayers"],
-                    ["ACTION_LIST", "Return to The Unspeakable Oath Scenario Init Continue 1"]
-                ]
-            ]
-        }
-    },
-    "prompts": {
-        "returnToTheUnspeakableOathSpawnChoice": {
-            "args": [],
-            "message": "Where do you want to begin the game?",
-            "options": [
-                {
-                    "label": "Western Patient Wing.",
-                    "hotkey": "W",
-                    "code": [
-                        ["DO_RETURN_TO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE", "$PLAYER_N", "Asylum Halls: Western Patient Wing"]
-                    ]
-                },
-                {
-                    "label": "Eastern Patient Wing.",
-                    "hotkey": "E",
-                    "code": [
-                        ["DO_RETURN_TO_THE_UNSPEAKABLE_OATH_SPAWN_CHOICE", "$PLAYER_N", "Asylum Halls: Eastern Patient Wing"]
-                    ]
-                }
-            ]
-        }
     }
 }

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Threads of Fate", "Threads of Fate Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Threads of Fate", null, "Threads of Fate Scenario Init"]
             ]
         },
         "Threads of Fate": {

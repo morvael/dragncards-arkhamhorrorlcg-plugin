@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Extracurricular Activity", "Extracurricular Activity Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Extracurricular Activity", null, "Extracurricular Activity Scenario Init"]
             ]
         },
         "Extracurricular Activity": {

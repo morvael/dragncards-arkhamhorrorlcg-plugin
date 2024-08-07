@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Heart of the Elders, Part 1", "Heart of the Elders Pt 1 Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Heart of the Elders, Part 1", "Heart of the Elders Pt 1 Scenario Early Init", "Heart of the Elders Pt 1 Scenario Init"]
             ]
         },
         "Heart of the Elders Pt 1": {
@@ -153,26 +153,6 @@
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]
-        ]
-    },
-    "automation": {
-        "gameRules": [
-            {
-                "_comment": "Launches early init procedure",
-                "type": "trigger",
-                "listenTo": ["/arkhamEventEarlyInit"],
-                "condition": [
-                    ["AND",
-                        ["GREATER_THAN", "$GAME.arkhamEventEarlyInit", 0],
-                        ["EQUAL", "$GAME.arkhamCampaignName", "The Forgotten Age"],
-                        ["EQUAL", "$GAME.arkhamScenarioName", "Heart of the Elders, Part 1"]
-                    ]
-                ],
-                "then": [
-                    ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", true],
-                    ["ACTION_LIST", "Heart of the Elders Pt 1 Scenario Early Init"]
-                ]
-            }
         ]
     }
 }

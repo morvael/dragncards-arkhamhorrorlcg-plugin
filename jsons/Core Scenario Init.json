@@ -631,7 +631,7 @@
             ]
         },
         "SCENARIO_INIT": {
-            "args": ["$CHAOS_BAG_CAMPAIGN_NAME", "$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION"],
+            "args": ["$CHAOS_BAG_CAMPAIGN_NAME", "$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_EARLY_ACTION", "$SCENARIO_ACTION"],
             "code": [
                 ["VAR", "$PRESENT_INVESTIGATORS", 0],
                 ["VAR", "$PRESENT_DECKS", 0],
@@ -662,8 +662,6 @@
                         ["SET", "/arkhamNumScenarioQuestions", 0],
                         ["SET", "/arkhamScenarioQuestionIndex", 0],
                         ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-                        ["SET", "/arkhamEventEarlyInit", 0],
-                        ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", false],
                         ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null],
                         ["SET", "/arkhamTraumaDone", 0],
                         ["SET", "/arkhamStartingHandDone", 0],
@@ -730,9 +728,10 @@
                                 ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
                             ]]
                         ]],
-                        ["INCREASE_VAL", "/arkhamEventEarlyInit", 1],
                         ["COND",
-                            ["EQUAL", "$GAME.arkhamSkipStartingPhysicalTraumaPrompt", false],
+                            ["NOT_EQUAL", "$SCENARIO_EARLY_ACTION", null],
+                            ["ACTION_LIST", "$SCENARIO_EARLY_ACTION"],
+                            ["TRUE"],
                             ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
                         ]
                     ],
@@ -1077,7 +1076,36 @@
                     ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign. {{$GAME.arkhamFinalScenarioMessage}}"]
                 ]
             ]
-        }
+        },
+        "SCENARIO_CUSTOM_SPAWN_CHOICE": {
+            "args": ["$LOCATION_NAMES", "$SCENARIO_CONTINUE_ACTION"],
+            "code": [
+                ["SET", "/arkhamCustomSpawnChoiceDone", 0],
+                ["SET", "/arkhamCustomSpawnChoiceScenarioContinueAction", "$SCENARIO_CONTINUE_ACTION"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["PROMPT", "$PLAYER_I", "askForCustomSpawnChoice"],
+                    ["VAR", "$INDEX", 0],
+                    ["FOR_EACH_VAL", "$LOCATION_NAME", "$LOCATION_NAMES", [
+                        ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
+                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$LOCATION_NAME}}", "{{$LETTER}}", ["LIST", "DO_MAKE_CUSTOM_SPAWN_CHOICE", "{{$PLAYER_I}}", "{{$LOCATION_NAME}}"]],
+                        ["INCREASE_VAR", "$INDEX", 1]
+                    ]]
+                ]]
+            ]
+        },
+        "DO_MAKE_CUSTOM_SPAWN_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MAKE_CUSTOM_SPAWN_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_MAKE_CUSTOM_SPAWN_CHOICE.LOCATION_CARD_NAME"],
+                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
+                ["INCREASE_VAL", "/arkhamCustomSpawnChoiceDone", 1],
+                ["COND",
+                    ["GREATER_EQUAL", "$GAME.arkhamCustomSpawnChoiceDone", "$GAME.numPlayers"],
+                    ["ACTION_LIST", "$GAME.arkhamCustomSpawnChoiceScenarioContinueAction"]
+                ]
+            ]
+        }        
     },
     "prompts": {
         "startingPhysicalTrauma": {
@@ -1312,6 +1340,12 @@
                         ["ACTION_LIST", "$SCENARIO_ACTION"]
                     ]
                 }
+            ]
+        },
+        "askForCustomSpawnChoice": {
+            "args": [],
+            "message": "Where do you want to begin the game?",
+            "options": [
             ]
         }
     }

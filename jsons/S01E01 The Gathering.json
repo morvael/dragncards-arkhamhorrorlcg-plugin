@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Night of the Zealot", "The Gathering", "The Gathering Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Night of the Zealot", "The Gathering", null, "The Gathering Scenario Init"]
             ]
         },
         "The Gathering": {

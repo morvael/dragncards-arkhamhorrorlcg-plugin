@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to The House Always Wins", "Return to The House Always Wins Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to The House Always Wins", null, "Return to The House Always Wins Scenario Init"]
             ]
         },
         "Return to The House Always Wins": {

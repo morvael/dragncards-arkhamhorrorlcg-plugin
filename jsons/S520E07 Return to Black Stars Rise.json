@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Black Stars Rise", "Return to Black Stars Rise Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Black Stars Rise", null, "Return to Black Stars Rise Scenario Init"]
             ]
         },
         "Return to Black Stars Rise": {

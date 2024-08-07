@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Essex County Express", "The Essex County Express Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "The Essex County Express", null, "The Essex County Express Scenario Init"]
             ]
         },
         "The Essex County Express": {

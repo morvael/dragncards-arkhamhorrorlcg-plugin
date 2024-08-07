@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Blood on the Altar", "Blood on the Altar Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "The Dunwich Legacy", "Blood on the Altar", null, "Blood on the Altar Scenario Init"]
             ]
         },
         "Blood on the Altar": {

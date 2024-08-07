@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Boundary Beyond", "The Boundary Beyond Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Boundary Beyond", "The Boundary Beyond Scenario Early Init", "The Boundary Beyond Scenario Init"]
             ]
         },
         "The Boundary Beyond": {
@@ -144,10 +144,7 @@
                 ]
             ],
             ["DO_LOAD_CARDS_SCN", "The Boundary Beyond - Mexico City"],
-            ["SET", "/arkhamTheBoundaryBeyondSpawnChoiceDone", 0],
-            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                ["PROMPT", "$PLAYER_I", "theBoundaryBeyondSpawnChoice"]
-            ]]
+            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "The Boundary Beyond Scenario Init Continue 1"]
         ],
         "The Boundary Beyond Scenario Init Continue 1": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
@@ -159,62 +156,5 @@
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
-    },
-    "automation": {
-        "gameRules": [
-            {
-                "_comment": "Launches early init procedure",
-                "type": "trigger",
-                "listenTo": ["/arkhamEventEarlyInit"],
-                "condition": [
-                    ["AND",
-                        ["GREATER_THAN", "$GAME.arkhamEventEarlyInit", 0],
-                        ["EQUAL", "$GAME.arkhamCampaignName", "The Forgotten Age"],
-                        ["EQUAL", "$GAME.arkhamScenarioName", "The Boundary Beyond"]
-                    ]
-                ],
-                "then": [
-                    ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", true],
-                    ["ACTION_LIST", "The Boundary Beyond Scenario Early Init"]
-                ]
-            }
-        ]
-    },
-    "functions": {
-        "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE": {
-            "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE.TARGET_PLAYER"],
-                ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE.LOCATION_CARD_NAME"],
-                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
-                ["INCREASE_VAL", "/arkhamTheBoundaryBeyondSpawnChoiceDone", 1],
-                ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamTheBoundaryBeyondSpawnChoiceDone", "$GAME.numPlayers"],
-                    ["ACTION_LIST", "The Boundary Beyond Scenario Init Continue 1"]
-                ]
-            ]
-        }
-    },
-    "prompts": {
-        "theBoundaryBeyondSpawnChoice": {
-            "args": [],
-            "message": "Where do you want to begin the game?",
-            "options": [
-                {
-                    "label": "Zócalo.",
-                    "hotkey": "Z",
-                    "code": [
-                        ["DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE", "$PLAYER_N", "Zócalo"]
-                    ]
-                },
-                {
-                    "label": "Coyoacán.",
-                    "hotkey": "C",
-                    "code": [
-                        ["DO_THE_BOUNDARY_BEYOND_SPAWN_CHOICE", "$PLAYER_N", "Coyoacán"]
-                    ]
-                }
-            ]
-        }
     }
 }

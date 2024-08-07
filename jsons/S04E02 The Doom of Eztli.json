@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Doom of Eztli", "The Doom of Eztli Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Doom of Eztli", null, "The Doom of Eztli Scenario Init"]
             ]
         },
         "The Doom of Eztli": {
