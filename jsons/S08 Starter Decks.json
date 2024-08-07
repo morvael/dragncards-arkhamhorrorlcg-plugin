@@ -10,14 +10,13 @@
                         "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
                         "condition": [
                             ["AND",
-                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
                                 ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
                                 ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
                             ]
                         ],
                         "then": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1],
-                            ["DO_REFRESH_TOP_CARD_REVEALED", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
                 ]
@@ -31,14 +30,13 @@
                         "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
                         "condition": [
                             ["AND",
-                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
+                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
                                 ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
                                 ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
                             ]
                         ],
                         "then": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1],
-                            ["DO_REFRESH_TOP_CARD_REVEALED", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
                 ]

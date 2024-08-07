@@ -62,8 +62,9 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DELETE_SUPPLY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
-                ["AND",
-                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
+                ["OR",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
                 ]
             ]
         },

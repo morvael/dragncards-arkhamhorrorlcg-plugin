@@ -58,13 +58,14 @@
             ]
         },
         "GET_INVESTIGATOR": {
-            "_comment": "Returns Investigator type card owned by given player, or null.",
+            "_comment": "Returns Investigator type card owned by given player and located in the correct Investigator group, or null.",
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_INVESTIGATOR.TARGET_PLAYER"],
                 ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
-                    ["EQUAL", "$CARD.currentFace.type", "Investigator"]
+                    ["EQUAL", "$CARD.currentFace.type", "Investigator"],
+                    ["EQUAL", "$CARD.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"]]
                 ]]
             ]
         },

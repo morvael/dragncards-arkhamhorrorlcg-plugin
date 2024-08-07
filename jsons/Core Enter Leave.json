@@ -1,0 +1,685 @@
+{
+    "automation": {
+        "gameRules": [
+            {
+                "type": "trigger",
+                "listenTo": ["/cardById/*/groupId"],
+                "condition": [
+                    ["CAN_REFRESH_CARD", "$TARGET", ["PREV", "$TARGET.groupId"]]
+                ],
+                "then": [
+                    ["DO_REFRESH_CARD", "$TARGET", ["PREV", "$TARGET.groupId"]]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/cardById/*/attachmentDirection"],
+                "condition": [
+                    ["CAN_REFRESH_CARD_IN_PLAY", "$TARGET"]
+                ],
+                "then": [
+                    ["DO_REFRESH_CARD_IN_PLAY", "$TARGET"]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player4Deck/stackIds"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_DECK", "$TARGET"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_DECK", "$TARGET"]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/playerData/*/arkhamPlayWithTopDeckCardRevealed"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/groupById/sharedAgendaStory/stackIds", "/groupById/sharedActStory/stackIds", "/groupById/sharedActStoryB/stackIds", "/groupById/sharedActStoryC/stackIds", "/groupById/sharedActStoryD/stackIds", "/groupById/sharedActStoryE/stackIds"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["CAN_REFRESH_STORY", "$TARGET"]
+                    ]
+                ],
+                "then": [
+                    ["DO_REFRESH_STORY", "$TARGET"]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/cardById/*/attachmentDirection"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["OR",
+                            ["EQUAL", "$TARGET.groupId", "sharedAgendaStory"],
+                            ["EQUAL", "$TARGET.groupId", "sharedActStory"],
+                            ["EQUAL", "$TARGET.groupId", "sharedActStoryB"],
+                            ["EQUAL", "$TARGET.groupId", "sharedActStoryC"],
+                            ["EQUAL", "$TARGET.groupId", "sharedActStoryD"],
+                            ["EQUAL", "$TARGET.groupId", "sharedActStoryE"]
+                        ],
+                        ["CAN_REFRESH_STORY", "$GROUP_BY_ID.{{$TARGET.groupId}}"]
+                    ]
+                ],
+                "then": [
+                    ["DO_REFRESH_STORY", "$GROUP_BY_ID.{{$TARGET.groupId}}"]
+                ]
+            }
+        ]
+    },
+    "functions": {
+        "GET_DESIRED_ROTATION": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["IN_STRING", "$NEW_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "discard"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "pile"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "tokens"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "chaosBag"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "aside"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "removed"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "exiled"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"]
+                    ],
+                    0,
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "CAN_CHANGE_ROTATION": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$DESIRED_ROTATION", ["GET_DESIRED_ROTATION", "$TARGET_CARD", "$NEW_GROUP"]],
+                ["AND",
+                    ["NOT_EQUAL", "$DESIRED_ROTATION", null],
+                    ["NOT_EQUAL", "$TARGET_CARD.rotation", "$DESIRED_ROTATION"]
+                ]
+            ]
+        },
+        "DO_CHANGE_ROTATION": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["SET", "/cardById/$TARGET_CARD.id/rotation", ["GET_DESIRED_ROTATION", "$TARGET_CARD", "$NEW_GROUP"]]
+            ]
+        },
+        "GET_DESIRED_LEAVE_SIDE": {
+            "args": ["$TARGET_CARD", "$OLD_GROUP"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$OLD_GROUP", null],
+                    null,
+                    ["OR",
+                        ["IN_STRING", "$OLD_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$OLD_GROUP.groupType", "hand"]
+                    ],
+                    "A",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_DESIRED_ENTER_SIDE": {
+            "_comment": "deckP groups left out as currentSide there is controlled by stackIds listener",
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$NEW_GROUP.groupType", "deck"],
+                        ["EQUAL", "$NEW_GROUP.groupType", "deckS"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+                    ],
+                    "B",
+                    ["OR",
+                        ["IN_STRING", "$NEW_GROUP.groupType", "discard"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "pile"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "tokens"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "chaosBag"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "aside"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "removed"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "exiled"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"]
+                    ],
+                    "A",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_DESIRED_CURRENT_SIDE": {
+            "_comment": "deckP groups left out as currentSide there is controlled by stackIds listener",
+            "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$NEW_GROUP.groupType", "deckP"],
+                    null,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$DESIRED_ENTER_SIDE", ["GET_DESIRED_ENTER_SIDE", "$TARGET_CARD", "$NEW_GROUP"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$DESIRED_ENTER_SIDE", null],
+                            "$DESIRED_ENTER_SIDE",
+                            ["TRUE"],
+                            ["GET_DESIRED_LEAVE_SIDE", "$TARGET_CARD", "$OLD_GROUP"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_CHANGE_CURRENT_SIDE": {
+            "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$DESIRED_CURRENT_SIDE", ["GET_DESIRED_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"]],
+                ["AND",
+                    ["NOT_EQUAL", "$DESIRED_CURRENT_SIDE", null],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$DESIRED_CURRENT_SIDE"]
+                ]
+            ]
+        },
+        "DO_CHANGE_CURRENT_SIDE": {
+            "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
+            "code": [
+                ["SET", "/cardById/$TARGET_CARD.id/currentSide", ["GET_DESIRED_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"]]
+            ]
+        },
+        "GET_CARD_PEEKING": {
+            "args": ["$TARGET_CARD", "$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.peeking", null],
+                        ["EQUAL", "$TARGET_CARD.peeking.$TARGET_PLAYER", null]
+                    ],
+                    false,
+                    ["TRUE"],
+                    "$TARGET_CARD.peeking.$TARGET_PLAYER"
+                ]
+            ]
+        },
+        "GET_DESIRED_LEAVE_PEEKING": {
+            "args": ["$TARGET_CARD", "$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["EQUAL", ["GET_CARD_PEEKING", "$TARGET_CARD", "$TARGET_PLAYER"], true],
+                    false,
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_DESIRED_ENTER_PEEKING": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP", "$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$NEW_GROUP.id", "{{$TARGET_PLAYER}}Hand"],
+                        ["AND",
+                            ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.browseGroup.id", "$NEW_GROUP.id"],
+                            ["IN_STRING", "$NEW_GROUP.groupType", "deck"]
+                        ]
+                    ],
+                    true,
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
+        "GET_DESIRED_PEEKING": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP", "$TARGET_PLAYER"],
+            "code": [
+                ["VAR", "$DESIRED_ENTER_PEEKING", ["GET_DESIRED_ENTER_PEEKING", "$TARGET_CARD", "$NEW_GROUP", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["NOT_EQUAL", "$DESIRED_ENTER_PEEKING", null],
+                    "$DESIRED_ENTER_PEEKING",
+                    ["TRUE"],
+                    ["GET_DESIRED_LEAVE_PEEKING", "$TARGET_CARD", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
+        "CAN_CHANGE_PEEKING": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$REQUIRES_CHANGE", false],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$DESIRED_PEEKING", ["GET_DESIRED_PEEKING", "$TARGET_CARD", "$NEW_GROUP", "$PLAYER_I"]],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$DESIRED_PEEKING", null],
+                            ["NOT_EQUAL", ["GET_CARD_PEEKING", "$TARGET_CARD", "$PLAYER_I"], "$DESIRED_PEEKING"]
+                        ],
+                        ["UPDATE_VAR", "$REQUIRES_CHANGE", true]
+                    ]
+                ]],
+                "$REQUIRES_CHANGE"
+            ]
+        },
+        "DO_CHANGE_PEEKING": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$DESIRED_PEEKING", ["GET_DESIRED_PEEKING", "$TARGET_CARD", "$NEW_GROUP", "$PLAYER_I"]],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$DESIRED_PEEKING", null],
+                            ["NOT_EQUAL", ["GET_CARD_PEEKING", "$TARGET_CARD", "$PLAYER_I"], "$DESIRED_PEEKING"]
+                        ],
+                        ["SET", "/cardById/$TARGET_CARD.id/peeking/$PLAYER_I", "$DESIRED_PEEKING"]
+                    ]
+                ]]
+            ]
+        },
+        "GET_DESIRED_CONTROLLER": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$NEW_GROUP.id", "sharedLocations"],
+                        ["EQUAL", "$NEW_GROUP.id", "sharedVoid"],
+                        ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
+                    ],
+                    null,
+                    ["IN_STRING", "$NEW_GROUP.id", "player1"],
+                    "player1",
+                    ["IN_STRING", "$NEW_GROUP.id", "player2"],
+                    "player2",
+                    ["IN_STRING", "$NEW_GROUP.id", "player3"],
+                    "player3",
+                    ["IN_STRING", "$NEW_GROUP.id", "player4"],
+                    "player4",
+                    ["TRUE"],
+                    "shared"
+                ]
+            ]
+        },
+        "CAN_CHANGE_CONTROLLER": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.controller", ""],
+                        ["NOT_EQUAL", "$NEW_GROUP", null],
+                        ["OR",
+                            ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Supplies"]
+                        ]
+                    ],
+                    [
+                        ["VAR", "$NEW_CONTROLLER", ["GET_DESIRED_CONTROLLER", "$TARGET_CARD", "$NEW_GROUP"]],
+                        ["AND",
+                            ["NOT_EQUAL", "$NEW_CONTROLLER", null],
+                            ["NOT_EQUAL", "$TARGET_CARD.controller", "$NEW_CONTROLLER"]
+                        ]
+                    ],
+                    ["TRUE"],
+                    false
+                ]
+            ]
+        },
+        "DO_CHANGE_CONTROLLER": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$OLD_CONTROLLER", "$TARGET_CARD.controller"],
+                ["VAR", "$NEW_CONTROLLER", ["GET_DESIRED_CONTROLLER", "$TARGET_CARD", "$NEW_GROUP"]],
+                ["VAR", "$NEW_CONTROLLER_ORIG", "$NEW_CONTROLLER"],
+                ["COND",
+                    ["NOT_EQUAL", "$OLD_CONTROLLER", "shared"],
+                    ["UPDATE_VAR", "$OLD_CONTROLLER", ["GET_ALIAS", "$OLD_CONTROLLER"]],
+                    ["TRUE"],
+                    ["UPDATE_VAR", "$OLD_CONTROLLER", "the scenario"]
+                ],
+                ["COND",
+                    ["NOT_EQUAL", "$NEW_CONTROLLER", "shared"],
+                    ["UPDATE_VAR", "$NEW_CONTROLLER", ["GET_ALIAS", "$NEW_CONTROLLER"]],
+                    ["TRUE"],
+                    ["UPDATE_VAR", "$NEW_CONTROLLER", "the scenario"]
+                ],
+                ["LOG", "└── {{$TARGET_CARD.currentFace.name}} changes controller from {{$OLD_CONTROLLER}} to {{$NEW_CONTROLLER}}."],
+                ["SET", "/cardById/$TARGET_CARD.id/controller", "$NEW_CONTROLLER_ORIG"]
+            ]
+        },
+        "GET_DESIRED_IN_HAND": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+            ]
+        },
+        "CAN_CHANGE_IN_HAND": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["NOT_EQUAL", "$TARGET_CARD.inHand", ["GET_DESIRED_IN_HAND", "$TARGET_CARD", "$NEW_GROUP"]]
+            ]
+        },
+        "DO_CHANGE_IN_HAND": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["SET", "/cardById/$TARGET_CARD.id/inHand", ["GET_DESIRED_IN_HAND", "$TARGET_CARD", "$NEW_GROUP"]]
+            ]
+        },
+        "GET_DESIRED_IN_ADVANCED": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["EQUAL", "$NEW_GROUP.canHaveAttachments", true]
+            ]
+        },
+        "CAN_CHANGE_IN_ADVANCED": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["NOT_EQUAL", "$TARGET_CARD.inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET_CARD", "$NEW_GROUP"]]
+            ]
+        },
+        "DO_CHANGE_IN_ADVANCED": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["SET", "/cardById/$TARGET_CARD.id/inAdvanced", ["GET_DESIRED_IN_ADVANCED", "$TARGET_CARD", "$NEW_GROUP"]]
+            ]
+        },
+        "GET_DESIRED_IN_PLAY": {
+            "_comment": "story groups left out as inPlay there is controlled by stackIds listener",
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["COND",
+                    ["IN_STRING", "$NEW_GROUP.groupType", "story"],
+                    null,
+                    ["AND",
+                        ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
+                        ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                    ],
+                    true,
+                    ["TRUE"],
+                    false
+                ]
+            ]
+        },
+        "CAN_CHANGE_IN_PLAY": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$DESIRED_IN_PLAY", ["GET_DESIRED_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]],
+                ["AND",
+                    ["NOT_EQUAL", "$DESIRED_IN_PLAY", null],
+                    ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"]
+                ]
+            ]
+        },
+        "DO_CHANGE_IN_PLAY": {
+            "args": ["$TARGET_CARD", "$NEW_GROUP"],
+            "code": [
+                ["VAR", "$DESIRED_IN_PLAY", ["GET_DESIRED_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]],
+                ["SET", "/cardById/$TARGET_CARD.id/inPlay", "$DESIRED_IN_PLAY"],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                        ["EQUAL", "$TARGET_CARD.cluesPlaced", true]
+                    ],
+                    ["SET", "/cardById/$TARGET_CARD.id/cluesPlaced", false]
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                        ["EQUAL", "$TARGET_CARD.usesPlaced", true]
+                    ],
+                    ["SET", "/cardById/$TARGET_CARD.id/usesPlaced", false]
+                ]
+            ]
+        },
+        "GET_REFRESH_CARD_GROUP": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_GROUP_ID", null],
+                        ["EQUAL", "$TARGET_GROUP_ID", ""]
+                    ],
+                    null,
+                    ["TRUE"],
+                    "$GROUP_BY_ID.$TARGET_GROUP_ID"
+                ]
+            ]
+        },
+        "CAN_REFRESH_CARD": {
+            "args": ["$TARGET_CARD", "$OLD_GROUP_ID"],
+            "code": [
+                ["VAR", "$OLD_GROUP", ["GET_REFRESH_CARD_GROUP", "$OLD_GROUP_ID"]],
+                ["VAR", "$NEW_GROUP", ["GET_REFRESH_CARD_GROUP", "$TARGET_CARD.groupId"]],
+                ["AND",
+                    ["NOT_EQUAL", "$NEW_GROUP", null],
+                    ["OR",
+                        ["CAN_CHANGE_ROTATION", "$TARGET_CARD", "$NEW_GROUP"],
+                        ["CAN_CHANGE_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
+                        ["CAN_CHANGE_PEEKING", "$TARGET_CARD", "$NEW_GROUP"],
+                        ["CAN_CHANGE_CONTROLLER", "$TARGET_CARD", "$NEW_GROUP"],
+                        ["CAN_CHANGE_IN_HAND", "$TARGET_CARD", "$NEW_GROUP"],
+                        ["CAN_CHANGE_IN_ADVANCED", "$TARGET_CARD", "$NEW_GROUP"],
+                        ["CAN_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
+                    ]
+                ]
+            ]
+        },
+        "DO_REFRESH_CARD": {
+            "args": ["$TARGET_CARD", "$OLD_GROUP_ID"],
+            "code": [
+                ["VAR", "$OLD_GROUP", ["GET_REFRESH_CARD_GROUP", "$OLD_GROUP_ID"]],
+                ["VAR", "$NEW_GROUP", ["GET_REFRESH_CARD_GROUP", "$TARGET_CARD.groupId"]],
+                ["COND",
+                    ["CAN_CHANGE_ROTATION", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_ROTATION", "$TARGET_CARD", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
+                    ["DO_CHANGE_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_PEEKING", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_PEEKING", "$TARGET_CARD", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_CONTROLLER", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_CONTROLLER", "$TARGET_CARD", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_IN_HAND", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_IN_HAND", "$TARGET_CARD", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_IN_ADVANCED", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_IN_ADVANCED", "$TARGET_CARD", "$NEW_GROUP"]
+                ],
+                ["COND",
+                    ["CAN_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"],
+                    ["DO_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
+                ]
+            ]
+        },
+        "CAN_REFRESH_CARD_IN_PLAY": {
+            "args": ["$TARGET_CARD"],
+            "code": [
+                ["VAR", "$NEW_GROUP", ["GET_REFRESH_CARD_GROUP", "$TARGET_CARD.groupId"]],
+                ["AND",
+                    ["NOT_EQUAL", "$NEW_GROUP", null],
+                    ["CAN_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
+                ]
+            ]
+        },
+        "DO_REFRESH_CARD_IN_PLAY": {
+            "args": ["$TARGET_CARD"],
+            "code": [
+                ["VAR", "$NEW_GROUP", ["GET_REFRESH_CARD_GROUP", "$TARGET_CARD.groupId"]],
+                ["DO_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
+            ]
+        },
+        "GET_TOP_DECK_CARD_REVEALED": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP.id", "player1Deck"],
+                    "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player2Deck"],
+                    "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player3Deck"],
+                    "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player4Deck"],
+                    "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
+                    ["TRUE"],
+                    0
+                ]
+             ]
+        },
+       "CAN_REFRESH_PLAYER_DECK": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["VAR", "$SIDE", "B"],
+                ["COND",
+                    ["GREATER_THAN", ["GET_TOP_DECK_CARD_REVEALED", "$TARGET_GROUP"], 0],
+                    ["UPDATE_VAR", "$SIDE", "A"]
+                ],
+                ["VAR", "$REQUIRES_CHANGE", false],
+                ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
+                    ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
+                    ["FOR_EACH_VAL", "$TARGET_CARD_ID", "$STACK.cardIds", [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$SIDE"],
+                            ["UPDATE_VAR", "$REQUIRES_CHANGE", true]
+                        ]
+                    ]],
+                    ["UPDATE_VAR", "$SIDE", "B"]
+                ]],
+                "$REQUIRES_CHANGE"
+            ]
+        },
+        "DO_REFRESH_PLAYER_DECK": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["VAR", "$SIDE", "B"],
+                ["COND",
+                    ["GREATER_THAN", ["GET_TOP_DECK_CARD_REVEALED", "$TARGET_GROUP"], 0],
+                    ["UPDATE_VAR", "$SIDE", "A"]
+                ],
+                ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
+                    ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
+                    ["FOR_EACH_VAL", "$TARGET_CARD_ID", "$STACK.cardIds", [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$SIDE"],
+                            ["SET", "/cardById/$TARGET_CARD.id/currentSide", "$SIDE"]
+                        ]
+                    ]],
+                    ["UPDATE_VAR", "$SIDE", "B"]
+                ]]
+            ]
+        },
+        "GET_STORY_SORT_ORDER": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedActStory"],
+                    1,
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedActStoryB"],
+                    2,
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedActStoryC"],
+                    3,
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedActStoryD"],
+                    4,
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedActStoryE"],
+                    5,
+                    ["TRUE"],
+                    0
+                ]
+             ]
+        },
+        "CAN_REFRESH_STORY": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["VAR", "$SORT_ORDER", ["GET_STORY_SORT_ORDER", "$TARGET_GROUP"]],
+                ["VAR", "$IN_PLAY", true],
+                ["VAR", "$REQUIRES_CHANGE", false],
+                ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
+                    ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
+                    ["FOR_EACH_VAL", "$TARGET_CARD_ID", "$STACK.cardIds", [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["VAR", "$DESIRED_IN_PLAY", ["AND",
+                            ["EQUAL", "$IN_PLAY", true],
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                        ]],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],
+                            ["UPDATE_VAR", "$REQUIRES_CHANGE", true]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.sortOrder", "$SORT_ORDER"],
+                            ["UPDATE_VAR", "$REQUIRES_CHANGE", true]
+                        ]
+                    ]],
+                    ["UPDATE_VAR", "$IN_PLAY", false]
+                ]],
+                "$REQUIRES_CHANGE"
+            ]
+        },
+        "DO_REFRESH_STORY": {
+            "args": ["$TARGET_GROUP"],
+            "code": [
+                ["VAR", "$SORT_ORDER", ["GET_STORY_SORT_ORDER", "$TARGET_GROUP"]],
+                ["VAR", "$IN_PLAY", true],
+                ["FOR_EACH_VAL", "$STACK_ID", "$TARGET_GROUP.stackIds", [
+                    ["VAR", "$STACK", "$STACK_BY_ID.$STACK_ID"],
+                    ["FOR_EACH_VAL", "$TARGET_CARD_ID", "$STACK.cardIds", [
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["VAR", "$DESIRED_IN_PLAY", ["AND",
+                            ["EQUAL", "$IN_PLAY", true],
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                        ]],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],
+                            [
+                                ["SET", "/cardById/$TARGET_CARD.id/inPlay", "$DESIRED_IN_PLAY"],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                                        ["EQUAL", "$TARGET_CARD.cluesPlaced", true]
+                                    ],
+                                    ["SET", "/cardById/$TARGET_CARD.id/cluesPlaced", false]
+                                ],
+                                ["COND",
+                                    ["AND",
+                                        ["EQUAL", "$DESIRED_IN_PLAY", false],
+                                        ["EQUAL", "$TARGET_CARD.usesPlaced", true]
+                                    ],
+                                    ["SET", "/cardById/$TARGET_CARD.id/usesPlaced", false]
+                                ]
+                            ]
+                        ],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD.sortOrder", "$SORT_ORDER"],
+                            ["SET", "/cardById/$TARGET_CARD.id/sortOrder", "$SORT_ORDER"]
+                        ]
+                    ]],
+                    ["UPDATE_VAR", "$IN_PLAY", false]
+                ]]
+            ]
+        },
+        "DO_REFRESH_ALL_STORIES": {
+            "args": [],
+            "code": [
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedAgendaStory"],
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedActStory"],
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedActStoryB"],
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedActStoryC"],
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedActStoryD"],
+                ["DO_REFRESH_STORY", "$GROUP_BY_ID.sharedActStoryE"]
+            ]
+        }
+    }
+}

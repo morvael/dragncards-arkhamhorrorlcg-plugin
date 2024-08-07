@@ -1,0 +1,45 @@
+{
+    "automation": {
+        "cards": {
+            "98019": {
+                "_comment": "Gloria Goldberg (promo)",
+                "rules": [
+                    {
+                        "_comment": "Set custom mythos phase player order controller",
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
+                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
+                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]],
+                                ["EQUAL", "$GAME.arkhamCustomMythosPhasePlayerOrderController", null]
+                            ]
+                        ],
+                        "then": [
+                            ["DO_LOG_SCN", "$THIS.controller", "chooses the investigator order during the mythos phase."],
+                            ["SET", "/arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
+                        ]
+                    },
+                    {
+                        "_comment": "Clear custom mythos phase player order controller",
+                        "type": "trigger",
+                        "listenTo": ["/cardById/*/eliminated"],
+                        "condition": [
+                            ["AND",
+                                ["EQUAL", "$TARGET.id", "$THIS.id"],
+                                ["EQUAL", "$TARGET.eliminated", true],
+                                ["EQUAL", ["PREV", "$TARGET.eliminated"], false],
+                                ["EQUAL", "$GAME.arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
+                            ]
+                        ],
+                        "then": [
+                            ["DO_LOG_SCN", "$THIS.controller", "no longer chooses the investigator order during the mythos phase."],
+                            ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null]
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

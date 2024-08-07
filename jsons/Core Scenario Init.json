@@ -664,6 +664,7 @@
                         ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
                         ["SET", "/arkhamEventEarlyInit", 0],
                         ["SET", "/arkhamSkipStartingPhysicalTraumaPrompt", false],
+                        ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null],
                         ["SET", "/arkhamTraumaDone", 0],
                         ["SET", "/arkhamStartingHandDone", 0],
                         ["SET", "/arkhamActiveInvestigator", null],
@@ -677,7 +678,7 @@
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["SET", "/playerData/$PLAYER_I/arkhamPlayerId", "$PLAYER_I"],
+                            ["SET", "/playerData/$PLAYER_I/arkhamMythosPhaseCardDrawn", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopDeckCardRevealed", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
@@ -843,23 +844,6 @@
                     "$NUMBER"
                 ]
             ]
-        },
-        "GET_TOP_DECK_CARD_REVEALED": {
-            "args": ["$TARGET_GROUP_ID"],
-            "code": [
-                ["COND",
-                    ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
-                    "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
-                    ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
-                    "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
-                    ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
-                    "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
-                    ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
-                    "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
-                    ["TRUE"],
-                    0
-                ]
-             ]
         },
         "DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
@@ -1083,7 +1067,7 @@
                 ["SET", "/roundNumber", 1],
                 ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],
-                ["DO_REFRESH_ALL_STORIES_IN_PLAY"],
+                ["DO_REFRESH_ALL_STORIES"],
                 ["SCENARIO_INIT_RESOURCES"],
                 ["SCENARIO_INIT_CLUES"],
                 ["COND",

@@ -13,8 +13,9 @@
             {
                 "label": "id:deleteSupplyCardMenu",
                 "actionList": "deleteSupplyCard",
-                "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
+                "showIf": ["OR",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
                 ]
             },
             {

@@ -603,7 +603,7 @@
                     "hotkey": "Y",
                     "code": [
                         ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, "$PLAYER_N"],
-                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawEncounterCard", null]
+                        ["PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE", "$PLAYER_N"]
                     ]
                 },
                 {
@@ -611,7 +611,7 @@
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips drawing 1 encounter card."],
-                        ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawEncounterCard", null]
+                        ["PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE", "$PLAYER_N"]
                     ]
                 }
             ]
