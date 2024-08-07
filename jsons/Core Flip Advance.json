@@ -351,7 +351,7 @@
                     [
                         ["COND",
                             ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
-                            ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1, 0, {"combine":false, "allowFlip": false}]
+                            ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1]
                         ],
                         ["SET", "/cardById/$TOP_CARD_ID/currentSide", "A"]
                     ]

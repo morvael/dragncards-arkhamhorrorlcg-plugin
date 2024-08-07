@@ -490,7 +490,7 @@
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "bring {{$TARGET_CARD.currentFace.name}} to front.", "brings {{$TARGET_CARD.currentFace.name}} to front."],
                         ["VAR", "$TARGET_LEFT", ["GET_CARD_LEFT", "$TARGET_CARD_ID"]],
                         ["VAR", "$TARGET_TOP", ["GET_CARD_TOP", "$TARGET_CARD_ID"]],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", -1, 0],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", -1],
                         ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_LEFT", "$TARGET_TOP"]
                     ]
                 ]

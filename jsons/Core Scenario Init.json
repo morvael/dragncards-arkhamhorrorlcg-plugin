@@ -335,7 +335,7 @@
                             ],
                             [
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
-                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1, 0],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1],
                                 ["SET", "/cardById/$TARGET_CARD.id/currentSide", "A"],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
@@ -376,7 +376,7 @@
                             ],
                             [
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}."],
-                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1, 0],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
                             ]
@@ -497,14 +497,14 @@
                                                                 [
                                                                     ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$PLAYER_DATA.$PLAYER_I.arkhamCustomSpawnLocation"]],
                                                                     ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}."],
-                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                                                                     ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
                                                                     ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false]
                                                                 ],
                                                                 ["TRUE"],
                                                                 [
                                                                     ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$LOCATION_CARD.currentFace.name}}."],
-                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                                                                    ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                                                                     ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
                                                                     ["INCREASE_VAR", "$X", "$X_CHANGE"],
                                                                     ["INCREASE_VAR", "$Y", "$Y_CHANGE"]

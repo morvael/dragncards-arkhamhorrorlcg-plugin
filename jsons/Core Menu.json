@@ -463,7 +463,10 @@
                 "label": "id:discardCardMenu",
                 "actionList": "discardCard",
                 "showIf": ["OR",
-                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Deck"],
+                    ["AND",
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "Deck"],
+                        ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], false]
+                    ],                    
                     ["AND",
                         ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedChaosBag"],
                         ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"]
@@ -675,6 +678,14 @@
                     ["EQUAL", "$GAME.arkhamScenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
+                ]
+            },
+            {
+                "label": "id:sendCardToDeckBottomMenu",
+                "actionList": "sendCardToDeckBottom",
+                "showIf": ["AND",
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Deck"],
+                    ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], false]
                 ]
             },
             {

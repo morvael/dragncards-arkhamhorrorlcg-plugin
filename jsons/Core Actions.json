@@ -204,7 +204,7 @@
                         ["NOT_EQUAL", ["GET_CARD_TOP", "$MINI_INVESTIGATOR.id"], "$Y"]
                     ],
                     [
-                        ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1, 0],
+                        ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                         ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"]
                     ]
                 ]

@@ -84,6 +84,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot shuffle {{$ACTIVE_GROUP.label}} into {{$GROUP_BY_ID.sharedEncounterDeck.label}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "sendCardToDeckBottom": [
+            ["COND",
+                ["CAN_SEND_TO_DECK_BOTTOM", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SEND_TO_DECK_BOTTOM", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot send {{$ACTIVE_FACE.name}} to deck's bottom, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -261,7 +269,7 @@
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "shuffle {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "shuffles {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."],
                         ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$SOURCE_GROUP_ID"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine":false}]
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine": false}]
                         ]],
                         ["COND",
                             ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
@@ -297,7 +305,7 @@
                             ["GET_NUMERIC_LOG", "shuffles ", "shuffles ", "$NUMBER", " card into {{$TARGET_GROUP.label}}.", " cards into {{$TARGET_GROUP.label}}."]
                         ],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine":false}]
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine": false}]
                         ]],
                         ["COND",
                             ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
@@ -559,8 +567,36 @@
                     ["CAN_SPAWN_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}}."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1, 0],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1],
                         ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_CARD.spawnLeft", "$TARGET_CARD.spawnTop"]
+                    ]
+                ]
+            ]
+        },
+        "CAN_SEND_TO_DECK_BOTTOM": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SEND_TO_DECK_BOTTOM.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SEND_TO_DECK_BOTTOM.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_SEND_TO_DECK_BOTTOM.TARGET_CARD.groupId"]],
+                ["AND",
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Deck"],
+                    ["EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], false]
+                ]
+            ]
+        },
+        "DO_SEND_TO_DECK_BOTTOM": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SEND_TO_DECK_BOTTOM.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SEND_TO_DECK_BOTTOM.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "DO_SEND_TO_DECK_BOTTOM.TARGET_CARD.groupId"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SEND_TO_DECK_BOTTOM.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SEND_TO_DECK_BOTTOM", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "send {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom.", "sends {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", -1]
                     ]
                 ]
             ]
@@ -693,6 +729,9 @@
         },
         "shuffleIntoEncounterDeckMenu": {
             "English": "Shuffle into Encounter Deck"
+        },
+        "sendCardToDeckBottomMenu": {
+            "English": "Send to bottom"
         }
     }
 }
