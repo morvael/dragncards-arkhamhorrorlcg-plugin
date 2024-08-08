@@ -4,6 +4,22 @@
         "moveToGroupIds": [],
         "options": [
             {
+                "label": "id:advanceStoryFromCardMenu",
+                "actionList": "advanceStoryFromCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"]
+                    ],
+                    ["OR",
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedAgendaStory"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedActStory"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:cloneSupplyCardMenu",
                 "actionList": "cloneSupplyCard",
                 "showIf": ["AND",
@@ -212,6 +228,7 @@
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"],
                         ["IN_STRING", "$ACTIVE_CARD.groupId", "Aside"]
                     ],
+                    ["NOT_EQUAL", "$ACTIVE_FACE.type", "Role"],
                     ["OR",
                         ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
@@ -233,7 +250,15 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
-                        ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"]
+                        ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"],
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Act"]
+                            ],
+                            ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedAgendaStory"], false],
+                            ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedActStory"], false]
+                        ]
                     ]
                 ]
             },
@@ -619,19 +644,38 @@
                 ]
             },
             {
-                "label": "id:investigatorTurnMenu",
-                "actionList": "investigatorTurn",
+                "label": "id:investigatorStartTurnMenu",
+                "actionList": "investigatorStartTurn",
                 "showIf": ["AND",
                     ["EQUAL", "$GAME.arkhamScenarioInit", false],
                     ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
-                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
+                    ],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true],
-                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
-                    ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.turnDone", true],
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "I1"],
                         ["EQUAL", "$GAME.stepId", "W2"],
                         ["EQUAL", "$GAME.stepId", "I2"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:investigatorEndTurnMenu",
+                "actionList": "investigatorEndTurn",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkhamActiveInvestigator", "$ACTIVE_CARD.cardOwner"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$GAME.stepId", "I2"],
+                        ["EQUAL", "$GAME.stepId", "W3"],
+                        ["EQUAL", "$GAME.stepId", "I2.1"]
                     ]
                 ]
             },

@@ -8,28 +8,35 @@
                 ["LOG", "└── You cannot flip {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
         ],
+        "advanceStoryFromCard": [
+            ["COND",                
+                ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"]
+                    ],
+                    ["OR",
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedAgendaStory"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedActStory"]
+                    ],
+                    ["CAN_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
+                ],
+                ["DO_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_CARD.groupId", true, "$PLAYER_N"],
+                ["TRUE"],
+                [
+                    ["VAR", "$GROUP_ID", "$ACTIVE_CARD.groupId"],
+                    ["LOG", "└── You cannot advance {{$GROUP_BY_ID.$GROUP_ID.label}}, {{$ALIAS_N}}."]
+                ]
+            ]
+        ],
         "advanceStory": [
             ["COND",
                 ["CAN_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_GROUP_ID", "$PLAYER_N"],
                 ["DO_ADVANCE_STORY", "$PLAYER_N", "$ACTIVE_GROUP_ID", true, "$PLAYER_N"],
                 ["TRUE"],
                 ["LOG", "└── You cannot advance {{$ACTIVE_GROUP.label}}, {{$ALIAS_N}}."]
-            ]
-        ],
-        "advanceAgenda": [
-            ["COND",
-                ["CAN_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", "$PLAYER_N"],
-                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedAgendaStory", true, "$PLAYER_N"],
-                ["TRUE"],
-                ["LOG", "└── You cannot advance {{$GROUP_BY_ID.sharedAgendaStory.label}}, {{$ALIAS_N}}."]
-            ]
-        ],
-        "advanceAct": [
-            ["COND",
-                ["CAN_ADVANCE_STORY", "$PLAYER_N", "sharedActStory", "$PLAYER_N"],
-                ["DO_ADVANCE_STORY", "$PLAYER_N", "sharedActStory", true, "$PLAYER_N"],
-                ["TRUE"],
-                ["LOG", "└── You cannot advance {{$GROUP_BY_ID.sharedActStory.label}}, {{$ALIAS_N}}."]
             ]
         ]
     },
@@ -49,6 +56,7 @@
                         ["IN_STRING", "$TARGET_CARD.groupId", "Removed"],
                         ["IN_STRING", "$TARGET_CARD.groupId", "Aside"]
                     ],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Role"],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
@@ -70,7 +78,15 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
-                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Concealed Card"]
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Concealed Card"],
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"]
+                            ],
+                            ["EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "sharedAgendaStory"], false],
+                            ["EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "sharedActStory"], false]
+                        ]
                     ]
                 ]
             ]
@@ -462,20 +478,14 @@
         "flipCardMenu": {
             "English": "Flip (F)"
         },
-        "advanceStoryMenu": {
+        "advanceStoryFromCard": {
             "English": "Advance"
         },
-        "advanceAgenda": {
-            "English": "Advance agenda"
-        },
-        "advanceAgendaMenu": {
+        "advanceStoryFromCardMenu": {
             "English": "Advance (G)"
         },
-        "advanceAct": {
-            "English": "Advance act"
-        },
-        "advanceActMenu": {
-            "English": "Advance (J)"
+        "advanceStoryMenu": {
+            "English": "Advance"
         }
     }
 }

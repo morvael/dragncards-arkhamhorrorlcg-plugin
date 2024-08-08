@@ -508,7 +508,7 @@
                     ["NOT_EQUAL", "$GAME.arkhamActiveInvestigator", null],
                     [
                         ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$GAME.arkhamActiveInvestigator"]],
-                        ["DO_END_INVESTIGATOR_TURN", "$MINI_INVESTIGATOR.cardOwner", "$MINI_INVESTIGATOR.id", true, "$PLAYER_N"]
+                        ["DO_END_INVESTIGATOR_TURN", "$MINI_INVESTIGATOR.cardOwner", "$MINI_INVESTIGATOR.id", false, true, "$PLAYER_N"]
                     ]
                 ],
                 ["COND",
@@ -553,12 +553,13 @@
                             ["NOT_EQUAL", "$INVESTIGATOR", null],
                             ["NOT_EQUAL", "$INVESTIGATOR.eliminated", true],
                             ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
-                            ["NOT_EQUAL", "$MINI_INVESTIGATOR.eliminated", true],
-                            ["EQUAL", "$MINI_INVESTIGATOR.groupId", "sharedLocations"]
+                            ["NOT_EQUAL", "$MINI_INVESTIGATOR.eliminated", true]
                         ],
                         [
                             ["UNSET", "/cardById/$INVESTIGATOR.id/borderColor"],
+                            ["SET", "/cardById/$INVESTIGATOR.id/turnDone", false],
                             ["UNSET", "/cardById/$MINI_INVESTIGATOR.id/borderColor"],
+                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/turnDone", false],
                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"]
                         ]
                     ]
