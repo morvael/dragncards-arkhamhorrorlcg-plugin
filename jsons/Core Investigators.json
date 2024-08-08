@@ -455,48 +455,50 @@
                 ["COND",
                     ["CAN_CALCULATE_SKILL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
                     [
-                        ["VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$TARGET_CARD_ID", "$SKILL_PROPERTY"]],
+                        ["VAR", "$INVESTIGATOR_SKILL", ["GET_CARD_SKILL", "$TARGET_CARD_ID", "$SKILL_PROPERTY"]],
+                        ["VAR", "$SUM_CHAOS_TOKENS", 0],
+                        ["VAR", "$SUM_SKILL_ICONS", 0],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedVoid"]]],
-                        ["VAR", "$AUTO_FAIL", false],
                         ["VAR", "$SUFFIX", ""],
-                        ["VAR", "$SEPARATOR", " (apply "],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["INCREASE_VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$CARD.id", "$SKILL_PROPERTY"]],
-                            ["INCREASE_VAR", "$SUM_SKILL", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]],
                             ["COND",
-                                ["AND",
-                                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
-                                    ["EQUAL", "$CARD.currentFace.name", "Auto Fail"]
-                                ],
-                                ["UPDATE_VAR", "$AUTO_FAIL", true],
-                                ["AND",
-                                    ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
-                                    ["OR",
-                                        ["EQUAL", "$CARD.currentFace.name", "Elder Sign"],
-                                        ["EQUAL", "$CARD.currentFace.name", "Cultist"],
-                                        ["EQUAL", "$CARD.currentFace.name", "Elder Thing"],
-                                        ["EQUAL", "$CARD.currentFace.name", "Skull"],
-                                        ["EQUAL", "$CARD.currentFace.name", "Tablet"],
-                                        ["EQUAL", "$CARD.currentFace.name", "Frost"]
+                                ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
+                                [
+                                    ["INCREASE_VAR", "$SUM_CHAOS_TOKENS", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]],
+                                    ["COND",
+                                        ["OR",
+                                            ["EQUAL", "$CARD.currentFace.name", "Auto Fail"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Elder Sign"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Cultist"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Elder Thing"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Skull"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Tablet"],
+                                            ["EQUAL", "$CARD.currentFace.name", "Frost"]
+                                        ],
+                                        ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} & {{$CARD.currentFace.name}}"]
                                     ]
                                 ],
+                                ["TRUE"],
                                 [
-                                    ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}}{{$SEPARATOR}}{{$CARD.currentFace.name}}"],
-                                    ["UPDATE_VAR", "$SEPARATOR", ", "]
+                                    ["INCREASE_VAR", "$SUM_SKILL_ICONS", ["GET_CARD_SKILL", "$CARD.id", "$SKILL_PROPERTY"]],
+                                    ["INCREASE_VAR", "$SUM_SKILL_ICONS", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]]
                                 ]
                             ]
                         ]],
+                        ["VAR", "$CHAOS_TOKENS_TEXT", ""],
                         ["COND",
-                            ["EQUAL", "$AUTO_FAIL", true],
-                            ["UPDATE_VAR", "$SUM_SKILL", 0]
+                            ["GREATER_EQUAL", "$SUM_CHAOS_TOKENS", 0],
+                            ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "+"]
                         ],
+                        ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "{{$CHAOS_TOKENS_TEXT}}{{$SUM_CHAOS_TOKENS}}{{$SUFFIX}}"],
+                        ["VAR", "$SKILL_ICONS_TEXT", ""],
                         ["COND",
-                            ["GREATER_THAN", ["LENGTH", "$SUFFIX"], 1],
-                            ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} chaos symbol effects)"],
-                            ["EQUAL", ["LENGTH", "$SUFFIX"], 1],
-                            ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} chaos symbol effect)"]
+                            ["GREATER_EQUAL", "$SUM_SKILL_ICONS", 0],
+                            ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "+"]
                         ],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "calculate {{$TARGET_CARD.currentFace.name}}'s {{$SKILL_NAME}} value: {{$SUM_SKILL}}{{$SUFFIX}}.", "calculates {{$TARGET_CARD.currentFace.name}}'s {{$SKILL_NAME}} value: {{$SUM_SKILL}}{{$SUFFIX}}."]
+                        ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "{{$SKILL_ICONS_TEXT}}{{$SUM_SKILL_ICONS}}"],
+                        ["VAR", "$TOTAL", ["ADD", "$INVESTIGATOR_SKILL", ["ADD", "$SUM_CHAOS_TOKENS", "$SUM_SKILL_ICONS"]]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "calculate {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}}).", "calculates {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}})."]
                     ]
                 ]
             ]
