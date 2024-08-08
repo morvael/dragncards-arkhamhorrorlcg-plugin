@@ -156,7 +156,7 @@
                 [
                     ["LOG", "└── Campaign Log: The investigators put Silas Bishop out of his misery."],
                     ["DO_CREATE_CARDS_SCN", "Conglomeration of Spheres", "02103", 1, "sharedEncounterDeck"],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Conglomeration of Spheres", "Ascending Path", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Conglomeration of Spheres", "Ascending Path", 3, 3, 0],
                     ["DO_LOAD_CARDS_SCN", "Where Doom Awaits - Hideous Abominations"]
                 ]
             ],

@@ -1,0 +1,144 @@
+{
+    "preBuiltDecks": {
+        "The City of Archives Scenario": {
+             "label": "The City of Archives Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The City of Archives", "The City of Archives Scenario Early Init", "The City of Archives Scenario Init"]
+            ]
+        },
+        "The City of Archives": {
+            "hideFromSearch": true,
+             "label": "The City of Archives",
+             "cards": [
+                {"databaseId": "04237", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04240", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04241", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04242", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04243", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04257", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04259", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04262", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04263", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        },
+        "The City of Archives - Halls of Pnakotus": {
+            "hideFromSearch": true,
+            "label": "The City of Archives - Halls of Pnakotus",
+            "cards": [
+                {"databaseId": "04248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
+                {"databaseId": "04249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},
+                {"databaseId": "04250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"}
+            ]
+        },
+        "The City of Archives - Set Aside": {
+            "hideFromSearch": true,
+            "label": "The City of Archives - Set Aside",
+            "cards": [
+                {"databaseId": "04251", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04252", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04253", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04254", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04255", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04256", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    },
+    "actionLists": {
+        "The City of Archives Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Cooperate and tell the creatures everything you know.", "Refuse and resist captivity."], "The City of Archives Scenario Question 1"]
+        ],
+        "The City of Archives Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Decision: Cooperate and tell the creatures everything you know."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["LOG", "└── Decision: Refuse and resist captivity."]
+            ],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["NOT_EQUAL", "$CARD.controller", "shared"],
+                ["EQUAL", "$CARD.unique", true],
+                ["EQUAL", "$CARD.type", "Asset"],
+                ["IN_STRING", "$CARD.traits", "Item."]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["DO_LOG_SCN", "$CARD.controller", "sets {{$CARD.sides.A.name}} aside, out of play."],
+                ["MOVE_CARD", "$CARD.id", "sharedNotInPlay", -1]
+            ]],
+            ["VAR", "$ALEJANDRO", ["GET_NAMED_PLAYER_DECK_CARD", "Alejandro Vela"]],
+            ["COND",
+                ["NOT_EQUAL", "$ALEJANDRO", null],
+                [
+                    ["DO_LOG_SCN", "$ALEJANDRO.controller", "sets {{$ALEJANDRO.sides.A.name}} aside, out of play."],
+                    ["MOVE_CARD", "$ALEJANDRO.id", "sharedNotInPlay", -1]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "The City of Archives Scenario Init"]
+        ],
+        "The City of Archives Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The City of Archives"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["VAR", "$OLD_INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                ["DO_CREATE_CARDS", "$PLAYER_I", "Body of a Yithian: Captive in Another Form", "04244", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], true, null],
+                ["VAR", "$NEW_INVESTIGATOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                ["DO_REPLACE_CARD_FULLY", "$PLAYER_I", "$NEW_INVESTIGATOR_ID", "$OLD_INVESTIGATOR.id", true, null],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/sides/A/name", "$OLD_INVESTIGATOR.sides.A.name"],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/sides/B/name", "$OLD_INVESTIGATOR.sides.B.name"],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/originalInvestigatorId", "$OLD_INVESTIGATOR.sides.A.databaseId"],
+                ["DO_DELETE_CARD", "$PLAYER_I", "$OLD_INVESTIGATOR.id", true, null]
+            ]],
+            ["VAR", "$INTERVIEW_ROOMS", null],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Arrival Chamber", "04245", 83, 43],
+                    ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Interview Room: Arrival Chamber", 5, 7, 0, 3],
+                    ["UPDATE_VAR", "$INTERVIEW_ROOMS", ["SHUFFLE_LIST", ["LIST", "04246", "04247"]]]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Restraining Chamber", "04246", 83, 43],
+                    ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Interview Room: Restraining Chamber", 5, 7, 0, 3],
+                    ["UPDATE_VAR", "$INTERVIEW_ROOMS", ["SHUFFLE_LIST", ["LIST", "04245", "04247"]]]
+                ]
+            ],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 76]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Interview Room", "$INTERVIEW_ROOMS.[$I]", 83, "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Yithian Observer", "Interview Room: Arrival Chamber", 3, 3, 1],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                        ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", 1, true, null]
+                    ]]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Yithian Observer", "sharedEncounterDeck", 1, "sharedVictoryDisplay"]
+            ],
+            ["DO_LOAD_CARDS_SCN", "The City of Archives - Halls of Pnakotus"],
+            ["DO_LOAD_CARDS_SCN", "The City of Archives - Set Aside"],
+            ["DO_SET_SPAWN_LOCATION", "04251", 26, 76],
+            ["DO_SET_SPAWN_LOCATION", "04252", 7, 10],
+            ["DO_SET_SPAWN_LOCATION", "04253", 26, 10],
+            ["DO_SET_SPAWN_LOCATION", "04254", 7, 43],
+            ["DO_SET_SPAWN_LOCATION", "04255", 7, 76],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

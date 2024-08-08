@@ -113,7 +113,7 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Miskatonic University", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
-                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Disciple of the Devourer", "$SPAWN_SITES.[$I]", 3, 3],
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Disciple of the Devourer", "$SPAWN_SITES.[$I]", 3, 3, 0],
                 ["DO_PLACE_DOOM_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "Return to The Midnight Masks Scenario Question 1"]

@@ -179,7 +179,7 @@
                     ["DO_LOAD_CARDS_SCN", "Naomi's Crew"],
                     ["DO_LOAD_CARDS_SCN", "Return to Blood on the Altar - Hired Guns"],
                     ["VAR", "$SPAWN_LOCATIONS", ["SHUFFLE_LIST", ["REMOVE_FROM_LIST_BY_VALUE", ["LIST", "Burned Ruins", "Congregational Church", "House in the Reeds"], "{{$GAME.arkhamScenarioBloodOnTheAltarRemovedLocation}}"]]],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Hired Gun", "$SPAWN_LOCATIONS.[0]", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Hired Gun", "$SPAWN_LOCATIONS.[0]", 3, 3, 0],
                     ["SET", "/arkhamSkipShufflingEncounterDeck", false]
                 ],
                 ["TRUE"],

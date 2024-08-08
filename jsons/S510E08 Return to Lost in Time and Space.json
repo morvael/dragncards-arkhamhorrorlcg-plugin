@@ -64,7 +64,7 @@
                 ["TRUE"],
                 ["DO_CREATE_STORY_CARD_SCN", "Into the Beyond", "02317", 1, "sharedActStory"]
             ],
-            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Yog-Sothoth: The Lurker Beyond the Threshold", "Realms Beyond: All-In-One", 3, 3],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Yog-Sothoth: The Lurker Beyond the Threshold", "Realms Beyond: All-In-One", 3, 3, 0],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

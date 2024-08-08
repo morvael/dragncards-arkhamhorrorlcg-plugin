@@ -61,7 +61,7 @@
             ["DO_LOAD_CARDS_SCN", "The House Always Wins - Striking Fear"],
             ["DO_SET_SPAWN_LOCATION", "02074", 45, 76],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "La Bella Luna", 5, 7, 3, 0],
-            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Clover Club Pit Boss", "Clover Club Lounge", 3, 3],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Clover Club Pit Boss", "Clover Club Lounge", 3, 3, 0],
             ["VAR", "$BACK_HALL_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "02075", "02076", "02077"]]],
             ["VAR", "$SPAWN_TOPS", ["LIST", 10, 43, 76]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [

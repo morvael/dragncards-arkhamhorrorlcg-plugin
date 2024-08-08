@@ -107,7 +107,7 @@
                 ]
             ],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, "$SEEKERS_TO_SPAWN", 1, [
-                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Seeker of Carcosa", "$SPAWN_LOCATIONS.[$I].id", 3, 3]
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Seeker of Carcosa", "$SPAWN_LOCATIONS.[$I].id", 3, 3, 0]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You fled the dinner party.", "The above is not true."], "Return to Echoes of the Past Scenario Question 2"]
         ],

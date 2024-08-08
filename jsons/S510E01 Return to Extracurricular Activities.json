@@ -73,7 +73,7 @@
                     ["LOG", "└── Campaign Log: Return to The House Always Wins was the first scenario of the campaign."],
                     ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Hour is Late", "02055", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "02055", 55, 76],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Enthralled Security Guard", "Administration Building", 3, 3]
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Enthralled Security Guard", "Administration Building", 3, 3, 0]
                 ]
             ],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],

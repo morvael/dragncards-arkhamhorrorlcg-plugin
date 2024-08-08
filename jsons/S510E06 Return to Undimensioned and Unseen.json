@@ -106,7 +106,7 @@
                 [
                     ["LOG", "└── Campaign Log: There are exactly 3 names recorded under “Sacrificed to Yog‐Sothoth”."],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"]
                 ],
@@ -114,7 +114,7 @@
                 [
                     ["LOG", "└── Campaign Log: There are exactly 2 names recorded under “Sacrificed to Yog‐Sothoth”."],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[3]}}", 1, "sharedDeckA"]
@@ -124,8 +124,8 @@
                     ["LOG", "└── Campaign Log: There are 1 or fewer names recorded under “Sacrificed to Yog‐Sothoth”."],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedEncounterDeck"],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3],
-                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Blasted Heath", 3, 3],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Blasted Heath", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[3]}}", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[4]}}", 1, "sharedDeckA"]
