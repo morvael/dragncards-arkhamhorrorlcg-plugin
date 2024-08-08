@@ -9,7 +9,7 @@
             ]
         ],
         "advanceStoryFromCard": [
-            ["COND",                
+            ["COND",
                 ["AND",
                     ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
