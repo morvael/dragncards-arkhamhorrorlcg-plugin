@@ -137,6 +137,17 @@
                 ]
             ]
         },
+        "DO_DELETE_ANY_PLAYER_DECK_CARD_SCN": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_DELETE_ANY_PLAYER_DECK_CARD_SCN.TARGET_NAME"],
+                ["VAR", "$TARGET_CARD", ["GET_NAMED_PLAYER_DECK_CARD", "$TARGET_NAME"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                    ["DO_DELETE_CARD", "$TARGET_CARD.controller", "$TARGET_CARD.id", true, null]
+                ]
+            ]
+        },
         "DO_REPLACE_CARD_SCN": {
             "args": ["$REPLACED_NAME", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
             "code": [
@@ -269,12 +280,17 @@
                 ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "sharedEncounterDeck"]],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
-                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game.", "removes {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game."],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DELETE_CARD", "$CARD.id"]
                         ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_CARDS.[0].sides.A.name}} from the game.", "removes {{$SELECTED_CARDS.[0].sides.A.name}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
                     ]
                 ]
             ]
@@ -285,6 +301,33 @@
                 ["DO_DELETE_ENCOUNTER_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
             ]
         },
+        "DO_DELETE_NAMED_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "$TARGET_NAME"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game.", "removes {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} from the game."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DELETE_CARD", "$CARD.id"]
+                        ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_CARDS.[0].sides.A.name}} from the game.", "removes {{$SELECTED_CARDS.[0].sides.A.name}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_NAMED_CARDS_SCN": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["DO_DELETE_NAMED_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
+            ]
+        },        
         "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
             "args": ["$TARGET_NAME"],
             "code": [
@@ -681,6 +724,7 @@
                         ["SET", "/arkhamSkipShufflingSharedDeckA", false],
                         ["SET", "/arkhamSkipShufflingSharedDeckB", false],
                         ["SET", "/arkhamSkipShufflingSharedDeckC", false],
+                        ["SET", "/arkhamOffMapNotInPlay", false],
                         ["SET", "/arkhamFinalScenarioMessage", null],
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],

@@ -103,7 +103,8 @@
                             {"label": "id:theBoundaryBeyond", "deckListId": "The Boundary Beyond Scenario"},
                             {"label": "id:heartOfTheEldersPt1", "deckListId": "Heart of the Elders Pt 1 Scenario"},
                             {"label": "id:heartOfTheEldersPt2", "deckListId": "Heart of the Elders Pt 2 Scenario"},
-                            {"label": "id:theCityOfArchives", "deckListId": "The City of Archives Scenario"}
+                            {"label": "id:theCityOfArchives", "deckListId": "The City of Archives Scenario"},
+                            {"label": "id:theDepthsOfYoth", "deckListId": "The Depths of Yoth Scenario"}
                         ]
                     }
                 ]
@@ -335,6 +336,9 @@
         },
         "theCityOfArchives": {
             "English": "The City of Archives"
+        },
+        "theDepthsOfYoth": {
+            "English": "The Depths of Yoth"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

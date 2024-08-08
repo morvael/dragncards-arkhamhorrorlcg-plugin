@@ -23,6 +23,16 @@
             },
             {
                 "type": "trigger",
+                "listenTo": ["/arkhamOffMapNotInPlay"],
+                "condition": [
+                    ["CAN_REFRESH_OFF_MAP"]
+                ],
+                "then": [
+                    ["DO_REFRESH_OFF_MAP"]
+                ]
+            },
+            {
+                "type": "trigger",
                 "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player4Deck/stackIds"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$TARGET"]
@@ -395,6 +405,11 @@
                     ["IN_STRING", "$NEW_GROUP.groupType", "story"],
                     null,
                     ["AND",
+                        ["EQUAL", "$GAME.arkhamOffMapNotInPlay", true],
+                        ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
+                    ],
+                    false,
+                    ["AND",
                         ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
                         ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
                     ],
@@ -518,6 +533,28 @@
             "code": [
                 ["VAR", "$NEW_GROUP", ["GET_REFRESH_CARD_GROUP", "$TARGET_CARD.groupId"]],
                 ["DO_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
+            ]
+        },
+        "CAN_REFRESH_OFF_MAP": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedOffMap"],
+                    ["CAN_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]],
+                ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
+            ]
+        },
+        "DO_REFRESH_OFF_MAP": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedOffMap"],
+                    ["CAN_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]
             ]
         },
         "GET_TOP_DECK_CARD_REVEALED": {

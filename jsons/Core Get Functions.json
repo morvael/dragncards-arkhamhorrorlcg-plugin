@@ -80,6 +80,21 @@
                 ]]
             ]
         },
+        "GET_NAMED_CARDS": {
+            "_comment": "Returns all cards with given side A name/databaseId/id, or empty list.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_CARDS.TARGET_NAME"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
         "GET_NAMED_PLAYER_DECK_CARD": {
             "_comment": "Returns a card from any player deck with given side A name/databaseId/id, or null.",
             "args": ["$TARGET_NAME"],
@@ -115,7 +130,7 @@
             ]
         },
         "GET_NAMED_DECK_CARDS": {
-            "_comment": "Returns all cards from given group with given side A name/databaseId/id, or null.",
+            "_comment": "Returns all cards from given group with given side A name/databaseId/id, or empty list.",
             "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_DECK_CARDS.TARGET_NAME"],
