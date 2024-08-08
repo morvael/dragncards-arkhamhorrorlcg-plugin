@@ -97,6 +97,7 @@
             {"key": "F", "actionList": "flipCard", "label": "id:flipCard"},
             {"key": "G", "actionList": "advanceStoryFromCard", "label": "id:advanceStoryFromCard"},
             {"key": "I", "actionList": "investigatorTurn", "label": "id:investigatorTurn"},
+            {"key": "J", "actionList": "commitCard", "label": "id:commitCard"},
             {"key": "L", "actionList": "replaceLocation", "label": "id:replaceLocation"},
             {"key": "P", "actionList": "playCard", "label": "id:playCard"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},

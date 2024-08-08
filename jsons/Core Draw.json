@@ -69,6 +69,14 @@
                 ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
         ],
+        "commitCard": [
+            ["COND",
+                ["CAN_COMMIT_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_COMMIT_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot commit {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
         "spawnCard": [
             ["COND",
                 ["CAN_SPAWN_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
@@ -510,7 +518,6 @@
                         ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
                         ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
                         ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
-                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
                         ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"]
                     ]
                 ]
@@ -529,17 +536,44 @@
                         ["COND",
                             ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
                             ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], -1],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"]
-                            ],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
                             ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"]
-                            ],
+                            ["TRUE"],
                             ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_THREAT", "$TARGET_PLAYER"], -1]
                         ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_COMMIT_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_COMMIT_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_COMMIT_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.inHand", true],
+                    ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"]
+                    ]
+                ]
+            ]
+        },
+        "DO_COMMIT_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_COMMIT_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_COMMIT_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_COMMIT_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_COMMIT_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "commit {{$TARGET_CARD.sides.A.name}}.", "commits {{$TARGET_CARD.sides.A.name}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/commitedMove", true],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
+                        ["SET", "/cardById/$TARGET_CARD_ID/commitedMove", false]
                     ]
                 ]
             ]
@@ -720,6 +754,12 @@
         },
         "playCardMenu": {
             "English": "Play card (P)"
+        },
+        "commitCard": {
+            "English": "Commit card"
+        },
+        "commitCardMenu": {
+            "English": "Commit card (J)"
         },
         "spawnCard": {
             "English": "Spawn card"

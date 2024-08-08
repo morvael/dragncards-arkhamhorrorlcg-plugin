@@ -204,6 +204,7 @@
                         ["NOT_EQUAL", "$TARGET.controller", "shared"],
                         ["NOT_EQUAL", "$TARGET.currentFace.cost", null],
                         ["GREATER_THAN", "$TARGET.currentFace.cost", 0],
+                        ["EQUAL", "$TARGET.commitedMove", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false]
                     ]
@@ -234,6 +235,7 @@
                 "condition": [
                     ["AND",
                         ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.commitedMove", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
                         ["EQUAL", "$TARGET.usesPlaced", false],
