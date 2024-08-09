@@ -283,7 +283,10 @@
                     ["AND",
                         ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", null],
                         ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", ""],
-                        ["GREATER_THAN", "$TARGET_CARD.currentFace.uses", 0]
+                        ["OR",
+                            ["GREATER_THAN", "$TARGET_CARD.currentFace.uses", 0],
+                            ["EQUAL", "$TARGET_CARD.currentFace.uses", -2]
+                        ]                        
                     ],
                     ["UPDATE_VAR", "$USES", "$TARGET_CARD.currentFace.uses"]
                 ],
