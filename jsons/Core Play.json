@@ -43,10 +43,15 @@
     "actionLists": {
         "playCard": [
             ["COND",
-                ["CAN_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", "$PLAYER_N"],
-                ["DO_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", true, "$PLAYER_N"],
+                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
+                ["ACTION_LIST", "commitCard"],
                 ["TRUE"],
-                ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                ["COND",
+                    ["CAN_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", "$PLAYER_N"],
+                    ["DO_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", true, "$PLAYER_N"],
+                    ["TRUE"],
+                    ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                ]
             ]
         ],
         "putCardIntoPlay": [

@@ -320,7 +320,7 @@
                         ["OR",
                             ["GREATER_THAN", "$TARGET_CARD.currentFace.uses", 0],
                             ["EQUAL", "$TARGET_CARD.currentFace.uses", -2]
-                        ]                        
+                        ]
                     ],
                     ["UPDATE_VAR", "$USES", "$TARGET_CARD.currentFace.uses"]
                 ],
