@@ -11,7 +11,7 @@
         "eliminated":             {"type": "boolean",  "default": false},
         "spawnLeft":              {"type": "integer",  "default": 0},
         "spawnTop":               {"type": "integer",  "default": 0},
-        "doNotPayCost":           {"type": "boolean",  "default": false},
+        "playIntent":             {"type": "string",   "default": ""},
         "cluesPlaced":            {"type": "boolean",  "default": false},
         "usesPlaced":             {"type": "boolean",  "default": false},
         "sortOrder":              {"type": "integer",  "default": 0},

@@ -100,6 +100,7 @@
             {"key": "J", "actionList": "commitCard", "label": "id:commitCard"},
             {"key": "L", "actionList": "replaceLocation", "label": "id:replaceLocation"},
             {"key": "P", "actionList": "playCard", "label": "id:playCard"},
+            {"key": "Shift+P", "actionList": "putCardIntoPlay", "label": "id:putCardIntoPlay"},
             {"key": "R", "actionList": "readyCard", "label": "id:readyCard"},
             {"key": "S", "actionList": "spawnCard", "label": "id:spawnCard"},
             {"key": "X", "actionList": "discardCard", "label": "id:discardCard"},

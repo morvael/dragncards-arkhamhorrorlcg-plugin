@@ -1,0 +1,495 @@
+{
+    "automation": {
+        "gameRules": [
+            {
+                "_comment": "Ask for intent when missing or proceed futher with paying cost and placing Uses resources.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/inPlay"],
+                "condition": [
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$TARGET.inPlay", true],
+                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
+                        ["OR",
+                            ["EQUAL", "$TARGET.currentFace.type", "Asset"],
+                            ["EQUAL", "$TARGET.currentFace.type", "Event"],
+                            ["EQUAL", "$TARGET.currentFace.type", "Skill"]
+                        ],
+                        ["NOT_EQUAL", "$TARGET_CARD.playIntent", "placeBehind"],
+                        ["OR",
+                            ["CAN_PAY_RESOURCES", "$TARGET.id"],
+                            ["CAN_PLACE_USES", "$TARGET.id"]
+                        ]
+                    ]
+                ],
+                "then": [
+                    ["VAR", "$TARGET_PLAYER", ["GET_EXISTING_PLAYER", "$PLAYER_N", "$TARGET.controller"]],
+                    ["VAR", "$INTENT", ["GET_PLAY_INTENT", "$TARGET.id"]],
+                    ["COND",
+                        ["EQUAL", "$INTENT", ""],
+                        ["COND",
+                            ["EQUAL", "$TARGET.groupId", "sharedVoid"],
+                            ["PROMPT", "$TARGET_PLAYER", "choosePlayIntentWithCommit", "$TARGET.id"],
+                            ["TRUE"],
+                            ["PROMPT", "$TARGET_PLAYER", "choosePlayIntent", "$TARGET.id"]
+                        ],
+                        ["TRUE"],
+                        ["DO_PLAY_INTENT_DECLARED", "$TARGET_PLAYER", "$TARGET.id", "$INTENT"]
+                    ]
+                ]
+            }
+        ]
+    },
+    "actionLists": {
+        "playCard": [
+            ["COND",
+                ["CAN_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", "$PLAYER_N"],
+                ["DO_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "play", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot play {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "putCardIntoPlay": [
+            ["COND",
+                ["CAN_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "putIntoPlay", "$PLAYER_N"],
+                ["DO_PLAY_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "putIntoPlay", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot put {{$ACTIVE_FACE.name}} into play, {{$ALIAS_N}}."]
+            ]
+        ],
+        "commitCard": [
+            ["COND",
+                ["CAN_COMMIT_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_COMMIT_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot commit {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "spawnCard": [
+            ["COND",
+                ["CAN_SPAWN_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SPAWN_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot spawn {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "functions": {
+        "GET_PLAY_INTENT": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_PLAY_INTENT.TARGET_CARD_ID"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_CARD.playIntent", ""],
+                    "$TARGET_CARD.playIntent",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                    "commit",
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedVoid"]
+                    ],
+                    "commit",
+                    ["TRUE"],
+                    ""
+                ]
+            ]
+        },
+        "CAN_PAY_RESOURCES": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PAY_RESOURCES.TARGET_CARD_ID"]],
+                ["VAR", "$COST", "$TARGET_CARD.currentFace.cost"],
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
+                    ["NOT_EQUAL", "$COST", null],
+                    ["OR",
+                        ["GREATER_EQUAL", "$COST", 0],
+                        ["EQUAL", "$COST", -2]
+                    ]
+                ]
+            ]
+        },
+        "CAN_PLACE_USES": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PLACE_USES.TARGET_CARD_ID"]],
+                ["VAR", "$USES", ["GET_CARD_USES", "$TARGET_CARD.id"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.usesPlaced", false],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", null],
+                    ["OR",
+                        ["GREATER_EQUAL", "$USES", 0],
+                        ["EQUAL", "$USES", -2]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLAY_INTENT_DECLARED": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLAY_INTENT_DECLARED.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLAY_INTENT_DECLARED.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$INTENT", "DO_PLAY_INTENT_DECLARED.INTENT"],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.playIntent", ""],
+                    [
+                        ["COND",
+                            ["EQUAL", "$INTENT", "play"],
+                            ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " declares playing {{$TARGET_CARD.currentFace.name}}."],
+                            ["EQUAL", "$INTENT", "putIntoPlay"],
+                            ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " declares putting {{$TARGET_CARD.currentFace.name}} into play."],
+                            ["EQUAL", "$INTENT", "commit"],
+                            ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " declares committing {{$TARGET_CARD.currentFace.name}}."]
+                        ],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "$INTENT"]
+                    ]
+                ],
+                ["VAR", "$COST", 0],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$INTENT", "play"],
+                        ["CAN_PAY_RESOURCES", "$TARGET_CARD_ID"]
+                    ],
+                    ["UPDATE_VAR", "$COST", "$TARGET_CARD.currentFace.cost"]
+                ],
+                ["VAR", "$USES", 0],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$INTENT", "commit"],
+                        ["CAN_PLACE_USES", "$TARGET_CARD_ID"]
+                    ],
+                    ["UPDATE_VAR", "$USES", ["GET_CARD_USES", "$TARGET_CARD_ID"]]
+                ],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$COST", -2],
+                        ["EQUAL", "$USES", -2]
+                    ],
+                    ["PROMPT", "$TARGET_PLAYER", "choosePlayX", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES"],
+                    ["TRUE"],
+                    ["DO_PLAY_INTENT_AND_X_DECLARED", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", -1]
+                ]
+            ]
+        },
+        "DO_PLAY_INTENT_AND_X_DECLARED": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", "$X"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLAY_INTENT_DECLARED.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLAY_INTENT_DECLARED.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$INTENT", "DO_PLAY_INTENT_DECLARED.INTENT"],
+                ["VAR", "$CONTROLLER_PLAYER", ["GET_EXISTING_PLAYER", "$TARGET.controller", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["GREATER_EQUAL", "$X", 0],
+                    ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " declares X for {{$TARGET_CARD.currentFace.name}} is {{$X}}."]
+                ],
+                ["COND",
+                    ["EQUAL", "$COST", -2],
+                    ["UPDATE_VAR", "$COST", "$X"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", "$COST", 0],
+                    [
+                        ["VAR", "$NAME", "$TARGET_CARD.currentFace.name"],
+                        ["COND",
+                            ["GREATER_EQUAL", "$PLAYER_DATA.$CONTROLLER_PLAYER.resources", "$COST"],
+                            [
+                                ["DO_LOG", true, "$TARGET_PLAYER", "$CONTROLLER_PLAYER",
+                                    ["GET_NUMERIC_LOG", "spend ", "spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
+                                    ["GET_NUMERIC_LOG", "spends ", "spends ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]],
+                                ["DO_SPEND_RESOURCES", "$TARGET_PLAYER", "$COST", false, null]
+                            ],
+                            ["TRUE"],
+                            ["DO_LOG", true, "$TARGET_PLAYER", "$CONTROLLER_PLAYER",
+                                ["GET_NUMERIC_LOG", "obliged to spend ", "obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
+                                ["GET_NUMERIC_LOG", "is obliged to spend ", "is obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]]
+                        ]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$USES", -2],
+                    ["UPDATE_VAR", "$USES", "$X"]
+                ],
+                ["COND",
+                    ["GREATER_THAN", "$USES", 0],
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$CONTROLLER_PLAYER", "$TARGET_CARD_ID", "$USES", true, "$TARGET_PLAYER"]
+                ],
+                ["SET", "/cardById/$TARGET_CARD_ID/usesPlaced", true]
+            ]
+        },
+        "CAN_PLAY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_PLAY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PLAY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$INTENT", "CAN_PLAY_CARD.INTENT"],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.inHand", true],
+                    ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
+                    ["OR",
+                        ["AND",
+                            ["EQUAL", "$INTENT", "play"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"]
+                            ]
+                        ],
+                        ["AND",
+                            ["EQUAL", "$INTENT", "putIntoPlay"],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLAY_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLAY_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLAY_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$INTENT", "DO_PLAY_CARD.INTENT"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PLAY_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_PLAY_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$INTENT", "$ACTOR_PLAYER"],
+                    [
+                        ["COND",
+                            ["EQUAL", "$INTENT", "putIntoPlay"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "put {{$TARGET_CARD.sides.A.name}} into play.", "puts {{$TARGET_CARD.sides.A.name}} into play."],
+                            ["TRUE"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "play {{$TARGET_CARD.sides.A.name}}.", "plays {{$TARGET_CARD.sides.A.name}}."]
+                        ],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "$INTENT"],
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], -1],
+                            ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
+                            ["TRUE"],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_THREAT", "$TARGET_PLAYER"], -1]
+                        ],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
+                    ]
+                ]
+            ]
+        },
+        "CAN_COMMIT_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_COMMIT_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_COMMIT_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.inHand", true],
+                    ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"]
+                    ]
+                ]
+            ]
+        },
+        "DO_COMMIT_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_COMMIT_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_COMMIT_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_COMMIT_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_COMMIT_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "commit {{$TARGET_CARD.sides.A.name}}.", "commits {{$TARGET_CARD.sides.A.name}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "commit"],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVoid", -1],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
+                    ]
+                ]
+            ]
+        },
+        "CAN_SPAWN_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                    ["GREATER_THAN", "$TARGET_CARD.spawnLeft", 0],
+                    ["GREATER_THAN", "$TARGET_CARD.spawnTop", 0]
+                ]
+            ]
+        },
+        "DO_SPAWN_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SPAWN_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SPAWN_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SPAWN_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}}."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_CARD.spawnLeft", "$TARGET_CARD.spawnTop"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "choosePlayIntent": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "State the intent of {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}} entering play.",
+            "options": [
+                {
+                    "label": "Play.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_PLAY_INTENT_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "play"]
+                    ]
+                },
+                {
+                    "label": "Put into play.",
+                    "hotkey": "U",
+                    "code": [
+                        ["DO_PLAY_INTENT_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "putIntoPlay"]
+                    ]
+                }
+             ]
+        },
+        "choosePlayIntentWithCommit": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "State the intent of {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}} entering play.",
+            "options": [
+                {
+                    "label": "Play.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_PLAY_INTENT_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "play"]
+                    ]
+                },
+                {
+                    "label": "Put into play.",
+                    "hotkey": "U",
+                    "code": [
+                        ["DO_PLAY_INTENT_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "putIntoPlay"]
+                    ]
+                },
+                {
+                    "label": "Commit.",
+                    "hotkey": "C",
+                    "code": [
+                        ["DO_PLAY_INTENT_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "commit"]
+                    ]
+                }
+             ]
+        },
+        "choosePlayX": {
+            "args": ["$TARGET_CARD_ID", "$INTENT", "$COST", "$USES"],
+            "message": "State X for {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
+            "options": [
+                {
+                    "label": "X is 0.",
+                    "hotkey": "0",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 0]
+                    ]
+                },
+                {
+                    "label": "X is 1.",
+                    "hotkey": "1",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 1]
+                    ]
+                },
+                {
+                    "label": "X is 2.",
+                    "hotkey": "2",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 2]
+                    ]
+                },
+                {
+                    "label": "X is 3.",
+                    "hotkey": "3",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 3]
+                    ]
+                },
+                {
+                    "label": "X is 4.",
+                    "hotkey": "4",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 4]
+                    ]
+                },
+                {
+                    "label": "X is 5.",
+                    "hotkey": "5",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 5]
+                    ]
+                },
+                {
+                    "label": "X is 6.",
+                    "hotkey": "6",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 6]
+                    ]
+                },
+                {
+                    "label": "X is 7.",
+                    "hotkey": "7",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 7]
+                    ]
+                },
+                {
+                    "label": "X is 8.",
+                    "hotkey": "8",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 8]
+                    ]
+                },
+                {
+                    "label": "X is 9.",
+                    "hotkey": "9",
+                    "code": [
+                        ["DO_PLAY_INTENT_AND_X_DECLARED", "$PLAYER_N", "$TARGET_CARD_ID", "$INTENT", "$COST", "$USES", 9]
+                    ]
+                }
+             ]
+        }
+    },
+    "labels": {
+        "playCard": {
+            "English": "Play"
+        },
+        "playCardMenu": {
+            "English": "Play (P)"
+        },
+        "putCardIntoPlay": {
+            "English": "Put into play"
+        },
+        "putCardIntoPlayMenu": {
+            "English": "Put into play (Shift+P)"
+        },
+        "commitCard": {
+            "English": "Commit"
+        },
+        "commitCardMenu": {
+            "English": "Commit (J)"
+        },
+        "spawnCard": {
+            "English": "Spawn"
+        },
+        "spawnCardMenu": {
+            "English": "Spawn (S)"
+        }
+    }
+}

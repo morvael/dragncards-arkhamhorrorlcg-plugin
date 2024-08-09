@@ -317,8 +317,10 @@
                     [
                         ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "place {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}.", "places {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "placeBehind"],
                         ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
-                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "behind"]
+                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "behind"],
+                        ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
                     ]
                 ]
             ]

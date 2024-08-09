@@ -205,6 +205,19 @@
                 ]
             },
             {
+                "label": "id:putCardIntoPlayMenu",
+                "actionList": "putCardIntoPlay",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_CARD.inHand", true],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:commitCardMenu",
                 "actionList": "commitCard",
                 "showIf": ["AND",

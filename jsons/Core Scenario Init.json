@@ -327,7 +327,7 @@
             "code": [
                 ["DO_DELETE_NAMED_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
             ]
-        },        
+        },
         "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
             "args": ["$TARGET_NAME"],
             "code": [

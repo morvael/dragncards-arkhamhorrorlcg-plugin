@@ -195,59 +195,6 @@
                 ]
             },
             {
-                "_comment": "Pay resource cost.",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/inPlay"],
-                "condition": [
-                    ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                        ["NOT_EQUAL", "$TARGET.controller", "shared"],
-                        ["NOT_EQUAL", "$TARGET.currentFace.cost", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.cost", 0],
-                        ["EQUAL", "$TARGET.commitedMove", false],
-                        ["EQUAL", "$TARGET.inPlay", true],
-                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false]
-                    ]
-                ],
-                "then": [
-                    ["VAR", "$TARGET_PLAYER", "$TARGET.controller"],
-                    ["VAR", "$COST", "$TARGET.currentFace.cost"],
-                    ["VAR", "$NAME", "$TARGET.currentFace.name"],
-                    ["COND",
-                        ["GREATER_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.resources", "$COST"],
-                        [
-                            ["DO_LOG", true, "$PLAYER_N", "$TARGET_PLAYER",
-                                ["GET_NUMERIC_LOG", "spend ", "spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
-                                ["GET_NUMERIC_LOG", "spends ", "spends ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]],
-                            ["DO_SPEND_RESOURCES", "$TARGET_PLAYER", "$COST", false, "$PLAYER_N"]
-                        ],
-                        ["TRUE"],
-                        ["DO_LOG", true, "$PLAYER_N", "$TARGET_PLAYER",
-                            ["GET_NUMERIC_LOG", "obliged to spend ", "obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."],
-                            ["GET_NUMERIC_LOG", "is obliged to spend ", "is obliged to spend ", "$COST", " resource for {{$NAME}}.", " resources for {{$NAME}}."]]
-                    ]
-                ]
-            },
-            {
-                "_comment": "Add Uses resource tokens.",
-                "type": "trigger",
-                "listenTo": ["/cardById/*/inPlay"],
-                "condition": [
-                    ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                        ["EQUAL", "$TARGET.commitedMove", false],
-                        ["EQUAL", "$TARGET.inPlay", true],
-                        ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
-                        ["EQUAL", "$TARGET.usesPlaced", false],
-                        ["GREATER_THAN", ["GET_CARD_USES", "$TARGET.id"], 0]
-                    ]
-                ],
-                "then": [
-                    ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_USES", "$TARGET.id"], true, "$PLAYER_N"],
-                    ["SET", "/cardById/$TARGET.id/usesPlaced", true]
-                ]
-            },
-            {
                 "_comment": "Add Location clue tokens (when entering play).",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/inPlay"],
@@ -293,7 +240,10 @@
                 "type": "trigger",
                 "listenTo": ["/firstPlayer"],
                 "condition": [
-                    ["NOT_EQUAL", ["PREV", "$GAME.firstPlayer"], "$GAME.firstPlayer"]
+                    ["AND",
+                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["NOT_EQUAL", ["PREV", "$GAME.firstPlayer"], "$GAME.firstPlayer"]
+                    ]
                 ],
                 "then": [
                     ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"]
@@ -385,13 +335,44 @@
         "GET_PLAYER_CONTROLLER": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_PLAYER_CONTROLLER.TARGET_PLAYER"],
+                ["VAR", "$SHARED_PLAYER", "$TARGET_PLAYER"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$SHARED_PLAYER", null],
+                        ["EQUAL", "$SHARED_PLAYER", ""]
+                    ],
+                    ["UPDATE_VAR", "$SHARED_PLAYER", "$GAME.firstPlayer"]
+                ],
+                ["VALIDATE_PLAYER", "$SHARED_PLAYER", "GET_PLAYER_CONTROLLER.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_PLAYER_CONTROLLER.TARGET_CARD_ID"]],
                 ["COND",
                     ["EQUAL", "$TARGET_CARD.controller", "shared"],
-                    "$TARGET_PLAYER",
+                    "$SHARED_PLAYER",
                     ["TRUE"],
                     "$TARGET_CARD.controller"
+                ]
+            ]
+        },
+        "GET_EXISTING_PLAYER": {
+            "args": ["$FIRST_PICK", "$SECOND_PICK"],
+            "code": [
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$FIRST_PICK", "player1"],
+                        ["EQUAL", "$FIRST_PICK", "player2"],
+                        ["EQUAL", "$FIRST_PICK", "player3"],
+                        ["EQUAL", "$FIRST_PICK", "player4"]
+                    ],
+                    "$FIRST_PICK",
+                    ["OR",
+                        ["EQUAL", "$SECOND_PICK", "player1"],
+                        ["EQUAL", "$SECOND_PICK", "player2"],
+                        ["EQUAL", "$SECOND_PICK", "player3"],
+                        ["EQUAL", "$SECOND_PICK", "player4"]
+                    ],
+                    "$SECOND_PICK",
+                    ["TRUE"],
+                    "$GAME.firstPlayer"
                 ]
             ]
         },
