@@ -328,9 +328,9 @@
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$SET_PHASE", true],
-                                ["NOT_EQUAL", "$GAME.stepId", "I2.2"]
+                                ["NOT_EQUAL", "$GAME.stepId", "I2.E"]
                             ],
-                            ["SET", "/stepId", "I2.2"]
+                            ["SET", "/stepId", "I2.E"]
                         ]
                     ]
                 ]

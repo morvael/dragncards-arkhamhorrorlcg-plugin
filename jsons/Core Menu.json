@@ -20,6 +20,17 @@
                 ]
             },
             {
+                "label": "id:moveClueToActMenu",
+                "actionList": "moveClueToAct",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedActStory"]
+                ]
+            },
+            {
                 "label": "id:cloneSupplyCardMenu",
                 "actionList": "cloneSupplyCard",
                 "showIf": ["AND",
@@ -96,6 +107,16 @@
                     ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
+                ]
+            },
+            {
+                "label": "id:moveClueToInvestigatorMenu",
+                "actionList": "moveClueToInvestigator",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                    ["GREATER_THAN", "$ACTIVE_CARD.tokens.clue", 0]
                 ]
             },
             {

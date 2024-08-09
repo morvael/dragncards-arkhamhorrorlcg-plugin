@@ -1,9 +1,9 @@
 {
     "phases": {
-        "Mythos":        {"label": "id:mythosPhase",        "height" : "23%"},
-        "Investigation": {"label": "id:investigationPhase", "height" : "27%"},
-        "Enemy":         {"label": "id:enemyPhase",         "height" : "23%"},
-        "Upkeep":        {"label": "id:upkeepPhase",        "height" : "27%"}
+        "Mythos":        {"label": "id:mythosPhase",        "height" : "22%"},
+        "Investigation": {"label": "id:investigationPhase", "height" : "30%"},
+        "Enemy":         {"label": "id:enemyPhase",         "height" : "22%"},
+        "Upkeep":        {"label": "id:upkeepPhase",        "height" : "26%"}
     },
     "phaseOrder": ["Mythos", "Investigation", "Enemy", "Upkeep"],
     "steps": {
@@ -19,6 +19,7 @@
         "W3":   {"phaseId": "Investigation", "label": "id:step-W3"},
         "I2.1": {"phaseId": "Investigation", "label": "id:step-I2.1"},
         "I2.2": {"phaseId": "Investigation", "label": "id:step-I2.2"},
+        "I2.E": {"phaseId": "Investigation", "label": "id:step-I2.E"},
         "I3":   {"phaseId": "Investigation", "label": "id:step-I3"},
         "E1":   {"phaseId": "Enemy",         "label": "id:step-E1"},
         "E2":   {"phaseId": "Enemy",         "label": "id:step-E2"},
@@ -34,7 +35,7 @@
         "U5":   {"phaseId": "Upkeep",        "label": "id:step-U5"},
         "U6":   {"phaseId": "Upkeep",        "label": "id:step-U6"}
     },
-    "stepOrder": ["M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6"],
+    "stepOrder": ["M1", "M2", "M3", "M4", "W1", "M5", "I1", "W2", "I2", "W3", "I2.1", "I2.2", "I2.E", "I3", "E1", "E2", "W4", "E3", "W5", "E4", "U1", "W6", "U2", "U3", "U4", "U5", "U6"],
     "stepReminderRegex": [
         {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) enemy phase", "stepId": "E1"},
         {"faceProperty": "text", "regex": "at the (start|beginning) of (each|the) investigation phase", "stepId": "I1"},
@@ -48,6 +49,18 @@
         {"faceProperty": "text", "regex": "at the end of (each|the) round", "stepId": "U6"},
         {"faceProperty": "text", "regex": "at the end of (each|the) upkeep phase", "stepId": "U6"},
         {"faceProperty": "text", "regex": "at the end of (each|the|your) turn", "stepId": "I2.2"},
+        {"faceProperty": "text", "regex": "(after|when) the enemy phase (starts|begins)", "stepId": "E1"},
+        {"faceProperty": "text", "regex": "(after|when) the enemy phase ends", "stepId": "E4"},
+        {"faceProperty": "text", "regex": "(after|when) the investigation phase (starts|begins)", "stepId": "I1"},
+        {"faceProperty": "text", "regex": "(after|when) the investigation phase ends", "stepId": "I3"},
+        {"faceProperty": "text", "regex": "(after|when) the mythos phase (starts|begins)", "stepId": "M1"},
+        {"faceProperty": "text", "regex": "(after|when) the mythos phase ends", "stepId": "M5"},
+        {"faceProperty": "text", "regex": "(after|when) the round (starts|begins)", "stepId": "M1"},
+        {"faceProperty": "text", "regex": "(after|when) the round ends", "stepId": "U6"},
+        {"faceProperty": "text", "regex": "(after|when) the upkeep phase (starts|begins)", "stepId": "U1"},
+        {"faceProperty": "text", "regex": "(after|when) the upkeep phase ends", "stepId": "U6"},
+        {"faceProperty": "text", "regex": "(after|when) your turn (starts|begins)", "stepId": "I2"},
+        {"faceProperty": "text", "regex": "(after|when) your turn ends", "stepId": "I2.2"},
         {"faceProperty": "text", "regex": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.", "stepId": "M2"}
     ],
     "labels": {
@@ -98,6 +111,9 @@
         },
         "step-I2.2": {
             "English": "2.2.2 Investigator’s turn ends."
+        },
+        "step-I2.E": {
+            "English": "Return to I2 or proceed to I3."
         },
         "step-I3": {
             "English": "2.3 Investigation phase ends."

@@ -19,6 +19,40 @@
         ],
         "spendResources": [
             ["DO_SPEND_RESOURCES", "$PLAYER_N", 1, true, "$PLAYER_N"]
+        ],
+        "moveClue": [
+            ["COND",
+                ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                ["ACTION_LIST", "moveClueToInvestigator"],
+                ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                ["ACTION_LIST", "moveClueToAct"],
+                ["TRUE"],
+                ["LOG", "└── You cannot push or pull a clue with {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "moveClueToInvestigator": [
+            ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+            ["COND",
+                ["AND",
+                    ["NOT_EQUAL", "$INVESTIGATOR", null],
+                    ["CAN_MOVE_CLUE", "$PLAYER_N", "$ACTIVE_CARD_ID", "$INVESTIGATOR.id", "$PLAYER_N"]
+                ],
+                ["DO_MOVE_CLUE", "$PLAYER_N", "$ACTIVE_CARD_ID", "$INVESTIGATOR.id", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot push a clue from {{$ACTIVE_FACE.name}} to your investigator, {{$ALIAS_N}}."]
+            ]
+        ],
+        "moveClueToAct": [
+            ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+            ["COND",
+                ["AND",
+                    ["NOT_EQUAL", "$INVESTIGATOR", null],
+                    ["CAN_MOVE_CLUE", "$PLAYER_N", "$INVESTIGATOR.id", "$ACTIVE_CARD_ID", "$PLAYER_N"]
+                ],
+                ["DO_MOVE_CLUE", "$PLAYER_N", "$INVESTIGATOR.id", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot move a clue from your investigator to {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -359,6 +393,37 @@
                     ]
                 ]
             ]
+        },
+        "CAN_MOVE_CLUE": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_MOVE_CLUE.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "CAN_MOVE_CLUE.SOURCE_CARD_ID"]],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_MOVE_CLUE.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_MOVE_CLUE.TARGET_CARD.groupId"]],
+                ["VAR", "$CLUES", ["GET_CLUES_ON_CARD", "$SOURCE_CARD_ID"]],
+                ["AND",
+                    ["GREATER_THAN", "$CLUES", 0],
+                    ["EQUAL", "$TARGET_GROUP.canHaveTokens", true]
+                ]
+            ]
+        },
+        "DO_MOVE_CLUE": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_CLUE.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "DO_MOVE_CLUE.SOURCE_CARD_ID"]],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_CLUE.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_CLUE.LOG_EVENT"],
+                ["COND",
+                    ["CAN_MOVE_CLUE", "$TARGET_PLAYER", "$SOURCE_CARD_ID", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move a clue from {{$SOURCE_CARD.currentFace.name}} to {{$TARGET_CARD.currentFace.name}}.", "moves a clue from {{$SOURCE_CARD.currentFace.name}} to {{$TARGET_CARD.currentFace.name}}."],
+                        ["DECREASE_VAL", "/cardById/$SOURCE_CARD_ID/tokens/clue", 1],
+                        ["INCREASE_VAL", "/cardById/$TARGET_CARD_ID/tokens/clue", 1]
+                    ]
+                ]
+            ]
         }
     },
     "prompts": {
@@ -474,6 +539,15 @@
         },
         "spendResources": {
             "English": "Spend 1 Resource"
+        },
+        "moveClue": {
+            "English": "Push / pull clue"
+        },
+        "moveClueToInvestigatorMenu": {
+            "English": "Push clue (')"
+        },
+        "moveClueToActMenu": {
+            "English": "Pull clue (')"
         }
     }
 }

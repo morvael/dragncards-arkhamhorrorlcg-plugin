@@ -127,7 +127,7 @@
                             ["EQUAL", "$GAME.stepId", "M3"],
                             ["EQUAL", "$GAME.stepId", "M4"],
                             ["EQUAL", "$GAME.stepId", "I2"],
-                            ["EQUAL", "$GAME.stepId", "I2.2"],
+                            ["EQUAL", "$GAME.stepId", "I2.E"],
                             ["EQUAL", "$GAME.stepId", "E2"],
                             ["EQUAL", "$GAME.stepId", "E3"],
                             ["EQUAL", "$GAME.stepId", "U2"],
@@ -149,8 +149,8 @@
                         ["DO_STEP_M4"],
                         ["EQUAL", "$GAME.stepId", "I2"],
                         ["DO_STEP_I2"],
-                        ["EQUAL", "$GAME.stepId", "I2.2"],
-                        ["DO_STEP_I2_2"],
+                        ["EQUAL", "$GAME.stepId", "I2.E"],
+                        ["DO_STEP_I2_E"],
                         ["EQUAL", "$GAME.stepId", "E2"],
                         ["DO_STEP_E2"],
                         ["EQUAL", "$GAME.stepId", "E3"],
@@ -484,7 +484,7 @@
                 ]
             ]
         },
-        "DO_STEP_I2_2": {
+        "DO_STEP_I2_E": {
             "args": [],
             "code": [
                 ["COND",

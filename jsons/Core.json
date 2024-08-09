@@ -105,6 +105,7 @@
             {"key": "S", "actionList": "spawnCard", "label": "id:spawnCard"},
             {"key": "X", "actionList": "discardCard", "label": "id:discardCard"},
             {"key": "Z", "actionList": "putCardBeneath", "label": "id:putCardBeneath"},
+            {"key": "'", "actionList": "moveClue", "label": "id:moveClue"},
             {"key": "[", "actionList": "sendToBack", "label": "id:sendToBack"},
             {"key": "]", "actionList": "bringToFront", "label": "id:bringToFront"}
         ]
