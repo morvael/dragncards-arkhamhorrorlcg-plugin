@@ -15,6 +15,16 @@
                         ]
                     },
                     {
+                        "label": "id:revisedCoreDecks",
+                        "deckLists": [
+                            {"label": "id:rolandBanksStarterDeck", "deckListId": "Revised Roland Banks Starter Deck"},
+                            {"label": "id:daisyWalkerStarterDeck", "deckListId": "Revised Daisy Walker Starter Deck"},
+                            {"label": "id:skidsOTooleStarterDeck", "deckListId": "Revised \"Skids\" O'Toole Starter Deck"},
+                            {"label": "id:agnesBakerStarterDeck", "deckListId": "Revised Agnes Baker Starter Deck"},
+                            {"label": "id:wendyAdamsStarterDeck", "deckListId": "Revised Wendy Adams Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:theDunwichLegacy",
                         "deckLists": [
                             {"label": "id:zoeySamarasStarterDeck", "deckListId": "Zoey Samaras Starter Deck"},
@@ -162,6 +172,9 @@
         },
         "coreDecks": {
             "English": "Core Decks"
+        },
+        "revisedCoreDecks": {
+            "English": "Revised Core Decks"
         },
         "rolandBanksStarterDeck": {
             "English": "Roland Banks Starter Deck"
