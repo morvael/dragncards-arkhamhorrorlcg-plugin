@@ -410,7 +410,8 @@
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$SKIP_WEAKNESS", false],
-                                ["EQUAL", "$TAKE_HORROR", true]
+                                ["EQUAL", "$TAKE_HORROR", true],
+                                ["IN_STRING", "$TARGET_GROUP_ID", "player"]
                             ],
                             ["PROMPT", "$TARGET_PLAYER", "askToTakeHorrorAfterDraw"]
                         ],

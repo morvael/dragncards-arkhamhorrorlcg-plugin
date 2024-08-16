@@ -1,0 +1,56 @@
+{
+    "preBuiltDecks": {
+        "Turn Back Time Scenario": {
+             "label": "Turn Back Time Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Turn Back Time", null, "Turn Back Time Scenario Init"]
+            ]
+        },
+        "Turn Back Time": {
+            "hideFromSearch": true,
+             "label": "Turn Back Time",
+             "cards": [
+                {"databaseId": "04344", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04345", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04346", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04347", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04068", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04063", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04066", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04067", "quantity": 1, "loadGroupId": "sharedDeckA"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Turn Back Time Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Turn Back Time"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: Repossess the Past", "04303", "sharedNotInPlay"],
+            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort"],
+            ["DO_SPAWN_LOCATION_SCN", "Entryway", "04060", 45, 43],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04092", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04094", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04088", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04089", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "01167", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

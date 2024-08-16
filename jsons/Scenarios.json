@@ -115,7 +115,8 @@
                             {"label": "id:heartOfTheEldersPt2", "deckListId": "Heart of the Elders Pt 2 Scenario"},
                             {"label": "id:theCityOfArchives", "deckListId": "The City of Archives Scenario"},
                             {"label": "id:theDepthsOfYoth", "deckListId": "The Depths of Yoth Scenario"},
-                            {"label": "id:shatteredAeons", "deckListId": "Shattered Aeons Scenario"}
+                            {"label": "id:shatteredAeons", "deckListId": "Shattered Aeons Scenario"},
+                            {"label": "id:turnBackTime", "deckListId": "Turn Back Time Scenario"}
                         ]
                     }
                 ]
@@ -356,6 +357,9 @@
         },
         "shatteredAeons": {
             "English": "Shattered Aeons"
+        },
+        "turnBackTime": {
+            "English": "Secret Scenario IX"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
