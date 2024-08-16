@@ -137,7 +137,7 @@
             ],
             ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "04287", "04288", "04289", "04290", "04291", "04292", "04293", "04294", "04295"]]],
             ["DO_SPAWN_LOCATION_SCN", "Random location", "$LOCATIONS.[0]", 45, 43],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$DO_SPAWN_LOCATION_RESULT", 5, 7, 0, 3],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$DO_SPAWN_LOCATION_RESULT", 5, 7, 3, 0],
             ["FOR_EACH_START_STOP_STEP", "$I", 1, 5, 1, [
                 ["DO_CREATE_CARDS_SCN", "Random location", "$LOCATIONS.[$I]", 1, "sharedDeckA"]
             ]],

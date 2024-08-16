@@ -1,0 +1,133 @@
+{
+    "preBuiltDecks": {
+        "Shattered Aeons Scenario": {
+             "label": "Shattered Aeons Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+            ]
+        },
+        "Shattered Aeons": {
+            "hideFromSearch": true,
+             "label": "Shattered Aeons",
+             "cards": [
+                {"databaseId": "04314", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
+                {"databaseId": "04315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04316", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04317", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
+                {"databaseId": "04318", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04319", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04320", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04321", "quantity": 1, "loadGroupId": "sharedActStory"},
+                {"databaseId": "04325", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04326", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04337", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04343", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04330", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04322", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04323", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "04327", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04328", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04329", "quantity": 1, "loadGroupId": "sharedDeckA"},
+                {"databaseId": "04331", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04332", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04333", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04334", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04335", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04336", "quantity": 1, "loadGroupId": "sharedPileA"},
+                {"databaseId": "04338", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04339", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04340", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04341", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
+                {"databaseId": "04342", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Shattered Aeons Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Shattered Aeons Scenario Question 1"]
+        ],
+        "Shattered Aeons Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 2]
+                    ]]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "Shattered Aeons Scenario Init"]
+        ],
+        "Shattered Aeons Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Shattered Aeons"],
+            ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are more Cultist tokens in the chaos bag than Tablet tokens.", "There are more Tablet tokens in the chaos bag than Cultist tokens.", "There is an equal number of Cultist and Tablet tokens in the chaos bag."], "Shattered Aeons Scenario Question 2"]
+        ],
+        "Shattered Aeons Scenario Question 2": [
+            ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "C"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+                    ["DO_LOAD_CARDS_SCN", "Agents of Yig"]
+                ]
+            ],
+            ["DO_SPAWN_LOCATION_SCN", "Nexus of N'kai: Unraveling the Threads", "04324", 45, 43],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Nexus of N'kai", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04341", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04340", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "01166", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "There are between 0 and 9 tally marks under “Yig’s Fury”.", "There are between 10 and 19 tally marks under “Yig’s Fury”.", "There are between 20 and 29 tally marks under “Yig’s Fury”.", "There are between 30 and 39 tally marks under “Yig’s Fury”.", "There are between 40 and 49 tally marks under “Yig’s Fury”.", "There are between 50 and 59 tally marks under “Yig’s Fury”.", "There are between 60 and 69 tally marks under “Yig’s Fury”.", "There are between 70 and 79 tally marks under “Yig’s Fury”.", "There are between 80 and 89 tally marks under “Yig’s Fury”.", "There are between 90 and 99 tally marks under “Yig’s Fury”.", "There are over 100 tally marks under “Yig’s Fury”."], "Shattered Aeons Scenario Question 3"]
+        ],
+        "Shattered Aeons Scenario Question 3": [
+            ["VAR", "$CARDS_TO_MOVE", 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 1],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 2],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 3],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 4],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "F"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 5],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "G"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 6],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "H"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 7],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "I"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 8],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "J"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 9],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "K"],
+                ["UPDATE_VAR", "$CARDS_TO_MOVE", 10]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$CARDS_TO_MOVE", 0],
+                [
+                    ["DO_MOVE_DECK_CARDS_SCN", "Player Card", ["GET_CONTROLLER_DECK", "$GAME.firstPlayer"], "$CARDS_TO_MOVE", "sharedVictoryDisplay"],
+                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                        ["EQUAL", "$CARD.cardOwner", "$GAME.firstPlayer"]
+                    ]]],
+                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                        ["SET", "/cardById/$CARD.id/currentSide", "B"],
+                        ["SET", "/cardById/$CARD.id/sides/B/vengeance", 1]
+                    ]]
+                ]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

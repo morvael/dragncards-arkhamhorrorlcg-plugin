@@ -114,7 +114,8 @@
                             {"label": "id:heartOfTheEldersPt1", "deckListId": "Heart of the Elders Pt 1 Scenario"},
                             {"label": "id:heartOfTheEldersPt2", "deckListId": "Heart of the Elders Pt 2 Scenario"},
                             {"label": "id:theCityOfArchives", "deckListId": "The City of Archives Scenario"},
-                            {"label": "id:theDepthsOfYoth", "deckListId": "The Depths of Yoth Scenario"}
+                            {"label": "id:theDepthsOfYoth", "deckListId": "The Depths of Yoth Scenario"},
+                            {"label": "id:shatteredAeons", "deckListId": "Shattered Aeons Scenario"}
                         ]
                     }
                 ]
@@ -352,6 +353,9 @@
         },
         "theDepthsOfYoth": {
             "English": "The Depths of Yoth"
+        },
+        "shatteredAeons": {
+            "English": "Shattered Aeons"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
