@@ -712,7 +712,7 @@
                         ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
                         ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
                         ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
-                        ["SET", "/arkhamScenarioDifficulty", "Normal"],
+                        ["SET", "/arkhamScenarioDifficulty", "Standard"],
                         ["SET", "/arkhamNumScenarioQuestions", 0],
                         ["SET", "/arkhamScenarioQuestionIndex", 0],
                         ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
@@ -1327,10 +1327,10 @@
                     ]
                 },
                 {
-                    "label": "Normal",
-                    "hotkey": "N",
+                    "label": "Standard",
+                    "hotkey": "S",
                     "code": [
-                        ["SET_SCENARIO_DIFFICULTY", "Normal"]
+                        ["SET_SCENARIO_DIFFICULTY", "Standard"]
                     ]
                 },
                 {

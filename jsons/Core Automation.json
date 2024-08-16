@@ -14,7 +14,7 @@
                     ["SET", "/arkhamChaosBagCampaignName", "No Campaign"],
                     ["SET", "/arkhamCampaignName", "No Campaign"],
                     ["SET", "/arkhamScenarioName", "No Scenario"],
-                    ["SET", "/arkhamScenarioDifficulty", "Normal"],
+                    ["SET", "/arkhamScenarioDifficulty", "Standard"],
                     ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
                 ]
             ]

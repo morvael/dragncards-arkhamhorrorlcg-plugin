@@ -90,9 +90,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "The Dunwich Legacy Chaos Bag - Normal": {
+        "The Dunwich Legacy Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "The Dunwich Legacy Chaos Bag - Normal",
+            "label": "The Dunwich Legacy Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},

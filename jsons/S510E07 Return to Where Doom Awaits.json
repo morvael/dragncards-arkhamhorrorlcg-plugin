@@ -95,7 +95,7 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
                 ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Normal"],
+                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Standard"],
                 ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"],
                 ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
                 ["DO_ADD_CHAOS_TOKEN_SCN", "-6", "chaos_m6"],

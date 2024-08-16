@@ -136,9 +136,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "The Forgotten Age Chaos Bag - Normal": {
+        "The Forgotten Age Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "The Forgotten Age Chaos Bag - Normal",
+            "label": "The Forgotten Age Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
