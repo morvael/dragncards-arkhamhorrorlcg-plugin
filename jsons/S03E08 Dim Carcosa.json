@@ -172,7 +172,7 @@
             ["LOG", "└── Each investigator takes direct horror equal to half his or her sanity, rounded down (cannot be prevented)."],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
-                ["VAR", "$HORROR", ["DIVIDE", "$INVESTIGATOR.sides.A.sanity", 2]],
+                ["VAR", "$HORROR", ["TO_INT", ["DIVIDE", "$INVESTIGATOR.sides.A.sanity", 2]]],
                 ["COND",
                     ["GREATER_THAN", "$HORROR", 0],
                     ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$HORROR", true, null]

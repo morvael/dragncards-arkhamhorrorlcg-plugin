@@ -48,7 +48,7 @@
             "_comment": "Returns a list of all Agenda cards that are the top cards of any story deck.",
             "args": [],
             "code": [
-                ["FILTER_CARDS", "$CARD", ["AND",
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.currentFace.type", "Agenda"],
                     ["EQUAL", "$CARD.currentSide", "A"],
                     ["OR",
@@ -56,7 +56,8 @@
                         ["IN_STRING", "$CARD.groupId", "sharedActStory"]
                     ],
                     ["EQUAL", "$CARD.id", ["GET_CARD_ID", "$CARD.groupId", 0, 0]]
-                ]]
+                ]]],
+                ["SORT_OBJ_LIST", "$SELECTED_CARDS", "$CARD", "$CARD.sortOrder"]
             ]
         },
         "GET_CARD_BY_DATABASE_ID": {
@@ -258,28 +259,6 @@
                     ["NOT_EQUAL", "$ACTOR_PLAYER", null],
                     ["EQUAL", "$GAME.playerData.$ACTOR_PLAYER.blockUnsafeActions", false]
                 ]
-            ]
-        },
-        "REMOVE_FIRST_FROM_LIST_BY_VALUE": {
-            "_comment": "Returns the given list with first occurence of given value removed.",
-            "args": ["$LIST", "$VALUE"],
-            "code": [
-                ["VAR", "$NEW_LIST", ["LIST"]],
-                ["VAR", "$REMOVED", false],
-                ["FOR_EACH_VAL", "$VAL", "$LIST", [
-                    ["COND",
-                        ["EQUAL", "$VAL", "$VALUE"],
-                        ["COND",
-                            ["EQUAL", "$REMOVED", false],
-                            ["UPDATE_VAR", "$REMOVED", true],
-                            ["TRUE"],
-                            ["UPDATE_VAR", "$NEW_LIST", ["APPEND", "$NEW_LIST", "$VAL"]]
-                        ],
-                        ["TRUE"],
-                        ["UPDATE_VAR", "$NEW_LIST", ["APPEND", "$NEW_LIST", "$VAL"]]
-                    ]
-                ]],
-                "$NEW_LIST"
             ]
         }
     }
