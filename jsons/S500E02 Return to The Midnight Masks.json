@@ -13,86 +13,86 @@
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks",
             "cards": [
-                {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "50025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},
-                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
-                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},
-                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "50031", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Midnight Masks
+                {"databaseId": "50025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Midnight Masks
+                {"databaseId": "01122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Time Is Running Short
+                {"databaseId": "01123", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Uncovering the Conspiracy
+                {"databaseId": "01124", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"},  //Your House
+                {"databaseId": "01128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},  //St. Mary's Hospital
+                {"databaseId": "01133", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},  //Graveyard
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Shadow
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //False Lead
+                {"databaseId": "50031", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Masked Horrors
             ]
         },
         "Return to The Midnight Masks - Predator or Prey?": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Predator or Prey?",
             "cards": [
-                {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "50026a", "quantity": 1, "loadGroupId": "sharedAgendaStory"}
+                {"databaseId": "01121a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},    //Predator or Prey?
+                {"databaseId": "50026a", "quantity": 1, "loadGroupId": "sharedAgendaStory"}     //Predator or Prey?
             ]
         },
         "Return to The Midnight Masks - Southside": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Southside",
             "cards": [
-                {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
-                {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}
+                {"databaseId": "01126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Southside: Historical Society
+                {"databaseId": "01127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}   //Southside: Ma's Boarding House
             ]
         },
         "Return to The Midnight Masks - Downtown": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Downtown",
             "cards": [
-                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
-                {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Downtown: First Bank of Arkham
+                {"databaseId": "01131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Downtown: Arkham Asylum
             ]
         },
         "Return to The Midnight Masks - Easttown": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Easttown",
             "cards": [
-                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
-                {"databaseId": "50027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},  //Easttown
+                {"databaseId": "50027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}   //Easttown: Arkham Police Station
             ]
         },
         "Return to The Midnight Masks - Northside": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Northside",
             "cards": [
-                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
-                {"databaseId": "50028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"}
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},  //Northside
+                {"databaseId": "50028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"}   //Northside: Train Station
             ]
         },
         "Return to The Midnight Masks - Rivertown": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Rivertown",
             "cards": [
-                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "50030", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Rivertown
+                {"databaseId": "50030", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}   //Rivertown: Abandoned Warehouse
             ]
         },
         "Return to The Midnight Masks - Miskatonic University": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Miskatonic University",
             "cards": [
-                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "50029", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Miskatonic University
+                {"databaseId": "50029", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}   //Miskatonic University: Miskatonic Museum
             ]
         },
         "Return to The Midnight Masks - Cult of Umôrdhoth": {
             "hideFromSearch": true,
             "label": "Return to The Midnight Masks - Cult of Umôrdhoth",
             "cards": [
-                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "50044", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "50045", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "50046", "quantity": 1, "loadGroupId": "sharedDeckA"}
+                {"databaseId": "01137", "quantity": 1, "loadGroupId": "sharedDeckA"},   //"Wolf-Man" Drew: The Cannibal
+                {"databaseId": "01138", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Herman Collins: The Undertaker
+                {"databaseId": "01139", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Peter Warren: The Occult Professor
+                {"databaseId": "01140", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Victoria Devereux: The Collector
+                {"databaseId": "01141", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Ruth Turner: The Mortician
+                {"databaseId": "50044", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Jeremiah Pierce: Your Next-Door Neighbor
+                {"databaseId": "50045", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Billy Cooper: The Crooked Cop
+                {"databaseId": "50046", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Alma Hill: The Inquisitive Historian
             ]
         }
     },
@@ -119,18 +119,15 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "Return to The Midnight Masks Scenario Question 1"]
         ],
         "Return to The Midnight Masks Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: Your house has burned to the ground."],
                     ["DO_DELETE_LOCATION_SCN", "Your House"],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
-                [
-                    ["LOG", "└── Campaign Log: Your house is still standing."],
-                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3, 0]
-                ]
+                ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3, 0]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "Return to The Midnight Masks Scenario Question 2"]
         ],
@@ -138,7 +135,7 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Ghoul Priest", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],

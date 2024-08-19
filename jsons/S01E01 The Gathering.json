@@ -13,37 +13,37 @@
             "hideFromSearch": true,
              "label": "The Gathering",
              "cards": [
-                {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01107", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01108", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01111", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "01112", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Gathering
+                {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What's Going On?!
+                {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Rise of the Ghouls
+                {"databaseId": "01107", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //They're Getting Out!
+                {"databaseId": "01108", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Trapped
+                {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Barrier
+                {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Have You Done?
+                {"databaseId": "01111", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Study
+                {"databaseId": "01112", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Hallway
+                {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Attic
+                {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Cellar
+                {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Parlor
+                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ghoul Priest
+                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lita Chantler: The Zealot
+                {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Flesh-Eater
+                {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Icy Ghoul
             ]
         }
     },
     "actionLists": {
         "The Gathering Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "The Gathering"],
+            ["DO_SET_SPAWN_LOCATION", "01112", 45, 43], //Hallway
+            ["DO_SET_SPAWN_LOCATION", "01113", 45, 10], //Attic
+            ["DO_SET_SPAWN_LOCATION", "01114", 45, 76], //Cellar
+            ["DO_SET_SPAWN_LOCATION", "01115", 70, 43], //Parlor
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["DO_LOAD_CARDS_SCN", "Ghouls"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-            ["DO_SET_SPAWN_LOCATION", "01112", 45, 43],
-            ["DO_SET_SPAWN_LOCATION", "01113", 45, 10],
-            ["DO_SET_SPAWN_LOCATION", "01114", 45, 76],
-            ["DO_SET_SPAWN_LOCATION", "01115", 70, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3, 0],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -13,81 +13,69 @@
             "hideFromSearch": true,
             "label": "Return to The Devourer Below",
             "cards": [
-                {"databaseId": "01142",  "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "01143",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01144",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01145",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01146",  "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01147",  "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01148",  "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01149",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "01156",  "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "50032a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01157",  "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01158",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "50037",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01142",  "quantity": 1, "loadGroupId": "sharedScenarioReference"},                      //The Devourer Below
+                {"databaseId": "50032a", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                      //Return to The Devourer Below
+                {"databaseId": "01143",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},                            //The Arkham Woods
+                {"databaseId": "01144",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},                            //The Ritual Begins
+                {"databaseId": "01145",  "quantity": 1, "loadGroupId": "sharedAgendaStory"},                            //Vengeance Awaits
+                {"databaseId": "01146",  "quantity": 1, "loadGroupId": "sharedActStory"},                               //Investigating the Trail
+                {"databaseId": "01147",  "quantity": 1, "loadGroupId": "sharedActStory"},                               //Into the Darkness
+                {"databaseId": "01148",  "quantity": 1, "loadGroupId": "sharedActStory"},                               //Disrupting the Ritual
+                {"databaseId": "01149",  "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}, //Main Path
+                {"databaseId": "01156",  "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Ritual Site
+                {"databaseId": "01157",  "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Umôrdhoth: The Devourer Below
+                {"databaseId": "01158",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                          //Umôrdhoth's Wrath
+                {"databaseId": "50037",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                           //Umôrdhoth's Hunger
             ]
         },
-        "Return to The Devourer Below - Woods": {
+        "Return to The Devourer Below - Arkham Woods": {
             "hideFromSearch": true,
-            "label": "Return to The Devourer Below - Woods",
+            "label": "Return to The Devourer Below - Arkham Woods",
             "cards": [
-                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "50033", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "50034", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "50035", "quantity": 1, "loadGroupId": "sharedLocations"},
-                {"databaseId": "50036", "quantity": 1, "loadGroupId": "sharedLocations"}
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Unhallowed Ground
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Twisting Paths
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Old House
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Cliffside
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Tangled Thicket
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Quiet Glade
+                {"databaseId": "50033", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Great Willow
+                {"databaseId": "50034", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Lakeside
+                {"databaseId": "50035", "quantity": 1, "loadGroupId": "sharedLocations"},   //Arkham Woods: Corpse-Ridden Clearing
+                {"databaseId": "50036", "quantity": 1, "loadGroupId": "sharedLocations"}    //Arkham Woods: Wooden Bridge
             ]
         }
     },
     "actionLists": {
         "Return to The Devourer Below Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to The Devourer Below"],
-            ["VAR", "$CARD_50032a", ["GET_CARD_BY_DATABASE_ID", "50032a"]],
-            ["VAR", "$CARD_01157", ["GET_CARD_BY_DATABASE_ID", "01157"]],
-            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$CARD_50032a.id", true, null],
-            ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$CARD_50032a.id", "$CARD_01157.id", true, null],
+            ["DO_SET_SPAWN_LOCATION", "01156", 70, 76], //Ritual Site
+            ["VAR", "$REFERENCE", ["GET_NAMED_CARD", "Return to The Devourer Below"]],
+            ["VAR", "$UMORDHOTH", ["GET_NAMED_CARD", "Umôrdhoth: The Devourer Below"]],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$REFERENCE.id", true, null],
+            ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$REFERENCE.id", "$UMORDHOTH.id", true, null],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ghouls of Umôrdhoth"],
             ["DO_LOAD_CARDS_SCN", "The Devourers Cult"],
-            ["DO_LOAD_N_CARDS_SCN", "Return to The Devourer Below - Woods", 4],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Devourer Below - Arkham Woods", 4],
             ["VAR", "$SELECTED_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.B.name", "Arkham Woods"]]]],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[0].id", 45, 10],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[1].id", 70, 43],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[2].id", 45, 76],
             ["DO_SET_CARD_LOCATION", "$SELECTED_LOCATIONS.[3].id", 20, 43],
-            ["DO_SET_SPAWN_LOCATION", "01156", 70, 76],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Main Path", 5, 7, 3, 0],
             ["DO_LOAD_RANDOM_LIST_SCN", ["LIST", "Agents of Hastur", "Agents of Yog-Sothoth", "Agents of Shub-Niggurath", "Agents of Cthulhu"]],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Cultists Who Got Away” in your Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "Return to The Devourer Below Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Cultists Who Got Away” in Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "Return to The Devourer Below Scenario Question 1"]
         ],
         "Return to The Devourer Below Scenario Question 1": [
+            ["LOG", "└── Cultists Who Got Away: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                [
-                    ["LOG", "└── Campaign Log: There are exactly 0 names recorded under “Cultists Who Got Away”."]
-                ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
-                [
-                    ["LOG", "└── Campaign Log: There are exactly 1 or 2 names recorded under “Cultists Who Got Away”."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
-                ],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
-                [
-                    ["LOG", "└── Campaign Log: There are exactly 3 or 4 names recorded under “Cultists Who Got Away”."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
-                ],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
-                [
-                    ["LOG", "└── Campaign Log: There are exactly 5 or 6 names recorded under “Cultists Who Got Away”."],
-                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
-                ]
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
             ],
             ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "Return to The Devourer Below Scenario Question 2"]
@@ -96,7 +84,7 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: It is past midnight."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["DO_DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2, true, null]
                     ]]
@@ -108,11 +96,10 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Campaign Log: The Ghoul Priest is still alive."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Ghoul Priest", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],
-            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

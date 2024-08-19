@@ -13,66 +13,66 @@
             "hideFromSearch": true,
              "label": "Return to The Gathering",
              "cards": [
-                {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "50011", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "01107", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "50012", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "50013", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
-                {"databaseId": "50014", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
-                {"databaseId": "50015", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},
-                {"databaseId": "50016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "76%"},
-                {"databaseId": "50017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "50019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "50021", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "50022", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "50023", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "50024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Gathering
+                {"databaseId": "50011", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Gathering
+                {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What's Going On?!
+                {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Rise of the Ghouls
+                {"databaseId": "01107", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //They're Getting Out!
+                {"databaseId": "50012", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Mysterious Gateway
+                {"databaseId": "01109", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Barrier
+                {"databaseId": "01110", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Have You Done?
+                {"databaseId": "50013", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},  //Study: Aberrant Gateway
+                {"databaseId": "50014", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Guest Hall
+                {"databaseId": "50015", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Bedroom
+                {"databaseId": "50016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "76%"},  //Bathroom
+                {"databaseId": "50017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Hallway
+                {"databaseId": "01115", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Parlor
+                {"databaseId": "50019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Field of Graves
+                {"databaseId": "50021", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ghoul Pits
+                {"databaseId": "01116", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ghoul Priest
+                {"databaseId": "01117", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lita Chantler: The Zealot
+                {"databaseId": "01118", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Flesh-Eater
+                {"databaseId": "01119", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Icy Ghoul
+                {"databaseId": "50022", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Corpse-Hungry Ghoul
+                {"databaseId": "50023", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Ghoul from the Depths
+                {"databaseId": "50024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //The Zealot's Seal
             ]
         },
         "Return to The Gathering - Attic": {
             "hideFromSearch": true,
             "label": "Return to The Gathering - Attic",
             "cards": [
-                {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "50018", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+                {"databaseId": "01113", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Attic
+                {"databaseId": "50018", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Attic
             ]
         },
         "Return to The Gathering - Cellar": {
             "hideFromSearch": true,
             "label": "Return to The Gathering - Cellar",
             "cards": [
-                {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "50020", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+                {"databaseId": "01114", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Cellar
+                {"databaseId": "50020", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Cellar
             ]
         }
     },
     "actionLists": {
         "Return to The Gathering Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to The Gathering"],
+            ["DO_SET_SPAWN_LOCATION", "50017", 55, 43], //Hallway
+            ["DO_SET_SPAWN_LOCATION", "01115", 75, 43], //Parlor
+            ["DO_SET_SPAWN_LOCATION", "50019", 75, 10], //Field of Graves
+            ["DO_SET_SPAWN_LOCATION", "50021", 75, 76], //Ghoul Pits
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["DO_LOAD_CARDS_SCN", "Ghouls of Umôrdhoth"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Gathering - Attic", 1],
+            ["DO_SET_SPAWN_LOCATION", "01113", 55, 10], //Attic
+            ["DO_SET_SPAWN_LOCATION", "50018", 55, 10], //Attic
             ["DO_LOAD_N_CARDS_SCN", "Return to The Gathering - Cellar", 1],
-            ["DO_SET_SPAWN_LOCATION", "50017", 55, 43],
-            ["DO_SET_SPAWN_LOCATION", "01115", 75, 43],
-            ["DO_SET_SPAWN_LOCATION", "50019", 75, 10],
-            ["DO_SET_SPAWN_LOCATION", "50021", 75, 76],
-            ["DO_SET_SPAWN_LOCATION", "01113", 55, 10],
-            ["DO_SET_SPAWN_LOCATION", "50018", 55, 10],
-            ["DO_SET_SPAWN_LOCATION", "01114", 55, 76],
-            ["DO_SET_SPAWN_LOCATION", "50020", 55, 76],
+            ["DO_SET_SPAWN_LOCATION", "01114", 55, 76], //Cellar
+            ["DO_SET_SPAWN_LOCATION", "50020", 55, 76], //Cellar
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Study", 5, 7, 3, 0],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]

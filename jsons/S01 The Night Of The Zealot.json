@@ -4,96 +4,96 @@
             "hideFromSearch": true,
             "label": "Rats",
             "cards": [
-                {"databaseId": "01159", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01159", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Swarm of Rats
             ]
         },
         "Ghouls": {
             "hideFromSearch": true,
             "label": "Ghouls",
             "cards": [
-                {"databaseId": "01160", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01161", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01162", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01160", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Ghoul Minion
+                {"databaseId": "01161", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Ravenous Ghoul
+                {"databaseId": "01162", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Grasping Hands
             ]
         },
         "Striking Fear": {
             "hideFromSearch": true,
             "label": "Striking Fear",
             "cards": [
-                {"databaseId": "01163", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01164", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01165", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01163", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Rotting Remains
+                {"databaseId": "01164", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Frozen in Fear
+                {"databaseId": "01165", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Dissonant Voices
             ]
         },
         "Ancient Evils": {
             "hideFromSearch": true,
             "label": "Ancient Evils",
             "cards": [
-                {"databaseId": "01166", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01166", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Ancient Evils
             ]
         },
         "Chilling Cold": {
             "hideFromSearch": true,
             "label": "Chilling Cold",
             "cards": [
-                {"databaseId": "01167", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01168", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01167", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Crypt Chill
+                {"databaseId": "01168", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Obscuring Fog
             ]
         },
         "Dark Cult": {
             "hideFromSearch": true,
             "label": "Dark Cult",
             "cards": [
-                {"databaseId": "01169", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01170", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01171", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01169", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Acolyte
+                {"databaseId": "01170", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Wizard of the Order
+                {"databaseId": "01171", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Mysterious Chanting
             ]
         },
         "Nightgaunts": {
             "hideFromSearch": true,
             "label": "Nightgaunts",
             "cards": [
-                {"databaseId": "01172", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01173", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01172", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Hunting Nightgaunt
+                {"databaseId": "01173", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //On Wings of Darkness
             ]
         },
         "Locked Doors": {
             "hideFromSearch": true,
             "label": "Locked Doors",
             "cards": [
-                {"databaseId": "01174", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01174", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Locked Door
             ]
         },
         "Agents of Hastur": {
             "hideFromSearch": true,
             "label": "Agents of Hastur",
             "cards": [
-                {"databaseId": "01175", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01176", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01175", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Screeching Byakhee
+                {"databaseId": "01176", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //The Yellow Sign
             ]
         },
         "Agents of Yog-Sothoth": {
             "hideFromSearch": true,
             "label": "Agents of Yog-Sothoth",
             "cards": [
-                {"databaseId": "01177", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01178", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01177", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Yithian Observer
+                {"databaseId": "01178", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Offer of Power
             ]
         },
         "Agents of Shub-Niggurath": {
             "hideFromSearch": true,
             "label": "Agents of Shub-Niggurath",
             "cards": [
-                {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01180", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Relentless Dark Young
+                {"databaseId": "01180", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Goat Spawn
             ]
         },
         "Agents of Cthulhu": {
             "hideFromSearch": true,
             "label": "Agents of Cthulhu",
             "cards": [
-                {"databaseId": "01181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "01182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "01181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Young Deep One
+                {"databaseId": "01182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Dreams of R'lyeh
             ]
         },
         "Night of the Zealot Chaos Bag - Easy": {
