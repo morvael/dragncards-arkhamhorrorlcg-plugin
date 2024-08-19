@@ -1,54 +1,84 @@
 {
     "preBuiltDecks": {
-        "Heart of the Elders Pt 1 Scenario": {
-             "label": "Heart of the Elders, Part 1 Scenario",
+        "Return to Heart of the Elders Pt 1 Scenario": {
+             "label": "Return to Heart of the Elders, Part 1 Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Heart of the Elders, Part 1", "Heart of the Elders Pt 1 Scenario Early Init", "Heart of the Elders Pt 1 Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Heart of the Elders, Part 1", "Return to Heart of the Elders Pt 1 Scenario Early Init", "Return to Heart of the Elders Pt 1 Scenario Init"]
             ]
         },
-        "Heart of the Elders Pt 1 - Pillars of Judgment": {
+        "Return to Heart of the Elders Pt 1 - Pillars of Judgment": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 1 - Pillars of Judgment",
+             "label": "Return to Heart of the Elders Pt 1 - Pillars of Judgment",
              "cards": [
                 {"databaseId": "04207", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Jungle's Heart
                 {"databaseId": "04208", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Setting Sun
-                {"databaseId": "04209", "quantity": 1, "loadGroupId": "sharedActStory"},        //Search for the Pattern
+                {"databaseId": "53046", "quantity": 1, "loadGroupId": "sharedActStory"},        //A Familiar Pattern
                 {"databaseId": "04210", "quantity": 1, "loadGroupId": "sharedActStory"},        //Opening the Maw
                 {"databaseId": "04217", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Time-Wracked Woods
                 {"databaseId": "04219", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Apex Strangleweed
                 {"databaseId": "04220", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Basilisk
-                {"databaseId": "04221", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Ants!
+                {"databaseId": "04221", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Ants!
+                {"databaseId": "53047", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Feathered Serpent
             ]
         },
-        "Heart of the Elders Pt 1 - Heart of the Elders": {
+        "Return to Heart of the Elders Pt 1 - Heart of the Elders": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 1 - Heart of the Elders",
+             "label": "Return to Heart of the Elders Pt 1 - Heart of the Elders",
              "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
+                {"databaseId": "53045", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Heart of the Elders, Part 1
                 {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern’s Maw
                 {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall
                 {"databaseId": "04216", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Poisonous Spores
             ]
         },
-        "Heart of the Elders Pt 1 - Rainforest": {
+        "Return to Heart of the Elders Pt 1 - Rainforest": {
             "hideFromSearch": true,
-            "label": "Heart of the Elders Pt 1 - Rainforest",
+            "label": "Return to Heart of the Elders Pt 1 - Rainforest",
             "cards": [
-                {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Path of Thorns
                 {"databaseId": "04070", "quantity": 1, "loadGroupId": "sharedDeckA"},           //River Canyon
-                {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Rope Bridge
-                {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Serpent's Haven
-                {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Circuitous Trail
                 {"databaseId": "04076", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Overgrowth
                 {"databaseId": "04077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Voice of the Jungle
+            ]
+        },
+        "Return to Heart of the Elders Pt 1 - Purple Moon": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 1 - Purple Moon",
+             "cards": [
+                {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Rope Bridge
+                {"databaseId": "53068", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Waterfall
+            ]
+        },
+        "Return to Heart of the Elders Pt 1 - Blue Triangle": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 1 - Blue Triangle",
+             "cards": [
+                {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Serpent's Haven
+                {"databaseId": "53069", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Trail of the Dead
+            ]
+        },
+        "Return to Heart of the Elders Pt 1 - Red Square": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 1 - Red Square",
+             "cards": [
+                {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Path of Thorns
+                {"databaseId": "53067", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Riverside Temple
+            ]
+        },
+        "Return to Heart of the Elders Pt 1 - Orange Heart": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 1 - Orange Heart",
+             "cards": [
+                {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Circuitous Trail
+                {"databaseId": "53070", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Cloud Forest
             ]
         }
     },
     "actionLists": {
-        "Heart of the Elders Pt 1 Scenario Early Init": [
+        "Return to Heart of the Elders Pt 1 Scenario Early Init": [
             ["VAR", "$ANSWERS_1", ["LIST"]],
             ["COND",
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Ichtaca"], null],
@@ -63,9 +93,9 @@
                 ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let’s consult the expedition journal."]]
             ],
             ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this…"]],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Heart of the Elders Pt 1 Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Return to Heart of the Elders Pt 1 Scenario Question 1"]
         ],
-        "Heart of the Elders Pt 1 Scenario Question 1": [
+        "Return to Heart of the Elders Pt 1 Scenario Question 1": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let’s consult with Ichtaca."],
@@ -75,12 +105,12 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let’s consult the expedition journal."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Expedition Journal"]
             ],
-            ["SCENARIO_INIT_RESUME", "Heart of the Elders Pt 1 Scenario Init"]
+            ["SCENARIO_INIT_RESUME", "Return to Heart of the Elders Pt 1 Scenario Init"]
         ],
-        "Heart of the Elders Pt 1 Scenario Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "6 paths are known to you.", "The above is not true."], "Heart of the Elders Pt 1 Scenario Question 2"]
+        "Return to Heart of the Elders Pt 1 Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "6 paths are known to you.", "The above is not true."], "Return to Heart of the Elders Pt 1 Scenario Question 2"]
         ],
-        "Heart of the Elders Pt 1 Scenario Question 2": [
+        "Return to Heart of the Elders Pt 1 Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
@@ -89,19 +119,23 @@
                     ["SCENARIO_INIT_CONTINUE", null]
                 ],
                 ["TRUE"],
-                ["ACTION_LIST", "Heart of the Elders Pt 1 Scenario Init Continue 1"]
+                ["ACTION_LIST", "Return to Heart of the Elders Pt 1 Scenario Init Continue 1"]
             ]
         ],
-        "Heart of the Elders Pt 1 Scenario Init Continue 1": [
-            ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Pillars of Judgment"],
-            ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Heart of the Elders"],
-            ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Rainforest"],
+        "Return to Heart of the Elders Pt 1 Scenario Init Continue 1": [
+            ["DO_LOAD_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Pillars of Judgment"],
+            ["DO_LOAD_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Heart of the Elders"],
+            ["DO_LOAD_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Rainforest"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Purple Moon", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Blue Triangle", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Red Square", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 1 - Orange Heart", 1],
             ["DO_LOAD_CARDS_SCN", "Serpents"],
-            ["DO_LOAD_CARDS_SCN", "Expedition"],
+            ["DO_LOAD_CARDS_SCN", "Doomed Expedition"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Mouth of K'n-yan", 5, 7, 3, 0],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 paths are known to you.", "4 paths are known to you.", "3 paths are known to you.", "2 paths are known to you.", "1 path is known to you.", "0 paths are known to you."], "Heart of the Elders Pt 1 Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 paths are known to you.", "4 paths are known to you.", "3 paths are known to you.", "2 paths are known to you.", "1 path is known to you.", "0 paths are known to you."], "Return to Heart of the Elders Pt 1 Scenario Question 3"]
         ],
-        "Heart of the Elders Pt 1 Scenario Question 3": [
+        "Return to Heart of the Elders Pt 1 Scenario Question 3": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
             ["VAR", "$MOUTH_OF_KNYAN", ["GET_NAMED_MAP_LOCATION", "Mouth of K'n-yan"]],
             ["COND",
@@ -116,14 +150,14 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 1, true, null]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Have you played this scenario before during this campaign and have reached act 2 before?", ["LIST", "Yes.", "No."], "Heart of the Elders Pt 1 Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Have you played this scenario before during this campaign and have reached act 2 before?", ["LIST", "Yes.", "No."], "Return to Heart of the Elders Pt 1 Scenario Question 4"]
         ],
-        "Heart of the Elders Pt 1 Scenario Question 4": [
+        "Return to Heart of the Elders Pt 1 Scenario Question 4": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
                 [
                     ["LOG", "└── You have played this scenario before during this campaign and have reached act 2 before."],
-                    ["VAR", "$ACT_CARD", ["GET_NAMED_CARD", "Search for the Pattern"]],
+                    ["VAR", "$ACT_CARD", ["GET_NAMED_CARD", "A Familiar Pattern"]],
                     ["VAR", "$MOUTH_OF_KNYAN", ["GET_NAMED_MAP_LOCATION", "Mouth of K'n-yan"]],
                     ["DO_LOG_SCN", "$GAME.firstPlayer", "spawns {{$ACT_CARD.sides.B.name}} at {{$MOUTH_OF_KNYAN.currentFace.name}}."],
                     ["MOVE_CARD", "$ACT_CARD.id", "$MOUTH_OF_KNYAN.groupId", ["ADD", "$MOUTH_OF_KNYAN.stackIndex", 1], 0, {"combine": false, "allowFlip": false}],
@@ -133,13 +167,9 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
                 ["LOG", "└── You haven't played this scenario before during this campaign or haven't reached act 2 before."]
             ],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Pitfall", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Ants!", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Lost in the Wilds", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Low on Supplies", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators mapped out the way forward.", "The above is not true."], "Heart of the Elders Pt 1 Scenario Question 5"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators mapped out the way forward.", "The above is not true."], "Return to Heart of the Elders Pt 1 Scenario Question 5"]
         ],
-        "Heart of the Elders Pt 1 Scenario Question 5": [
+        "Return to Heart of the Elders Pt 1 Scenario Question 5": [
             ["VAR", "$RUINS", ["SHUFFLE_LIST", ["LIST", "04074", "04075", "04218"]]], //Temple of the Fang, Overgrown Ruins, Stone Altar
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
@@ -152,7 +182,8 @@
                 ["DO_CREATE_CARDS_SCN", "Random Ruins", "$RUINS.[0]", 1, "sharedDeckA"]
             ],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

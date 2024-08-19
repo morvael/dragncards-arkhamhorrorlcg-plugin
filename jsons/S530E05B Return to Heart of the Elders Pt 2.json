@@ -1,0 +1,141 @@
+{
+    "preBuiltDecks": {
+        "Return to Heart of the Elders Pt 2 Scenario": {
+             "label": "Return to Heart of the Elders, Part 2 Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Heart of the Elders, Part 2", null, "Return to Heart of the Elders Pt 2 Scenario Init"]
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - K'n-yan": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - K'n-yan",
+             "cards": [
+                {"databaseId": "04211", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Lonely Caverns
+                {"databaseId": "04212", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Eyes in the Dark
+                {"databaseId": "04213", "quantity": 1, "loadGroupId": "sharedActStory"},        //Cavern of the Forgotten Age
+                {"databaseId": "04214", "quantity": 1, "loadGroupId": "sharedActStory"},        //Descent into Dark
+                {"databaseId": "04227", "quantity": 1, "loadGroupId": "sharedNotInPlay"},       //Descent to Yoth
+                {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},       //Harbinger of Valusia: The Sleeper Returns
+                {"databaseId": "04228", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //No Turning Back
+                {"databaseId": "04222", "quantity": 1, "loadGroupId": "sharedDeckA"}            //Vast Passages
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - Heart of the Elders": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - Heart of the Elders",
+             "cards": [
+                {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
+                {"databaseId": "53048", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Heart of the Elders, Part 2
+                {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern’s Maw
+                {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall
+                {"databaseId": "04216", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Poisonous Spores
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - Purple Moon": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - Purple Moon",
+             "cards": [
+                {"databaseId": "04226", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Crystal Pillars
+                {"databaseId": "53052", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Treacherous Descent
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - Blue Triangle": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - Blue Triangle",
+             "cards": [
+                {"databaseId": "04224", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Dark Hollow
+                {"databaseId": "53049", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Ruins of K'n-yan
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - Red Square": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - Red Square",
+             "cards": [
+                {"databaseId": "04223", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Hall of Idolatry
+                {"databaseId": "53051", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Chthonian Depths
+            ]
+        },
+        "Return to Heart of the Elders Pt 2 - Green Diamond": {
+            "hideFromSearch": true,
+             "label": "Return to Heart of the Elders Pt 2 - Green Diamond",
+             "cards": [
+                {"databaseId": "04225", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Perilous Gulch
+                {"databaseId": "53050", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Subterranean Swamp
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Heart of the Elders Pt 2 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Heart of the Elders Pt 2 - K'n-yan"],
+            ["DO_LOAD_CARDS_SCN", "Return to Heart of the Elders Pt 2 - Heart of the Elders"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 2 - Purple Moon", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 2 - Blue Triangle", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 2 - Red Square", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to Heart of the Elders Pt 2 - Green Diamond", 1],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Venomous Hate"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["VAR", "$MOUTH_OF_KNYAN", ["GET_NAMED_MAP_LOCATION", "Mouth of K'n-yan"]],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", true, null],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Mouth of K'n-yan", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "3 Pit Vipers are listed.", "2 Pit Vipers are listed.", "1 Pit Viper is listed.", "0 Pit Vipers are listed."], "Return to Heart of the Elders Pt 2 Scenario Question 1"]
+        ],
+        "Return to Heart of the Elders Pt 2 Scenario Question 1": [
+            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 3, "sharedVictoryDisplay"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 2, "sharedVictoryDisplay"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 1, "sharedVictoryDisplay"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "2 Basilisks are listed.", "1 Basilisk is listed.", "0 Basilisks are listed."], "Return to Heart of the Elders Pt 2 Scenario Question 2"]
+        ],
+        "Return to Heart of the Elders Pt 2 Scenario Question 2": [
+            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["DO_CREATE_CARDS_SCN", "Basilisk", "04220", 2, "sharedVictoryDisplay"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["DO_CREATE_CARDS_SCN", "Basilisk", "04220", 1, "sharedVictoryDisplay"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "1 Boa Constrictor is listed.", "0 Boa Constrictors are listed."], "Return to Heart of the Elders Pt 2 Scenario Question 3"]
+        ],
+        "Return to Heart of the Elders Pt 2 Scenario Question 3": [
+            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["DO_CREATE_CARDS_SCN", "Boa Constrictor", "04079", 1, "sharedVictoryDisplay"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "2 Feathered Serpents are listed.", "1 Feathered Serpent is listed.", "0 Feathered Serpents are listed."], "Return to Heart of the Elders Pt 2 Scenario Question 4"]
+        ],
+        "Return to Heart of the Elders Pt 2 Scenario Question 4": [
+            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["DO_CREATE_CARDS_SCN", "Feathered Serpent", "53047", 2, "sharedVictoryDisplay"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                ["DO_CREATE_CARDS_SCN", "Feathered Serpent", "53047", 1, "sharedVictoryDisplay"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "2 Resentful Wilds are listed.", "1 Resentful Wilds is listed.", "0 Resentful Wilds are listed."], "Return to Heart of the Elders Pt 2 Scenario Question 5"]
+        ],
+        "Return to Heart of the Elders Pt 2 Scenario Question 5": [
+            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer5Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["DO_CREATE_CARDS_SCN", "Resentful Wilds", "53074", 2, "sharedVictoryDisplay"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                ["DO_CREATE_CARDS_SCN", "Resentful Wilds", "53074", 1, "sharedVictoryDisplay"]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

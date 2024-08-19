@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to The Gathering", null, "Return to The Gathering Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Return to The Night of the Zealot", "Return to The Gathering", null, "Return to The Gathering Scenario Init"]
             ]
         },
         "Return to The Gathering": {

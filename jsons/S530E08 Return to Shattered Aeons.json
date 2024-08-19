@@ -1,19 +1,20 @@
 {
     "preBuiltDecks": {
-        "Shattered Aeons Scenario": {
-             "label": "Shattered Aeons Scenario",
+        "Return to Shattered Aeons Scenario": {
+             "label": "Return to Shattered Aeons Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Shattered Aeons", "Return to Shattered Aeons Scenario Early Init", "Return to Shattered Aeons Scenario Init"]
             ]
         },
-        "Shattered Aeons": {
+        "Return to Shattered Aeons": {
             "hideFromSearch": true,
-             "label": "Shattered Aeons",
+             "label": "Return to Shattered Aeons",
              "cards": [
                 {"databaseId": "04314", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Shattered Aeons
+                {"databaseId": "53061", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Shattered Aeons
                 {"databaseId": "04315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Threads of Time
                 {"databaseId": "04316", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Pendulous Threads
                 {"databaseId": "04317", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Snapped Threads
@@ -31,25 +32,29 @@
                 {"databaseId": "04327", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Yuggoth
                 {"databaseId": "04328", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Shores of R'lyeh
                 {"databaseId": "04329", "quantity": 1, "loadGroupId": "sharedDeckA"},               //City of the Unseen
+                {"databaseId": "53062", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Great Hall of Celeano
                 {"databaseId": "04331", "quantity": 1, "loadGroupId": "sharedPileA"},               //Ruins of New York
                 {"databaseId": "04332", "quantity": 1, "loadGroupId": "sharedPileA"},               //Mu
                 {"databaseId": "04333", "quantity": 1, "loadGroupId": "sharedPileA"},               //Atlantis
                 {"databaseId": "04334", "quantity": 1, "loadGroupId": "sharedPileA"},               //Pnakotus
                 {"databaseId": "04335", "quantity": 1, "loadGroupId": "sharedPileA"},               //Valusia
                 {"databaseId": "04336", "quantity": 1, "loadGroupId": "sharedPileA"},               //Plateau of Leng
+                {"databaseId": "53063", "quantity": 1, "loadGroupId": "sharedPileA"},               //Buenos Aires
+                {"databaseId": "53064", "quantity": 1, "loadGroupId": "sharedPileA"},               //Ultima Thule
                 {"databaseId": "04338", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Temporal Devourer
                 {"databaseId": "04339", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Shattered Ages
                 {"databaseId": "04340", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Between Worlds
                 {"databaseId": "04341", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Wracked by Time
-                {"databaseId": "04342", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Creeping Darkness
+                {"databaseId": "04342", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Creeping Darkness
+                {"databaseId": "53065", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Unknowable Past
             ]
         }
     },
     "actionLists": {
-        "Shattered Aeons Scenario Early Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Shattered Aeons Scenario Question 1"]
+        "Return to Shattered Aeons Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Return to Shattered Aeons Scenario Question 1"]
         ],
-        "Shattered Aeons Scenario Question 1": [
+        "Return to Shattered Aeons Scenario Question 1": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
@@ -59,36 +64,33 @@
                     ]]
                 ]
             ],
-            ["SCENARIO_INIT_RESUME", "Shattered Aeons Scenario Init"]
+            ["SCENARIO_INIT_RESUME", "Return to Shattered Aeons Scenario Init"]
         ],
-        "Shattered Aeons Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "Shattered Aeons"],
+        "Return to Shattered Aeons Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Shattered Aeons"],
             ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
-            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Hunters"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are more Cultist tokens in the chaos bag than Tablet tokens.", "There are more Tablet tokens in the chaos bag than Cultist tokens.", "There is an equal number of Cultist and Tablet tokens in the chaos bag."], "Shattered Aeons Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are more Cultist tokens in the chaos bag than Tablet tokens.", "There are more Tablet tokens in the chaos bag than Cultist tokens.", "There is an equal number of Cultist and Tablet tokens in the chaos bag."], "Return to Shattered Aeons Scenario Question 2"]
         ],
-        "Shattered Aeons Scenario Question 2": [
+        "Return to Shattered Aeons Scenario Question 2": [
             ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer2Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+                ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
                 ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "C"],
                 [
-                    ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+                    ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"],
                     ["DO_LOAD_CARDS_SCN", "Agents of Yig"]
                 ]
             ],
             ["DO_SPAWN_LOCATION_SCN", "Nexus of N'kai: Unraveling the Threads", "04324", 45, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Nexus of N'kai", 5, 7, 3, 0],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Wracked by Time", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Between Worlds", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Ancient Evils", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig’s Fury” in Campaign Log.", ["LIST", "There are between 0 and 9 tally marks.", "There are between 10 and 19 tally marks.", "There are between 20 and 29 tally marks.", "There are between 30 and 39 tally marks.", "There are between 40 and 49 tally marks.", "There are between 50 and 59 tally marks.", "There are between 60 and 69 tally marks.", "There are between 70 and 79 tally marks.", "There are between 80 and 89 tally marks.", "There are between 90 and 99 tally marks.", "There are over 100 tally marks."], "Shattered Aeons Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig’s Fury” in Campaign Log.", ["LIST", "There are between 0 and 9 tally marks.", "There are between 10 and 19 tally marks.", "There are between 20 and 29 tally marks.", "There are between 30 and 39 tally marks.", "There are between 40 and 49 tally marks.", "There are between 50 and 59 tally marks.", "There are between 60 and 69 tally marks.", "There are between 70 and 79 tally marks.", "There are between 80 and 89 tally marks.", "There are between 90 and 99 tally marks.", "There are over 100 tally marks."], "Return to Shattered Aeons Scenario Question 3"]
         ],
-        "Shattered Aeons Scenario Question 3": [
+        "Return to Shattered Aeons Scenario Question 3": [
             ["LOG", "└── Yig’s Fury: {{$GAME.arkhamScenarioAnswer3Text}}"],
             ["VAR", "$CARDS_TO_MOVE", 0],
             ["COND",
@@ -127,7 +129,8 @@
                     ]]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A."],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to A Phantom of Truth", null, "Return to A Phantom of Truth Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to A Phantom of Truth", null, "Return to A Phantom of Truth Scenario Init"]
             ]
         },
         "Return to A Phantom of Truth": {

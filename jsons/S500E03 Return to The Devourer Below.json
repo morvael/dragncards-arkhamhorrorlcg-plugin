@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to The Devourer Below", null, "Return to The Devourer Below Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Return to The Night of the Zealot", "Return to The Devourer Below", null, "Return to The Devourer Below Scenario Init"]
             ]
         },
         "Return to The Devourer Below": {

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Echoes of the Past", null, "Return to Echoes of the Past Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to Echoes of the Past", null, "Return to Echoes of the Past Scenario Init"]
             ]
         },
         "Return to Echoes of the Past": {

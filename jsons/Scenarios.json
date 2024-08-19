@@ -157,13 +157,29 @@
                             {"label": "id:returnToBlackStarsRise", "deckListId": "Return to Black Stars Rise Scenario"},
                             {"label": "id:returnToDimCarcosa", "deckListId": "Return to Dim Carcosa Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:returnToTheForgottenAge",
+                        "deckLists": [
+                            {"label": "id:returnToTheUntamedWilds", "deckListId": "Return to The Untamed Wilds Scenario"},
+                            {"label": "id:returnToTheDoomOfEztli", "deckListId": "Return to The Doom of Eztli Scenario"},
+                            {"label": "id:returnToThreadsOfFate", "deckListId": "Return to Threads of Fate Scenario"},
+                            {"label": "id:returnToTheBoundaryBeyond", "deckListId": "Return to The Boundary Beyond Scenario"},
+                            {"label": "id:returnToHeartOfTheEldersPt1", "deckListId": "Return to Heart of the Elders Pt 1 Scenario"},
+                            {"label": "id:returnToHeartOfTheEldersPt2", "deckListId": "Return to Heart of the Elders Pt 2 Scenario"},
+                            {"label": "id:returnToTheCityOfArchives", "deckListId": "Return to The City of Archives Scenario"},
+                            {"label": "id:returnToTheDepthsOfYoth", "deckListId": "Return to The Depths of Yoth Scenario"},
+                            {"label": "id:returnToShatteredAeons", "deckListId": "Return to Shattered Aeons Scenario"},
+                            {"label": "id:returnToTurnBackTime", "deckListId": "Return to Turn Back Time Scenario"}
+                        ]
                     }
                 ]
             },
             {
                 "label": "id:miscellaneous",
                 "deckLists": [
-                    {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"}
+                    {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
+                    {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"}
                 ]
             }
         ]
@@ -365,7 +381,7 @@
             "English": "Return to… Campaigns"
         },
         "returnToTheNightOfTheZealot": {
-            "English": "Return to the Night of the Zealot"
+            "English": "Return to The Night of the Zealot"
         },
         "returnToTheGathering": {
             "English": "Return to The Gathering"
@@ -377,7 +393,7 @@
             "English": "Return to The Devourer Below"
         },
         "returnToTheDunwichLegacy": {
-            "English": "Return to the Dunwich Legacy"
+            "English": "Return to The Dunwich Legacy"
         },
         "returnToExtracurricularActivities": {
             "English": "Return to Extracurricular Activities"
@@ -404,7 +420,7 @@
             "English": "Return to Lost in Time and Space"
         },
         "returnToThePathToCarcosa": {
-            "English": "Return to the Path to Carcosa"
+            "English": "Return to The Path to Carcosa"
         },
         "returnToCurtainCall": {
             "English": "Return to Curtain Call"
@@ -430,11 +446,47 @@
         "returnToDimCarcosa": {
             "English": "Return to Dim Carcosa"
         },
+        "returnToTheForgottenAge": {
+            "English": "Return to the Forgotten Age"
+        },
+        "returnToTheUntamedWilds": {
+            "English": "Return to The Untamed Wilds"
+        },
+        "returnToTheDoomOfEztli": {
+            "English": "Return to The Doom of Eztli"
+        },
+        "returnToThreadsOfFate": {
+            "English": "Return to Threads of Fate"
+        },
+        "returnToTheBoundaryBeyond": {
+            "English": "Return to The Boundary Beyond"
+        },
+        "returnToHeartOfTheEldersPt1": {
+            "English": "Return to Heart of the Elders, Part 1"
+        },
+        "returnToHeartOfTheEldersPt2": {
+            "English": "Return to Heart of the Elders, Part 2"
+        },
+        "returnToTheCityOfArchives": {
+            "English": "Return to The City of Archives"
+        },
+        "returnToTheDepthsOfYoth": {
+            "English": "Return to The Depths of Yoth"
+        },
+        "returnToShatteredAeons": {
+            "English": "Return to Shattered Aeons"
+        },
+        "returnToTurnBackTime": {
+            "English": "Return to Secret Scenario IX"
+        },
         "miscellaneous": {
             "English": "Miscellaneous"
         },
         "theForgottenAgeSupplies": {
             "English": "The Forgotten Age Supplies"
+        },
+        "returnToTheForgottenAgeSupplies": {
+            "English": "Return to The Forgotten Age Supplies"
         }
     }
 }

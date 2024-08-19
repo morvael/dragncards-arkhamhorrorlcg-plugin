@@ -13,25 +13,33 @@
             "hideFromSearch": true,
              "label": "Turn Back Time",
              "cards": [
-                {"databaseId": "04344", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "04345", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "04346", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "04347", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "04062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "04068", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "04063", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "04066", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "04067", "quantity": 1, "loadGroupId": "sharedDeckA"}
+                {"databaseId": "04344", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Turn Back Time
+                {"databaseId": "04345", "quantity": 1, "loadGroupId": "sharedActStory"},            //Into the Ruins Once Again
+                {"databaseId": "04346", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Chamber of Still Remains
+                {"databaseId": "04347", "quantity": 1, "loadGroupId": "sharedActStory"}             //Moment of Doom
+            ]
+        },
+        "Turn Back Time - The Doom of Eztli": {
+            "hideFromSearch": true,
+             "label": "Turn Back Time - The Doom of Eztli",
+             "cards": [
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
+                {"databaseId": "04060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway
+                {"databaseId": "04062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Awakens
+                {"databaseId": "04068", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Time
+                {"databaseId": "04063", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall
+                {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber
+                {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Burial Pit
+                {"databaseId": "04066", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Underground Ruins
+                {"databaseId": "04067", "quantity": 1, "loadGroupId": "sharedDeckA"}                                    //Secret Passage
             ]
         }
     },
     "actionLists": {
         "Turn Back Time Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Turn Back Time"],
+            ["DO_LOAD_CARDS_SCN", "Turn Back Time - The Doom of Eztli"],
             ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
             ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
             ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
@@ -40,13 +48,12 @@
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: Repossess the Past", "04303", "sharedNotInPlay"],
             ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort"],
-            ["DO_SPAWN_LOCATION_SCN", "Entryway", "04060", 45, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04092", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04094", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04088", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "04089", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "01167", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Ill Omen", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Deep Dark", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Final Mistake", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Entombed", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Crypt Chill", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],

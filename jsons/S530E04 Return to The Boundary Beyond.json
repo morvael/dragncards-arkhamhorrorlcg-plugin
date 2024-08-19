@@ -1,19 +1,20 @@
 {
     "preBuiltDecks": {
-        "The Boundary Beyond Scenario": {
-             "label": "The Boundary Beyond Scenario",
+        "Return to The Boundary Beyond Scenario": {
+             "label": "Return to The Boundary Beyond Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The Boundary Beyond", "The Boundary Beyond Scenario Early Init", "The Boundary Beyond Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Boundary Beyond", "Return to The Boundary Beyond Scenario Early Init", "Return to The Boundary Beyond Scenario Init"]
             ]
         },
-        "The Boundary Beyond": {
+        "Return to The Boundary Beyond": {
             "hideFromSearch": true,
-             "label": "The Boundary Beyond",
+             "label": "Return to The Boundary Beyond",
              "cards": [
                 {"databaseId": "04161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Boundary Beyond
+                {"databaseId": "53038", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Boundary Beyond
                 {"databaseId": "04162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Boundary, Broken
                 {"databaseId": "04163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Barrier Is Thin
                 {"databaseId": "04165", "quantity": 1, "loadGroupId": "sharedActStory"},            //Crossing the Threshold
@@ -21,6 +22,7 @@
                 {"databaseId": "04186", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Padma Amrita: Cold-Blooded Charmer
                 {"databaseId": "04167", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The Return Trip
                 {"databaseId": "04164", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Time Collapsing
+                {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Harbinger of Valusia: The Sleeper Returns
                 {"databaseId": "04174", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Templo Mayor
                 {"databaseId": "04175", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Templo Mayor
                 {"databaseId": "04176", "quantity": 1, "loadGroupId": "sharedDeckA"},               //Temples of Tenochtitlán
@@ -39,24 +41,60 @@
                 {"databaseId": "04190", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Timeline Destabilization
             ]
         },
-        "The Boundary Beyond - Mexico City": {
+        "Return to The Boundary Beyond - Temple Ruins": {
             "hideFromSearch": true,
-            "label": "The Boundary Beyond - Mexico City",
+            "label": "Return to The Boundary Beyond - Temple Ruins",
             "cards": [
                 {"databaseId": "04168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Temple Ruins
+                {"databaseId": "53039", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Temple Ruins
+            ]
+        },
+        "Return to The Boundary Beyond - Metropolitan Cathedral": {
+            "hideFromSearch": true,
+            "label": "Return to The Boundary Beyond - Metropolitan Cathedral",
+            "cards": [
                 {"databaseId": "04169", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "43%"},  //Metropolitan Cathedral
+                {"databaseId": "53040", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "43%"}   //Metropolitan Cathedral
+            ]
+        },
+        "Return to The Boundary Beyond - Chapultepec Park": {
+            "hideFromSearch": true,
+            "label": "Return to The Boundary Beyond - Chapultepec Park",
+            "cards": [
                 {"databaseId": "04170", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Chapultepec Park
+                {"databaseId": "53041", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"}   //Chapultepec Park
+            ]
+        },
+        "Return to The Boundary Beyond - Zócalo": {
+            "hideFromSearch": true,
+            "label": "Return to The Boundary Beyond - Zócalo",
+            "cards": [
                 {"databaseId": "04171", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},  //Zócalo
+                {"databaseId": "53042", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"}   //Zócalo
+            ]
+        },
+        "Return to The Boundary Beyond - Xochimilco": {
+            "hideFromSearch": true,
+            "label": "Return to The Boundary Beyond - Xochimilco",
+            "cards": [
                 {"databaseId": "04172", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Xochimilco
-                {"databaseId": "04173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"}   //Coyoacán
+                {"databaseId": "53043", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}   //Xochimilco
+            ]
+        },
+        "Return to The Boundary Beyond - Coyoacán": {
+            "hideFromSearch": true,
+            "label": "Return to The Boundary Beyond - Coyoacán",
+            "cards": [
+                {"databaseId": "04173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Coyoacán
+                {"databaseId": "53044", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"}   //Coyoacán
             ]
         }
     },
     "actionLists": {
-        "The Boundary Beyond Scenario Early Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators forged a bond with Ichtaca.", "Ichtaca is in the dark."], "The Boundary Beyond Scenario Question 1"]
+        "Return to The Boundary Beyond Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators forged a bond with Ichtaca.", "Ichtaca is in the dark."], "Return to The Boundary Beyond Scenario Question 1"]
         ],
-        "The Boundary Beyond Scenario Question 1": [
+        "Return to The Boundary Beyond Scenario Question 1": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
@@ -66,17 +104,17 @@
                     ]]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators found the missing relic.", "The relic is missing."], "The Boundary Beyond Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators found the missing relic.", "The relic is missing."], "Return to The Boundary Beyond Scenario Question 2"]
         ],
-        "The Boundary Beyond Scenario Question 2": [
+        "Return to The Boundary Beyond Scenario Question 2": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 ["DO_REPLACE_CARD_SCN", "04061", "Relic of Ages: Forestalling the Future", "04191"] //Relic of Ages: …A Device, of Some Sort -> Relic of Ages: Forestalling the Future
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators rescued Alejandro.", "Alejandro is missing."], "The Boundary Beyond Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators rescued Alejandro.", "Alejandro is missing."], "Return to The Boundary Beyond Scenario Question 3"]
         ],
-        "The Boundary Beyond Scenario Question 3": [
+        "Return to The Boundary Beyond Scenario Question 3": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
@@ -86,9 +124,9 @@
                     ]]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check supplies.", ["LIST", "No gasoline was crossed off.", "The above is not true."], "The Boundary Beyond Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check supplies.", ["LIST", "No gasoline was crossed off.", "The above is not true."], "Return to The Boundary Beyond Scenario Question 4"]
         ],
-        "The Boundary Beyond Scenario Question 4": [
+        "Return to The Boundary Beyond Scenario Question 4": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
                 [
@@ -98,30 +136,30 @@
                     ]]
                 ]
             ],
-            ["SCENARIO_INIT_RESUME", "The Boundary Beyond Scenario Init"]
+            ["SCENARIO_INIT_RESUME", "Return to The Boundary Beyond Scenario Init"]
         ],
-        "The Boundary Beyond Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "The Boundary Beyond"],
-            ["DO_LOAD_CARDS_SCN", "Temporal Flux"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Cultist tokens in the chaos bag.", "The above is not true."], "The Boundary Beyond Scenario Question 5"]
+        "Return to The Boundary Beyond Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Boundary Beyond"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Hunters"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Cultist tokens in the chaos bag.", "The above is not true."], "Return to The Boundary Beyond Scenario Question 5"]
         ],
-        "The Boundary Beyond Scenario Question 5": [
+        "Return to The Boundary Beyond Scenario Question 5": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
                 [
                     ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer5Text}}"],
                     ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
-                    ["DO_LOAD_CARDS_SCN", "Dark Cult"]
+                    ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Tablet tokens in the chaos bag.", "The above is not true."], "The Boundary Beyond Scenario Question 6"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are 2 or more Tablet tokens in the chaos bag.", "The above is not true."], "Return to The Boundary Beyond Scenario Question 6"]
         ],
-        "The Boundary Beyond Scenario Question 6": [
+        "Return to The Boundary Beyond Scenario Question 6": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
                 [
                     ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer6Text}}"],
-                    ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
+                    ["DO_LOAD_CARDS_SCN", "Venomous Hate"],
                     ["DO_LOAD_CARDS_SCN", "Guardians of Time"]
                 ]
             ],
@@ -135,17 +173,19 @@
                     ["DO_LOAD_CARDS_SCN", "Guardians of Time"]
                 ]
             ],
-            ["DO_LOAD_CARDS_SCN", "The Boundary Beyond - Mexico City"],
-            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "The Boundary Beyond Scenario Init Continue 1"]
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Temple Ruins", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Metropolitan Cathedral", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Chapultepec Park", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Zócalo", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Xochimilco", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Coyoacán", 1],
+            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "Return to The Boundary Beyond Scenario Init Continue 1"]
         ],
-        "The Boundary Beyond Scenario Init Continue 1": [
+        "Return to The Boundary Beyond Scenario Init Continue 1": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Window to Another Time", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Timeline Destabilization", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "A Tear in Time", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Lost in Time", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

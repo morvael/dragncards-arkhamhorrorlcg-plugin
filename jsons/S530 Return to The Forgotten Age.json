@@ -1,0 +1,56 @@
+{
+    "preBuiltDecks": {
+        "Return to the Rainforest": {
+            "hideFromSearch": true,
+            "label": "Return to the Rainforest",
+            "cards": [
+                {"databaseId": "53067", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Riverside Temple
+                {"databaseId": "53068", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Waterfall
+                {"databaseId": "53069", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Trail of the Dead
+                {"databaseId": "53070", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Cloud Forest
+            ]
+        },
+        "Cult of Pnakotus": {
+            "hideFromSearch": true,
+            "label": "Cult of Pnakotus",
+            "cards": [
+                {"databaseId": "53071", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Brotherhood Acolyte
+                {"databaseId": "53072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Stolen Mind
+                {"databaseId": "53073", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //From Another Time
+            ]
+        },
+        "Doomed Expedition": {
+            "hideFromSearch": true,
+            "label": "Doomed Expedition",
+            "cards": [
+                {"databaseId": "53074", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Resentful Wilds
+                {"databaseId": "53075", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Best-Laid Plans
+            ]
+        },
+        "Temporal Hunters": {
+            "hideFromSearch": true,
+            "label": "Temporal Hunters",
+            "cards": [
+                {"databaseId": "53076", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Merging Timelines
+                {"databaseId": "53077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Tindalos Alpha
+            ]
+        },
+        "Venomous Hate": {
+            "hideFromSearch": true,
+            "label": "Venomous Hate",
+            "cards": [
+                {"databaseId": "53078", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Vengeful Serpent
+                {"databaseId": "53079", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Serpent Guardian
+                {"databaseId": "53080", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Wrath of Yig
+            ]
+        },
+        "Return to The Forgotten Age Supplies": {
+            "label": "Return to The Forgotten Age Supplies",
+            "cards": [
+                {"databaseId": "tfa_key_of_eztli", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_mysterious_scepter", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
+                {"databaseId": "tfa_sticky_goop", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+            ]
+        }
+    }
+}

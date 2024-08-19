@@ -1,24 +1,25 @@
 {
     "preBuiltDecks": {
-        "The City of Archives Scenario": {
-             "label": "The City of Archives Scenario",
+        "Return to The City of Archives Scenario": {
+             "label": "Return to The City of Archives Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "The City of Archives", "The City of Archives Scenario Early Init", "The City of Archives Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The City of Archives", "Return to The City of Archives Scenario Early Init", "Return to The City of Archives Scenario Init"]
             ]
         },
-        "The City of Archives": {
+        "Return to The City of Archives": {
             "hideFromSearch": true,
-             "label": "The City of Archives",
+             "label": "Return to The City of Archives",
              "cards": [
                 {"databaseId": "04237", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The City of Archives
+                {"databaseId": "53053", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The City of Archives
                 {"databaseId": "04238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //City of the Great Race
                 {"databaseId": "04239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Lost Memories
                 {"databaseId": "04240", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Humanity Fading
                 {"databaseId": "04241", "quantity": 1, "loadGroupId": "sharedActStory"},            //Exploring Pnakotus
-                {"databaseId": "04242", "quantity": 1, "loadGroupId": "sharedActStory"},            //Restricted Access
+                {"databaseId": "53054", "quantity": 1, "loadGroupId": "sharedActStory"},            //Unrestricted Access
                 {"databaseId": "04243", "quantity": 1, "loadGroupId": "sharedActStory"},            //Repossession
                 {"databaseId": "04257", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Keeper of the Great Library
                 {"databaseId": "04258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Scientist of Yith
@@ -26,36 +27,40 @@
                 {"databaseId": "04260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Yithian Presence
                 {"databaseId": "04261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Cruel Interrogations
                 {"databaseId": "04262", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Lost Humanity
-                {"databaseId": "04263", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Captive Mind
+                {"databaseId": "04263", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Captive Mind
+                {"databaseId": "53058", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Captive Subjects
             ]
         },
-        "The City of Archives - Halls of Pnakotus": {
+        "Return to The City of Archives - Halls of Pnakotus": {
             "hideFromSearch": true,
-            "label": "The City of Archives - Halls of Pnakotus",
+            "label": "Return to The City of Archives - Halls of Pnakotus",
             "cards": [
-                {"databaseId": "04248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Halls of Pnakotus: Northern Corridors
-                {"databaseId": "04249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Halls of Pnakotus: Eastern Corridors
-                {"databaseId": "04250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"}   //Halls of Pnakotus: Western Corridors
+                {"databaseId": "04248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Halls of Pnakotus: Northern Corridors
+                {"databaseId": "04249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "31%"},  //Halls of Pnakotus: Eastern Corridors
+                {"databaseId": "04250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"},  //Halls of Pnakotus: Western Corridors
+                {"databaseId": "53055", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"}   //Halls of Pnakotus: Southern Corridors
             ]
         },
-        "The City of Archives - Set Aside": {
+        "Return to The City of Archives - Set Aside": {
             "hideFromSearch": true,
-            "label": "The City of Archives - Set Aside",
+            "label": "Return to The City of Archives - Set Aside",
             "cards": [
                 {"databaseId": "04251", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Great Library
                 {"databaseId": "04252", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Yithian Orrery
                 {"databaseId": "04253", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Laboratory of the Great Race
                 {"databaseId": "04254", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Deconstruction Room
                 {"databaseId": "04255", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Towers of Pnakotus
+                {"databaseId": "53056", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Cyclopean Vaults
+                {"databaseId": "53057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Alien Conservatory
                 {"databaseId": "04256", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //The Custodian: Curious Yithian
             ]
         }
     },
     "actionLists": {
-        "The City of Archives Scenario Early Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Cooperate and tell the creatures everything you know.", "Refuse and resist captivity."], "The City of Archives Scenario Question 1"]
+        "Return to The City of Archives Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Cooperate and tell the creatures everything you know.", "Refuse and resist captivity."], "Return to The City of Archives Scenario Question 1"]
         ],
-        "The City of Archives Scenario Question 1": [
+        "Return to The City of Archives Scenario Question 1": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
@@ -81,10 +86,10 @@
                     ["MOVE_CARD", "$ALEJANDRO.id", "sharedNotInPlay", -1]
                 ]
             ],
-            ["SCENARIO_INIT_RESUME", "The City of Archives Scenario Init"]
+            ["SCENARIO_INIT_RESUME", "Return to The City of Archives Scenario Init"]
         ],
-        "The City of Archives Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "The City of Archives"],
+        "Return to The City of Archives Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The City of Archives"],
             ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
@@ -103,20 +108,20 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Arrival Chamber", "04245", 83, 43],
+                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Arrival Chamber", "04245", 83, 31],
                     ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Interview Room: Arrival Chamber", 5, 7, 0, 3],
                     ["UPDATE_VAR", "$INTERVIEW_ROOMS", ["SHUFFLE_LIST", ["LIST", "04246", "04247"]]]    //Interview Room: Restraining Chamber, Interview Room: Ichor-Filled Chamber
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
-                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Restraining Chamber", "04246", 83, 43],
+                    ["DO_SPAWN_LOCATION_SCN", "Interview Room: Restraining Chamber", "04246", 83, 31],
                     ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Interview Room: Restraining Chamber", 5, 7, 0, 3],
                     ["UPDATE_VAR", "$INTERVIEW_ROOMS", ["SHUFFLE_LIST", ["LIST", "04245", "04247"]]]    //Interview Room: Arrival Chamber, Interview Room: Ichor-Filled Chamber
                 ]
             ],
-            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 76]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 7, 55]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
                 ["DO_SPAWN_LOCATION_SCN", "Interview Room", "$INTERVIEW_ROOMS.[$I]", 83, "$SPAWN_TOPS.[$I]"]
             ]],
@@ -132,13 +137,16 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Yithian Observer", "sharedEncounterDeck", 1, "sharedVictoryDisplay"]
             ],
-            ["DO_LOAD_CARDS_SCN", "The City of Archives - Halls of Pnakotus"],
-            ["DO_LOAD_CARDS_SCN", "The City of Archives - Set Aside"],
-            ["DO_SET_SPAWN_LOCATION", "04251", 26, 76], //Great Library
-            ["DO_SET_SPAWN_LOCATION", "04252", 7, 10],  //Yithian Orrery
-            ["DO_SET_SPAWN_LOCATION", "04253", 26, 10], //Laboratory of the Great Race
-            ["DO_SET_SPAWN_LOCATION", "04254", 7, 43],  //Deconstruction Room
-            ["DO_SET_SPAWN_LOCATION", "04255", 7, 76],  //Towers of Pnakotus
+            ["DO_LOAD_CARDS_SCN", "Return to The City of Archives - Halls of Pnakotus"],
+            ["DO_LOAD_CARDS_SCN", "Return to The City of Archives - Set Aside"],
+            ["DO_SET_SPAWN_LOCATION", "04251", 26, 55], //Great Library
+            ["DO_SET_SPAWN_LOCATION", "04252", 7, 7],   //Yithian Orrery
+            ["DO_SET_SPAWN_LOCATION", "04253", 26, 7],  //Laboratory of the Great Race
+            ["DO_SET_SPAWN_LOCATION", "04254", 7, 31],  //Deconstruction Room
+            ["DO_SET_SPAWN_LOCATION", "04255", 7, 55],  //Towers of Pnakotus
+            ["DO_SET_SPAWN_LOCATION", "53056", 36, 79], //Cyclopean Vaults
+            ["DO_SET_SPAWN_LOCATION", "53057", 54, 79], //Alien Conservatory
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

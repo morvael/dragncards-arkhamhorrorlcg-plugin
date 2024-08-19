@@ -1,0 +1,70 @@
+{
+    "preBuiltDecks": {
+        "Return to Turn Back Time Scenario": {
+             "label": "Return to Turn Back Time Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Turn Back Time", null, "Return to Turn Back Time Scenario Init"]
+            ]
+        },
+        "Return to Turn Back Time": {
+            "hideFromSearch": true,
+             "label": "Return to Turn Back Time",
+             "cards": [
+                {"databaseId": "04344", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Turn Back Time
+                {"databaseId": "53066", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Turn Back Time
+                {"databaseId": "04345", "quantity": 1, "loadGroupId": "sharedActStory"},            //Into the Ruins Once Again
+                {"databaseId": "04346", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Chamber of Still Remains
+                {"databaseId": "04347", "quantity": 1, "loadGroupId": "sharedActStory"}             //Moment of Doom
+            ]
+        },
+        "Return to Turn Back Time - Return to The Doom of Eztli": {
+            "hideFromSearch": true,
+             "label": "Return to Turn Back Time - Return to The Doom of Eztli",
+             "cards": [
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
+                {"databaseId": "53019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway: Rearranged by Time
+                {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Returns
+                {"databaseId": "53027", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Time: Rearranged by Time
+                {"databaseId": "53025", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall: Rearranged by Time
+                {"databaseId": "53026", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber: Rearranged by Time
+                {"databaseId": "53020", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sealed Passage
+                {"databaseId": "53021", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mosaic Chamber
+                {"databaseId": "53022", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Tomb of the Ancients
+                {"databaseId": "53023", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Throne Room
+                {"databaseId": "53024", "quantity": 1, "loadGroupId": "sharedDeckA"}                                    //Snake Pit
+            ]
+        },
+        "Return to Turn Back Time - Serpents": {
+            "hideFromSearch": true,
+            "label": "Return to Turn Back Time - Serpents",
+            "cards": [
+                {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedNotInPlay"}    //Pit Viper
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Turn Back Time Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Turn Back Time"],
+            ["DO_LOAD_CARDS_SCN", "Return to Turn Back Time - Return to The Doom of Eztli"],
+            ["DO_LOAD_CARDS_SCN", "Return to Turn Back Time - Serpents"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Venomous Hate"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Hunters"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: Repossess the Past", "04303", "sharedNotInPlay"],
+            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
+            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

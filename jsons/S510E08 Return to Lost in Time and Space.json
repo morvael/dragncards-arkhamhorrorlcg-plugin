@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Lost in Time and Space", null, "Return to Lost in Time and Space Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to The Dunwich Legacy", "Return to Lost in Time and Space", null, "Return to Lost in Time and Space Scenario Init"]
             ]
         },
         "Return to Lost in Time and Space": {

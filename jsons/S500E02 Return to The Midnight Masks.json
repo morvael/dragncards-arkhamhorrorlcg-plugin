@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Night of the Zealot", "Return to the Night of the Zealot", "Return to The Midnight Masks", null, "Return to The Midnight Masks Scenario Init"]
+                ["SCENARIO_INIT", "Night of the Zealot", "Return to The Night of the Zealot", "Return to The Midnight Masks", null, "Return to The Midnight Masks Scenario Init"]
             ]
         },
         "Return to The Midnight Masks": {

@@ -1,19 +1,20 @@
 {
     "preBuiltDecks": {
-        "Threads of Fate Scenario": {
-             "label": "Threads of Fate Scenario",
+        "Return to Threads of Fate Scenario": {
+             "label": "Return to Threads of Fate Scenario",
              "cards": [
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Threads of Fate", "Threads of Fate Scenario Early Init", "Threads of Fate Scenario Init"]
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Threads of Fate", "Return to Threads of Fate Scenario Early Init", "Return to Threads of Fate Scenario Init"]
             ]
         },
-        "Threads of Fate": {
+        "Return to Threads of Fate": {
             "hideFromSearch": true,
-             "label": "Threads of Fate",
+             "label": "Return to Threads of Fate",
              "cards": [
                 {"databaseId": "04113", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Threads of Fate
+                {"databaseId": "53028", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Threads of Fate
                 {"databaseId": "04114", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Three Fates
                 {"databaseId": "04115", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Behind the Curtain
                 {"databaseId": "04116", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Hidden Entanglements
@@ -23,19 +24,22 @@
                 {"databaseId": "04132", "quantity": 1, "loadGroupId": "sharedActStoryB"},                               //Alejandro's Plight
                 {"databaseId": "04139", "quantity": 1, "loadGroupId": "sharedActStoryC"},                               //Strange Occurrences
                 {"databaseId": "04140", "quantity": 1, "loadGroupId": "sharedActStoryC"},                               //The Brotherhood Is Revealed
+                {"databaseId": "53035", "quantity": 1, "loadGroupId": "sharedActStoryD"},                               //Discover the Truth
+                {"databaseId": "53036", "quantity": 1, "loadGroupId": "sharedActStoryD"},                               //Impossible Pursuit
                 {"databaseId": "04141", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Velma's Diner
                 {"databaseId": "04142", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Curiositie Shoppe
                 {"databaseId": "04143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Town Hall
                 {"databaseId": "04147", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ichtaca: The Forgotten Guardian
                 {"databaseId": "04148", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Expedition Journal
+                {"databaseId": "53037", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Veda Whitsley: Skilled Botanist
                 {"databaseId": "04144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //The Secret Must Be Kept
                 {"databaseId": "04145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Nobody's Home
                 {"databaseId": "04146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Conspiracy of Blood
             ]
         },
-        "Threads of Fate - The Midnight Masks": {
+        "Return to Threads of Fate - The Midnight Masks": {
             "hideFromSearch": true,
-            "label": "Threads of Fate - The Midnight Masks",
+            "label": "Return to Threads of Fate - The Midnight Masks",
             "cards": [
                 {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Rivertown
                 {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Miskatonic University
@@ -48,35 +52,35 @@
         }
     },
     "actionLists": {
-        "Threads of Fate Scenario Early Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators gave custody of the relic to Alejandro.", "Alejandro recovered the Relic of Ages.", "The investigators gave custody of the relic to Harlan Earnstone."], "Threads of Fate Scenario Question 1"]
+        "Return to Threads of Fate Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators gave custody of the relic to Alejandro.", "Alejandro recovered the Relic of Ages.", "The investigators gave custody of the relic to Harlan Earnstone."], "Return to Threads of Fate Scenario Question 1"]
         ],
-        "Threads of Fate Scenario Question 1": [
+        "Return to Threads of Fate Scenario Question 1": [
             ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You’re not going anywhere until you tell me what is going on.", "Have it your way."], "Threads of Fate Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You’re not going anywhere until you tell me what is going on.", "Have it your way."], "Return to Threads of Fate Scenario Question 2"]
         ],
-        "Threads of Fate Scenario Question 2": [
+        "Return to Threads of Fate Scenario Question 2": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer2Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Remember: You listened to Ichtaca’s tale."],
                     ["DO_ADD_CHAOS_TOKEN_SCN", "Cultist", "chaos_cultist"],
-                    ["SCENARIO_SKIP_QUESTIONS", 1, "Threads of Fate Scenario Early Init Continue"]
+                    ["SCENARIO_SKIP_QUESTIONS", 1, "Return to Threads of Fate Scenario Early Init Continue"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
                 [
                     ["LOG", "└── Remember: Ichtaca left without you."],
                     ["COND",
                         ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
-                        ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We should be wary of them.", "Maybe I should listen to them after all…"], "Threads of Fate Scenario Question 3"],
+                        ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We should be wary of them.", "Maybe I should listen to them after all…"], "Return to Threads of Fate Scenario Question 3"],
                         ["TRUE"],
-                        ["SCENARIO_SKIP_QUESTIONS", 1, "Threads of Fate Scenario Early Init Continue"]
+                        ["SCENARIO_SKIP_QUESTIONS", 1, "Return to Threads of Fate Scenario Early Init Continue"]
                     ]
                 ]
             ]
         ],
-        "Threads of Fate Scenario Question 3": [
+        "Return to Threads of Fate Scenario Question 3": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer3Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
@@ -86,19 +90,19 @@
                     ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"]
                 ]
             ],
-            ["ACTION_LIST", "Threads of Fate Scenario Early Init Continue"]
+            ["ACTION_LIST", "Return to Threads of Fate Scenario Early Init Continue"]
         ],
-        "Threads of Fate Scenario Early Init Continue": [
-            ["SCENARIO_INIT_RESUME", "Threads of Fate Scenario Init"]
+        "Return to Threads of Fate Scenario Early Init Continue": [
+            ["SCENARIO_INIT_RESUME", "Return to Threads of Fate Scenario Init"]
         ],
-        "Threads of Fate Scenario Init": [
-            ["DO_LOAD_CARDS_SCN", "Threads of Fate"],
+        "Return to Threads of Fate Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Threads of Fate"],
             ["DO_SET_SPAWN_LOCATION", "04143", 45, 10], //Town Hall
             ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
-            ["DO_LOAD_CARDS_SCN", "Threads of Fate - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "Return to Threads of Fate - The Midnight Masks"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
-            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Alejandro Vela: Renowned Historian", "04051", "sharedNotInPlay"],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort", "04061", "sharedNotInPlay"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0],
@@ -117,9 +121,9 @@
                     ["DO_CREATE_STORY_CARD_SCN", "Harlan's Curse", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04121", "04122"]], 1, "sharedActStory"]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You wish to go to the police to inform them about Alejandro’s disappearance.", "You wish to look for Alejandro on your own."], "Threads of Fate Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You wish to go to the police to inform them about Alejandro’s disappearance.", "You wish to look for Alejandro on your own."], "Return to Threads of Fate Scenario Question 4"]
         ],
-        "Threads of Fate Scenario Question 4": [
+        "Return to Threads of Fate Scenario Question 4": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer4Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
@@ -145,7 +149,24 @@
                     ["DO_CREATE_STORY_CARD_SCN", "The Cave of Darkness", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04135", "04136"]], 1, "sharedActStoryC"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Act deck c/d is in Act B, act deck e/f is in Act C."],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You wish to find the source named in the Advertiser's story.", "You wish to find the root of the problem."], "Return to Threads of Fate Scenario Question 5"]
+        ],
+        "Return to Threads of Fate Scenario Question 5": [
+            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer5Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Search for the Source", "53030", 0, "sharedActStoryD"],
+                    ["DO_CREATE_STORY_CARD_SCN", "Seeking Trouble", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "53033", "53034"]], 1, "sharedActStoryD"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Search for the Meaning", "53029", 0, "sharedActStoryD"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Overgrown Estate", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "53031", "53032"]], 1, "sharedActStoryD"]
+                ]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Act deck c/d is in Act B, act deck e/f is in Act C, act deck g/h is in Act D."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

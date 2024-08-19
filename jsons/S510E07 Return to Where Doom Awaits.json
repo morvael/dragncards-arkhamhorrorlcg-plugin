@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Where Doom Awaits", null, "Return to Where Doom Awaits Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to The Dunwich Legacy", "Return to Where Doom Awaits", null, "Return to Where Doom Awaits Scenario Init"]
             ]
         },
         "Return to Where Doom Awaits": {

@@ -1,0 +1,61 @@
+{
+    "preBuiltDecks": {
+        "Return to The Doom of Eztli Scenario": {
+             "label": "Return to The Doom of Eztli Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Doom of Eztli", null, "Return to The Doom of Eztli Scenario Init"]
+            ]
+        },
+        "Return to The Doom of Eztli": {
+            "hideFromSearch": true,
+             "label": "Return to The Doom of Eztli",
+             "cards": [
+                {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Doom of Eztli
+                {"databaseId": "53017", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Doom of Eztli
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
+                {"databaseId": "04057", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Into the Ruins
+                {"databaseId": "04058", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Magic and Science
+                {"databaseId": "04059", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Escape the Ruins
+                {"databaseId": "53019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway: Rearranged by Time
+                {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Returns
+                {"databaseId": "53027", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Time: Rearranged by Time
+                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Relic of Ages: …A Device, of Some Sort
+                {"databaseId": "53025", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall: Rearranged by Time
+                {"databaseId": "53026", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber: Rearranged by Time
+                {"databaseId": "53020", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sealed Passage
+                {"databaseId": "53021", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mosaic Chamber
+                {"databaseId": "53022", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Tomb of the Ancients
+                {"databaseId": "53023", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Throne Room
+                {"databaseId": "53024", "quantity": 1, "loadGroupId": "sharedDeckA"}                                    //Snake Pit
+            ]
+        },
+        "Return to The Doom of Eztli - Serpents": {
+            "hideFromSearch": true,
+             "label": "Return to The Doom of Eztli - Serpents",
+             "cards": [
+                {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedNotInPlay"}    //Pit Viper
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to The Doom of Eztli Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Doom of Eztli"],
+            ["DO_LOAD_CARDS_SCN", "Return to The Doom of Eztli - Serpents"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Venomous Hate"],
+            ["DO_LOAD_CARDS_SCN", "Temporal Hunters"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

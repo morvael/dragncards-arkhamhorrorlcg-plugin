@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to the Dunwich Legacy", "Return to Blood on the Altar", null, "Return to Blood on the Altar Scenario Init"]
+                ["SCENARIO_INIT", "The Dunwich Legacy", "Return to The Dunwich Legacy", "Return to Blood on the Altar", null, "Return to Blood on the Altar Scenario Init"]
             ]
         },
         "Return to Blood on the Altar": {

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Dim Carcosa", null, "Return to Dim Carcosa Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to Dim Carcosa", null, "Return to Dim Carcosa Scenario Init"]
             ]
         },
         "Return to Dim Carcosa": {

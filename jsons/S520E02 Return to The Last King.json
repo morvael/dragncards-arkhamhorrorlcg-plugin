@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to The Last King", null, "Return to The Last King Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to The Last King", null, "Return to The Last King Scenario Init"]
             ]
         },
         "Return to The Last King": {

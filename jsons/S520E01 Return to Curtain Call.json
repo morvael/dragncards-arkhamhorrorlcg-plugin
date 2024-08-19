@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to the Path to Carcosa", "Return to Curtain Call", null, "Return to Curtain Call Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to Curtain Call", null, "Return to Curtain Call Scenario Init"]
             ]
         },
         "Return to Curtain Call": {

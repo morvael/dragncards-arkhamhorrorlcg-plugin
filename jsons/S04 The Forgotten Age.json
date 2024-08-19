@@ -4,99 +4,99 @@
             "hideFromSearch": true,
             "label": "Rainforest",
             "cards": [
-                {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04070", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04075", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04076", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Path of Thorns
+                {"databaseId": "04070", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //River Canyon
+                {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Rope Bridge
+                {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Serpent's Haven
+                {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Circuitous Trail
+                {"databaseId": "04074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Temple of the Fang
+                {"databaseId": "04075", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Overgrown Ruins
+                {"databaseId": "04076", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Overgrowth
+                {"databaseId": "04077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Voice of the Jungle
             ]
         },
         "Serpents": {
             "hideFromSearch": true,
             "label": "Serpents",
             "cards": [
-                {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04079", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04080", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Pit Viper
+                {"databaseId": "04079", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Boa Constrictor
+                {"databaseId": "04080", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Snake Bite
             ]
         },
         "Expedition": {
             "hideFromSearch": true,
             "label": "Expedition",
             "cards": [
-                {"databaseId": "04081", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04081", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Lost in the Wilds
+                {"databaseId": "04082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Low on Supplies
             ]
         },
         "Agents of Yig": {
             "hideFromSearch": true,
             "label": "Agents of Yig",
             "cards": [
-                {"databaseId": "04083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04084", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Brood of Yig
+                {"databaseId": "04084", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Serpent from Yoth
+                {"databaseId": "04085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Curse of Yig
             ]
         },
         "Guardians of Time": {
             "hideFromSearch": true,
             "label": "Guardians of Time",
             "cards": [
-                {"databaseId": "04086", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04087", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04086", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Eztli Guardian
+                {"databaseId": "04087", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Arrows from the Trees
             ]
         },
         "Deadly Traps": {
             "hideFromSearch": true,
             "label": "Deadly Traps",
             "cards": [
-                {"databaseId": "04088", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04088", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Final Mistake
+                {"databaseId": "04089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Entombed
             ]
         },
         "Temporal Flux": {
             "hideFromSearch": true,
             "label": "Temporal Flux",
             "cards": [
-                {"databaseId": "04090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //A Tear in Time
+                {"databaseId": "04091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Lost in Time
             ]
         },
         "Forgotten Ruins": {
             "hideFromSearch": true,
             "label": "Forgotten Ruins",
             "cards": [
-                {"databaseId": "04092", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04094", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04092", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Ill Omen
+                {"databaseId": "04093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Ancestral Fear
+                {"databaseId": "04094", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Deep Dark
             ]
         },
         "Pnakotic Brotherhood": {
             "hideFromSearch": true,
             "label": "Pnakotic Brotherhood",
             "cards": [
-                {"databaseId": "04095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Brotherhood Cultist
+                {"databaseId": "04096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Shadowed
+                {"databaseId": "04097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Words of Power
             ]
         },
         "Yig's Venom": {
             "hideFromSearch": true,
             "label": "Yig's Venom",
             "cards": [
-                {"databaseId": "04098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "04100", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Fang of Yig
+                {"databaseId": "04099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Snakescourge
+                {"databaseId": "04100", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Serpent's Call
             ]
         },
         "Poison": {
             "hideFromSearch": true,
             "label": "Poison",
             "cards": [
-                {"databaseId": "04101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "04101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Creeping Poison
             ],
             "postLoadActionList": [
                 ["DO_CREATE_MISSING_CARDS_SCN", "Poisoned", "04102", 4, "sharedNotInPlay"]
