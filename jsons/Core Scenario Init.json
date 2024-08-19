@@ -1090,8 +1090,7 @@
                     ["EQUAL", "$CARD.cluesPlaced", false],
                     ["EQUAL", "$CARD.currentFace.type", "Location"],
                     ["EQUAL", "$CARD.groupId", "sharedLocations"],
-                    ["NOT_EQUAL", "$CARD.currentFace.clues", null],
-                    ["GREATER_THAN", "$CARD.currentFace.clues", 0]
+                    ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], 0]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["DO_PLACE_CLUES_ON_CARD", ["GET_PLAYER_CONTROLLER", "$GAME.firstPlayer", "$CARD.id"], "$CARD.id", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], true, null],

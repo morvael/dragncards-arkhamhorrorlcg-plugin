@@ -22,6 +22,9 @@
         "postSitDownActionList": [
             ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
+        "preLoadActionList": [
+            ["SET", "/arkhamLoadingCards", true]
+        ],
         "postLoadActionList": [
             ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"],
             ["FOR_EACH_VAL", "$TARGET_ID", "$GAME.loadedCardIds", [
@@ -86,7 +89,6 @@
                         ],
                         ["COND",
                             ["AND",
-                                ["EQUAL", "$GAME.arkhamScenarioInit", true],
                                 ["EQUAL", "$TARGET.sides.A.type", "Scenario"],
                                 ["EQUAL", "$TARGET.sides.B.type", "Scenario"],
                                 ["EQUAL", "$TARGET.currentSide", "A"],
@@ -99,7 +101,6 @@
                         ],
                         ["COND",
                             ["AND",
-                                ["EQUAL", "$GAME.arkhamScenarioInit", true],
                                 ["EQUAL", "$TARGET.sides.A.type", "Location"],
                                 ["EQUAL", "$TARGET.sides.B.type", "Location"],
                                 ["EQUAL", "$TARGET.currentSide", "A"],
@@ -111,7 +112,8 @@
                     ]
                 ],
                 ["SET", "/cardById/$TARGET_ID/controller", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
-            ]]
+            ]],
+            ["SET", "/arkhamLoadingCards", false]
         ],
         "gameRules": [
             {
@@ -206,8 +208,19 @@
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET.groupId", "sharedLocations"],
-                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0]
+                        ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], 0],
+                        ["OR",
+                            ["NOT_EQUAL", "$GAME.arkhamLoadingCards", true],
+                            ["NOT",
+                                ["AND",
+                                    ["EQUAL", "$TARGET.sides.A.type", "Location"],
+                                    ["EQUAL", "$TARGET.sides.B.type", "Location"],
+                                    ["EQUAL", "$TARGET.currentSide", "A"],
+                                    ["EQUAL", "$TARGET.sides.B.clues", null],
+                                    ["EQUAL", "$TARGET.sides.B.shroud", null]
+                                ]
+                            ]
+                        ]
                     ]
                 ],
                 "then": [
@@ -226,8 +239,7 @@
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET.groupId", "sharedLocations"],
-                        ["NOT_EQUAL", "$TARGET.currentFace.clues", null],
-                        ["GREATER_THAN", "$TARGET.currentFace.clues", 0]
+                        ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], 0]
                     ]
                 ],
                 "then": [
