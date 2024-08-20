@@ -13,74 +13,73 @@
             "hideFromSearch": true,
              "label": "Return to The House Always Wins",
              "cards": [
-                {"databaseId": "02062", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "51015", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "02063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02064", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02065", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02066", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02067", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02068", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02069", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},
-                {"databaseId": "02072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},
-                {"databaseId": "02073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "02074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02079", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "51017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02078", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51018", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51019", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02062", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The House Always Wins
+                {"databaseId": "51015", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The House Always Wins
+                {"databaseId": "02063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Clover Club
+                {"databaseId": "02064", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Underground Muscle
+                {"databaseId": "02065", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Chaos in the Clover Club
+                {"databaseId": "02066", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Beginner's Luck
+                {"databaseId": "02067", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Skin Game
+                {"databaseId": "02068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //All In
+                {"databaseId": "02069", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Fold
+                {"databaseId": "02070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},  //La Bella Luna
+                {"databaseId": "02072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},  //Clover Club Bar
+                {"databaseId": "02073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Clover Club Cardroom
+                {"databaseId": "02074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Darkened Hall
+                {"databaseId": "02079", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Peter Clover: Holding All the Cards
+                {"databaseId": "02080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Dr. Francis Morgan: Professor of Archaeology
+                {"databaseId": "51017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Clover Club Stage
+                {"databaseId": "02078", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Clover Club Pit Boss
+                {"databaseId": "02081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Something in the Drinks
+                {"databaseId": "02082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Arousing Suspicions
+                {"databaseId": "51018", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Caught Cheating
+                {"databaseId": "51019", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Raise the Stakes
             ]
         },
         "Return to The House Always Wins - Clover Club Lounge": {
             "hideFromSearch": true,
             "label": "Return to The House Always Wins - Clover Club Lounge",
             "cards": [
-                {"databaseId": "02071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "51016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+                {"databaseId": "02071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Clover Club Lounge
+                {"databaseId": "51016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}   //Clover Club Lounge
             ]
         },
         "Return to The House Always Wins - Hideous Abominations": {
             "hideFromSearch": true,
             "label": "Return to The House Always Wins - Hideous Abominations",
             "cards": [
-                {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedDeckA"}
+                {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedDeckA"},   //Conglomeration of Spheres
+                {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Servant of the Lurker
             ]
         },
         "Return to The House Always Wins - Erratic Fear": {
             "hideFromSearch": true,
             "label": "Return to The House Always Wins - Erratic Fear",
             "cards": [
-                {"databaseId": "51068", "quantity": 2, "loadGroupId": "sharedPileA"},
-                {"databaseId": "51069", "quantity": 2, "loadGroupId": "sharedPileA"},
-                {"databaseId": "51070", "quantity": 3, "loadGroupId": "sharedPileA"}
+                {"databaseId": "51068", "quantity": 2, "loadGroupId": "sharedPileA"},   //Violent Commands
+                {"databaseId": "51069", "quantity": 2, "loadGroupId": "sharedPileA"},   //Idle Hands
+                {"databaseId": "51070", "quantity": 3, "loadGroupId": "sharedPileA"}    //Need for Knowledge
             ]
         }
     },
     "actionLists": {
         "Return to The House Always Wins Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins"],
+            ["DO_SET_SPAWN_LOCATION", "02074", 45, 76], //Darkened Hall
+            ["DO_SET_SPAWN_LOCATION", "51017", 3, 59], //Clover Club Stage
             ["DO_LOAD_N_CARDS_SCN", "Return to The House Always Wins - Clover Club Lounge", 1],
             ["DO_LOAD_CARDS_SCN", "Bad Luck"],
             ["DO_LOAD_CARDS_SCN", "Naomi's Crew"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins - Hideous Abominations"],
             ["DO_LOAD_CARDS_SCN", "Return to The House Always Wins - Erratic Fear"],
-            ["DO_SET_SPAWN_LOCATION", "02074", 45, 76],
-            ["DO_SET_SPAWN_LOCATION", "51017", 3, 59],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "La Bella Luna", 5, 7, 3, 0],
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Clover Club Pit Boss", "Clover Club Lounge", 3, 3, 0],
-            ["VAR", "$BACK_HALL_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "02075", "02076", "02077"]]],
+            ["VAR", "$BACK_HALL_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "02075", "02076", "02077"]]],  //Art Gallery, VIP Area, Back Alley
             ["VAR", "$SPAWN_TOPS", ["LIST", 10, 43, 76]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
-                ["VAR", "$BACK_HALL_DOORWAY", "$BACK_HALL_DOORWAYS.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "{{$BACK_HALL_DOORWAY}}", 1, "sharedNotInPlay"],
-                ["DO_SET_SPAWN_LOCATION", "{{$BACK_HALL_DOORWAY}}", 70, "$SPAWN_TOPS.[{{$I}}]"]
+                ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "$BACK_HALL_DOORWAYS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$BACK_HALL_DOORWAYS.[$I]", 70, "$SPAWN_TOPS.[$I]"]
             ]],
             ["SET", "/arkhamFinalScenarioMessage", "Hideous Abominations cards are in Deck A, Erratic Fear cards are in Pile A."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],

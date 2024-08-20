@@ -13,44 +13,44 @@
             "hideFromSearch": true,
              "label": "Return to The Miskatonic Museum",
              "cards": [
-                {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "51020", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02122", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02123", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02124", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02125", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},
-                {"databaseId": "02127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
-                {"databaseId": "02138", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02141", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02143", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51023", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Miskatonic Museum
+                {"databaseId": "51020", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Miskatonic Museum
+                {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Restricted Access
+                {"databaseId": "02120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Shadows Deepen
+                {"databaseId": "02121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //In Every Shadow
+                {"databaseId": "02122", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Finding A Way Inside
+                {"databaseId": "02123", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Night at the Museum
+                {"databaseId": "02124", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Breaking and Entering
+                {"databaseId": "02125", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Searching for the Tome
+                {"databaseId": "02126", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},  //Museum Entrance
+                {"databaseId": "02127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Museum Halls
+                {"databaseId": "02138", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harold Walsted: Curator of the Museum
+                {"databaseId": "02139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Adam Lynch: Museum Security
+                {"databaseId": "02140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Necronomicon: Olaus Wormius Translation
+                {"databaseId": "02142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Shadow-spawned
+                {"databaseId": "02141", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Horror: Spawned from the Void
+                {"databaseId": "02143", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Stalked in the Dark
+                {"databaseId": "02144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Passage into the Veil
+                {"databaseId": "02145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ephemeral Exhibits
+                {"databaseId": "02146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Slithering Behind You
+                {"databaseId": "51023", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Dark Bidding
+                {"databaseId": "51024", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Night Beyond Void
             ]
         },
         "Return to The Miskatonic Museum - Security Office": {
             "hideFromSearch": true,
             "label": "Return to The Miskatonic Museum - Security Office",
             "cards": [
-                {"databaseId": "02128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},
-                {"databaseId": "02129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"}
+                {"databaseId": "02128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},  //Security Office
+                {"databaseId": "02129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"}   //Security Office
             ]
         },
         "Return to The Miskatonic Museum - Administration Office": {
             "hideFromSearch": true,
             "label": "Return to The Miskatonic Museum - Administration Office",
             "cards": [
-                {"databaseId": "02130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
-                {"databaseId": "02131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"}
+                {"databaseId": "02130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},  //Administration Office
+                {"databaseId": "02131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"}   //Administration Office
             ]
         }
     },
@@ -65,17 +65,13 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to The Miskatonic Museum - Administration Office", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Miskatonic Museum - Security Office", 1],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Museum Entrance", 5, 7, 3, 0],
-            ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136", "51021", "51022"]]],
-            ["VAR", "$EXHIBIT_HALL_0", "$EXHIBIT_HALLS.[0]"],
-            ["VAR", "$EXHIBIT_HALL_1", "$EXHIBIT_HALLS.[1]"],
-            ["VAR", "$EXHIBIT_HALLS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "{{$EXHIBIT_HALL_0}}", "{{$EXHIBIT_HALL_1}}", "02137"]]],
+            ["VAR", "$EXHIBIT_HALLS", ["SHUFFLE_LIST", ["LIST", "02132", "02133", "02134", "02135", "02136", "51021", "51022"]]],   //Exhibit Hall: Athabaskan Exhibit, Exhibit Hall: Medusa Exhibit, Exhibit Hall: Nature Exhibit, Exhibit Hall: Egyptian Exhibit, Exhibit Hall: Hall of the Dead, Exhibit Hall: Medieval Exhibit, Exhibit Hall: The Archives
+            ["VAR", "$EXHIBIT_HALLS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$EXHIBIT_HALLS.[0]", "$EXHIBIT_HALLS.[1]", "02137"]]],  //Exhibit Hall: Restricted Hall
             ["FOR_EACH_START_STOP_STEP", "$I", 2, 5, 1, [
-                ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "$EXHIBIT_HALLS.[$I]", 1, "sharedDeckA"]
             ]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
-                ["VAR", "$EXHIBIT_HALL", "$EXHIBIT_HALLS_BOTTOM.[{{$I}}]"],
-                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "{{$EXHIBIT_HALL}}", 1, "sharedDeckA"]
+                ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "$EXHIBIT_HALLS_BOTTOM.[$I]", 1, "sharedDeckA"]
             ]],
             ["SET", "/arkhamSkipShufflingSharedDeckA", true],
             ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],

@@ -13,34 +13,34 @@
             "hideFromSearch": true,
              "label": "Return to Lost in Time and Space",
              "cards": [
-                {"databaseId": "02311", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "51053", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "02312", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02313", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "51054", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02316", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02318", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02319", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "51057", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "02320", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "02321", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02322", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02323", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51056", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02324", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02325", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02326", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02327", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02328", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02329", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02330", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02331", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02332", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02333", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51058", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51059", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51060", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02311", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Lost in Time and Space
+                {"databaseId": "51053", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Lost in Time and Space
+                {"databaseId": "02312", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //All is One
+                {"databaseId": "02313", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Past, Present and Future
+                {"databaseId": "51054", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Breaking Through (v. II)
+                {"databaseId": "02315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The End of All Things
+                {"databaseId": "02316", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Out of this World
+                {"databaseId": "02318", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Close the Rift
+                {"databaseId": "02319", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Finding a New Way
+                {"databaseId": "51057", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Realms Beyond: All-In-One
+                {"databaseId": "02320", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Another Dimension: Unfettered by Reality
+                {"databaseId": "02321", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Edge of the Universe
+                {"databaseId": "02322", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Tear Through Time
+                {"databaseId": "02323", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Yog-Sothoth: The Lurker Beyond the Threshold
+                {"databaseId": "51056", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Seth Bishop: Thrall of Yog-Sothoth
+                {"databaseId": "02324", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Tear Through Space
+                {"databaseId": "02325", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Prismatic Cascade
+                {"databaseId": "02326", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Endless Bridge
+                {"databaseId": "02327", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Steps of Y'hagharl
+                {"databaseId": "02328", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Dimensional Doorway
+                {"databaseId": "02329", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Interstellar Traveler
+                {"databaseId": "02330", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Yithian Starseeker
+                {"databaseId": "02331", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Collapsing Reality
+                {"databaseId": "02332", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Wormhole
+                {"databaseId": "02333", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Vast Expanse
+                {"databaseId": "51058", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Indecipherable Stairs
+                {"databaseId": "51059", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Towering Luminosity
+                {"databaseId": "51060", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Unstable Vortex
             ]
         }
     },
@@ -58,7 +58,7 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: The Ritual was completed."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
                     ["DO_CREATE_STORY_CARD_SCN", "Into the Beyond (v. II)", "51055", 1, "sharedActStory"]
                 ],
                 ["TRUE"],

@@ -13,67 +13,67 @@
             "hideFromSearch": true,
              "label": "Return to Undimensioned and Unseen",
              "cards": [
-                {"databaseId": "02236", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "51041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "02237", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02240", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02241", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02254", "quantity": 4, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02256", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02257", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02259", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "51046", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02236", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Undimensioned and Unseen
+                {"databaseId": "51041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Undimensioned and Unseen
+                {"databaseId": "02237", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Rampaging Creatures
+                {"databaseId": "02238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Biding Its Time
+                {"databaseId": "02239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Horrors Unleashed
+                {"databaseId": "02240", "quantity": 1, "loadGroupId": "sharedActStory"},            //Saracenic Script
+                {"databaseId": "02241", "quantity": 1, "loadGroupId": "sharedActStory"},            //They Must Be Destroyed!
+                {"databaseId": "02254", "quantity": 4, "loadGroupId": "sharedNotInPlay"},           //Esoteric Formula
+                {"databaseId": "02256", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},       //Towering Beasts
+                {"databaseId": "02257", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Ruin and Destruction
+                {"databaseId": "02258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Attracting Attention
+                {"databaseId": "02259", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //The Creatures' Tracks
+                {"databaseId": "51046", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Imperceptible Creature
             ]
         },
         "Return to Undimensioned and Unseen - Dunwich Village": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Dunwich Village",
             "cards": [
-                {"databaseId": "02242", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},
-                {"databaseId": "02243", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}
+                {"databaseId": "02242", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Dunwich Village
+                {"databaseId": "02243", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"}   //Dunwich Village
             ]
         },
         "Return to Undimensioned and Unseen - Cold Spring Glen": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Cold Spring Glen",
             "cards": [
-                {"databaseId": "02244", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
-                {"databaseId": "02245", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}
+                {"databaseId": "02244", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Cold Spring Glen
+                {"databaseId": "02245", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}   //Cold Spring Glen
             ]
         },
         "Return to Undimensioned and Unseen - Ten-Acre Meadow": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Ten-Acre Meadow",
             "cards": [
-                {"databaseId": "02246", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "02247", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}
+                {"databaseId": "02246", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Ten-Acre Meadow
+                {"databaseId": "02247", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}   //Ten-Acre Meadow
             ]
         },
         "Return to Undimensioned and Unseen - Blasted Heath": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Blasted Heath",
             "cards": [
-                {"databaseId": "02248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},
-                {"databaseId": "02249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+                {"databaseId": "02248", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Blasted Heath
+                {"databaseId": "02249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Blasted Heath
             ]
         },
         "Return to Undimensioned and Unseen - Whateley Ruins": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Whateley Ruins",
             "cards": [
-                {"databaseId": "02250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"},
-                {"databaseId": "02251", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"}
+                {"databaseId": "02250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"},  //Whateley Ruins
+                {"databaseId": "02251", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "59%"}   //Whateley Ruins
             ]
         },
         "Return to Undimensioned and Unseen - Devil's Hop Yard": {
             "hideFromSearch": true,
             "label": "Return to Undimensioned and Unseen - Devil's Hop Yard",
             "cards": [
-                {"databaseId": "02252", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},
-                {"databaseId": "02253", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}
+                {"databaseId": "02252", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},  //Devil's Hop Yard
+                {"databaseId": "02253", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"}   //Devil's Hop Yard
             ]
         }
     },
@@ -91,44 +91,41 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to Undimensioned and Unseen - Devil's Hop Yard", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to Undimensioned and Unseen - Whateley Ruins", 1],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dunwich Village", 5, 7, 3, 0],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check the number of names recorded under “Sacrificed to Yog‐Sothoth” in your Campaign Log.", ["LIST", "There are 4 or more names.", "There are exactly 3 names.", "There are exactly 2 names.", "There are 1 or fewer names."], "Return to Undimensioned and Unseen Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Sacrificed to Yog‐Sothoth” in Campaign Log.", ["LIST", "There are 4 or more names.", "There are exactly 3 names.", "There are exactly 2 names.", "There are 1 or fewer names."], "Return to Undimensioned and Unseen Scenario Question 1"]
         ],
         "Return to Undimensioned and Unseen Scenario Question 1": [
-            ["VAR", "$BROODS", ["SHUFFLE_LIST", ["LIST", "02255", "51042", "51043", "51044", "51045"]]],
+            ["VAR", "$BROODS", ["SHUFFLE_LIST", ["LIST", "02255", "51042", "51043", "51044", "51045"]]], //Brood of Yog-Sothoth, Brood of Yog-Sothoth: Charging Beast, Brood of Yog-Sothoth: Swelling Devourer, Brood of Yog-Sothoth: Thrashing Spawn, Brood of Yog-Sothoth: Amorphous Terror
+            ["LOG", "└── Sacrificed to Yog‐Sothoth: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: There are 4 or more names recorded under “Sacrificed to Yog‐Sothoth”."],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedDeckA"]
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedDeckA"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
-                    ["LOG", "└── Campaign Log: There are exactly 3 names recorded under “Sacrificed to Yog‐Sothoth”."],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"]
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[2]", 1, "sharedDeckA"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
                 [
-                    ["LOG", "└── Campaign Log: There are exactly 2 names recorded under “Sacrificed to Yog‐Sothoth”."],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[3]}}", 1, "sharedDeckA"]
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[2]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[3]", 1, "sharedDeckA"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
                 [
-                    ["LOG", "└── Campaign Log: There are 1 or fewer names recorded under “Sacrificed to Yog‐Sothoth”."],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[0]}}", 1, "sharedEncounterDeck"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[1]}}", 1, "sharedEncounterDeck"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Blasted Heath", 3, 3, 0],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[2]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[3]}}", 1, "sharedDeckA"],
-                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "{{$BROODS.[4]}}", 1, "sharedDeckA"]
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[2]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[3]", 1, "sharedDeckA"],
+                    ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[4]", 1, "sharedDeckA"]
                 ]
             ],
             ["DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Powder of Ibn Ghazi", "Return to Undimensioned and Unseen Scenario Init Continue 1"]

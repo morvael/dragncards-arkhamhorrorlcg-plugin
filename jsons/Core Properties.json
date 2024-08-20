@@ -16,7 +16,8 @@
         "usesPlaced":             {"type": "boolean",  "default": false},
         "sortOrder":              {"type": "integer",  "default": 0},
         "originalInvestigatorId": {"type": "string",   "default": null},
-        "turnDone":               {"type": "boolean",  "default": false}
+        "turnDone":               {"type": "boolean",  "default": false},
+        "disableSideChange":      {"type": "boolean",  "default": false}
     },
     "faceProperties": {
         "subtype":               {"type": "string",  "default": ""},

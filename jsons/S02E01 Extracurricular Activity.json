@@ -13,31 +13,33 @@
             "hideFromSearch": true,
              "label": "Extracurricular Activity",
              "cards": [
-                {"databaseId": "02041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "02042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "02045", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02046", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02047", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "02048", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},
-                {"databaseId": "02049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},
-                {"databaseId": "02050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},
-                {"databaseId": "02051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},
-                {"databaseId": "02056", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},
-                {"databaseId": "02053", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},
-                {"databaseId": "02060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02058", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02052", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "02057", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+                {"databaseId": "02041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Extracurricular Activity
+                {"databaseId": "02042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Quiet Halls
+                {"databaseId": "02043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Dead of Night
+                {"databaseId": "02044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Beast Unleashed
+                {"databaseId": "02045", "quantity": 1, "loadGroupId": "sharedActStory"},                                //After Hours
+                {"databaseId": "02046", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Rice's Whereabouts
+                {"databaseId": "02047", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Campus Safety
+                {"databaseId": "02048", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},  //Miskatonic Quad
+                {"databaseId": "02049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Humanities Building
+                {"databaseId": "02050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},  //Orne Library
+                {"databaseId": "02051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Student Union
+                {"databaseId": "02053", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},  //Administration Building
+                {"databaseId": "02056", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},  //Science Building
+                {"databaseId": "02060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //"Jazz" Mulligan: The Head Janitor
+                {"databaseId": "02059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Alchemical Concoction
+                {"databaseId": "02058", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Experiment: Something Went Terribly Wrong
+                {"databaseId": "02061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Professor Warren Rice: Professor of Languages
+                {"databaseId": "02052", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Dormitories
+                {"databaseId": "02057", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Alchemy Labs
             ]
         }
     },
     "actionLists": {
         "Extracurricular Activity Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Extracurricular Activity"],
+            ["DO_SET_SPAWN_LOCATION", "02052", 35, 76], //Dormitories
+            ["DO_SET_SPAWN_LOCATION", "02057", 75, 10], //Alchemy Labs
             ["DO_LOAD_CARDS_SCN", "Sorcery"],
             ["DO_LOAD_CARDS_SCN", "The Beyond"],
             ["DO_LOAD_CARDS_SCN", "Bishop's Thralls"],
@@ -45,22 +47,19 @@
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
-            ["DO_SET_SPAWN_LOCATION", "02052", 35, 76],
-            ["DO_SET_SPAWN_LOCATION", "02057", 75, 10],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3, 0],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "What is (or was) the first scenario of the campaign?", ["LIST", "Extracurricular Activity is the first.", "The House Always Wins was the first."], "Extracurricular Activity Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Which scenario is (or was) the first of the campaign?", ["LIST", "Extracurricular Activity is the first.", "The House Always Wins was the first."], "Extracurricular Activity Scenario Question 1"]
         ],
         "Extracurricular Activity Scenario Question 1": [
+            ["LOG", "└── Scenario order: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: Extracurricular Activity is the first scenario of the campaign."],
                     ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Night is Still Young", "02054", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "02054", 55, 76]
                 ],
-                ["TRUE"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
                 [
-                    ["LOG", "└── Campaign Log: The House Always Wins was the first scenario of the campaign."],
                     ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Hour is Late", "02055", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "02055", 55, 76]
                 ]

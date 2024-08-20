@@ -77,85 +77,85 @@
             "English": "Upkeep"
         },
         "step-M1": {
-            "English": "1.1 Round begins. Mythos phase begins."
+            "English": "1.1 Round begins. Mythos phase begins"
         },
         "step-M2": {
-            "English": "1.2 Place 1 doom on the current agenda."
+            "English": "1.2 Place 1 doom on the current agenda"
         },
         "step-M3": {
-            "English": "1.3 Check doom threshold."
+            "English": "1.3 Check doom threshold"
         },
         "step-M4": {
-            "English": "1.4 Each investigator draws 1 encounter card."
+            "English": "1.4 Each investigator draws 1 encounter card"
         },
         "step-W1": {
             "English": "Player Window 1"
         },
         "step-M5": {
-            "English": "1.5 Mythos phase ends."
+            "English": "1.5 Mythos phase ends"
         },
         "step-I1": {
-            "English": "2.1 Investigation phase begins."
+            "English": "2.1 Investigation phase begins"
         },
         "step-W2": {
             "English": "Player Window 2"
         },
         "step-I2": {
-            "English": "2.2 Next investigator’s turn begins."
+            "English": "2.2 Next investigator’s turn begins"
         },
         "step-W3": {
             "English": "Player Window 3"
         },
         "step-I2.1": {
-            "English": "2.2.1 Active investigator takes an action, if able."
+            "English": "2.2.1 Active investigator takes an action, if able"
         },
         "step-I2.2": {
-            "English": "2.2.2 Investigator’s turn ends."
+            "English": "2.2.2 Investigator’s turn ends"
         },
         "step-I2.E": {
-            "English": "Return to I2 or proceed to I3."
+            "English": "Return to I2 or proceed to I3"
         },
         "step-I3": {
-            "English": "2.3 Investigation phase ends."
+            "English": "2.3 Investigation phase ends"
         },
         "step-E1": {
-            "English": "3.1 Enemy phase begins."
+            "English": "3.1 Enemy phase begins"
         },
         "step-E2": {
-            "English": "3.2 Hunter enemies move."
+            "English": "3.2 Hunter enemies move"
         },
         "step-W4": {
             "English": "Player Window 4"
         },
         "step-E3": {
-            "English": "3.3 Next investigator resolves engaged enemy attacks."
+            "English": "3.3 Next investigator resolves engaged enemy attacks"
         },
         "step-W5": {
             "English": "Player Window 5"
         },
         "step-E4": {
-            "English": "3.4 Enemy phase ends."
+            "English": "3.4 Enemy phase ends"
         },
         "step-U1": {
-            "English": "4.1 Upkeep phase begins."
+            "English": "4.1 Upkeep phase begins"
         },
         "step-W6": {
             "English": "Player Window 6"
         },
         "step-U2": {
-            "English": "4.2 Reset actions."
+            "English": "4.2 Reset actions"
         },
         "step-U3": {
-            "English": "4.3 Ready each exhausted card."
+            "English": "4.3 Ready each exhausted card"
         },
         "step-U4": {
-            "English": "4.4 Each investigator draws 1 card and gains 1 resource."
+            "English": "4.4 Each investigator draws 1 card and gains 1 resource"
         },
         "step-U5": {
-            "English": "4.5 Each investigator checks hand size."
+            "English": "4.5 Each investigator checks hand size"
         },
         "step-U6": {
-            "English": "4.6 Upkeep phase ends. Round ends."
+            "English": "4.6 Upkeep phase ends. Round ends"
         }
     }
 }

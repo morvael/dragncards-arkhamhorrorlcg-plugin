@@ -195,7 +195,8 @@
                 ["VAR", "$DESIRED_CURRENT_SIDE", ["GET_DESIRED_CURRENT_SIDE", "$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"]],
                 ["AND",
                     ["NOT_EQUAL", "$DESIRED_CURRENT_SIDE", null],
-                    ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$DESIRED_CURRENT_SIDE"]
+                    ["NOT_EQUAL", "$TARGET_CARD.currentSide", "$DESIRED_CURRENT_SIDE"],
+                    ["NOT_EQUAL", "$TARGET_CARD.disableSideChange", true]
                 ]
             ]
         },

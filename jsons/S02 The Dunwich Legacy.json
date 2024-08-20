@@ -4,76 +4,76 @@
             "hideFromSearch": true,
             "label": "Sorcery",
             "cards": [
-                {"databaseId": "02083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02084", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02083", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Visions of Futures Past
+                {"databaseId": "02084", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Beyond the Veil
             ]
         },
         "Bishop's Thralls": {
             "hideFromSearch": true,
             "label": "Bishop's Thralls",
             "cards": [
-                {"databaseId": "02085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02086", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Light of Aforgomon
+                {"databaseId": "02086", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Thrall
+                {"databaseId": "02087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Wizard of Yog-Sothoth
             ]
         },
         "Dunwich": {
             "hideFromSearch": true,
             "label": "Dunwich",
             "cards": [
-                {"databaseId": "02088", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02088", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Unhallowed Country
+                {"databaseId": "02089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Sordid and Silent
             ]
         },
         "Whippoorwills": {
             "hideFromSearch": true,
             "label": "Whippoorwills",
             "cards": [
-                {"databaseId": "02090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Whippoorwill
+                {"databaseId": "02091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Eager for Death
             ]
         },
         "Bad Luck": {
             "hideFromSearch": true,
             "label": "Bad Luck",
             "cards": [
-                {"databaseId": "02092", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02093", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02092", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Cursed Luck
+                {"databaseId": "02093", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Twist of Fate
             ]
         },
         "Beast Thralls": {
             "hideFromSearch": true,
             "label": "Beast Thralls",
             "cards": [
-                {"databaseId": "02094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Avian Thrall
+                {"databaseId": "02095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Lupine Thrall
+                {"databaseId": "02096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Altered Beast
             ]
         },
         "Naomi's Crew": {
             "hideFromSearch": true,
             "label": "Naomi's Crew",
             "cards": [
-                {"databaseId": "02097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //O'Bannion's Thug
+                {"databaseId": "02098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Mobster
+                {"databaseId": "02099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Hunted Down
             ]
         },
         "The Beyond": {
             "hideFromSearch": true,
             "label": "The Beyond",
             "cards": [
-                {"databaseId": "02100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Pushed into the Beyond
+                {"databaseId": "02101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Terror from Beyond
+                {"databaseId": "02102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Arcane Barrier
             ]
         },
         "Hideous Abominations": {
             "hideFromSearch": true,
             "label": "Hideous Abominations",
             "cards": [
-                {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "02103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Conglomeration of Spheres
+                {"databaseId": "02104", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Servant of the Lurker
             ]
         },
         "The Dunwich Legacy Chaos Bag - Easy": {
