@@ -49,10 +49,7 @@
         "Return to The Devourer Below Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to The Devourer Below"],
             ["DO_SET_SPAWN_LOCATION", "01156", 70, 76], //Ritual Site
-            ["VAR", "$REFERENCE", ["GET_NAMED_CARD", "Return to The Devourer Below"]],
-            ["VAR", "$UMORDHOTH", ["GET_NAMED_CARD", "Umôrdhoth: The Devourer Below"]],
-            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$REFERENCE.id", true, null],
-            ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$REFERENCE.id", "$UMORDHOTH.id", true, null],
+            ["DO_ATTACH_REFERENCE_TO_ID", "01157", true],   //Umôrdhoth: The Devourer Below
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Ghouls of Umôrdhoth"],
