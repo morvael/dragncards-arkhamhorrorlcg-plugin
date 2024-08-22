@@ -6,195 +6,229 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to A Phantom of Truth", null, "Return to A Phantom of Truth Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "Return to The Path to Carcosa", "Return to A Phantom of Truth", "Return to A Phantom of Truth Scenario Early Init", "Return to A Phantom of Truth Scenario Init"]
             ]
         },
         "Return to A Phantom of Truth": {
             "hideFromSearch": true,
              "label": "Return to A Phantom of Truth",
              "cards": [
-                {"databaseId": "03200", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "52040", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03202", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "52047", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03225", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03226", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03200", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //A Phantom of Truth
+                {"databaseId": "52040", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to A Phantom of Truth
+                {"databaseId": "03201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The First Night
+                {"databaseId": "03202", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Second Night
+                {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Third Night
+                {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},            //Pursuing Shadows
+                {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},            //Stalked by Shadows
+                {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The Organist: Hopeless, I Defied Him
+                {"databaseId": "52047", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Figure in the Shadows
+                {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Stealthy Byakhee
+                {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Twin Suns
+                {"databaseId": "03224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Deadly Fate
+                {"databaseId": "03225", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Torturous Chords
+                {"databaseId": "03226", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Frozen in Fear
             ]
         },
         "Return to A Phantom of Truth - Montmartre": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Montmartre",
             "cards": [
-                {"databaseId": "03209", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "12%"},
-                {"databaseId": "03210", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "12%"}
+                {"databaseId": "03209", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "19%"},  //Montmartre
+                {"databaseId": "03210", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "19%"}   //Montmartre
             ]
         },
         "Return to A Phantom of Truth - Opéra Garnier": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Opéra Garnier",
             "cards": [
-                {"databaseId": "03212", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"},
-                {"databaseId": "03213", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"}
+                {"databaseId": "03212", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"},  //Opéra Garnier
+                {"databaseId": "03213", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"}   //Opéra Garnier
             ]
         },
         "Return to A Phantom of Truth - Le Marais": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Le Marais",
             "cards": [
-                {"databaseId": "03217", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"},
-                {"databaseId": "03218", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"}
+                {"databaseId": "03217", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"},  //Le Marais
+                {"databaseId": "03218", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"}   //Le Marais
             ]
         },
         "Return to A Phantom of Truth - Montparnasse": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Montparnasse",
             "cards": [
-                {"databaseId": "03208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"},
-                {"databaseId": "52041", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"}
+                {"databaseId": "03208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"},  //Montparnasse
+                {"databaseId": "52041", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "79%"}   //Montparnasse
             ]
         },
         "Return to A Phantom of Truth - Grand Guignol": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Grand Guignol",
             "cards": [
-                {"databaseId": "03211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},
-                {"databaseId": "52042", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"}
+                {"databaseId": "03211", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},   //Grand Guignol: Theatre of the Great Puppet
+                {"databaseId": "52042", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"}    //Grand Guignol: Theatre of the Great Puppet
             ]
         },
         "Return to A Phantom of Truth - Père Lachaise Cemetery": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Père Lachaise Cemetery",
             "cards": [
-                {"databaseId": "03215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"},
-                {"databaseId": "52043", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "12%"}
+                {"databaseId": "03215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "19%"},  //Père Lachaise Cemetery
+                {"databaseId": "52043", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "19%"}   //Père Lachaise Cemetery
             ]
         },
         "Return to A Phantom of Truth - Canal Saint-Martin": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Canal Saint-Martin",
             "cards": [
-                {"databaseId": "03216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"},
-                {"databaseId": "52044", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"}
+                {"databaseId": "03216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"},   //Canal Saint-Martin
+                {"databaseId": "52044", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "7%"}    //Canal Saint-Martin
             ]
         },
         "Return to A Phantom of Truth - Notre-Dame": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Notre-Dame",
             "cards": [
-                {"databaseId": "03219", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},
-                {"databaseId": "52045", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"}
+                {"databaseId": "03219", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},  //Notre-Dame
+                {"databaseId": "52045", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"}   //Notre-Dame
             ]
         },
         "Return to A Phantom of Truth - Gardens of Luxembourg": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Gardens of Luxembourg",
             "cards": [
-                {"databaseId": "03220", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},
-                {"databaseId": "52046", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"}
+                {"databaseId": "03220", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},  //Gardens of Luxembourg
+                {"databaseId": "52046", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"}   //Gardens of Luxembourg
             ]
         },
         "Return to A Phantom of Truth - Paris": {
             "hideFromSearch": true,
             "label": "Return to A Phantom of Truth - Paris",
             "cards": [
-                {"databaseId": "03214", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"}
+                {"databaseId": "03214", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"}   //Gare d'Orsay
             ]
         }
     },
     "actionLists": {
-        "Return to A Phantom of Truth Scenario Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 1.", ["LIST", "Each investigator earns the Lost Soul weakness.", "Skip."], "Return to A Phantom of Truth Scenario Question 1"]
+        "Return to A Phantom of Truth Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The King claimed its victims.", "The above is not true."], "Return to A Phantom of Truth Scenario Question 1"]
         ],
         "Return to A Phantom of Truth Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Lost Soul", "03227", 1]
-                ]]
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 4.", ["LIST", "Each investigator suffers 1 mental trauma.", "Skip."], "Return to A Phantom of Truth Scenario Question 2"]
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Lost Soul", "03227", 1]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["SCENARIO_SKIP_QUESTIONS", 3, "Return to A Phantom of Truth Scenario Early Init Continue 1"],
+                ["TRUE"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You intruded on a secret meeting.", "You slayed the monsters at the dinner party.", "None of the above are true."], "Return to A Phantom of Truth Scenario Question 2"]
+            ]
         ],
         "Return to A Phantom of Truth Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
-                    ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR_I.id", 1, true, null]
-                ]]
-            ],
-            ["VAR", "$DREAM_7_QUESTIONS", ["LIST"]],
-            ["VAR", "$DREAM_7_ANSWERS", ["LIST"]],
-            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
-                ["UPDATE_VAR", "$DREAM_7_QUESTIONS", ["APPEND", "$DREAM_7_QUESTIONS", "{{$ALIAS_I}} earns the Paranoia weakness."]],
-                ["UPDATE_VAR", "$DREAM_7_ANSWERS", ["APPEND", "$DREAM_7_ANSWERS", "$PLAYER_I"]]
-            ]],
-            ["UPDATE_VAR", "$DREAM_7_QUESTIONS", ["APPEND", "$DREAM_7_QUESTIONS", "Skip."]],
-            ["UPDATE_VAR", "$DREAM_7_ANSWERS", ["APPEND", "$DREAM_7_ANSWERS", "-"]],
-            ["SET", "/arkhamScenarioAPhantomofTruthDream7Answers", "$DREAM_7_ANSWERS"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "The effect of Dream 7.", "$DREAM_7_QUESTIONS", "Return to A Phantom of Truth Scenario Question 3"]
-        ],
-        "Return to A Phantom of Truth Scenario Question 3": [
-            ["VAR", "$DREAM_7_PLAYER", "-"],
-            ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
-                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[0]"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
-                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[1]"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
-                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[2]"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
-                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[3]"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
-                ["UPDATE_VAR", "$DREAM_7_PLAYER", "$GAME.arkhamScenarioAPhantomofTruthDream7Answers.[4]"]
-            ],
-            ["COND",
-                ["NOT_EQUAL", "$DREAM_7_PLAYER", "-"],
-                ["DO_CREATE_DECK_CARDS_SCN", "$DREAM_7_PLAYER", "Paranoia", "01097", 1]
-            ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Jordan Perry is listed under VIPs Interviewed.", "The above is not true."], "Return to A Phantom of Truth Scenario Question 4"]
-        ],
-        "Return to A Phantom of Truth Scenario Question 4": [
-            ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
                 [
-                    ["LOG", "└── Campaign Log: Jordan Perry is listed under VIPs Interviewed."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Each investigator suffers 1 mental trauma."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["DO_GAIN_RESOURCES", "$PLAYER_I", 3, true, null],
-                        ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", "Montparnasse"]
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 1]
                     ]]
                 ]
             ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The police are suspicious of you.", "The above is not true."], "Return to A Phantom of Truth Scenario Question 3"]
+        ],
+        "Return to A Phantom of Truth Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["VAR", "$ANSWERS_4", ["LIST"]],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                        ["UPDATE_VAR", "$ANSWERS_4", ["APPEND", "$ANSWERS_4", "{{$ALIAS_I}} earns the Paranoia weakness."]]
+                    ]],
+                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_4", "Return to A Phantom of Truth Scenario Question 4"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Return to A Phantom of Truth Scenario Early Init Continue 1"]
+            ]
+        ],
+        "Return to A Phantom of Truth Scenario Question 4": [
+            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer4Text", "{{$ALIAS_I}} earns the Paranoia weakness."],
+                    ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Paranoia", "01097", 1]
+                ]
+            ]],
+            ["ACTION_LIST", "Return to A Phantom of Truth Scenario Early Init Continue 1"]
+        ],
+        "Return to A Phantom of Truth Scenario Early Init Continue 1": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Chasing the Stranger” in Campaign Log.", ["LIST", "There are 3 or fewer tally marks.", "There are 4 or more tally marks."], "Return to A Phantom of Truth Scenario Question 5"]
+        ],
+        "Return to A Phantom of Truth Scenario Question 5": [
+            ["LOG", "└── Chasing the Stranger: {{$GAME.arkhamScenarioAnswer5Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "How could any of this be beautiful to you?", "What exactly am I looking at?"], "Return to A Phantom of Truth Scenario Question 6"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Return to A Phantom of Truth Scenario Early Init Continue 2"]
+            ]
+        ],
+        "Return to A Phantom of Truth Scenario Question 6": [
+            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer6Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                ["LOG", "└── Mark one Conviction in your Campaign Log."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "B"],
+                ["LOG", "└── Mark one Doubt in your Campaign Log."]
+            ],
+            ["ACTION_LIST", "Return to A Phantom of Truth Scenario Early Init Continue 2"]
+        ],
+        "Return to A Phantom of Truth Scenario Early Init Continue 2": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Jordan Perry is listed under VIPs Interviewed.", "The above is not true."], "Return to A Phantom of Truth Scenario Question 7"]
+        ],
+        "Return to A Phantom of Truth Scenario Question 7": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer7Text}}"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 3]
+                    ]]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "Return to A Phantom of Truth Scenario Init"]
+        ],
+        "Return to A Phantom of Truth Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to A Phantom of Truth"],
             ["DO_LOAD_CARDS_SCN", "Evil Portents"],
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
             ["DO_LOAD_CARDS_SCN", "Hastur's Envoys"],
             ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "Return to A Phantom of Truth Scenario Question 5"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "Return to A Phantom of Truth Scenario Question 8"]
         ],
-        "Return to A Phantom of Truth Scenario Question 5": [
+        "Return to A Phantom of Truth Scenario Question 8": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer8Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"],
                 [
-                    ["LOG", "└── Campaign Log: You have more (or equal) Doubt than Conviction."],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03223"],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01135"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03223"], //Twin Suns
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01135"], //Hunting Shadow
                     ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. I)", "03204", 0, "sharedActStory"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "B"],
                 [
-                    ["LOG", "└── Campaign Log: You have more Conviction than Doubt."],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03090"],
-                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01136"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03090"], //Black Stars Rise
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01136"], //False Lead
                     ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. II)", "03205", 0, "sharedActStory"]
                 ]
             ],
@@ -208,7 +242,12 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Notre-Dame", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to A Phantom of Truth - Gardens of Luxembourg", 1],
             ["DO_LOAD_CARDS_SCN", "Return to A Phantom of Truth - Paris"],
-            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Montparnasse", 5, 7, 3, 0],
+                ["TRUE"],
+                ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0]
+            ],
             ["DO_CREATE_MISSING_CARDS_SCN", "Lost Soul", "03227", 4, "sharedNotInPlay"],
             ["SET", "/arkhamFinalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],

@@ -4,44 +4,44 @@
             "hideFromSearch": true,
             "label": "Delusory Evils",
             "cards": [
-                {"databaseId": "52065", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "52065", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Delusory Evils
             ]
         },
         "Decaying Reality": {
             "hideFromSearch": true,
             "label": "Decaying Reality",
             "cards": [
-                {"databaseId": "52066", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52067", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52068", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "52066", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Bleeding Walls
+                {"databaseId": "52067", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Fragile Thoughts
+                {"databaseId": "52068", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Maggot Swarm
             ]
         },
         "Hastur's Envoys": {
             "hideFromSearch": true,
             "label": "Hastur's Envoys",
             "cards": [
-                {"databaseId": "52069", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52070", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "52069", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Preying Byakhee
+                {"databaseId": "52070", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //The Sign of Hastur
             ]
         },
         "Maddening Delusions": {
             "hideFromSearch": true,
             "label": "Maddening Delusions",
             "cards": [
-                {"databaseId": "52071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52075", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "52071", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Visions in Your Mind: Horrors
+                {"databaseId": "52072", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Visions in Your Mind: Failure
+                {"databaseId": "52073", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Visions in Your Mind: Death
+                {"databaseId": "52074", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Visions in Your Mind: Hatred
+                {"databaseId": "52075", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Maddening Delusions
             ]
         },
         "Neurotic Fear": {
             "hideFromSearch": true,
             "label": "Neurotic Fear",
             "cards": [
-                {"databaseId": "52076", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "52078", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "52076", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Voice of Tru'nembra
+                {"databaseId": "52077", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Melancholy
+                {"databaseId": "52078", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Painful Reflection
             ]
         }
     }

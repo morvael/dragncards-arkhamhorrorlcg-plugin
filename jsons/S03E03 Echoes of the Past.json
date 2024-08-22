@@ -6,58 +6,61 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Echoes of the Past", null, "Echoes of the Past Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Echoes of the Past", "Echoes of the Past Scenario Early Init", "Echoes of the Past Scenario Init"]
             ]
         },
         "Echoes of the Past": {
             "hideFromSearch": true,
              "label": "Echoes of the Past",
              "cards": [
-                {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03123", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03124", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03125", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03126", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03141", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Echoes of the Past
+                {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Truth is Hidden
+                {"databaseId": "03122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Ransacking the Manor
+                {"databaseId": "03123", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Secrets Better Left Hidden
+                {"databaseId": "03124", "quantity": 1, "loadGroupId": "sharedActStory"},            //Race for Answers
+                {"databaseId": "03125", "quantity": 1, "loadGroupId": "sharedActStory"},            //Mistakes of the Past
+                {"databaseId": "03126", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Oath
+                {"databaseId": "03139", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Hidden Library
+                {"databaseId": "03140", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Possessed Oathspeaker: A Damnable Fate
+                {"databaseId": "03141", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Mr. Peabody: Historical Society Curator
+                {"databaseId": "03143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The Tattered Cloak: Regalia Dementia
+                {"databaseId": "03142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Clasp of Black Onyx: A Gift Unlooked For
+                {"databaseId": "03144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Seeker of Carcosa
+                {"databaseId": "03145", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Led Astray
+                {"databaseId": "03146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //The Cult's Search
             ]
         },
         "Echoes of the Past - Historical Society": {
             "hideFromSearch": true,
             "label": "Echoes of the Past - Historical Society",
             "cards": [
-                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},
-                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},
-                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}
+                {"databaseId": "03127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
+                {"databaseId": "03131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Quiet Halls
+                {"databaseId": "03135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Quiet Halls
             ]
         }
     },
     "actionLists": {
-        "Echoes of the Past Scenario Init": [
+        "Echoes of the Past Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Sebastien Moreau is listed under VIPs Interviewed.", "The above is not true."], "Echoes of the Past Scenario Question 1"]
         ],
         "Echoes of the Past Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: Sebastien Moreau is listed under VIPs Interviewed."]
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
             ],
+            ["SCENARIO_INIT_RESUME", "Echoes of the Past Scenario Init"]
+        ],
+        "Echoes of the Past Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Delusions"],
             ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
-            ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]],
-            ["VAR", "$SOCIETIES_1", ["SHUFFLE_LIST", ["LIST", "03132", "03133", "03134"]]],
-            ["VAR", "$SOCIETIES_2", ["SHUFFLE_LIST", ["LIST", "03136", "03137", "03138"]]],
+            ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]], //Historical Society: Meeting Room, Historical Society: Record Office, Historical Society: Historical Museum
+            ["VAR", "$SOCIETIES_1", ["SHUFFLE_LIST", ["LIST", "03132", "03133", "03134"]]], //Historical Society: Historical Museum, Historical Society: Historical Library, Historical Society: Reading Room
+            ["VAR", "$SOCIETIES_2", ["SHUFFLE_LIST", ["LIST", "03136", "03137", "03138"]]], //Historical Society: Historical Library, Historical Society: Peabody's Office, Historical Society: Record Office
             ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
                 ["DO_SPAWN_LOCATION_SCN", "Historical Society", "$SOCIETIES_0.[$I]", "$SPAWN_LEFTS.[$I]", 76],
@@ -110,7 +113,7 @@
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: You fled the dinner party."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
                     ["SET", "/arkhamFinalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game."]
                 ]
             ],

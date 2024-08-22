@@ -13,27 +13,27 @@
             "hideFromSearch": true,
              "label": "Return to Curtain Call",
              "cards": [
-                {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "52014", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03046", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03048", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "43%"},
-                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "43%"},
-                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "10%"},
-                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "43%"},
-                {"databaseId": "03053", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03054", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03055", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "52018", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03056", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03057", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03058", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "52019", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "52020", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Curtain Call
+                {"databaseId": "52014", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Curtain Call
+                {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Third Act
+                {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Encore
+                {"databaseId": "03046", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Awakening
+                {"databaseId": "03048", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Curtain Call
+                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Theatre
+                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Lobby
+                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Balcony
+                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Backstage
+                {"databaseId": "03053", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Lighting Box
+                {"databaseId": "03054", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Box Office
+                {"databaseId": "03055", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Green Room
+                {"databaseId": "52018", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Theatre Lounge
+                {"databaseId": "03056", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Dressing Room
+                {"databaseId": "03057", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Rehearsal Room
+                {"databaseId": "03058", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Trap Room
+                {"databaseId": "52019", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Prop Shop
+                {"databaseId": "03059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Man in the Pallid Mask
+                {"databaseId": "03060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Royal Emissary: Messenger from Aldebaran
+                {"databaseId": "52020", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //La Comtesse: Subverter of Plans
             ]
         }
     },
@@ -46,11 +46,11 @@
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Neurotic Fear"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
-            ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c", "52015", "52016", "52017"]]],
+            ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c", "52015", "52016", "52017"]]],   //The Stranger, The Stranger, The Stranger, The Stranger, The Stranger, The Stranger
             ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "$SECOND_ACTS.[0]", 1, "sharedActStory"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
             ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B. Remember the rule from the back of the “Return to…” scenario card."],
-            ["DO_ATTACH_REFERENCE_TO_ID", "03060", true],
+            ["DO_ATTACH_REFERENCE_TO_ID", "03060", true],   //Royal Emissary: Messenger from Aldebaran
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

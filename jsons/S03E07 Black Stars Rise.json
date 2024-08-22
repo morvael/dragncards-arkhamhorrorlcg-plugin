@@ -6,90 +6,93 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Black Stars Rise", null, "Black Stars Rise Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "Black Stars Rise", "Black Stars Rise Scenario Early Init", "Black Stars Rise Scenario Init"]
             ]
         },
         "Black Stars Rise": {
             "hideFromSearch": true,
              "label": "Black Stars Rise",
              "cards": [
-                {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03278", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03280", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03281", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03282", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03300", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03301", "quantity": 2, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03294", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03295", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03302", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03303", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Black Stars Rise
+                {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Tide Rises
+                {"databaseId": "03277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The City Floods
+                {"databaseId": "03278", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Ritual Begins
+                {"databaseId": "03280", "quantity": 1, "loadGroupId": "sharedActStory"},            //Swallowed Sky
+                {"databaseId": "03281", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Open The Path Below
+                {"databaseId": "03282", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Open The Path Above
+                {"databaseId": "03088", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Beast of Aldebaran (from Inhabitants of Carcosa)
+                {"databaseId": "03300", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Tidal Terror
+                {"databaseId": "03301", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Rift Seeker
+                {"databaseId": "03294", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Cloister
+                {"databaseId": "03295", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Knight's Hall
+                {"databaseId": "03302", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Crashing Floods
+                {"databaseId": "03303", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Worlds Merge
             ]
         },
         "Black Stars Rise - Inhabitants of Carcosa": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - Inhabitants of Carcosa",
             "cards": [
-                {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03089", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Spawn of Hali
             ]
         },
         "Black Stars Rise - Choeur Gothique": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - Choeur Gothique",
             "cards": [
-                {"databaseId": "03292", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03293", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+                {"databaseId": "03292", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chœur Gothique
+                {"databaseId": "03293", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Chœur Gothique
             ]
         },
         "Black Stars Rise - North Tower": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - North Tower",
             "cards": [
-                {"databaseId": "03287", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "7%"},
-                {"databaseId": "03288", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "7%"}
+                {"databaseId": "03287", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "7%"},   //North Tower
+                {"databaseId": "03288", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "7%"}    //North Tower
             ]
         },
         "Black Stars Rise - Outer Wall": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - Outer Wall",
             "cards": [
-                {"databaseId": "03285", "quantity": 1, "loadGroupId": "sharedLocations", "left": "81%", "top": "31%"},
-                {"databaseId": "03286", "quantity": 1, "loadGroupId": "sharedLocations", "left": "81%", "top": "31%"}
+                {"databaseId": "03285", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"},  //Outer Wall
+                {"databaseId": "03286", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"}   //Outer Wall
             ]
         },
         "Black Stars Rise - Broken Steps": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - Broken Steps",
             "cards": [
-                {"databaseId": "03289", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "31%"},
-                {"databaseId": "03290", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "31%"}
+                {"databaseId": "03289", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"},  //Broken Steps
+                {"databaseId": "03290", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"}   //Broken Steps
             ]
         },
         "Black Stars Rise - Abbey": {
             "hideFromSearch": true,
             "label": "Black Stars Rise - Abbey",
             "cards": [
-                {"databaseId": "03283", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "79%"},
-                {"databaseId": "03284", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "55%"},
-                {"databaseId": "03291", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "31%"}
+                {"databaseId": "03283", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "79%"},  //Porte de l'Avancée
+                {"databaseId": "03284", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "55%"},  //Grand Rue
+                {"databaseId": "03291", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"}   //Abbey Church
             ]
         }
     },
     "actionLists": {
-        "Black Stars Rise Scenario Init": [
+        "Black Stars Rise Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Ashleigh Clarke is listed under VIPs Interviewed.", "The above is not true."], "Black Stars Rise Scenario Question 1"]
         ],
         "Black Stars Rise Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: Ashleigh Clarke is listed under VIPs Interviewed."]
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
             ],
+            ["SCENARIO_INIT_RESUME", "Black Stars Rise Scenario Init"]
+        ],
+        "Black Stars Rise Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Black Stars Rise"],
-            ["DO_SET_SPAWN_LOCATION", "03294", 5, 31],
-            ["DO_SET_SPAWN_LOCATION", "03295", 5, 55],
+            ["DO_SET_SPAWN_LOCATION", "03294", 7, 31],  //Cloister
+            ["DO_SET_SPAWN_LOCATION", "03295", 7, 55],  //Knight's Hall
             ["DO_LOAD_CARDS_SCN", "Evil Portents"],
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "Black Stars Rise - Inhabitants of Carcosa"],
@@ -103,24 +106,24 @@
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Let The Storm Rage", "03276a", 1, "sharedAgendaStory"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Entity Above", "03279b", 1, "sharedActStory"],
-                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03298", 1, "sharedNotInPlay"],
-                    ["DO_SET_SPAWN_LOCATION", "03298", 5, 7],
-                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03297", 1, "sharedNotInPlay"],
-                    ["DO_SET_SPAWN_LOCATION", "03297", 24, 55]
+                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03298", 1, "sharedNotInPlay"],  //Abbey Tower: The Path is Open
+                    ["DO_SET_SPAWN_LOCATION", "03298", 7, 7],
+                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03297", 1, "sharedNotInPlay"], //Chapel of St. Aubert: Waters Forbidden
+                    ["DO_SET_SPAWN_LOCATION", "03297", 26, 55]
                 ],
                 ["TRUE"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Let The Storm Rage", "03276b", 1, "sharedAgendaStory"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Entity Above", "03279a", 1, "sharedActStory"],
-                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03299", 1, "sharedNotInPlay"],
-                    ["DO_SET_SPAWN_LOCATION", "03299", 5, 7],
-                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03296", 1, "sharedNotInPlay"],
-                    ["DO_SET_SPAWN_LOCATION", "03296", 24, 55]
+                    ["DO_CREATE_CARDS_SCN", "Abbey Tower", "03299", 1, "sharedNotInPlay"],  //Abbey Tower: Spires Forbidden
+                    ["DO_SET_SPAWN_LOCATION", "03299", 7, 7],
+                    ["DO_CREATE_CARDS_SCN", "Chapel of St. Aubert", "03296", 1, "sharedNotInPlay"], //Chapel of St. Aubert: The Path is Open
+                    ["DO_SET_SPAWN_LOCATION", "03296", 26, 55]
                 ]
             ],
             ["DO_LOAD_N_CARDS_SCN", "Black Stars Rise - Choeur Gothique", 1],
-            ["DO_SET_SPAWN_LOCATION", "03292", 24, 7],
-            ["DO_SET_SPAWN_LOCATION", "03293", 24, 7],
+            ["DO_SET_SPAWN_LOCATION", "03292", 26, 7],  //Chœur Gothique
+            ["DO_SET_SPAWN_LOCATION", "03293", 26, 7],  //Chœur Gothique
             ["DO_LOAD_N_CARDS_SCN", "Black Stars Rise - North Tower", 1],
             ["DO_LOAD_N_CARDS_SCN", "Black Stars Rise - Outer Wall", 1],
             ["DO_LOAD_N_CARDS_SCN", "Black Stars Rise - Broken Steps", 1],

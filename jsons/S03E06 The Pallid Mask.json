@@ -6,37 +6,40 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "The Pallid Mask", null, "The Pallid Mask Scenario Init"]
+                ["SCENARIO_INIT", "The Path to Carcosa", "The Path to Carcosa", "The Pallid Mask", "The Pallid Mask Scenario Early Init", "The Pallid Mask Scenario Init"]
             ]
         },
         "The Pallid Mask": {
             "hideFromSearch": true,
              "label": "The Pallid Mask",
              "cards": [
-                {"databaseId": "03240", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03241", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03242", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03243", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03244", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03245", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03246", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03258", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03259", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},
-                {"databaseId": "03262", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}
+                {"databaseId": "03240", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Pallid Mask
+                {"databaseId": "03241", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Empire of the Dead
+                {"databaseId": "03242", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Empire of the Undead
+                {"databaseId": "03243", "quantity": 1, "loadGroupId": "sharedActStory"},            //Through the Catacombs
+                {"databaseId": "03244", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Path is Barred
+                {"databaseId": "03245", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Way Out
+                {"databaseId": "03246", "quantity": 1, "loadGroupId": "sharedActStory"},            //Leading the Way
+                {"databaseId": "03258", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Catacombs Docent
+                {"databaseId": "03259", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Corpse Dweller
+                {"databaseId": "03260", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Eyes in the Walls
+                {"databaseId": "03261", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //The Shadow Behind You
+                {"databaseId": "03262", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //The Pit Below
             ]
         }
     },
     "actionLists": {
-        "The Pallid Mask Scenario Init": [
+        "The Pallid Mask Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Ishimaru Haruko is listed under VIPs Interviewed.", "The above is not true."], "The Pallid Mask Scenario Question 1"]
         ],
         "The Pallid Mask Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: Ishimaru Haruko is listed under VIPs Interviewed."]
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
             ],
+            ["SCENARIO_INIT_RESUME", "The Pallid Mask Scenario Init"]
+        ],
+        "The Pallid Mask Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "The Pallid Mask"],
             ["DO_LOAD_CARDS_SCN", "Ghouls"],
             ["DO_LOAD_CARDS_SCN", "Hauntings"],
@@ -44,27 +47,18 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You awoke inside the catacombs.", "You entered the catacombs on your own."], "The Pallid Mask Scenario Question 2"]
         ],
         "The Pallid Mask Scenario Question 2": [
-            ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255"]]],
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255"]]],  //The Gate to Hell, Stone Archways, Crypt of the Sepulchral Lamp, Bone-Filled Caverns, Well of Souls, Candlelit Tunnels, Labyrinth of Bones, Narrow Shaft, Shivering Pools
             ["VAR", "$STARTING_LOCATION", "$CATACOMBS.[0]"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                [
-                    ["LOG", "└── Campaign Log: You awoke inside the catacombs."]
-                ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
-                [
-                    ["LOG", "└── Campaign Log: You entered the catacombs on your own."],
-                    ["UPDATE_VAR", "$STARTING_LOCATION", "03247"]
-                ]
+                ["UPDATE_VAR", "$STARTING_LOCATION", "03247"]   //The Gate to Hell
             ],
             ["UPDATE_VAR", "$CATACOMBS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$CATACOMBS", "$STARTING_LOCATION"]],
-            ["DO_SPAWN_LOCATION_SCN", "Catacombs", "$STARTING_LOCATION", 24, 31],
+            ["DO_SPAWN_LOCATION_SCN", "Catacombs", "$STARTING_LOCATION", 26, 31],
             ["VAR", "$STARTING_LOCATION_ID", "$DO_SPAWN_LOCATION_RESULT"],
             ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$STARTING_LOCATION_ID", 1, true, null],
-            ["VAR", "$CATACOMB_0", "$CATACOMBS.[0]"],
-            ["VAR", "$CATACOMB_1", "$CATACOMBS.[1]"],
-            ["VAR", "$CATACOMB_2", "$CATACOMBS.[2]"],
-            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$CATACOMB_0", "$CATACOMB_1", "$CATACOMB_2", "03256", "03257"]]],
+            ["VAR", "$CATACOMBS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$CATACOMBS.[0]", "$CATACOMBS.[1]", "$CATACOMBS.[2]", "03256", "03257"]]], //Blocked Passage, Tomb of Shadows
             ["VAR", "$CATACOMBS_COUNT", ["LENGTH", "$CATACOMBS"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 3, "$CATACOMBS_COUNT", 1, [
                 ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS.[$I]", 1, "sharedDeckA"]

@@ -13,23 +13,23 @@
             "hideFromSearch": true,
              "label": "Curtain Call",
              "cards": [
-                {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},
-                {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},
-                {"databaseId": "03046", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03048", "quantity": 1, "loadGroupId": "sharedActStory"},
-                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "43%"},
-                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "24%", "top": "43%"},
-                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "43%", "top": "10%"},
-                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "62%", "top": "43%"},
-                {"databaseId": "03053", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03054", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03055", "quantity": 1, "loadGroupId": "sharedDeckA"},
-                {"databaseId": "03056", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03057", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03058", "quantity": 1, "loadGroupId": "sharedDeckB"},
-                {"databaseId": "03059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},
-                {"databaseId": "03060", "quantity": 1, "loadGroupId": "sharedNotInPlay"}
+                {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Curtain Call
+                {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Third Act
+                {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Encore
+                {"databaseId": "03046", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Awakening
+                {"databaseId": "03048", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Curtain Call
+                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Theatre
+                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Lobby
+                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Balcony
+                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Backstage
+                {"databaseId": "03053", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Lighting Box
+                {"databaseId": "03054", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Box Office
+                {"databaseId": "03055", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Green Room
+                {"databaseId": "03056", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Dressing Room
+                {"databaseId": "03057", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Rehearsal Room
+                {"databaseId": "03058", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Trap Room
+                {"databaseId": "03059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Man in the Pallid Mask
+                {"databaseId": "03060", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Royal Emissary: Messenger from Aldebaran
             ]
         }
     },
@@ -42,7 +42,7 @@
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
-            ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],
+            ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],  //The Stranger, The Stranger, The Stranger
             ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "$SECOND_ACTS.[0]", 1, "sharedActStory"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
             ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B."],
