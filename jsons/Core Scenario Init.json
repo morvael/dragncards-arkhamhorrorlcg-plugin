@@ -728,6 +728,8 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepResourcesMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingDamageMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
@@ -778,7 +780,7 @@
                             ["NOT_EQUAL", "$SCENARIO_EARLY_ACTION", null],
                             ["ACTION_LIST", "$SCENARIO_EARLY_ACTION"],
                             ["TRUE"],
-                            ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
+                            ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
                         ]
                     ],
                     ["TRUE"],
@@ -790,7 +792,18 @@
             "args": ["$NEXT_SCENARIO_ACTION"],
             "code": [
                 ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
-                ["PROMPT", "$PLAYER_ORDER", "startingPhysicalTrauma"]
+                ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
+            ]
+        },
+        "DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA": {
+            "args": [],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["PROMPT", "$PLAYER_I", "startingPhysicalTrauma"],
+                    ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$PLAYER_I.arkhamStartingDamageMod", 10, 1, [
+                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$I}} trauma.", "{{$I}}", ["LIST", "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR_STR", "{{$I}}"]]
+                    ]]
+                ]]
             ]
         },
         "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR": {
@@ -803,7 +816,22 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "declare no physical trauma of {{$INVESTIGATOR.currentFace.name}}.", "declares no physical trauma of {{$INVESTIGATOR.currentFace.name}}."]
                 ],
-                ["PROMPT", "$PLAYER_N", "startingMentalTrauma"]
+                ["DO_ASK_FOR_STARTING_MENTAL_TRAUMA", "$PLAYER_N"]
+            ]
+        },
+        "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR_STR": {
+            "args": ["$NUMBER_OF_TOKENS"],
+            "code": [
+                ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", ["CALC", "{{$NUMBER_OF_TOKENS}}"]]
+            ]
+        },
+        "DO_ASK_FOR_STARTING_MENTAL_TRAUMA": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["PROMPT", "$TARGET_PLAYER", "startingMentalTrauma"],
+                ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingHorrorMod", 10, 1, [
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$I}} trauma.", "{{$I}}", ["LIST", "PLACE_STARTING_HORROR_ON_INVESTIGATOR_STR", "{{$I}}"]]
+                ]]
             ]
         },
         "PLACE_STARTING_HORROR_ON_INVESTIGATOR": {
@@ -821,6 +849,12 @@
                     ["GREATER_EQUAL", "$GAME.arkhamTraumaDone", "$GAME.numPlayers"],
                     ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
                 ]
+            ]
+        },
+        "PLACE_STARTING_HORROR_ON_INVESTIGATOR_STR": {
+            "args": ["$NUMBER_OF_TOKENS"],
+            "code": [
+                ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", ["CALC", "{{$NUMBER_OF_TOKENS}}"]]
             ]
         },
         "SET_SCENARIO_DIFFICULTY": {
@@ -1157,152 +1191,12 @@
             "args": [],
             "message": "State the physical trauma of your investigator.",
             "options": [
-                {
-                    "label": "0",
-                    "hotkey": "0",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 0]
-                    ]
-                },
-                {
-                    "label": "1",
-                    "hotkey": "1",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 1]
-                    ]
-                },
-                {
-                    "label": "2",
-                    "hotkey": "2",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 2]
-                    ]
-                },
-                {
-                    "label": "3",
-                    "hotkey": "3",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 3]
-                    ]
-                },
-                {
-                    "label": "4",
-                    "hotkey": "4",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 4]
-                    ]
-                },
-                {
-                    "label": "5",
-                    "hotkey": "5",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 5]
-                    ]
-                },
-                {
-                    "label": "6",
-                    "hotkey": "6",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 6]
-                    ]
-                },
-                {
-                    "label": "7",
-                    "hotkey": "7",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 7]
-                    ]
-                },
-                {
-                    "label": "8",
-                    "hotkey": "8",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 8]
-                    ]
-                },
-                {
-                    "label": "9",
-                    "hotkey": "9",
-                    "code": [
-                        ["PLACE_STARTING_DAMAGE_ON_INVESTIGATOR", 9]
-                    ]
-                }
             ]
         },
         "startingMentalTrauma": {
             "args": [],
             "message": "State the mental trauma of your investigator.",
             "options": [
-                {
-                    "label": "0",
-                    "hotkey": "0",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 0]
-                    ]
-                },
-                {
-                    "label": "1",
-                    "hotkey": "1",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 1]
-                    ]
-                },
-                {
-                    "label": "2",
-                    "hotkey": "2",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 2]
-                    ]
-                },
-                {
-                    "label": "3",
-                    "hotkey": "3",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 3]
-                    ]
-                },
-                {
-                    "label": "4",
-                    "hotkey": "4",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 4]
-                    ]
-                },
-                {
-                    "label": "5",
-                    "hotkey": "5",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 5]
-                    ]
-                },
-                {
-                    "label": "6",
-                    "hotkey": "6",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 6]
-                    ]
-                },
-                {
-                    "label": "7",
-                    "hotkey": "7",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 7]
-                    ]
-                },
-                {
-                    "label": "8",
-                    "hotkey": "8",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 8]
-                    ]
-                },
-                {
-                    "label": "9",
-                    "hotkey": "9",
-                    "code": [
-                        ["PLACE_STARTING_HORROR_ON_INVESTIGATOR", 9]
-                    ]
-                }
             ]
         },
         "chooseScenarioDifficulty": {
