@@ -89,10 +89,10 @@
                     ["SCENARIO_INIT_CONTINUE", null]
                 ],
                 ["TRUE"],
-                ["ACTION_LIST", "Heart of the Elders Pt 1 Scenario Init Continue 1"]
+                ["ACTION_LIST", "Heart of the Elders Pt 1 Scenario Init Continue"]
             ]
         ],
-        "Heart of the Elders Pt 1 Scenario Init Continue 1": [
+        "Heart of the Elders Pt 1 Scenario Init Continue": [
             ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Pillars of Judgment"],
             ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Heart of the Elders"],
             ["DO_LOAD_CARDS_SCN", "Heart of the Elders Pt 1 - Rainforest"],

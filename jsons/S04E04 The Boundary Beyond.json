@@ -136,9 +136,9 @@
                 ]
             ],
             ["DO_LOAD_CARDS_SCN", "The Boundary Beyond - Mexico City"],
-            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "The Boundary Beyond Scenario Init Continue 1"]
+            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "The Boundary Beyond Scenario Init Continue"]
         ],
-        "The Boundary Beyond Scenario Init Continue 1": [
+        "The Boundary Beyond Scenario Init Continue": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Window to Another Time", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Timeline Destabilization", "sharedEncounterDeck", 1, "sharedDeckA"],

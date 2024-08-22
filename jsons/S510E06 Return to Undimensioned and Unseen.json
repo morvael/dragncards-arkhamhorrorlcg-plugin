@@ -128,9 +128,9 @@
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[4]", 1, "sharedDeckA"]
                 ]
             ],
-            ["DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Powder of Ibn Ghazi", "Return to Undimensioned and Unseen Scenario Init Continue 1"]
+            ["DO_MAY_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Powder of Ibn Ghazi", "Return to Undimensioned and Unseen Scenario Init Continue"]
         ],
-        "Return to Undimensioned and Unseen Scenario Init Continue 1": [
+        "Return to Undimensioned and Unseen Scenario Init Continue": [
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_INJURY_PACT_WEAKNESSES"]]
             ]],

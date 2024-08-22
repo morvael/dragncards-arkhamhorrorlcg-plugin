@@ -179,9 +179,9 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Zócalo", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Xochimilco", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Boundary Beyond - Coyoacán", 1],
-            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "Return to The Boundary Beyond Scenario Init Continue 1"]
+            ["SCENARIO_CUSTOM_SPAWN_CHOICE", ["LIST", "Zócalo", "Coyoacán"], "Return to The Boundary Beyond Scenario Init Continue"]
         ],
-        "Return to The Boundary Beyond Scenario Init Continue 1": [
+        "Return to The Boundary Beyond Scenario Init Continue": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],

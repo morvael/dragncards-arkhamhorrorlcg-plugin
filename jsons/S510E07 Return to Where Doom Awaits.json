@@ -146,7 +146,7 @@
                 [
                     ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
                     ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. I)", "02278", 1, "sharedActStory"],
-                    ["SCENARIO_SKIP_QUESTION", "Return to Where Doom Awaits Scenario Init Continue 1"]
+                    ["SCENARIO_SKIP_QUESTION", "Return to Where Doom Awaits Scenario Init Continue"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators failed to recover the Necronomicon.", "The Necronomicon was stolen.", "None of the above are true."], "Return to Where Doom Awaits Scenario Question 4"]
@@ -165,9 +165,9 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "C"],
                 ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. III)", "02280", 1, "sharedActStory"]
             ],
-            ["ACTION_LIST", "Return to Where Doom Awaits Scenario Init Continue 1"]
+            ["ACTION_LIST", "Return to Where Doom Awaits Scenario Init Continue"]
         ],
-        "Return to Where Doom Awaits Scenario Init Continue 1": [
+        "Return to Where Doom Awaits Scenario Init Continue": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 brood escaped into the wild.", "4 brood escaped into the wild.", "3 brood escaped into the wild.", "2 brood escaped into the wild.", "1 brood escaped into the wild.", "No brood escaped into the wild."], "Return to Where Doom Awaits Scenario Question 5"]
         ],
         "Return to Where Doom Awaits Scenario Question 5": [
