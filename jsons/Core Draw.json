@@ -90,17 +90,25 @@
                     "sharedEncounterDeck",
                     ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
                     "player1Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1ExtraDeck"],
+                    "player1Discard",
                     ["EQUAL", "$TARGET_GROUP_ID", "player1Discard"],
                     "player1Deck",
                     ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
+                    "player2Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2ExtraDeck"],
                     "player2Discard",
                     ["EQUAL", "$TARGET_GROUP_ID", "player2Discard"],
                     "player2Deck",
                     ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
                     "player3Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3ExtraDeck"],
+                    "player3Discard",
                     ["EQUAL", "$TARGET_GROUP_ID", "player3Discard"],
                     "player3Deck",
                     ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
+                    "player4Discard",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4ExtraDeck"],
                     "player4Discard",
                     ["EQUAL", "$TARGET_GROUP_ID", "player4Discard"],
                     "player4Deck",
@@ -128,17 +136,25 @@
                 ["COND",
                     ["EQUAL", "$TARGET_GROUP_ID", "player1Deck"],
                     "player1",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player1ExtraDeck"],
+                    "player1",
                     ["EQUAL", "$TARGET_GROUP_ID", "player1Discard"],
                     "player1",
                     ["EQUAL", "$TARGET_GROUP_ID", "player2Deck"],
+                    "player2",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player2ExtraDeck"],
                     "player2",
                     ["EQUAL", "$TARGET_GROUP_ID", "player2Discard"],
                     "player2",
                     ["EQUAL", "$TARGET_GROUP_ID", "player3Deck"],
                     "player3",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player3ExtraDeck"],
+                    "player3",
                     ["EQUAL", "$TARGET_GROUP_ID", "player3Discard"],
                     "player3",
                     ["EQUAL", "$TARGET_GROUP_ID", "player4Deck"],
+                    "player4",
+                    ["EQUAL", "$TARGET_GROUP_ID", "player4ExtraDeck"],
                     "player4",
                     ["EQUAL", "$TARGET_GROUP_ID", "player4Discard"],
                     "player4",
@@ -225,12 +241,19 @@
                 ["AND",
                     ["OR",
                         ["AND",
-                            ["IN_STRING", "$SOURCE_GROUP.groupType", "discard"],
+                            ["EQUAL", "$SOURCE_GROUP.groupType", "hand"], //shuffle any hand into player's deck / extra deck
+                            ["OR",
+                                ["EQUAL", "$TARGET_GROUP.groupType", "deckP"],
+                                ["EQUAL", "$TARGET_GROUP.groupType", "deckE"]
+                            ]
+                        ],
+                        ["AND",
+                            ["IN_STRING", "$SOURCE_GROUP.groupType", "discard"], //shuffle any discard into paired deck
                             ["IN_STRING", "$TARGET_GROUP.groupType", "deck"]
                         ],
                         ["AND",
                             ["OR",
-                                ["EQUAL", "$SOURCE_GROUP.groupType", "deck"],
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "deck"], //shuffle Decks A-C and Piles A-D into Encounter Deck
                                 ["EQUAL", "$SOURCE_GROUP.groupType", "pile"]
                             ],
                             ["EQUAL", "$TARGET_GROUP.id", "sharedEncounterDeck"]
@@ -307,6 +330,15 @@
                 ["VALIDATE_GT0", "$NUMBER", "CAN_DRAW_CARDS_EXT.NUMBER"],
                 ["VALIDATE_BOOLEAN", "$SKIP_WEAKNESS", "CAN_DRAW_CARDS_EXT.SKIP_WEAKNESS"],
                 ["COND",
+                    ["EQUAL", "$TARGET_GROUP.groupType", "deckE"],
+                    [
+                        //deckE cannot recycle paired discard
+                        ["VAR", "$PAIRED_PLAYER", ["GET_PAIRED_PLAYER", "$TARGET_GROUP_ID"]],
+                        ["AND",
+                            ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0],
+                            ["EQUAL", "$PAIRED_PLAYER", "$TARGET_PLAYER"]
+                        ]
+                    ],
                     ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     [
                         ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
@@ -349,7 +381,11 @@
                         ["VAR", "$HAND_GROUP", ["GET_GROUP_AND_VALIDATE", "$HAND_GROUP_ID", "DO_DRAW_CARDS_EXT.HAND_GROUP_ID"]],
                         ["VAR", "$DISCARD_GROUP_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP_ID"]],
                         ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$DISCARD_GROUP_ID", "DO_DRAW_CARDS_EXT.DISCARD_GROUP_ID"]],
-                        ["VAR", "$AVAILABLE_NUMBER", ["ADD", ["LENGTH", "$TARGET_GROUP.stackIds"], ["LENGTH", "$DISCARD_GROUP.stackIds"]]],
+                        ["VAR", "$AVAILABLE_NUMBER", ["LENGTH", "$TARGET_GROUP.stackIds"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_GROUP.groupType", "deckE"],
+                            ["UPDATE_VAR", "$AVAILABLE_NUMBER", ["ADD", "$AVAILABLE_NUMBER", ["LENGTH", "$DISCARD_GROUP.stackIds"]]]
+                        ],
                         ["VAR", "$FROM_SUFFIX", " from {{$TARGET_GROUP.label}}"],
                         ["COND",
                             ["EQUAL", "$TARGET_PLAYER", ["GET_PAIRED_PLAYER", "$TARGET_GROUP_ID"]],
@@ -374,7 +410,10 @@
                         ["VAR", "$SHUFFLE_DECK", false],
                         ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUMBER", 1, [
                             ["COND",
-                                ["EQUAL", ["LENGTH", "$TARGET_GROUP.stackIds"], 0],
+                                ["AND",
+                                    ["NOT_EQUAL", "$TARGET_GROUP.groupType", "deckE"],
+                                    ["EQUAL", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
+                                ],
                                 [
                                     ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$DISCARD_GROUP_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", null],
                                     ["UPDATE_VAR", "$TAKE_HORROR", true]

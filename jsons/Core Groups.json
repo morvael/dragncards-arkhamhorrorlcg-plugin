@@ -8,6 +8,7 @@
         "outOfPlayV": {"canHaveAttachments": true,  "canHaveTokens": true,  "shuffleOnLoad": false, "menuOptions": [{"label": "id:calculateVPMenu", "actionList": "calculateVP"}]},
         "deck":       {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:drawCardMenu", "actionList": "drawCard"}, {"label": "id:shuffleDeckMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleDeckTopMenu", "actionList": "shuffleDeckTop"}, {"label": "id:lookAtTopCardsMenu", "actionList": "lookAtTopCards"}, {"label": "id:shuffleIntoEncounterDeckMenu", "actionList": "shuffleIntoEncounterDeck"}]},
         "deckS":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:drawEncounterCardMenu", "actionList": "drawCard"}, {"label": "id:shuffleDeckMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleDeckTopMenu", "actionList": "shuffleDeckTop"}, {"label": "id:lookAtTopCardsMenu", "actionList": "lookAtTopCards"}]},
+        "deckE":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:drawCardMenu", "actionList": "drawCard"}, {"label": "id:shuffleDeckMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleDeckTopMenu", "actionList": "shuffleDeckTop"}, {"label": "id:lookAtTopCardsMenu", "actionList": "lookAtTopCards"}]},
         "deckP":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:drawPlayerCardMenu", "actionList": "drawCard"}, {"label": "id:shuffleDeckMenu", "actionList": "shuffleDeck"}, {"label": "id:shuffleDeckTopMenu", "actionList": "shuffleDeckTop"}, {"label": "id:lookAtTopCardsMenu", "actionList": "lookAtTopCards"}]},
         "discard":    {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
         "discardS":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false, "menuOptions": [{"label": "id:browseRemovedMenu", "actionList": "browseRemoved"}, {"label": "id:shuffleDiscardIntoDeckMenu", "actionList": "shuffleDiscardIntoDeck"}]},
@@ -30,24 +31,28 @@
         "sharedScenarioReference": {"groupType": "inPlayS",    "label": "id:sharedScenarioReference", "tableLabel": "id:sharedScenarioReferenceShort"},
         "sharedVoid":              {"groupType": "inPlayV",    "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort"},
         "player4Hand":             {"groupType": "hand",       "label": "id:player4Hand",             "tableLabel": "id:playerHandShort"},
+        "player4ExtraDeck":        {"groupType": "deckE",      "label": "id:player4ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player4Deck":             {"groupType": "deckP",      "label": "id:player4Deck",             "tableLabel": "id:playerDeckShort"},
         "player4Discard":          {"groupType": "discardP",   "label": "id:player4Discard",          "tableLabel": "id:playerDiscardShort"},
         "player4Threat":           {"groupType": "inPlay",     "label": "id:player4Threat",           "tableLabel": "id:playerThreatShort"},
         "player4Investigator":     {"groupType": "inPlay",     "label": "id:player4Investigator",     "tableLabel": "id:player4InvestigatorShort"},
         "player4Play":             {"groupType": "inPlay",     "label": "id:player4Play",             "tableLabel": "id:playerPlayShort"},
         "player3Hand":             {"groupType": "hand",       "label": "id:player3Hand",             "tableLabel": "id:playerHandShort"},
+        "player3ExtraDeck":        {"groupType": "deckE",      "label": "id:player3ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player3Deck":             {"groupType": "deckP",      "label": "id:player3Deck",             "tableLabel": "id:playerDeckShort"},
         "player3Discard":          {"groupType": "discardP",   "label": "id:player3Discard",          "tableLabel": "id:playerDiscardShort"},
         "player3Threat":           {"groupType": "inPlay",     "label": "id:player3Threat",           "tableLabel": "id:playerThreatShort"},
         "player3Investigator":     {"groupType": "inPlay",     "label": "id:player3Investigator",     "tableLabel": "id:player3InvestigatorShort"},
         "player3Play":             {"groupType": "inPlay",     "label": "id:player3Play",             "tableLabel": "id:playerPlayShort"},
         "player2Hand":             {"groupType": "hand",       "label": "id:player2Hand",             "tableLabel": "id:playerHandShort"},
+        "player2ExtraDeck":        {"groupType": "deckE",      "label": "id:player2ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player2Deck":             {"groupType": "deckP",      "label": "id:player2Deck",             "tableLabel": "id:playerDeckShort"},
         "player2Discard":          {"groupType": "discardP",   "label": "id:player2Discard",          "tableLabel": "id:playerDiscardShort"},
         "player2Threat":           {"groupType": "inPlay",     "label": "id:player2Threat",           "tableLabel": "id:playerThreatShort"},
         "player2Investigator":     {"groupType": "inPlay",     "label": "id:player2Investigator",     "tableLabel": "id:player2InvestigatorShort"},
         "player2Play":             {"groupType": "inPlay",     "label": "id:player2Play",             "tableLabel": "id:playerPlayShort"},
         "player1Hand":             {"groupType": "hand",       "label": "id:player1Hand",             "tableLabel": "id:playerHandShort"},
+        "player1ExtraDeck":        {"groupType": "deckE",      "label": "id:player1ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player1Deck":             {"groupType": "deckP",      "label": "id:player1Deck",             "tableLabel": "id:playerDeckShort"},
         "player1Discard":          {"groupType": "discardP",   "label": "id:player1Discard",          "tableLabel": "id:playerDiscardShort"},
         "player1Threat":           {"groupType": "inPlay",     "label": "id:player1Threat",           "tableLabel": "id:playerThreatShort"},
@@ -133,6 +138,9 @@
         "playerHandShort": {
             "English": "Hand"
         },
+        "playerExtraDeckShort": {
+            "English": "Extra"
+        },
         "playerDeckShort": {
             "English": "Deck"
         },
@@ -172,6 +180,9 @@
         "player4Hand": {
             "English": "Player 4 Hand"
         },
+        "player4ExtraDeck": {
+            "English": "Player 4 Extra Deck"
+        },
         "player4Deck": {
             "English": "Player 4 Deck"
         },
@@ -201,6 +212,9 @@
         },
         "player3Hand": {
             "English": "Player 3 Hand"
+        },
+        "player3ExtraDeck": {
+            "English": "Player 3 Extra Deck"
         },
         "player3Deck": {
             "English": "Player 3 Deck"
@@ -232,6 +246,9 @@
         "player2Hand": {
             "English": "Player 2 Hand"
         },
+        "player2ExtraDeck": {
+            "English": "Player 2 Extra Deck"
+        },
         "player2Deck": {
             "English": "Player 2 Deck"
         },
@@ -261,6 +278,9 @@
         },
         "player1Hand": {
             "English": "Player 1 Hand"
+        },
+        "player1ExtraDeck": {
+            "English": "Player 1 Extra Deck"
         },
         "player1Deck": {
             "English": "Player 1 Deck"

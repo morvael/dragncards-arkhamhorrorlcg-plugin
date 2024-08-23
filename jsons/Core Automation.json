@@ -197,6 +197,17 @@
                 ]
             },
             {
+                "_comment": "Show or hide extra deck.",
+                "type": "trigger",
+                "listenTo": ["/playerData/*/arkhamShowExtraDeck"],
+                "condition": [
+                    ["CAN_UPDATE_EXTRA_DECK", "$TARGET.id"]
+                ],
+                "then": [
+                    ["DO_UPDATE_EXTRA_DECK", "$TARGET.id"]
+                ]
+            },
+            {
                 "_comment": "Add Location clue tokens (when entering play).",
                 "type": "trigger",
                 "listenTo": ["/cardById/*/inPlay"],
@@ -290,6 +301,13 @@
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_HAND.CONTROLLER"],
                 "{{$CONTROLLER}}Hand"
+            ]
+        },
+        "GET_CONTROLLER_EXTRA_DECK": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXTRA_DECK.CONTROLLER"],
+                "{{$CONTROLLER}}ExtraDeck"
             ]
         },
         "GET_CONTROLLER_DECK": {
@@ -640,6 +658,33 @@
                     ["VAR", "$ALIAS_I", ["SUBSTRING", "$ALIAS_I", 7, ["SUBTRACT", ["LENGTH", "$ALIAS_I"], 8]]],
                     ["SET", "/groupById/{{$PLAYER_I}}Investigator/tableLabel", "$ALIAS_I"]
                 ]]
+            ]
+        },
+        "CAN_UPDATE_EXTRA_DECK": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_UPDATE_EXTRA_DECK.TARGET_PLAYER"],
+                ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.layout.regions.playerNExtraDeck.visible", ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamShowExtraDeck", 0]]
+            ]
+        },
+        "DO_UPDATE_EXTRA_DECK": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["CAN_UPDATE_EXTRA_DECK", "$TARGET_PLAYER"],
+                    ["COND",
+                        ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.layout.regions.playerNExtraDeck.visible", false],
+                        [
+                            ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNHand/width", "36%"],
+                            ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNExtraDeck/visible", true]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNExtraDeck/visible", false],
+                            ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNHand/width", "44%"]
+                        ]
+                    ]
+                ]
             ]
         },
         "DO_APPEND_CARD_INFO": {

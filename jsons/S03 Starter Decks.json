@@ -257,10 +257,7 @@
                         "then": [
                             ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
                             ["COND",
-                                ["AND",
-                                    ["GREATER_THAN", "$STARTING_CARDS", 0],
-                                    ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$THIS.controller"]], 0]
-                                ],
+                                ["GREATER_THAN", "$STARTING_CARDS", 0],
                                 ["DO_DRAW_CARDS_EXT", "$THIS.controller", ["GET_CONTROLLER_DECK", "$THIS.controller"], "$STARTING_CARDS", true, true, null]
                             ],
                             ["PROMPT", "$THIS.controller", "decideAboutSefinaHand1"]

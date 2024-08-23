@@ -725,6 +725,8 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamMythosPhaseCardDrawn", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopDeckCardRevealed", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamShowExtraDeck", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopExtraDeckCardRevealed", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepResourcesMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 0],
@@ -929,10 +931,7 @@
             "code": [
                 ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
                 ["COND",
-                    ["AND",
-                        ["GREATER_THAN", "$STARTING_RESOURCES", 0],
-                        ["EQUAL", "$PLAYER_DATA.$PLAYER_I.resources", 0]
-                    ],
+                    ["GREATER_THAN", "$STARTING_RESOURCES", 0],
                     ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
                 ],
                 ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
@@ -940,22 +939,23 @@
                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", true],
                     ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 1],
                     ["TRUE"],
-                    [
-                        ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
-                        ["COND",
-                            ["AND",
-                                ["GREATER_THAN", "$STARTING_CARDS", 0],
-                                ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_HAND", "$PLAYER_I"]], 0]
-                            ],
-                            ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
-                        ],
-                        ["COND",
-                            ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
-                            ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
-                            ["TRUE"],
-                            ["STARTING_HAND_DONE"]
-                        ]
-                    ]
+                    ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
+                ]
+            ]
+        },
+        "DEFAULT_DRAW_STARTING_HAND": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
+                ["COND",
+                    ["GREATER_THAN", "$STARTING_CARDS", 0],
+                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
+                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
+                    ["TRUE"],
+                    ["STARTING_HAND_DONE"]
                 ]
             ]
         },
@@ -1143,8 +1143,8 @@
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckC", true, null]
                 ],
                 ["SET", "/roundNumber", 1],
-                ["SET", "/stepId", "I1"],
                 ["SET", "/arkhamScenarioInit", false],
+                ["SET", "/stepId", "I1"],
                 ["DO_REFRESH_ALL_STORIES"],
                 ["SCENARIO_INIT_RESOURCES"],
                 ["SCENARIO_INIT_CLUES"],

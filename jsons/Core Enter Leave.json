@@ -33,7 +33,7 @@
             },
             {
                 "type": "trigger",
-                "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player4Deck/stackIds"],
+                "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player1ExtraDeck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player2ExtraDeck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player3ExtraDeck/stackIds", "/groupById/player4Deck/stackIds", "/groupById/player4ExtraDeck/stackIds"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$TARGET"]
                 ],
@@ -49,6 +49,16 @@
                 ],
                 "then": [
                     ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
+                ]
+            },
+            {
+                "type": "trigger",
+                "listenTo": ["/playerData/*/arkhamPlayWithTopExtraDeckCardRevealed"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
                 ]
             },
             {
@@ -143,7 +153,7 @@
             ]
         },
         "GET_DESIRED_ENTER_SIDE": {
-            "_comment": "deckP groups left out as currentSide there is controlled by stackIds listener",
+            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$NEW_GROUP"],
             "code": [
                 ["COND",
@@ -170,11 +180,14 @@
             ]
         },
         "GET_DESIRED_CURRENT_SIDE": {
-            "_comment": "deckP groups left out as currentSide there is controlled by stackIds listener",
+            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
             "code": [
                 ["COND",
-                    ["EQUAL", "$NEW_GROUP.groupType", "deckP"],
+                    ["OR",
+                        ["EQUAL", "$NEW_GROUP.groupType", "deckP"],
+                        ["EQUAL", "$NEW_GROUP.groupType", "deckE"]
+                    ],
                     null,
                     ["TRUE"],
                     [
@@ -564,12 +577,20 @@
                 ["COND",
                     ["EQUAL", "$TARGET_GROUP.id", "player1Deck"],
                     "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player1ExtraDeck"],
+                    "$PLAYER_DATA.player1.arkhamPlayWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player2Deck"],
                     "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player2ExtraDeck"],
+                    "$PLAYER_DATA.player2.arkhamPlayWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player3Deck"],
                     "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player3ExtraDeck"],
+                    "$PLAYER_DATA.player3.arkhamPlayWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player4Deck"],
                     "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
+                    ["EQUAL", "$TARGET_GROUP.id", "player4ExtraDeck"],
+                    "$PLAYER_DATA.player4.arkhamPlayWithTopExtraDeckCardRevealed",
                     ["TRUE"],
                     0
                 ]
