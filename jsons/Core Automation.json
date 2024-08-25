@@ -197,6 +197,25 @@
                 ]
             },
             {
+                "_comment": "Poke attachedCount listeners.",
+                "type": "trigger",
+                "listenTo": ["/cardById/*/attachmentDirection"],
+                "condition": [
+                    ["NOT_EQUAL", ["PREV", "$TARGET.attachmentDirection"], "$TARGET.attachmentDirection"]
+                ],
+                "then": [
+                    ["VAR", "$PARENT_ID", "$TARGET.parentCardId"],
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$PARENT_ID", null],
+                            ["NOT_EQUAL", "$PARENT_ID", ""],
+                            ["NOT_EQUAL", "$PARENT_ID", "$TARGET.id"]
+                        ],
+                        ["SET", "/cardById/$PARENT_ID/attachedCount", "$CARD_BY_ID.$PARENT_ID.attachedCount"]
+                    ]
+                ]
+            },
+            {
                 "_comment": "Show or hide extra deck.",
                 "type": "trigger",
                 "listenTo": ["/playerData/*/arkhamShowExtraDeck"],

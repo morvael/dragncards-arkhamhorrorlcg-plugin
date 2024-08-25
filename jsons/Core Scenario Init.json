@@ -751,7 +751,6 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
-                            ["SET", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 0],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                             ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
@@ -778,7 +777,6 @@
                                 ["DO_SPAWN_BONDED" , "$CARD.sides.A.databaseId", "$PLAYER_I"]
                             ]],
                             ["SET", "/playerData/$PLAYER_I/arkhamPlayerInPlay", true],
-                            ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 1],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
                                 ["EQUAL", "$CARD.sides.A.type", "Key"]

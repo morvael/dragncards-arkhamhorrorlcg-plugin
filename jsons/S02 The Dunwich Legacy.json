@@ -143,21 +143,18 @@
     },
     "automation": {
         "cards": {
-            "02037": {
-                "_comment": "Indebted",
+            "02037": { //Indebted
                 "rules": [
                     {
-                        "_comment": "Decreases starting resources",
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.arkhamPlayerId", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"],
+                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
                         ],
                         "then": [
+                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     }
