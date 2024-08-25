@@ -165,62 +165,55 @@
     },
     "automation": {
         "cards": {
-            "02003": {
-                "_comment": "Jenny Barnes",
+            "02003": { //Jenny Barnes: The Dilettante
                 "rules": [
                     {
-                        "_comment": "Set upkeep resource bonus",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
+                        "onDo": [
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ]
                     }
                 ]
             },
-            "98001": {
-                "_comment": "Jenny Barnes (promo)",
+            "98001": { //Jenny Barnes: The Dilettante (promo)
                 "rules": [
                     {
-                        "_comment": "Set upkeep resource bonus",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
+                        "onDo": [
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ]
                     }
                 ]
             },
-            "02014": {
-                "_comment": "\"Ashcan\" Pete & Duke",
+            "02005": { //"Ashcan" Pete: The Drifter
                 "rules": [
                     {
-                        "_comment": "Put Duke into play",
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"],
+                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
                         ],
                         "then": [
-                            ["MOVE_CARD", "$THIS.id", ["GET_CONTROLLER_PLAY", "$THIS.controller"], -1]
+                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
                 ]

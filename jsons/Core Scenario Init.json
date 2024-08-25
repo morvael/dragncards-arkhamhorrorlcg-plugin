@@ -131,10 +131,7 @@
         "DO_BEGIN_WITH_CARD_IN_PLAY": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME"],
             "code": [
-                ["COND",
-                    ["NOT_EQUAL", "$TARGET_PLAYER", "shared"],
-                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null]
-                ]
+                ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null]
             ]
         },
         "DO_PULL_PLAYER_DECK_CARD_SCN": {
@@ -752,7 +749,7 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
-                            ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", false],
+                            ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 0],
@@ -955,7 +952,7 @@
                 ],
                 ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
                 ["COND",
-                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", true],
+                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", 0],
                     ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 1],
                     ["TRUE"],
                     ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]

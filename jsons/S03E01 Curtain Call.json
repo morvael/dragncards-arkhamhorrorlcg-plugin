@@ -44,6 +44,11 @@
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["VAR", "$SECOND_ACTS", ["SHUFFLE_LIST", ["LIST", "03047a", "03047b", "03047c"]]],  //The Stranger, The Stranger, The Stranger
             ["DO_CREATE_STORY_CARD_SCN", "The Stranger", "$SECOND_ACTS.[0]", 1, "sharedActStory"],
+            ["VAR", "$LOLA", ["GET_NAMED_CARD", "Lola Hayes"]],
+            ["COND",
+                ["NOT_EQUAL", "$LOLA", null],
+                ["SET", "/playerData/$LOLA.controller/arkhamCustomSpawnLocation", "Backstage"]
+            ],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
             ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B."],
             ["SCENARIO_INIT_CONTINUE", null]

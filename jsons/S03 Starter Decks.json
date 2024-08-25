@@ -205,53 +205,48 @@
     },
     "automation": {
         "cards": {
-            "03009": {
-                "_comment": "Mark Harrigan & Sophie",
+            "03001": { //Mark Harrigan: The Soldier
                 "rules": [
                     {
-                        "_comment": "Put Sophie into play",
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_DECK", "$THIS.controller"]]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"],
+                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
                         ],
                         "then": [
-                            ["MOVE_CARD", "$THIS.id", ["GET_CONTROLLER_PLAY", "$THIS.controller"], -1]
+                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
                 ]
             },
-            "03003": {
-                "_comment": "Sefina Rousseau",
+            "03003": { //Sefina Rousseau: The Painter
                 "rules": [
                     {
-                        "_comment": "Set custom draw mode flag",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
-                            ["SET", "/playerData/$THIS.controller/arkhamCustomDraw", true]
+                        "onDo": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1]
                         ]
                     },
                     {
-                        "_comment": "Perform custom draw",
                         "type": "trigger",
                         "listenTo": ["/playerData/*/arkhamEventCustomDraw"],
                         "condition": [
                             ["AND",
+                                ["EQUAL", "$THIS.inPlay", true],
+                                ["IS_VALID_PLAYER", "$THIS.controller"],
                                 ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventCustomDraw", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
+                                ["GREATER_THAN", "$TARGET.arkhamEventCustomDraw", 0]
                             ]
                         ],
                         "then": [
@@ -265,56 +260,38 @@
                     }
                 ]
             },
-            "03004": {
-                "_comment": "Akachi Onyele",
+            "03004": { //Akachi Onyele: The Shaman
                 "rules": [
                     {
-                        "_comment": "Set Uses (charges) bonus",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
+                        "onDo": [
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ]
                     }
                 ]
             },
-            "03006": {
-                "_comment": "Lola Hayes",
+            "03006": { //Lola Hayes: The Actress
                 "rules": [
                     {
-                        "_comment": "Create Lola Hayes Role card and set custom spawn location if needed",
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"],
+                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
                         ],
                         "then": [
+                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
                             ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
-                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"],
-                            ["COND",
-                                ["OR",
-                                    ["AND",
-                                        ["EQUAL", "$GAME.arkhamCampaignName", "The Path to Carcosa"],
-                                        ["EQUAL", "$GAME.arkhamScenarioName", "Curtain Call"]
-                                    ],
-                                    ["AND",
-                                        ["EQUAL", "$GAME.arkhamCampaignName", "Return to The Path to Carcosa"],
-                                        ["EQUAL", "$GAME.arkhamScenarioName", "Return to Curtain Call"]
-                                    ]
-                                ],
-                                ["SET", "/playerData/$THIS.controller/arkhamCustomSpawnLocation", "Backstage"]
-                            ]
+                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
                         ]
                     }
                 ]
@@ -381,7 +358,7 @@
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     [
-                        ["DO_LOG", true, "$TARGET_PLAYER", "$TARGET_PLAYER", "place events beneath Sefina Rousseau.", "places events beneath Sefina Rousseau."],
+                        ["DO_FLOG", "{0:P} places events beneath {0:I}.", ["LIST", "$TARGET_PLAYER"]],
                         ["VAR", "$EVENTS", 0],
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
@@ -412,7 +389,7 @@
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     [
-                        ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " discards ", ["LENGTH", "$SELECTED_CARDS"], " of {{$CARDS_TO_DISCARD}} excess card(s) from hand."],
+                        ["DO_FLOG", "{0:P} discards {1:L} of {2} excess card{2:S} from hand.", ["LIST", "$TARGET_PLAYER", "$SELECTED_CARDS", "$CARDS_TO_DISCARD"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                         ]]
@@ -424,7 +401,7 @@
                     ["GREATER_THAN", "$CARDS_IN_HAND", "$CARDS_KEPT"],
                     [
                         ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", "$CARDS_KEPT"]],
-                        ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", "$CARDS_TO_DISCARD"]
+                        ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", ["DO_FORMAT_STRING", "{0} excess card{0:S}", ["LIST", "$CARDS_TO_DISCARD"]], "$CARDS_TO_DISCARD"]
                     ],
                     ["TRUE"],
                     ["STARTING_HAND_DONE"]
@@ -465,7 +442,7 @@
     "prompts": {
         "decideAboutSefinaHand1": {
             "args": [],
-            "message": "Target cards in hand. First 5 event cards will be placed beneath Sefina Rousseau.",
+            "message": "Target cards in hand. First 5 events will be placed beneath Sefina Rousseau.",
             "options": [
                 {
                     "label": "Proceed.",
@@ -477,8 +454,8 @@
             ]
         },
         "decideAboutSefinaHand2": {
-            "args": ["$CARDS_TO_DISCARD"],
-            "message": "You should discard {{$CARDS_TO_DISCARD}} excess card(s) from hand. Target cards to discard.",
+            "args": ["$MESSAGE", "$CARDS_TO_DISCARD"],
+            "message": "You should discard {{$MESSAGE}} from hand. Target cards to discard.",
             "options": [
                 {
                     "label": "Proceed.",

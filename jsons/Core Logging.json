@@ -1,5 +1,16 @@
 {
     "functions": {
+        "IS_VALID_PLAYER": {
+            "args": ["$PLAYER"],
+            "code": [
+                ["OR",
+                    ["EQUAL", "$PLAYER", "player1"],
+                    ["EQUAL", "$PLAYER", "player2"],
+                    ["EQUAL", "$PLAYER", "player3"],
+                    ["EQUAL", "$PLAYER", "player4"]
+                ]
+            ]
+        },
         "VALIDATE_NOT_NULL": {
             "args": ["$PARAM", "$DESCRIPTION"],
             "code": [
@@ -220,6 +231,10 @@
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":G}"]]],
                                 ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":G\\}"]], "$ARG.label"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":L}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":L\\}"]], ["LENGTH", "$ARG"]]]
                             ],
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":S}"]]],

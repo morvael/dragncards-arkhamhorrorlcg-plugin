@@ -1,42 +1,38 @@
 {
     "automation": {
         "cards": {
-            "08004": {
-                "_comment": "Norman Withers",
+            "08004": { //Norman Withers: The Astronomer
                 "rules": [
                     {
-                        "_comment": "Set deck reveal flag",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
+                        "onDo": [
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
                 ]
             },
-            "98007": {
-                "_comment": "Norman Withers (promo)",
+            "98007": { //Norman Withers: The Astronomer (promo)
                 "rules": [
                     {
-                        "_comment": "Set deck reveal flag",
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventPutCardsIntoPlay"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventPutCardsIntoPlay", 0],
-                                ["EQUAL", "$THIS.groupId", ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"]]
-                            ]
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
                         ],
-                        "then": [
+                        "onDo": [
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
                 ]

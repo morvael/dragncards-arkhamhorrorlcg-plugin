@@ -165,17 +165,13 @@
     },
     "automation": {
         "cards": {
-            "04005": {
-                "_comment": "Calvin Wright",
+            "04005": { //Calvin Wright: The Haunted
                 "rules": [
                     {
-                        "_comment": "Set damage dependent skills",
                         "type": "trigger",
-                        "listenTo": ["/cardById/*/tokens/damage"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.id"]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
+                        "condition": ["AND",
+                            ["TRUE"]
                         ],
                         "then": [
                             ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$TARGET.tokens.damage"],
@@ -183,13 +179,10 @@
                         ]
                     },
                     {
-                        "_comment": "Set horror dependent skills",
                         "type": "trigger",
-                        "listenTo": ["/cardById/*/tokens/horror"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$TARGET.id", "$THIS.id"]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
+                        "condition": ["AND",
+                            ["TRUE"]
                         ],
                         "then": [
                             ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$TARGET.tokens.horror"],
