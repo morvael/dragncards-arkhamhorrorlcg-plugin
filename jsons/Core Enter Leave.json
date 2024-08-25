@@ -23,6 +23,16 @@
             },
             {
                 "type": "trigger",
+                "listenTo": ["/playerData/*/arkhamPlayerInPlay"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
+                ]
+            },
+            {
+                "type": "trigger",
                 "listenTo": ["/arkhamOffMapNotInPlay"],
                 "condition": [
                     ["CAN_REFRESH_OFF_MAP"]
@@ -427,7 +437,18 @@
                         ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
                         ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
                     ],
-                    true,
+                    ["COND",
+                        ["IN_STRING", "$NEW_GROUP.id", "player1"],
+                        ["EQUAL", "$PLAYER_DATA.player1.arkhamPlayerInPlay", true],
+                        ["IN_STRING", "$NEW_GROUP.id", "player2"],
+                        ["EQUAL", "$PLAYER_DATA.player2.arkhamPlayerInPlay", true],
+                        ["IN_STRING", "$NEW_GROUP.id", "player3"],
+                        ["EQUAL", "$PLAYER_DATA.player3.arkhamPlayerInPlay", true],
+                        ["IN_STRING", "$NEW_GROUP.id", "player4"],
+                        ["EQUAL", "$PLAYER_DATA.player4.arkhamPlayerInPlay", true],
+                        ["TRUE"],
+                        true
+                    ],
                     ["TRUE"],
                     false
                 ]
@@ -549,14 +570,36 @@
                 ["DO_CHANGE_IN_PLAY", "$TARGET_CARD", "$NEW_GROUP"]
             ]
         },
+        "CAN_REFRESH_PLAYER_CARDS_IN_PLAY": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VAR", "$SELECTED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.groupId", "$TARGET_PLAYER.id"],
+                    ["CAN_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]],
+                ["NOT_EQUAL", "$SELECTED_CARD", null]
+            ]
+        },
+        "DO_REFRESH_PLAYER_CARDS_IN_PLAY": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.groupId", "$TARGET_PLAYER.id"],
+                    ["CAN_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_REFRESH_CARD_IN_PLAY", "$CARD"]
+                ]]
+            ]
+        },
         "CAN_REFRESH_OFF_MAP": {
             "args": [],
             "code": [
-                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["VAR", "$SELECTED_CARD", ["ONE_CARD", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "sharedOffMap"],
                     ["CAN_REFRESH_CARD_IN_PLAY", "$CARD"]
                 ]]],
-                ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
+                ["NOT_EQUAL", "$SELECTED_CARD", null]
             ]
         },
         "DO_REFRESH_OFF_MAP": {

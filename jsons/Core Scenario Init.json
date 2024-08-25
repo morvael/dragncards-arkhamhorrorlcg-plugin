@@ -93,21 +93,30 @@
         "DO_MOVE_NAMED_DECK_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_NAMED_DECK_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_MOVE_NAMED_DECK_CARDS.TARGET_NAME"],
+                ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "DO_MOVE_NAMED_DECK_CARDS.SOURCE_GROUP_ID"]],
+                ["VALIDATE_GT0", "$TARGET_QUANTITY", "DO_MOVE_NAMED_DECK_CARDS.TARGET_QUANTITY"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_NAMED_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_NAMED_DECK_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "$SOURCE_GROUP_ID"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
-                    ["AND",
-                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
-                        ["NOT_EQUAL", "$TARGET_NAME", null],
-                        ["NOT_EQUAL", "$SOURCE_GROUP_ID", null],
-                        ["NOT_EQUAL", "$TARGET_QUANTITY", null],
-                        ["GREATER_THAN", "$TARGET_QUANTITY", 0],
-                        ["NOT_EQUAL", "$TARGET_GROUP_ID", null]
-                    ],
+                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
                     [
-                        ["VAR", "$TARGET_CARD", ["GET_NAMED_DECK_CARD", "$TARGET_NAME", "$SOURCE_GROUP_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_QUANTITY}}x {{$TARGET_CARD.sides.A.name}} from {{$GROUP_BY_ID.$SOURCE_GROUP_ID.label}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "moves {{$TARGET_QUANTITY}}x {{$TARGET_CARD.sides.A.name}} from {{$GROUP_BY_ID.$SOURCE_GROUP_ID.label}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
+                        ["VAR", "$TARGET_CARD", "$SELECTED_CARDS.[0]"],
+                        ["COND",
+                            ["GREATER_THAN", "$TARGET_QUANTITY", "$SELECTED_COUNT"],
+                            ["UPDATE_VAR", "$TARGET_QUANTITY", "$SELECTED_COUNT"]
+                        ],
+                        ["COND",
+                            ["GREATER_THAN", "$TARGET_QUANTITY", 1],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_QUANTITY}}x {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "moves {{$TARGET_QUANTITY}}x {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."],
+                            ["TRUE"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "moves {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."]
+                        ],
                         ["FOR_EACH_START_STOP_STEP", "$I", 0, "$TARGET_QUANTITY", 1, [
-                            ["VAR", "$NAMED_CARD", ["GET_NAMED_DECK_CARD", "$TARGET_NAME", "$SOURCE_GROUP_ID"]],
-                            ["MOVE_CARD", "$NAMED_CARD.id", "$TARGET_GROUP_ID", -1]
+                            ["MOVE_CARD", "$SELECTED_CARDS.[$I].id", "$TARGET_GROUP_ID", -1]
                         ]]
                     ]
                 ]
@@ -117,6 +126,15 @@
             "args": ["$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
             "code": [
                 ["DO_MOVE_NAMED_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_BEGIN_WITH_CARD_IN_PLAY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME"],
+            "code": [
+                ["COND",
+                    ["NOT_EQUAL", "$TARGET_PLAYER", "shared"],
+                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null]
+                ]
             ]
         },
         "DO_PULL_PLAYER_DECK_CARD_SCN": {
@@ -762,6 +780,7 @@
                             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                 ["DO_SPAWN_BONDED" , "$CARD.sides.A.databaseId", "$PLAYER_I"]
                             ]],
+                            ["SET", "/playerData/$PLAYER_I/arkhamPlayerInPlay", true],
                             ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventPutCardsIntoPlay", 1],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],

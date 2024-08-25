@@ -172,6 +172,107 @@
                 ]],
                 "{{$PREFIX}}{{$MESSAGE}}{{$SUFFIX}}"
             ]
+        },
+        "DO_FORMAT_STRING": {
+            "args": ["$FORMAT_STRING", "$ARGS"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$FORMAT_STRING", "DO_FORMAT_STRING.FORMAT_STRING"],
+                ["COND",
+                    ["NOT_EQUAL", "$ARGS", null],
+                    [
+                        ["VAR", "$LEN", ["LENGTH", "$ARGS"]],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, "$LEN", 1, [
+                            ["VAR", "$ARG", "$ARGS.[$I]"],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", "}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", "\\}"]], "{{$ARG}}"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":P}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":P\\}"]], ["GET_ALIAS", "$ARG"]]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":I}"]]],
+                                [
+                                    ["VAR", "$VAL", ""],
+                                    ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$ARG"]],
+                                    ["COND",
+                                        ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
+                                        ["UPDATE_VAR", "$VAL", "$MINI_INVESTIGATOR.sides.A.name"],
+                                        ["TRUE"],
+                                        [
+                                            ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$ARG"]],
+                                            ["COND",
+                                                ["NOT_EQUAL", "$INVESTIGATOR", null],
+                                                ["UPDATE_VAR", "$VAL", ["REGEX_REPLACE", "$INVESTIGATOR.sides.A.name", ":.+", ""]],
+                                                ["TRUE"],
+                                                ["UPDATE_VAR", "$VAL", ["JOIN_STRING", ["GET_ALIAS", "$ARG"], "'s investigator"]]
+                                            ]
+                                        ]
+                                    ],
+                                    ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":I\\}"]], "$VAL"]]
+                                ]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":C}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":C\\}"]], "$ARG.currentFace.name"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":G}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":G\\}"]], "$ARG.label"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":S}"]]],
+                                [
+                                    ["VAR", "$VAL", "s"],
+                                    ["COND",
+                                        ["EQUAL", "$ARG", 1],
+                                        ["UPDATE_VAR", "$VAL", ""]
+                                    ],
+                                    ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":S\\}"]], "$VAL"]]
+                                ]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":CA}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":CA\\}"]], "$ARG.sides.A.name"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":CB}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":CB\\}"]], "$ARG.sides.B.name"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":CID}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":CID\\}"]], "$CARD_BY_ID.$ARG.currentFace.name"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":GID}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":GID\\}"]], "$GROUP_BY_ID.$ARG.label"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":CIDA}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":CIDA\\}"]], "$CARD_BY_ID.$ARG.sides.A.name"]]
+                            ],
+                            ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":CIDB}"]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":CIDB\\}"]], "$CARD_BY_ID.$ARG.sides.B.name"]]
+                            ]
+                        ]]
+                    ]
+                ],
+                "$FORMAT_STRING"
+            ]
+        },
+        "DO_FLOG": {
+            "args": ["$FORMAT_STRING", "$ARGS"],
+            "code": [
+                ["LOG", ["DO_FORMAT_STRING", "$FORMAT_STRING", "$ARGS"]]
+            ]
+        },
+        "DO_FSYSLOG": {
+            "args": ["$FORMAT_STRING", "$ARGS"],
+            "code": [
+                ["LOG", "└── ", ["DO_FORMAT_STRING", "$FORMAT_STRING", "$ARGS"]]
+            ]
         }
     }
 }

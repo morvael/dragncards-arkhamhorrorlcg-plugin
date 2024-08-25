@@ -272,7 +272,8 @@
                 ]],
                 ["SET", "/playerData/$TARGET_PLAYER/resources", 0],
                 ["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", true],
-                ["SET", "/cardById/$TARGET_CARD_ID/eliminated", true]
+                ["SET", "/cardById/$TARGET_CARD_ID/eliminated", true],
+                ["SET", "/playerData/$TARGET_PLAYER/arkhamPlayerInPlay", false]
             ]
         },
         "GET_ACTIVE_MINI_INVESTIGATORS": {
