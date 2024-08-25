@@ -319,6 +319,24 @@
                         ]
                     }
                 ]
+            },
+            "05276": { //Studious
+                "rules": [
+                    {
+                        "type": "passive",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["AND",
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["IS_VALID_PLAYER", "$THIS.controller"]
+                        ],
+                        "onDo": [
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                        ],
+                        "offDo": [
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                        ]
+                    }
+                ]
             }
         }
     },
