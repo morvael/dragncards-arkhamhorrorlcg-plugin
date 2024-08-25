@@ -7,6 +7,14 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_BONDED.TARGET_PLAYER"],
                 ["VAR", "$TARGET_PLAYER_ASIDE", ["GET_CONTROLLER_ASIDE", "$TARGET_PLAYER"]],
                 ["COND",
+                    ["EQUAL", "$DATABASE_ID", "05313"],
+                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Soothing Melody", "05314", 3, "$TARGET_PLAYER_ASIDE", true, null],
+                    ["EQUAL", "$DATABASE_ID", "05316"],
+                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Blood-Rite", "05317", 3, "$TARGET_PLAYER_ASIDE", true, null],
+                    ["EQUAL", "$DATABASE_ID", "54002"],
+                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Soothing Melody", "05314", 3, "$TARGET_PLAYER_ASIDE", true, null],
+                    ["EQUAL", "$DATABASE_ID", "54004"],
+                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Blood-Rite", "05317", 3, "$TARGET_PLAYER_ASIDE", true, null],
                     ["TRUE"],
                     "$GAME"
                 ]

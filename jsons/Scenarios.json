@@ -56,6 +56,17 @@
                         ]
                     },
                     {
+                        "label": "id:theCircleUndone",
+                        "deckLists": [
+                            {"label": "id:carolynFernStarterDeck", "deckListId": "Carolyn Fern Starter Deck"},
+                            {"label": "id:joeDiamondStarterDeck", "deckListId": "Joe Diamond Starter Deck"},
+                            {"label": "id:prestonFairmontStarterDeck", "deckListId": "Preston Fairmont Starter Deck"},
+                            {"label": "id:dianaStanleyStarterDeck", "deckListId": "Diana Stanley Starter Deck"},
+                            {"label": "id:ritaYoungStarterDeck", "deckListId": "Rita Young Starter Deck"},
+                            {"label": "id:marieLambeauStarterDeck", "deckListId": "Marie Lambeau Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -257,6 +268,24 @@
         "calvinWrightStarterDeck": {
             "English": "Calvin Wright Starter Deck"
         },
+        "carolynFernStarterDeck": {
+            "English": "Carolyn Fern Starter Deck"
+        },
+        "joeDiamondStarterDeck": {
+            "English": "Joe Diamond Starter Deck"
+        },
+        "prestonFairmontStarterDeck": {
+            "English": "Preston Fairmont Starter Deck"
+        },
+        "dianaStanleyStarterDeck": {
+            "English": "Diana Stanley Starter Deck"
+        },
+        "ritaYoungStarterDeck": {
+            "English": "Rita Young Starter Deck"
+        },
+        "marieLambeauStarterDeck": {
+            "English": "Marie Lambeau Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -376,6 +405,9 @@
         },
         "turnBackTime": {
             "English": "Secret Scenario IX"
+        },
+        "theCircleUndone": {
+            "English": "The Circle Undone"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
