@@ -1,0 +1,150 @@
+{
+    // Dynamic events helper methods.
+    "functions": {
+        // Initializes game EVENT variables in GAME data.
+        "INIT_EVENT": {
+            "args": ["$EVENT"],
+            "code": [
+                ["SET", "/arkhamGameEvent{{$EVENT}}Listeners", 0],
+                ["SET", "/arkhamGameEvent{{$EVENT}}", 0]
+            ]
+        },
+        // Registers ABILITY on CARD to respond to game EVENT.
+        "REGISTER_ON_EVENT": {
+            "args": ["$CARD", "$EVENT", {"$ABILITY": 0}],
+            "code": [
+                ["INCREASE_VAL", "/arkhamGameEvent{{$EVENT}}Listeners", 1],
+                ["SET", "/cardById/$CARD.id/arkhamGameEvent{{$EVENT}}Listener{{$ABILITY}}", "$GAME.arkhamGameEvent{{$EVENT}}Listeners"]
+            ]
+        },
+        // Returns true if game EVENT can be signalled.
+        "CAN_SIGNAL_EVENT": {
+            "args": ["$EVENT"],
+            "code": [
+                ["LESS_THAN", "$GAME.arkhamGameEvent{{$EVENT}}", "$GAME.arkhamGameEvent{{$EVENT}}Listeners"]
+            ]
+        },
+        // Signals game EVENT.
+        "SIGNAL_EVENT": {
+            "args": ["$EVENT"],
+            "code": [
+                ["INCREASE_VAL", "/arkhamGameEvent{{$EVENT}}", 1],
+                ["SET", "/arkhamGameEvent", "$EVENT"]
+            ]
+        },
+        // Kills game EVENT, so it doesn't trigger again.
+        "KILL_EVENT": {
+            "args": ["$EVENT"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.arkhamGameEvent{{$EVENT}}", "$GAME.arkhamGameEvent{{$EVENT}}Listeners"],
+                    ["INCREASE_VAL", "/arkhamGameEvent{{$EVENT}}", 1]
+                ]
+            ]
+        },
+        // Initializes player EVENT variables in PLAYER data.
+        "INIT_PLAYER_EVENT": {
+            "args": ["$PLAYER", "$EVENT"],
+            "code": [
+                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}Listeners", 0],
+                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 0]
+            ]
+        },
+        // Registers ABILITY on CARD to respond to player EVENT for CARD's controller.
+        "REGISTER_ON_PLAYER_EVENT": {
+            "args": ["$CARD", "$EVENT", {"$ABILITY": 0}],
+            "code": [
+                ["INCREASE_VAL", "/playerData/$CARD.controller/arkhamPlayerEvent{{$EVENT}}Listeners", 1],
+                ["SET", "/cardById/$CARD.id/arkhamPlayerEvent{{$EVENT}}Listener{{$ABILITY}}", "$PLAYER_DATA.{{$CARD.controller}}.arkhamPlayerEvent{{$EVENT}}Listeners"]
+            ]
+        },
+        // Returns true if PLAYER's player EVENT can be signalled.
+        "CAN_SIGNAL_PLAYER_EVENT": {
+            "args": ["$PLAYER", "$EVENT"],
+            "code": [
+                ["LESS_THAN", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}Listeners"]
+            ]
+        },
+        // Signals PLAYER's player EVENT.
+        "SIGNAL_PLAYER_EVENT": {
+            "args": ["$PLAYER", "$EVENT"],
+            "code": [
+                ["INCREASE_VAL", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 1],
+                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent", "$EVENT"]
+            ]
+        },
+        // Kills PLAYER player EVENT, so it doesn't trigger again.
+        "KILL_PLAYER_EVENT": {
+            "args": ["$PLAYER", "$EVENT"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}Listeners"],
+                    ["INCREASE_VAL", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 1]
+                ]
+            ]
+        },
+        // Sets the flag blocking TRIGGER_IN_PLAY_ANY from returning true for ABILITY on CARD.
+        "CARD_ABILITY_ON": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                ["SET", "/cardById/$CARD.id/arkhamAbilityOn{{$ABILITY}}", true]
+            ]
+        },
+        // Unsets the flag blocking TRIGGER_IN_PLAY_ANY from returning true for ABILITY on CARD.
+        "CARD_ABILITY_OFF": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                ["UNSET", "/cardById/$CARD.id/arkhamAbilityOn{{$ABILITY}}"]
+            ]
+        },
+        // Returns true if the ABILITY on CARD in play may trigger.
+        // Standard listener: "/cardById/$THIS_ID/inPlay"
+        "TRIGGER_IN_PLAY_ANY": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["NOT_EQUAL", "$CARD.arkhamAbilityOn{{$ABILITY}}", true]
+                ]
+            ]
+        },
+        // Extends TRIGGER_IN_PLAY_ANY: EVENT must happen, it is the ABILITY on CARD turn to respond.
+        // Standard listener: "/arkhamGameEvent"
+        "TRIGGER_ON_EVENT": {
+            "args": ["$PLAYER", "$CARD", "$EVENT", {"$ABILITY": 0}],
+            "code": [
+                ["AND",
+                    ["TRIGGER_IN_PLAY_ANY", "$CARD", "$ABILITY"],
+                    ["EQUAL", "$GAME.arkhamGameEvent", "$EVENT"],
+                    ["GREATER_THAN", "$GAME.arkhamGameEvent{{$EVENT}}", 0],
+                    ["EQUAL", "$GAME.arkhamGameEvent{{$EVENT}}", "$CARD.arkhamGameEvent{{$EVENT}}Listener{{$ABILITY}}"]
+                ]
+            ]
+        },
+        // Extends TRIGGER_IN_PLAY_ANY: CARD must be controlled by valid player.
+        // Standard listener: "/cardById/$THIS_ID/inPlay"
+        "TRIGGER_IN_PLAY": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                ["AND",
+                    ["TRIGGER_IN_PLAY_ANY", "$CARD", "$ABILITY"],
+                    ["IS_VALID_PLAYER", "$CARD.controller"]
+                ]
+            ]
+        },
+        // Extends TRIGGER_IN_PLAY: EVENT must happen for PLAYER, CARD must be controlled by PLAYER, it is the ABILITY on CARD turn to respond.
+        // Standard listener: "/playerData/*/arkhamPlayerEvent"
+        "TRIGGER_ON_PLAYER_EVENT": {
+            "args": ["$PLAYER", "$CARD", "$EVENT", {"$ABILITY": 0}],
+            "code": [
+                ["AND",
+                    ["TRIGGER_IN_PLAY", "$CARD", "$ABILITY"],
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent", "$EVENT"],
+                    ["EQUAL", "$CARD.controller", "$PLAYER"],
+                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", 0],
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", "$CARD.arkhamPlayerEvent{{$EVENT}}Listener{{$ABILITY}}"]
+                ]
+            ]
+        }
+    }
+}

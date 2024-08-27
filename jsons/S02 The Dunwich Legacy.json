@@ -148,13 +148,9 @@
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"],
-                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     }

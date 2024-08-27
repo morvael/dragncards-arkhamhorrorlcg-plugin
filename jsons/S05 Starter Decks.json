@@ -38,6 +38,7 @@
         "Joe Diamond Starter Deck": {
             "label": "Joe Diamond Starter Deck",
             "cards": [
+                {"databaseId": "03264", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "05002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -210,33 +211,21 @@
             "05002": { //Joe Diamond: The Private Investigator
                 "rules": [
                     {
-                        "type": "passive",
+                        "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
-                        "onDo": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "BeforeDraw", 1],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
-                        ],
-                        "offDo": [
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
                         ]
                     },
                     {
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventCustomDraw"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$THIS.inPlay", true],
-                                ["IS_VALID_PLAYER", "$THIS.controller"],
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventCustomDraw", 0]
-                            ]
-                        ],
+                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
                         "then": [
+                            ["CARD_ABILITY_ON", "$THIS", 1],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
@@ -249,16 +238,16 @@
                                 ["NOT_EQUAL", "$UNSOLVED_CASE", null],
                                 ["MOVE_CARD", "$UNSOLVED_CASE.id", "$EXTRA_GROUP_ID", -1]
                             ],
-                            ["VAR", "$INSIGHT_EVENTS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
                                 ["EQUAL", "$CARD.sides.A.type", "Event"],
                                 ["IN_STRING", "$CARD.sides.A.traits", "Insight."]
                             ]]],
                             ["COND",
-                                ["LESS_EQUAL", ["LENGTH", "$INSIGHT_EVENTS"], 10],
+                                ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 10],
                                 [
                                     ["DO_FSYSLOG", "{0:P} places Insight events in their “hunch deck”.", ["LIST", "$TARGET_PLAYER"]],
-                                    ["FOR_EACH_VAL", "$CARD", "$INSIGHT_EVENTS", [
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                         ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
                                     ]],
                                     ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
@@ -267,8 +256,8 @@
                                 ],
                                 ["TRUE"],
                                 [
-                                    ["FOR_EACH_VAL", "$INSIGHT_EVENT", "$INSIGHT_EVENTS", [
-                                        ["MOVE_CARD", "$INSIGHT_EVENT.id", "$HAND_GROUP_ID", -1]
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
                                     ]],
                                     ["PROMPT", "$TARGET_PLAYER", "decideAboutJoeDiamondHand", ["DO_FORMAT_STRING", "{0} Insight event{0:S}", ["LIST", ["SUBTRACT", 11, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
                                 ]
@@ -279,8 +268,7 @@
                         "type": "passive",
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/stepId"],
                         "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"],
+                            ["TRIGGER_IN_PLAY", "$THIS", 2],
                             ["OR",
                                 ["EQUAL", "$GAME.stepId", "I1"],
                                 ["EQUAL", "$GAME.stepId", "W2"],
@@ -292,9 +280,11 @@
                             ]
                         ],
                         "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS", 2],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1]
                         ],
                         "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS", 2],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1],
                             ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
                         ]
@@ -306,9 +296,7 @@
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/attachedCount"],
-                        "condition": ["AND",
-                            ["TRUE"]
-                        ],
+                        "condition": ["TRUE"],
                         "then": [
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.parentCardId", "$THIS.id"],
@@ -325,14 +313,13 @@
                     {
                         "type": "passive",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
                         ],
                         "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
                         ]
                     }

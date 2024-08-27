@@ -170,23 +170,19 @@
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
-                        "condition": ["AND",
-                            ["TRUE"]
-                        ],
+                        "condition": ["TRUE"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$TARGET.tokens.damage"],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$TARGET.tokens.damage"]
+                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$THIS.tokens.damage"],
+                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$THIS.tokens.damage"]
                         ]
                     },
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
-                        "condition": ["AND",
-                            ["TRUE"]
-                        ],
+                        "condition": ["TRUE"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$TARGET.tokens.horror"],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$TARGET.tokens.horror"]
+                            ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$THIS.tokens.horror"],
+                            ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$THIS.tokens.horror"]
                         ]
                     }
                 ]

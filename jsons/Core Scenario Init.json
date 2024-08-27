@@ -749,9 +749,9 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
-                            ["SET", "/playerData/$PLAYER_I/arkhamCustomDraw", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
-                            ["SET", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 0],
+                            ["INIT_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
+                            ["INIT_PLAYER_EVENT", "$PLAYER_I", "Draw"],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                             ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
                             ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
@@ -949,27 +949,38 @@
                     ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
                 ],
                 ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                ["COND",
-                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER_I.arkhamCustomDraw", 0],
-                    ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamEventCustomDraw", 1],
-                    ["TRUE"],
-                    ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
-                ]
+                ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
             ]
         },
         "DEFAULT_DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
             "code": [
-                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
                 ["COND",
-                    ["GREATER_THAN", "$STARTING_CARDS", 0],
-                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
-                ],
-                ["COND",
-                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
-                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
+                    ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
+                    ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
                     ["TRUE"],
-                    ["STARTING_HAND_DONE"]
+                    [
+                        ["KILL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
+                        ["COND",
+                            ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
+                            ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
+                            ["TRUE"],
+                            [
+                                ["KILL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
+                                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
+                                ["COND",
+                                    ["GREATER_THAN", "$STARTING_CARDS", 0],
+                                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
+                                ],
+                                ["COND",
+                                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
+                                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
+                                    ["TRUE"],
+                                    ["STARTING_HAND_DONE"]
+                                ]
+                            ]
+                        ]
+                    ]
                 ]
             ]
         },

@@ -6,14 +6,13 @@
                     {
                         "type": "passive",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ],
                         "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
@@ -24,14 +23,13 @@
                     {
                         "type": "passive",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ],
                         "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }

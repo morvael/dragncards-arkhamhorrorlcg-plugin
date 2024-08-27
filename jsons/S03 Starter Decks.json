@@ -210,13 +210,9 @@
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"],
-                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
@@ -225,31 +221,20 @@
             "03003": { //Sefina Rousseau: The Painter
                 "rules": [
                     {
-                        "type": "passive",
+                        "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
-                        "onDo": [
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1]
-                        ],
-                        "offDo": [
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamCustomDraw", 1]
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "Draw", 1]
                         ]
                     },
                     {
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamEventCustomDraw"],
-                        "condition": [
-                            ["AND",
-                                ["EQUAL", "$THIS.inPlay", true],
-                                ["IS_VALID_PLAYER", "$THIS.controller"],
-                                ["EQUAL", "$TARGET.id", "$THIS.controller"],
-                                ["GREATER_THAN", "$TARGET.arkhamEventCustomDraw", 0]
-                            ]
-                        ],
+                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
+                            ["CARD_ABILITY_ON", "$THIS", 1],
                             ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
                             ["COND",
                                 ["GREATER_THAN", "$STARTING_CARDS", 0],
@@ -265,14 +250,13 @@
                     {
                         "type": "passive",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ],
                         "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ]
                     }
@@ -283,15 +267,54 @@
                     {
                         "type": "trigger",
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["AND",
-                            ["EQUAL", "$THIS.inPlay", true],
-                            ["IS_VALID_PLAYER", "$THIS.controller"],
-                            ["NOT_EQUAL", "$THIS.arkhamOneTimeEffect", true]
-                        ],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/arkhamOneTimeEffect", true],
+                            ["CARD_ABILITY_ON", "$THIS"],
                             ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
                             ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
+                        ]
+                    }
+                ]
+            },
+            "03264": { //Stick to the Plan
+                "rules": [
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "BeforeDraw", 1]
+                        ]
+                    },
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                            ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
+                                ["EQUAL", "$CARD.sides.A.type", "Event"],
+                                ["OR",
+                                    ["IN_STRING", "$CARD.sides.A.traits", "Tactic."],
+                                    ["IN_STRING", "$CARD.sides.A.traits", "Supply."]
+                                ]
+                            ]]],
+                            ["COND",
+                                ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 0],
+                                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"],
+                                ["TRUE"],
+                                [
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
+                                    ]],
+                                    ["PROMPT", "$TARGET_PLAYER", "decideAboutStickToThePlanHand", "$THIS.id"]
+                                ]
+                            ]
                         ]
                     }
                 ]
@@ -437,6 +460,46 @@
                     ]
                 ]
             ]
+        },
+        "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN.TARGET_CARD_ID"]],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_GROUP_ID", "$TARGET_PLAYER"]],
+                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["DO_FLOG", "{0:P} attaches Tactic and/or Supply events facedown to Stick to the Plan.", ["LIST", "$TARGET_PLAYER"]],
+                        ["VAR", "$EVENTS", 0],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$CARD.sides.A.type", "Event"],
+                                    ["OR",
+                                        ["IN_STRING", "$CARD.sides.A.traits", "Tactic."],
+                                        ["IN_STRING", "$CARD.sides.A.traits", "Supply."]
+                                    ],
+                                    ["LESS_THAN", "$EVENTS", 3]
+                                ],
+                                [
+                                    ["DO_FSYSLOG", "TARGET_CARD_ID '{0}': {1}", ["LIST", "$TARGET_CARD_ID", ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD_ID", null]]],
+                                    ["DO_FSYSLOG", "TARGET_CARD.id '{0}': {1}", ["LIST", "$TARGET_CARD.id", ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", null]]],
+                                    ["DO_FSYSLOG", "equal {0}", ["LIST", ["EQUAL", "$TARGET_CARD_ID", "$TARGET_CARD.id"]]],
+                                    ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", true, null],
+                                    ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", true, null],
+                                    ["INCREASE_VAR", "$EVENTS", 1]
+                                ]
+                            ]
+                        ]]
+                    ]
+                ],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$HAND_GROUP_ID", "$DECK_GROUP_ID", true, null],
+                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"]
+            ]
         }
     },
     "prompts": {
@@ -462,6 +525,19 @@
                     "hotkey": "P",
                     "code": [
                         ["DO_DISCARD_EXCESS_SEFINA_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD"]
+                    ]
+                }
+            ]
+        },
+        "decideAboutStickToThePlanHand": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "Target cards in hand. First 3 Tactic and/or Supply events will be attached facedown to Stick to the Plan.",
+            "options": [
+                {
+                    "label": "Proceed.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN", "$PLAYER_N", "$TARGET_CARD_ID"]
                     ]
                 }
             ]
