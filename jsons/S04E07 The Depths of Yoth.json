@@ -50,7 +50,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
+                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
                     ["SCENARIO_SKIP_QUESTIONS", 2, "The Depths of Yoth Scenario Early Init Continue"]
                 ],
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],

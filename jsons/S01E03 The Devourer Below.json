@@ -67,7 +67,7 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
             ],
-            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
+            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "It is past midnight.", "The above is not true."], "The Devourer Below Scenario Question 2"]
         ],
         "The Devourer Below Scenario Question 2": [

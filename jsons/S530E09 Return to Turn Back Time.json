@@ -60,7 +60,7 @@
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: Repossess the Past", "04303", "sharedNotInPlay"],
             ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
-            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing Chaos Token", "chaos_elder_thing"],
+            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
