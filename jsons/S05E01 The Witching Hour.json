@@ -1,0 +1,120 @@
+{
+    "preBuiltDecks": {
+        "The Witching Hour Scenario": {
+             "label": "The Witching Hour Scenario",
+             "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "The Circle Undone", "The Witching Hour", "The Witching Hour Scenario Early Init", "The Witching Hour Scenario Init"]
+            ]
+        },
+        "The Witching Hour": {
+            "hideFromSearch": true,
+             "label": "The Witching Hour",
+             "cards": [
+                {"databaseId": "05050", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Witching Hour
+                {"databaseId": "05051", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //TEMPERANCE • XIV
+                {"databaseId": "05052", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Night Howls
+                {"databaseId": "05053", "quantity": 1, "loadGroupId": "sharedActStory"},            //Lost in the Woods
+                {"databaseId": "05054", "quantity": 1, "loadGroupId": "sharedActStory"},            //Witch Hauntings
+                {"databaseId": "05055", "quantity": 1, "loadGroupId": "sharedActStory"},            //Paths into Twilight
+                {"databaseId": "05056", "quantity": 1, "loadGroupId": "sharedActStory"},            //A Circle Unbroken
+                {"databaseId": "05057", "quantity": 1, "loadGroupId": "sharedNotInPlay"}            //Anette Mason: The High Priestess
+            ]
+        },
+        "The Witching Hour - The Devourer Below": {
+            "hideFromSearch": true,
+            "label": "The Witching Hour - The Devourer Below",
+            "cards": [
+                {"databaseId": "01150", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Unhallowed Ground
+                {"databaseId": "01151", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Twisting Paths
+                {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Old House
+                {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Cliffside
+                {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Tangled Thicket
+                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Arkham Woods: Quiet Glade
+            ]
+        },
+        "The Witching Hour - Agents of Azathoth": {
+            "hideFromSearch": true,
+            "label": "The Witching Hour - Agents of Azathoth",
+            "cards": [
+                {"databaseId": "05088", "quantity": 1, "loadGroupId": "sharedPileA"},   //Piper of Azathoth
+                {"databaseId": "05089", "quantity": 3, "loadGroupId": "sharedPileA"}    //Daemonic Piping
+            ]
+        },
+        "The Witching Hour - Agents of Shub-Niggurath": {
+            "hideFromSearch": true,
+            "label": "The Witching Hour - Agents of Shub-Niggurath",
+            "cards": [
+                {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedPileB"},   //Relentless Dark Young
+                {"databaseId": "01180", "quantity": 3, "loadGroupId": "sharedPileB"}    //Goat Spawn
+            ]
+        }        
+    },
+    "actionLists": {
+        "The Witching Hour Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "What can I do to avoid this fate?", "This is bullshit."], "The Witching Hour Scenario Question 1"]
+        ],
+        "The Witching Hour Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: You have accepted your fate."],
+                    ["DO_ADD_CHAOS_TOKEN_SCN", "Tablet", "chaos_tablet"],
+                    ["DO_ADD_CHAOS_TOKEN_SCN", "Tablet", "chaos_tablet"],
+                    ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "The Tower • XVI: Circumstances Beyond Your Control", "05042", 2],
+                    ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "Ace of Rods: The Fateful Step", "05040", 2]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["LOG", "└── Campaign Log: You have rejected your fate."],
+                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
+                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "The Witching Hour Scenario Init"]
+        ],
+        "The Witching Hour Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Witching Hour"],
+            ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
+            ["DO_LOAD_CARDS_SCN", "City of Sins"],
+            ["DO_LOAD_CARDS_SCN", "Witchcraft"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "The Witching Hour - The Devourer Below"],
+            ["DO_LOAD_CARDS_SCN", "The Witching Hour - Agents of Azathoth"],
+            ["DO_LOAD_CARDS_SCN", "The Witching Hour - Agents of Shub-Niggurath"],
+            ["VAR", "$SPAWN_TOP", 5],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnLeft", 7],
+                ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnTop", "$SPAWN_TOP"],
+                ["UPDATE_VAR", "$SPAWN_TOP", ["ADD", "$SPAWN_TOP", 19]],
+                ["COND",
+                    ["EQUAL", "$SPAWN_TOP", 43],
+                    ["UPDATE_VAR", "$SPAWN_TOP", 62]
+                ]
+            ]],
+            ["VAR", "$WITCH_HAUNTED_WOODS", ["SHUFFLE_LIST", ["LIST", "05058", "05059", "05060", "05061", "05062", "05063", "05064"]]],  //Witch-Haunted Woods: Abandoned Mine, Witch-Haunted Woods: Cairn Stones, Witch-Haunted Woods: The Lonely Tree, Witch-Haunted Woods: Child's Tree House, Witch-Haunted Woods: Tainted Well, Witch-Haunted Woods: Hermit's House, Witch-Haunted Woods: Overgrown Barn
+            ["VAR", "$CURRENT_PLAYER", "$GAME.firstPlayer"],
+            ["VAR", "$FIRST_LOCATION_ID", null],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Witch-Haunted Woods", "$WITCH_HAUNTED_WOODS.[$I]", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnLeft", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnTop"],
+                ["INCREASE_VAL", "/playerData/$CURRENT_PLAYER/arkhamTheWitchingHourSpawnLeft", 15],
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamCustomSpawnLocation", null],
+                    ["SET", "/playerData/$CURRENT_PLAYER/arkhamCustomSpawnLocation", "$DO_SPAWN_LOCATION_RESULT"]
+                ],
+                ["COND",
+                    ["EQUAL", "$FIRST_LOCATION_ID", null],
+                    ["UPDATE_VAR", "$FIRST_LOCATION_ID", "$DO_SPAWN_LOCATION_RESULT"]
+                ],
+                ["UPDATE_VAR", "$CURRENT_PLAYER", ["NEXT_PLAYER", "$CURRENT_PLAYER"]]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$FIRST_LOCATION_ID", 5, 3, 3, 0],
+            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those in the same row as that investigator's mini card."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

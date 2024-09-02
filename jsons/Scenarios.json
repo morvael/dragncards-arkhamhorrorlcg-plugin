@@ -133,7 +133,8 @@
                     {
                         "label": "id:theCircleUndone",
                         "deckLists": [
-                            {"label": "id:disappearanceAtTheTwilightEstate", "deckListId": "Disappearance at the Twilight Estate Scenario"}
+                            {"label": "id:disappearanceAtTheTwilightEstate", "deckListId": "Disappearance at the Twilight Estate Scenario"},
+                            {"label": "id:theWitchingHour", "deckListId": "The Witching Hour Scenario"}
                         ]
                     }
                 ]
@@ -432,6 +433,9 @@
         },
         "disappearanceAtTheTwilightEstate": {
             "English": "Disappearance at the Twilight Estate"
+        },
+        "theWitchingHour": {
+            "English": "The Witching Hour"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

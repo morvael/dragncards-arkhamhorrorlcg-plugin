@@ -237,7 +237,6 @@
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
-                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
                         ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], 0],
                         ["OR",
                             ["NOT_EQUAL", "$GAME.arkhamLoadingCards", true],
@@ -268,7 +267,6 @@
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
-                        ["EQUAL", "$TARGET.groupId", "sharedLocations"],
                         ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], 0]
                     ]
                 ],

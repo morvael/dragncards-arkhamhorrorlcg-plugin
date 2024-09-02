@@ -152,9 +152,12 @@
                 ["COND",
                     ["EQUAL", "$OLD_GROUP", null],
                     null,
-                    ["OR",
-                        ["IN_STRING", "$OLD_GROUP.groupType", "deck"],
-                        ["IN_STRING", "$OLD_GROUP.groupType", "hand"]
+                    ["AND",
+                        ["OR",
+                            ["IN_STRING", "$OLD_GROUP.groupType", "deck"],
+                            ["IN_STRING", "$OLD_GROUP.groupType", "hand"]
+                        ],
+                        ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null]
                     ],
                     "A",
                     ["TRUE"],

@@ -42,6 +42,23 @@
                 ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$TARGET_PLAYER_DECK", true, null]
             ]
         },
+        "DO_CREATE_DECK_MISSING_CARD_SCN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CREATE_DECK_MISSING_CARD_SCN.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_DECK_MISSING_CARD_SCN.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_DECK_MISSING_CARD_SCN.TARGET_DATABASE_ID"],
+                ["VALIDATE_GT0", "$TARGET_MAX_QUANTITY", "DO_CREATE_DECK_MISSING_CARD_SCN.TARGET_MAX_QUANTITY"],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_DATABASE_ID"]
+                ]]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["LESS_THAN", "$SELECTED_COUNT", "$TARGET_MAX_QUANTITY"],
+                    ["DO_CREATE_DECK_CARDS_SCN", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1]
+                ]
+            ]
+        },
         "DO_CREATE_MISSING_CARDS_SCN": {
             "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
             "code": [
@@ -1144,7 +1161,6 @@
                     ["EQUAL", "$CARD.inPlay", true],
                     ["EQUAL", "$CARD.cluesPlaced", false],
                     ["EQUAL", "$CARD.currentFace.type", "Location"],
-                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
                     ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], 0]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
