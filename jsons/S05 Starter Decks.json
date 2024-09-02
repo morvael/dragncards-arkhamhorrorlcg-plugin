@@ -216,15 +216,15 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "BeforeDraw", 1],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
                         ]
                     },
                     {
                         "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
+                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
                         "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],

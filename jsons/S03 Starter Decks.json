@@ -222,19 +222,11 @@
                 "rules": [
                     {
                         "type": "trigger",
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
                         "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "Draw", 1]
-                        ]
-                    },
-                    {
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
-                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
-                        "then": [
-                            ["CARD_ABILITY_ON", "$THIS", 1],
                             ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
                             ["COND",
                                 ["GREATER_THAN", "$STARTING_CARDS", 0],
@@ -280,19 +272,12 @@
                 "rules": [
                     {
                         "type": "trigger",
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        //"priority": -10,
+                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["REGISTER_ON_PLAYER_EVENT", "$THIS", "BeforeDraw", 1]
-                        ]
-                    },
-                    {
-                        "type": "trigger",
-                        "listenTo": ["/playerData/*/arkhamPlayerEvent"],
-                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
-                        "then": [
-                            ["CARD_ABILITY_ON", "$THIS", 1],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
@@ -486,9 +471,6 @@
                                     ["LESS_THAN", "$EVENTS", 3]
                                 ],
                                 [
-                                    ["DO_FSYSLOG", "TARGET_CARD_ID '{0}': {1}", ["LIST", "$TARGET_CARD_ID", ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD_ID", null]]],
-                                    ["DO_FSYSLOG", "TARGET_CARD.id '{0}': {1}", ["LIST", "$TARGET_CARD.id", ["CAN_ATTACH_CARD_TO_PARENT", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", null]]],
-                                    ["DO_FSYSLOG", "equal {0}", ["LIST", ["EQUAL", "$TARGET_CARD_ID", "$TARGET_CARD.id"]]],
                                     ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", true, null],
                                     ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", true, null],
                                     ["INCREASE_VAR", "$EVENTS", 1]

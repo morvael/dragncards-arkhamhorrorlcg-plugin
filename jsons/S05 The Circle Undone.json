@@ -1,0 +1,147 @@
+{
+    "preBuiltDecks": {
+        "The Watcher": {
+            "hideFromSearch": true,
+            "label": "The Watcher",
+            "cards": [
+                {"databaseId": "05086", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Spectral Watcher: You Are Its Prey
+                {"databaseId": "05087", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Watcher's Grasp
+            ]
+        },
+        "Agents of Azathoth": {
+            "hideFromSearch": true,
+            "label": "Agents of Azathoth",
+            "cards": [
+                {"databaseId": "05088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Piper of Azathoth
+                {"databaseId": "05089", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Daemonic Piping
+            ]
+        },
+        "Anette's Coven": {
+            "hideFromSearch": true,
+            "label": "Anette's Coven",
+            "cards": [
+                {"databaseId": "05090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Coven Initiate
+                {"databaseId": "05091", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Priestess of the Coven
+            ]
+        },
+        "Witchcraft": {
+            "hideFromSearch": true,
+            "label": "Witchcraft",
+            "cards": [
+                {"databaseId": "05092", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Diabolic Voices
+                {"databaseId": "05093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Wracked
+                {"databaseId": "05094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Bedeviled
+            ]
+        },
+        "Silver Twilight Lodge": {
+            "hideFromSearch": true,
+            "label": "Silver Twilight Lodge",
+            "cards": [
+                {"databaseId": "05095", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Lodge Neophyte
+                {"databaseId": "05096", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Keeper of Secrets
+                {"databaseId": "05097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Mysteries of the Lodge
+            ]
+        },
+        "City of Sins": {
+            "hideFromSearch": true,
+            "label": "City of Sins",
+            "cards": [
+                {"databaseId": "05098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Evil Past
+                {"databaseId": "05099", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Centuries of Secrets
+            ]
+        },
+        "Spectral Predators": {
+            "hideFromSearch": true,
+            "label": "Spectral Predators",
+            "cards": [
+                {"databaseId": "05100", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Nether Mist
+                {"databaseId": "05101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Shadow Hound
+                {"databaseId": "05102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Whispers in the Dark
+            ]
+        },
+        "Trapped Spirits": {
+            "hideFromSearch": true,
+            "label": "Trapped Spirits",
+            "cards": [
+                {"databaseId": "05103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Wraith
+                {"databaseId": "05104", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Trapped Spirits
+            ]
+        },
+        "Realm of Death": {
+            "hideFromSearch": true,
+            "label": "Realm of Death",
+            "cards": [
+                {"databaseId": "05105", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Realm of Torment
+                {"databaseId": "05106", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Shapes in the Mist
+            ]
+        },
+        "Inexorable Fate": {
+            "hideFromSearch": true,
+            "label": "Inexorable Fate",
+            "cards": [
+                {"databaseId": "05107", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Terror in the Night
+                {"databaseId": "05108", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Fate of All Fools
+            ]
+        },
+        "The Circle Undone Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Circle Undone Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Circle Undone Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "The Circle Undone Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Circle Undone Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Circle Undone Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Circle Undone Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Circle Undone Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}

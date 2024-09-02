@@ -101,6 +101,7 @@
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_NAMED_DECK_CARDS.LOG_EVENT"],
                 ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "$SOURCE_GROUP_ID"]],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["VAR", "$USED_CARDS", ["LIST"]],
                 ["COND",
                     ["GREATER_THAN", "$SELECTED_COUNT", 0],
                     [
@@ -116,10 +117,12 @@
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "moves {{$TARGET_CARD.sides.A.name}} from {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."]
                         ],
                         ["FOR_EACH_START_STOP_STEP", "$I", 0, "$TARGET_QUANTITY", 1, [
-                            ["MOVE_CARD", "$SELECTED_CARDS.[$I].id", "$TARGET_GROUP_ID", -1]
+                            ["MOVE_CARD", "$SELECTED_CARDS.[$I].id", "$TARGET_GROUP_ID", -1],
+                            ["UPDATE_VAR", "$USED_CARDS", ["APPEND", "$USED_CARDS", "$SELECTED_CARDS.[$I].id"]]
                         ]]
                     ]
-                ]
+                ],
+                ["DEFINE", "$DO_MOVE_NAMED_DECK_CARDS_RESULT", "$USED_CARDS"]
             ]
         },
         "DO_MOVE_NAMED_DECK_CARDS_SCN": {
@@ -708,6 +711,10 @@
                     ]
                 ]],
                 ["COND",
+                    ["EQUAL", "$GAME.arkhamSkipDeckCheck", true],
+                    ["UPDATE_VAR", "$PRESENT_DECKS", "$GAME.numPlayers"]
+                ],
+                ["COND",
                     ["AND",
                         ["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
                         ["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
@@ -736,6 +743,7 @@
                         ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                         ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
                         ["DO_UPDATE_INVESTIGATOR_NAMES"],
+                        ["INIT_ALL_EVENTS"],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["SET", "/playerData/$PLAYER_I/arkhamMythosPhaseCardDrawn", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
@@ -750,8 +758,7 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
-                            ["INIT_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
-                            ["INIT_PLAYER_EVENT", "$PLAYER_I", "Draw"],
+                            ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                             ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
                             ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
@@ -960,13 +967,11 @@
                     ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
                     ["TRUE"],
                     [
-                        ["KILL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
                         ["COND",
                             ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
                             ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
                             ["TRUE"],
                             [
-                                ["KILL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
                                 ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
                                 ["COND",
                                     ["GREATER_THAN", "$STARTING_CARDS", 0],
