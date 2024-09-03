@@ -88,7 +88,7 @@
             ["DO_LOAD_CARDS_SCN", "The Witching Hour - Agents of Shub-Niggurath"],
             ["VAR", "$SPAWN_TOP", 5],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                ["DO_CUSTOM_SPAWN_MICRO_CARD", "$PLAYER_I", 1, ["ADD", "$SPAWN_TOP", 4]],
+                ["DO_CUSTOM_SPAWN_MICRO_CARD", "$PLAYER_I", 0, ["ADD", "$SPAWN_TOP", 4]],
                 ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnLeft", 7],
                 ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnTop", "$SPAWN_TOP"],
                 ["UPDATE_VAR", "$SPAWN_TOP", ["ADD", "$SPAWN_TOP", 19]],

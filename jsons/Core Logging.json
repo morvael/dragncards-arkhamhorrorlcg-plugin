@@ -97,6 +97,19 @@
                 ]
             ]
         },
+        "VALIDATE_GE0": {
+            "args": ["$PARAM", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["LESS_THAN", "$PARAM", 0],
+                    ["ABORT", "{{$DESCRIPTION}} is less than 0."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
         "VALIDATE_INDEX": {
             "args": ["$PARAM", "$DESCRIPTION"],
             "code": [

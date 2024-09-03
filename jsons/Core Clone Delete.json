@@ -126,8 +126,8 @@
             "args": ["$TARGET_PLAYER", "$LEFT", "$TOP"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CUSTOM_SPAWN_MICRO_CARD.TARGET_PLAYER"],
-                ["VALIDATE_GT0", "$LEFT", "DO_CUSTOM_SPAWN_MICRO_CARD.LEFT"],
-                ["VALIDATE_GT0", "$TOP", "DO_CUSTOM_SPAWN_MICRO_CARD.TOP"],
+                ["VALIDATE_GE0", "$LEFT", "DO_CUSTOM_SPAWN_MICRO_CARD.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "DO_CUSTOM_SPAWN_MICRO_CARD.TOP"],
                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
                 ["COND",
                     ["NOT_EQUAL", "$INVESTIGATOR", null],

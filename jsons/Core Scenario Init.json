@@ -606,8 +606,8 @@
             "args": ["$DATABASE_ID", "$LEFT", "$TOP"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_SET_SPAWN_LOCATION.DATABASE_ID"],
-                ["VALIDATE_GT0", "$LEFT", "DO_SET_SPAWN_LOCATION.LEFT"],
-                ["VALIDATE_GT0", "$TOP", "DO_SET_SPAWN_LOCATION.TOP"],
+                ["VALIDATE_GE0", "$LEFT", "DO_SET_SPAWN_LOCATION.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "DO_SET_SPAWN_LOCATION.TOP"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_BY_DATABASE_ID", "$DATABASE_ID"]],
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
