@@ -171,7 +171,7 @@
             ]
         },
         "Revised Roland Banks Starter Deck": {
-            "label": "Roland Banks Starter Deck",
+            "label": "Roland Banks Starter Deck (Revised Core)",
             "cards": [
                 {"databaseId": "01501", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -205,7 +205,7 @@
             ]
         },
         "Revised Daisy Walker Starter Deck": {
-            "label": "Daisy Walker Starter Deck",
+            "label": "Daisy Walker Starter Deck (Revised Core)",
             "cards": [
                 {"databaseId": "01502", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -239,7 +239,7 @@
             ]
         },
         "Revised \"Skids\" O'Toole Starter Deck": {
-            "label": "\"Skids\" O'Toole Starter Deck",
+            "label": "\"Skids\" O'Toole Starter Deck (Revised Core)",
             "cards": [
                 {"databaseId": "01503", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -273,7 +273,7 @@
             ]
         },
         "Revised Agnes Baker Starter Deck": {
-            "label": "Agnes Baker Starter Deck",
+            "label": "Agnes Baker Starter Deck (Revised Core)",
             "cards": [
                 {"databaseId": "01504", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
@@ -307,7 +307,7 @@
             ]
         },
         "Revised Wendy Adams Starter Deck": {
-            "label": "Wendy Adams Starter Deck",
+            "label": "Wendy Adams Starter Deck (Revised Core)",
             "cards": [
                 {"databaseId": "01505", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},

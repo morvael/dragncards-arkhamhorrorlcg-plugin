@@ -17,11 +17,11 @@
                     {
                         "label": "id:revisedCoreDecks",
                         "deckLists": [
-                            {"label": "id:rolandBanksStarterDeckRevisedCore", "deckListId": "Revised Roland Banks Starter Deck"},
-                            {"label": "id:daisyWalkerStarterDeckRevisedCore", "deckListId": "Revised Daisy Walker Starter Deck"},
-                            {"label": "id:skidsOTooleStarterDeckRevisedCore", "deckListId": "Revised \"Skids\" O'Toole Starter Deck"},
-                            {"label": "id:agnesBakerStarterDeckRevisedCore", "deckListId": "Revised Agnes Baker Starter Deck"},
-                            {"label": "id:wendyAdamsStarterDeckRevisedCore", "deckListId": "Revised Wendy Adams Starter Deck"}
+                            {"label": "id:rolandBanksStarterDeck", "deckListId": "Revised Roland Banks Starter Deck"},
+                            {"label": "id:daisyWalkerStarterDeck", "deckListId": "Revised Daisy Walker Starter Deck"},
+                            {"label": "id:skidsOTooleStarterDeck", "deckListId": "Revised \"Skids\" O'Toole Starter Deck"},
+                            {"label": "id:agnesBakerStarterDeck", "deckListId": "Revised Agnes Baker Starter Deck"},
+                            {"label": "id:wendyAdamsStarterDeck", "deckListId": "Revised Wendy Adams Starter Deck"}
                         ]
                     },
                     {
@@ -226,21 +226,6 @@
         },
         "revisedCoreDecks": {
             "English": "Revised Core Decks"
-        },
-        "rolandBanksStarterDeckRevisedCore": {
-            "English": "Roland Banks Starter Deck (Revised Core)"
-        },
-        "daisyWalkerStarterDeckRevisedCore": {
-            "English": "Daisy Walker Starter Deck (Revised Core)"
-        },
-        "skidsOTooleStarterDeckRevisedCore": {
-            "English": "\"Skids\" O'Toole Starter Deck (Revised Core)"
-        },
-        "agnesBakerStarterDeckRevisedCore": {
-            "English": "Agnes Baker Starter Deck (Revised Core)"
-        },
-        "wendyAdamsStarterDeckRevisedCore": {
-            "English": "Wendy Adams Starter Deck (Revised Core)"
         },
         "zoeySamarasStarterDeck": {
             "English": "Zoey Samaras Starter Deck"
