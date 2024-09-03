@@ -31,6 +31,14 @@
                 ]
             },
             {
+                "label": "id:spawnMicroCardMenu",
+                "actionList": "spawnMicroCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
+                ]
+            },
+            {
                 "label": "id:cloneSupplyCardMenu",
                 "actionList": "cloneSupplyCard",
                 "showIf": ["AND",
@@ -41,6 +49,7 @@
                 "label": "id:deleteSupplyCardMenu",
                 "actionList": "deleteSupplyCard",
                 "showIf": ["OR",
+                    ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
                 ]
@@ -293,6 +302,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],

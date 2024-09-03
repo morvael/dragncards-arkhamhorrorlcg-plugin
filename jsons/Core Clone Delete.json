@@ -15,6 +15,14 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot delete {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "spawnMicroCard": [
+            ["COND",
+                ["CAN_SPAWN_MICRO_CARD", "$ACTIVE_CARD.controller", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SPAWN_MICRO_CARD", "$ACTIVE_CARD.controller", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot spawn {{$ACTIVE_FACE.name}} counter, {{$ALIAS_N}}."]
+            ]
         ]
     },
     "functions": {
@@ -63,6 +71,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DELETE_SUPPLY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
                 ["OR",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                     ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
                 ]
@@ -82,6 +91,59 @@
                     ]
                 ]
             ]
+        },
+        "CAN_SPAWN_MICRO_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_MICRO_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_MICRO_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                    ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"]
+                ]
+            ]
+        },
+        "DO_SPAWN_MICRO_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_MICRO_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SPAWN_MICRO_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SPAWN_MICRO_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SPAWN_MICRO_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} counter.", "spawns {{$TARGET_CARD.currentFace.name}} counter."],
+                        ["VAR", "$MICRO_DATABASE_ID", ["REGEX_REPLACE", "$TARGET_CARD.sides.A.databaseId", "m", "u"]],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "{{$TARGET_CARD.sides.A.name}}", "$MICRO_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"], false, null],
+                        ["VAR", "$MICRO_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
+                        ["MOVE_CARD", "$MICRO_INVESTIGATOR.id", "sharedLocations", -1],
+                        ["DO_SET_CARD_LOCATION", "$MICRO_INVESTIGATOR.id", ["ADD", ["GET_CARD_LEFT", "$TARGET_CARD.id"], 3], ["ADD", ["GET_CARD_TOP", "$TARGET_CARD.id"], 3]]
+                    ]
+                ]
+            ]
+        },
+        "DO_CUSTOM_SPAWN_MICRO_CARD": {
+            "args": ["$TARGET_PLAYER", "$LEFT", "$TOP"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CUSTOM_SPAWN_MICRO_CARD.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$LEFT", "DO_CUSTOM_SPAWN_MICRO_CARD.LEFT"],
+                ["VALIDATE_GT0", "$TOP", "DO_CUSTOM_SPAWN_MICRO_CARD.TOP"],
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["NOT_EQUAL", "$INVESTIGATOR", null],
+                    [
+                        ["VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.sides.A.databaseId}}"],
+                        ["COND",
+                            ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
+                            ["UPDATE_VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.originalInvestigatorId}}"]
+                        ],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "{{$INVESTIGATOR.sides.A.name}}", "$MICRO_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"], false, null],
+                        ["VAR", "$MICRO_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
+                        ["MOVE_CARD", "$MICRO_INVESTIGATOR.id", "sharedLocations", -1],
+                        ["DO_SET_CARD_LOCATION", "$MICRO_INVESTIGATOR.id", "$LEFT", "$TOP"]
+                    ]
+                ]
+            ]
         }
     },
     "labels": {
@@ -90,6 +152,9 @@
         },
         "deleteSupplyCardMenu": {
             "English": "Delete"
+        },
+        "spawnMicroCardMenu": {
+            "English": "Spawn counter"
         }
     }
 }

@@ -88,6 +88,7 @@
             ["DO_LOAD_CARDS_SCN", "The Witching Hour - Agents of Shub-Niggurath"],
             ["VAR", "$SPAWN_TOP", 5],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["DO_CUSTOM_SPAWN_MICRO_CARD", "$PLAYER_I", 1, ["ADD", "$SPAWN_TOP", 4]],
                 ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnLeft", 7],
                 ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnTop", "$SPAWN_TOP"],
                 ["UPDATE_VAR", "$SPAWN_TOP", ["ADD", "$SPAWN_TOP", 19]],
@@ -103,7 +104,10 @@
                 ["DO_SPAWN_LOCATION_SCN", "Witch-Haunted Woods", "$WITCH_HAUNTED_WOODS.[$I]", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnLeft", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnTop"],
                 ["INCREASE_VAL", "/playerData/$CURRENT_PLAYER/arkhamTheWitchingHourSpawnLeft", 15],
                 ["COND",
-                    ["EQUAL", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamCustomSpawnLocation", null],
+                    ["OR",
+                        ["EQUAL", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamCustomSpawnLocation", null],
+                        ["EQUAL", ["RANDOM_INT", 0, 1], 1]
+                    ],
                     ["SET", "/playerData/$CURRENT_PLAYER/arkhamCustomSpawnLocation", "$DO_SPAWN_LOCATION_RESULT"]
                 ],
                 ["COND",
@@ -113,7 +117,7 @@
                 ["UPDATE_VAR", "$CURRENT_PLAYER", ["NEXT_PLAYER", "$CURRENT_PLAYER"]]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$FIRST_LOCATION_ID", 5, 3, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those in the same row as that investigator's mini card."],
+            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those sharing the row with that investigator's counter."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }
