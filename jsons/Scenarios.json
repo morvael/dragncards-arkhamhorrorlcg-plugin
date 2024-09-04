@@ -136,7 +136,8 @@
                             {"label": "id:disappearanceAtTheTwilightEstate", "deckListId": "Disappearance at the Twilight Estate Scenario"},
                             {"label": "id:theWitchingHour", "deckListId": "The Witching Hour Scenario"},
                             {"label": "id:atDeathsDoorstep", "deckListId": "At Death's Doorstep Scenario"},
-                            {"label": "id:theSecretName", "deckListId": "The Secret Name Scenario"}
+                            {"label": "id:theSecretName", "deckListId": "The Secret Name Scenario"},
+                            {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"}
                         ]
                     }
                 ]
@@ -429,6 +430,9 @@
         },
         "theSecretName": {
             "English": "The Secret Name"
+        },
+        "theWagesOfSin": {
+            "English": "The Wages of Sin"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
