@@ -50,7 +50,7 @@
                 {"databaseId": "01179", "quantity": 1, "loadGroupId": "sharedPileB"},   //Relentless Dark Young
                 {"databaseId": "01180", "quantity": 3, "loadGroupId": "sharedPileB"}    //Goat Spawn
             ]
-        }        
+        }
     },
     "actionLists": {
         "The Witching Hour Scenario Early Init": [

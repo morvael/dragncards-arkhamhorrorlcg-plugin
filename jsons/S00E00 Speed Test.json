@@ -5,7 +5,7 @@
              "cards": [
 
             ],
-            "postLoadActionList": [                
+            "postLoadActionList": [
                 ["SCENARIO_INIT", "Night of the Zealot", "Night of the Zealot", "Speed Test", null, "Speed Test Scenario Init"]
             ]
         }
