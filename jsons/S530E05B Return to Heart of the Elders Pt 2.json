@@ -29,7 +29,7 @@
              "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
                 {"databaseId": "53048", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Heart of the Elders, Part 2
-                {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern’s Maw
+                {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
                 {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall
                 {"databaseId": "04216", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Poisonous Spores
             ]

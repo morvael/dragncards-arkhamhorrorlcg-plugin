@@ -101,7 +101,7 @@
             "English": "Player Window 2"
         },
         "step-I2": {
-            "English": "2.2 Next investigator’s turn begins"
+            "English": "2.2 Next investigator's turn begins"
         },
         "step-W3": {
             "English": "Player Window 3"
@@ -110,7 +110,7 @@
             "English": "2.2.1 Active investigator takes an action, if able"
         },
         "step-I2.2": {
-            "English": "2.2.2 Investigator’s turn ends"
+            "English": "2.2.2 Investigator's turn ends"
         },
         "step-I2.E": {
             "English": "Return to I2 or proceed to I3"

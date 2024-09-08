@@ -53,7 +53,7 @@
             "cards": [
                 {"databaseId": "03325", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},  //Shores of Hali
                 {"databaseId": "03330", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Dark Spires
-                {"databaseId": "52060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}   //Palace of the King: Hastur’s Domain
+                {"databaseId": "52060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}   //Palace of the King: Hastur's Domain
             ]
         },
         "Return to Dim Carcosa - Set Aside": {

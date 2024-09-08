@@ -63,7 +63,7 @@
     },
     "actionLists": {
         "Return to Where Doom Awaits Scenario Early Init": [
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Naomi has the investigators’ back.", "The above is not true."], "Return to Where Doom Awaits Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Naomi has the investigators' back.", "The above is not true."], "Return to Where Doom Awaits Scenario Question 1"]
         ],
         "Return to Where Doom Awaits Scenario Question 1": [
             ["COND",

@@ -88,10 +88,10 @@
             ],
             ["DO_SPAWN_LOCATION_SCN", "Nexus of N'kai: Unraveling the Threads", "04324", 45, 43],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Nexus of N'kai", 5, 7, 3, 0],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig’s Fury” in Campaign Log.", ["LIST", "There are between 0 and 9 tally marks.", "There are between 10 and 19 tally marks.", "There are between 20 and 29 tally marks.", "There are between 30 and 39 tally marks.", "There are between 40 and 49 tally marks.", "There are between 50 and 59 tally marks.", "There are between 60 and 69 tally marks.", "There are between 70 and 79 tally marks.", "There are between 80 and 89 tally marks.", "There are between 90 and 99 tally marks.", "There are over 100 tally marks."], "Return to Shattered Aeons Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig's Fury” in Campaign Log.", ["LIST", "There are between 0 and 9 tally marks.", "There are between 10 and 19 tally marks.", "There are between 20 and 29 tally marks.", "There are between 30 and 39 tally marks.", "There are between 40 and 49 tally marks.", "There are between 50 and 59 tally marks.", "There are between 60 and 69 tally marks.", "There are between 70 and 79 tally marks.", "There are between 80 and 89 tally marks.", "There are between 90 and 99 tally marks.", "There are over 100 tally marks."], "Return to Shattered Aeons Scenario Question 3"]
         ],
         "Return to Shattered Aeons Scenario Question 3": [
-            ["LOG", "└── Yig’s Fury: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Yig's Fury: {{$GAME.arkhamScenarioAnswer3Text}}"],
             ["VAR", "$CARDS_TO_MOVE", 0],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],

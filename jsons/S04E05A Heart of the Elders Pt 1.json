@@ -28,7 +28,7 @@
              "label": "Heart of the Elders Pt 1 - Heart of the Elders",
              "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
-                {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern’s Maw
+                {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
                 {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall
                 {"databaseId": "04216", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Poisonous Spores
             ]
@@ -52,15 +52,15 @@
             ["VAR", "$ANSWERS_1", ["LIST"]],
             ["COND",
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Ichtaca"], null],
-                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let’s consult with Ichtaca."]]
+                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult with Ichtaca."]]
             ],
             ["COND",
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Alejandro Vela"], null],
-                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let’s consult with Alejandro."]]
+                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult with Alejandro."]]
             ],
             ["COND",
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Expedition Journal"], null],
-                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let’s consult the expedition journal."]]
+                ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult the expedition journal."]]
             ],
             ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this…"]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Heart of the Elders Pt 1 Scenario Question 1"]
@@ -68,11 +68,11 @@
         "Heart of the Elders Pt 1 Scenario Question 1": [
             ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let’s consult with Ichtaca."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult with Ichtaca."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Ichtaca"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let’s consult with Alejandro."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult with Alejandro."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Alejandro Vela"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let’s consult the expedition journal."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult the expedition journal."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Expedition Journal"]
             ],
             ["SCENARIO_INIT_RESUME", "Heart of the Elders Pt 1 Scenario Init"]

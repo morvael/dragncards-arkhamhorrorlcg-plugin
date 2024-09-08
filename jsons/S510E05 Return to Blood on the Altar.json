@@ -145,7 +145,7 @@
                     ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The O’Bannion gang has a bone to pick with the investigators.", "The above is not true."], "Return to Blood on the Altar Scenario Question 5"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The O'Bannion gang has a bone to pick with the investigators.", "The above is not true."], "Return to Blood on the Altar Scenario Question 5"]
         ],
         "Return to Blood on the Altar Scenario Question 5": [
             ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null],
