@@ -106,7 +106,8 @@
             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                 ["MOVE_CARD", "$CARD.id", "sharedDeckA", -1],
                 ["SET", "/cardById/$CARD.id/cardDeck", "sharedDeckA"],
-                ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"]
+                ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
+                ["SET", "/cardById/$CARD.id/discardToOther", true]
             ]],
             ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
             ["SCENARIO_INIT_CONTINUE", null]

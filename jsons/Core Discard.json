@@ -203,6 +203,16 @@
                     ["UPDATE_VAR", "$TARGET_NAME", "$TARGET_CARD.sides.A.name"]
                 ],
                 ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""],
+                        ["EQUAL", "$TARGET_CARD.discardToOther", true]
+                    ],
+                    [
+                        ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}."],
+                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine": false}]
+                    ],
                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
