@@ -92,7 +92,7 @@
             ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
             ["DO_LOAD_CARDS_SCN", "Expedition"],
             ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig's Fury” in Campaign Log.", ["LIST", "There are 0 tally marks.", "There are 1-5 tally marks.", "There are 6–10 tally marks.", "There are 11–14 tally marks.", "There are 15–17 tally marks.", "There are 18–20 tally marks.", "There are 21 or more tally marks."], "The Depths of Yoth Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig's Fury” in Campaign Log.", ["LIST", "There are 0 tally marks.", "There are 1-5 tally marks.", "There are 6-10 tally marks.", "There are 11-14 tally marks.", "There are 15-17 tally marks.", "There are 18-20 tally marks.", "There are 21 or more tally marks."], "The Depths of Yoth Scenario Question 4"]
         ],
         "The Depths of Yoth Scenario Question 4": [
             ["LOG", "└── Yig's Fury: {{$GAME.arkhamScenarioAnswer4Text}}"],
