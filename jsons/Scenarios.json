@@ -137,7 +137,8 @@
                             {"label": "id:theWitchingHour", "deckListId": "The Witching Hour Scenario"},
                             {"label": "id:atDeathsDoorstep", "deckListId": "At Death's Doorstep Scenario"},
                             {"label": "id:theSecretName", "deckListId": "The Secret Name Scenario"},
-                            {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"}
+                            {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"},
+                            {"label": "id:forTheGreaterGood", "deckListId": "For the Greater Good Scenario"}
                         ]
                     }
                 ]
@@ -433,6 +434,9 @@
         },
         "theWagesOfSin": {
             "English": "The Wages of Sin"
+        },
+        "forTheGreaterGood": {
+            "English": "For the Greater Good"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
