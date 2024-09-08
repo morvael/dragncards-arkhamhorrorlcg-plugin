@@ -14,7 +14,7 @@
              "label": "The Wages of Sin",
              "cards": [
                 {"databaseId": "05161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Wages of Sin
-                {"databaseId": "05162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HANGED MAN · XII
+                {"databaseId": "05162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HANGED MAN • XII
                 {"databaseId": "05163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Death's Approach
                 {"databaseId": "05164", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Dead
                 {"databaseId": "05165", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Living
