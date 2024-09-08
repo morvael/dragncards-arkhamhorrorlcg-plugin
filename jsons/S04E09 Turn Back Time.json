@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Turn Back Time Scenario": {
-             "label": "Turn Back Time Scenario",
-             "cards": [
+            "label": "Turn Back Time Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Turn Back Time": {
             "hideFromSearch": true,
-             "label": "Turn Back Time",
-             "cards": [
+            "label": "Turn Back Time",
+            "cards": [
                 {"databaseId": "04344", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Turn Back Time
                 {"databaseId": "04345", "quantity": 1, "loadGroupId": "sharedActStory"},            //Into the Ruins Once Again
                 {"databaseId": "04346", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Chamber of Still Remains
@@ -21,8 +21,8 @@
         },
         "Turn Back Time - The Doom of Eztli": {
             "hideFromSearch": true,
-             "label": "Turn Back Time - The Doom of Eztli",
-             "cards": [
+            "label": "Turn Back Time - The Doom of Eztli",
+            "cards": [
                 {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
                 {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
                 {"databaseId": "04060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway

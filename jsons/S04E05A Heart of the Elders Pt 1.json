@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Heart of the Elders Pt 1 Scenario": {
-             "label": "Heart of the Elders, Part 1 Scenario",
-             "cards": [
+            "label": "Heart of the Elders, Part 1 Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Heart of the Elders Pt 1 - Pillars of Judgment": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 1 - Pillars of Judgment",
-             "cards": [
+            "label": "Heart of the Elders Pt 1 - Pillars of Judgment",
+            "cards": [
                 {"databaseId": "04207", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Jungle's Heart
                 {"databaseId": "04208", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Setting Sun
                 {"databaseId": "04209", "quantity": 1, "loadGroupId": "sharedActStory"},        //Search for the Pattern
@@ -25,8 +25,8 @@
         },
         "Heart of the Elders Pt 1 - Heart of the Elders": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 1 - Heart of the Elders",
-             "cards": [
+            "label": "Heart of the Elders Pt 1 - Heart of the Elders",
+            "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
                 {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
                 {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall

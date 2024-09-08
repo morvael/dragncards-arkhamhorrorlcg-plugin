@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Boundary Beyond Scenario": {
-             "label": "The Boundary Beyond Scenario",
-             "cards": [
+            "label": "The Boundary Beyond Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Boundary Beyond": {
             "hideFromSearch": true,
-             "label": "The Boundary Beyond",
-             "cards": [
+            "label": "The Boundary Beyond",
+            "cards": [
                 {"databaseId": "04161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Boundary Beyond
                 {"databaseId": "04162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Boundary, Broken
                 {"databaseId": "04163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Barrier Is Thin

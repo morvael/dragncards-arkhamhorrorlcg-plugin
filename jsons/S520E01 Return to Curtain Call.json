@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Curtain Call Scenario": {
-             "label": "Return to Curtain Call Scenario",
-             "cards": [
+            "label": "Return to Curtain Call Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Curtain Call": {
             "hideFromSearch": true,
-             "label": "Return to Curtain Call",
-             "cards": [
+            "label": "Return to Curtain Call",
+            "cards": [
                 {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Curtain Call
                 {"databaseId": "52014", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Curtain Call
                 {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Third Act

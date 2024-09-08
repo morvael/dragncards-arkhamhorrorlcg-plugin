@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Wages of Sin Scenario": {
-             "label": "The Wages of Sin Scenario",
-             "cards": [
+            "label": "The Wages of Sin Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Wages of Sin": {
             "hideFromSearch": true,
-             "label": "The Wages of Sin",
-             "cards": [
+            "label": "The Wages of Sin",
+            "cards": [
                 {"databaseId": "05161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Wages of Sin
                 {"databaseId": "05162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HANGED MAN • XII
                 {"databaseId": "05163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Death's Approach

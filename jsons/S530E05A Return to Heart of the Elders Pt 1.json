@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Heart of the Elders Pt 1 Scenario": {
-             "label": "Return to Heart of the Elders, Part 1 Scenario",
-             "cards": [
+            "label": "Return to Heart of the Elders, Part 1 Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Heart of the Elders Pt 1 - Pillars of Judgment": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Pillars of Judgment",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Pillars of Judgment",
+            "cards": [
                 {"databaseId": "04207", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Jungle's Heart
                 {"databaseId": "04208", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Setting Sun
                 {"databaseId": "53046", "quantity": 1, "loadGroupId": "sharedActStory"},        //A Familiar Pattern
@@ -26,8 +26,8 @@
         },
         "Return to Heart of the Elders Pt 1 - Heart of the Elders": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Heart of the Elders",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Heart of the Elders",
+            "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
                 {"databaseId": "53045", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Heart of the Elders, Part 1
                 {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
@@ -46,32 +46,32 @@
         },
         "Return to Heart of the Elders Pt 1 - Purple Moon": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Purple Moon",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Purple Moon",
+            "cards": [
                 {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Rope Bridge
                 {"databaseId": "53068", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Waterfall
             ]
         },
         "Return to Heart of the Elders Pt 1 - Blue Triangle": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Blue Triangle",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Blue Triangle",
+            "cards": [
                 {"databaseId": "04072", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Serpent's Haven
                 {"databaseId": "53069", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Trail of the Dead
             ]
         },
         "Return to Heart of the Elders Pt 1 - Red Square": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Red Square",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Red Square",
+            "cards": [
                 {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Path of Thorns
                 {"databaseId": "53067", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Riverside Temple
             ]
         },
         "Return to Heart of the Elders Pt 1 - Orange Heart": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 1 - Orange Heart",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 1 - Orange Heart",
+            "cards": [
                 {"databaseId": "04073", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Circuitous Trail
                 {"databaseId": "53070", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Cloud Forest
             ]

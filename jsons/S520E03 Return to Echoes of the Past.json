@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Echoes of the Past Scenario": {
-             "label": "Return to Echoes of the Past Scenario",
-             "cards": [
+            "label": "Return to Echoes of the Past Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Echoes of the Past": {
             "hideFromSearch": true,
-             "label": "Return to Echoes of the Past",
-             "cards": [
+            "label": "Return to Echoes of the Past",
+            "cards": [
                 {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Echoes of the Past
                 {"databaseId": "52028", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Echoes of the Past
                 {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Truth is Hidden

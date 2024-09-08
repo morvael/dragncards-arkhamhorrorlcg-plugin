@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Doom of Eztli Scenario": {
-             "label": "Return to The Doom of Eztli Scenario",
-             "cards": [
+            "label": "Return to The Doom of Eztli Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Doom of Eztli": {
             "hideFromSearch": true,
-             "label": "Return to The Doom of Eztli",
-             "cards": [
+            "label": "Return to The Doom of Eztli",
+            "cards": [
                 {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Doom of Eztli
                 {"databaseId": "53017", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Doom of Eztli
                 {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
@@ -35,8 +35,8 @@
         },
         "Return to The Doom of Eztli - Serpents": {
             "hideFromSearch": true,
-             "label": "Return to The Doom of Eztli - Serpents",
-             "cards": [
+            "label": "Return to The Doom of Eztli - Serpents",
+            "cards": [
                 {"databaseId": "04078", "quantity": 3, "loadGroupId": "sharedNotInPlay"}    //Pit Viper
             ]
         }

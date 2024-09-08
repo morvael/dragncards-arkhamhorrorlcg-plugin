@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Curtain Call Scenario": {
-             "label": "Curtain Call Scenario",
-             "cards": [
+            "label": "Curtain Call Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Curtain Call": {
             "hideFromSearch": true,
-             "label": "Curtain Call",
-             "cards": [
+            "label": "Curtain Call",
+            "cards": [
                 {"databaseId": "03043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Curtain Call
                 {"databaseId": "03044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Third Act
                 {"databaseId": "03045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Encore

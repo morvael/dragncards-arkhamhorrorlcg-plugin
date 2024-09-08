@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Gathering Scenario": {
-             "label": "Return to The Gathering Scenario",
-             "cards": [
+            "label": "Return to The Gathering Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Gathering": {
             "hideFromSearch": true,
-             "label": "Return to The Gathering",
-             "cards": [
+            "label": "Return to The Gathering",
+            "cards": [
                 {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Gathering
                 {"databaseId": "50011", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Gathering
                 {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What's Going On?!

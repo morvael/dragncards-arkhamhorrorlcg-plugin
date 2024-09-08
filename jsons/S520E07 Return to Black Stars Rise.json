@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Black Stars Rise Scenario": {
-             "label": "Return to Black Stars Rise Scenario",
-             "cards": [
+            "label": "Return to Black Stars Rise Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Black Stars Rise": {
             "hideFromSearch": true,
-             "label": "Return to Black Stars Rise",
-             "cards": [
+            "label": "Return to Black Stars Rise",
+            "cards": [
                 {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Black Stars Rise
                 {"databaseId": "52054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Black Stars Rise
                 {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Tide Rises

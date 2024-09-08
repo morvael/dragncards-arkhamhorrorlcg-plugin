@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Disappearance at the Twilight Estate Scenario": {
-             "label": "Disappearance at the Twilight Estate Scenario",
-             "cards": [
+            "label": "Disappearance at the Twilight Estate Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Disappearance at the Twilight Estate": {
             "hideFromSearch": true,
-             "label": "Disappearance at the Twilight Estate",
-             "cards": [
+            "label": "Disappearance at the Twilight Estate",
+            "cards": [
                 {"databaseId": "05043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Disappearance at the Twilight Estate
                 {"databaseId": "05044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //JUDGEMENT • XX
                 {"databaseId": "05045", "quantity": 1, "loadGroupId": "sharedActStory"}             //The Disappearance
@@ -20,8 +20,8 @@
         },
         "Disappearance at the Twilight Estate - At Death's Doorstep": {
             "hideFromSearch": true,
-             "label": "Disappearance at the Twilight Estate - At Death's Doorstep",
-             "cards": [
+            "label": "Disappearance at the Twilight Estate - At Death's Doorstep",
+            "cards": [
                 {"databaseId": "05078", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
                 {"databaseId": "05079", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
                 {"databaseId": "05080", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Trophy Room

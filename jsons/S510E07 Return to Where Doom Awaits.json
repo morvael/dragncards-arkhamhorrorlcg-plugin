@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Where Doom Awaits Scenario": {
-             "label": "Return to Where Doom Awaits Scenario",
-             "cards": [
+            "label": "Return to Where Doom Awaits Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Where Doom Awaits": {
             "hideFromSearch": true,
-             "label": "Return to Where Doom Awaits",
-             "cards": [
+            "label": "Return to Where Doom Awaits",
+            "cards": [
                 {"databaseId": "02274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Where Doom Awaits
                 {"databaseId": "51047", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Where Doom Awaits
                 {"databaseId": "02275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Calling Forth the Old Ones

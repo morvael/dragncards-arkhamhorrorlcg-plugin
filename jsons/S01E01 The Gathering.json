@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Gathering Scenario": {
-             "label": "The Gathering Scenario",
-             "cards": [
+            "label": "The Gathering Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Gathering": {
             "hideFromSearch": true,
-             "label": "The Gathering",
-             "cards": [
+            "label": "The Gathering",
+            "cards": [
                 {"databaseId": "01104", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Gathering
                 {"databaseId": "01105", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What's Going On?!
                 {"databaseId": "01106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Rise of the Ghouls

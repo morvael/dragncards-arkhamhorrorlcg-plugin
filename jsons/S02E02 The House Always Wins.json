@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The House Always Wins Scenario": {
-             "label": "The House Always Wins Scenario",
-             "cards": [
+            "label": "The House Always Wins Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The House Always Wins": {
             "hideFromSearch": true,
-             "label": "The House Always Wins",
-             "cards": [
+            "label": "The House Always Wins",
+            "cards": [
                 {"databaseId": "02062", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The House Always Wins
                 {"databaseId": "02063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Clover Club
                 {"databaseId": "02064", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Underground Muscle

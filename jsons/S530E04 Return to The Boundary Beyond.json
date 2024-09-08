@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Boundary Beyond Scenario": {
-             "label": "Return to The Boundary Beyond Scenario",
-             "cards": [
+            "label": "Return to The Boundary Beyond Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Boundary Beyond": {
             "hideFromSearch": true,
-             "label": "Return to The Boundary Beyond",
-             "cards": [
+            "label": "Return to The Boundary Beyond",
+            "cards": [
                 {"databaseId": "04161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Boundary Beyond
                 {"databaseId": "53038", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Boundary Beyond
                 {"databaseId": "04162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Boundary, Broken

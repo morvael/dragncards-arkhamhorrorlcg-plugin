@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Essex County Express Scenario": {
-             "label": "Return to The Essex County Express Scenario",
-             "cards": [
+            "label": "Return to The Essex County Express Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Essex County Express": {
             "hideFromSearch": true,
-             "label": "Return to The Essex County Express",
-             "cards": [
+            "label": "Return to The Essex County Express",
+            "cards": [
                 {"databaseId": "02159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Essex County Express
                 {"databaseId": "51025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Essex County Express
                 {"databaseId": "51026", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Where There's Smoke

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Heart of the Elders Pt 2 Scenario": {
-             "label": "Heart of the Elders, Part 2 Scenario",
-             "cards": [
+            "label": "Heart of the Elders, Part 2 Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Heart of the Elders Pt 2 - K'n-yan": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 2 - K'n-yan",
-             "cards": [
+            "label": "Heart of the Elders Pt 2 - K'n-yan",
+            "cards": [
                 {"databaseId": "04211", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Lonely Caverns
                 {"databaseId": "04212", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Eyes in the Dark
                 {"databaseId": "04213", "quantity": 1, "loadGroupId": "sharedActStory"},        //Cavern of the Forgotten Age
@@ -28,8 +28,8 @@
         },
         "Heart of the Elders Pt 2 - Heart of the Elders": {
             "hideFromSearch": true,
-             "label": "Heart of the Elders Pt 2 - Heart of the Elders",
-             "cards": [
+            "label": "Heart of the Elders Pt 2 - Heart of the Elders",
+            "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
                 {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
                 {"databaseId": "04215", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Pitfall

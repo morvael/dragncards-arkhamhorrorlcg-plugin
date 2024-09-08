@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Where Doom Awaits Scenario": {
-             "label": "Where Doom Awaits Scenario",
-             "cards": [
+            "label": "Where Doom Awaits Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Where Doom Awaits": {
             "hideFromSearch": true,
-             "label": "Where Doom Awaits",
-             "cards": [
+            "label": "Where Doom Awaits",
+            "cards": [
                 {"databaseId": "02274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Where Doom Awaits
                 {"databaseId": "02275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Calling Forth the Old Ones
                 {"databaseId": "02276", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Beckoning for Power

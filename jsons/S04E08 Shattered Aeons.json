@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Shattered Aeons Scenario": {
-             "label": "Shattered Aeons Scenario",
-             "cards": [
+            "label": "Shattered Aeons Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Shattered Aeons": {
             "hideFromSearch": true,
-             "label": "Shattered Aeons",
-             "cards": [
+            "label": "Shattered Aeons",
+            "cards": [
                 {"databaseId": "04314", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Shattered Aeons
                 {"databaseId": "04315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Threads of Time
                 {"databaseId": "04316", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Pendulous Threads

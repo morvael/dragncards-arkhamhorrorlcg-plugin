@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Doom of Eztli Scenario": {
-             "label": "The Doom of Eztli Scenario",
-             "cards": [
+            "label": "The Doom of Eztli Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Doom of Eztli": {
             "hideFromSearch": true,
-             "label": "The Doom of Eztli",
-             "cards": [
+            "label": "The Doom of Eztli",
+            "cards": [
                 {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Doom of Eztli
                 {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
                 {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden

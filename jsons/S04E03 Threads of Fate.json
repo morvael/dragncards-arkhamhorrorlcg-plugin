@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Threads of Fate Scenario": {
-             "label": "Threads of Fate Scenario",
-             "cards": [
+            "label": "Threads of Fate Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Threads of Fate": {
             "hideFromSearch": true,
-             "label": "Threads of Fate",
-             "cards": [
+            "label": "Threads of Fate",
+            "cards": [
                 {"databaseId": "04113", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Threads of Fate
                 {"databaseId": "04114", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Three Fates
                 {"databaseId": "04115", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Behind the Curtain

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to A Phantom of Truth Scenario": {
-             "label": "Return to A Phantom of Truth Scenario",
-             "cards": [
+            "label": "Return to A Phantom of Truth Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to A Phantom of Truth": {
             "hideFromSearch": true,
-             "label": "Return to A Phantom of Truth",
-             "cards": [
+            "label": "Return to A Phantom of Truth",
+            "cards": [
                 {"databaseId": "03200", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //A Phantom of Truth
                 {"databaseId": "52040", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to A Phantom of Truth
                 {"databaseId": "03201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The First Night

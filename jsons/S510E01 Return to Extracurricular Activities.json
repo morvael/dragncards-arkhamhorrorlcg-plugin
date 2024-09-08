@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Extracurricular Activities Scenario": {
-             "label": "Return to Extracurricular Activities Scenario",
-             "cards": [
+            "label": "Return to Extracurricular Activities Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Extracurricular Activities": {
             "hideFromSearch": true,
-             "label": "Return to Extracurricular Activities",
-             "cards": [
+            "label": "Return to Extracurricular Activities",
+            "cards": [
                 {"databaseId": "02041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Extracurricular Activity
                 {"databaseId": "51012", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Extracurricular Activities
                 {"databaseId": "02042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Quiet Halls

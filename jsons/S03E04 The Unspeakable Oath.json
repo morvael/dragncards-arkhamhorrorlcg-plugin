@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Unspeakable Oath Scenario": {
-             "label": "The Unspeakable Oath Scenario",
-             "cards": [
+            "label": "The Unspeakable Oath Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Unspeakable Oath": {
             "hideFromSearch": true,
-             "label": "The Unspeakable Oath",
-             "cards": [
+            "label": "The Unspeakable Oath",
+            "cards": [
                 {"databaseId": "03159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Unspeakable Oath
                 {"databaseId": "03160", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Locked Inside
                 {"databaseId": "03161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Torturous Descent

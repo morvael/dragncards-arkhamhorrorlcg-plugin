@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Dim Carcosa Scenario": {
-             "label": "Return to Dim Carcosa Scenario",
-             "cards": [
+            "label": "Return to Dim Carcosa Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Dim Carcosa": {
             "hideFromSearch": true,
-             "label": "Return to Dim Carcosa",
-             "cards": [
+            "label": "Return to Dim Carcosa",
+            "cards": [
                 {"databaseId": "03316", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Dim Carcosa
                 {"databaseId": "52059", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Dim Carcosa
                 {"databaseId": "03317", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Madness Coils

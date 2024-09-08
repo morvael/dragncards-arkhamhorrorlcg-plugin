@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Depths of Yoth Scenario": {
-             "label": "The Depths of Yoth Scenario",
-             "cards": [
+            "label": "The Depths of Yoth Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Depths of Yoth": {
             "hideFromSearch": true,
-             "label": "The Depths of Yoth",
-             "cards": [
+            "label": "The Depths of Yoth",
+            "cards": [
                 {"databaseId": "04277", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Depths of Yoth
                 {"databaseId": "04278", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Descent Begins
                 {"databaseId": "04279", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Horrific Descent

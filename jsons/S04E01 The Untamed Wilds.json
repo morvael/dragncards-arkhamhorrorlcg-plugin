@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Untamed Wilds Scenario": {
-             "label": "The Untamed Wilds Scenario",
-             "cards": [
+            "label": "The Untamed Wilds Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Untamed Wilds": {
             "hideFromSearch": true,
-             "label": "The Untamed Wilds",
-             "cards": [
+            "label": "The Untamed Wilds",
+            "cards": [
                 {"databaseId": "04043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Untamed Wilds
                 {"databaseId": "04044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Expedition into the Wild
                 {"databaseId": "04045", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Intruders
@@ -26,8 +26,8 @@
         },
         "The Untamed Wilds - Rainforest": {
             "hideFromSearch": true,
-             "label": "The Untamed Wilds - Rainforest",
-             "cards": [
+            "label": "The Untamed Wilds - Rainforest",
+            "cards": [
                 {"databaseId": "04069", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Path of Thorns
                 {"databaseId": "04070", "quantity": 1, "loadGroupId": "sharedDeckA"},           //River Canyon
                 {"databaseId": "04071", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Rope Bridge
@@ -50,8 +50,8 @@
         },
         "The Untamed Wilds - Set Aside": {
             "hideFromSearch": true,
-             "label": "The Untamed Wilds - Set Aside",
-             "cards": [
+            "label": "The Untamed Wilds - Set Aside",
+            "cards": [
                 {"databaseId": "04051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Alejandro Vela: Renowned Historian
                 {"databaseId": "04052", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Ichtaca: Keeper of the Eztli
             ]

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Black Stars Rise Scenario": {
-             "label": "Black Stars Rise Scenario",
-             "cards": [
+            "label": "Black Stars Rise Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Black Stars Rise": {
             "hideFromSearch": true,
-             "label": "Black Stars Rise",
-             "cards": [
+            "label": "Black Stars Rise",
+            "cards": [
                 {"databaseId": "03274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Black Stars Rise
                 {"databaseId": "03275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Tide Rises
                 {"databaseId": "03277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The City Floods

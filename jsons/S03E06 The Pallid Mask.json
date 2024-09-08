@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Pallid Mask Scenario": {
-             "label": "The Pallid Mask Scenario",
-             "cards": [
+            "label": "The Pallid Mask Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Pallid Mask": {
             "hideFromSearch": true,
-             "label": "The Pallid Mask",
-             "cards": [
+            "label": "The Pallid Mask",
+            "cards": [
                 {"databaseId": "03240", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Pallid Mask
                 {"databaseId": "03241", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Empire of the Dead
                 {"databaseId": "03242", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Empire of the Undead

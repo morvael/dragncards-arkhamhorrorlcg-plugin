@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Shattered Aeons Scenario": {
-             "label": "Return to Shattered Aeons Scenario",
-             "cards": [
+            "label": "Return to Shattered Aeons Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Shattered Aeons": {
             "hideFromSearch": true,
-             "label": "Return to Shattered Aeons",
-             "cards": [
+            "label": "Return to Shattered Aeons",
+            "cards": [
                 {"databaseId": "04314", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Shattered Aeons
                 {"databaseId": "53061", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to Shattered Aeons
                 {"databaseId": "04315", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Threads of Time

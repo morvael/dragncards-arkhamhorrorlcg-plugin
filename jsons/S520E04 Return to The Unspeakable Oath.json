@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Unspeakable Oath Scenario": {
-             "label": "Return to The Unspeakable Oath Scenario",
-             "cards": [
+            "label": "Return to The Unspeakable Oath Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Unspeakable Oath": {
             "hideFromSearch": true,
-             "label": "Return to The Unspeakable Oath",
-             "cards": [
+            "label": "Return to The Unspeakable Oath",
+            "cards": [
                 {"databaseId": "03159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Unspeakable Oath
                 {"databaseId": "52034", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Unspeakable Oath
                 {"databaseId": "03160", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Locked Inside

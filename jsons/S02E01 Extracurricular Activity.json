@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Extracurricular Activity Scenario": {
-             "label": "Extracurricular Activity Scenario",
-             "cards": [
+            "label": "Extracurricular Activity Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Extracurricular Activity": {
             "hideFromSearch": true,
-             "label": "Extracurricular Activity",
-             "cards": [
+            "label": "Extracurricular Activity",
+            "cards": [
                 {"databaseId": "02041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Extracurricular Activity
                 {"databaseId": "02042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Quiet Halls
                 {"databaseId": "02043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Dead of Night

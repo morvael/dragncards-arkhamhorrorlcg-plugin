@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Miskatonic Museum Scenario": {
-             "label": "Return to The Miskatonic Museum Scenario",
-             "cards": [
+            "label": "Return to The Miskatonic Museum Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Miskatonic Museum": {
             "hideFromSearch": true,
-             "label": "Return to The Miskatonic Museum",
-             "cards": [
+            "label": "Return to The Miskatonic Museum",
+            "cards": [
                 {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Miskatonic Museum
                 {"databaseId": "51020", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Miskatonic Museum
                 {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Restricted Access

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Last King Scenario": {
-             "label": "The Last King Scenario",
-             "cards": [
+            "label": "The Last King Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Last King": {
             "hideFromSearch": true,
-             "label": "The Last King",
-             "cards": [
+            "label": "The Last King",
+            "cards": [
                 {"databaseId": "03061", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Last King
                 {"databaseId": "03062", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Fashionably Late
                 {"databaseId": "03063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Terrifying Truth

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Echoes of the Past Scenario": {
-             "label": "Echoes of the Past Scenario",
-             "cards": [
+            "label": "Echoes of the Past Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Echoes of the Past": {
             "hideFromSearch": true,
-             "label": "Echoes of the Past",
-             "cards": [
+            "label": "Echoes of the Past",
+            "cards": [
                 {"databaseId": "03120", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Echoes of the Past
                 {"databaseId": "03121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Truth is Hidden
                 {"databaseId": "03122", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Ransacking the Manor

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The House Always Wins Scenario": {
-             "label": "Return to The House Always Wins Scenario",
-             "cards": [
+            "label": "Return to The House Always Wins Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The House Always Wins": {
             "hideFromSearch": true,
-             "label": "Return to The House Always Wins",
-             "cards": [
+            "label": "Return to The House Always Wins",
+            "cards": [
                 {"databaseId": "02062", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The House Always Wins
                 {"databaseId": "51015", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The House Always Wins
                 {"databaseId": "02063", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Clover Club

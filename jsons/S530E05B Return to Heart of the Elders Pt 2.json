@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Heart of the Elders Pt 2 Scenario": {
-             "label": "Return to Heart of the Elders, Part 2 Scenario",
-             "cards": [
+            "label": "Return to Heart of the Elders, Part 2 Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Heart of the Elders Pt 2 - K'n-yan": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - K'n-yan",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - K'n-yan",
+            "cards": [
                 {"databaseId": "04211", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Lonely Caverns
                 {"databaseId": "04212", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Eyes in the Dark
                 {"databaseId": "04213", "quantity": 1, "loadGroupId": "sharedActStory"},        //Cavern of the Forgotten Age
@@ -25,8 +25,8 @@
         },
         "Return to Heart of the Elders Pt 2 - Heart of the Elders": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - Heart of the Elders",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - Heart of the Elders",
+            "cards": [
                 {"databaseId": "04205", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Heart of the Elders
                 {"databaseId": "53048", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Heart of the Elders, Part 2
                 {"databaseId": "04206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Mouth of K'n-yan: The Cavern's Maw
@@ -36,32 +36,32 @@
         },
         "Return to Heart of the Elders Pt 2 - Purple Moon": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - Purple Moon",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - Purple Moon",
+            "cards": [
                 {"databaseId": "04226", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Crystal Pillars
                 {"databaseId": "53052", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Treacherous Descent
             ]
         },
         "Return to Heart of the Elders Pt 2 - Blue Triangle": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - Blue Triangle",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - Blue Triangle",
+            "cards": [
                 {"databaseId": "04224", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Dark Hollow
                 {"databaseId": "53049", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Ruins of K'n-yan
             ]
         },
         "Return to Heart of the Elders Pt 2 - Red Square": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - Red Square",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - Red Square",
+            "cards": [
                 {"databaseId": "04223", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Hall of Idolatry
                 {"databaseId": "53051", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Chthonian Depths
             ]
         },
         "Return to Heart of the Elders Pt 2 - Green Diamond": {
             "hideFromSearch": true,
-             "label": "Return to Heart of the Elders Pt 2 - Green Diamond",
-             "cards": [
+            "label": "Return to Heart of the Elders Pt 2 - Green Diamond",
+            "cards": [
                 {"databaseId": "04225", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Perilous Gulch
                 {"databaseId": "53050", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Subterranean Swamp
             ]

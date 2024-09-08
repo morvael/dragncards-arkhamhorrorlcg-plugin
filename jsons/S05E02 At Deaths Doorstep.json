@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "At Death's Doorstep Scenario": {
-             "label": "At Death's Doorstep Scenario",
-             "cards": [
+            "label": "At Death's Doorstep Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "At Death's Doorstep": {
             "hideFromSearch": true,
-             "label": "At Death's Doorstep",
-             "cards": [
+            "label": "At Death's Doorstep",
+            "cards": [
                 {"databaseId": "05065", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //At Death's Doorstep
                 {"databaseId": "05066", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //JUSTICE • XI
                 {"databaseId": "05067", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Over the Threshold

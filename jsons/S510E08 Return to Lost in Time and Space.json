@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Lost in Time and Space Scenario": {
-             "label": "Return to Lost in Time and Space Scenario",
-             "cards": [
+            "label": "Return to Lost in Time and Space Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Lost in Time and Space": {
             "hideFromSearch": true,
-             "label": "Return to Lost in Time and Space",
-             "cards": [
+            "label": "Return to Lost in Time and Space",
+            "cards": [
                 {"databaseId": "02311", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Lost in Time and Space
                 {"databaseId": "51053", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Lost in Time and Space
                 {"databaseId": "02312", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //All is One

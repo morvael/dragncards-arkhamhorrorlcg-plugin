@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The City of Archives Scenario": {
-             "label": "Return to The City of Archives Scenario",
-             "cards": [
+            "label": "Return to The City of Archives Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The City of Archives": {
             "hideFromSearch": true,
-             "label": "Return to The City of Archives",
-             "cards": [
+            "label": "Return to The City of Archives",
+            "cards": [
                 {"databaseId": "04237", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The City of Archives
                 {"databaseId": "53053", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The City of Archives
                 {"databaseId": "04238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //City of the Great Race

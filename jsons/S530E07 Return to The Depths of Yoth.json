@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Depths of Yoth Scenario": {
-             "label": "Return to The Depths of Yoth Scenario",
-             "cards": [
+            "label": "Return to The Depths of Yoth Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Depths of Yoth": {
             "hideFromSearch": true,
-             "label": "Return to The Depths of Yoth",
-             "cards": [
+            "label": "Return to The Depths of Yoth",
+            "cards": [
                 {"databaseId": "04277", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Depths of Yoth
                 {"databaseId": "53059", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Depths of Yoth
                 {"databaseId": "04278", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Descent Begins

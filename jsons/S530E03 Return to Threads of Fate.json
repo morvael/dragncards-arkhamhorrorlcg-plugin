@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to Threads of Fate Scenario": {
-             "label": "Return to Threads of Fate Scenario",
-             "cards": [
+            "label": "Return to Threads of Fate Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to Threads of Fate": {
             "hideFromSearch": true,
-             "label": "Return to Threads of Fate",
-             "cards": [
+            "label": "Return to Threads of Fate",
+            "cards": [
                 {"databaseId": "04113", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Threads of Fate
                 {"databaseId": "53028", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Threads of Fate
                 {"databaseId": "04114", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Three Fates

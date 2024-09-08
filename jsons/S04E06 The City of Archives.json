@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The City of Archives Scenario": {
-             "label": "The City of Archives Scenario",
-             "cards": [
+            "label": "The City of Archives Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The City of Archives": {
             "hideFromSearch": true,
-             "label": "The City of Archives",
-             "cards": [
+            "label": "The City of Archives",
+            "cards": [
                 {"databaseId": "04237", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The City of Archives
                 {"databaseId": "04238", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //City of the Great Race
                 {"databaseId": "04239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Lost Memories

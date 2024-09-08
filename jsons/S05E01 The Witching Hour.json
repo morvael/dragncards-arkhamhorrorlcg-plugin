@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Witching Hour Scenario": {
-             "label": "The Witching Hour Scenario",
-             "cards": [
+            "label": "The Witching Hour Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Witching Hour": {
             "hideFromSearch": true,
-             "label": "The Witching Hour",
-             "cards": [
+            "label": "The Witching Hour",
+            "cards": [
                 {"databaseId": "05050", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Witching Hour
                 {"databaseId": "05051", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //TEMPERANCE • XIV
                 {"databaseId": "05052", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Night Howls

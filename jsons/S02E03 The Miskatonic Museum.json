@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Miskatonic Museum Scenario": {
-             "label": "The Miskatonic Museum Scenario",
-             "cards": [
+            "label": "The Miskatonic Museum Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Miskatonic Museum": {
             "hideFromSearch": true,
-             "label": "The Miskatonic Museum",
-             "cards": [
+            "label": "The Miskatonic Museum",
+            "cards": [
                 {"databaseId": "02118", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Miskatonic Museum
                 {"databaseId": "02119", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Restricted Access
                 {"databaseId": "02120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Shadows Deepen

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Return to The Last King Scenario": {
-             "label": "Return to The Last King Scenario",
-             "cards": [
+            "label": "Return to The Last King Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Return to The Last King": {
             "hideFromSearch": true,
-             "label": "Return to The Last King",
-             "cards": [
+            "label": "Return to The Last King",
+            "cards": [
                 {"databaseId": "03061", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Last King
                 {"databaseId": "52021", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Last King
                 {"databaseId": "52022", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Better Never Than Late

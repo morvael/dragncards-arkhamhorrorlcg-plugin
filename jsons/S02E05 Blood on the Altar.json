@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "Blood on the Altar Scenario": {
-             "label": "Blood on the Altar Scenario",
-             "cards": [
+            "label": "Blood on the Altar Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "Blood on the Altar": {
             "hideFromSearch": true,
-             "label": "Blood on the Altar",
-             "cards": [
+            "label": "Blood on the Altar",
+            "cards": [
                 {"databaseId": "02195", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Blood on the Altar
                 {"databaseId": "02196", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Strange Disappearances
                 {"databaseId": "02197", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Old Ones Hunger

@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
         "The Essex County Express Scenario": {
-             "label": "The Essex County Express Scenario",
-             "cards": [
+            "label": "The Essex County Express Scenario",
+            "cards": [
 
             ],
             "postLoadActionList": [
@@ -11,8 +11,8 @@
         },
         "The Essex County Express": {
             "hideFromSearch": true,
-             "label": "The Essex County Express",
-             "cards": [
+            "label": "The Essex County Express",
+            "cards": [
                 {"databaseId": "02159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Essex County Express
                 {"databaseId": "02160", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //A Tear in Reality
                 {"databaseId": "02161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Maw Widens
