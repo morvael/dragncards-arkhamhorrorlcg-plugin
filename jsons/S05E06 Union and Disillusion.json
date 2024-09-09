@@ -1,0 +1,264 @@
+{
+    "preBuiltDecks": {
+        "Union and Disillusion Scenario": {
+            "label": "Union and Disillusion Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "The Circle Undone", "Union and Disillusion", "Union and Disillusion Scenario Early Init", "Union and Disillusion Scenario Init"]
+            ]
+        },
+        "Union and Disillusion": {
+            "hideFromSearch": true,
+            "label": "Union and Disillusion",
+            "cards": [
+                {"databaseId": "05238", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Union and Disillusion
+                {"databaseId": "05239", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE LOVERS • VI
+                {"databaseId": "05240", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Crossroads of Fate
+                {"databaseId": "05241", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Unvisited Isle
+                {"databaseId": "05242", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Fated Souls
+                {"databaseId": "05249", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Miskatonic River
+                {"databaseId": "05250", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Forbidding Shore
+                {"databaseId": "05266", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Whippoorwill
+                {"databaseId": "05267", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Spectral Raven
+                {"databaseId": "05268", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Eager for Death
+                {"databaseId": "05269", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Psychopomp's Song
+                {"databaseId": "05270", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Death Approaches
+                {"databaseId": "05271", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Marked for Death
+            ]
+        },
+        "Union and Disillusion - Anette's Coven": {
+            "hideFromSearch": true,
+            "label": "Union and Disillusion - Anette's Coven",
+            "cards": [
+                {"databaseId": "05090", "quantity": 3, "loadGroupId": "sharedPileA"},   //Coven Initiate
+                {"databaseId": "05091", "quantity": 1, "loadGroupId": "sharedPileA"}    //Priestess of the Coven
+            ]
+        },
+        "Union and Disillusion - Silver Twilight Lodge": {
+            "hideFromSearch": true,
+            "label": "Union and Disillusion - Silver Twilight Lodge",
+            "cards": [
+                {"databaseId": "05095", "quantity": 3, "loadGroupId": "sharedPileB"},   //Lodge Neophyte
+                {"databaseId": "05096", "quantity": 1, "loadGroupId": "sharedPileB"},   //Keeper of Secrets
+                {"databaseId": "05097", "quantity": 2, "loadGroupId": "sharedPileB"}    //Mysteries of the Lodge
+            ]
+        },
+        "Union and Disillusion - The Watcher": {
+            "hideFromSearch": true,
+            "label": "Union and Disillusion - The Watcher",
+            "cards": [
+                {"databaseId": "05086", "quantity": 1, "loadGroupId": "sharedPileC"},   //The Spectral Watcher: You Are Its Prey
+                {"databaseId": "05087", "quantity": 2, "loadGroupId": "sharedPileC"}    //Watcher's Grasp
+            ]
+        },
+        "Union and Disillusion - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Union and Disillusion - Set Aside",
+            "cards": [
+                {"databaseId": "05257", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Geist-Trap
+                {"databaseId": "05272", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Watcher's Gaze
+                {"databaseId": "05057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Anette Mason: The High Priestess
+                {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Josef Meiger: Lodge Host
+            ]
+        }
+    },
+    "actionLists": {
+        "Union and Disillusion Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We have to help complete the Lodge's ritual.", "We have to stop the Lodge's ritual."], "Union and Disillusion Scenario Question 1"]
+        ],
+        "Union and Disillusion Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: The investigators sided with the Lodge."],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["LOG", "└── Campaign Log: The investigators sided with the coven."]
+            ],
+            ["SCENARIO_INIT_RESUME", "Union and Disillusion Scenario Init"]
+        ],
+        "Union and Disillusion Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Union and Disillusion"],
+            ["DO_LOAD_CARDS_SCN", "Inexorable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Realm of Death"],
+            ["DO_LOAD_CARDS_SCN", "Spectral Predators"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Union and Disillusion - Anette's Coven"],
+            ["DO_LOAD_CARDS_SCN", "Union and Disillusion - Silver Twilight Lodge"],
+            ["DO_LOAD_CARDS_SCN", "Union and Disillusion - The Watcher"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic River", 5, 3, 3, 0],
+            ["VAR", "$UNVISITED_ISLES", ["SHUFFLE_LIST", ["LIST", "05251", "05252", "05253", "05254", "05255", "05256"]]],  //Unvisited Isle: Standing Stones, Unvisited Isle: Misty Clearing, Unvisited Isle: Forsaken Woods, Unvisited Isle: Moss-Covered Steps, Unvisited Isle: Haunted Spring, Unvisited Isle: Decayed Willow
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70, 45, 20, 45, 70]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 43, 43, 43, 62, 62, 62]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Unvisited Isle", "$UNVISITED_ISLES.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 2, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unvisited Isle", "$UNVISITED_ISLES.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$UNVISITED_ISLES.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                        ["OR",
+                            ["EQUAL", "$CARD.currentFace.name", "Forbidding Shore"],
+                            ["EQUAL", "$CARD.currentFace.name", "Unvisited Isle"]
+                        ]
+                    ]]],
+                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                        ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$CARD.id", 1, true, null]
+                    ]]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Union and Disillusion - Set Aside"],
+            ["DO_SET_SPAWN_LOCATION", "05257", 45, 81], //The Geist-Trap
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Gavriella Mizrah is not crossed off.", "The above is not true."], "Union and Disillusion Scenario Question 2"]
+        ],
+        "Union and Disillusion Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Gavriella Mizrah: Not Going Down That Easily", "05258", 1, "sharedNotInPlay"],
+                    ["DO_CREATE_CARDS_SCN", "Gavriella's Fate", "05262", 1, "sharedScenarioReference"],
+                    ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Penny White is not crossed off.", "The above is not true."], "Union and Disillusion Scenario Question 3"]
+        ],
+        "Union and Disillusion Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Penny White: The Nightmare is Over", "05260", 1, "sharedNotInPlay"],
+                    ["DO_CREATE_CARDS_SCN", "Penny's Fate", "05264", 1, "sharedScenarioReference"],
+                    ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Jerome Davids is not crossed off.", "The above is not true."], "Union and Disillusion Scenario Question 4"]
+        ],
+        "Union and Disillusion Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Jerome Davids: In Way Over His Head", "05259", 1, "sharedNotInPlay"],
+                    ["DO_CREATE_CARDS_SCN", "Jerome's Fate", "05263", 1, "sharedScenarioReference"],
+                    ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Valentino Rivas is not crossed off.", "The above is not true."], "Union and Disillusion Scenario Question 5"]
+        ],
+        "Union and Disillusion Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Valentino Rivas: Took You Long Enough", "05261", 1, "sharedNotInPlay"],
+                    ["DO_CREATE_CARDS_SCN", "Valentino's Fate", "05265", 1, "sharedScenarioReference"],
+                    ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["SCENARIO_SKIP_QUESTIONS", 4, "Union and Disillusion Scenario Init Continue"],
+                ["TRUE"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators are deceiving the Lodge.", "The above is not true."], "Union and Disillusion Scenario Question 6"]
+            ]
+        ],
+        "Union and Disillusion Scenario Question 6": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer6Text}}"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators were inducted into the Inner Circle.", "The above is not true."], "Union and Disillusion Scenario Question 7"]
+        ],
+        "Union and Disillusion Scenario Question 7": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer7Text}}"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators hid their knowledge of the coven.", "The above is not true."], "Union and Disillusion Scenario Question 8"]
+        ],
+        "Union and Disillusion Scenario Question 8": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer8Text}}"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators kept their mementos hidden.", "The above is not true."], "Union and Disillusion Scenario Question 9"]
+        ],
+        "Union and Disillusion Scenario Question 9": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer9", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer9Text}}"]
+            ],
+            ["ACTION_LIST", "Union and Disillusion Scenario Init Continue"]
+        ],
+        "Union and Disillusion Scenario Init Continue": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. I)", "05243", 2, "sharedActStory"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Binding Rite", "05247", 3, "sharedActStory"]
+                ],
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"]
+                ],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. II)", "05244", 2, "sharedActStory"],
+                    ["DO_CREATE_STORY_CARD_SCN", "The Broken Rite", "05248", 3, "sharedActStory"]
+                ],
+                ["TRUE"],
+                [
+                    ["VAR", "$COUNTER", 0],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                        ["INCREASE_VAR", "$COUNTER", 1]
+                    ],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"],
+                        ["INCREASE_VAR", "$COUNTER", 1]
+                    ],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkhamScenarioAnswer9", "A"],
+                        ["INCREASE_VAR", "$COUNTER", 1]
+                    ],
+                    ["COND",
+                        ["GREATER_EQUAL", "$COUNTER", 2],
+                        [
+                            ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. III)", "05245", 2, "sharedActStory"],
+                            ["DO_CREATE_STORY_CARD_SCN", "The Broken Rite", "05248", 3, "sharedActStory"]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. IV)", "05246", 2, "sharedActStory"],
+                            ["DO_CREATE_STORY_CARD_SCN", "The Broken Rite", "05248", 3, "sharedActStory"]
+                        ]
+                    ]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "4 heretics were unleashed unto Arkham.", "3 heretics were unleashed unto Arkham.", "2 heretics were unleashed unto Arkham.", "1 heretic was unleashed unto Arkham.", "0 heretics were unleashed unto Arkham."], "Union and Disillusion Scenario Question 10"]
+        ],
+        "Union and Disillusion Scenario Question 10": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer10Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer10", "A"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 4],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer10", "B"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer10", "C"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer10", "D"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Anette's Coven cards are in Pile A, Silver Twilight Lodge cards are in Pile B, The Watcher cards are in Pile C."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

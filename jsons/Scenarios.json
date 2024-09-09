@@ -138,7 +138,8 @@
                             {"label": "id:atDeathsDoorstep", "deckListId": "At Death's Doorstep Scenario"},
                             {"label": "id:theSecretName", "deckListId": "The Secret Name Scenario"},
                             {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"},
-                            {"label": "id:forTheGreaterGood", "deckListId": "For the Greater Good Scenario"}
+                            {"label": "id:forTheGreaterGood", "deckListId": "For the Greater Good Scenario"},
+                            {"label": "id:unionAndDisillusion", "deckListId": "Union and Disillusion Scenario"}
                         ]
                     }
                 ]
@@ -437,6 +438,9 @@
         },
         "forTheGreaterGood": {
             "English": "For the Greater Good"
+        },
+        "unionAndDisillusion": {
+            "English": "Union and Disillusion"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

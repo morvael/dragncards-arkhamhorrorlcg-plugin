@@ -260,6 +260,13 @@
                     ["EQUAL", "$GAME.playerData.$ACTOR_PLAYER.blockUnsafeActions", false]
                 ]
             ]
+        },
+        "GET_SCENARIO_CARD_ID": {
+            "args": [],
+            "code": [
+                ["VAR", "$SCENARIO_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
+                "$SCENARIO_CARD.id"
+            ]
         }
     }
 }
