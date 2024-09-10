@@ -14,15 +14,17 @@
             "label": "Return to Before the Black Throne",
             "cards": [
                 {"databaseId": "05325", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Before the Black Throne
+                {"databaseId": "54056", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to Before the Black Throne
                 {"databaseId": "05326", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //WHEEL OF FORTUNE • X
                 {"databaseId": "05327", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //It Awaits
                 {"databaseId": "05328", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Final Countdown
                 {"databaseId": "05329", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Cosmos Beckons
                 {"databaseId": "05330", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Azathoth's Domain
-                {"databaseId": "05331", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Must Be Done
+                {"databaseId": "54057", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Must Be Done (v. II)
                 {"databaseId": "05332", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Cosmic Ingress
                 {"databaseId": "05334", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Court of the Great Old Ones
                 {"databaseId": "05335", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Black Throne
+                {"databaseId": "54061", "quantity": 4, "loadGroupId": "sharedNotInPlay"},                               //Nightgaunt Steed
                 {"databaseId": "05346", "quantity": 1, "loadGroupId": "sharedOffMap"},                                  //Azathoth: The Primal Chaos
                 {"databaseId": "05341", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Mindless Dancer
                 {"databaseId": "05342", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Ultimate Chaos
@@ -42,8 +44,8 @@
             ["DO_LOAD_CARDS_SCN", "Impending Evils"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Cosmic Ingress", -5, 3, -3, 0],
-            ["VAR", "$COSMOS", ["SHUFFLE_LIST", ["LIST", "05336", "05336", "05336", "05337", "05337", "05337", "05338", "05338", "05338", "05339", "05340", "05340"]]], //Dancer's Mist (3), Flight into Oblivion (3), Infinity of Darkness (3), Cosmic Gate, Pathway into Void (2)
-            ["FOR_EACH_START_STOP_STEP", "$I", 1, 12, 1, [
+            ["VAR", "$COSMOS", ["SHUFFLE_LIST", ["LIST", "05336", "05336", "05336", "05337", "05337", "05337", "05338", "05338", "05338", "05339", "05340", "05340", "54058", "54059", "54060"]]], //Dancer's Mist (3), Flight into Oblivion (3), Infinity of Darkness (3), Cosmic Gate, Pathway into Void (2), Nightmare Breach, Interstellar Abyss, Winding Gulf
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 15, 1, [
                 ["DO_CREATE_CARDS_SCN", "Cosmos", "$COSMOS.[$I]", 1, "sharedDeckA"]
             ]],
             ["VAR", "$USED_COSMOS", ["SHUFFLE_LIST", ["LIST", "05333", "$COSMOS.[0]"]]], //Hideous Palace
@@ -83,7 +85,8 @@
                 ["GREATER_THAN", "$TOKENS", 0],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$TOKENS", true, null]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Cosmos cards are in Deck A. Off Map is “next to the agenda deck” (in play)."],
+            ["SET", "/arkhamFinalScenarioMessage", "Cosmos cards are in Deck A. Off Map is “next to the agenda deck” (in play). When the game begins, the investigators may remove 2 resources from the scenario reference card to have each investigator begin the game with a Nightgaunt Steed story asset in play. Remove each remaining Nightgaunt Steed from the game."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }
