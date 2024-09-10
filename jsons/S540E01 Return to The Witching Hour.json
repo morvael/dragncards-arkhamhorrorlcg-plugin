@@ -14,12 +14,14 @@
             "label": "Return to The Witching Hour",
             "cards": [
                 {"databaseId": "05050", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Witching Hour
+                {"databaseId": "54017", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Witching Hour
                 {"databaseId": "05051", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //TEMPERANCE • XIV
                 {"databaseId": "05052", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Night Howls
                 {"databaseId": "05053", "quantity": 1, "loadGroupId": "sharedActStory"},            //Lost in the Woods
                 {"databaseId": "05054", "quantity": 1, "loadGroupId": "sharedActStory"},            //Witch Hauntings
                 {"databaseId": "05055", "quantity": 1, "loadGroupId": "sharedActStory"},            //Paths into Twilight
                 {"databaseId": "05056", "quantity": 1, "loadGroupId": "sharedActStory"},            //A Circle Unbroken
+                {"databaseId": "54018", "quantity": 1, "loadGroupId": "sharedActStory"},            //A Circle Unbroken
                 {"databaseId": "05057", "quantity": 1, "loadGroupId": "sharedNotInPlay"}            //Anette Mason: The High Priestess
             ]
         },
@@ -32,7 +34,9 @@
                 {"databaseId": "01152", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Old House
                 {"databaseId": "01153", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Cliffside
                 {"databaseId": "01154", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Tangled Thicket
-                {"databaseId": "01155", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Arkham Woods: Quiet Glade
+                {"databaseId": "54021", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Hidden Path
+                {"databaseId": "54022", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Arkham Woods: Place of Power
+                {"databaseId": "54023", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Arkham Woods: Bootlegging Operation
             ]
         },
         "Return to The Witching Hour - Agents of Azathoth": {
@@ -97,7 +101,7 @@
                     ["UPDATE_VAR", "$SPAWN_TOP", 62]
                 ]
             ]],
-            ["VAR", "$WITCH_HAUNTED_WOODS", ["SHUFFLE_LIST", ["LIST", "05058", "05059", "05060", "05061", "05062", "05063", "05064"]]],  //Witch-Haunted Woods: Abandoned Mine, Witch-Haunted Woods: Cairn Stones, Witch-Haunted Woods: The Lonely Tree, Witch-Haunted Woods: Child's Tree House, Witch-Haunted Woods: Tainted Well, Witch-Haunted Woods: Hermit's House, Witch-Haunted Woods: Overgrown Barn
+            ["VAR", "$WITCH_HAUNTED_WOODS", ["SHUFFLE_LIST", ["LIST", "05058", "05059", "05060", "05061", "05062", "05063", "05064", "54019", "54020"]]],  //Witch-Haunted Woods: Abandoned Mine, Witch-Haunted Woods: Cairn Stones, Witch-Haunted Woods: The Lonely Tree, Witch-Haunted Woods: Child's Tree House, Witch-Haunted Woods: Tainted Well, Witch-Haunted Woods: Hermit's House, Witch-Haunted Woods: Overgrown Barn, Witch-Haunted Woods: Witch Tree, Witch-Haunted Woods: Unmarked Graveyard
             ["VAR", "$CURRENT_PLAYER", "$GAME.firstPlayer"],
             ["VAR", "$FIRST_LOCATION_ID", null],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
@@ -117,7 +121,8 @@
                 ["UPDATE_VAR", "$CURRENT_PLAYER", ["NEXT_PLAYER", "$CURRENT_PLAYER"]]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$FIRST_LOCATION_ID", 5, 3, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those sharing the row with that investigator's counter."],
+            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those sharing the row with that investigator's counter. When advancing to act 4a, move second act card to Act Deck B."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }
