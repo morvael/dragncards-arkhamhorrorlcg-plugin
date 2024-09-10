@@ -197,6 +197,20 @@
                             {"label": "id:returnToShatteredAeons", "deckListId": "Return to Shattered Aeons Scenario"},
                             {"label": "id:returnToTurnBackTime", "deckListId": "Return to Turn Back Time Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:returnToTheCircleUndone",
+                        "deckLists": [
+                            {"label": "id:returnToDisappearanceAtTheTwilightEstate", "deckListId": "Return to Disappearance at the Twilight Estate Scenario"},
+                            {"label": "id:returnToTheWitchingHour", "deckListId": "Return to The Witching Hour Scenario"},
+                            {"label": "id:returnToAtDeathsDoorstep", "deckListId": "Return to At Death's Doorstep Scenario"},
+                            {"label": "id:returnToTheSecretName", "deckListId": "Return to The Secret Name Scenario"},
+                            {"label": "id:returnToTheWagesOfSin", "deckListId": "Return to The Wages of Sin Scenario"},
+                            {"label": "id:returnToForTheGreaterGood", "deckListId": "Return to For the Greater Good Scenario"},
+                            {"label": "id:returnToUnionAndDisillusion", "deckListId": "Return to Union and Disillusion Scenario"},
+                            {"label": "id:returnToInTheClutchesOfChaos", "deckListId": "Return to In the Clutches of Chaos Scenario"},
+                            {"label": "id:returnToBeforeTheBlackThrone", "deckListId": "Return to Before the Black Throne Scenario"}
+                        ]
                     }
                 ]
             },
@@ -551,6 +565,36 @@
         },
         "returnToTurnBackTime": {
             "English": "Return to Secret Scenario IX"
+        },
+        "returnToTheCircleUndone": {
+            "English": "Return to The Circle Undone"
+        },
+        "returnToDisappearanceAtTheTwilightEstate": {
+            "English": "Return to Disappearance at the Twilight Estate"
+        },
+        "returnToTheWitchingHour": {
+            "English": "Return to The Witching Hour"
+        },
+        "returnToAtDeathsDoorstep": {
+            "English": "Return to At Death's Doorstep"
+        },
+        "returnToTheSecretName": {
+            "English": "Return to The Secret Name"
+        },
+        "returnToTheWagesOfSin": {
+            "English": "Return to The Wages of Sin"
+        },
+        "returnToForTheGreaterGood": {
+            "English": "Return to For the Greater Good"
+        },
+        "returnToUnionAndDisillusion": {
+            "English": "Return to Union and Disillusion"
+        },
+        "returnToInTheClutchesOfChaos": {
+            "English": "Return to In the Clutches of Chaos"
+        },
+        "returnToBeforeTheBlackThrone": {
+            "English": "Return to Before the Black Throne"
         },
         "miscellaneous": {
             "English": "Miscellaneous"

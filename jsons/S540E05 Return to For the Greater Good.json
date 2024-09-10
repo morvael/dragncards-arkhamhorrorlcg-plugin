@@ -1,0 +1,119 @@
+{
+    "preBuiltDecks": {
+        "Return to For the Greater Good Scenario": {
+            "label": "Return to For the Greater Good Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "Return to The Circle Undone", "Return to For the Greater Good", "Return to For the Greater Good Scenario Early Init", "Return to For the Greater Good Scenario Init"]
+            ]
+        },
+        "Return to For the Greater Good": {
+            "hideFromSearch": true,
+            "label": "Return to For the Greater Good",
+            "cards": [
+                {"databaseId": "05197", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //For the Greater Good
+                {"databaseId": "05198", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HIEROPHANT • V
+                {"databaseId": "05199", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Ends and Means
+                {"databaseId": "05202", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Obtaining the Device
+                {"databaseId": "05203", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Four Keys
+                {"databaseId": "05210", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Lounge
+                {"databaseId": "05213", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Lodge Catacombs
+                {"databaseId": "05212", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Library
+                {"databaseId": "05211", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Vault
+                {"databaseId": "05216", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Inner Sanctum
+                {"databaseId": "05218", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Lodge Jailor
+                {"databaseId": "05219", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Cell Keeper
+                {"databaseId": "05221", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Knight of the Inner Circle
+                {"databaseId": "05222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Knight of the Outer Void
+                {"databaseId": "05223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Call to Order
+                {"databaseId": "05224", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Expulsion
+                {"databaseId": "05225", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Beneath the Lodge
+                {"databaseId": "05226", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Mark of the Order
+            ]
+        },
+        "Return to For the Greater Good - We've Been Expecting You": {
+            "hideFromSearch": true,
+            "label": "Return to For the Greater Good - We've Been Expecting You",
+            "cards": [
+                {"databaseId": "05204", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Lodge Gates: We've Been Expecting You
+                {"databaseId": "05206", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Lobby: We've Been Expecting You
+                {"databaseId": "05208", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"}   //Lodge Cellar: We've Been Expecting You
+             ]
+        },
+        "Return to For the Greater Good - Members Only": {
+            "hideFromSearch": true,
+            "label": "Return to For the Greater Good - Members Only",
+            "cards": [
+                {"databaseId": "05205", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Lodge Gates: Members Only
+                {"databaseId": "05207", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Lobby: Members Only
+                {"databaseId": "05209", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"}   //Lodge Cellar: Members Only
+             ]
+        },
+        "Return to For the Greater Good - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Return to For the Greater Good - Set Aside",
+            "cards": [
+                {"databaseId": "05228", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Puzzle Box: Mysterious Device
+                {"databaseId": "05220", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Summoned Beast: Guardian of the Trap
+                {"databaseId": "05227", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //August Lindquist: Elegant and Elusive
+                {"databaseId": "05217", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Nathan Wick: Master of Initiation
+             ]
+        }
+    },
+    "actionLists": {
+        "Return to For the Greater Good Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators are members of the Lodge.", "The investigators are enemies of the Lodge.", "The investigators learned nothing of the Lodge's schemes.", "The investigators are never seen or heard from again."], "Return to For the Greater Good Scenario Question 1"]
+        ],
+        "Return to For the Greater Good Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["SCENARIO_INIT_RESUME", "Return to For the Greater Good Scenario Init"]
+        ],
+        "Return to For the Greater Good Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to For the Greater Good"],
+            ["DO_SET_SPAWN_LOCATION", "05212", 15, 76], //Library
+            ["DO_SET_SPAWN_LOCATION", "05211", 15, 43], //Vault
+            ["DO_SET_SPAWN_LOCATION", "05216", 75, 43], //Inner Sanctum
+            ["DO_LOAD_CARDS_SCN", "City of the Damned"],
+            ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
+            ["DO_LOAD_CARDS_SCN", "Impending Evils"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Warm Welcome", "05200", 0, "sharedActStory"],
+                    ["DO_LOAD_CARDS_SCN", "Return to For the Greater Good - We've Been Expecting You"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Acolyte"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Wizard of the Order"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Knight of the Inner Circle"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Cell Keeper"]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "Infiltrating the Lodge", "05201", 0, "sharedActStory"],
+                    ["DO_LOAD_CARDS_SCN", "Return to For the Greater Good - Members Only"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Lodge Neophyte"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Keeper of Secrets"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Knight of the Outer Void"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Lodge Jailor"]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Lodge Gates", 5, 7, 3, 0],
+            ["VAR", "$SANCTUM_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "05214", "05215"]]], //Ceremony Room, Holding Cells
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 76]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_CREATE_CARDS_SCN", "Sanctum Doorway", "$SANCTUM_DOORWAYS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$SANCTUM_DOORWAYS.[$I]", 75, "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Return to For the Greater Good - Set Aside"],
+            ["DO_CREATE_CARDS_SCN", "Skull", "chaos_skull", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Cultist", "chaos_cultist", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Tablet", "chaos_tablet", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Elder Thing", "chaos_elder_thing", 1, "sharedTokens"],
+            ["SET", "/arkhamFinalScenarioMessage", "Chaos Tokens in Tokens are Keys."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

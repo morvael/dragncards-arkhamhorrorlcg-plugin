@@ -1,0 +1,60 @@
+{
+    "preBuiltDecks": {
+        "Hexcraft": {
+            "hideFromSearch": true,
+            "label": "Hexcraft",
+            "cards": [
+                {"databaseId": "54062", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Trespasser!
+                {"databaseId": "54063", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Despoiled
+                {"databaseId": "54064", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Maligned
+            ]
+        },
+        "Impending Evils": {
+            "hideFromSearch": true,
+            "label": "Impending Evils",
+            "cards": [
+                {"databaseId": "54065", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Impending Evils
+            ]
+        },
+        "Unspeakable Fate": {
+            "hideFromSearch": true,
+            "label": "Unspeakable Fate",
+            "cards": [
+                {"databaseId": "54066", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Unavoidable Demise
+                {"databaseId": "54067", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Fate of All Fools
+            ]
+        },
+        "Unstable Realm": {
+            "hideFromSearch": true,
+            "label": "Unstable Realm",
+            "cards": [
+                {"databaseId": "54068", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Unstable Energies
+                {"databaseId": "54069", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //From the Other Side
+            ]
+        },
+        "City of the Damned": {
+            "hideFromSearch": true,
+            "label": "City of the Damned",
+            "cards": [
+                {"databaseId": "54070", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Vice and Villainy
+                {"databaseId": "54071", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Unhallowed Land
+            ]
+        },
+        "Chilling Mists": {
+            "hideFromSearch": true,
+            "label": "Chilling Mists",
+            "cards": [
+                {"databaseId": "54072", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Supernatural Tempest
+                {"databaseId": "54073", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Mists from Beyond
+            ]
+        },
+        "Bloodthirsty Spirits": {
+            "hideFromSearch": true,
+            "label": "Bloodthirsty Spirits",
+            "cards": [
+                {"databaseId": "54074", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Screeching Banshee
+                {"databaseId": "54075", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Bloodthirsty Spirits
+            ]
+        }
+    }
+}

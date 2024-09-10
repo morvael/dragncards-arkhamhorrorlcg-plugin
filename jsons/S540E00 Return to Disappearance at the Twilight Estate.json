@@ -1,0 +1,361 @@
+{
+    "preBuiltDecks": {
+        "Return to Disappearance at the Twilight Estate Scenario": {
+            "label": "Return to Disappearance at the Twilight Estate Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT"]
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate",
+            "cards": [
+                {"databaseId": "05043", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Disappearance at the Twilight Estate
+                {"databaseId": "05044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //JUDGEMENT • XX
+                {"databaseId": "05045", "quantity": 1, "loadGroupId": "sharedActStory"}             //The Disappearance
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate - At Death's Doorstep": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate - At Death's Doorstep",
+            "cards": [
+                {"databaseId": "05078", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
+                {"databaseId": "05079", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
+                {"databaseId": "05080", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Trophy Room
+                {"databaseId": "05081", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Billiards Room
+                {"databaseId": "05082", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Master Bedroom
+                {"databaseId": "05083", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Balcony
+                {"databaseId": "05084", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Office
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate - Gavriella Mizrah": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate - Gavriella Mizrah",
+            "cards": [
+                {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNPlay"},   //.45 Automatic
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "playerNPlay"},   //Physical Training
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNHand"},   //First Aid
+                {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNHand"},   //Guard Dog
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNHand"},   //Evidence!
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNHand"},   //Dodge
+                {"databaseId": "01026", "quantity": 1, "loadGroupId": "playerNHand"},   //Extra Ammunition
+                {"databaseId": "05021", "quantity": 2, "loadGroupId": "playerNHand"}    //Delay the Inevitable
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate - Jerome Davids": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate - Jerome Davids",
+            "cards": [
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNHand"},   //Hyperawareness
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNHand"},   //Mind over Matter
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNHand"},   //Working a Hunch
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNHand"},   //Barricade
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNHand"},   //Deduction
+                {"databaseId": "01040", "quantity": 1, "loadGroupId": "playerNHand"},   //Magnifying Glass
+                {"databaseId": "05024", "quantity": 1, "loadGroupId": "playerNHand"},   //Fingerprint Kit
+                {"databaseId": "05025", "quantity": 1, "loadGroupId": "playerNHand"},   //Connect the Dots
+                {"databaseId": "05026", "quantity": 2, "loadGroupId": "playerNHand"}    //Curiosity
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate - Valentino Rivas": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate - Valentino Rivas",
+            "cards": [
+                {"databaseId": "05028", "quantity": 1, "loadGroupId": "playerNPlay"},   //Well Connected
+                {"databaseId": "01047", "quantity": 1, "loadGroupId": "playerNHand"},   //.41 Derringer
+                {"databaseId": "01053", "quantity": 1, "loadGroupId": "playerNHand"},   //Opportunist
+                {"databaseId": "01056", "quantity": 1, "loadGroupId": "playerNHand"},   //Sure Gamble
+                {"databaseId": "05029", "quantity": 2, "loadGroupId": "playerNHand"},   //Money Talks
+                {"databaseId": "05030", "quantity": 2, "loadGroupId": "playerNHand"}    //Cunning
+            ]
+        },
+        "Return to Disappearance at the Twilight Estate - Penny White": {
+            "hideFromSearch": true,
+            "label": "Return to Disappearance at the Twilight Estate - Penny White",
+            "cards": [
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNPlay"},   //Dig Deep
+                {"databaseId": "01086", "quantity": 1, "loadGroupId": "playerNPlay"},   //Knife
+                {"databaseId": "01087", "quantity": 1, "loadGroupId": "playerNPlay"},   //Flashlight
+                {"databaseId": "01076", "quantity": 1, "loadGroupId": "playerNHand"},   //Stray Cat
+                {"databaseId": "01080", "quantity": 1, "loadGroupId": "playerNHand"},   //Lucky!
+                {"databaseId": "01086", "quantity": 1, "loadGroupId": "playerNHand"},   //Knife
+                {"databaseId": "01087", "quantity": 1, "loadGroupId": "playerNHand"},   //Flashlight
+                {"databaseId": "05037", "quantity": 2, "loadGroupId": "playerNHand"},   //Act of Desperation
+                {"databaseId": "05038", "quantity": 2, "loadGroupId": "playerNHand"}    //Able Bodied
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to Disappearance at the Twilight Estate Scenario Early Init": [
+            ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
+        ],
+        "Return to Disappearance at the Twilight Estate Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to Disappearance at the Twilight Estate"],
+            ["DO_LOAD_CARDS_SCN", "Return to Disappearance at the Twilight Estate - At Death's Doorstep"],
+            ["DO_LOAD_CARDS_SCN", "Unspeakable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Unstable Realm"],
+            ["DO_LOAD_CARDS_SCN", "Spectral Predators"],
+            ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
+            ["DO_LOAD_CARDS_SCN", "The Watcher"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Mists"],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "The Spectral Watcher", "Entry Hall", 3, 3, 0],
+            ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_GAVRIELLA"],
+            ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_JEROME"],
+            ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_VALENTINO"],
+            ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_PENNY"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Victorian Halls", 5, 7, 3, 0],
+            ["SET", "/arkhamFinalScenarioMessage", "Off Map is “next to the agenda deck” (in play)."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.controller", "player"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DELETE_CARD", "$CARD.id"]
+                ]],
+                ["DO_FSYSLOG", "For the duration of this prologue, you will control one of four neutral investigators instead of your chosen one{0:S}.", ["LIST", "$GAME.numPlayers"]],
+                ["SET", "/arkhamSkipDeckCheck", true],
+                ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE", "$GAME.firstPlayer"]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$GAVRIELLA", ["GET_NAMED_CARD", "Gavriella Mizrah"]],
+                ["VAR", "$JEROME", ["GET_NAMED_CARD", "Jerome Davids"]],
+                ["VAR", "$VALENTINO", ["GET_NAMED_CARD", "Valentino Rivas"]],
+                ["VAR", "$PENNY", ["GET_NAMED_CARD", "Penny White"]],
+                ["PROMPT", "$TARGET_PLAYER", "disappearanceAtTheTwilightEstateChooseInvestigator"],
+                ["COND",
+                    ["EQUAL", "$GAVRIELLA", null],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Gavriella Mizrah: Private Security", "G", ["LIST", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Gavriella Mizrah: Private Security", "05046"]]
+                ],
+                ["COND",
+                    ["EQUAL", "$JEROME", null],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Jerome Davids: Josef's Secretary", "J", ["LIST", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Jerome Davids: Josef's Secretary", "05047"]]
+                ],
+                ["COND",
+                    ["EQUAL", "$VALENTINO", null],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Valentino Rivas: Wealthy Philanthropist", "V", ["LIST", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Valentino Rivas: Wealthy Philanthropist", "05048"]]
+                ],
+                ["COND",
+                    ["EQUAL", "$PENNY", null],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Penny White: Josef's Housekeeper", "P", ["LIST", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Penny White: Josef's Housekeeper", "05049"]]
+                ]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE": {
+            "args": ["$INVESTIGATOR_NAME", "$INVESTIGATOR_DATABASE_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$INVESTIGATOR_NAME", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE.INVESTIGATOR_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$INVESTIGATOR_DATABASE_ID", "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE.INVESTIGATOR_DATABASE_ID"],
+                ["DO_CREATE_CARDS", "$PLAYER_N", "$INVESTIGATOR_NAME", "$INVESTIGATOR_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_N"], true, "$PLAYER_N"],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$PLAYER_N"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["SCENARIO_INIT", "The Circle Undone", "Return to The Circle Undone", "Return to Disappearance at the Twilight Estate", "Return to Disappearance at the Twilight Estate Scenario Early Init", "Return to Disappearance at the Twilight Estate Scenario Init"],
+                    ["TRUE"],
+                    ["RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_GAVRIELLA": {
+            "args": [],
+            "code": [
+                ["VAR", "$GAVRIELLA", ["GET_NAMED_CARD", "Gavriella Mizrah"]],
+                ["COND",
+                    ["NOT_EQUAL", "$GAVRIELLA", null],
+                    [
+                        ["VAR", "$PLAYER_N", "$GAVRIELLA.controller"],
+                        //Setup: You begin play in the Victorian Halls. Place 1 damage on The Spectral Watcher. Search the gathered cards for 1 copy of Fate of All Fools and put it into play in your threat area. You begin with 1 resource instead of 5.
+                        //Starting Play Area: .45 Automatic (Core 16) with 2 ammo tokens remaining, Physical Training (Core 17).
+                        //Opening Hand: First Aid (Core 19), Guard Dog (Core 21), Evidence! (Core 22), Dodge (Core 23), Extra Ammunition (level 1) (Core 26), 2 copies of Delay the Inevitable (TCU 21).
+                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Victorian Halls"],
+                        ["VAR", "$THE_SPECTRAL_WATCHER", ["GET_NAMED_CARD", "The Spectral Watcher"]],
+                        ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", "$THE_SPECTRAL_WATCHER.id", 1, true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Fate of All Fools", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
+                        ["DO_LOAD_CARDS", "$PLAYER_N", "Return to Disappearance at the Twilight Estate - Gavriella Mizrah", true, null],
+                        ["VAR", "$DOT_45_AUTOMATIC", ["GET_NAMED_DECK_CARD", ".45 Automatic", ["GET_CONTROLLER_PLAY", "$PLAYER_N"]]],
+                        ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$DOT_45_AUTOMATIC.id", 2, true, null],
+                        ["SET", "/cardById/$DOT_45_AUTOMATIC.id/usesPlaced", true]
+                    ]
+                ]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_JEROME": {
+            "args": [],
+            "code": [
+                ["VAR", "$JEROME", ["GET_NAMED_CARD", "Jerome Davids"]],
+                ["COND",
+                    ["NOT_EQUAL", "$JEROME", null],
+                    [
+                        ["VAR", "$PLAYER_N", "$JEROME.controller"],
+                        //Setup: You begin play in the Office. Search the gathered cards for 1 copy of Nether Mist and 1 copy of Obscuring Fog. Spawn the Nether Mist in the Office and attach Obscuring Fog to the Office. You begin with 3 resources instead of 5.
+                        //Starting Play Area: Nothing.
+                        //Opening Hand: Hyperawareness (Core 34), Mind over Matter (Core 36), Working a Hunch (Core 37), Barricade (Core 38), Deduction (Core 39), Magnifying Glass (level 1) (Core 40), Fingerprint Kit (TCU 24), Connect the Dots (TCU 25), 2 copies of Curiosity (TCU 26).
+                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Office"],
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$PLAYER_N", "Nether Mist", "Office", 3, 3, 0, true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Obscuring Fog", "sharedEncounterDeck", 1, "sharedLocations", true, null],
+                        ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
+                        ["DO_ATTACH_CARD", "$PLAYER_N", "$DO_MOVE_NAMED_DECK_CARDS_RESULT.[0]", "$OFFICE.id", true, null],
+                        ["DO_LOAD_CARDS", "$PLAYER_N", "Return to Disappearance at the Twilight Estate - Jerome Davids", true, null]
+                    ]
+                ]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_VALENTINO": {
+            "args": [],
+            "code": [
+                ["VAR", "$VALENTINO", ["GET_NAMED_CARD", "Valentino Rivas"]],
+                ["COND",
+                    ["NOT_EQUAL", "$VALENTINO", null],
+                    [
+                        ["VAR", "$PLAYER_N", "$VALENTINO.controller"],
+                        //Setup: You begin play in the Billiards Room. Search the gathered cards for 1 copy of Shadow Hound and 1 copy of Terror in the Night. Spawn the Shadow Hound engaged with you and put Terror in the Night into play next to the agenda deck. You begin with 10 resources instead of 5.
+                        //Starting Play Area: Well Connected (TCU 28).
+                        //Opening Hand: .41 Derringer (Core 47), Opportunist (Core 53), Sure Gamble (level 3) (Core 56), 2 copies of Money Talks (TCU 29), 2 copies of Cunning (TCU 30).
+                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Billiards Room"],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Shadow Hound", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Terror in the Night", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
+                        ["DO_LOAD_CARDS", "$PLAYER_N", "Return to Disappearance at the Twilight Estate - Valentino Rivas", true, null]
+                    ]
+                ]
+            ]
+        },
+        "RETURN_TO_DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_PENNY": {
+            "args": [],
+            "code": [
+                ["VAR", "$PENNY", ["GET_NAMED_CARD", "Penny White"]],
+                ["COND",
+                    ["NOT_EQUAL", "$PENNY", null],
+                    [
+                        ["VAR", "$PLAYER_N", "$PENNY.controller"],
+                        //Setup: You begin play at the Balcony. Search the gathered cards for 1 copy of Wraith and 1 copy of Whispers in the Dark. Spawn the Wraith engaged with you and put Whispers in the Dark into play next to the agenda deck. You begin with 2 resources instead of 5.
+                        //Starting Play Area: Dig Deep (Core 77), Knife (Core 86), Flashlight (Core 87) with 2 supply tokens remaining.
+                        //Opening Hand: Stray Cat (Core 76), Lucky! (Core 80), Knife (Core 86), Flashlight (Core 87), 2 copies of Act of Desperation (TCU 37), 2 copies of Able Bodied (TCU 38).
+                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Balcony"],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Wraith", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Whispers in the Dark", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
+                        ["DO_LOAD_CARDS", "$PLAYER_N", "Return to Disappearance at the Twilight Estate - Penny White", true, null],
+                        ["VAR", "$FLASHLIGHT", ["GET_NAMED_DECK_CARD", "Flashlight", ["GET_CONTROLLER_PLAY", "$PLAYER_N"]]],
+                        ["DO_PLACE_RESOURCES_ON_CARD", "$PLAYER_N", "$FLASHLIGHT.id", 2, true, null],
+                        ["SET", "/cardById/$FLASHLIGHT.id/usesPlaced", true]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "disappearanceAtTheTwilightEstateChooseInvestigator": {
+            "args": [],
+            "message": "Choose your investigator.",
+            "options": [
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "05046": { //Gavriella Mizrah: Private Security
+                "rules": [
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 4]
+                        ]
+                    },
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["STARTING_HAND_DONE"]
+                        ]
+                    }
+                ]
+            },
+            "05047": { //Jerome Davids: Josef's Secretary
+                "rules": [
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
+                        ]
+                    },
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["STARTING_HAND_DONE"]
+                        ]
+                    }
+                ]
+            },
+            "05048": { //Valentino Rivas: Wealthy Philanthropist
+                "rules": [
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 5]
+                        ]
+                    },
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["STARTING_HAND_DONE"]
+                        ]
+                    }
+                ]
+            },
+            "05049": { //Penny White: Josef's Housekeeper
+                "rules": [
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 3]
+                        ]
+                    },
+                    {
+                        "type": "trigger",
+                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["STARTING_HAND_DONE"]
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

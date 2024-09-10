@@ -1,0 +1,140 @@
+{
+    "preBuiltDecks": {
+        "Return to At Death's Doorstep Scenario": {
+            "label": "Return to At Death's Doorstep Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "Return to The Circle Undone", "Return to At Death's Doorstep", null, "Return to At Death's Doorstep Scenario Init"]
+            ]
+        },
+        "Return to At Death's Doorstep": {
+            "hideFromSearch": true,
+            "label": "Return to At Death's Doorstep",
+            "cards": [
+                {"databaseId": "05065", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //At Death's Doorstep
+                {"databaseId": "05066", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //JUSTICE • XI
+                {"databaseId": "05067", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Over the Threshold
+                {"databaseId": "05068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Hidden Agendas
+                {"databaseId": "05069", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Spectral Realm
+                {"databaseId": "05070", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Escape the Cage
+                {"databaseId": "05078", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Entry Hall
+                {"databaseId": "05079", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Victorian Halls
+                {"databaseId": "05080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Trophy Room
+                {"databaseId": "05081", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Billiards Room
+                {"databaseId": "05082", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Master Bedroom
+                {"databaseId": "05083", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Balcony
+                {"databaseId": "05084", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Office
+                {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Josef Meiger: Lodge Host
+                {"databaseId": "05071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
+                {"databaseId": "05072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
+                {"databaseId": "05073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Trophy Room
+                {"databaseId": "05074", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Billiards Room
+                {"databaseId": "05075", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Master Bedroom
+                {"databaseId": "05076", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Balcony
+                {"databaseId": "05077", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Office
+            ]
+        },
+        "Return to At Death's Doorstep - Realm of Death": {
+            "hideFromSearch": true,
+            "label": "Return to At Death's Doorstep - Realm of Death",
+            "cards": [
+                {"databaseId": "05105", "quantity": 2, "loadGroupId": "sharedPileA"},   //Realm of Torment
+                {"databaseId": "05106", "quantity": 2, "loadGroupId": "sharedPileA"}    //Shapes in the Mist
+            ]
+        },
+        "Return to At Death's Doorstep - The Watcher": {
+            "hideFromSearch": true,
+            "label": "Return to At Death's Doorstep - The Watcher",
+            "cards": [
+                {"databaseId": "05086", "quantity": 1, "loadGroupId": "sharedPileB"},   //The Spectral Watcher: You Are Its Prey
+                {"databaseId": "05087", "quantity": 2, "loadGroupId": "sharedPileB"}    //Watcher's Grasp
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to At Death's Doorstep Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep"],
+            ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
+            ["DO_LOAD_CARDS_SCN", "Spectral Predators"],
+            ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
+            ["DO_LOAD_CARDS_SCN", "Unspeakable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Mists"],
+            ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep - Realm of Death"],
+            ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep - The Watcher"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entry Hall", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Gavriella Mizrah's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 1"]
+        ],
+        "The Witching Hour Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["VAR", "$ENTRY_HALL", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL.id", 6, true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Jerome Davids's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 2"]
+        ],
+        "The Witching Hour Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$OFFICE.id", 6, true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Valentino Rivas's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 3"]
+        ],
+        "The Witching Hour Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["VAR", "$BILLIARDS_ROOM", ["GET_NAMED_MAP_LOCATION", "Billiards Room"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BILLIARDS_ROOM.id", 6, true, null]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Penny White's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 4"]
+        ],
+        "The Witching Hour Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["VAR", "$BALCONY", ["GET_NAMED_MAP_LOCATION", "Balcony"]],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BALCONY.id", 6, true, null]
+                ]
+            ],
+            ["VAR", "$FINAL_MESSAGE", "Realm of Death cards are in Pile A, The Watcher cards are in Pile B."],
+            ["VAR", "$ABOVE_LOCATIONS", ["LIST"]],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Entry Hall"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Office"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Billiards Room"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Balcony"]]
+            ],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$ABOVE_LOCATIONS"], 0],
+                [
+                    ["VAR", "$EXTRA_INFO", ["GET_FORMATTED_LIST", "As evenly as possible, remove a total number of clues from ", "$ABOVE_LOCATIONS", " equal to the number of pieces of evidence that were left behind in your Campaign Log."]],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} {{$EXTRA_INFO}}"]
+                ]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}}"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

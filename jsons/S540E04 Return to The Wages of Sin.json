@@ -1,0 +1,116 @@
+{
+    "preBuiltDecks": {
+        "Return to The Wages of Sin Scenario": {
+            "label": "Return to The Wages of Sin Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "Return to The Circle Undone", "Return to The Wages of Sin", null, "Return to The Wages of Sin Scenario Init"]
+            ]
+        },
+        "Return to The Wages of Sin": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin",
+            "cards": [
+                {"databaseId": "05161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Wages of Sin
+                {"databaseId": "05162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HANGED MAN • XII
+                {"databaseId": "05163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Death's Approach
+                {"databaseId": "05164", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Dead
+                {"databaseId": "05165", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Living
+                {"databaseId": "05166", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Hangman's Brook
+                {"databaseId": "05167", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"},  //Haunted Fields
+                {"databaseId": "05168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "31%"},  //Abandoned Chapel
+                {"databaseId": "05177", "quantity": 4, "loadGroupId": "sharedNotInPlay"},                               //Spectral Web
+                {"databaseId": "05179", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Vengeful Witch
+                {"databaseId": "05180", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Malevolent Spirit
+                {"databaseId": "05181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Punishment
+                {"databaseId": "05182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Burdens of the Past
+                {"databaseId": "05183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ominous Portents
+                {"databaseId": "05184", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Grave-Light
+                {"databaseId": "05185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Bane of the Living
+            ]
+        },
+        "Return to The Wages of Sin - The Gallows": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - The Gallows",
+            "cards": [
+                {"databaseId": "05169", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "7%"},   //The Gallows
+                {"databaseId": "05170", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "7%"}    //The Gallows
+            ]
+        },
+        "Return to The Wages of Sin - Heretics' Graves": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - Heretics' Graves",
+            "cards": [
+                {"databaseId": "05171", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "31%"},   //Heretics' Graves
+                {"databaseId": "05172", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "31%"}    //Heretics' Graves
+            ]
+        },
+        "Return to The Wages of Sin - Chapel Crypt": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - Chapel Crypt",
+            "cards": [
+                {"databaseId": "05173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"},  //Chapel Crypt
+                {"databaseId": "05174", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"}   //Chapel Crypt
+            ]
+        },
+        "Return to The Wages of Sin - Chapel Attic": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - Chapel Attic",
+            "cards": [
+                {"databaseId": "05175", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "7%"},   //Chapel Attic
+                {"databaseId": "05176", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "7%"}    //Chapel Attic
+            ]
+        },
+        "Return to The Wages of Sin - The Watcher": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - The Watcher",
+            "cards": [
+                {"databaseId": "05086", "quantity": 1, "loadGroupId": "sharedPileA"},   //The Spectral Watcher: You Are Its Prey
+                {"databaseId": "05087", "quantity": 2, "loadGroupId": "sharedPileA"}    //Watcher's Grasp
+            ]
+        }
+    },
+    "actionLists": {
+        "Return to The Wages of Sin Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Return to The Wages of Sin"],
+            ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
+            ["DO_LOAD_CARDS_SCN", "City of the Damned"],
+            ["DO_LOAD_CARDS_SCN", "Unspeakable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Unstable Realm"],
+            ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
+            ["DO_LOAD_CARDS_SCN", "Hexcraft"],
+            ["DO_LOAD_CARDS_SCN", "Return to The Wages of Sin - The Watcher"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - The Gallows", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Heretics' Graves", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Chapel Crypt", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Chapel Attic", 1],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"],
+                ["EQUAL", "$CARD.currentSide", "B"]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["SET", "/cardById/$CARD.id/currentSide", "B"]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Hangman's Brook", 5, 7, 3, 0],
+            ["VAR", "$HERETICS", ["SHUFFLE_LIST", ["LIST", "05178a", "05178c", "05178e", "05178g", "05178i", "05178k"]]],  //Heretic, Heretic, Heretic, Heretic, Heretic, Heretic
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_CREATE_CARDS_SCN", "Heretic", "$HERETICS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                ["IN_STRING", "$CARD.sides.A.traits", "Spectral."]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["MOVE_CARD", "$CARD.id", "sharedDeckA", -1],
+                ["SET", "/cardById/$CARD.id/cardDeck", "sharedDeckA"],
+                ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
+                ["SET", "/cardById/$CARD.id/discardToOther", true]
+            ]],
+            ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
