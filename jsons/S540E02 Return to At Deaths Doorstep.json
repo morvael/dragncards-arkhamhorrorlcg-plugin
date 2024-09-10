@@ -14,6 +14,7 @@
             "label": "Return to At Death's Doorstep",
             "cards": [
                 {"databaseId": "05065", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //At Death's Doorstep
+                {"databaseId": "54024", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to At Death's Doorstep
                 {"databaseId": "05066", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //JUSTICE • XI
                 {"databaseId": "05067", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Over the Threshold
                 {"databaseId": "05068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Hidden Agendas
@@ -26,6 +27,7 @@
                 {"databaseId": "05082", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Master Bedroom
                 {"databaseId": "05083", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Balcony
                 {"databaseId": "05084", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Office
+                {"databaseId": "54028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Wine Cellar
                 {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Josef Meiger: Lodge Host
                 {"databaseId": "05071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
                 {"databaseId": "05072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
@@ -33,15 +35,18 @@
                 {"databaseId": "05074", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Billiards Room
                 {"databaseId": "05075", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Master Bedroom
                 {"databaseId": "05076", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Balcony
-                {"databaseId": "05077", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"}   //Office
+                {"databaseId": "05077", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Office
+                {"databaseId": "54027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "76%"},  //Wine Cellar
+                {"databaseId": "54025", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Senator Nathaniel Rhodes: Adept Politician
+                {"databaseId": "54026", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Dmitri Konstantinov: Taking the Long View
             ]
         },
-        "Return to At Death's Doorstep - Realm of Death": {
+        "Return to At Death's Doorstep - Unstable Realm": {
             "hideFromSearch": true,
-            "label": "Return to At Death's Doorstep - Realm of Death",
+            "label": "Return to At Death's Doorstep - Unstable Realm",
             "cards": [
-                {"databaseId": "05105", "quantity": 2, "loadGroupId": "sharedPileA"},   //Realm of Torment
-                {"databaseId": "05106", "quantity": 2, "loadGroupId": "sharedPileA"}    //Shapes in the Mist
+                {"databaseId": "54068", "quantity": 2, "loadGroupId": "sharedPileA"},   //Unstable Energies
+                {"databaseId": "54069", "quantity": 2, "loadGroupId": "sharedPileA"}    //From the Other Side
             ]
         },
         "Return to At Death's Doorstep - The Watcher": {
@@ -56,12 +61,14 @@
     "actionLists": {
         "Return to At Death's Doorstep Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep"],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Senator Nathaniel Rhodes", "Entry Hall", 3, 3, 0],
+            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$GAME.arkhamNumPlayers", true, null],
             ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
             ["DO_LOAD_CARDS_SCN", "Spectral Predators"],
             ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
             ["DO_LOAD_CARDS_SCN", "Unspeakable Fate"],
             ["DO_LOAD_CARDS_SCN", "Chilling Mists"],
-            ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep - Realm of Death"],
+            ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep - Unstable Realm"],
             ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep - The Watcher"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entry Hall", 5, 7, 3, 0],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Gavriella Mizrah's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 1"]
@@ -108,7 +115,7 @@
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BALCONY.id", 6, true, null]
                 ]
             ],
-            ["VAR", "$FINAL_MESSAGE", "Realm of Death cards are in Pile A, The Watcher cards are in Pile B."],
+            ["VAR", "$FINAL_MESSAGE", "Unstable Realm cards are in Pile A, The Watcher cards are in Pile B."],
             ["VAR", "$ABOVE_LOCATIONS", ["LIST"]],
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
@@ -133,7 +140,8 @@
                     ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} {{$EXTRA_INFO}}"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}}"],
+            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}} When act 1b instructs the players to shuffle the Realm of Death encounter set into the encounter deck, shuffle in the Unstable Realm encounter set instead. Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }
