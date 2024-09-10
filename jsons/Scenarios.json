@@ -140,7 +140,8 @@
                             {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"},
                             {"label": "id:forTheGreaterGood", "deckListId": "For the Greater Good Scenario"},
                             {"label": "id:unionAndDisillusion", "deckListId": "Union and Disillusion Scenario"},
-                            {"label": "id:inTheClutchesOfChaos", "deckListId": "In the Clutches of Chaos Scenario"}
+                            {"label": "id:inTheClutchesOfChaos", "deckListId": "In the Clutches of Chaos Scenario"},
+                            {"label": "id:beforeTheBlackThrone", "deckListId": "Before the Black Throne Scenario"}
                         ]
                     }
                 ]
@@ -445,6 +446,9 @@
         },
         "inTheClutchesOfChaos": {
             "English": "In the Clutches of Chaos"
+        },
+        "beforeTheBlackThrone": {
+            "English": "Before the Black Throne"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

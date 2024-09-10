@@ -1,0 +1,90 @@
+{
+    "preBuiltDecks": {
+        "Before the Black Throne Scenario": {
+            "label": "Before the Black Throne Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "The Circle Undone", "Before the Black Throne", null, "Before the Black Throne Scenario Init"]
+            ]
+        },
+        "Before the Black Throne": {
+            "hideFromSearch": true,
+            "label": "Before the Black Throne",
+            "cards": [
+                {"databaseId": "05325", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Before the Black Throne
+                {"databaseId": "05326", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //WHEEL OF FORTUNE • X
+                {"databaseId": "05327", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //It Awaits
+                {"databaseId": "05328", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Final Countdown
+                {"databaseId": "05329", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Cosmos Beckons
+                {"databaseId": "05330", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Azathoth's Domain
+                {"databaseId": "05331", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Must Be Done
+                {"databaseId": "05332", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Cosmic Ingress
+                {"databaseId": "05334", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Court of the Great Old Ones
+                {"databaseId": "05335", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Black Throne
+                {"databaseId": "05346", "quantity": 1, "loadGroupId": "sharedOffMap"},                                  //Azathoth: The Primal Chaos
+                {"databaseId": "05341", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Mindless Dancer
+                {"databaseId": "05342", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Ultimate Chaos
+                {"databaseId": "05343", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Whispered Bargain
+                {"databaseId": "05344", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //The End is Nigh!
+                {"databaseId": "05345", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //A World in Darkness
+            ]
+        }
+    },
+    "actionLists": {
+        "Before the Black Throne Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Before the Black Throne"],
+            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "05334"], false, null], //Court of the Great Old Ones
+            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "05335"], false, null], //The Black Throne
+            ["DO_LOAD_CARDS_SCN", "Agents of Azathoth"],
+            ["DO_LOAD_CARDS_SCN", "Inexorable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Cosmic Ingress", -5, 3, -3, 0],
+            ["VAR", "$COSMOS", ["SHUFFLE_LIST", ["LIST", "05336", "05336", "05336", "05337", "05337", "05337", "05338", "05338", "05338", "05339", "05340", "05340"]]], //Dancer's Mist (3), Flight into Oblivion (3), Infinity of Darkness (3), Cosmic Gate, Pathway into Void (2)
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 12, 1, [
+                ["DO_CREATE_CARDS_SCN", "Cosmos", "$COSMOS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["VAR", "$USED_COSMOS", ["SHUFFLE_LIST", ["LIST", "05333", "$COSMOS.[0]"]]], //Hideous Palace
+            ["VAR", "$SPAWN_TOPS", ["LIST", 24, 62]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Cosmos", "$USED_COSMOS.[$I]", 64, "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 26, 45, 45, 64, 26, 45]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 24, 24, 43, 43, 62, 62]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", ["GET_CONTROLLER_DECK", "$GAME.firstPlayer"]]],
+                ["SET", "/cardById/$TOP_CARD.id/disableSideChange", true],
+                ["DO_SPAWN_HIDDEN_AT_SCN", "$TOP_CARD.id", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"],
+                ["SET", "/cardById/$TOP_CARD.id/disableSideChange", false]
+            ]],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Piper of Azathoth", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the path winds before you” in Campaign Log.", ["LIST", "6 tally marks.", "5 tally marks.", "4 tally marks.", "3 tally marks.", "2 tally marks.", "1 tally mark.", "0 tally marks."], "Before the Black Throne Scenario Question 1"]
+        ],
+        "Before the Black Throne Scenario Question 1": [
+            ["LOG", "└── The path winds before you: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["VAR", "$TOKENS", 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["UPDATE_VAR", "$TOKENS", 6],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["UPDATE_VAR", "$TOKENS", 5],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["UPDATE_VAR", "$TOKENS", 4],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                ["UPDATE_VAR", "$TOKENS", 3],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "E"],
+                ["UPDATE_VAR", "$TOKENS", 2],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "F"],
+                ["UPDATE_VAR", "$TOKENS", 1]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$TOKENS", 0],
+                ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$TOKENS", true, null]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Cosmos cards are in Deck A. Off Map is “next to the agenda deck” (in play)."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

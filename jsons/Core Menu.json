@@ -791,11 +791,16 @@
                 ]
             },
             {
-                "label": "id:viewCardInfoMenu",
-                "actionList": "viewCardInfo",
+                "label": "id:sendCardToLocationsMenu",
+                "actionList": "sendCardToLocations",
                 "showIf": ["AND",
-                    ["NOT_EQUAL", "$ACTIVE_FACE.databaseId", null]
+                    ["IN_STRING", "$ACTIVE_CARD.groupId", "Deck"],
+                    ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], false]
                 ]
+            },
+            {
+                "label": "id:viewCardInfoMenu",
+                "actionList": "viewCardInfo"
             }
         ]
     },

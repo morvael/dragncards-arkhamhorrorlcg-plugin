@@ -74,7 +74,15 @@
                 ["CAN_SEND_TO_DECK_BOTTOM", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
                 ["DO_SEND_TO_DECK_BOTTOM", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
                 ["TRUE"],
-                ["LOG", "└── You cannot send {{$ACTIVE_FACE.name}} to deck's bottom, {{$ALIAS_N}}."]
+                ["LOG", "└── You cannot move {{$ACTIVE_FACE.name}} to deck's bottom, {{$ALIAS_N}}."]
+            ]
+        ],
+        "sendCardToLocations": [
+            ["COND",
+                ["CAN_SEND_TO_LOCATIONS", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SEND_TO_LOCATIONS", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot move {{$ACTIVE_FACE.name}} to Locations, {{$ALIAS_N}}."]
             ]
         ]
     },
@@ -544,8 +552,38 @@
                 ["COND",
                     ["CAN_SEND_TO_DECK_BOTTOM", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "send {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom.", "sends {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom."],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom.", "moves {{$TARGET_CARD.currentFace.name}} to {{$TARGET_GROUP.label}}'s bottom."],
                         ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", -1]
+                    ]
+                ]
+            ]
+        },
+        "CAN_SEND_TO_LOCATIONS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SEND_TO_LOCATIONS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SEND_TO_LOCATIONS.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.groupId", "CAN_SEND_TO_LOCATIONS.TARGET_CARD.groupId"]],
+                ["AND",
+                    ["IN_STRING", "$TARGET_CARD.groupId", "Deck"],
+                    ["EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], false]
+                ]
+            ]
+        },
+        "DO_SEND_TO_LOCATIONS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SEND_TO_LOCATIONS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SEND_TO_LOCATIONS.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SEND_TO_LOCATIONS.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SEND_TO_LOCATIONS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_CARD.currentFace.name}} to {{$GROUP_BY_ID.sharedLocations.label}}.", "moves {{$TARGET_CARD.currentFace.name}} to {{$GROUP_BY_ID.sharedLocations.label}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", true],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1],
+                        ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", 3, 3],
+                        ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", false]
                     ]
                 ]
             ]
@@ -668,7 +706,10 @@
             "English": "Shuffle into Encounter Deck"
         },
         "sendCardToDeckBottomMenu": {
-            "English": "Send to bottom"
+            "English": "Move to deck's bottom"
+        },
+        "sendCardToLocationsMenu": {
+            "English": "Move to Locations"
         }
     }
 }

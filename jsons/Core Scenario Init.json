@@ -529,6 +529,25 @@
                 ["DO_SPAWN_HIDDEN_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
             ]
         },
+        "DO_SPAWN_HIDDEN_AT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_HIDDEN_AT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SPAWN_HIDDEN_AT.TARGET_CARD_ID"]],
+                ["VALIDATE_GE0", "$LEFT", "DO_SPAWN_HIDDEN_AT.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "DO_SPAWN_HIDDEN_AT.TOP"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SPAWN_HIDDEN_AT.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.B.name}}.", "spawns {{$TARGET_CARD.sides.B.name}}."],
+                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1],
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", "$LEFT", "$TOP"]
+            ]
+        },
+        "DO_SPAWN_HIDDEN_AT_SCN": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_SPAWN_HIDDEN_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
             "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE", "$Y_CHANGE"],
             "code": [
@@ -1250,28 +1269,28 @@
             "message": "Choose {{$GAME.arkhamScenarioName}} difficulty.",
             "options": [
                 {
-                    "label": "Easy",
+                    "label": "Easy.",
                     "hotkey": "E",
                     "code": [
                         ["SET_SCENARIO_DIFFICULTY", "Easy"]
                     ]
                 },
                 {
-                    "label": "Standard",
+                    "label": "Standard.",
                     "hotkey": "S",
                     "code": [
                         ["SET_SCENARIO_DIFFICULTY", "Standard"]
                     ]
                 },
                 {
-                    "label": "Hard",
+                    "label": "Hard.",
                     "hotkey": "H",
                     "code": [
                         ["SET_SCENARIO_DIFFICULTY", "Hard"]
                     ]
                 },
                 {
-                    "label": "Expert",
+                    "label": "Expert.",
                     "hotkey": "X",
                     "code": [
                         ["SET_SCENARIO_DIFFICULTY", "Expert"]
@@ -1291,7 +1310,7 @@
                     ]
                 },
                 {
-                    "label": "No",
+                    "label": "No.",
                     "hotkey": "N",
                     "code": [
                         ["DRAW_MULLIGAN_HAND", false]
@@ -1310,7 +1329,7 @@
             "message": "Do you want to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from your deck into play?",
             "options": [
                 {
-                    "label": "Yes",
+                    "label": "Yes.",
                     "hotkey": "Y",
                     "code": [
                         ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "$TARGET_CARD_ID"],
@@ -1318,7 +1337,7 @@
                     ]
                 },
                 {
-                    "label": "No",
+                    "label": "No.",
                     "hotkey": "N",
                     "code": [
                         ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "decide not to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from their deck into play.", "decides not to put {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}} from their deck into play."],
