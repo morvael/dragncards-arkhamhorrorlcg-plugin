@@ -14,6 +14,7 @@
             "label": "Return to In the Clutches of Chaos",
             "cards": [
                 {"databaseId": "05284", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //In the Clutches of Chaos
+                {"databaseId": "54049", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to In the Clutches of Chaos
                 {"databaseId": "05285", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //THE CHARIOT • VII
                 {"databaseId": "05306", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Chaos Manifest
                 {"databaseId": "05307", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Primordial Gateway
@@ -58,12 +59,12 @@
             ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos"],
             ["DO_LOAD_CARDS_SCN", "Agents of Azathoth"],
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Rivertown", "05292", "05293", 55, 10],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Merchant District", "05300", "05301", 35, 10],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "French Hill", "05290", "05291", 64, 43],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Uptown", "05296", "05297", 26, 43],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Southside", "05294", "05295", 45, 43],
-            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "South Church", "05298", "05299", 45, 76],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Rivertown", "05292", "05293", "54051", 55, 10],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Merchant District", "05300", "05301", "54055", 35, 10],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "French Hill", "05290", "05291", "54050", 64, 43],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Uptown", "05296", "05297", "54053", 26, 43],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Southside", "05294", "05295", "54052", 45, 43],
+            ["RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "South Church", "05298", "05299", "54054", 45, 76],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Southside", 5, 7, 3, 0],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Anette Mason is possessed by evil.", "Carl Sanford possesses the secrets of the universe."], "Return to In the Clutches of Chaos Scenario Question 1"]
         ],
@@ -110,14 +111,15 @@
                 ]]
             ]],
             ["SET", "/arkhamFinalScenarioMessage", "Locations removed from the game during setup are in Deck A."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },
     "functions": {
         "RETURN_TO_IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS": {
-            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2", "$LEFT", "$TOP"],
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2", "$TARGET_DATABASE_ID_3", "$LEFT", "$TOP"],
             "code": [
-                ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2"]]],
+                ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2", "$TARGET_DATABASE_ID_3"]]],
                 ["DO_SPAWN_LOCATION_SCN", "$TARGET_NAME", "$LOCATIONS.[0]", "$LEFT", "$TOP"],
                 ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$LOCATIONS.[1]", 1, "sharedDeckA"]
             ]
