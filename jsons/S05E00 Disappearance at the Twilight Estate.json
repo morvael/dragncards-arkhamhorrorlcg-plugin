@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT"]
+                ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT", "The Circle Undone", "Disappearance at the Twilight Estate", "Disappearance at the Twilight Estate Scenario Init", "Obscuring Fog", "Terror in the Night", "Wraith"]
             ]
         },
         "Disappearance at the Twilight Estate": {
@@ -113,8 +113,14 @@
     },
     "functions": {
         "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT": {
-            "args": [],
+            "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION", "$OBSCURING_FOG_NAME", "$TERROR_IN_THE_NIGHT_NAME", "$WRAITH_NAME"],
             "code": [
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateCampaignName", "$CAMPAIGN_NAME"],
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateScenarioName", "$SCENARIO_NAME"],
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateScenarioAction", "$SCENARIO_ACTION"],
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateObscuringFogName", "$OBSCURING_FOG_NAME"],
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateTerrorInTheNightName", "$TERROR_IN_THE_NIGHT_NAME"],
+                ["SET", "/arkhamDisappearanceAtTheTwilightEstateWraithName", "$WRAITH_NAME"],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["IN_STRING", "$CARD.controller", "player"]
                 ]]],
@@ -162,7 +168,7 @@
                 ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$PLAYER_N"]],
                 ["COND",
                     ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
-                    ["SCENARIO_INIT", "The Circle Undone", "The Circle Undone", "Disappearance at the Twilight Estate", "Disappearance at the Twilight Estate Scenario Early Init", "Disappearance at the Twilight Estate Scenario Init"],
+                    ["SCENARIO_INIT", "The Circle Undone", "$GAME.arkhamDisappearanceAtTheTwilightEstateCampaignName", "$GAME.arkhamDisappearanceAtTheTwilightEstateScenarioName", "Disappearance at the Twilight Estate Scenario Early Init", "$GAME.arkhamDisappearanceAtTheTwilightEstateScenarioAction"],
                     ["TRUE"],
                     ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE", "$NEXT_PLAYER"]
                 ]
@@ -204,7 +210,7 @@
                         //Opening Hand: Hyperawareness (Core 34), Mind over Matter (Core 36), Working a Hunch (Core 37), Barricade (Core 38), Deduction (Core 39), Magnifying Glass (level 1) (Core 40), Fingerprint Kit (TCU 24), Connect the Dots (TCU 25), 2 copies of Curiosity (TCU 26).
                         ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Office"],
                         ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$PLAYER_N", "Nether Mist", "Office", 3, 3, 0, true, null],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Obscuring Fog", "sharedEncounterDeck", 1, "sharedLocations", true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateObscuringFogName", "sharedEncounterDeck", 1, "sharedLocations", true, null],
                         ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
                         ["DO_ATTACH_CARD", "$PLAYER_N", "$DO_MOVE_NAMED_DECK_CARDS_RESULT.[0]", "$OFFICE.id", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Jerome Davids", true, null]
@@ -225,7 +231,7 @@
                         //Opening Hand: .41 Derringer (Core 47), Opportunist (Core 53), Sure Gamble (level 3) (Core 56), 2 copies of Money Talks (TCU 29), 2 copies of Cunning (TCU 30).
                         ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Billiards Room"],
                         ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Shadow Hound", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Terror in the Night", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateTerrorInTheNightName", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Valentino Rivas", true, null]
                     ]
                 ]
@@ -243,7 +249,7 @@
                         //Starting Play Area: Dig Deep (Core 77), Knife (Core 86), Flashlight (Core 87) with 2 supply tokens remaining.
                         //Opening Hand: Stray Cat (Core 76), Lucky! (Core 80), Knife (Core 86), Flashlight (Core 87), 2 copies of Act of Desperation (TCU 37), 2 copies of Able Bodied (TCU 38).
                         ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Balcony"],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Wraith", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateWraithName", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
                         ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Whispers in the Dark", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Penny White", true, null],
                         ["VAR", "$FLASHLIGHT", ["GET_NAMED_DECK_CARD", "Flashlight", ["GET_CONTROLLER_PLAY", "$PLAYER_N"]]],
