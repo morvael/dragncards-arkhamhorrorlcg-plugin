@@ -14,21 +14,30 @@
             "label": "Return to The Wages of Sin",
             "cards": [
                 {"databaseId": "05161", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Wages of Sin
+                {"databaseId": "54034", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Wages of Sin
                 {"databaseId": "05162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //THE HANGED MAN • XII
                 {"databaseId": "05163", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Death's Approach
-                {"databaseId": "05164", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Dead
                 {"databaseId": "05165", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In Pursuit of the Living
-                {"databaseId": "05166", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Hangman's Brook
                 {"databaseId": "05167", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"},  //Haunted Fields
                 {"databaseId": "05168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "31%"},  //Abandoned Chapel
                 {"databaseId": "05177", "quantity": 4, "loadGroupId": "sharedNotInPlay"},                               //Spectral Web
+                {"databaseId": "54041", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Erynn MacAoidh: Devoted Enchantress
                 {"databaseId": "05179", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Vengeful Witch
                 {"databaseId": "05180", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Malevolent Spirit
                 {"databaseId": "05181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Punishment
                 {"databaseId": "05182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Burdens of the Past
                 {"databaseId": "05183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ominous Portents
                 {"databaseId": "05184", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Grave-Light
-                {"databaseId": "05185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Bane of the Living
+                {"databaseId": "05185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Bane of the Living
+                {"databaseId": "54040", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Witchweed
+            ]
+        },
+        "Return to The Wages of Sin - Hangman's Brook": {
+            "hideFromSearch": true,
+            "label": "Return to The Wages of Sin - Hangman's Brook",
+            "cards": [
+                {"databaseId": "05166", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Hangman's Brook
+                {"databaseId": "54037", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"}   //Hangman's Brook
             ]
         },
         "Return to The Wages of Sin - The Gallows": {
@@ -74,7 +83,25 @@
     },
     "actionLists": {
         "Return to The Wages of Sin Scenario Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Erynn wants to meet.", "The above is not true."], "Return to The Wages of Sin Scenario Question 1"]
+        ],
+        "Return to The Wages of Sin Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+            ],
             ["DO_LOAD_CARDS_SCN", "Return to The Wages of Sin"],
+            ["VAR", "$EXTRA_INFO", ""],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_CREATE_STORY_CARD_SCN", "In Pursuit of Answers", "54035", 0, "sharedActStory"],
+                    ["DO_CREATE_STORY_CARD_SCN", "In Pursuit of the Beyond", "54036", 2, "sharedActStory"],
+                    ["UPDATE_VAR", "$EXTRA_INFO", "When advancing to act 2a, move second act card to Act Deck B. "]
+                ],
+                ["TRUE"],
+                ["DO_CREATE_STORY_CARD_SCN", "In Pursuit of the Dead", "05164", 0, "sharedActStory"]
+            ],
             ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
             ["DO_LOAD_CARDS_SCN", "City of the Damned"],
             ["DO_LOAD_CARDS_SCN", "Unspeakable Fate"],
@@ -82,6 +109,7 @@
             ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
             ["DO_LOAD_CARDS_SCN", "Hexcraft"],
             ["DO_LOAD_CARDS_SCN", "Return to The Wages of Sin - The Watcher"],
+            ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Hangman's Brook", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - The Gallows", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Heretics' Graves", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Wages of Sin - Chapel Crypt", 1],
@@ -95,7 +123,7 @@
                 ["SET", "/cardById/$CARD.id/currentSide", "B"]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Hangman's Brook", 5, 7, 3, 0],
-            ["VAR", "$HERETICS", ["SHUFFLE_LIST", ["LIST", "05178a", "05178c", "05178e", "05178g", "05178i", "05178k"]]],  //Heretic, Heretic, Heretic, Heretic, Heretic, Heretic
+            ["VAR", "$HERETICS", ["SHUFFLE_LIST", ["LIST", "05178a", "05178c", "05178e", "05178g", "05178i", "05178k", "54038", "54039"]]],  //Heretic, Heretic, Heretic, Heretic, Heretic, Heretic, Heretic, Heretic
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
                 ["DO_CREATE_CARDS_SCN", "Heretic", "$HERETICS.[$I]", 1, "sharedNotInPlay"]
             ]],
@@ -109,7 +137,8 @@
                 ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
                 ["SET", "/cardById/$CARD.id/discardToOther", true]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
+            ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A. {{$EXTRA_INFO}}Remember the rule from the back of the “Return to…” scenario card."],
+            ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }
