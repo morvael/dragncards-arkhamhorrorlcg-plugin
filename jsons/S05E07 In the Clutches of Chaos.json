@@ -1,0 +1,126 @@
+{
+    "preBuiltDecks": {
+        "In the Clutches of Chaos Scenario": {
+            "label": "In the Clutches of Chaos Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Circle Undone", "The Circle Undone", "In the Clutches of Chaos", null, "In the Clutches of Chaos Scenario Init"]
+            ]
+        },
+        "In the Clutches of Chaos": {
+            "hideFromSearch": true,
+            "label": "In the Clutches of Chaos",
+            "cards": [
+                {"databaseId": "05284", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //In the Clutches of Chaos
+                {"databaseId": "05285", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //THE CHARIOT • VII
+                {"databaseId": "05306", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Chaos Manifest
+                {"databaseId": "05307", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Primordial Gateway
+                {"databaseId": "05308", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Terror Unleashed
+            ]
+        },
+        "In the Clutches of Chaos - Music of the Damned": {
+            "hideFromSearch": true,
+            "label": "In the Clutches of Chaos - Music of the Damned",
+            "cards": [
+                {"databaseId": "05286a", "quantity": 1, "loadGroupId": "sharedActStory"},                               //Dark Knowledge (v. I)
+                {"databaseId": "05287", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Beyond the Grave
+                {"databaseId": "05302", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Hangman's Hill: Where It All Ends
+                {"databaseId": "05303", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Silver Twilight Lodge: Shrouded In Mystery
+                {"databaseId": "05311", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Witness of Chaos
+                {"databaseId": "05312", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Toil and Trouble
+            ]
+        },
+        "In the Clutches of Chaos - Secrets of the Universe": {
+            "hideFromSearch": true,
+            "label": "In the Clutches of Chaos - Secrets of the Universe",
+            "cards": [
+                {"databaseId": "05288a", "quantity": 1, "loadGroupId": "sharedActStory"},                               //Dark Knowledge (v. II)
+                {"databaseId": "05289", "quantity": 1, "loadGroupId": "sharedActStory"},                                //New World Order
+                {"databaseId": "05304", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Hangman's Hill: Shrouded In Mystery
+                {"databaseId": "05305", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Silver Twilight Lodge: Where It All Ends
+                {"databaseId": "05309", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Lodge Enforcer
+                {"databaseId": "05310", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Secrets of the Beyond
+            ]
+        },
+        "In the Clutches of Chaos - The Midnight Masks": {
+            "hideFromSearch": true,
+            "label": "In the Clutches of Chaos - The Midnight Masks",
+            "cards": [
+                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},  //Hunting Shadow
+                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}   //False Lead
+            ]
+        }
+    },
+    "actionLists": {
+        "In the Clutches of Chaos Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "In the Clutches of Chaos"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Azathoth"],
+            ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Rivertown", "05292", "05293", 55, 10],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Merchant District", "05300", "05301", 35, 10],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "French Hill", "05290", "05291", 64, 43],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Uptown", "05296", "05297", 26, 43],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "Southside", "05294", "05295", 45, 43],
+            ["IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS", "South Church", "05298", "05299", 45, 76],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Southside", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Anette Mason is possessed by evil.", "Carl Sanford possesses the secrets of the universe."], "In the Clutches of Chaos Scenario Question 1"]
+        ],
+        "In the Clutches of Chaos Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "In the Clutches of Chaos - Music of the Damned"],
+                    ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
+                    ["DO_LOAD_CARDS_SCN", "City of Sins"],
+                    ["DO_LOAD_CARDS_SCN", "Witchcraft"]
+                ],
+                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "In the Clutches of Chaos - Secrets of the Universe"],
+                    ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
+                    ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+                    ["DO_LOAD_CARDS_SCN", "In the Clutches of Chaos - The Midnight Masks"]
+                ]
+            ],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Piper of Azathoth", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["VAR", "$BREACHES_REPEAT", 1],
+            ["VAR", "$BREACHES_NUMBER", 2],
+            ["COND",
+                ["EQUAL", "$GAME.arkhamNumPlayers", 2],
+                ["UPDATE_VAR", "$BREACHES_REPEAT", 2],
+                ["EQUAL", "$GAME.arkhamNumPlayers", 3],
+                ["UPDATE_VAR", "$BREACHES_REPEAT", 3],
+                ["EQUAL", "$GAME.arkhamNumPlayers", 4],
+                [
+                    ["UPDATE_VAR", "$BREACHES_REPEAT", 3],
+                    ["UPDATE_VAR", "$BREACHES_NUMBER", 3]
+                ]
+            ],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"]
+            ]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$BREACHES_REPEAT", 1, [
+                ["UPDATE_VAR", "$SELECTED_CARDS", ["SHUFFLE_LIST", "$SELECTED_CARDS"]],
+                ["FOR_EACH_START_STOP_STEP", "$J", 0, "$BREACHES_NUMBER", 1, [
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$SELECTED_CARDS.[$J].id", 1, true, null]
+                ]]
+            ]],
+            ["SET", "/arkhamFinalScenarioMessage", "Locations removed from the game during setup are in Deck A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "IN_THE_CLUTCHES_OF_CHAOS_SPAWN_LOCATIONS": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2", "$LEFT", "$TOP"],
+            "code": [
+                ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "$TARGET_DATABASE_ID_1", "$TARGET_DATABASE_ID_2"]]],
+                ["DO_SPAWN_LOCATION_SCN", "$TARGET_NAME", "$LOCATIONS.[0]", "$LEFT", "$TOP"],
+                ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$LOCATIONS.[1]", 1, "sharedDeckA"]
+            ]
+        }
+    }
+}

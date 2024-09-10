@@ -139,7 +139,8 @@
                             {"label": "id:theSecretName", "deckListId": "The Secret Name Scenario"},
                             {"label": "id:theWagesOfSin", "deckListId": "The Wages of Sin Scenario"},
                             {"label": "id:forTheGreaterGood", "deckListId": "For the Greater Good Scenario"},
-                            {"label": "id:unionAndDisillusion", "deckListId": "Union and Disillusion Scenario"}
+                            {"label": "id:unionAndDisillusion", "deckListId": "Union and Disillusion Scenario"},
+                            {"label": "id:inTheClutchesOfChaos", "deckListId": "In the Clutches of Chaos Scenario"}
                         ]
                     }
                 ]
@@ -441,6 +442,9 @@
         },
         "unionAndDisillusion": {
             "English": "Union and Disillusion"
+        },
+        "inTheClutchesOfChaos": {
+            "English": "In the Clutches of Chaos"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
