@@ -8,6 +8,14 @@
                 ["LOG", "└── You cannot flip {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
         ],
+        "rotateTarotCard": [
+            ["COND",
+                ["CAN_ROTATE_TAROT", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_ROTATE_TAROT", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot reverse {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
         "advanceStoryFromCard": [
             ["COND",
                 ["AND",
@@ -77,6 +85,7 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Concealed Card"],
@@ -106,10 +115,20 @@
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} facedown.", "flips {{$TARGET_CARD.currentFace.name}} facedown."],
                             ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "B"]
                         ],
-                        ["TRUE"],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "B"],
                         [
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} faceup.", "flips {{$TARGET_CARD.currentFace.name}} faceup."],
                             ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"]
+                        ],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "C"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} facedown.", "flips {{$TARGET_CARD.currentFace.name}} facedown."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "D"]
+                        ],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "D"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "flip {{$TARGET_CARD.currentFace.name}} faceup.", "flips {{$TARGET_CARD.currentFace.name}} faceup."],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "C"]
                         ]
                     ]
                 ]
@@ -121,7 +140,10 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEDOWN.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEDOWN.TARGET_CARD_ID"]],
                 ["AND",
-                    ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "C"]
+                    ],
                     ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
@@ -144,7 +166,10 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_FLIP_CARD_FACEUP.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_FLIP_CARD_FACEUP.TARGET_CARD_ID"]],
                 ["AND",
-                    ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                        ["EQUAL", "$TARGET_CARD.currentSide", "D"]
+                    ],
                     ["CAN_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
                 ]
             ]
@@ -158,6 +183,41 @@
                 ["COND",
                     ["CAN_FLIP_CARD_FACEUP", "$TARGET_PLAYER","$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     ["DO_FLIP_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "CAN_ROTATE_TAROT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ROTATE_TAROT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ROTATE_TAROT.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
+                    ["EQUAL", "$TARGET_CARD.inAdvanced", true]
+                ]
+            ]
+        },
+        "DO_ROTATE_TAROT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ROTATE_TAROT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ROTATE_TAROT.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ROTATE_TAROT.LOG_EVENT"],
+                ["COND",
+                    ["CAN_ROTATE_TAROT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reverse {{$TARGET_CARD.currentFace.name}}.", "reverses {{$TARGET_CARD.currentFace.name}}."],
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "C"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "D"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "C"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "D"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "B"]
+                        ]
+                    ]
                 ]
             ]
         },
@@ -478,6 +538,9 @@
         },
         "flipCardMenu": {
             "English": "Flip (F)"
+        },
+        "rotateTarotCardMenu": {
+            "English": "Reverse"
         },
         "advanceStoryFromCard": {
             "English": "Advance"

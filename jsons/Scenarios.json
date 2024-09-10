@@ -218,7 +218,9 @@
                 "label": "id:miscellaneous",
                 "deckLists": [
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
-                    {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"}
+                    {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"},
+                    {"label": "id:tarotCardsDeckC", "deckListId": "Tarot Cards - Deck C"},
+                    {"label": "id:tarotCardsPileD", "deckListId": "Tarot Cards - Pile D"}
                 ]
             }
         ]
@@ -604,6 +606,12 @@
         },
         "returnToTheForgottenAgeSupplies": {
             "English": "Return to The Forgotten Age Supplies"
+        },
+        "tarotCardsDeckC": {
+            "English": "Tarot Cards - Deck C"
+        },
+        "tarotCardsPileD": {
+            "English": "Tarot Cards - Pile D"
         }
     }
 }

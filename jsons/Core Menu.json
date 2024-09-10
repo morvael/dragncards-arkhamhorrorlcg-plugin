@@ -51,6 +51,7 @@
                 "showIf": ["OR",
                     ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
                 ]
             },
@@ -304,6 +305,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"],
@@ -316,6 +318,14 @@
                             ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedActStory"], false]
                         ]
                     ]
+                ]
+            },
+            {
+                "label": "id:rotateTarotCardMenu",
+                "actionList": "rotateTarotCard",
+                "showIf": ["AND",
+                    ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true]
                 ]
             },
             {

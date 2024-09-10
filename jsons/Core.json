@@ -52,7 +52,8 @@
         "MiniConcealed":          {"width": 0.47, "height": 0.72,"tokens": []},
         "MiniInvestigator":       {"width": 0.47, "height": 0.72,"tokens": []},
         "MicroInvestigator":      {"width": 0.36, "height": 0.36,"tokens": []},
-        "Supplies":               {"width": 0.47, "height": 0.72,"tokens": []}
+        "Supplies":               {"width": 0.47, "height": 0.72,"tokens": []},
+        "Tarot":                  {"width": 0.57, "height": 1.0,"tokens": []}
     },
     "defaultActions": [
     ],

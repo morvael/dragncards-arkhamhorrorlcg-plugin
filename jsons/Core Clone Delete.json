@@ -73,6 +73,7 @@
                 ["OR",
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
                     ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
                 ]
             ]
