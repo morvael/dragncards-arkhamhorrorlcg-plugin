@@ -183,7 +183,15 @@
                 ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
                 ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer7Text}}"]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators hid their knowledge of the coven.", "The above is not true."], "Union and Disillusion Scenario Question 8"]
+            ["COND",
+                ["AND",
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                    ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"]
+                ],
+                ["SCENARIO_SKIP_QUESTIONS", 2, "Union and Disillusion Scenario Init Continue"],
+                ["TRUE"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators hid their knowledge of the coven.", "The above is not true."], "Union and Disillusion Scenario Question 8"]
+            ]
         ],
         "Union and Disillusion Scenario Question 8": [
             ["COND",
