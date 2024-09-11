@@ -832,6 +832,10 @@
             {
                 "label": "id:removeChaosTokenMenu",
                 "actionList": "removeChaosToken"
+            },
+            {
+                "label": "id:tarotReadingMenu",
+                "actionList": "tarotReading"
             }
         ]
     }

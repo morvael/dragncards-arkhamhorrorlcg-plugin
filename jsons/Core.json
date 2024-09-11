@@ -111,7 +111,8 @@
             {"key": "Z", "actionList": "putCardBeneath", "label": "id:putCardBeneath"},
             {"key": "'", "actionList": "moveClue", "label": "id:moveClue"},
             {"key": "[", "actionList": "sendToBack", "label": "id:sendToBack"},
-            {"key": "]", "actionList": "bringToFront", "label": "id:bringToFront"}
+            {"key": "]", "actionList": "bringToFront", "label": "id:bringToFront"},
+            {"key": "Delete", "actionList": "deleteSupplyCard", "label": "id:deleteSupplyCard"}
         ]
     },
     "imageUrlPrefix": {

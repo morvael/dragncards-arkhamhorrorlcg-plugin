@@ -1,0 +1,225 @@
+{
+    "actionLists": {
+        "rotateTarotCard": [
+            ["COND",
+                ["CAN_ROTATE_TAROT", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_ROTATE_TAROT", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot reverse {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "tarotReading": [
+            ["PROMPT", "$PLAYER_N", "selectTarotReadingMode"]
+        ]
+    },
+    "functions": {
+        "CAN_ROTATE_TAROT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ROTATE_TAROT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ROTATE_TAROT.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
+                    ["EQUAL", "$TARGET_CARD.inAdvanced", true]
+                ]
+            ]
+        },
+        "DO_ROTATE_TAROT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ROTATE_TAROT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ROTATE_TAROT.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ROTATE_TAROT.LOG_EVENT"],
+                ["COND",
+                    ["CAN_ROTATE_TAROT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reverse {{$TARGET_CARD.currentFace.name}}.", "reverses {{$TARGET_CARD.currentFace.name}}."],
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.currentSide", "A"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "C"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "D"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "C"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"],
+                            ["EQUAL", "$TARGET_CARD.currentSide", "D"],
+                            ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "B"]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_TAROT_CARD_READING": {
+            "args": ["$TARGET_PLAYER", "$READING_MODE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_TAROT_CARD_READING.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$READING_MODE", "DO_TAROT_CARD_READING.READING_MODE"],
+                ["VAR", "$TAROT_CARDS", ["SHUFFLE_LIST", ["LIST", "tarot_00_the_fool", "tarot_01_the_magician", "tarot_02_the_high_priestess", "tarot_03_the_empress", "tarot_04_the_emperor", "tarot_05_the_hierophant", "tarot_06_the_lovers", "tarot_07_the_chariot", "tarot_08_strength", "tarot_09_the_hermit", "tarot_10_wheel_of_fortune", "tarot_11_justice", "tarot_12_the_hanged_man", "tarot_13_death", "tarot_14_temperance", "tarot_15_the_devil", "tarot_16_the_tower", "tarot_17_the_star", "tarot_18_the_moon", "tarot_19_the_sun", "tarot_20_judgement", "tarot_21_the_world"]]],
+                ["VAR", "$USED_TAROT_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "Tarot"]
+                ]]],
+                ["FOR_EACH_VAL", "$USED_TAROT_CARD", "$USED_TAROT_CARDS", [
+                    ["UPDATE_VAR", "$TAROT_CARDS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$TAROT_CARDS", "$USED_TAROT_CARD.sides.A.databaseId"]]
+                ]],
+                ["VAR", "$TAROT_CARDS_COUNT", ["LENGTH", "$TAROT_CARDS"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$READING_MODE", "CHAOS"],
+                        ["GREATER_EQUAL", "$TAROT_CARDS_COUNT", 1]
+                    ],
+                    [
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Tarot Card", "$TAROT_CARDS.[0]", 1, "sharedVictoryDisplay", false, "$TARGET_PLAYER"],
+                        ["VAR", "$TAROT0_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["VAR", "$COIN", ["RANDOM_INT", 0, 1]],
+                        ["COND",
+                            ["EQUAL", "$COIN", 1],
+                            ["DO_ROTATE_TAROT", "$TARGET_PLAYER", "$TAROT0_ID", false, "$TARGET_PLAYER"]
+                        ],
+                        ["DO_FLOG", "{0:P} did “Chaos” tarot reading: {1:CID}.", ["LIST", "$TARGET_PLAYER", "$TAROT0_ID"]]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$READING_MODE", "BALANCE"],
+                        ["GREATER_EQUAL", "$TAROT_CARDS_COUNT", 2]
+                    ],
+                    [
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Tarot Card", "$TAROT_CARDS.[0]", 1, "sharedVictoryDisplay", false, "$TARGET_PLAYER"],
+                        ["VAR", "$TAROT0_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Tarot Card", "$TAROT_CARDS.[1]", 1, "sharedVictoryDisplay", false, "$TARGET_PLAYER"],
+                        ["VAR", "$TAROT1_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["DO_ROTATE_TAROT", "$TARGET_PLAYER", "$TAROT1_ID", false, "$TARGET_PLAYER"],
+                        ["DO_FLOG", "{0:P} did “Balance” tarot reading: {1:CID} and {2:CID}.", ["LIST", "$TARGET_PLAYER", "$TAROT0_ID", "$TAROT1_ID"]]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$READING_MODE", "CHOICE"],
+                        ["GREATER_EQUAL", "$TAROT_CARDS_COUNT", 3]
+                    ],
+                    [
+                        ["VAR", "$ARGS", ["LIST", "$TARGET_PLAYER"]],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                            ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Tarot Card", "$TAROT_CARDS.[$I]", 1, "sharedVictoryDisplay", false, "$TARGET_PLAYER"],
+                            ["UPDATE_VAR", "$ARGS", ["APPEND", "$ARGS", "$GAME.lastLoadedCardIds.[0]"]]
+                        ]],
+                        ["DO_FLOG", "{0:P} did “Choice” tarot reading: {1:CID}, {2:CID}, and {3:CID}. Choose and reverse 2 of them.", "$ARGS"]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$READING_MODE", "DESTINY"],
+                        ["GREATER_EQUAL", "$TAROT_CARDS_COUNT", 10]
+                    ],
+                    [
+                        ["VAR", "$ARGS", ["LIST", "$TARGET_PLAYER"]],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, 10, 1, [
+                            ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Tarot Card", "$TAROT_CARDS.[$I]", 1, "sharedVictoryDisplay", false, "$TARGET_PLAYER"],
+                            ["UPDATE_VAR", "$ARGS", ["APPEND", "$ARGS", "$GAME.lastLoadedCardIds.[0]"]]
+                        ]],
+                        ["DO_FLOG", "{0:P} did “Destiny” tarot reading: {1:CID}, {2:CID}, {3:CID}, {4:CID}, {5:CID}, {6:CID}, {7:CID}, {8:CID}, {9:CID}, and {10:CID}. Choose and reverse half of the cards (rounded up).", "$ARGS"]
+                    ],
+                    ["TRUE"],
+                    ["DO_FSYSLOG", "You cannot read tarot, {0:P}.", ["LIST", "$TARGET_PLAYER"]]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "selectTarotReadingMode": {
+            "args": [],
+            "message": "Pick tarot reading type",
+            "options": [
+                {
+                    "label": "1-Card Reading (“Chaos”)",
+                    "hotkey": "1",
+                    "code": [
+                        ["DO_TAROT_CARD_READING", "$PLAYER_N", "CHAOS"]
+                    ]
+                },
+                {
+                    "label": "2-Card Reading (“Balance”)",
+                    "hotkey": "2",
+                    "code": [
+                        ["DO_TAROT_CARD_READING", "$PLAYER_N", "BALANCE"]
+                    ]
+                },
+                {
+                    "label": "3-Card Reading (“Choice”)",
+                    "hotkey": "3",
+                    "code": [
+                        ["DO_TAROT_CARD_READING", "$PLAYER_N", "CHOICE"]
+                    ]
+                },
+                {
+                    "label": "Campaign Reading (“Destiny”)",
+                    "hotkey": "C",
+                    "code": [
+                        ["DO_TAROT_CARD_READING", "$PLAYER_N", "DESTINY"]
+                    ]
+                },
+                {
+                    "label": "Cancel",
+                    "hotkey": "X"
+                }
+            ]
+        }
+    },
+    "labels": {
+        "rotateTarotCardMenu": {
+            "English": "Reverse"
+        },
+        "tarotReadingMenu": {
+            "English": "Tarot Reading"
+        }
+    },
+    "preBuiltDecks": {
+        "Tarot Cards - Deck C": {
+            "label": "Tarot Cards - Deck C",
+            "cards": [
+                {"databaseId": "tarot_00_the_fool", "quantity": 1, "loadGroupId": "sharedDeckC"},           //The Fool • 0
+                {"databaseId": "tarot_01_the_magician", "quantity": 1, "loadGroupId": "sharedDeckC"},       //The Magician • I
+                {"databaseId": "tarot_02_the_high_priestess", "quantity": 1, "loadGroupId": "sharedDeckC"}, //The High Priestess • II
+                {"databaseId": "tarot_03_the_empress", "quantity": 1, "loadGroupId": "sharedDeckC"},        //The Empress • III
+                {"databaseId": "tarot_04_the_emperor", "quantity": 1, "loadGroupId": "sharedDeckC"},        //The Emperor • IV
+                {"databaseId": "tarot_05_the_hierophant", "quantity": 1, "loadGroupId": "sharedDeckC"},     //The Hierophant • V
+                {"databaseId": "tarot_06_the_lovers", "quantity": 1, "loadGroupId": "sharedDeckC"},         //The Lovers • VI
+                {"databaseId": "tarot_07_the_chariot", "quantity": 1, "loadGroupId": "sharedDeckC"},        //The Chariot • VII
+                {"databaseId": "tarot_08_strength", "quantity": 1, "loadGroupId": "sharedDeckC"},           //Strength • VIII
+                {"databaseId": "tarot_09_the_hermit", "quantity": 1, "loadGroupId": "sharedDeckC"},         //The Hermit • IX
+                {"databaseId": "tarot_10_wheel_of_fortune", "quantity": 1, "loadGroupId": "sharedDeckC"},   //Wheel of Fortune • X
+                {"databaseId": "tarot_11_justice", "quantity": 1, "loadGroupId": "sharedDeckC"},            //Justice • XI
+                {"databaseId": "tarot_12_the_hanged_man", "quantity": 1, "loadGroupId": "sharedDeckC"},     //The Hanged Man • XII
+                {"databaseId": "tarot_13_death", "quantity": 1, "loadGroupId": "sharedDeckC"},              //Death • XIII
+                {"databaseId": "tarot_14_temperance", "quantity": 1, "loadGroupId": "sharedDeckC"},         //Temperance • XIV
+                {"databaseId": "tarot_15_the_devil", "quantity": 1, "loadGroupId": "sharedDeckC"},          //The Devil • XV
+                {"databaseId": "tarot_16_the_tower", "quantity": 1, "loadGroupId": "sharedDeckC"},          //The Tower • XVI
+                {"databaseId": "tarot_17_the_star", "quantity": 1, "loadGroupId": "sharedDeckC"},           //The Star • XVII
+                {"databaseId": "tarot_18_the_moon", "quantity": 1, "loadGroupId": "sharedDeckC"},           //The Moon • XVIII
+                {"databaseId": "tarot_19_the_sun", "quantity": 1, "loadGroupId": "sharedDeckC"},            //The Sun • XIX
+                {"databaseId": "tarot_20_judgement", "quantity": 1, "loadGroupId": "sharedDeckC"},          //Judgement • XX
+                {"databaseId": "tarot_21_the_world", "quantity": 1, "loadGroupId": "sharedDeckC"}           //The World • XXI
+            ]
+        },
+        "Tarot Cards - Pile D": {
+            "label": "Tarot Cards - Pile D",
+            "cards": [
+                {"databaseId": "tarot_00_the_fool", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Fool • 0
+                {"databaseId": "tarot_01_the_magician", "quantity": 1, "loadGroupId": "sharedPileD"},       //The Magician • I
+                {"databaseId": "tarot_02_the_high_priestess", "quantity": 1, "loadGroupId": "sharedPileD"}, //The High Priestess • II
+                {"databaseId": "tarot_03_the_empress", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Empress • III
+                {"databaseId": "tarot_04_the_emperor", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Emperor • IV
+                {"databaseId": "tarot_05_the_hierophant", "quantity": 1, "loadGroupId": "sharedPileD"},     //The Hierophant • V
+                {"databaseId": "tarot_06_the_lovers", "quantity": 1, "loadGroupId": "sharedPileD"},         //The Lovers • VI
+                {"databaseId": "tarot_07_the_chariot", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Chariot • VII
+                {"databaseId": "tarot_08_strength", "quantity": 1, "loadGroupId": "sharedPileD"},           //Strength • VIII
+                {"databaseId": "tarot_09_the_hermit", "quantity": 1, "loadGroupId": "sharedPileD"},         //The Hermit • IX
+                {"databaseId": "tarot_10_wheel_of_fortune", "quantity": 1, "loadGroupId": "sharedPileD"},   //Wheel of Fortune • X
+                {"databaseId": "tarot_11_justice", "quantity": 1, "loadGroupId": "sharedPileD"},            //Justice • XI
+                {"databaseId": "tarot_12_the_hanged_man", "quantity": 1, "loadGroupId": "sharedPileD"},     //The Hanged Man • XII
+                {"databaseId": "tarot_13_death", "quantity": 1, "loadGroupId": "sharedPileD"},              //Death • XIII
+                {"databaseId": "tarot_14_temperance", "quantity": 1, "loadGroupId": "sharedPileD"},         //Temperance • XIV
+                {"databaseId": "tarot_15_the_devil", "quantity": 1, "loadGroupId": "sharedPileD"},          //The Devil • XV
+                {"databaseId": "tarot_16_the_tower", "quantity": 1, "loadGroupId": "sharedPileD"},          //The Tower • XVI
+                {"databaseId": "tarot_17_the_star", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Star • XVII
+                {"databaseId": "tarot_18_the_moon", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Moon • XVIII
+                {"databaseId": "tarot_19_the_sun", "quantity": 1, "loadGroupId": "sharedPileD"},            //The Sun • XIX
+                {"databaseId": "tarot_20_judgement", "quantity": 1, "loadGroupId": "sharedPileD"},          //Judgement • XX
+                {"databaseId": "tarot_21_the_world", "quantity": 1, "loadGroupId": "sharedPileD"}           //The World • XXI
+            ]
+        }
+    }
+}

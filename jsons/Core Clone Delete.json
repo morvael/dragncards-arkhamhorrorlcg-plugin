@@ -151,8 +151,11 @@
         "cloneSupplyCardMenu": {
             "English": "Clone"
         },
-        "deleteSupplyCardMenu": {
+        "deleteSupplyCard": {
             "English": "Delete"
+        },
+        "deleteSupplyCardMenu": {
+            "English": "Delete (Delete)"
         },
         "spawnMicroCardMenu": {
             "English": "Spawn counter"
