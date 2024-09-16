@@ -64,9 +64,9 @@
             ["DO_LOAD_CARDS_SCN", "At Death's Doorstep - Realm of Death"],
             ["DO_LOAD_CARDS_SCN", "At Death's Doorstep - The Watcher"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entry Hall", 5, 7, 3, 0],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Gavriella Mizrah's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 1"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Gavriella Mizrah's profile is not crossed off.", "The above is not true."], "At Death's Doorstep Scenario Question 1"]
         ],
-        "The Witching Hour Scenario Question 1": [
+        "At Death's Doorstep Scenario Question 1": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
                 [
@@ -75,9 +75,9 @@
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL.id", 6, true, null]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Jerome Davids's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 2"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Jerome Davids's profile is not crossed off.", "The above is not true."], "At Death's Doorstep Scenario Question 2"]
         ],
-        "The Witching Hour Scenario Question 2": [
+        "At Death's Doorstep Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
                 [
@@ -86,9 +86,9 @@
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$OFFICE.id", 6, true, null]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Valentino Rivas's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 3"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Valentino Rivas's profile is not crossed off.", "The above is not true."], "At Death's Doorstep Scenario Question 3"]
         ],
-        "The Witching Hour Scenario Question 3": [
+        "At Death's Doorstep Scenario Question 3": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
                 [
@@ -97,9 +97,9 @@
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BILLIARDS_ROOM.id", 6, true, null]
                 ]
             ],
-            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Penny White's profile is not crossed off.", "The above is not true."], "The Witching Hour Scenario Question 4"]
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Missing Persons” in Campaign Log.", ["LIST", "Penny White's profile is not crossed off.", "The above is not true."], "At Death's Doorstep Scenario Question 4"]
         ],
-        "The Witching Hour Scenario Question 4": [
+        "At Death's Doorstep Scenario Question 4": [
             ["COND",
                 ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
                 [
