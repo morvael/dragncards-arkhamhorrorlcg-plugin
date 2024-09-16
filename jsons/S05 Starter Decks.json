@@ -209,9 +209,10 @@
     "automation": {
         "cards": {
             "05002": { //Joe Diamond: The Private Investigator
-                "rules": [
-                    {
+                "rules": {
+                    "05002a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -219,8 +220,9 @@
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
                         ]
                     },
-                    {
+                    "05002b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
                         "then": [
@@ -264,8 +266,9 @@
                             ]
                         ]
                     },
-                    {
+                    "05002c": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/stepId"],
                         "condition": ["AND",
                             ["TRIGGER_IN_PLAY", "$THIS", 2],
@@ -289,12 +292,13 @@
                             ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
                         ]
                     }
-                ]
+                }
             },
             "05004": { //Diana Stanley: The Redeemed Cultist
-                "rules": [
-                    {
+                "rules": {
+                    "05004a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/attachedCount"],
                         "condition": ["TRUE"],
                         "then": [
@@ -306,12 +310,13 @@
                             ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]]
                         ]
                     }
-                ]
+                }
             },
             "05276": { //Studious
-                "rules": [
-                    {
+                "rules": {
+                    "05276a": {
                         "type": "passive",
+                        "priority": 20,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -323,7 +328,7 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
                         ]
                     }
-                ]
+                }
             }
         }
     },

@@ -1,5 +1,13 @@
 {
     "actionLists": {
+        "peekCard": [
+            ["COND",
+                ["CAN_PEEK_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_PEEK_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot toggle peeking at {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
         "flipCard": [
             ["COND",
                 ["CAN_FLIP_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
@@ -41,6 +49,49 @@
         ]
     },
     "functions": {
+        "CAN_PEEK_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_PEEK_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_PEEK_CARD.TARGET_CARD_ID"]],
+                ["AND",
+                    ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
+                    ["EQUAL", "$TARGET_CARD.inAdvanced", true],
+                    ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
+                    ["EQUAL", "$TARGET_CARD.controller", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
+        "DO_PEEK_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PEEK_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PEEK_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PEEK_CARD.LOG_EVENT"],
+                ["COND",
+                    ["CAN_PEEK_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["COND",
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.peeking", null],
+                                ["EQUAL", "$TARGET_CARD.peeking.$TARGET_PLAYER", null],
+                                ["EQUAL", "$TARGET_CARD.peeking.$TARGET_PLAYER", false]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start peeking at {{$TARGET_CARD.currentFace.name}}.", "starts peeking at {{$TARGET_CARD.currentFace.name}}."],
+                                ["SET", "/cardById/$TARGET_CARD_ID/peeking/$TARGET_PLAYER", true]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "stop peeking at {{$TARGET_CARD.currentFace.name}}.", "stops peeking at {{$TARGET_CARD.currentFace.name}}."],
+                                ["SET", "/cardById/$TARGET_CARD_ID/peeking/$TARGET_PLAYER", false]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "CAN_FLIP_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -490,6 +541,12 @@
         }
     },
     "labels": {
+        "peekCard": {
+            "English": "Toggle peeking"
+        },
+        "peekCardMenu": {
+            "English": "Toggle peeking (/)"
+        },
         "flipCard": {
             "English": "Flip"
         },

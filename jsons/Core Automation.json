@@ -115,10 +115,11 @@
             ]],
             ["SET", "/arkhamLoadingCards", false]
         ],
-        "gameRules": [
-            {
+        "gameRules": {
+            "automationStepHelpers": {
                 "_comment": "Game step helpers.",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/stepId"],
                 "condition": [
                     ["AND",
@@ -168,9 +169,10 @@
                     ]
                 ]
             },
-            {
+            "automationAttachedCount1": {
                 "_comment": "Change attachedCount.",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/parentCardId"],
                 "condition": [
                     ["NOT_EQUAL", ["PREV", "$TARGET.parentCardId"], "$TARGET.parentCardId"]
@@ -196,9 +198,10 @@
                     ]
                 ]
             },
-            {
+            "automationAttachedCount2": {
                 "_comment": "Poke attachedCount listeners.",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/attachmentDirection"],
                 "condition": [
                     ["NOT_EQUAL", ["PREV", "$TARGET.attachmentDirection"], "$TARGET.attachmentDirection"]
@@ -215,9 +218,10 @@
                     ]
                 ]
             },
-            {
+            "automationShowExtraDeck": {
                 "_comment": "Show or hide extra deck.",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/playerData/*/arkhamShowExtraDeck"],
                 "condition": [
                     ["CAN_UPDATE_EXTRA_DECK", "$TARGET.id"]
@@ -226,9 +230,10 @@
                     ["DO_UPDATE_EXTRA_DECK", "$TARGET.id"]
                 ]
             },
-            {
+            "automationAddClues1": {
                 "_comment": "Add Location clue tokens (when entering play).",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
@@ -257,9 +262,10 @@
                     ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
                 ]
             },
-            {
+            "automationAddClues2": {
                 "_comment": "Add Location clue tokens (when flipping).",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/currentSide"],
                 "condition": [
                     ["AND",
@@ -275,9 +281,10 @@
                     ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
                 ]
             },
-            {
+            "automationLeadInvestigator": {
                 "_comment": "Make the Lead Investigator token follow first player (and create it when missing).",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/firstPlayer"],
                 "condition": [
                     ["AND",
@@ -289,7 +296,7 @@
                     ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"]
                 ]
             }
-        ]
+        }
     },
     "functions": {
         "GET_CONTROLLER_INVESTIGATOR": {

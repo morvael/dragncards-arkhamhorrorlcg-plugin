@@ -206,9 +206,10 @@
     "automation": {
         "cards": {
             "03001": { //Mark Harrigan: The Soldier
-                "rules": [
-                    {
+                "rules": {
+                    "03001a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -216,12 +217,13 @@
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
-                ]
+                }
             },
             "03003": { //Sefina Rousseau: The Painter
-                "rules": [
-                    {
+                "rules": {
+                    "03003a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
                         "then": [
@@ -235,12 +237,13 @@
                             ["PROMPT", "$THIS.controller", "decideAboutSefinaHand1"]
                         ]
                     }
-                ]
+                }
             },
             "03004": { //Akachi Onyele: The Shaman
-                "rules": [
-                    {
+                "rules": {
+                    "03004a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -252,12 +255,13 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ]
                     }
-                ]
+                }
             },
             "03006": { //Lola Hayes: The Actress
-                "rules": [
-                    {
+                "rules": {
+                    "03006a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -266,13 +270,13 @@
                             ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
                         ]
                     }
-                ]
+                }
             },
             "03264": { //Stick to the Plan
-                "rules": [
-                    {
+                "rules": {
+                    "03264a": {
                         "type": "trigger",
-                        //"priority": -10,
+                        "priority": 20,
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
@@ -302,7 +306,7 @@
                             ]
                         ]
                     }
-                ]
+                }
             }
         }
     },
@@ -471,8 +475,7 @@
                                     ["LESS_THAN", "$EVENTS", 3]
                                 ],
                                 [
-                                    ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", true, null],
-                                    ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", true, null],
+                                    ["DO_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", true, null],
                                     ["INCREASE_VAR", "$EVENTS", 1]
                                 ]
                             ]

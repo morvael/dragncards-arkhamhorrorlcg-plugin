@@ -144,9 +144,10 @@
     "automation": {
         "cards": {
             "02037": { //Indebted
-                "rules": [
-                    {
+                "rules": {
+                    "02037a": {
                         "type": "trigger",
+                        "priority": 20,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -154,7 +155,7 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     }
-                ]
+                }
             }
         }
     }

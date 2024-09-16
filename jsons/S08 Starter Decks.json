@@ -2,9 +2,10 @@
     "automation": {
         "cards": {
             "08004": { //Norman Withers: The Astronomer
-                "rules": [
-                    {
+                "rules": {
+                    "08004a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -16,12 +17,13 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
-                ]
+                }
             },
             "98007": { //Norman Withers: The Astronomer (promo)
-                "rules": [
-                    {
+                "rules": {
+                    "98007a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -33,7 +35,7 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
                         ]
                     }
-                ]
+                }
             }
         }
     }

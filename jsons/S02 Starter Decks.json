@@ -166,9 +166,10 @@
     "automation": {
         "cards": {
             "02003": { //Jenny Barnes: The Dilettante
-                "rules": [
-                    {
+                "rules": {
+                    "02003a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -180,12 +181,13 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ]
                     }
-                ]
+                }
             },
             "98001": { //Jenny Barnes: The Dilettante (promo)
-                "rules": [
-                    {
+                "rules": {
+                    "98001a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -197,12 +199,13 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ]
                     }
-                ]
+                }
             },
             "02005": { //"Ashcan" Pete: The Drifter
-                "rules": [
-                    {
+                "rules": {
+                    "02005a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -210,7 +213,7 @@
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
-                ]
+                }
             }
         }
     }

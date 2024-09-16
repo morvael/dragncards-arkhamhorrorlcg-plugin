@@ -272,6 +272,17 @@
                 ]
             },
             {
+                "label": "id:peekCardMenu",
+                "actionList": "peekCard",
+                "showIf": ["AND",
+                    ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                    ["EQUAL", "$ACTIVE_CARD.currentSide", "B"],
+                    ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                    ["EQUAL", "$ACTIVE_CARD.controller", "$PLAYER_N"]
+                ]
+            },
+            {
                 "label": "id:flipCardMenu",
                 "actionList": "flipCard",
                 "showIf": ["AND",
@@ -414,6 +425,43 @@
                 "showIf": ["AND",
                     ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", null],
                     ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedId", "$ACTIVE_CARD.id"],
+                    ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
+                    ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:attachCardFacedownMenu",
+                "actionList": "attachCardFacedown",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedFacedownId", null],
+                    ["EQUAL", "$ACTIVE_CARD.attachedCount", 0],
+                    ["EQUAL", "$ACTIVE_CARD.currentSide", "B"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:attachToCardFacedownMenu",
+                "actionList": "attachCardFacedown",
+                "showIf": ["AND",
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedFacedownId", null],
+                    ["NOT_EQUAL", "$GAME.playerData.$PLAYER_N.cardToBeAttachedFacedownId", "$ACTIVE_CARD.id"],
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["OR",

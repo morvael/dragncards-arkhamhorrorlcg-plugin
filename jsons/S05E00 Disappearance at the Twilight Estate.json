@@ -271,9 +271,10 @@
     "automation": {
         "cards": {
             "05046": { //Gavriella Mizrah: Private Security
-                "rules": [
-                    {
+                "rules": {
+                    "05046a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -281,8 +282,9 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 4]
                         ]
                     },
-                    {
+                    "05046b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
@@ -291,12 +293,13 @@
                             ["STARTING_HAND_DONE"]
                         ]
                     }
-                ]
+                }
             },
             "05047": { //Jerome Davids: Josef's Secretary
-                "rules": [
-                    {
+                "rules": {
+                    "05047a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -304,8 +307,9 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     },
-                    {
+                    "05047b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
@@ -314,12 +318,13 @@
                             ["STARTING_HAND_DONE"]
                         ]
                     }
-                ]
+                }
             },
             "05048": { //Valentino Rivas: Wealthy Philanthropist
-                "rules": [
-                    {
+                "rules": {
+                    "05048a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -327,8 +332,9 @@
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 5]
                         ]
                     },
-                    {
+                    "05048b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
@@ -337,12 +343,13 @@
                             ["STARTING_HAND_DONE"]
                         ]
                     }
-                ]
+                }
             },
             "05049": { //Penny White: Josef's Housekeeper
-                "rules": [
-                    {
+                "rules": {
+                    "05049a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
@@ -350,8 +357,9 @@
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 3]
                         ]
                     },
-                    {
+                    "05049b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
@@ -360,7 +368,7 @@
                             ["STARTING_HAND_DONE"]
                         ]
                     }
-                ]
+                }
             }
         }
     }

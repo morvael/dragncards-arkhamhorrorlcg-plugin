@@ -27,6 +27,33 @@
                 ]
             ]
         ],
+        "attachCardFacedown": [
+            ["COND",
+                ["EQUAL", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedFacedownId", null],
+                ["COND",
+                    ["CAN_ATTACH_CARD_FACEDOWN", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                    [
+                        ["LOG", "└── {{$ALIAS_N}} wants to attach {{$ACTIVE_FACE.name}}."],
+                        ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSteelBlue"],
+                        ["SET", "/playerData/$PLAYER_N/cardToBeAttachedFacedownId", "$ACTIVE_CARD_ID"]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── You cannot attach {{$ACTIVE_FACE.name}} facedown, {{$ALIAS_N}}."]
+                ],
+                ["TRUE"],
+                [
+                    ["VAR", "$ATTACHED_CARD_ID", "$PLAYER_DATA.$PLAYER_N.cardToBeAttachedFacedownId"],
+                    ["COND",
+                        ["CAN_ATTACH_CARD_FACEDOWN_TO_PARENT", "$PLAYER_N", "$ATTACHED_CARD_ID", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                        ["DO_ATTACH_CARD_FACEDOWN", "$PLAYER_N", "$ATTACHED_CARD_ID", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                        ["TRUE"],
+                        ["LOG", "└── You cannot attach {{$CARD_BY_ID.$ATTACHED_CARD_ID.currentFace.name}} facedown to {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+                    ],
+                    ["UNSET", "/cardById/$ATTACHED_CARD_ID/borderColor"],
+                    ["UNSET", "/playerData/$PLAYER_N/cardToBeAttachedFacedownId"]
+                ]
+            ]
+        ],
         "putCardBeneath": [
             ["COND",
                 ["EQUAL", "$PLAYER_DATA.$PLAYER_N.cardToBePutBeneathId", null],
@@ -234,6 +261,74 @@
                             ],
                             ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"]
                         ]
+                    ]
+                ]
+            ]
+        },
+        "CAN_ATTACH_CARD_FACEDOWN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ATTACH_CARD_FACEDOWN.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD_FACEDOWN.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$TARGET_CARD.attachedCount", 0],
+                    ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"]
+                    ]
+                ]
+            ]
+        },
+        "CAN_ATTACH_CARD_FACEDOWN_TO_PARENT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_ATTACH_CARD_FACEDOWN_TO_PARENT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_ATTACH_CARD_FACEDOWN_TO_PARENT.TARGET_CARD_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "CAN_ATTACH_CARD_FACEDOWN_TO_PARENT.PARENT_CARD_ID"]],
+                ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                    ["EQUAL", "$PARENT_CARD.inAdvanced", true],
+                    ["EQUAL", "$PARENT_CARD.cardIndex", 0],
+                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Investigator"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Scenario"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Agenda"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Act"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$PARENT_CARD.currentFace.type", "Story"]
+                    ],
+                    ["CAN_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        "DO_ATTACH_CARD_FACEDOWN": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_ATTACH_CARD_FACEDOWN.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_ATTACH_CARD_FACEDOWN.TARGET_CARD_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "DO_ATTACH_CARD_FACEDOWN.PARENT_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_ATTACH_CARD_FACEDOWN.LOG_EVENT"],
+                ["COND",
+                    ["CAN_ATTACH_CARD_FACEDOWN_TO_PARENT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["COND",
+                            ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reattach {{$TARGET_CARD.sides.B.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} facedown to {{$PARENT_CARD.currentFace.name}}.", "reattaches {{$TARGET_CARD.sides.B.name}} from {{$TARGET_CARD.parentCard.currentFace.name}} facedown to {{$PARENT_CARD.currentFace.name}}."],
+                            ["TRUE"],
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.sides.B.name}} facedown to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.sides.B.name}} facedown to {{$PARENT_CARD.currentFace.name}}."]
+                        ],
+                        ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", true],
+                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                        ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", false],
+                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
                     ]
                 ]
             ]
@@ -554,6 +649,15 @@
         },
         "attachToCardMenu": {
             "English": "Attach to (A)"
+        },
+        "attachCardFacedown": {
+            "English": "Attach facedown"
+        },
+        "attachCardFacedownMenu": {
+            "English": "Attach facedown (Ctrl+A)"
+        },
+        "attachToCardFacedownMenu": {
+            "English": "Attach facedown to (Ctrl+A)"
         },
         "putCardBeneath": {
             "English": "Place beneath"

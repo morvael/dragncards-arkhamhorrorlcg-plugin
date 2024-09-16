@@ -2,9 +2,10 @@
     "automation": {
         "cards": {
             "98019": { //Gloria Goldberg: The Writer (promo)
-                "rules": [
-                    {
+                "rules": {
+                    "98019a": {
                         "type": "passive",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
@@ -16,7 +17,7 @@
                             ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null]
                         ]
                     }
-                ]
+                }
             }
         }
     }

@@ -1,8 +1,9 @@
 {
     "automation": {
-        "gameRules": [
-            {
+        "gameRules": {
+            "enterLeaveRefreshCard": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/groupId"],
                 "condition": [
                     ["CAN_REFRESH_CARD", "$TARGET", ["PREV", "$TARGET.groupId"]]
@@ -11,8 +12,9 @@
                     ["DO_REFRESH_CARD", "$TARGET", ["PREV", "$TARGET.groupId"]]
                 ]
             },
-            {
+            "enterLeaveRefreshCardInPlay": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/attachmentDirection"],
                 "condition": [
                     ["CAN_REFRESH_CARD_IN_PLAY", "$TARGET"]
@@ -21,8 +23,9 @@
                     ["DO_REFRESH_CARD_IN_PLAY", "$TARGET"]
                 ]
             },
-            {
+            "enterLeaveRefreshPlayerCardsInPlay": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/playerData/*/arkhamPlayerInPlay"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
@@ -31,8 +34,9 @@
                     ["DO_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
                 ]
             },
-            {
+            "enterLeaveRefreshOffMap": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/arkhamOffMapNotInPlay"],
                 "condition": [
                     ["CAN_REFRESH_OFF_MAP"]
@@ -41,8 +45,9 @@
                     ["DO_REFRESH_OFF_MAP"]
                 ]
             },
-            {
+            "enterLeaveRefreshPlayerDeckA": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/groupById/player1Deck/stackIds", "/groupById/player1ExtraDeck/stackIds", "/groupById/player2Deck/stackIds", "/groupById/player2ExtraDeck/stackIds", "/groupById/player3Deck/stackIds", "/groupById/player3ExtraDeck/stackIds", "/groupById/player4Deck/stackIds", "/groupById/player4ExtraDeck/stackIds"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$TARGET"]
@@ -51,8 +56,9 @@
                     ["DO_REFRESH_PLAYER_DECK", "$TARGET"]
                 ]
             },
-            {
+            "enterLeaveRefreshPlayerDeckB": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/playerData/*/arkhamPlayWithTopDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
@@ -61,8 +67,9 @@
                     ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
                 ]
             },
-            {
+            "enterLeaveRefreshPlayerDeckC": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/playerData/*/arkhamPlayWithTopExtraDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
@@ -71,8 +78,9 @@
                     ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
                 ]
             },
-            {
+            "enterLeaveRefreshStoryA": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/groupById/sharedAgendaStory/stackIds", "/groupById/sharedActStory/stackIds", "/groupById/sharedActStoryB/stackIds", "/groupById/sharedActStoryC/stackIds", "/groupById/sharedActStoryD/stackIds", "/groupById/sharedActStoryE/stackIds"],
                 "condition": [
                     ["AND",
@@ -84,8 +92,9 @@
                     ["DO_REFRESH_STORY", "$TARGET"]
                 ]
             },
-            {
+            "enterLeaveRefreshStoryB": {
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/attachmentDirection"],
                 "condition": [
                     ["AND",
@@ -105,7 +114,7 @@
                     ["DO_REFRESH_STORY", "$GROUP_BY_ID.{{$TARGET.groupId}}"]
                 ]
             }
-        ]
+        }
     },
     "functions": {
         "GET_DESIRED_ROTATION": {

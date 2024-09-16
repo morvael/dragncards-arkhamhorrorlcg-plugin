@@ -1,9 +1,10 @@
 {
     "automation": {
-        "gameRules": [
-            {
+        "gameRules": {
+            "playAskForIntent": {
                 "_comment": "Ask for intent when missing or proceed futher with paying cost and placing Uses resources.",
                 "type": "trigger",
+                "priority": 0,
                 "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
@@ -38,7 +39,7 @@
                     ]
                 ]
             }
-        ]
+        }
     },
     "actionLists": {
         "playCard": [
@@ -482,7 +483,7 @@
             "English": "Put into play"
         },
         "putCardIntoPlayMenu": {
-            "English": "Put into play (Shift+P)"
+            "English": "Put into play (Ctrl+P)"
         },
         "commitCard": {
             "English": "Commit"

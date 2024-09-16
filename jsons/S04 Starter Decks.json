@@ -166,9 +166,10 @@
     "automation": {
         "cards": {
             "04005": { //Calvin Wright: The Haunted
-                "rules": [
-                    {
+                "rules": {
+                    "04005a": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
                         "condition": ["TRUE"],
                         "then": [
@@ -176,8 +177,9 @@
                             ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$THIS.tokens.damage"]
                         ]
                     },
-                    {
+                    "04005b": {
                         "type": "trigger",
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
                         "condition": ["TRUE"],
                         "then": [
@@ -185,7 +187,7 @@
                             ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$THIS.tokens.horror"]
                         ]
                     }
-                ]
+                }
             }
         }
     }
