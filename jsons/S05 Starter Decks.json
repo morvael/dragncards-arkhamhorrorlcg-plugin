@@ -38,7 +38,6 @@
         "Joe Diamond Starter Deck": {
             "label": "Joe Diamond Starter Deck",
             "cards": [
-                {"databaseId": "03264", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "05002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
                 {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
                 {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
