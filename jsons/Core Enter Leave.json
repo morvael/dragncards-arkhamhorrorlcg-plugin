@@ -15,7 +15,7 @@
             "enterLeaveRefreshCardInPlay": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/cardById/*/attachmentDirection"],
+                "listenTo": ["/cardById/*/attachmentDirection", "/cardById/*/currentSide"],
                 "condition": [
                     ["CAN_REFRESH_CARD_IN_PLAY", "$TARGET"]
                 ],
@@ -448,10 +448,19 @@
                         ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
                     ],
                     false,
-                    ["AND",
-                        ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
-                        ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                        ["AND",
+                            ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                            ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
+                            ["OR",
+                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
+                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
+                            ]
+                        ]
                     ],
+                    false,
+                    ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
                     ["COND",
                         ["IN_STRING", "$NEW_GROUP.id", "player1"],
                         ["EQUAL", "$PLAYER_DATA.player1.arkhamPlayerInPlay", true],
