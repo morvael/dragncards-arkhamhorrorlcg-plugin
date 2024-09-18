@@ -9,9 +9,23 @@
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
-                        ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
-                        ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
-                        ["CALC", "{{$LEFT}}"]
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD_STACK_ID", null],
+                            [
+                                ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
+                                ["COND",
+                                    ["GREATER_THAN", ["LENGTH", "$LEFT"], 1],
+                                    [
+                                        ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
+                                        ["CALC", "{{$LEFT}}"]
+                                    ],
+                                    ["TRUE"],
+                                    0
+                                ]
+                            ],
+                            ["TRUE"],
+                            0
+                        ]
                     ],
                     ["TRUE"],
                     0
@@ -27,9 +41,23 @@
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
-                        ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
-                        ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
-                        ["CALC", "{{$TOP}}"]
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD_STACK_ID", null],
+                            [
+                                ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
+                                ["COND",
+                                    ["GREATER_THAN", ["LENGTH", "$TOP"], 1],
+                                    [
+                                        ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
+                                        ["CALC", "{{$TOP}}"]
+                                    ],
+                                    ["TRUE"],
+                                    0
+                                ]
+                            ],
+                            ["TRUE"],
+                            0
+                        ]
                     ],
                     ["TRUE"],
                     0
