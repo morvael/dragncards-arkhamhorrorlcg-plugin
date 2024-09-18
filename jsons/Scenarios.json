@@ -67,6 +67,16 @@
                         ]
                     },
                     {
+                        "label": "id:theDreamEaters",
+                        "deckLists": [
+                            {"label": "id:tommyMuldoonStarterDeck", "deckListId": "Tommy Muldoon Starter Deck"},
+                            {"label": "id:mandyThompsonStarterDeck", "deckListId": "Mandy Thompson Starter Deck"},
+                            {"label": "id:tonyMorganStarterDeck", "deckListId": "Tony Morgan Starter Deck"},
+                            {"label": "id:lukeRobinsonStarterDeck", "deckListId": "Luke Robinson Starter Deck"},
+                            {"label": "id:patriceHathawayStarterDeck", "deckListId": "Patrice Hathaway Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -316,6 +326,21 @@
         "marieLambeauStarterDeck": {
             "English": "Marie Lambeau Starter Deck"
         },
+        "tommyMuldoonStarterDeck": {
+            "English": "Tommy Muldoon Starter Deck"
+        },
+        "mandyThompsonStarterDeck": {
+            "English": "Mandy Thompson Starter Deck"
+        },
+        "tonyMorganStarterDeck": {
+            "English": "Tony Morgan Starter Deck"
+        },
+        "lukeRobinsonStarterDeck": {
+            "English": "Luke Robinson Starter Deck"
+        },
+        "patriceHathawayStarterDeck": {
+            "English": "Patrice Hathaway Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -465,6 +490,9 @@
         },
         "beforeTheBlackThrone": {
             "English": "Before the Black Throne"
+        },
+        "theDreamEaters": {
+            "English": "The Dream-Eaters"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

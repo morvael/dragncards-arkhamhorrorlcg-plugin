@@ -209,7 +209,7 @@
         "cards": {
             "05002": { //Joe Diamond: The Private Investigator
                 "rules": {
-                    "05002a": {
+                    "05002a": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
@@ -219,7 +219,7 @@
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
                         ]
                     },
-                    "05002b": {
+                    "05002b": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
@@ -227,6 +227,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["DO_FLOG", "{0:C} - During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate “hunch deck”.", ["LIST", "$THIS"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
@@ -265,7 +266,7 @@
                             ]
                         ]
                     },
-                    "05002c": {
+                    "05002c": { //Forced - When the investigation phase begins: Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. If it is still revealed at the end of the phase, shuffle it back into your hunch deck.
                         "type": "passive",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/stepId"],
@@ -283,10 +284,12 @@
                         ],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS", 2],
+                            ["DO_FLOG", "{0:C} - (...) Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. (...)", ["LIST", "$THIS"]],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1]
                         ],
                         "offDo": [
                             ["CARD_ABILITY_OFF", "$THIS", 2],
+                            ["DO_FLOG", "{0:C} - (...) If it is still revealed at the end of the phase, shuffle it back into your hunch deck.", ["LIST", "$THIS"]],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1],
                             ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
                         ]
@@ -295,7 +298,7 @@
             },
             "05004": { //Diana Stanley: The Redeemed Cultist
                 "rules": {
-                    "05004a": {
+                    "05004a": { //Diana Stanley gets +1 (willpower) for each card beneath her.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/attachedCount"],
@@ -313,13 +316,14 @@
             },
             "05276": { //Studious
                 "rules": {
-                    "05276a": {
+                    "05276a": { //You begin each game with 1 additional card in your opening hand.
                         "type": "passive",
                         "priority": 20,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You begin each game with 1 additional card in your opening hand.", ["LIST", "$THIS"]],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
                         ],
                         "offDo": [

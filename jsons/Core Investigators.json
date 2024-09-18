@@ -163,7 +163,7 @@
                                         ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
                                             ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                                             ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$ALIAS_I", "{{$LETTER}}", ["LIST", "DO_ELIMINATE_INVESTIGATOR_FINAL", "{{$TARGET_CARD_ID}}", "{{$PLAYER_I}}"]]
+                                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "DO_ELIMINATE_INVESTIGATOR_FINAL", "{{$TARGET_CARD_ID}}", "{{$PLAYER_I}}"]]
                                         ]]
                                     ],
                                     ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
@@ -511,35 +511,35 @@
             "message": "Select fate of {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
             "options": [
                 {
-                    "label": "Resigned",
+                    "label": "Resigned.",
                     "hotkey": "R",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "resignation", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Defated by damage",
+                    "label": "Defated by damage.",
                     "hotkey": "D",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "damage", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Defated by horror",
+                    "label": "Defated by horror.",
                     "hotkey": "H",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "horror", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Other",
+                    "label": "Other.",
                     "hotkey": "O",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "other reasons", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]

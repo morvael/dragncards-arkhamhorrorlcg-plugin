@@ -59,13 +59,15 @@
                 ]
             ]
         },
-        "DO_CREATE_MISSING_CARDS_SCN": {
-            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
+        "DO_CREATE_MISSING_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_MISSING_CARDS_SCN.TARGET_NAME"],
-                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_MISSING_CARDS_SCN.TARGET_DATABASE_ID"],
-                ["VALIDATE_GT0", "$TARGET_MAX_QUANTITY", "DO_CREATE_MISSING_CARDS_SCN.TARGET_MAX_QUANTITY"],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_CREATE_MISSING_CARDS_SCN.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CREATE_MISSING_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_MISSING_CARDS.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_MISSING_CARDS.TARGET_DATABASE_ID"],
+                ["VALIDATE_GT0", "$TARGET_MAX_QUANTITY", "DO_CREATE_MISSING_CARDS.TARGET_MAX_QUANTITY"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_CREATE_MISSING_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CREATE_MISSING_CARDS.LOG_EVENT"],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_DATABASE_ID"]
                 ]]],
@@ -74,9 +76,15 @@
                     ["LESS_THAN", "$SELECTED_COUNT", "$TARGET_MAX_QUANTITY"],
                     [
                         ["VAR", "$CARDS_TO_ADD", ["SUBTRACT", "$TARGET_MAX_QUANTITY", "$SELECTED_COUNT"]],
-                        ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$CARDS_TO_ADD", "$TARGET_GROUP_ID"]
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$CARDS_TO_ADD", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 ]
+            ]
+        },
+        "DO_CREATE_MISSING_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_CREATE_MISSING_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
         "DO_MOVE_DECK_CARDS": {
@@ -792,6 +800,7 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingDamageMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamMaxHandSize", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
@@ -983,6 +992,20 @@
                 ]
             ]
         },
+        "GET_MAX_HAND_SIZE": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_MAX_HAND_SIZE.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_MAX_HAND_SIZE.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamMaxHandSize"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
         "DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
             "code": [
@@ -1017,7 +1040,7 @@
                                     ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
                                     ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
                                     ["TRUE"],
-                                    ["STARTING_HAND_DONE"]
+                                    ["STARTING_HAND_DONE", "$PLAYER_I"]
                                 ]
                             ]
                         ]
@@ -1043,20 +1066,27 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
                 ],
-                ["STARTING_HAND_DONE"]
+                ["STARTING_HAND_DONE", "$PLAYER_N"]
             ]
         },
         "STARTING_HAND_DONE": {
-            "args": [],
+            "args": ["$PLAYER_I"],
             "code": [
-                ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
                 ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
-                    ["COND",
-                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
-                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
-                        ["TRUE"],
-                        ["SCENARIO_INIT_FINISH", null]
+                    ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "AfterDraw"],
+                    ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "AfterDraw"],
+                    ["TRUE"],
+                    [
+                        ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
+                        ["COND",
+                            ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
+                            ["COND",
+                                ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
+                                ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                                ["TRUE"],
+                                ["SCENARIO_INIT_FINISH", null]
+                            ]
+                        ]
                     ]
                 ]
             ]
@@ -1231,7 +1261,7 @@
                     ["VAR", "$INDEX", 0],
                     ["FOR_EACH_VAL", "$LOCATION_NAME", "$LOCATION_NAMES", [
                         ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$LOCATION_NAME}}", "{{$LETTER}}", ["LIST", "DO_MAKE_CUSTOM_SPAWN_CHOICE", "{{$PLAYER_I}}", "{{$LOCATION_NAME}}"]],
+                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$LOCATION_NAME}}.", "{{$LETTER}}", ["LIST", "DO_MAKE_CUSTOM_SPAWN_CHOICE", "{{$PLAYER_I}}", "{{$LOCATION_NAME}}"]],
                         ["INCREASE_VAR", "$INDEX", 1]
                     ]]
                 ]]

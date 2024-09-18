@@ -124,35 +124,35 @@
             "message": "Pick tarot reading type",
             "options": [
                 {
-                    "label": "1-Card Reading (“Chaos”)",
+                    "label": "1-Card Reading (“Chaos”).",
                     "hotkey": "1",
                     "code": [
                         ["DO_TAROT_CARD_READING", "$PLAYER_N", "CHAOS"]
                     ]
                 },
                 {
-                    "label": "2-Card Reading (“Balance”)",
+                    "label": "2-Card Reading (“Balance”).",
                     "hotkey": "2",
                     "code": [
                         ["DO_TAROT_CARD_READING", "$PLAYER_N", "BALANCE"]
                     ]
                 },
                 {
-                    "label": "3-Card Reading (“Choice”)",
+                    "label": "3-Card Reading (“Choice”).",
                     "hotkey": "3",
                     "code": [
                         ["DO_TAROT_CARD_READING", "$PLAYER_N", "CHOICE"]
                     ]
                 },
                 {
-                    "label": "Campaign Reading (“Destiny”)",
+                    "label": "Campaign Reading (“Destiny”).",
                     "hotkey": "C",
                     "code": [
                         ["DO_TAROT_CARD_READING", "$PLAYER_N", "DESTINY"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]

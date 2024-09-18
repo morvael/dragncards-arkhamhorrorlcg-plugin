@@ -239,7 +239,7 @@
                         ["VAR", "$INDEX", 0],
                         ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
                             ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
                             ["INCREASE_VAR", "$INDEX", 1]
                         ]]
                     ],
@@ -438,14 +438,14 @@
             "message": "You should now place 1 doom on the current agenda.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$PLAYER_N", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips placing 1 doom on the current agenda."]
@@ -458,7 +458,7 @@
             "message": "You should now gain {{$TEXT}}.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["COND",
@@ -469,7 +469,7 @@
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips gaining {{$TEXT}}."],

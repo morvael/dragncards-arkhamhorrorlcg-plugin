@@ -41,6 +41,16 @@
             ]
         },
         // Initializes player EVENT variables in PLAYER data.
+        "INIT_ALL_PLAYER_EVENT": {
+            "args": ["$EVENT"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$EVENT", "INIT_ALL_PLAYER_EVENT.EVENT"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["SET", "/playerData/$PLAYER_I/arkhamPlayerEvent{{$EVENT}}", 0]
+                ]]
+            ]
+        },
+        // Initializes player EVENT variables in PLAYER data.
         "INIT_PLAYER_EVENT": {
             "args": ["$PLAYER", "$EVENT"],
             "code": [
@@ -161,7 +171,9 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "INIT_ALL_PLAYER_EVENTS.PLAYER"],
                 ["INIT_PLAYER_EVENT", "$PLAYER", "BeforeDraw"],
-                ["INIT_PLAYER_EVENT", "$PLAYER", "Draw"]
+                ["INIT_PLAYER_EVENT", "$PLAYER", "Draw"],
+                ["INIT_PLAYER_EVENT", "$PLAYER", "AfterDraw"],
+                ["INIT_PLAYER_EVENT", "$PLAYER", "UpkeepDraw"]
             ]
         }
     },
@@ -187,6 +199,28 @@
                     //["LOG", ">> KILL_EVENT Draw"],
                     ["SET", "/playerData/$TARGET.id/arkhamPlayerEventDraw", 2],
                     ["DEFAULT_DRAW_STARTING_HAND", "$TARGET.id"]
+                ]
+            },
+            "eventsEndAfterDraw": {
+                "type": "trigger",
+                "priority": 1000,
+                "listenTo": ["/playerData/*/arkhamPlayerEventAfterDraw"],
+                "condition": ["EQUAL", "$TARGET.arkhamPlayerEventAfterDraw", 1],
+                "then": [
+                    //["LOG", ">> KILL_EVENT AfterDraw"],
+                    ["SET", "/playerData/$TARGET.id/arkhamPlayerEventAfterDraw", 2],
+                    ["STARTING_HAND_DONE", "$TARGET.id"]
+                ]
+            },
+            "eventsEndUpkeepDraw": {
+                "type": "trigger",
+                "priority": 1000,
+                "listenTo": ["/playerData/*/arkhamPlayerEventUpkeepDraw"],
+                "condition": ["EQUAL", "$TARGET.arkhamPlayerEventUpkeepDraw", 1],
+                "then": [
+                    //["LOG", ">> KILL_EVENT UpkeepDraw"],
+                    ["SET", "/playerData/$TARGET.id/arkhamPlayerEventUpkeepDraw", 2],
+                    ["EXECUTE_PROMPT", "$TARGET.id", "askToDrawPlayerCard"]
                 ]
             }
         }

@@ -167,17 +167,7 @@
         "cards": {
             "04005": { //Calvin Wright: The Haunted
                 "rules": {
-                    "04005a": {
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
-                        "condition": ["TRUE"],
-                        "then": [
-                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$THIS.tokens.damage"],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$THIS.tokens.damage"]
-                        ]
-                    },
-                    "04005b": {
+                    "04005a": { //You get +1 (willpower) and +1 (intellect) for each horror on you.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
@@ -185,6 +175,16 @@
                         "then": [
                             ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$THIS.tokens.horror"],
                             ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$THIS.tokens.horror"]
+                        ]
+                    },
+                    "04005b": { //ou get +1 (combat) and +1 (agility) for each damage on you.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
+                        "condition": ["TRUE"],
+                        "then": [
+                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$THIS.tokens.damage"],
+                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$THIS.tokens.damage"]
                         ]
                     }
                 }

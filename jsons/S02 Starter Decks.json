@@ -167,13 +167,14 @@
         "cards": {
             "02003": { //Jenny Barnes: The Dilettante
                 "rules": {
-                    "02003a": {
+                    "02003a": { //You collect 1 additional resource during each upkeep phase.
                         "type": "passive",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ],
                         "offDo": [
@@ -185,13 +186,14 @@
             },
             "98001": { //Jenny Barnes: The Dilettante (promo)
                 "rules": {
-                    "98001a": {
+                    "98001a": { //You collect 1 additional resource during each upkeep phase.
                         "type": "passive",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
                         ],
                         "offDo": [
@@ -203,13 +205,14 @@
             },
             "02005": { //"Ashcan" Pete: The Drifter
                 "rules": {
-                    "02005a": {
+                    "02005a": { //You begin the game with Duke in play.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You begin the game with Duke in play.", ["LIST", "$THIS"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }

@@ -491,10 +491,10 @@
                                 ["VAR", "$INDEX", 0],
                                 ["FOR_EACH_VAL", "$CARD", "$ADVANCABLE_AGENDAS", [
                                     ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                                    ["PROMPT_ADD_OPTION", "$PLAYER_N", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_ADVANCE_STORY_STR", "{{$PLAYER_N}}", "{{$CARD.groupId}}", "true", "{{$PLAYER_N}}"]],
+                                    ["PROMPT_ADD_OPTION", "$PLAYER_N", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_ADVANCE_STORY_STR", "{{$PLAYER_N}}", "{{$CARD.groupId}}", "true", "{{$PLAYER_N}}"]],
                                     ["INCREASE_VAR", "$INDEX", 1]
                                 ]],
-                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel", "X", ["LIST"]]
+                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel.", "X", ["LIST"]]
                             ],
                             ["EQUAL", "$ADVANCABLE_AGENDAS_COUNT", 1],
                             [
@@ -617,6 +617,7 @@
         "DO_STEP_U4": {
             "args": [],
             "code": [
+                ["INIT_ALL_PLAYER_EVENT", "UpkeepDraw"],
                 ["EXECUTE_PROMPT", "$GAME.firstPlayer", "askToDrawPlayerCard"]
             ]
         },
@@ -635,10 +636,11 @@
                         ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHECK_HAND_SIZE.TARGET_PLAYER"],
                         ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
                         ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
+                        ["VAR", "$MAX_HAND_SIZE", ["GET_MAX_HAND_SIZE", "$TARGET_PLAYER", 8]],
                         ["COND",
-                            ["GREATER_THAN", "$CARDS_IN_HAND", 8],
+                            ["GREATER_THAN", "$CARDS_IN_HAND", "$MAX_HAND_SIZE"],
                             [
-                                ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", 8]],
+                                ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", "$MAX_HAND_SIZE"]],
                                 ["PROMPT", "$TARGET_PLAYER", "askToDiscardExcessCards", "$CARDS_TO_DISCARD"]
                             ],
                             ["TRUE"],
@@ -826,7 +828,7 @@
                                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_LIST", [
                                     ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                                     ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                    ["PROMPT_ADD_OPTION", "$GAME.arkhamCustomMythosPhasePlayerOrderController", "$ALIAS_I", "{{$LETTER}}", ["LIST", "EXECUTE_PROMPT", "{{$PLAYER_I}}", "askToDrawEncounterCard"]]
+                                    ["PROMPT_ADD_OPTION", "$GAME.arkhamCustomMythosPhasePlayerOrderController", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "EXECUTE_PROMPT", "{{$PLAYER_I}}", "askToDrawEncounterCard"]]
                                 ]]
                             ],
                             ["EQUAL", "$PLAYER_COUNT", 1],
@@ -862,8 +864,15 @@
                 ["COND",
                     ["EQUAL", "$PROMPT_NAME", "askToDrawPlayerCard"],
                     [
-                        ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
-                        ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+                        ["COND",
+                            ["CAN_SIGNAL_PLAYER_EVENT", "$TARGET_PLAYER", "UpkeepDraw"],
+                            ["SIGNAL_PLAYER_EVENT", "$TARGET_PLAYER", "UpkeepDraw"],
+                            ["TRUE"],
+                            [
+                                ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
+                                ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+                            ]
+                        ]
                     ],
                     ["EQUAL", "$PROMPT_NAME", "askToGainResource"],
                     [

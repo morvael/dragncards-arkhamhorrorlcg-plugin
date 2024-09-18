@@ -1,0 +1,239 @@
+{
+    "preBuiltDecks": {
+        "Tommy Muldoon Starter Deck": {
+            "label": "Tommy Muldoon Starter Deck",
+            "cards": [
+                {"databaseId": "06001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01024", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06006", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06007", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06020", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06034", "quantity": 3, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Mandy Thompson Starter Deck": {
+            "label": "Mandy Thompson Starter Deck",
+            "cards": [
+                {"databaseId": "06002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01032", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01035", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01053", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06023", "quantity": 3, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Tony Morgan Starter Deck": {
+            "label": "Tony Morgan Starter Deck",
+            "cards": [
+                {"databaseId": "06003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01024", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01044", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01045", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01047", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01053", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06011", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06012", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06024", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Luke Robinson Starter Deck": {
+            "label": "Luke Robinson Starter Deck",
+            "cards": [
+                {"databaseId": "06004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01032", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01035", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06029", "quantity": 3, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Patrice Hathaway Starter Deck": {
+            "label": "Patrice Hathaway Starter Deck",
+            "cards": [
+                {"databaseId": "06005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01076", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06029", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06034", "quantity": 3, "loadGroupId": "playerNDeck"}
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "06004": { //Luke Robinson: The Dreamer
+                "rules": {
+                    "06004a": { //You begin the game with Gate Box in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You begin the game with Gate Box in play.", ["LIST", "$THIS"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Gate Box"]
+                        ]
+                    }
+                }
+            },
+            "06005": { //Patrice Hathaway: The Violinist
+                "rules": {
+                    "06005a": { //Your maximum hand size is reduced by 3.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 3.", ["LIST", "$THIS"]],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                        ]
+                    },
+                    "06005b": { //During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkhamPlayerEventUpkeepDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "UpkeepDraw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["DO_FLOG", "{0:C} - During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.", ["LIST", "$THIS"]],
+                            ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET.id"]],
+                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                ["EQUAL", "$CARD.groupId", "$HAND_ID"],
+                                ["NOT_EQUAL", ["IN_STRING", "$CARD.sides.A.subtype", "Weakness"], true]
+                            ]]],
+                            ["COND",
+                                ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS", 0], 0],
+                                [
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["DO_DISCARD_CARD", "$TARGET.id", "$CARD.id", true, null]
+                                    ]]
+                                ]
+                            ],
+                            ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
+                            ["VAR", "$CARDS_TO_DRAW", ["SUBTRACT", 5, "$CARDS_IN_HAND"]],
+                            ["COND",
+                                ["GREATER_THAN", "$CARDS_TO_DRAW", 0],
+                                ["DO_DRAW_CARDS", "$TARGET.id", ["GET_CONTROLLER_DECK", "$TARGET.id"], "$CARDS_TO_DRAW", true, null]
+                            ],
+                            ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

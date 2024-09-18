@@ -456,7 +456,7 @@
             "message": "{{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} to advance was accrued.",
             "options": [
                 {
-                    "label": "Clear doom from cards in play and advance (follow the rules)",
+                    "label": "Clear doom from cards in play and advance (follow the rules).",
                     "hotkey": "D",
                     "code": [
                         ["DO_CLEAR_DOOM", "$PLAYER_N", "$TOP_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
@@ -464,7 +464,7 @@
                     ]
                 },
                 {
-                    "label": "Advance (ignore the rules)",
+                    "label": "Advance (ignore the rules).",
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
@@ -472,7 +472,7 @@
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -482,7 +482,7 @@
             "message": "{{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} to advance was accrued.",
             "options": [
                 {
-                    "label": "Advance (ignore the rules)",
+                    "label": "Advance (ignore the rules).",
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips clearing doom to advance the Agenda card."],
@@ -490,7 +490,7 @@
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -500,7 +500,7 @@
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
             "options": [
                 {
-                    "label": "Spend clues from the Act card and advance (follow the rules)",
+                    "label": "Spend clues from the Act card and advance (follow the rules).",
                     "hotkey": "C",
                     "code": [
                         ["DO_REMOVE_CLUES_FROM_CARD", "$PLAYER_N", "$TOP_CARD_ID", "$CLUES_REQUIRED", "$LOG_EVENT", "$ACTOR_PLAYER"],
@@ -508,7 +508,7 @@
                     ]
                 },
                 {
-                    "label": "Advance (ignore the rules)",
+                    "label": "Advance (ignore the rules).",
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
@@ -516,7 +516,7 @@
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -526,7 +526,7 @@
             "message": "{{$CARD_BY_ID.$TOP_CARD_ID.currentFace.name}} requires {{$CLUES_REQUIRED}} clues to advance. Clues on the Act card: {{$CLUES_PRESENT}}. Clues on investigators: {{$CLUES_COLLECTED}}.",
             "options": [
                 {
-                    "label": "Advance (ignore the rules)",
+                    "label": "Advance (ignore the rules).",
                     "hotkey": "A",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips spending clues to advance the Act card."],
@@ -534,7 +534,7 @@
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]

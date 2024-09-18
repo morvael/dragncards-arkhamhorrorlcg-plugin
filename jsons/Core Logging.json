@@ -246,10 +246,6 @@
                                 ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":G\\}"]], "$ARG.label"]]
                             ],
                             ["COND",
-                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":L}"]]],
-                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":L\\}"]], ["LENGTH", "$ARG"]]]
-                            ],
-                            ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":S}"]]],
                                 [
                                     ["VAR", "$VAL", "s"],

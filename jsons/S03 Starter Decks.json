@@ -207,13 +207,14 @@
         "cards": {
             "03001": { //Mark Harrigan: The Soldier
                 "rules": {
-                    "03001a": {
+                    "03001a": { //You begin the game with Sophie (In Loving Memory) in play.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You begin the game with Sophie (In Loving Memory) in play.", ["LIST", "$THIS"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
@@ -221,7 +222,7 @@
             },
             "03003": { //Sefina Rousseau: The Painter
                 "rules": {
-                    "03003a": {
+                    "03003a": { //Forced - When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
@@ -229,6 +230,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - (...) When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)", ["LIST", "$THIS"]],
                             ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
                             ["COND",
                                 ["GREATER_THAN", "$STARTING_CARDS", 0],
@@ -241,13 +243,14 @@
             },
             "03004": { //Akachi Onyele: The Shaman
                 "rules": {
-                    "03004a": {
+                    "03004a": { //Your assets with "uses (charges)" enter play with 1 additional charge on them.
                         "type": "passive",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your assets with “uses (charges)” enter play with 1 additional charge on them.", ["LIST", "$THIS"]],
                             ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
                         ],
                         "offDo": [
@@ -259,7 +262,7 @@
             },
             "03006": { //Lola Hayes: The Actress
                 "rules": {
-                    "03006a": {
+                    "03006a": { //Forced - After you draw your opening hand: Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
@@ -269,12 +272,24 @@
                             ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
                             ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
                         ]
+                    },
+                    "03006b": { //Forced - After you draw your opening hand: Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkhamPlayerEventAfterDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "AfterDraw"],
+                            ["CARD_ABILITY_ON", "$THIS", 1],
+                            ["DO_FLOG", "{0:C} - (...) Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.", ["LIST", "$THIS"]],
+                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                        ]
                     }
                 }
             },
             "03264": { //Stick to the Plan
                 "rules": {
-                    "03264a": {
+                    "03264a": { //Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
                         "type": "trigger",
                         "priority": 20,
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
@@ -282,6 +297,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - (...) Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.", ["LIST", "$THIS"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
@@ -377,6 +393,7 @@
                             ["COND",
                                 ["AND",
                                     ["EQUAL", "$CARD.sides.A.type", "Event"],
+                                    ["NOT_EQUAL", "$CARD.sides.A.name", "The Painted World"],
                                     ["LESS_THAN", "$EVENTS", 5]
                                 ],
                                 [
@@ -401,7 +418,7 @@
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
                     [
-                        ["DO_FLOG", "{0:P} discards {1:L} of {2} excess card{2:S} from hand.", ["LIST", "$TARGET_PLAYER", "$SELECTED_CARDS", "$CARDS_TO_DISCARD"]],
+                        ["DO_FLOG", "{0:P} discards {1} of {2} excess card{2:S} from hand.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"], "$CARDS_TO_DISCARD"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                         ]]
@@ -416,7 +433,7 @@
                         ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", ["DO_FORMAT_STRING", "{0} excess card{0:S}", ["LIST", "$CARDS_TO_DISCARD"]], "$CARDS_TO_DISCARD"]
                     ],
                     ["TRUE"],
-                    ["STARTING_HAND_DONE"]
+                    ["STARTING_HAND_DONE", "$TARGET_PLAYER"]
                 ]
             ]
         },
@@ -490,7 +507,7 @@
     "prompts": {
         "decideAboutSefinaHand1": {
             "args": [],
-            "message": "Target cards in hand. First 5 events will be placed beneath Sefina Rousseau.",
+            "message": "Target cards in hand. First 5 events (except The Painted World) will be placed beneath Sefina Rousseau.",
             "options": [
                 {
                     "label": "Proceed.",

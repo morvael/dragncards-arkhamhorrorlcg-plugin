@@ -3,13 +3,14 @@
         "cards": {
             "98019": { //Gloria Goldberg: The Writer (promo)
                 "rules": {
-                    "98019a": {
+                    "98019a": { //You choose the investigator order during the mythos phase.
                         "type": "passive",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You choose the investigator order during the mythos phase.", ["LIST", "$THIS"]],
                             ["SET", "/arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
                         ],
                         "offDo": [

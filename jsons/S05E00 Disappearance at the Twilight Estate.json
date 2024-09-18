@@ -143,19 +143,19 @@
                 ["PROMPT", "$TARGET_PLAYER", "disappearanceAtTheTwilightEstateChooseInvestigator"],
                 ["COND",
                     ["EQUAL", "$GAVRIELLA", null],
-                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Gavriella Mizrah: Private Security", "G", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Gavriella Mizrah: Private Security", "05046"]]
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Gavriella Mizrah: Private Security.", "G", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Gavriella Mizrah: Private Security", "05046"]]
                 ],
                 ["COND",
                     ["EQUAL", "$JEROME", null],
-                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Jerome Davids: Josef's Secretary", "J", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Jerome Davids: Josef's Secretary", "05047"]]
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Jerome Davids: Josef's Secretary.", "J", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Jerome Davids: Josef's Secretary", "05047"]]
                 ],
                 ["COND",
                     ["EQUAL", "$VALENTINO", null],
-                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Valentino Rivas: Wealthy Philanthropist", "V", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Valentino Rivas: Wealthy Philanthropist", "05048"]]
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Valentino Rivas: Wealthy Philanthropist.", "V", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Valentino Rivas: Wealthy Philanthropist", "05048"]]
                 ],
                 ["COND",
                     ["EQUAL", "$PENNY", null],
-                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Penny White: Josef's Housekeeper", "P", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Penny White: Josef's Housekeeper", "05049"]]
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Penny White: Josef's Housekeeper.", "P", ["LIST", "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_INVESTIGATOR_CHOICE_DONE", "Penny White: Josef's Housekeeper", "05049"]]
                 ]
             ]
         },
@@ -290,7 +290,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE"]
+                            ["STARTING_HAND_DONE", "$TARGET.id"]
                         ]
                     }
                 }
@@ -315,7 +315,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE"]
+                            ["STARTING_HAND_DONE", "$TARGET.id"]
                         ]
                     }
                 }
@@ -340,7 +340,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE"]
+                            ["STARTING_HAND_DONE", "$TARGET.id"]
                         ]
                     }
                 }
@@ -365,7 +365,7 @@
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
                             ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE"]
+                            ["STARTING_HAND_DONE", "$TARGET.id"]
                         ]
                     }
                 }

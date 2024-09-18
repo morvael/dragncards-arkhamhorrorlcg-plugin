@@ -283,63 +283,63 @@
             "message": "Pick a Chaos Token to name.",
             "options": [
                 {
-                    "label": "Elder Thing",
+                    "label": "Elder Thing.",
                     "hotkey": "E",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Elder Thing", "chaos_elder_thing", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cultist",
+                    "label": "Cultist.",
                     "hotkey": "U",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Cultist", "chaos_cultist", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Skull",
+                    "label": "Skull.",
                     "hotkey": "S",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Skull", "chaos_skull", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Tablet",
+                    "label": "Tablet.",
                     "hotkey": "T",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Tablet", "chaos_tablet", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Bless",
+                    "label": "Bless.",
                     "hotkey": "B",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Bless", "chaos_bless", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Curse",
+                    "label": "Curse.",
                     "hotkey": "C",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Curse", "chaos_curse", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Frost",
+                    "label": "Frost.",
                     "hotkey": "F",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "Frost", "chaos_frost", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Numeric",
+                    "label": "Numeric.",
                     "hotkey": "N",
                     "code": [
                         ["PROMPT", "$PLAYER_N", "nameChaosTokenNumeric"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -349,77 +349,77 @@
             "message": "Pick a Chaos Token to name.",
             "options": [
                 {
-                    "label": "+1",
+                    "label": "+1.",
                     "hotkey": "I",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "+1", "chaos_p1", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "0",
+                    "label": "0.",
                     "hotkey": "0",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "0", "chaos_p0", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-1",
+                    "label": "-1.",
                     "hotkey": "1",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-1", "chaos_m1", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-2",
+                    "label": "-2.",
                     "hotkey": "2",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-2", "chaos_m2", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-3",
+                    "label": "-3.",
                     "hotkey": "3",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-3", "chaos_m3", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-4",
+                    "label": "-4.",
                     "hotkey": "4",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-4", "chaos_m4", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-5",
+                    "label": "-5.",
                     "hotkey": "5",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-5", "chaos_m5", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-6",
+                    "label": "-6.",
                     "hotkey": "6",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-6", "chaos_m6", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-7",
+                    "label": "-7.",
                     "hotkey": "7",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-7", "chaos_m7", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-8",
+                    "label": "-8.",
                     "hotkey": "8",
                     "code": [
                         ["DO_NAME_CHAOS_TOKEN", "$PLAYER_N", "-8", "chaos_m8", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -429,63 +429,63 @@
             "message": "Pick a Chaos Token to add to the Chaos Bag.",
             "options": [
                 {
-                    "label": "Elder Thing",
+                    "label": "Elder Thing.",
                     "hotkey": "E",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Elder Thing", "chaos_elder_thing", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cultist",
+                    "label": "Cultist.",
                     "hotkey": "U",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Cultist", "chaos_cultist", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Skull",
+                    "label": "Skull.",
                     "hotkey": "S",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Skull", "chaos_skull", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Tablet",
+                    "label": "Tablet.",
                     "hotkey": "T",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Tablet", "chaos_tablet", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Bless",
+                    "label": "Bless.",
                     "hotkey": "B",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Bless", "chaos_bless", 10, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Curse",
+                    "label": "Curse.",
                     "hotkey": "C",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Curse", "chaos_curse", 10, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Frost",
+                    "label": "Frost.",
                     "hotkey": "F",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Frost", "chaos_frost", 8, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Numeric",
+                    "label": "Numeric.",
                     "hotkey": "N",
                     "code": [
                         ["PROMPT", "$PLAYER_N", "addChaosTokenNumeric"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -495,77 +495,77 @@
             "message": "Pick a Chaos Token to add to the Chaos Bag.",
             "options": [
                 {
-                    "label": "+1",
+                    "label": "+1.",
                     "hotkey": "I",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "+1", "chaos_p1", 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "0",
+                    "label": "0.",
                     "hotkey": "0",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "0", "chaos_p0", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-1",
+                    "label": "-1.",
                     "hotkey": "1",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-1", "chaos_m1", 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-2",
+                    "label": "-2.",
                     "hotkey": "2",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-2", "chaos_m2", 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-3",
+                    "label": "-3.",
                     "hotkey": "3",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-3", "chaos_m3", 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-4",
+                    "label": "-4.",
                     "hotkey": "4",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-4", "chaos_m4", 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-5",
+                    "label": "-5.",
                     "hotkey": "5",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-5", "chaos_m5", 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-6",
+                    "label": "-6.",
                     "hotkey": "6",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-6", "chaos_m6", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-7",
+                    "label": "-7.",
                     "hotkey": "7",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-7", "chaos_m7", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-8",
+                    "label": "-8.",
                     "hotkey": "8",
                     "code": [
                         ["DO_ADD_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-8", "chaos_m8", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -575,63 +575,63 @@
             "message": "Pick a Chaos Token to remove from the Chaos Bag.",
             "options": [
                 {
-                    "label": "Elder Thing",
+                    "label": "Elder Thing.",
                     "hotkey": "E",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Elder Thing", "chaos_elder_thing", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cultist",
+                    "label": "Cultist.",
                     "hotkey": "U",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Cultist", "chaos_cultist", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Skull",
+                    "label": "Skull.",
                     "hotkey": "S",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Skull", "chaos_skull", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Tablet",
+                    "label": "Tablet.",
                     "hotkey": "T",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Tablet", "chaos_tablet", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Bless",
+                    "label": "Bless.",
                     "hotkey": "B",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Bless", "chaos_bless", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Curse",
+                    "label": "Curse.",
                     "hotkey": "C",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Curse", "chaos_curse", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Frost",
+                    "label": "Frost.",
                     "hotkey": "F",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "Frost", "chaos_frost", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Numeric",
+                    "label": "Numeric.",
                     "hotkey": "N",
                     "code": [
                         ["PROMPT", "$PLAYER_N", "removeChaosTokenNumeric"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]
@@ -641,77 +641,77 @@
             "message": "Pick a Chaos Token to remove from the Chaos Bag.",
             "options": [
                 {
-                    "label": "+1",
+                    "label": "+1.",
                     "hotkey": "I",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "+1", "chaos_p1", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "0",
+                    "label": "0.",
                     "hotkey": "0",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "0", "chaos_p0", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-1",
+                    "label": "-1.",
                     "hotkey": "1",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-1", "chaos_m1", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-2",
+                    "label": "-2.",
                     "hotkey": "2",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-2", "chaos_m2", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-3",
+                    "label": "-3.",
                     "hotkey": "3",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-3", "chaos_m3", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-4",
+                    "label": "-4.",
                     "hotkey": "4",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-4", "chaos_m4", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-5",
+                    "label": "-5.",
                     "hotkey": "5",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-5", "chaos_m5", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-6",
+                    "label": "-6.",
                     "hotkey": "6",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-6", "chaos_m6", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-7",
+                    "label": "-7.",
                     "hotkey": "7",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-7", "chaos_m7", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "-8",
+                    "label": "-8.",
                     "hotkey": "8",
                     "code": [
                         ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "-8", "chaos_m8", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]

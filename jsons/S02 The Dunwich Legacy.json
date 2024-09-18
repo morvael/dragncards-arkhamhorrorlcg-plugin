@@ -145,13 +145,14 @@
         "cards": {
             "02037": { //Indebted
                 "rules": {
-                    "02037a": {
+                    "02037a": { //You start each game with 2 fewer resources.
                         "type": "trigger",
                         "priority": 20,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - You start each game with 2 fewer resources.", ["LIST", "$THIS"]],
                             ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
                         ]
                     }
