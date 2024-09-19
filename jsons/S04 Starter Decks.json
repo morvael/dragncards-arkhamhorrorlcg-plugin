@@ -173,8 +173,10 @@
                         "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
                         "condition": ["TRUE"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", "$THIS.tokens.horror"],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillIntellect", "$THIS.tokens.horror"]
+                            ["VAR", "$CHANGE", ["SUBTRACT", "$THIS.tokens.horror", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus04005a", 0]]],
+                            ["SET", "/cardById/$THIS.id/arkhamBonus04005a", "$THIS.tokens.horror"],
+                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillWillpower", "$CHANGE"],
+                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillIntellect", "$CHANGE"]
                         ]
                     },
                     "04005b": { //ou get +1 (combat) and +1 (agility) for each damage on you.
@@ -183,8 +185,10 @@
                         "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
                         "condition": ["TRUE"],
                         "then": [
-                            ["SET", "/cardById/$THIS.id/sides/A/skillCombat", "$THIS.tokens.damage"],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillAgility", "$THIS.tokens.damage"]
+                            ["VAR", "$CHANGE", ["SUBTRACT", "$THIS.tokens.damage", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus04005b", 0]]],
+                            ["SET", "/cardById/$THIS.id/arkhamBonus04005b", "$THIS.tokens.damage"],
+                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillCombat", "$CHANGE"],
+                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillAgility", "$CHANGE"]
                         ]
                     }
                 }

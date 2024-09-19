@@ -31,7 +31,8 @@
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "I2"],
                         ["EQUAL", "$GAME.stepId", "W3"],
-                        ["EQUAL", "$GAME.stepId", "I2.1"]
+                        ["EQUAL", "$GAME.stepId", "I2.1"],
+                        ["EQUAL", "$GAME.stepId", "I2.2"]
                     ]
                 ],
                 ["DO_END_INVESTIGATOR_TURN", "$ACTIVE_CARD.cardOwner", "$ACTIVE_CARD_ID", true, true, "$PLAYER_N"],

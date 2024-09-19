@@ -249,13 +249,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Your assets with “uses (charges)” enter play with 1 additional charge on them.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Your assets with “uses (charges)” enter play with 1 additional charge on them.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                                ]
+                            ]
                         ]
                     }
                 }
@@ -295,13 +305,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 5.", ["LIST", "$THIS"]],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 5.", ["LIST", "$THIS"]],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                                ]
+                            ]
                         ]
                     }
                 }

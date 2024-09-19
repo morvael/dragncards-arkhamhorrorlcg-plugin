@@ -9,13 +9,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You choose the investigator order during the mythos phase.", ["LIST", "$THIS"]],
-                            ["SET", "/arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - You choose the investigator order during the mythos phase.", ["LIST", "$THIS"]],
+                                    ["SET", "/arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null]
+                                ]
+                            ]
                         ]
                     }
                 }

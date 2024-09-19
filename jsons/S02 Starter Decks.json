@@ -173,13 +173,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                                ]
+                            ]
                         ]
                     }
                 }
@@ -192,13 +202,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                                ]
+                            ]
                         ]
                     }
                 }
@@ -226,13 +246,62 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            },
+            "02234": { //Dark Horse
+                "rules": {
+                    "02234a": { //While you have no resources in your resource pool, you get +1 willpower, +1 intellect, +1 combat, and +1 agility.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/playerData/*/resources"],
+                        "condition": ["AND",
+                            ["TRIGGER_IN_PLAY", "$THIS"],
+                            ["EQUAL", "$PLAYER_DATA.{{$THIS.controller}}.resources", 0]
+                        ],
+                        "onDo": [
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$THIS.controller"]],
+                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillWillpower", 1],
+                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillIntellect", 1],
+                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillCombat", 1],
+                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillAgility", 1]
+                                ]
+                            ]
+                        ],
+                        "offDo": [
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$THIS.controller"]],
+                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillWillpower", 1],
+                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillIntellect", 1],
+                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillCombat", 1],
+                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillAgility", 1]
+                                ]
+                            ]
                         ]
                     }
                 }

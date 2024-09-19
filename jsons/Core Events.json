@@ -93,6 +93,34 @@
                 ]
             ]
         },
+        "IS_PASSIVE_CARD_ABILITY_OFF": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                // Validation skipped.
+                ["NOT_EQUAL", "$CARD.arkhamPassiveAbilityOn{{$ABILITY}}", true]
+            ]
+        },
+        "PASSIVE_CARD_ABILITY_ON": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                // Validation skipped.
+                ["SET", "/cardById/$CARD.id/arkhamPassiveAbilityOn{{$ABILITY}}", true]
+            ]
+        },
+        "IS_PASSIVE_CARD_ABILITY_ON": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                // Validation skipped.
+                ["EQUAL", "$CARD.arkhamPassiveAbilityOn{{$ABILITY}}", true]
+            ]
+        },
+        "PASSIVE_CARD_ABILITY_OFF": {
+            "args": ["$CARD", {"$ABILITY": 0}],
+            "code": [
+                // Validation skipped.
+                ["SET", "/cardById/$CARD.id/arkhamPassiveAbilityOn{{$ABILITY}}", false]
+            ]
+        },
         // Sets the flag blocking TRIGGER_IN_PLAY_ANY from returning true for ABILITY on CARD.
         "CARD_ABILITY_ON": {
             "args": ["$CARD", {"$ABILITY": 0}],

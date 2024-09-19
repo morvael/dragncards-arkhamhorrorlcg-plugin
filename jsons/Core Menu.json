@@ -791,7 +791,8 @@
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "I2"],
                         ["EQUAL", "$GAME.stepId", "W3"],
-                        ["EQUAL", "$GAME.stepId", "I2.1"]
+                        ["EQUAL", "$GAME.stepId", "I2.1"],
+                        ["EQUAL", "$GAME.stepId", "I2.2"]
                     ]
                 ]
             },

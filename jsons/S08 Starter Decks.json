@@ -9,13 +9,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Play with the top card of your deck revealed.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Play with the top card of your deck revealed.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                                ]
+                            ]
                         ]
                     }
                 }
@@ -28,13 +38,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Play with the top card of your deck revealed.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Play with the top card of your deck revealed.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                                ]
+                            ]
                         ]
                     }
                 }

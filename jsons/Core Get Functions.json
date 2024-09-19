@@ -326,6 +326,24 @@
                     "$CARD_NAME"
                 ]
             ]
+        },
+        "GET_CARD_PROPERTY": {
+            "args": ["$TARGET_CARD_ID", "$PROPERTY", "$DEFAULT"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_PROPERTY.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$PROPERTY", "GET_CARD_PROPERTY.PROPERTY"],
+                ["VALIDATE_NOT_NULL", "$DEFAULT", "GET_CARD_PROPERTY.DEFAULT"],
+                ["VAR", "$VALUE", "$CARD_BY_ID.$TARGET_CARD_ID.$PROPERTY"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$VALUE", null],
+                        ["EQUAL", "$VALUE", ""]
+                    ],
+                    "$DEFAULT",
+                    ["TRUE"],
+                    "$VALUE"
+                ]
+            ]
         }
     }
 }

@@ -283,15 +283,25 @@
                             ]
                         ],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS", 2],
-                            ["DO_FLOG", "{0:C} - (...) Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. (...)", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS", 2],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS", 2],
+                                    ["DO_FLOG", "{0:C} - (...) Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. (...)", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1]
+                                ]
+                            ]                            
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS", 2],
-                            ["DO_FLOG", "{0:C} - (...) If it is still revealed at the end of the phase, shuffle it back into your hunch deck.", ["LIST", "$THIS"]],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1],
-                            ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS", 2],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS", 2],
+                                    ["DO_FLOG", "{0:C} - (...) If it is still revealed at the end of the phase, shuffle it back into your hunch deck.", ["LIST", "$THIS"]],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1],
+                                    ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
+                                ]
+                            ]
                         ]
                     }
                 }
@@ -309,7 +319,10 @@
                                 ["NOT_EQUAL", "$CARD.id", "$THIS.id"],
                                 ["EQUAL", "$CARD.attachmentDirection", "behind"]
                             ]]],
-                            ["SET", "/cardById/$THIS.id/sides/A/skillWillpower", ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]]
+                            ["VAR", "$SELECTED_COUNT", ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]],
+                            ["VAR", "$CHANGE", ["SUBTRACT", "$SELECTED_COUNT", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus05004a", 0]]],
+                            ["SET", "/cardById/$THIS.id/arkhamBonus05004a", "$SELECTED_COUNT"],
+                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillWillpower", "$CHANGE"]
                         ]
                     }
                 }
@@ -322,13 +335,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You begin each game with 1 additional card in your opening hand.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - You begin each game with 1 additional card in your opening hand.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
+                                ]
+                            ]
                         ]
                     }
                 }

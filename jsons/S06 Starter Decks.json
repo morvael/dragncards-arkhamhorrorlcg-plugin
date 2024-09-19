@@ -192,13 +192,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 3.", ["LIST", "$THIS"]],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 3.", ["LIST", "$THIS"]],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
+                                ]
+                            ]
                         ]
                     },
                     "06005b": { //During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.
@@ -242,13 +252,23 @@
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - Only the first copy of each card in your hand counts toward your maximum hand size.", ["LIST", "$THIS"]],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
+                                    ["DO_FLOG", "{0:C} - Only the first copy of each card in your hand counts toward your maximum hand size.", ["LIST", "$THIS"]],
+                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                                ]
+                            ]
                         ],
                         "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                            ["COND",
+                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
+                                [
+                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
+                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                                ]
+                            ]
                         ]
                     }
                 }
