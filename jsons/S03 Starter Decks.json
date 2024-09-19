@@ -287,11 +287,30 @@
                     }
                 }
             },
+            "03041": { //Drawing the Sign
+                "rules": {
+                    "03041a": { //Your maximum hand size is reduced by 5.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 5.", ["LIST", "$THIS"]],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
+                        ]
+                    }
+                }
+            },
             "03264": { //Stick to the Plan
                 "rules": {
                     "03264a": { //Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
                         "type": "trigger",
-                        "priority": 20,
+                        "priority": 10,
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [

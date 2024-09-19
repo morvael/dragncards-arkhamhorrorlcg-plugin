@@ -217,6 +217,25 @@
                         ]
                     }
                 }
+            },
+            "02020": { //Laboratory Assistant
+                "rules": {
+                    "02020a": { //Your maximum hand size is increased by 2.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ]
+                    }
+                }
             }
         }
     }

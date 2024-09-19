@@ -801,6 +801,7 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamMaxHandSize", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamHandSizeCountUnique", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],

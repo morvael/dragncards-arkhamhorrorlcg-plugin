@@ -233,6 +233,25 @@
                         ]
                     }
                 }
+            },
+            "06159": { //Dream-Enhancing Serum
+                "rules": {
+                    "06159a": { //Only the first copy of each card in your hand counts toward your maximum hand size.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Only the first copy of each card in your hand counts toward your maximum hand size.", ["LIST", "$THIS"]],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
+                        ]
+                    }
+                }
             }
         }
     }

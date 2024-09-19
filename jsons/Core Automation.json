@@ -635,7 +635,24 @@
                     [
                         ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHECK_HAND_SIZE.TARGET_PLAYER"],
                         ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                        ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
+                        ["VAR", "$CARDS_IN_HAND", 0],
+                        ["COND",
+                            ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamHandSizeCountUnique", 0],
+                            [
+                                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "$HAND_ID"]]],
+                                ["VAR", "$UNIQUE_TITLES", ["LIST"]],
+                                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                    ["VAR", "$CARD_TITLE", ["GET_CARD_TITLE", "$CARD.sides.A.name"]],
+                                    ["COND",
+                                        ["EQUAL", ["IN_LIST", "$UNIQUE_TITLES", "$CARD_TITLE"], false],
+                                        ["UPDATE_VAR", "$UNIQUE_TITLES", ["APPEND", "$UNIQUE_TITLES", "$CARD_TITLE"]]
+                                    ]
+                                ]],
+                                ["UPDATE_VAR", "$CARDS_IN_HAND", ["LENGTH", "$UNIQUE_TITLES"]]
+                            ],
+                            ["TRUE"],
+                            ["UPDATE_VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]]
+                        ],
                         ["VAR", "$MAX_HAND_SIZE", ["GET_MAX_HAND_SIZE", "$TARGET_PLAYER", 8]],
                         ["COND",
                             ["GREATER_THAN", "$CARDS_IN_HAND", "$MAX_HAND_SIZE"],

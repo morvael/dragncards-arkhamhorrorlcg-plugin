@@ -185,5 +185,66 @@
                 {"databaseId": "60531", "quantity": 2, "loadGroupId": "playerNSideDeck"}
             ]
         }
+    },
+    "automation": {
+        "cards": {
+            "60202": { //Vault of Knowledge
+                "rules": {
+                    "60202a": { //Your maximum hand size is increased by 2.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ]
+                    }
+                }
+            },
+            "60205": { //Arcane Enlightenment
+                "rules": {
+                    "60205a": { //Your maximum hand size is increased by 1.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 1.", ["LIST", "$THIS"]],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 1]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 1]
+                        ]
+                    }
+                }
+            },
+            "60212": { //Laboratory Assistant
+                "rules": {
+                    "60212a": { //Your maximum hand size is increased by 2.
+                        "type": "passive",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "onDo": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ],
+                        "offDo": [
+                            ["CARD_ABILITY_OFF", "$THIS"],
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
+                        ]
+                    }
+                }
+            }
+        }
     }
 }

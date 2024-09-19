@@ -147,7 +147,7 @@
                 "rules": {
                     "02037a": { //You start each game with 2 fewer resources.
                         "type": "trigger",
-                        "priority": 20,
+                        "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
