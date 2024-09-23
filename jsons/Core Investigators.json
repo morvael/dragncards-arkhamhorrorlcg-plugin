@@ -432,6 +432,37 @@
                 "$SKILL"
             ]
         },
+        "DO_SET_SKILL_BONUS": {
+            "args": ["$SOURCE_CARD_ID", "$TARGET_CARD_ID", "$SKILL_PROPERTY", "$VALUE"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "DO_SET_SKILL_BONUS.SKILL_PROPERTY"],
+                ["VAR", "$EXTERNAL_NAME", "arkham_{{$TARGET_CARD_ID}}_{{$SKILL_PROPERTY}}_bonus"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$VALUE", null],
+                        ["EQUAL", "$VALUE", 0]
+                    ],
+                    ["UNSET", "/cardById/$SOURCE_CARD_ID/$EXTERNAL_NAME"],
+                    ["TRUE"],
+                    ["SET", "/cardById/$SOURCE_CARD_ID/$EXTERNAL_NAME", "$VALUE"]
+                ]
+            ]
+        },
+        "DO_FORMAT_SKILL_BONUS": {
+            "args": ["$MESSAGE", "$INFO", "$VALUE", "$SUFFIX"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$VALUE", 0],
+                    "{{$MESSAGE}}{{$INFO}} +{{$VALUE}}{{$SUFFIX}}, ",
+                    ["LESS_THAN", "$VALUE", 0],
+                    "{{$MESSAGE}}{{$INFO}} {{$VALUE}}{{$SUFFIX}}, ",
+                    ["GREATER_THAN", ["LENGTH", "$SUFFIX"], 0],
+                    "{{$MESSAGE}}{{$INFO}} {{$SUFFIX}}, ",
+                    ["TRUE"],
+                    "$MESSAGE"
+                ]
+            ]
+        },
         "CAN_CALCULATE_SKILL": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
             "code": [
@@ -457,16 +488,52 @@
                 ["COND",
                     ["CAN_CALCULATE_SKILL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
                     [
+                        //total variable and analytics message
+                        ["VAR", "$TOTAL", 0],
+                        ["VAR", "$MESSAGE", ""],
+                        //investigator's base value
                         ["VAR", "$INVESTIGATOR_SKILL", ["GET_CARD_SKILL", "$TARGET_CARD_ID", "$SKILL_PROPERTY"]],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "base", "$INVESTIGATOR_SKILL", ""]],
+                        ["INCREASE_VAR", "$TOTAL", "$INVESTIGATOR_SKILL"],
+                        //dynamic bonuses from other cards (id based)
+                        ["VAR", "$EXTERNAL_NAME", "arkham_{{$TARGET_CARD_ID}}_{{$SKILL_PROPERTY}}_bonus"],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", null],
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", 0]
+                        ]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["VAR", "$EXTERNAL_BONUS", "$CARD.{{$EXTERNAL_NAME}}"],
+                            ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", ["GET_CARD_TITLE", "$CARD.currentFace.name"], "$EXTERNAL_BONUS", ""]],
+                            ["INCREASE_VAR", "$TOTAL", "$EXTERNAL_BONUS"]
+                        ]],
+                        //dynamic bonuses from other cards (controller-based)
+                        ["VAR", "$EXTERNAL_NAME", "arkham_controller_{{$SKILL_PROPERTY}}_bonus"],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", null],
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", 0],
+                            ["EQUAL", "$CARD.controller", "$TARGET_CARD.controller"]
+                        ]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["VAR", "$EXTERNAL_BONUS", "$CARD.{{$EXTERNAL_NAME}}"],
+                            ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", ["GET_CARD_TITLE", "$CARD.currentFace.name"], "$EXTERNAL_BONUS", ""]],
+                            ["INCREASE_VAR", "$TOTAL", "$EXTERNAL_BONUS"]
+                        ]],
+                        //chaos tokens and skill icons
+                        ["VAR", "$AUTO_FAIL", false],
                         ["VAR", "$SUM_CHAOS_TOKENS", 0],
                         ["VAR", "$SUM_SKILL_ICONS", 0],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedVoid"]]],
-                        ["VAR", "$SUFFIX", ""],
+                        ["VAR", "$CHAOS_TOKENS", ""],
+                        ["VAR", "$CHAOS_TOKENS_SEPARATOR", ""],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["COND",
                                 ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
                                 [
                                     ["INCREASE_VAR", "$SUM_CHAOS_TOKENS", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]],
+                                    ["COND",
+                                        ["EQUAL", "$CARD.currentFace.name", "Auto Fail"],
+                                        ["UPDATE_VAR", "$AUTO_FAIL", true]
+                                    ],
                                     ["COND",
                                         ["OR",
                                             ["EQUAL", "$CARD.currentFace.name", "Auto Fail"],
@@ -477,7 +544,8 @@
                                             ["EQUAL", "$CARD.currentFace.name", "Tablet"],
                                             ["EQUAL", "$CARD.currentFace.name", "Frost"]
                                         ],
-                                        ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} & {{$CARD.currentFace.name}}"]
+                                        ["UPDATE_VAR", "$CHAOS_TOKENS", "{{$CHAOS_TOKENS}}{{$CHAOS_TOKENS_SEPARATOR}}{{$CARD.currentFace.name}}"],
+                                        ["UPDATE_VAR", "$CHAOS_TOKENS_SEPARATOR", " & "]
                                     ]
                                 ],
                                 ["TRUE"],
@@ -487,20 +555,37 @@
                                 ]
                             ]
                         ]],
-                        ["VAR", "$CHAOS_TOKENS_TEXT", ""],
                         ["COND",
-                            ["GREATER_EQUAL", "$SUM_CHAOS_TOKENS", 0],
-                            ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "+"]
+                            ["AND",
+                                ["NOT_EQUAL", "$SUM_CHAOS_TOKENS", 0],
+                                ["GREATER_THAN", ["LENGTH", "$CHAOS_TOKENS"], 0]
+                            ],
+                            ["UPDATE_VAR", "$CHAOS_TOKENS", " & {{$CHAOS_TOKENS}}"]
                         ],
-                        ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "{{$CHAOS_TOKENS_TEXT}}{{$SUM_CHAOS_TOKENS}}{{$SUFFIX}}"],
-                        ["VAR", "$SKILL_ICONS_TEXT", ""],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "chaos", "$SUM_CHAOS_TOKENS", "$CHAOS_TOKENS"]],
+                        ["INCREASE_VAR", "$TOTAL", "$SUM_CHAOS_TOKENS"],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "icons", "$SUM_SKILL_ICONS", ""]],
+                        ["INCREASE_VAR", "$TOTAL", "$SUM_SKILL_ICONS"],
+                        //final format
                         ["COND",
-                            ["GREATER_EQUAL", "$SUM_SKILL_ICONS", 0],
-                            ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "+"]
+                            ["GREATER_THAN", ["LENGTH", "$MESSAGE"], 0],
+                            [
+                                ["UPDATE_VAR", "$MESSAGE", ["SUBSTRING", "$MESSAGE", 0, ["SUBTRACT", ["LENGTH", "$MESSAGE"], 2]]],
+                                ["UPDATE_VAR", "$MESSAGE", " ({{$MESSAGE}})"]
+                            ]
                         ],
-                        ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "{{$SKILL_ICONS_TEXT}}{{$SUM_SKILL_ICONS}}"],
-                        ["VAR", "$TOTAL", ["ADD", "$INVESTIGATOR_SKILL", ["ADD", "$SUM_CHAOS_TOKENS", "$SUM_SKILL_ICONS"]]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "calculate {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}}).", "calculates {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}})."]
+                        //apply Auto Fail & minimum value
+                        ["COND",
+                            ["OR",
+                                ["EQUAL", "$AUTO_FAIL", true],
+                                ["LESS_THAN", "$TOTAL", 0]
+                            ],
+                            ["UPDATE_VAR", "$TOTAL", 0]
+                        ],
+                        //use investigator's short name
+                        ["VAR", "$INVESTIGATOR_NAME", ["GET_CARD_TITLE", "$TARGET_CARD.currentFace.name"]],
+                        //log
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "check {{$INVESTIGATOR_NAME}}'s {{$SKILL_NAME}}: {{$TOTAL}}{{$MESSAGE}}.", "checks {{$INVESTIGATOR_NAME}}'s {{$SKILL_NAME}}: {{$TOTAL}}{{$MESSAGE}}"]
                     ]
                 ]
             ]

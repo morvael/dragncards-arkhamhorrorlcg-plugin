@@ -167,28 +167,22 @@
         "cards": {
             "04005": { //Calvin Wright: The Haunted
                 "rules": {
-                    "04005a": { //You get +1 (willpower) and +1 (intellect) for each horror on you.
+                    "04005a": { //You get +1 willpower and +1 intellect for each horror on you.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/tokens/horror"],
-                        "condition": ["TRUE"],
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller", "/cardById/$THIS_ID/tokens/horror"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", "$THIS.tokens.horror", "$THIS.inPlay"],
                         "then": [
-                            ["VAR", "$CHANGE", ["SUBTRACT", "$THIS.tokens.horror", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus04005a", 0]]],
-                            ["SET", "/cardById/$THIS.id/arkhamBonus04005a", "$THIS.tokens.horror"],
-                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillWillpower", "$CHANGE"],
-                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillIntellect", "$CHANGE"]
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower", "skillIntellect"], "$THIS.tokens.horror", "$THIS.inPlay", null, null]
                         ]
                     },
-                    "04005b": { //ou get +1 (combat) and +1 (agility) for each damage on you.
+                    "04005b": { //You get +1 combat and +1 agility for each damage on you.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/tokens/damage"],
-                        "condition": ["TRUE"],
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller", "/cardById/$THIS_ID/tokens/damage"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", "$THIS.tokens.damage", "$THIS.inPlay"],
                         "then": [
-                            ["VAR", "$CHANGE", ["SUBTRACT", "$THIS.tokens.damage", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus04005b", 0]]],
-                            ["SET", "/cardById/$THIS.id/arkhamBonus04005b", "$THIS.tokens.damage"],
-                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillCombat", "$CHANGE"],
-                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillAgility", "$CHANGE"]
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillCombat", "skillAgility"], "$THIS.tokens.damage", "$THIS.inPlay", null, null]
                         ]
                     }
                 }

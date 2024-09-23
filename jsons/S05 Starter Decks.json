@@ -211,24 +211,14 @@
                 "rules": {
                     "05002a": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
                         "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "then": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamShowExtraDeck", 1]
-                        ]
-                    },
-                    "05002b": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
-                        "type": "trigger",
                         "priority": 9, //"During the setup" (Joe Diamond) must happen before "Before you draw your opening hand" (Stick to the Plan)
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
-                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw", 1],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["DO_FLOG", "{0:C} - During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate “hunch deck”.", ["LIST", "$THIS"]],
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate “hunch deck”.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
@@ -254,7 +244,7 @@
                                     ]],
                                     ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
                                     ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$DECK_GROUP_ID", true, null],
-                                    ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"]
+                                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
                                 ],
                                 ["TRUE"],
                                 [
@@ -266,63 +256,50 @@
                             ]
                         ]
                     },
-                    "05002c": { //Forced - When the investigation phase begins: Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. If it is still revealed at the end of the phase, shuffle it back into your hunch deck.
-                        "type": "passive",
+                    "05002b": { //Forced - When the investigation phase begins: Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. If it is still revealed at the end of the phase, shuffle it back into your hunch deck.
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/stepId"],
+                        "listenTo": ["/stepId"],
                         "condition": ["AND",
-                            ["TRIGGER_IN_PLAY", "$THIS", 2],
-                            ["OR",
-                                ["EQUAL", "$GAME.stepId", "I1"],
-                                ["EQUAL", "$GAME.stepId", "W2"],
-                                ["EQUAL", "$GAME.stepId", "I2"],
-                                ["EQUAL", "$GAME.stepId", "W3"],
-                                ["EQUAL", "$GAME.stepId", "I2.1"],
-                                ["EQUAL", "$GAME.stepId", "I2.2"],
-                                ["EQUAL", "$GAME.stepId", "I2.E"]
-                            ]
+                            ["EQUAL", "$GAME.stepId", "I1"],
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["EQUAL", ["GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE", "$THIS"], "B"]
                         ],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS", 2],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS", 2],
-                                    ["DO_FLOG", "{0:C} - (...) Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. (...)", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1]
-                                ]
-                            ]                            
+                        "then": [
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$EXTRA_DECK_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
+                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_ID"]],
+                            ["SET", "/cardById/$TOP_CARD.id/currentSide", "A"]
+                        ]
+                    },
+                    "05002c": { //Forced - When the investigation phase begins: Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. If it is still revealed at the end of the phase, shuffle it back into your hunch deck.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/stepId"],
+                        "condition": ["AND",
+                            ["EQUAL", "$GAME.stepId", "I3"],
+                            ["EQUAL", "$THIS.inPlay", true],
+                            ["EQUAL", ["GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE", "$THIS"], "A"]
                         ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS", 2],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS", 2],
-                                    ["DO_FLOG", "{0:C} - (...) If it is still revealed at the end of the phase, shuffle it back into your hunch deck.", ["LIST", "$THIS"]],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopExtraDeckCardRevealed", 1],
-                                    ["DO_SHUFFLE_GROUP", "$THIS.controller", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"], true, null]
-                                ]
-                            ]
+                        "then": [
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, shuffle the revealed top card of your hunch deck back into your hunch deck.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$EXTRA_DECK_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
+                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_ID"]],
+                            ["SET", "/cardById/$TOP_CARD.id/currentSide", "B"],
+                            ["DO_SHUFFLE_GROUP", "$THIS.controller", "$EXTRA_DECK_ID", true, null]
                         ]
                     }
                 }
             },
             "05004": { //Diana Stanley: The Redeemed Cultist
                 "rules": {
-                    "05004a": { //Diana Stanley gets +1 (willpower) for each card beneath her.
+                    "05004a": { //Diana Stanley gets +1 willpower for each card beneath her.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/attachedCount"],
-                        "condition": ["TRUE"],
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller", "/cardById/$THIS_ID/attachedCount"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_DIANA_STANLEY_BONUS", "$THIS"], "$THIS.inPlay"],
                         "then": [
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.parentCardId", "$THIS.id"],
-                                ["NOT_EQUAL", "$CARD.id", "$THIS.id"],
-                                ["EQUAL", "$CARD.attachmentDirection", "behind"]
-                            ]]],
-                            ["VAR", "$SELECTED_COUNT", ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]],
-                            ["VAR", "$CHANGE", ["SUBTRACT", "$SELECTED_COUNT", ["GET_CARD_PROPERTY", "$THIS.id", "arkhamBonus05004a", 0]]],
-                            ["SET", "/cardById/$THIS.id/arkhamBonus05004a", "$SELECTED_COUNT"],
-                            ["INCREASE_VAL", "/cardById/$THIS.id/sides/A/skillWillpower", "$CHANGE"]
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_DIANA_STANLEY_BONUS", "$THIS"], "$THIS.inPlay", null, null]
                         ]
                     }
                 }
@@ -330,28 +307,12 @@
             "05276": { //Studious
                 "rules": {
                     "05276a": { //You begin each game with 1 additional card in your opening hand.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - You begin each game with 1 additional card in your opening hand.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingCardsMod", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingCardsMod", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingCardsMod", 1, "$THIS.inPlay", "you begin each game with 1 additional card in your opening hand.", null]
                         ]
                     }
                 }
@@ -359,6 +320,18 @@
         }
     },
     "functions": {
+        "GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]]],
+                ["COND",
+                    ["EQUAL", "$TOP_CARD", null],
+                    null,
+                    ["TRUE"],
+                    "$TOP_CARD.currentSide"
+                ]
+            ]
+        },
         "DO_PLACE_INSIGHT_EVENTS_IN_HUNCH_DECK": {
             "args": ["$TARGET_PLAYER"],
             "code": [
@@ -394,9 +367,20 @@
                     [
                         ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
                         ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$HAND_GROUP_ID", "$DECK_GROUP_ID", true, null],
-                        ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"]
+                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
                     ]
                 ]
+            ]
+        },
+        "GET_DIANA_STANLEY_BONUS": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.parentCardId", "$THIS.id"],
+                    ["NOT_EQUAL", "$CARD.id", "$THIS.id"],
+                    ["EQUAL", "$CARD.attachmentDirection", "behind"]
+                ]]],
+                ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]
             ]
         }
     },

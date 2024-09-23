@@ -4,28 +4,12 @@
             "98019": { //Gloria Goldberg: The Writer (promo)
                 "rules": {
                     "98019a": { //You choose the investigator order during the mythos phase.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - You choose the investigator order during the mythos phase.", ["LIST", "$THIS"]],
-                                    ["SET", "/arkhamCustomMythosPhasePlayerOrderController", "$THIS.controller"]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamCustomMythosPhasePlayerOrderController", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamCustomMythosPhasePlayerOrderController", 1, "$THIS.inPlay", "you choose the investigator order during the mythos phase.", null]
                         ]
                     }
                 }

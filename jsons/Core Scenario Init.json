@@ -773,7 +773,6 @@
                         ["SET", "/arkhamNumScenarioQuestions", 0],
                         ["SET", "/arkhamScenarioQuestionIndex", 0],
                         ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-                        ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null],
                         ["SET", "/arkhamTraumaDone", 0],
                         ["SET", "/arkhamStartingHandDone", 0],
                         ["SET", "/arkhamActiveInvestigator", null],
@@ -802,6 +801,7 @@
                             ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamMaxHandSize", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamHandSizeCountUnique", 0],
+                            ["SET", "/playerData/$PLAYER_I/arkhamCustomMythosPhasePlayerOrderController", 0],
                             ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
                             ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
                             ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
@@ -1022,30 +1022,28 @@
         "DEFAULT_DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
             "code": [
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw", "BEFORE_DRAW_DONE", "BEFORE_DRAW_DONE"]
+            ]
+        },
+        "BEFORE_DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "Draw", "DRAW_DONE", "OPENING_HAND_FINISHED"]
+            ]
+        },
+        "DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
                 ["COND",
-                    ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
-                    ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
+                    ["GREATER_THAN", "$STARTING_CARDS", 0],
+                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
+                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
                     ["TRUE"],
-                    [
-                        ["COND",
-                            ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
-                            ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
-                            ["TRUE"],
-                            [
-                                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
-                                ["COND",
-                                    ["GREATER_THAN", "$STARTING_CARDS", 0],
-                                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
-                                ],
-                                ["COND",
-                                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
-                                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
-                                    ["TRUE"],
-                                    ["STARTING_HAND_DONE", "$PLAYER_I"]
-                                ]
-                            ]
-                        ]
-                    ]
+                    ["OPENING_HAND_FINISHED", "$PLAYER_I"]
                 ]
             ]
         },
@@ -1067,27 +1065,26 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
                 ],
-                ["STARTING_HAND_DONE", "$PLAYER_N"]
+                ["OPENING_HAND_FINISHED", "$PLAYER_N"]
             ]
         },
-        "STARTING_HAND_DONE": {
+        "OPENING_HAND_FINISHED": {
             "args": ["$PLAYER_I"],
             "code": [
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "AfterDraw", "AFTER_DRAW_DONE", "AFTER_DRAW_DONE"]
+            ]
+        },
+        "AFTER_DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
                 ["COND",
-                    ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "AfterDraw"],
-                    ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "AfterDraw"],
-                    ["TRUE"],
-                    [
-                        ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
-                        ["COND",
-                            ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
-                            ["COND",
-                                ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
-                                ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
-                                ["TRUE"],
-                                ["SCENARIO_INIT_FINISH", null]
-                            ]
-                        ]
+                    ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
+                    ["COND",
+                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
+                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                        ["TRUE"],
+                        ["SCENARIO_INIT_FINISH", null]
                     ]
                 ]
             ]

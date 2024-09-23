@@ -168,28 +168,12 @@
             "02003": { //Jenny Barnes: The Dilettante
                 "rules": {
                     "02003a": { //You collect 1 additional resource during each upkeep phase.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
@@ -197,28 +181,12 @@
             "98001": { //Jenny Barnes: The Dilettante (promo)
                 "rules": {
                     "98001a": { //You collect 1 additional resource during each upkeep phase.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - You collect 1 additional resource during each upkeep phase.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
@@ -232,7 +200,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You begin the game with Duke in play.", ["LIST", "$THIS"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
@@ -241,67 +209,25 @@
             "02020": { //Laboratory Assistant
                 "rules": {
                     "02020a": { //Your maximum hand size is increased by 2.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - Your maximum hand size is increased by 2.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 2]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay", "your maximum hand size is increased by 2.", null]
                         ]
                     }
                 }
             },
-            "02234": { //Dark Horse
+            "02037": { //Indebted
                 "rules": {
-                    "02234a": { //While you have no resources in your resource pool, you get +1 willpower, +1 intellect, +1 combat, and +1 agility.
-                        "type": "passive",
+                    "02037a": { //You start each game with 2 fewer resources.
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/playerData/*/resources"],
-                        "condition": ["AND",
-                            ["TRIGGER_IN_PLAY", "$THIS"],
-                            ["EQUAL", "$PLAYER_DATA.{{$THIS.controller}}.resources", 0]
-                        ],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$THIS.controller"]],
-                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillWillpower", 1],
-                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillIntellect", 1],
-                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillCombat", 1],
-                                    ["INCREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillAgility", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$THIS.controller"]],
-                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillWillpower", 1],
-                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillIntellect", 1],
-                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillCombat", 1],
-                                    ["DECREASE_VAL", "/cardById/$INVESTIGATOR.id/sides/A/skillAgility", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingResourcesMod", -2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingResourcesMod", -2, "$THIS.inPlay", "you start each game with 2 fewer resources.", null]
                         ]
                     }
                 }

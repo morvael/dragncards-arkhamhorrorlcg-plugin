@@ -1,0 +1,159 @@
+{
+    "functions": {
+        "CAN_CHANGE_CONTROLLER_BONUS": {
+            "args": ["$THIS", "$VARIABLE_NAME", "$BONUS", "$ON", {"$ABILITY": 0}],
+            "code": [
+                //estabilish variable names
+                ["VAR", "$VALUE_VARIABLE", "arkhamControllerBonus{{$ABILITY}}Value"],
+                ["VAR", "$CONTROLLER_VARIABLE", "arkhamControllerBonus{{$ABILITY}}Controller"],
+                //read current values
+                ["VAR", "$CURRENT_VALUE", ["GET_CARD_PROPERTY", "$THIS.id", "$VALUE_VARIABLE", 0]],
+                ["VAR", "$CURRENT_CONTROLLER", ["GET_CARD_PROPERTY", "$THIS.id", "$CONTROLLER_VARIABLE", ""]],
+                //determine new values
+                ["VAR", "$NEW_VALUE", ["INLINE_IF", "$ON", "$BONUS", 0]],
+                ["VAR", "$NEW_CONTROLLER", ["INLINE_IF", ["AND", "$ON", ["IS_VALID_PLAYER", "$THIS.controller"]], "$THIS.controller", ""]],
+                //test
+                ["OR",
+                    ["NOT_EQUAL", "$CURRENT_VALUE", "$NEW_VALUE"],
+                    ["NOT_EQUAL", "$CURRENT_CONTROLLER", "$NEW_CONTROLLER"]
+                ]
+            ]
+        },
+        "DO_CHANGE_CONTROLLER_BONUS": {
+            "args": ["$THIS", "$VARIABLE_NAME", "$BONUS", "$ON", "$ON_MESSAGE", "$OFF_MESSAGE", {"$ABILITY": 0}],
+            "code": [
+                //estabilish variable names
+                ["VAR", "$VALUE_VARIABLE", "arkhamControllerBonus{{$ABILITY}}Value"],
+                ["VAR", "$CONTROLLER_VARIABLE", "arkhamControllerBonus{{$ABILITY}}Controller"],
+                //read current values
+                ["VAR", "$CURRENT_VALUE", ["GET_CARD_PROPERTY", "$THIS.id", "$VALUE_VARIABLE", 0]],
+                ["VAR", "$CURRENT_CONTROLLER", ["GET_CARD_PROPERTY", "$THIS.id", "$CONTROLLER_VARIABLE", ""]],
+                //determine new values
+                ["VAR", "$NEW_VALUE", ["INLINE_IF", "$ON", "$BONUS", 0]],
+                ["VAR", "$NEW_CONTROLLER", ["INLINE_IF", ["AND", "$ON", ["IS_VALID_PLAYER", "$THIS.controller"]], "$THIS.controller", ""]],
+                //if bonus is applied to valid player and the controller is changing or bonus is zeroed, remove bonus from current controller
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$CURRENT_VALUE", 0],
+                        ["NOT_EQUAL", "$CURRENT_CONTROLLER", ""],
+                        ["OR",
+                            ["NOT_EQUAL", "$NEW_CONTROLLER", "$CURRENT_CONTROLLER"],
+                            ["EQUAL", "$NEW_VALUE", 0]
+                        ]
+                    ],
+                    [
+                        ["COND",
+                            ["NOT_EQUAL", "$OFF_MESSAGE", null],
+                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
+                        ],
+                        ["DECREASE_VAL", "/playerData/$CURRENT_CONTROLLER/$VARIABLE_NAME", "$CURRENT_VALUE"],
+                        ["UNSET", "/cardById/$THIS.id/$VALUE_VARIABLE"],
+                        ["UNSET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE"],
+                        ["UPDATE_VAR", "$CURRENT_VALUE", 0],
+                        ["UPDATE_VAR", "$CURRENT_CONTROLLER", ""]
+                    ]
+                ],
+                //set or update bonus
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$NEW_VALUE", 0],
+                        ["NOT_EQUAL", "$NEW_CONTROLLER", ""],
+                        ["OR",
+                            ["NOT_EQUAL", "$NEW_CONTROLLER", "$CURRENT_CONTROLLER"],
+                            ["NOT_EQUAL", "$NEW_VALUE", "$CURRENT_VALUE"]
+                        ]
+                    ],
+                    [
+                        ["COND",
+                            ["NOT_EQUAL", "$ON_MESSAGE", null],
+                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
+                        ],
+                        ["INCREASE_VAL", "/playerData/$NEW_CONTROLLER/$VARIABLE_NAME", ["SUBTRACT", "$NEW_VALUE", "$CURRENT_VALUE"]],
+                        ["SET", "/cardById/$THIS.id/$VALUE_VARIABLE", "$NEW_VALUE"],
+                        ["SET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE", "$NEW_CONTROLLER"]
+                    ]
+                ]
+            ]
+        },
+        "CAN_CHANGE_SKILL_BONUS": {
+            "args": ["$THIS", "$BONUS", "$ON", {"$ABILITY": 0}],
+            "code": [
+                //estabilish variable names
+                ["VAR", "$VALUE_VARIABLE", "arkhamSkillBonus{{$ABILITY}}Value"],
+                ["VAR", "$CONTROLLER_VARIABLE", "arkhamSkillBonus{{$ABILITY}}Controller"],
+                //read current values
+                ["VAR", "$CURRENT_VALUE", ["GET_CARD_PROPERTY", "$THIS.id", "$VALUE_VARIABLE", 0]],
+                ["VAR", "$CURRENT_CONTROLLER", ["GET_CARD_PROPERTY", "$THIS.id", "$CONTROLLER_VARIABLE", ""]],
+                //determine new values
+                ["VAR", "$NEW_VALUE", ["INLINE_IF", "$ON", "$BONUS", 0]],
+                ["VAR", "$NEW_CONTROLLER", ["INLINE_IF", ["AND", "$ON", ["IS_VALID_PLAYER", "$THIS.controller"]], "$THIS.controller", ""]],
+                //test
+                ["OR",
+                    ["NOT_EQUAL", "$CURRENT_VALUE", "$NEW_VALUE"],
+                    ["NOT_EQUAL", "$CURRENT_CONTROLLER", "$NEW_CONTROLLER"]
+                ]
+            ]
+        },
+        "DO_CHANGE_SKILL_BONUS": {
+            "args": ["$THIS", "$SKILL_NAMES", "$BONUS", "$ON", "$ON_MESSAGE", "$OFF_MESSAGE", {"$ABILITY": 0}],
+            "code": [
+                //estabilish variable names
+                ["VAR", "$VALUE_VARIABLE", "arkhamSkillBonus{{$ABILITY}}Value"],
+                ["VAR", "$CONTROLLER_VARIABLE", "arkhamSkillBonus{{$ABILITY}}Controller"],
+                //read current values
+                ["VAR", "$CURRENT_VALUE", ["GET_CARD_PROPERTY", "$THIS.id", "$VALUE_VARIABLE", 0]],
+                ["VAR", "$CURRENT_CONTROLLER", ["GET_CARD_PROPERTY", "$THIS.id", "$CONTROLLER_VARIABLE", ""]],
+                //determine new values
+                ["VAR", "$NEW_VALUE", ["INLINE_IF", "$ON", "$BONUS", 0]],
+                ["VAR", "$NEW_CONTROLLER", ["INLINE_IF", ["AND", "$ON", ["IS_VALID_PLAYER", "$THIS.controller"]], "$THIS.controller", ""]],
+                //if bonus is applied to valid player and the controller is changing or bonus is zeroed, remove bonus from current controller
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$CURRENT_VALUE", 0],
+                        ["NOT_EQUAL", "$CURRENT_CONTROLLER", ""],
+                        ["OR",
+                            ["NOT_EQUAL", "$NEW_CONTROLLER", "$CURRENT_CONTROLLER"],
+                            ["EQUAL", "$NEW_VALUE", 0]
+                        ]
+                    ],
+                    [
+                        ["COND",
+                            ["NOT_EQUAL", "$OFF_MESSAGE", null],
+                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
+                        ],
+                        ["FOR_EACH_VAL", "$SKILL_NAME", "$SKILL_NAMES", [
+                            ["DO_SET_SKILL_BONUS", "$THIS.id", "controller", "$SKILL_NAME", null]
+                        ]],
+                        ["DECREASE_VAL", "/playerData/$CURRENT_CONTROLLER/$VARIABLE_NAME", "$CURRENT_VALUE"],
+                        ["UNSET", "/cardById/$THIS.id/$VALUE_VARIABLE"],
+                        ["UNSET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE"],
+                        ["UPDATE_VAR", "$CURRENT_VALUE", 0],
+                        ["UPDATE_VAR", "$CURRENT_CONTROLLER", ""]
+                    ]
+                ],
+                //set or update bonus
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$NEW_VALUE", 0],
+                        ["NOT_EQUAL", "$NEW_CONTROLLER", ""],
+                        ["OR",
+                            ["NOT_EQUAL", "$NEW_CONTROLLER", "$CURRENT_CONTROLLER"],
+                            ["NOT_EQUAL", "$NEW_VALUE", "$CURRENT_VALUE"]
+                        ]
+                    ],
+                    [
+                        ["COND",
+                            ["NOT_EQUAL", "$ON_MESSAGE", null],
+                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
+                        ],
+                        ["FOR_EACH_VAL", "$SKILL_NAME", "$SKILL_NAMES", [
+                            ["DO_SET_SKILL_BONUS", "$THIS.id", "controller", "$SKILL_NAME", "$NEW_VALUE"]
+                        ]],
+                        ["SET", "/cardById/$THIS.id/$VALUE_VARIABLE", "$NEW_VALUE"],
+                        ["SET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE", "$NEW_CONTROLLER"]
+                    ]
+                ]
+            ]
+        }
+    }
+}

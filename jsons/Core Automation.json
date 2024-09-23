@@ -617,7 +617,6 @@
         "DO_STEP_U4": {
             "args": [],
             "code": [
-                ["INIT_ALL_PLAYER_EVENT", "UpkeepDraw"],
                 ["EXECUTE_PROMPT", "$GAME.firstPlayer", "askToDrawPlayerCard"]
             ]
         },
@@ -824,8 +823,15 @@
         "PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE": {
             "args": ["$TARGET_PLAYER"],
             "code": [
+                ["VAR", "$PLAYER_ORDER_CONTROLLER", null],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["GREATER_THAN", "$PLAYER_DATA.$PLAYER_I.arkhamCustomMythosPhasePlayerOrderController", 0],
+                        ["UPDATE_VAR", "$PLAYER_ORDER_CONTROLLER", "$PLAYER_I"]
+                    ]
+                ]],
                 ["COND",
-                    ["NOT_EQUAL", "$GAME.arkhamCustomMythosPhasePlayerOrderController", null],
+                    ["NOT_EQUAL", "$PLAYER_ORDER_CONTROLLER", null],
                     [
                         ["VAR", "$PLAYER_LIST", ["LIST"]],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -841,11 +847,11 @@
                         ["COND",
                             ["GREATER_THAN", "$PLAYER_COUNT", 1],
                             [
-                                ["PROMPT", "$GAME.arkhamCustomMythosPhasePlayerOrderController", "chooseNextMythosPhasePlayer"],
+                                ["PROMPT", "$PLAYER_ORDER_CONTROLLER", "chooseNextMythosPhasePlayer"],
                                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_LIST", [
                                     ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                                     ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                    ["PROMPT_ADD_OPTION", "$GAME.arkhamCustomMythosPhasePlayerOrderController", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "EXECUTE_PROMPT", "{{$PLAYER_I}}", "askToDrawEncounterCard"]]
+                                    ["PROMPT_ADD_OPTION", "$PLAYER_ORDER_CONTROLLER", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "EXECUTE_PROMPT", "{{$PLAYER_I}}", "askToDrawEncounterCard"]]
                                 ]]
                             ],
                             ["EQUAL", "$PLAYER_COUNT", 1],
@@ -881,15 +887,7 @@
                 ["COND",
                     ["EQUAL", "$PROMPT_NAME", "askToDrawPlayerCard"],
                     [
-                        ["COND",
-                            ["CAN_SIGNAL_PLAYER_EVENT", "$TARGET_PLAYER", "UpkeepDraw"],
-                            ["SIGNAL_PLAYER_EVENT", "$TARGET_PLAYER", "UpkeepDraw"],
-                            ["TRUE"],
-                            [
-                                ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
-                                ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
-                            ]
-                        ]
+                        ["EXECUTE_PLAYER_EVENT", "$TARGET_PLAYER", "UpkeepDraw", "UPKEEP_DRAW_DONE", "UPKEEP_DRAW_CANCELED"]
                     ],
                     ["EQUAL", "$PROMPT_NAME", "askToGainResource"],
                     [
@@ -904,6 +902,21 @@
                     ["TRUE"],
                     ["PROMPT", "$TARGET_PLAYER", "$PROMPT_NAME"]
                 ]
+            ]
+        },
+        "UPKEEP_DRAW_DONE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "UPKEEP_DRAW_DONE.TARGET_PLAYER"],
+                ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
+                ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+            ]
+        },
+        "UPKEEP_DRAW_CANCELED": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "UPKEEP_DRAW_CANCELED.TARGET_PLAYER"],
+                ["PROMPT_NEXT_ACTIVE_PLAYER", "$TARGET_PLAYER", "askToDrawPlayerCard", "askToGainResource"]
             ]
         }
     },

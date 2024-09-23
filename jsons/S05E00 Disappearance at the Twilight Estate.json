@@ -288,9 +288,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "Draw"]
                         ]
                     }
                 }
@@ -313,9 +312,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "Draw"]
                         ]
                     }
                 }
@@ -338,9 +336,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "Draw"]
                         ]
                     }
                 }
@@ -363,9 +360,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "Draw"]
                         ]
                     }
                 }

@@ -214,7 +214,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You begin the game with Sophie (In Loving Memory) in play.", ["LIST", "$THIS"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Sophie: In Loving Memory in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
@@ -228,9 +228,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - (...) When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)", ["LIST", "$THIS"]],
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, draw 13 cards instead of drawing your opening hand. Choose up to 5 events to place beneath Sefina Rousseau and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
                             ["COND",
                                 ["GREATER_THAN", "$STARTING_CARDS", 0],
@@ -244,28 +243,12 @@
             "03004": { //Akachi Onyele: The Shaman
                 "rules": {
                     "03004a": { //Your assets with "uses (charges)" enter play with 1 additional charge on them.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - Your assets with “uses (charges)” enter play with 1 additional charge on them.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamBonusCharges", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamBonusCharges", 1, "$THIS.inPlay", "your assets with “uses (charges)” enter play with 1 additional charge on them.", null]
                         ]
                     }
                 }
@@ -289,10 +272,9 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventAfterDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "AfterDraw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["DO_FLOG", "{0:C} - (...) Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.", ["LIST", "$THIS"]],
-                            ["STARTING_HAND_DONE", "$TARGET.id"]
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "AfterDraw"]
                         ]
                     }
                 }
@@ -300,28 +282,12 @@
             "03041": { //Drawing the Sign
                 "rules": {
                     "03041a": { //Your maximum hand size is reduced by 5.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 5.", ["LIST", "$THIS"]],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 5]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -5, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -5, "$THIS.inPlay", "your maximum hand size is reduced by 5.", null]
                         ]
                     }
                 }
@@ -334,9 +300,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - (...) Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.", ["LIST", "$THIS"]],
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
@@ -350,7 +315,7 @@
                             ]]],
                             ["COND",
                                 ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 0],
-                                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"],
+                                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"],
                                 ["TRUE"],
                                 [
                                     ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
@@ -472,7 +437,7 @@
                         ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", ["DO_FORMAT_STRING", "{0} excess card{0:S}", ["LIST", "$CARDS_TO_DISCARD"]], "$CARDS_TO_DISCARD"]
                     ],
                     ["TRUE"],
-                    ["STARTING_HAND_DONE", "$TARGET_PLAYER"]
+                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "Draw"]
                 ]
             ]
         },
@@ -539,7 +504,7 @@
                     ]
                 ],
                 ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$HAND_GROUP_ID", "$DECK_GROUP_ID", true, null],
-                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"]
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
             ]
         }
     },

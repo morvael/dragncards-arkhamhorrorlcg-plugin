@@ -178,7 +178,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FLOG", "{0:C} - You begin the game with Gate Box in play.", ["LIST", "$THIS"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Gate Box: Worlds within Worlds in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Gate Box"]
                         ]
                     }
@@ -187,28 +187,12 @@
             "06005": { //Patrice Hathaway: The Violinist
                 "rules": {
                     "06005a": { //Your maximum hand size is reduced by 3.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - Your maximum hand size is reduced by 3.", ["LIST", "$THIS"]],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamMaxHandSize", 3]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -3, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -3, "$THIS.inPlay", "your maximum hand size is reduced by 3.", null]
                         ]
                     },
                     "06005b": { //During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.
@@ -217,9 +201,8 @@
                         "listenTo": ["/playerData/*/arkhamPlayerEventUpkeepDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "UpkeepDraw"],
-                            ["CARD_ABILITY_ON", "$THIS", 1],
-                            ["DO_FLOG", "{0:C} - During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.", ["LIST", "$THIS"]],
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET.id"]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$HAND_ID"],
@@ -239,7 +222,7 @@
                                 ["GREATER_THAN", "$CARDS_TO_DRAW", 0],
                                 ["DO_DRAW_CARDS", "$TARGET.id", ["GET_CONTROLLER_DECK", "$TARGET.id"], "$CARDS_TO_DRAW", true, null]
                             ],
-                            ["PROMPT_NEXT_ACTIVE_PLAYER", "$PLAYER_N", "askToDrawPlayerCard", "askToGainResource"]
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "UpkeepDraw"]
                         ]
                     }
                 }
@@ -247,28 +230,12 @@
             "06159": { //Dream-Enhancing Serum
                 "rules": {
                     "06159a": { //Only the first copy of each card in your hand counts toward your maximum hand size.
-                        "type": "passive",
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_ON", "$THIS"],                            
-                                    ["DO_FLOG", "{0:C} - Only the first copy of each card in your hand counts toward your maximum hand size.", ["LIST", "$THIS"]],
-                                    ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
-                                ]
-                            ]
-                        ],
-                        "offDo": [
-                            ["COND",
-                                ["IS_PASSIVE_CARD_ABILITY_ON", "$THIS"],
-                                [
-                                    ["PASSIVE_CARD_ABILITY_OFF", "$THIS"],
-                                    ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamHandSizeCountUnique", 1]
-                                ]
-                            ]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamHandSizeCountUnique", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamHandSizeCountUnique", 1, "$THIS.inPlay", "only the first copy of each card in your hand counts toward your maximum hand size.", null]
                         ]
                     }
                 }

@@ -344,6 +344,28 @@
                     "$VALUE"
                 ]
             ]
+        },
+        "INLINE_IF": {
+            "args": ["$TEST", "$A", "$B"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TEST", true],
+                    "$A",
+                    ["TRUE"],
+                    "$B"
+                ]
+            ]
+        },
+        "ABS": {
+            "args": ["$VALUE"],
+            "code": [
+                ["COND",
+                    ["GREATER_EQUAL", "$VALUE", 0],
+                    "$VALUE",
+                    ["TRUE"],
+                    ["TO_INT", ["MULTIPLY", "$VALUE", -1]]
+                ]
+            ]
         }
     }
 }
