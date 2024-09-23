@@ -51,8 +51,8 @@
             "hideFromSearch": true,
             "label": "Return to Dim Carcosa - Carcosa",
             "cards": [
-                {"databaseId": "03325", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},  //Shores of Hali
-                {"databaseId": "03330", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Dark Spires
+                {"databaseId": "03325b", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"}, //Shores of Hali
+                {"databaseId": "03330b", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},  //Dark Spires
                 {"databaseId": "52060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"}   //Palace of the King: Hastur's Domain
             ]
         },
@@ -117,10 +117,10 @@
             ["ACTION_LIST", "Return to Dim Carcosa Scenario Init Continue"]
         ],
         "Return to Dim Carcosa Scenario Init Continue": [
-            ["VAR", "$BLEAK_PLAINS", ["SHUFFLE_LIST", ["LIST", "03326a", "03326c"]]],   //Bleak Plains, Bleak Plains
-            ["VAR", "$DIM_STREETS", ["SHUFFLE_LIST", ["LIST", "03328a", "03328c", "03328e"]]],  //Dim Streets, Dim Streets, Dim Streets
-            ["VAR", "$RUINS_OF_CARCOSA", ["SHUFFLE_LIST", ["LIST", "03327a", "03327c", "03327e"]]], //Ruins of Carcosa, Ruins of Carcosa, Ruins of Carcosa
-            ["VAR", "$DEPTHS_OF_DEMHE", ["SHUFFLE_LIST", ["LIST", "03329a", "03329c"]]],    //Depths of Demhe, Depths of Demhe
+            ["VAR", "$BLEAK_PLAINS", ["SHUFFLE_LIST", ["LIST", "03326b", "03326d"]]],   //Bleak Plains, Bleak Plains
+            ["VAR", "$DIM_STREETS", ["SHUFFLE_LIST", ["LIST", "03328b", "03328d", "03328f"]]],  //Dim Streets, Dim Streets, Dim Streets
+            ["VAR", "$RUINS_OF_CARCOSA", ["SHUFFLE_LIST", ["LIST", "03327b", "03327d", "03327f"]]], //Ruins of Carcosa, Ruins of Carcosa, Ruins of Carcosa
+            ["VAR", "$DEPTHS_OF_DEMHE", ["SHUFFLE_LIST", ["LIST", "03329b", "03329d"]]],    //Depths of Demhe, Depths of Demhe
             ["DO_SPAWN_LOCATION_SCN", "Bleak Plains", "$BLEAK_PLAINS.[0]", 45, 62],
             ["DO_SPAWN_LOCATION_SCN", "Dim Streets", "$DIM_STREETS.[0]", 20, 43],
             ["DO_SPAWN_LOCATION_SCN", "Ruins of Carcosa", "$RUINS_OF_CARCOSA.[0]", 70, 43],

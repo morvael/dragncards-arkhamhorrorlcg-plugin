@@ -15,7 +15,7 @@
             "cards": [
                 {"databaseId": "02159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Essex County Express
                 {"databaseId": "51025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Essex County Express
-                {"databaseId": "51026", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Where There's Smoke
+                {"databaseId": "51026b", "quantity": 1, "loadGroupId": "sharedAgendaStory"},        //Where There's Smoke
                 {"databaseId": "51027", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //A Tear in Reality (v.II)
                 {"databaseId": "02161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Maw Widens
                 {"databaseId": "02162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Rolling Backwards

@@ -20,7 +20,7 @@
                 {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Third Night
                 {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},            //Pursuing Shadows
                 {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},            //Stalked by Shadows
-                {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The Organist: Hopeless, I Defied Him
+                {"databaseId": "03221b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //The Organist: Hopeless, I Defied Him
                 {"databaseId": "52047", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Figure in the Shadows
                 {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Stealthy Byakhee
                 {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Twin Suns

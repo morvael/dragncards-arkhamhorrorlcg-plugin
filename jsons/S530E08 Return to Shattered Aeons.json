@@ -22,8 +22,8 @@
                 {"databaseId": "04319", "quantity": 1, "loadGroupId": "sharedActStory"},            //Search for the Brotherhood
                 {"databaseId": "04320", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Yithian Relic
                 {"databaseId": "04321", "quantity": 1, "loadGroupId": "sharedActStory"},            //Mend the Shatter
-                {"databaseId": "04325", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Ichtaca: Scion of Yig
-                {"databaseId": "04326", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Alejandro Vela: Or, Is He?
+                {"databaseId": "04325b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Ichtaca: Scion of Yig
+                {"databaseId": "04326b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Alejandro Vela: Or, Is He?
                 {"databaseId": "04337", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Formless Spawn: From the Abyss
                 {"databaseId": "04343", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Relic of Ages: Unleash the Timestream
                 {"databaseId": "04330", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //A Pocket in Time

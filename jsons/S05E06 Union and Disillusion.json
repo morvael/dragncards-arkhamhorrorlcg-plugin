@@ -60,7 +60,7 @@
                 {"databaseId": "05257", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Geist-Trap
                 {"databaseId": "05272", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Watcher's Gaze
                 {"databaseId": "05057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Anette Mason: The High Priestess
-                {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Josef Meiger: Lodge Host
+                {"databaseId": "05085b", "quantity": 1, "loadGroupId": "sharedNotInPlay"}   //Josef Meiger: Lodge Host
             ]
         }
     },

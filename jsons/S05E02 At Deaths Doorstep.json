@@ -26,7 +26,7 @@
                 {"databaseId": "05082", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Master Bedroom
                 {"databaseId": "05083", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Balcony
                 {"databaseId": "05084", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Office
-                {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Josef Meiger: Lodge Host
+                {"databaseId": "05085b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Josef Meiger: Lodge Host
                 {"databaseId": "05071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
                 {"databaseId": "05072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
                 {"databaseId": "05073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Trophy Room
