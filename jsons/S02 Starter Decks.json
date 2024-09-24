@@ -206,6 +206,21 @@
                     }
                 }
             },
+            "0200590046": { //"Ashcan" Pete: The Drifter (parallel back)
+                "rules": {
+                    "0200590046a": { //You begin the game with Duke in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
+                        ]
+                    }
+                }
+            },
             "02020": { //Laboratory Assistant
                 "rules": {
                     "02020a": { //Your maximum hand size is increased by 2.
