@@ -44,14 +44,6 @@
                 {"databaseId": "05309", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Lodge Enforcer
                 {"databaseId": "05310", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Secrets of the Beyond
             ]
-        },
-        "Return to In the Clutches of Chaos - The Midnight Masks": {
-            "hideFromSearch": true,
-            "label": "Return to In the Clutches of Chaos - The Midnight Masks",
-            "cards": [
-                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},  //Hunting Shadow
-                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}   //False Lead
-            ]
         }
     },
     "actionLists": {
@@ -83,7 +75,7 @@
                     ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos - Secrets of the Universe"],
                     ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
                     ["DO_LOAD_CARDS_SCN", "Striking Fear"],
-                    ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos - The Midnight Masks"]
+                    ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"]
                 ]
             ],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Piper of Azathoth", "sharedEncounterDeck", 1, "sharedNotInPlay"],

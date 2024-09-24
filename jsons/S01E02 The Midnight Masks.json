@@ -28,6 +28,14 @@
                 {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                           //False Lead
             ]
         },
+        "The Midnight Masks - Treacheries": {
+            "hideFromSearch": true,
+            "label": "The Midnight Masks - Treacheries",
+            "cards": [
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Hunting Shadow
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //False Lead
+            ]
+        },
         "The Midnight Masks - Southside": {
             "hideFromSearch": true,
             "label": "The Midnight Masks - Southside",

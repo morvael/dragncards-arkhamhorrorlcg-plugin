@@ -58,7 +58,7 @@
             ["DO_LOAD_CARDS_SCN", "Return to Echoes of the Past"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Maddening Delusions"],
-            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["VAR", "$SOCIETIES_B", ["SHUFFLE_LIST", ["LIST", "52030", "52031", "52032"]]], //Historical Society: Dusty Archives, Historical Society: Museum Storage, Historical Society: Boiler Room

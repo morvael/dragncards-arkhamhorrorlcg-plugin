@@ -79,14 +79,6 @@
                 {"databaseId": "03105", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //The Pale Mask Beckons
             ]
         },
-        "The Path to Carcosa - The Midnight Masks": {
-            "hideFromSearch": true,
-            "label": "The Path to Carcosa - The Midnight Masks",
-            "cards": [
-                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Hunting Shadow
-                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //False Lead
-            ]
-        },
         "The Path to Carcosa Chaos Bag - Easy": {
             "hideFromSearch": true,
             "label": "The Path to Carcosa Chaos Bag - Easy",

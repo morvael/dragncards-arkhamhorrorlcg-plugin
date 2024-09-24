@@ -169,7 +169,7 @@
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
             ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
-            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "A Phantom of Truth Scenario Question 8"]
         ],
         "A Phantom of Truth Scenario Question 8": [
