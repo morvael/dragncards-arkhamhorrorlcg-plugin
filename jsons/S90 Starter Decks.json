@@ -1,0 +1,46 @@
+{
+    "automation": {
+        "cards": {
+            "90001": { //Daisy Walker: The Librarian (parallel)
+                "rules": {
+                    "90001a": { //You get +1 willpower and +1 sanity for each Tome asset you control. (sanity not coded)
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay", null, null]
+                        ]
+                    }
+                }
+            },
+            "9000101002": { //Daisy Walker: The Librarian (parallel front)
+                "rules": {
+                    "9000101002a": { //You get +1 willpower and +1 sanity for each Tome asset you control. (sanity not coded)
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay", null, null]
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "functions": {
+        "GET_PARALLEL_DAISY_WALKER_BONUS": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.controller", "$THIS.controller"],
+                    ["EQUAL", "$CARD.currentFace.type", "Asset"],
+                    ["IN_STRING", "$CARD.currentFace.traits", "Tome."]
+                ]]],
+                ["LENGTH", "$SELECTED_CARDS"]
+            ]
+        }
+    }
+}

@@ -583,10 +583,10 @@
                                             ["COND",
                                                 ["NOT_EQUAL", "$INVESTIGATOR", null],
                                                 [
-                                                    ["VAR", "$MINI_DATABASE_ID", "m{{$INVESTIGATOR.sides.A.databaseId}}"],
+                                                    ["VAR", "$MINI_DATABASE_ID", ["GET_MINI_ID", "m", "$INVESTIGATOR.sides.A.databaseId"]],
                                                     ["COND",
                                                         ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
-                                                        ["UPDATE_VAR", "$MINI_DATABASE_ID", "m{{$INVESTIGATOR.originalInvestigatorId}}"]
+                                                        ["UPDATE_VAR", "$MINI_DATABASE_ID", ["GET_MINI_ID", "m", "$INVESTIGATOR.originalInvestigatorId"]]
                                                     ],
                                                     ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR.sides.A.name}}", "$MINI_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
                                                     ["COND",

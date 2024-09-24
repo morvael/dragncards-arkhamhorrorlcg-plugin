@@ -1,0 +1,21 @@
+{
+    "functions": {
+        "GET_MINI_ID": {
+            "args": ["$PREFIX", "$DATABASE_ID"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$PREFIX", "GET_MINI_ID.$PREFIX"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "GET_MINI_ID.DATABASE_ID"],
+                ["COND",
+                    ["EQUAL", "$DATABASE_ID", "90001"],
+                    "{{$PREFIX}}01002",
+                    ["EQUAL", "$DATABASE_ID", "0100290001"],
+                    "{{$PREFIX}}01002",
+                    ["EQUAL", "$DATABASE_ID", "9000101002"],
+                    "{{$PREFIX}}01002",
+                    ["TRUE"],
+                    "{{$PREFIX}}{{$DATABASE_ID}}"
+                ]
+            ]
+        }
+    }
+}

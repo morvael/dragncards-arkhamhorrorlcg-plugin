@@ -133,10 +133,10 @@
                 ["COND",
                     ["NOT_EQUAL", "$INVESTIGATOR", null],
                     [
-                        ["VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.sides.A.databaseId}}"],
+                        ["VAR", "$MICRO_DATABASE_ID", ["GET_MINI_ID", "u", "$INVESTIGATOR.sides.A.databaseId"]],
                         ["COND",
                             ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
-                            ["UPDATE_VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.originalInvestigatorId}}"]
+                            ["UPDATE_VAR", "$MICRO_DATABASE_ID", ["GET_MINI_ID", "u", "$INVESTIGATOR.originalInvestigatorId"]]
                         ],
                         ["DO_CREATE_CARDS", "$TARGET_PLAYER", "{{$INVESTIGATOR.sides.A.name}}", "$MICRO_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"], false, null],
                         ["VAR", "$MICRO_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
