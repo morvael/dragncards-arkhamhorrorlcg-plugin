@@ -1,0 +1,221 @@
+{
+    "preBuiltDecks": {
+        "Read or Die Scenario": {
+            "label": "Read or Die Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$DAISY_WALKER", ["GET_NAMED_CARD", "Daisy Walker"]],
+                ["COND",
+                    ["NOT_EQUAL", "$DAISY_WALKER", null],
+                    [
+                        ["VAR", "$TOMES", ["GET_PARALLEL_DAISY_WALKER_TOMES", "$DAISY_WALKER.controller"]],
+                        ["COND",
+                            ["GREATER_EQUAL", ["LENGTH", "$TOMES"], 4],
+                            [
+                                ["DO_FSYSLOG", "{0:P} moves each non-weakness Tome asset from Daisy Walker's deck to {1:GID}.", ["LIST", "$DAISY_WALKER.controller", "sharedDeckA"]],
+                                ["FOR_EACH_VAL", "$TOME", "$TOMES", [
+                                    ["MOVE_CARD", "$TOME.id", "sharedDeckA", -1]
+                                ]],
+                                ["SCENARIO_INIT", "Read or Die", "Challenge Scenarios", "Read or Die", null, "Read or Die Scenario Init"]
+                            ],
+                            ["TRUE"],
+                            ["LOG", "└── Daisy Walker's deck must include at least 4 Tome assets. Tome weaknesses do not count toward this total."]
+                        ]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── Daisy Walker must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "Read or Die": {
+            "hideFromSearch": true,
+            "label": "Read or Die",
+            "cards": [
+                {"databaseId": "90004", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Read or Die
+                {"databaseId": "90005", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Mortal Inquiry
+                {"databaseId": "90006", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Speed Reading
+                {"databaseId": "02048", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "10%"},  //Miskatonic Quad
+                {"databaseId": "02049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Humanities Building
+                {"databaseId": "02050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "10%"},  //Orne Library
+                {"databaseId": "02051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Student Union
+                {"databaseId": "02052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Dormitories
+                {"databaseId": "02053", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "43%"},  //Administration Building
+                {"databaseId": "02054", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Faculty Offices: The Night is Still Young
+                {"databaseId": "02056", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},  //Science Building
+                {"databaseId": "02060", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //"Jazz" Mulligan: The Head Janitor
+                {"databaseId": "90007", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Namer of the Dead: Presence Within the Grimoire
+            ]
+        },
+        "Read or Die Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "Read or Die Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Read or Die Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "Read or Die Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Read or Die Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "Read or Die Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Read or Die Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "Read or Die Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    },
+    "actionLists": {
+        "Read or Die Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Read or Die"],
+            ["DO_LOAD_CARDS_SCN", "Sorcery"],
+            ["DO_LOAD_CARDS_SCN", "The Beyond"],
+            ["DO_LOAD_CARDS_SCN", "Bishop's Thralls"],
+            ["DO_LOAD_CARDS_SCN", "Whippoorwills"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
+            ["VAR", "$DAISY_WALKER", ["GET_NAMED_CARD", "Daisy Walker"]],
+            ["SET", "/playerData/$DAISY_WALKER.controller/arkhamCustomSpawnLocation", "Orne Library"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3, 0],
+            ["DO_SHUFFLE_GROUP", "$DAISY_WALKER.controller", "sharedDeckA", true, null],
+            ["VAR", "$LOCATIONS_3", ["SHUFFLE_LIST", ["LIST", "Faculty Offices", "Dormitories"]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_READ_OR_DIE_SPAWN_TOME", "$DAISY_WALKER.controller", "$LOCATIONS_3.[$I]", -3, -3]
+            ]],
+            ["VAR", "$LOCATIONS_2", ["SHUFFLE_LIST", ["LIST", "Student Union", "Administration Building", "Science Building"]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_READ_OR_DIE_SPAWN_TOME", "$DAISY_WALKER.controller", "$LOCATIONS_2.[$I]", -3, -3]
+            ]],
+            ["DO_READ_OR_DIE_SPAWN_TOME", "$DAISY_WALKER.controller", "Humanities Building", -3, -3],
+            ["VAR", "$TOMES_COUNT", ["GET_ALL_CARDS_IN_GROUP_COUNT", "sharedDeckA"]],
+            ["COND",
+                ["GREATER_THAN", "$TOMES_COUNT", 0],
+                [
+                    ["VAR", "$STEP", ["TO_INT", ["DIVIDE", 15, "$TOMES_COUNT"]]],
+                    ["COND",
+                        ["GREATER_THAN", "$STEP", 3],
+                        ["UPDATE_VAR", "$STEP", 3],
+                        ["LESS_THAN", "$STEP", 1],
+                        ["UPDATE_VAR", "$STEP", 1]
+                    ],
+                    ["VAR", "$LEFT_MOD", ["SUBTRACT", 0, "$STEP"]],
+                    ["FOR_EACH_START_STOP_STEP", "$I", 0, "$TOMES_COUNT", 1, [
+                        ["DO_READ_OR_DIE_SPAWN_TOME", "$DAISY_WALKER.controller", "Orne Library", "$LEFT_MOD", -3],
+                        ["DECREASE_VAR", "$LEFT_MOD", "$STEP"]
+                    ]]
+                ]
+            ],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "\"Jazz\" Mulligan", "Science Building", 3, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Namer of the Dead", "Orne Library", 3, 3, 1],
+            ["DO_EXHAUST_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", true, null],
+            ["VAR", "$DAISY_PLAY_ID", ["GET_CONTROLLER_PLAY", "$DAISY_WALKER.controller"]],
+            ["VAR", "$DR_HENRY_ARMITAGE", ["GET_NAMED_CARD", "Dr. Henry Armitage"]],
+            ["COND",
+                ["NOT_EQUAL", "$DR_HENRY_ARMITAGE", null],
+                [
+                    ["COND",
+                        ["NOT_EQUAL", "$DR_HENRY_ARMITAGE.groupId", "$DAISY_PLAY_ID"],
+                        [
+                            ["DO_FSYSLOG", "{0:P} takes control of the Dr. Henry Armitage story asset.", ["LIST", "$DAISY_WALKER.controller"]],
+                            ["MOVE_CARD", "$DR_HENRY_ARMITAGE.id", "$DAISY_PLAY_ID", -1]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_FSYSLOG", "{0:P} takes control of the Dr. Henry Armitage story asset.", ["LIST", "$DAISY_WALKER.controller"]],
+                    ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Dr. Henry Armitage: The Head Librarian", "02040", 1, "$DAISY_PLAY_ID", false, null]
+                ]
+            ],
+            ["SET", "/arkhamFinalScenarioMessage", "Since Dormitories and Faculty Offices start the game in play and Alchemy Labs is removed from the game, ignore any Forced abilities that would put these locations into play."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "GET_PARALLEL_DAISY_WALKER_TOMES": {
+            "args": ["$DAISY_CONTROLLER"],
+            "code": [
+                ["VAR", "$DAISY_DECK_ID", ["GET_CONTROLLER_DECK", "$DAISY_CONTROLLER"]],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$DAISY_DECK_ID"],
+                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Tome."],
+                    ["EQUAL", ["IN_STRING", "$CARD.sides.A.subtype", "Weakness"], false]
+                ]]
+            ]
+        },
+        "DO_READ_OR_DIE_SPAWN_TOME": {
+            "args": ["$DAISY_CONTROLLER", "$LOCATION_NAME", "$LEFT_MOD", "$TOP_MOD"],
+            "code": [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckA"]],
+                ["COND",
+                    ["NOT_EQUAL", "$TOP_CARD", null],
+                    [
+                        ["SET", "/cardById/$TOP_CARD.id/disableSideChange", true],
+                        ["DO_SPAWN_HIDDEN_AT_LOCATION", "$DAISY_CONTROLLER", "$TOP_CARD.id", "$LOCATION_NAME", "$LEFT_MOD", "$TOP_MOD", true, null],
+                        ["SET", "/cardById/$TOP_CARD.id/disableSideChange", false]
+                    ]
+                ]
+            ]
+        }
+    }
+}

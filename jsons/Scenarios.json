@@ -225,6 +225,12 @@
                 ]
             },
             {
+                "label": "id:challengeScenarios",
+                "deckLists": [
+                    {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"}
+                ]
+            },
+            {
                 "label": "id:miscellaneous",
                 "deckLists": [
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
@@ -625,6 +631,12 @@
         },
         "returnToBeforeTheBlackThrone": {
             "English": "Return to Before the Black Throne"
+        },
+        "challengeScenarios": {
+            "English": "Challenge Scenarios"
+        },
+        "readOrDie": {
+            "English": "Read or Die"
         },
         "miscellaneous": {
             "English": "Miscellaneous"
