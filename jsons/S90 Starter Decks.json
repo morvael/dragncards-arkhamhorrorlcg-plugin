@@ -7,9 +7,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
-                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay", null, null]
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay", null, null]
                         ]
                     }
                 }
@@ -20,9 +20,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
-                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS"], "$THIS.inPlay", null, null]
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay", null, null]
                         ]
                     }
                 }
