@@ -227,7 +227,8 @@
             {
                 "label": "id:challengeScenarios",
                 "deckLists": [
-                    {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"}
+                    {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"},
+                    {"label": "id:allOrNothing", "deckListId": "All or Nothing Scenario"}
                 ]
             },
             {
@@ -637,6 +638,9 @@
         },
         "readOrDie": {
             "English": "Read or Die"
+        },
+        "allOrNothing": {
+            "English": "All or Nothing"
         },
         "miscellaneous": {
             "English": "Miscellaneous"
