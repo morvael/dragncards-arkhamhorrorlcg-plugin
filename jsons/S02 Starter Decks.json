@@ -178,6 +178,19 @@
                     }
                 }
             },
+            "0200390084": { //Jenny Barnes: The Dilettante (parallel back)
+                "rules": {
+                    "0200390084a": { //You collect 1 additional resource during each upkeep phase.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
+                        ]
+                    }
+                }
+            },
             "98001": { //Jenny Barnes: The Dilettante (promo)
                 "rules": {
                     "98001a": { //You collect 1 additional resource during each upkeep phase.
