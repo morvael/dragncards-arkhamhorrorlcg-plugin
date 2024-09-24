@@ -366,6 +366,24 @@
                     ["TO_INT", ["MULTIPLY", "$VALUE", -1]]
                 ]
             ]
+        },
+        "FILTER_UNIQUE_CARDS": {
+            "args": ["$SELECTED_CARDS"],
+            "code": [
+                ["VAR", "$TITLES", ["LIST"]],
+                ["VAR", "$RESULT", ["LIST"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["VAR", "$TITLE", ["GET_CARD_TITLE", "$CARD.sides.A.name"]],
+                    ["COND",
+                        ["EQUAL", ["IN_LIST", "$TITLES", "$TITLE"], false],
+                        [
+                            ["UPDATE_VAR", "$TITLES", ["APPEND", "$TITLES", "$TITLE"]],
+                            ["UPDATE_VAR", "$RESULT", ["APPEND", "$RESULT", "$CARD"]]
+                        ]
+                    ]
+                ]],
+                "$RESULT"
+            ]
         }
     }
 }

@@ -18,7 +18,7 @@
                                 ["FOR_EACH_VAL", "$TOME", "$TOMES", [
                                     ["MOVE_CARD", "$TOME.id", "sharedDeckA", -1]
                                 ]],
-                                ["SCENARIO_INIT", "Read or Die", "Challenge Scenarios", "Read or Die", null, "Read or Die Scenario Init"]
+                                ["SCENARIO_INIT", "Challenge Scenarios", "Challenge Scenarios", "Read or Die", null, "Read or Die Scenario Init"]
                             ],
                             ["TRUE"],
                             ["LOG", "└── Daisy Walker's deck must include at least 4 Tome assets. Tome weaknesses do not count toward this total."]
@@ -46,80 +46,6 @@
                 {"databaseId": "02056", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "10%"},  //Science Building
                 {"databaseId": "02060", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //"Jazz" Mulligan: The Head Janitor
                 {"databaseId": "90007", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Namer of the Dead: Presence Within the Grimoire
-            ]
-        },
-        "Read or Die Chaos Bag - Easy": {
-            "hideFromSearch": true,
-            "label": "Read or Die Chaos Bag - Easy",
-            "cards": [
-                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "Read or Die Chaos Bag - Standard": {
-            "hideFromSearch": true,
-            "label": "Read or Die Chaos Bag - Standard",
-            "cards": [
-                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "Read or Die Chaos Bag - Hard": {
-            "hideFromSearch": true,
-            "label": "Read or Die Chaos Bag - Hard",
-            "cards": [
-                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
-            ]
-        },
-        "Read or Die Chaos Bag - Expert": {
-            "hideFromSearch": true,
-            "label": "Read or Die Chaos Bag - Expert",
-            "cards": [
-                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
     },

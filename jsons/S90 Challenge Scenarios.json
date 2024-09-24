@@ -1,0 +1,78 @@
+{
+    "preBuiltDecks": {
+        "Challenge Scenarios Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "Challenge Scenarios Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Challenge Scenarios Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "Challenge Scenarios Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Challenge Scenarios Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "Challenge Scenarios Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Challenge Scenarios Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "Challenge Scenarios Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}

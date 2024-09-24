@@ -26,6 +26,62 @@
                         ]
                     }
                 }
+            },
+            "90046": { //"Ashcan" Pete: The Drifter (parallel)
+                "rules": {
+                    "90046a": { //You begin the game with Pete's Guitar in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
+                        ]
+                    }
+                }
+            },
+            "9004602005": { //"Ashcan" Pete: The Drifter (parallel front)
+                "rules": {
+                    "9004602005a": { //You begin the game with Pete's Guitar in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
+                        ]
+                    }
+                }
+            },
+            "90049": { //Jim Culver: The Musician (parallel)
+                "rules": {
+                    "90049a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
+            },
+            "0200490049": { //Jim Culver: The Musician (parallel back)
+                "rules": {
+                    "0200490049a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
             }
         }
     },
@@ -40,6 +96,115 @@
                     ["IN_STRING", "$CARD.currentFace.traits", "Tome."]
                 ]]],
                 ["LENGTH", "$SELECTED_CARDS"]
+            ]
+        },
+        "DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
+            "args": ["$THIS", "$TARGET"],
+            "code": [
+                ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 9 different Ally assets from any class level 0-2 and shuffle them into a separate “spirit deck”.", ["LIST", "$THIS", "$THIS.controller"]],
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
+                ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$VENGEFUL_SHADE", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
+                    ["EQUAL", "$CARD.sides.A.databaseId", "90053"]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                    ["MOVE_CARD", "$VENGEFUL_SHADE.id", "$EXTRA_GROUP_ID", -1]
+                ],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_UNIQUE_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
+                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.xp", null],
+                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
+                    ]
+                ]]]],
+                ["COND",
+                    ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 9],
+                    [
+                        ["DO_FSYSLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
+                        ]],
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
+                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
+                        ]],
+                        ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
+                    ]
+                ]
+            ]
+        },
+        "DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK.TARGET_PLAYER"],
+                ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_GROUP_ID", "$TARGET_PLAYER"]],
+                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    [
+                        ["DO_FLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
+                                    ["OR",
+                                        ["EQUAL", "$CARD.sides.A.xp", null],
+                                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
+                                    ],
+                                    ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 10]
+                                ],
+                                ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
+                            ]
+                        ]]
+                    ]
+                ],
+                ["COND",
+                    ["AND",
+                        ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 10],
+                        ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$HAND_GROUP_ID.stackIds"], 0]
+                    ],
+                    ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]],
+                    ["TRUE"],
+                    [
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
+                        ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$HAND_GROUP_ID"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$SIDE_DECK_GROUP_ID", -1]
+                        ]],
+                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                    ]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "decideAboutParallelJimCulverHand": {
+            "args": ["$MESSAGE"],
+            "message": "Target cards in hand. First {{$MESSAGE}} will be placed in your “spirit deck”.",
+            "options": [
+                {
+                    "label": "Proceed.",
+                    "hotkey": "P",
+                    "code": [
+                        ["DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK", "$PLAYER_N"]
+                    ]
+                }
             ]
         }
     }

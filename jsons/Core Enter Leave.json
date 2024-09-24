@@ -168,7 +168,8 @@
                         ],
                         ["OR",
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Tarot Card"]
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Tarot Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.encounterSet", ""]
                         ]
                     ],
                     "A",
@@ -178,13 +179,11 @@
             ]
         },
         "GET_DESIRED_ENTER_SIDE": {
-            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$NEW_GROUP"],
             "code": [
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$NEW_GROUP.groupType", "deck"],
-                        ["EQUAL", "$NEW_GROUP.groupType", "deckS"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "deck"],
                         ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
                     ],
                     "B",
@@ -205,12 +204,11 @@
             ]
         },
         "GET_DESIRED_CURRENT_SIDE": {
-            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
             "code": [
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$NEW_GROUP.groupType", "deckP"],
+                        ["EQUAL", "$NEW_GROUP.groupType", "deckP"], //deckP and deckE groups left out as currentSide there is controlled by stackIds listener
                         ["EQUAL", "$NEW_GROUP.groupType", "deckE"]
                     ],
                     null,
