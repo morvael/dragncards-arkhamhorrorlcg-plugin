@@ -127,6 +127,7 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
+                        ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
                         ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],

@@ -234,6 +234,10 @@
             {
                 "label": "id:miscellaneous",
                 "deckLists": [
+                    {"label": "id:standardTokens", "deckListId": "Standard Tokens"},
+                    {"label": "id:keyTokens", "deckListId": "Key Tokens"},
+                    {"label": "id:floodedToken", "deckListId": "Flooded Token"},
+                    {"label": "id:sealTokens", "deckListId": "Seal Tokens"},
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
                     {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"},
                     {"label": "id:tarotCardsDeckC", "deckListId": "Tarot Cards - Deck C"},
@@ -644,6 +648,18 @@
         },
         "miscellaneous": {
             "English": "Miscellaneous"
+        },
+        "standardTokens": {
+            "English": "Standard Tokens"
+        },
+        "keyTokens": {
+            "English": "Key Tokens"
+        },
+        "floodedToken": {
+            "English": "Flooded Token"
+        },
+        "sealTokens": {
+            "English": "Seal Tokens"
         },
         "theForgottenAgeSupplies": {
             "English": "The Forgotten Age Supplies"

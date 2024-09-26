@@ -480,8 +480,22 @@
         }
     },
     "preBuiltDecks": {
-        "key_tokens": {
-            "label": "key_tokens",
+        "Standard Tokens": {
+            "label": "Standard Tokens",
+            "cards": [
+                {"databaseId": "token_resource_1",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_resource_3",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_resource_5",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_clue_doom_1", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_clue_doom_3", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_damage_1",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_damage_3",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_horror_1",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_horror_3",    "quantity": 1, "loadGroupId": "sharedTokens"}
+            ]
+        },
+        "Key Tokens": {
+            "label": "Key Tokens",
             "cards": [
                 {"databaseId": "key_red",    "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "key_blue",   "quantity": 1, "loadGroupId": "sharedTokens"},
@@ -492,14 +506,14 @@
                 {"databaseId": "key_white",  "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
-        "flooded_tokens": {
-            "label": "flooded_tokens",
+        "Flooded Token": {
+            "label": "Flooded Token",
             "cards": [
-                {"databaseId": "flooded", "quantity": 19, "loadGroupId": "sharedTokens"}
+                {"databaseId": "flooded", "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
-        "seal_tokens": {
-            "label": "seal_tokens",
+        "Seal Tokens": {
+            "label": "Seal Tokens",
             "cards": [
                 {"databaseId": "seal_first",  "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "seal_second", "quantity": 1, "loadGroupId": "sharedTokens"},

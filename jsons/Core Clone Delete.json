@@ -31,7 +31,9 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_CLONE_SUPPLY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_CLONE_SUPPLY_CARD.TARGET_CARD_ID"]],
-                ["AND",
+                ["OR",                    
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                    ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
                 ]
             ]
@@ -50,6 +52,7 @@
                         ["VAR", "$NEW_CARD_ID", "$GAME.lastLoadedCardIds.[0]"],
                         ["SET", "/cardById/$NEW_CARD_ID/cardOwner", "shared"],
                         ["SET", "/cardById/$NEW_CARD_ID/controller", "$TARGET_CARD.controller"],
+                        ["SET", "/cardById/$NEW_CARD_ID/currentSide", "$TARGET_CARD.currentSide"],
                         ["COND",
                             ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
                             [
@@ -72,6 +75,8 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
                 ["OR",
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                    ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
                     ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]

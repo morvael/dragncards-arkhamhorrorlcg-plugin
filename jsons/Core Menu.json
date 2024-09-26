@@ -41,7 +41,9 @@
             {
                 "label": "id:cloneSupplyCardMenu",
                 "actionList": "cloneSupplyCard",
-                "showIf": ["AND",
+                "showIf": ["OR",
+                    ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                    ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
                 ]
             },
@@ -50,6 +52,8 @@
                 "actionList": "deleteSupplyCard",
                 "showIf": ["OR",
                     ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                    ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
@@ -315,6 +319,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                        ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
@@ -394,6 +399,7 @@
                                 ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                                ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
                             ]
                         ],
@@ -413,6 +419,7 @@
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "FloodedToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "SealToken"],
+                                ["IN_STRING", "$ACTIVE_CARD.sides.A.type", "StandardToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Supplies"]
                             ]
                         ]
