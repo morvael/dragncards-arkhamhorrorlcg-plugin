@@ -224,7 +224,7 @@
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
                             ["VAR", "$UNSOLVED_CASE", ["ONE_CARD", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
-                                ["EQUAL", "$CARD.sides.A.databaseId", "05010"]
+                                ["EQUAL", "$CARD.sides.A.databaseId", "05010"] //Unsolved Case
                             ]]],
                             ["COND",
                                 ["NOT_EQUAL", "$UNSOLVED_CASE", null],

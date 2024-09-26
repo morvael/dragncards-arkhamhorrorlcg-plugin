@@ -102,45 +102,52 @@
             "args": ["$THIS", "$TARGET"],
             "code": [
                 ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
-                ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 9 different Ally assets from any class level 0-2 and shuffle them into a separate “spirit deck”.", ["LIST", "$THIS", "$THIS.controller"]],
-                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
-                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
-                ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                ["VAR", "$VENGEFUL_SHADE", ["ONE_CARD", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
-                    ["EQUAL", "$CARD.sides.A.databaseId", "90053"]
-                ]]],
                 ["COND",
-                    ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
-                    ["MOVE_CARD", "$VENGEFUL_SHADE.id", "$EXTRA_GROUP_ID", -1]
-                ],
-                ["VAR", "$SELECTED_CARDS", ["FILTER_UNIQUE_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
-                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
-                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
-                    ["OR",
-                        ["EQUAL", "$CARD.sides.A.xp", null],
-                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
-                    ]
-                ]]]],
-                ["COND",
-                    ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 9],
-                    [
-                        ["DO_FSYSLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
-                        ]],
-                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
-                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
-                    ],
+                    ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamShowExtraDeck", 0],
+                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"],
                     ["TRUE"],
                     [
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
-                        ]],
-                        ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
+                        ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 9 different Ally assets from any class level 0-2 and shuffle them into a separate “spirit deck”.", ["LIST", "$THIS", "$THIS.controller"]],
+                        ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
+                        ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                        ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                        ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                        ["VAR", "$VENGEFUL_SHADE", ["ONE_CARD", "$CARD", ["AND",
+                            ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
+                            ["EQUAL", "$CARD.sides.A.databaseId", "90053"] //Vengeful Shade
+                        ]]],
+                        ["COND",
+                            ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                            ["MOVE_CARD", "$VENGEFUL_SHADE.id", "$EXTRA_GROUP_ID", -1]
+                        ],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_UNIQUE_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
+                            ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                            ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
+                            ["OR",
+                                ["EQUAL", "$CARD.sides.A.xp", null],
+                                ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
+                            ]
+                        ]]]],
+                        ["COND",
+                            ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 9],
+                            [
+                                ["DO_FSYSLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
+                                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                    ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
+                                ]],
+                                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
+                                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                    ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
+                                ]],
+                                ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
+                            ]
+                        ]
                     ]
                 ]
             ]
