@@ -52,23 +52,23 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators gave custody of the relic to Alejandro.", "Alejandro recovered the Relic of Ages.", "The investigators gave custody of the relic to Harlan Earnstone."], "Threads of Fate Scenario Question 1"]
         ],
         "Threads of Fate Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You're not going anywhere until you tell me what is going on.", "Have it your way."], "Threads of Fate Scenario Question 2"]
         ],
         "Threads of Fate Scenario Question 2": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Remember: You listened to Ichtaca's tale."],
                     ["DO_ADD_CHAOS_TOKEN_SCN", "Cultist", "chaos_cultist"],
                     ["SCENARIO_SKIP_QUESTIONS", 1, "Threads of Fate Scenario Early Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 [
                     ["LOG", "└── Remember: Ichtaca left without you."],
                     ["COND",
-                        ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                         ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We should be wary of them.", "Maybe I should listen to them after all…"], "Threads of Fate Scenario Question 3"],
                         ["TRUE"],
                         ["SCENARIO_SKIP_QUESTIONS", 1, "Threads of Fate Scenario Early Init Continue"]
@@ -77,9 +77,9 @@
             ]
         ],
         "Threads of Fate Scenario Question 3": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
                     ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "Cultist", "chaos_cultist"],
                     ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "Tablet", "chaos_tablet"],
@@ -104,8 +104,8 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0],
             ["COND",
                 ["OR",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"]
                 ],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "The Relic Is Missing!", "04117a", 0, "sharedActStory"],
@@ -120,32 +120,32 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "You wish to go to the police to inform them about Alejandro's disappearance.", "You wish to look for Alejandro on your own."], "Threads of Fate Scenario Question 4"]
         ],
         "Threads of Fate Scenario Question 4": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer4Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Missing Persons", "04126a", 0, "sharedActStoryB"],
                     ["DO_CREATE_STORY_CARD_SCN", "At the Station", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04127", "04128a"]], 1, "sharedActStoryB"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "B"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Search for Alejandro", "04125a", 0, "sharedActStoryB"],
                     ["DO_CREATE_STORY_CARD_SCN", "Friends in High Places", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04129", "04130a"]], 1, "sharedActStoryB"]
                 ]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "The Guardian's Inquiry", "04134a", 0, "sharedActStoryC"],
                     ["DO_CREATE_STORY_CARD_SCN", "Strange Relics", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04137a", "04138"]], 1, "sharedActStoryC"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Trial of the Huntress", "04133a", 0, "sharedActStoryC"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Cave of Darkness", ["GET_FIRST_OF_SHUFFLED_LIST", ["LIST", "04135", "04136"]], 1, "sharedActStoryC"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Act deck c/d is in Act B, act deck e/f is in Act C."],
+            ["SET", "/arkham/finalScenarioMessage", "Act deck c/d is in Act B, act deck e/f is in Act C."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

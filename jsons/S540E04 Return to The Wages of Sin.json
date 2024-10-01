@@ -87,13 +87,13 @@
         ],
         "Return to The Wages of Sin Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
             ],
             ["DO_LOAD_CARDS_SCN", "Return to The Wages of Sin"],
             ["VAR", "$EXTRA_INFO", ""],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "In Pursuit of Answers", "54035", 0, "sharedActStory"],
                     ["DO_CREATE_STORY_CARD_SCN", "In Pursuit of the Beyond", "54036", 2, "sharedActStory"],
@@ -137,7 +137,7 @@
                 ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
                 ["SET", "/cardById/$CARD.id/discardToOther", true]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A. {{$EXTRA_INFO}}Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A. {{$EXTRA_INFO}}Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -67,7 +67,7 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators are members of the Lodge.", "The investigators are enemies of the Lodge.", "The investigators learned nothing of the Lodge's schemes.", "The investigators are never seen or heard from again."], "For the Greater Good Scenario Question 1"]
         ],
         "For the Greater Good Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["SCENARIO_INIT_RESUME", "For the Greater Good Scenario Init"]
         ],
         "For the Greater Good Scenario Init": [
@@ -81,7 +81,7 @@
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Warm Welcome", "05200", 0, "sharedActStory"],
                     ["DO_LOAD_CARDS_SCN", "For the Greater Good - We've Been Expecting You"],
@@ -112,7 +112,7 @@
             ["DO_CREATE_CARDS_SCN", "Cultist", "chaos_cultist", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Tablet", "chaos_tablet", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Elder Thing", "chaos_elder_thing", 1, "sharedTokens"],
-            ["SET", "/arkhamFinalScenarioMessage", "Chaos Tokens in Tokens are Keys."],
+            ["SET", "/arkham/finalScenarioMessage", "Chaos Tokens in Tokens are Keys."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

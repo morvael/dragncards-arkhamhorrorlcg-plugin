@@ -212,13 +212,13 @@
                     "05002a": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
                         "type": "trigger",
                         "priority": 9, //"During the setup" (Joe Diamond) must happen before "Before you draw your opening hand" (Stick to the Plan)
-                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                             ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate “hunch deck”.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
-                            ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
+                            ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
                             ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],

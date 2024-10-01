@@ -71,14 +71,14 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We have to help complete the Lodge's ritual.", "We have to stop the Lodge's ritual."], "Return to Union and Disillusion Scenario Question 1"]
         ],
         "Return to Union and Disillusion Scenario Question 1": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: The investigators sided with the Lodge."],
                     ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Erynn joined the investigators.", "The above is not true."], "Return to Union and Disillusion Scenario Question 2"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["LOG", "└── Campaign Log: The investigators sided with the coven."],
                     ["SCENARIO_SKIP_QUESTION", "Return to Union and Disillusion Scenario Early Init Continue"]
@@ -87,8 +87,8 @@
         ],
         "Return to Union and Disillusion Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"]
             ],
             ["ACTION_LIST", "Return to Union and Disillusion Scenario Early Init Continue"]
         ],
@@ -117,7 +117,7 @@
                 ["DO_SET_SPAWN_LOCATION", "$UNVISITED_ISLES.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
             ]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                         ["EQUAL", "$CARD.groupId", "sharedLocations"],
@@ -137,9 +137,9 @@
         ],
         "Return to Union and Disillusion Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Gavriella Mizrah: Not Going Down That Easily", "05258", 1, "sharedNotInPlay"],
                     ["DO_CREATE_CARDS_SCN", "Gavriella's Fate", "05262", 1, "sharedScenarioReference"],
                     ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
@@ -149,9 +149,9 @@
         ],
         "Return to Union and Disillusion Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer4Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Penny White: The Nightmare is Over", "05260", 1, "sharedNotInPlay"],
                     ["DO_CREATE_CARDS_SCN", "Penny's Fate", "05264", 1, "sharedScenarioReference"],
                     ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
@@ -161,9 +161,9 @@
         ],
         "Return to Union and Disillusion Scenario Question 5": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer5Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Jerome Davids: In Way Over His Head", "05259", 1, "sharedNotInPlay"],
                     ["DO_CREATE_CARDS_SCN", "Jerome's Fate", "05263", 1, "sharedScenarioReference"],
                     ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
@@ -173,16 +173,16 @@
         ],
         "Return to Union and Disillusion Scenario Question 6": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer6", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer6Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer6Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Valentino Rivas: Took You Long Enough", "05261", 1, "sharedNotInPlay"],
                     ["DO_CREATE_CARDS_SCN", "Valentino's Fate", "05265", 1, "sharedScenarioReference"],
                     ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
                 ]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["SCENARIO_SKIP_QUESTIONS", 4, "Return to Union and Disillusion Scenario Init Continue"],
                 ["TRUE"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators are deceiving the Lodge.", "The above is not true."], "Return to Union and Disillusion Scenario Question 7"]
@@ -190,20 +190,20 @@
         ],
         "Return to Union and Disillusion Scenario Question 7": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer7Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer7Text}}"]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators were inducted into the Inner Circle.", "The above is not true."], "Return to Union and Disillusion Scenario Question 8"]
         ],
         "Return to Union and Disillusion Scenario Question 8": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer8Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer8", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer8Text}}"]
             ],
             ["COND",
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer8", "A"]
                 ],
                 ["SCENARIO_SKIP_QUESTIONS", 2, "Return to Union and Disillusion Scenario Init Continue"],
                 ["TRUE"],
@@ -212,36 +212,36 @@
         ],
         "Return to Union and Disillusion Scenario Question 9": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer9", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer9Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer9", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer9Text}}"]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators kept their mementos hidden.", "The above is not true."], "Return to Union and Disillusion Scenario Question 10"]
         ],
         "Return to Union and Disillusion Scenario Question 10": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer10", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer10Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer10", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer10Text}}"]
             ],
             ["ACTION_LIST", "Return to Union and Disillusion Scenario Init Continue"]
         ],
         "Return to Union and Disillusion Scenario Init Continue": [
             ["COND",
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"]
                 ],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. V)", "54047", 2, "sharedActStory"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Binding Rite", "05247", 3, "sharedActStory"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. I)", "05243", 2, "sharedActStory"],
                     ["DO_CREATE_STORY_CARD_SCN", "The Binding Rite", "05247", 3, "sharedActStory"]
                 ],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer8", "A"]
                 ],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Beyond the Mist (v. II)", "05244", 2, "sharedActStory"],
@@ -251,15 +251,15 @@
                 [
                     ["VAR", "$COUNTER", 0],
                     ["COND",
-                        ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
                         ["INCREASE_VAR", "$COUNTER", 1]
                     ],
                     ["COND",
-                        ["EQUAL", "$GAME.arkhamScenarioAnswer9", "A"],
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer9", "A"],
                         ["INCREASE_VAR", "$COUNTER", 1]
                     ],
                     ["COND",
-                        ["EQUAL", "$GAME.arkhamScenarioAnswer10", "A"],
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer10", "A"],
                         ["INCREASE_VAR", "$COUNTER", 1]
                     ],
                     ["COND",
@@ -279,18 +279,18 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "4 heretics were unleashed unto Arkham.", "3 heretics were unleashed unto Arkham.", "2 heretics were unleashed unto Arkham.", "1 heretic was unleashed unto Arkham.", "0 heretics were unleashed unto Arkham."], "Return to Union and Disillusion Scenario Question 11"]
         ],
         "Return to Union and Disillusion Scenario Question 11": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer11Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer11Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer11", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer11", "A"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 4],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer11", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer11", "B"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer11", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer11", "C"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer11", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer11", "D"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Anette's Coven cards are in Pile A, Silver Twilight Lodge cards are in Pile B, The Watcher cards are in Pile C. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Anette's Coven cards are in Pile A, Silver Twilight Lodge cards are in Pile B, The Watcher cards are in Pile C. Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -53,7 +53,7 @@
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

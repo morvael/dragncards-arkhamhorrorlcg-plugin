@@ -49,13 +49,13 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Foyer", 5, 7, 3, 0],
             ["VAR", "$BYSTANDERS", ["SHUFFLE_LIST", ["LIST", "03076a", "03077", "03078", "03079", "03080"]]],   //Constance Dumaine: Sociable Hostess, Jordan Perry: Dignified Financier, Ishimaru Haruko: Costume Designer, Sebastien Moreau: Impassioned Producer, Ashleigh Clarke: Talented Entertainer
             ["VAR", "$LOCATIONS", ["LIST", "Ballroom", "Living Room", "Gallery", "Courtyard", "Dining Room"]],
-            ["VAR", "$CLUES_TO_ADD", ["ADD", 1, "$GAME.arkhamNumPlayers"]],
+            ["VAR", "$CLUES_TO_ADD", ["ADD", 1, "$GAME.arkham.numPlayers"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
                 ["VAR", "$BYSTANDER", "$BYSTANDERS.[$I]"],
                 ["DO_SPAWN_AT_LOCATION_SCN", "Bystander", "$BYSTANDER", "$LOCATIONS.[$I]", 3, 3],
                 ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_AT_LOCATION_RESULT", "$CLUES_TO_ADD", true, null]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Sickening Reality cards are in Deck A. Each time you're forced to randomly resolve one of those cards, shuffle the deck before picking the top card."],
+            ["SET", "/arkham/finalScenarioMessage", "Sickening Reality cards are in Deck A. Each time you're forced to randomly resolve one of those cards, shuffle the deck before picking the top card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

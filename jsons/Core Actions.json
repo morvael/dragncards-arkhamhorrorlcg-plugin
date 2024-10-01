@@ -87,9 +87,9 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DECLARE_ACTION.TARGET_CARD_ID"]],
                 ["VALIDATE_NOT_EMPTY", "$ACTION", "CAN_DECLARE_ACTION.ACTION"],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["OR",
-                        ["EQUAL", "$TARGET_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                        ["EQUAL", "$TARGET_PLAYER", "$GAME.arkham.activeInvestigator"],
                         ["EQUAL", "$ACTION", "free"],
                         ["EQUAL", "$ACTION", "reaction"]
                     ],

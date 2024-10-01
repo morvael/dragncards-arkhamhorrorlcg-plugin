@@ -23,7 +23,7 @@
                 "label": "id:moveClueToActMenu",
                 "actionList": "moveClueToAct",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["EQUAL", "$ACTIVE_FACE.type", "Act"],
@@ -117,8 +117,8 @@
                 "label": "id:investigateActionMenu",
                 "actionList": "investigateAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
@@ -127,7 +127,7 @@
                 "label": "id:moveClueToInvestigatorMenu",
                 "actionList": "moveClueToInvestigator",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
                     ["GREATER_THAN", "$ACTIVE_CARD.tokens.clue", 0]
@@ -137,8 +137,8 @@
                 "label": "id:moveActionMenu",
                 "actionList": "moveAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
@@ -147,8 +147,8 @@
                 "label": "id:actionActionMenu",
                 "actionList": "actionAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -161,7 +161,7 @@
                 "label": "id:freeActionMenu",
                 "actionList": "freeAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -174,7 +174,7 @@
                 "label": "id:reactionActionMenu",
                 "actionList": "reactionAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -187,8 +187,8 @@
                 "label": "id:fightActionMenu",
                 "actionList": "fightAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -200,8 +200,8 @@
                 "label": "id:engageActionMenu",
                 "actionList": "engageAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -216,8 +216,8 @@
                 "label": "id:evadeActionMenu",
                 "actionList": "evadeAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -770,8 +770,8 @@
                 "label": "id:investigatorStartTurnMenu",
                 "actionList": "investigatorStartTurn",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", null],
                     ["OR",
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
@@ -789,8 +789,8 @@
                 "label": "id:investigatorEndTurnMenu",
                 "actionList": "investigatorEndTurn",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", "$ACTIVE_CARD.cardOwner"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", "$ACTIVE_CARD.cardOwner"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
@@ -807,7 +807,7 @@
                 "label": "id:calculateWillpowerMenu",
                 "actionList": "calculateWillpower",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -816,7 +816,7 @@
                 "label": "id:calculateIntellectMenu",
                 "actionList": "calculateIntellect",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -825,7 +825,7 @@
                 "label": "id:calculateCombatMenu",
                 "actionList": "calculateCombat",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -834,7 +834,7 @@
                 "label": "id:calculateAgilityMenu",
                 "actionList": "calculateAgility",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -843,7 +843,7 @@
                 "label": "id:eliminateInvestigatorMenu",
                 "actionList": "eliminateInvestigator",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]

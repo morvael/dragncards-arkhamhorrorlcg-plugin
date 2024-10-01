@@ -302,9 +302,9 @@
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$TARGET_CARD.currentFace.cluesFixed", true],
-                        ["GREATER_THAN", "$GAME.arkhamNumPlayers", 0]
+                        ["GREATER_THAN", "$GAME.arkham.numPlayers", 0]
                     ],
-                    ["UPDATE_VAR", "$CLUES", ["CALC", "{{$CLUES}}*{{$GAME.arkhamNumPlayers}}"]]
+                    ["UPDATE_VAR", "$CLUES", ["CALC", "{{$CLUES}}*{{$GAME.arkham.numPlayers}}"]]
                 ],
                 "$CLUES"
             ]

@@ -225,7 +225,7 @@
                     "03003a": { //Forced - When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
@@ -269,7 +269,7 @@
                     "03006b": { //Forced - After you draw your opening hand: Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventAfterDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
@@ -297,7 +297,7 @@
                     "03264a": { //Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],

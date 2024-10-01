@@ -61,11 +61,11 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Cooperate and tell the creatures everything you know.", "Refuse and resist captivity."], "Return to The City of Archives Scenario Question 1"]
         ],
         "Return to The City of Archives Scenario Question 1": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["LOG", "└── Remember: The investigators cooperated with the Yithians."],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["LOG", "└── Remember: The investigators resisted captivity."]
             ],
             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -106,14 +106,14 @@
             ]],
             ["VAR", "$INTERVIEW_ROOMS", null],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_SPAWN_LOCATION_SCN", "Interview Room: Arrival Chamber", "04245", 83, 31],
                     ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Interview Room: Arrival Chamber", 5, 7, 0, 3],
                     ["UPDATE_VAR", "$INTERVIEW_ROOMS", ["SHUFFLE_LIST", ["LIST", "04246", "04247"]]]    //Interview Room: Restraining Chamber, Interview Room: Ichor-Filled Chamber
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["DO_SPAWN_LOCATION_SCN", "Interview Room: Restraining Chamber", "04246", 83, 31],
                     ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", true, null],
@@ -126,7 +126,7 @@
                 ["DO_SPAWN_LOCATION_SCN", "Interview Room", "$INTERVIEW_ROOMS.[$I]", 83, "$SPAWN_TOPS.[$I]"]
             ]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Yithian Observer", "Interview Room: Arrival Chamber", 3, 3, 1],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
@@ -134,7 +134,7 @@
                         ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", 1, true, null]
                     ]]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Yithian Observer", "sharedEncounterDeck", 1, "sharedVictoryDisplay"]
             ],
             ["DO_LOAD_CARDS_SCN", "Return to The City of Archives - Halls of Pnakotus"],

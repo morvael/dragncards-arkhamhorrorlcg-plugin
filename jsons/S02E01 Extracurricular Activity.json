@@ -51,14 +51,14 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Which scenario is (or was) the first of the campaign?", ["LIST", "Extracurricular Activity is the first.", "The House Always Wins was the first."], "Extracurricular Activity Scenario Question 1"]
         ],
         "Extracurricular Activity Scenario Question 1": [
-            ["LOG", "└── Scenario order: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Scenario order: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Night is Still Young", "02054", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "02054", 55, 76]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Faculty Offices: The Hour is Late", "02055", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "02055", 55, 76]

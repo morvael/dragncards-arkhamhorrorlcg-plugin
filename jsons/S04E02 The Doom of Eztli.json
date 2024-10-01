@@ -47,7 +47,7 @@
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Entombed", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Crypt Chill", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

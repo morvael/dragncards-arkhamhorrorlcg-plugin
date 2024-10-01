@@ -36,8 +36,8 @@
         ],
         "Return to The Pallid Mask Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
             ],
             ["SCENARIO_INIT_RESUME", "Return to The Pallid Mask Scenario Init"]
         ],
@@ -49,11 +49,11 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You awoke inside the catacombs.", "You entered the catacombs on your own."], "Return to The Pallid Mask Scenario Question 2"]
         ],
         "Return to The Pallid Mask Scenario Question 2": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["VAR", "$CATACOMBS", ["SHUFFLE_LIST", ["LIST", "03247", "03248", "03248", "03249", "03250", "03251", "03252", "03252", "03253", "03253", "03254", "03255", "52049", "52050", "52051", "52052"]]],  //The Gate to Hell, Stone Archways, Crypt of the Sepulchral Lamp, Bone-Filled Caverns, Well of Souls, Candlelit Tunnels, Labyrinth of Bones, Narrow Shaft, Shivering Pools, Secret Passage, Mound of Bones, Research Site, Sea of Skulls
             ["VAR", "$STARTING_LOCATION", "$CATACOMBS.[0]"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["UPDATE_VAR", "$STARTING_LOCATION", "03247"]   //The Gate to Hell
             ],
             ["UPDATE_VAR", "$CATACOMBS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$CATACOMBS", "$STARTING_LOCATION"]],
@@ -68,15 +68,15 @@
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
                 ["DO_CREATE_CARDS_SCN", "Catacombs", "$CATACOMBS_BOTTOM.[$I]", 1, "sharedDeckA"]
             ]],
-            ["SET", "/arkhamSkipShufflingSharedDeckA", true],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Man in the Pallid Mask", "03059", "sharedNotInPlay"],
             ["VAR", "$FINAL_MESSAGE", "Catacombs cards are in Deck A. Remember to trigger the Forced effect on the starting location when revealed."],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Then, choose a Catacombs location adjacent to the starting location and reveal it."]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

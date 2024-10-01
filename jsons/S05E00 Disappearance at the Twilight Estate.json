@@ -107,7 +107,7 @@
             ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_VALENTINO"],
             ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_PENNY"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Victorian Halls", 5, 7, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Off Map is “next to the agenda deck” (in play)."],
+            ["SET", "/arkham/finalScenarioMessage", "Off Map is “next to the agenda deck” (in play)."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },
@@ -115,12 +115,12 @@
         "DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_PRE_INIT": {
             "args": ["$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_ACTION", "$OBSCURING_FOG_NAME", "$TERROR_IN_THE_NIGHT_NAME", "$WRAITH_NAME"],
             "code": [
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateCampaignName", "$CAMPAIGN_NAME"],
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateScenarioName", "$SCENARIO_NAME"],
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateScenarioAction", "$SCENARIO_ACTION"],
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateObscuringFogName", "$OBSCURING_FOG_NAME"],
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateTerrorInTheNightName", "$TERROR_IN_THE_NIGHT_NAME"],
-                ["SET", "/arkhamDisappearanceAtTheTwilightEstateWraithName", "$WRAITH_NAME"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateCampaignName", "$CAMPAIGN_NAME"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateScenarioName", "$SCENARIO_NAME"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateScenarioAction", "$SCENARIO_ACTION"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateObscuringFogName", "$OBSCURING_FOG_NAME"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateTerrorInTheNightName", "$TERROR_IN_THE_NIGHT_NAME"],
+                ["SET", "/arkham/scenarioDisappearanceAtTheTwilightEstateWraithName", "$WRAITH_NAME"],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["IN_STRING", "$CARD.controller", "player"]
                 ]]],
@@ -128,7 +128,7 @@
                     ["DELETE_CARD", "$CARD.id"]
                 ]],
                 ["DO_FSYSLOG", "For the duration of this prologue, you will control one of four neutral investigators instead of your chosen one{0:S}.", ["LIST", "$GAME.numPlayers"]],
-                ["SET", "/arkhamSkipDeckCheck", true],
+                ["SET", "/arkham/skipDeckCheck", true],
                 ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE", "$GAME.firstPlayer"]
             ]
         },
@@ -168,7 +168,7 @@
                 ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$PLAYER_N"]],
                 ["COND",
                     ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
-                    ["SCENARIO_INIT", "The Circle Undone", "$GAME.arkhamDisappearanceAtTheTwilightEstateCampaignName", "$GAME.arkhamDisappearanceAtTheTwilightEstateScenarioName", "Disappearance at the Twilight Estate Scenario Early Init", "$GAME.arkhamDisappearanceAtTheTwilightEstateScenarioAction"],
+                    ["SCENARIO_INIT", "The Circle Undone", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateCampaignName", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateScenarioName", "Disappearance at the Twilight Estate Scenario Early Init", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateScenarioAction"],
                     ["TRUE"],
                     ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SHOW_INVESTIGATOR_CHOICE", "$NEXT_PLAYER"]
                 ]
@@ -185,7 +185,7 @@
                         //Setup: You begin play in the Victorian Halls. Place 1 damage on The Spectral Watcher. Search the gathered cards for 1 copy of Fate of All Fools and put it into play in your threat area. You begin with 1 resource instead of 5.
                         //Starting Play Area: .45 Automatic (Core 16) with 2 ammo tokens remaining, Physical Training (Core 17).
                         //Opening Hand: First Aid (Core 19), Guard Dog (Core 21), Evidence! (Core 22), Dodge (Core 23), Extra Ammunition (level 1) (Core 26), 2 copies of Delay the Inevitable (TCU 21).
-                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Victorian Halls"],
+                        ["SET", "/playerData/$PLAYER_N/arkham/customSpawnLocation", "Victorian Halls"],
                         ["VAR", "$THE_SPECTRAL_WATCHER", ["GET_NAMED_CARD", "The Spectral Watcher"]],
                         ["DO_PLACE_DAMAGE_ON_CARD", "$PLAYER_N", "$THE_SPECTRAL_WATCHER.id", 1, true, null],
                         ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Fate of All Fools", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
@@ -208,9 +208,9 @@
                         //Setup: You begin play in the Office. Search the gathered cards for 1 copy of Nether Mist and 1 copy of Obscuring Fog. Spawn the Nether Mist in the Office and attach Obscuring Fog to the Office. You begin with 3 resources instead of 5.
                         //Starting Play Area: Nothing.
                         //Opening Hand: Hyperawareness (Core 34), Mind over Matter (Core 36), Working a Hunch (Core 37), Barricade (Core 38), Deduction (Core 39), Magnifying Glass (level 1) (Core 40), Fingerprint Kit (TCU 24), Connect the Dots (TCU 25), 2 copies of Curiosity (TCU 26).
-                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Office"],
+                        ["SET", "/playerData/$PLAYER_N/arkham/customSpawnLocation", "Office"],
                         ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$PLAYER_N", "Nether Mist", "Office", 3, 3, 0, true, null],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateObscuringFogName", "sharedEncounterDeck", 1, "sharedLocations", true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateObscuringFogName", "sharedEncounterDeck", 1, "sharedLocations", true, null],
                         ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
                         ["DO_ATTACH_CARD", "$PLAYER_N", "$DO_MOVE_NAMED_DECK_CARDS_RESULT.[0]", "$OFFICE.id", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Jerome Davids", true, null]
@@ -229,9 +229,9 @@
                         //Setup: You begin play in the Billiards Room. Search the gathered cards for 1 copy of Shadow Hound and 1 copy of Terror in the Night. Spawn the Shadow Hound engaged with you and put Terror in the Night into play next to the agenda deck. You begin with 10 resources instead of 5.
                         //Starting Play Area: Well Connected (TCU 28).
                         //Opening Hand: .41 Derringer (Core 47), Opportunist (Core 53), Sure Gamble (level 3) (Core 56), 2 copies of Money Talks (TCU 29), 2 copies of Cunning (TCU 30).
-                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Billiards Room"],
+                        ["SET", "/playerData/$PLAYER_N/arkham/customSpawnLocation", "Billiards Room"],
                         ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Shadow Hound", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateTerrorInTheNightName", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateTerrorInTheNightName", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Valentino Rivas", true, null]
                     ]
                 ]
@@ -248,8 +248,8 @@
                         //Setup: You begin play at the Balcony. Search the gathered cards for 1 copy of Wraith and 1 copy of Whispers in the Dark. Spawn the Wraith engaged with you and put Whispers in the Dark into play next to the agenda deck. You begin with 2 resources instead of 5.
                         //Starting Play Area: Dig Deep (Core 77), Knife (Core 86), Flashlight (Core 87) with 2 supply tokens remaining.
                         //Opening Hand: Stray Cat (Core 76), Lucky! (Core 80), Knife (Core 86), Flashlight (Core 87), 2 copies of Act of Desperation (TCU 37), 2 copies of Able Bodied (TCU 38).
-                        ["SET", "/playerData/$PLAYER_N/arkhamCustomSpawnLocation", "Balcony"],
-                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkhamDisappearanceAtTheTwilightEstateWraithName", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
+                        ["SET", "/playerData/$PLAYER_N/arkham/customSpawnLocation", "Balcony"],
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "$GAME.arkham.scenarioDisappearanceAtTheTwilightEstateWraithName", "sharedEncounterDeck", 1, ["GET_CONTROLLER_THREAT", "$PLAYER_N"], true, null],
                         ["DO_MOVE_NAMED_DECK_CARDS", "$PLAYER_N", "Whispers in the Dark", "sharedEncounterDeck", 1, "sharedOffMap", true, null],
                         ["DO_LOAD_CARDS", "$PLAYER_N", "Disappearance at the Twilight Estate - Penny White", true, null],
                         ["VAR", "$FLASHLIGHT", ["GET_NAMED_DECK_CARD", "Flashlight", ["GET_CONTROLLER_PLAY", "$PLAYER_N"]]],
@@ -279,13 +279,13 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 4]
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkham/startingResourcesMod", 4]
                         ]
                     },
                     "05046b": {
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
@@ -303,13 +303,13 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 2]
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkham/startingResourcesMod", 2]
                         ]
                     },
                     "05047b": {
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
@@ -327,13 +327,13 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 5]
+                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkham/startingResourcesMod", 5]
                         ]
                     },
                     "05048b": {
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
@@ -351,13 +351,13 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamStartingResourcesMod", 3]
+                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkham/startingResourcesMod", 3]
                         ]
                     },
                     "05049b": {
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw", 1],

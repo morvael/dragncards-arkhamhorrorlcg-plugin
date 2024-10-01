@@ -57,9 +57,9 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "What can I do to avoid this fate?", "This is bullshit."], "The Witching Hour Scenario Question 1"]
         ],
         "The Witching Hour Scenario Question 1": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: You have accepted your fate."],
                     ["DO_ADD_CHAOS_TOKEN_SCN", "Tablet", "chaos_tablet"],
@@ -67,7 +67,7 @@
                     ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "The Tower • XVI: Circumstances Beyond Your Control", "05042", 2],
                     ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "Ace of Rods: The Fateful Step", "05040", 2]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["LOG", "└── Campaign Log: You have rejected your fate."],
                     ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
@@ -89,8 +89,8 @@
             ["VAR", "$SPAWN_TOP", 5],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["DO_CUSTOM_SPAWN_MICRO_CARD", "$PLAYER_I", 0, ["ADD", "$SPAWN_TOP", 4]],
-                ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnLeft", 7],
-                ["SET", "/playerData/$PLAYER_I/arkhamTheWitchingHourSpawnTop", "$SPAWN_TOP"],
+                ["SET", "/playerData/$PLAYER_I/arkham/scenarioTheWitchingHourSpawnLeft", 7],
+                ["SET", "/playerData/$PLAYER_I/arkham/scenarioTheWitchingHourSpawnTop", "$SPAWN_TOP"],
                 ["UPDATE_VAR", "$SPAWN_TOP", ["ADD", "$SPAWN_TOP", 19]],
                 ["COND",
                     ["EQUAL", "$SPAWN_TOP", 43],
@@ -101,14 +101,14 @@
             ["VAR", "$CURRENT_PLAYER", "$GAME.firstPlayer"],
             ["VAR", "$FIRST_LOCATION_ID", null],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
-                ["DO_SPAWN_LOCATION_SCN", "Witch-Haunted Woods", "$WITCH_HAUNTED_WOODS.[$I]", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnLeft", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamTheWitchingHourSpawnTop"],
-                ["INCREASE_VAL", "/playerData/$CURRENT_PLAYER/arkhamTheWitchingHourSpawnLeft", 15],
+                ["DO_SPAWN_LOCATION_SCN", "Witch-Haunted Woods", "$WITCH_HAUNTED_WOODS.[$I]", "$PLAYER_DATA.$CURRENT_PLAYER.arkham.scenarioTheWitchingHourSpawnLeft", "$PLAYER_DATA.$CURRENT_PLAYER.arkham.scenarioTheWitchingHourSpawnTop"],
+                ["INCREASE_VAL", "/playerData/$CURRENT_PLAYER/arkham/scenarioTheWitchingHourSpawnLeft", 15],
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$PLAYER_DATA.$CURRENT_PLAYER.arkhamCustomSpawnLocation", null],
+                        ["EQUAL", "$PLAYER_DATA.$CURRENT_PLAYER.arkham.customSpawnLocation", null],
                         ["EQUAL", ["RANDOM_INT", 0, 1], 1]
                     ],
-                    ["SET", "/playerData/$CURRENT_PLAYER/arkhamCustomSpawnLocation", "$DO_SPAWN_LOCATION_RESULT"]
+                    ["SET", "/playerData/$CURRENT_PLAYER/arkham/customSpawnLocation", "$DO_SPAWN_LOCATION_RESULT"]
                 ],
                 ["COND",
                     ["EQUAL", "$FIRST_LOCATION_ID", null],
@@ -117,7 +117,7 @@
                 ["UPDATE_VAR", "$CURRENT_PLAYER", ["NEXT_PLAYER", "$CURRENT_PLAYER"]]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$FIRST_LOCATION_ID", 5, 3, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those sharing the row with that investigator's counter."],
+            ["SET", "/arkham/finalScenarioMessage", "Arkham Woods cards are in Deck A, Agents of Azathoth cards are in Pile A, Agents of Shub-Niggurath cards are in Pile B. Locations “in front of” each investigator are those sharing the row with that investigator's counter."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

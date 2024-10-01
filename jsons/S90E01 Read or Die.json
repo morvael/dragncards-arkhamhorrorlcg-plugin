@@ -60,7 +60,7 @@
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Agents of Yog-Sothoth"],
             ["VAR", "$DAISY_WALKER", ["GET_NAMED_CARD", "Daisy Walker"]],
-            ["SET", "/playerData/$DAISY_WALKER.controller/arkhamCustomSpawnLocation", "Orne Library"],
+            ["SET", "/playerData/$DAISY_WALKER.controller/arkham/customSpawnLocation", "Orne Library"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic Quad", 5, 7, 3, 0],
             ["DO_SHUFFLE_GROUP", "$DAISY_WALKER.controller", "sharedDeckA", true, null],
             ["VAR", "$LOCATIONS_3", ["SHUFFLE_LIST", ["LIST", "Faculty Offices", "Dormitories"]]],
@@ -112,7 +112,7 @@
                     ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Dr. Henry Armitage: The Head Librarian", "02040", 1, "$DAISY_PLAY_ID", false, null]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Since Dormitories and Faculty Offices start the game in play and Alchemy Labs is removed from the game, ignore any Forced abilities that would put these locations into play."],
+            ["SET", "/arkham/finalScenarioMessage", "Since Dormitories and Faculty Offices start the game in play and Alchemy Labs is removed from the game, ignore any Forced abilities that would put these locations into play."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },

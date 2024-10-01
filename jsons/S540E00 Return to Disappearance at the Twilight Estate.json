@@ -50,7 +50,7 @@
             ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_VALENTINO"],
             ["DISAPPEARANCE_AT_THE_TWILIGHT_ESTATE_SETUP_PENNY"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Victorian Halls", 5, 7, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Off Map is “next to the agenda deck” (in play). Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Off Map is “next to the agenda deck” (in play). Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

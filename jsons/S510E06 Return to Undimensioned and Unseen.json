@@ -95,21 +95,21 @@
         ],
         "Return to Undimensioned and Unseen Scenario Question 1": [
             ["VAR", "$BROODS", ["SHUFFLE_LIST", ["LIST", "02255", "51042", "51043", "51044", "51045"]]], //Brood of Yog-Sothoth, Brood of Yog-Sothoth: Charging Beast, Brood of Yog-Sothoth: Swelling Devourer, Brood of Yog-Sothoth: Thrashing Spawn, Brood of Yog-Sothoth: Amorphous Terror
-            ["LOG", "└── Sacrificed to Yog‐Sothoth: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Sacrificed to Yog‐Sothoth: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedDeckA"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[2]", 1, "sharedDeckA"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
@@ -117,7 +117,7 @@
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[2]", 1, "sharedDeckA"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[3]", 1, "sharedDeckA"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[0]", 1, "sharedEncounterDeck"],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "$BROODS.[1]", 1, "sharedEncounterDeck"],
@@ -134,7 +134,7 @@
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Injury, or Pact weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_INJURY_PACT_WEAKNESSES"]]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Brood of Yog-Sothoth cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Brood of Yog-Sothoth cards are in Deck A. Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

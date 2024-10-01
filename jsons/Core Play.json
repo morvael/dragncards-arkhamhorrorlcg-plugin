@@ -8,7 +8,7 @@
                 "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
                         ["OR",

@@ -109,7 +109,7 @@
                 ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
                 ["SET", "/cardById/$CARD.id/discardToOther", true]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
+            ["SET", "/arkham/finalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

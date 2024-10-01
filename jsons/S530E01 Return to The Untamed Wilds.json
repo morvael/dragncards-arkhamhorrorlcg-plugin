@@ -102,7 +102,7 @@
             ["DO_LOAD_CARDS_SCN", "Return to The Untamed Wilds - Agents of Yig"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["DO_LOAD_CARDS_SCN", "Return to The Untamed Wilds - Set Aside"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Agents of Yig cards are in Pile A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck, Agents of Yig cards are in Pile A. Remember the rule from the back of the “Return to…” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

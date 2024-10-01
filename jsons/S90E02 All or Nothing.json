@@ -58,9 +58,9 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Do you want to use the cards included in the Return to the House Always Wins encounter set?", ["LIST", "Yes.", "No."], "All or Nothing Scenario Question 1"]
         ],
         "All or Nothing Scenario Question 1": [
-            ["LOG", "└── Include Return to the House Always Wins: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Include Return to the House Always Wins: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Clover Club Stage", "51017", 1, "sharedNotInPlay"],
                     ["DO_SET_SPAWN_LOCATION", "51017", 3, 59], //Clover Club Stage
@@ -78,7 +78,7 @@
             ["DO_LOAD_CARDS_SCN", "All or Nothing - Set Aside"],
             ["DO_LOAD_CARDS_SCN", "All or Nothing - Clover Club"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_DELETE_LOCATION_SCN", "Clover Club Lounge"],
                     ["DO_SPAWN_LOCATION_SCN", "Clover Club Lounge", "51016", 20, 43]

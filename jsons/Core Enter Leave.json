@@ -26,7 +26,7 @@
             "enterLeaveRefreshPlayerCardsInPlay": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayerInPlay"],
+                "listenTo": ["/playerData/*/arkham/playerInPlay"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
                 ],
@@ -37,7 +37,7 @@
             "enterLeaveRefreshOffMap": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/arkhamOffMapNotInPlay"],
+                "listenTo": ["/arkham/offMapNotInPlay"],
                 "condition": [
                     ["CAN_REFRESH_OFF_MAP"]
                 ],
@@ -59,7 +59,7 @@
             "enterLeaveRefreshPlayerDeckB": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayWithTopDeckCardRevealed"],
+                "listenTo": ["/playerData/*/arkham/playWithTopDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
                 ],
@@ -70,7 +70,7 @@
             "enterLeaveRefreshPlayerDeckC": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayWithTopExtraDeckCardRevealed"],
+                "listenTo": ["/playerData/*/arkham/playWithTopExtraDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
                 ],
@@ -84,7 +84,7 @@
                 "listenTo": ["/groupById/sharedAgendaStory/stackIds", "/groupById/sharedActStory/stackIds", "/groupById/sharedActStoryB/stackIds", "/groupById/sharedActStoryC/stackIds", "/groupById/sharedActStoryD/stackIds", "/groupById/sharedActStoryE/stackIds"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["CAN_REFRESH_STORY", "$TARGET"]
                     ]
                 ],
@@ -98,7 +98,7 @@
                 "listenTo": ["/cardById/*/attachmentDirection"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["OR",
                             ["EQUAL", "$TARGET.groupId", "sharedAgendaStory"],
                             ["EQUAL", "$TARGET.groupId", "sharedActStory"],
@@ -442,7 +442,7 @@
                     ["IN_STRING", "$NEW_GROUP.groupType", "story"],
                     null,
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamOffMapNotInPlay", true],
+                        ["EQUAL", "$GAME.arkham.offMapNotInPlay", true],
                         ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
                     ],
                     false,
@@ -461,13 +461,13 @@
                     ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
                     ["COND",
                         ["IN_STRING", "$NEW_GROUP.id", "player1"],
-                        ["EQUAL", "$PLAYER_DATA.player1.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player1.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player2"],
-                        ["EQUAL", "$PLAYER_DATA.player2.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player2.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player3"],
-                        ["EQUAL", "$PLAYER_DATA.player3.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player3.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player4"],
-                        ["EQUAL", "$PLAYER_DATA.player4.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player4.arkham.playerInPlay", true],
                         ["TRUE"],
                         true
                     ],
@@ -641,21 +641,21 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$TARGET_GROUP.id", "player1Deck"],
-                    "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player1.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player1ExtraDeck"],
-                    "$PLAYER_DATA.player1.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player1.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player2Deck"],
-                    "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player2.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player2ExtraDeck"],
-                    "$PLAYER_DATA.player2.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player2.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player3Deck"],
-                    "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player3.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player3ExtraDeck"],
-                    "$PLAYER_DATA.player3.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player3.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player4Deck"],
-                    "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player4.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player4ExtraDeck"],
-                    "$PLAYER_DATA.player4.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player4.arkham.playWithTopExtraDeckCardRevealed",
                     ["TRUE"],
                     0
                 ]

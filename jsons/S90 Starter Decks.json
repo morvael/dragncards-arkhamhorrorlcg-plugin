@@ -62,7 +62,7 @@
                     "90049a": { //"spirit deck"
                         "type": "trigger",
                         "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
-                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
                             ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
@@ -75,7 +75,7 @@
                     "0200490049a": { //"spirit deck"
                         "type": "trigger",
                         "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
-                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
                             ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
@@ -103,13 +103,13 @@
             "code": [
                 ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                 ["COND",
-                    ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamShowExtraDeck", 0],
+                    ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
                     ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"],
                     ["TRUE"],
                     [
                         ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 9 different Ally assets from any class level 0-2 and shuffle them into a separate “spirit deck”.", ["LIST", "$THIS", "$THIS.controller"]],
                         ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
-                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkhamShowExtraDeck", 1],
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
                         ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
                         ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
                         ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],

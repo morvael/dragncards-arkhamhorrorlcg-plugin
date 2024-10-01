@@ -92,25 +92,25 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Sacrificed to Yog‐Sothoth” in Campaign Log.", ["LIST", "There are 4 or more names.", "There are exactly 3 names.", "There are exactly 2 names.", "There are 1 or fewer names."], "Undimensioned and Unseen Scenario Question 1"]
         ],
         "Undimensioned and Unseen Scenario Question 1": [
-            ["LOG", "└── Sacrificed to Yog‐Sothoth: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Sacrificed to Yog‐Sothoth: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedNotInPlay"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedNotInPlay"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 3, "sharedNotInPlay"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
                 [
                     ["DO_CREATE_CARDS_SCN", "Brood of Yog-Sothoth", "02255", 2, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Brood of Yog-Sothoth", "Cold Spring Glen", 3, 3, 0],

@@ -6,24 +6,13 @@
     },
     "automation": {
         "postNewGameActionList": [
-            ["COND",
-                ["NOT_EQUAL", "$GAME.arkhamPostNewGameDone", true],
-                [
-                    ["SET", "/arkhamPostNewGameDone", true],
-                    ["SET", "/arkhamScenarioInit", true],
-                    ["SET", "/arkhamChaosBagCampaignName", "No Campaign"],
-                    ["SET", "/arkhamCampaignName", "No Campaign"],
-                    ["SET", "/arkhamScenarioName", "No Scenario"],
-                    ["SET", "/arkhamScenarioDifficulty", "Standard"],
-                    ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
-                ]
-            ]
+            ["DO_INIT_GAME_PROPERTIES"]
         ],
         "postSitDownActionList": [
             ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
         "preLoadActionList": [
-            ["SET", "/arkhamLoadingCards", true]
+            ["SET", "/arkham/loadingCards", true]
         ],
         "postLoadActionList": [
             ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"],
@@ -93,8 +82,8 @@
                                 ["EQUAL", "$TARGET.sides.B.type", "Scenario"],
                                 ["EQUAL", "$TARGET.currentSide", "A"],
                                 ["OR",
-                                    ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                                    ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"]
+                                    ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                                    ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"]
                                 ]
                             ],
                             ["SET", "/cardById/$TARGET_ID/currentSide", "B"]
@@ -113,7 +102,7 @@
                 ],
                 ["SET", "/cardById/$TARGET_ID/controller", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
             ]],
-            ["SET", "/arkhamLoadingCards", false]
+            ["SET", "/arkham/loadingCards", false]
         ],
         "gameRules": {
             "automationStepHelpers": {
@@ -123,7 +112,7 @@
                 "listenTo": ["/stepId"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["OR",
                             ["EQUAL", "$GAME.stepId", "M1"],
                             ["EQUAL", "$GAME.stepId", "M2"],
@@ -222,7 +211,7 @@
                 "_comment": "Show or hide extra deck.",
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamShowExtraDeck"],
+                "listenTo": ["/playerData/*/arkham/showExtraDeck"],
                 "condition": [
                     ["CAN_UPDATE_EXTRA_DECK", "$TARGET.id"]
                 ],
@@ -237,14 +226,14 @@
                 "listenTo": ["/cardById/*/inPlay"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", ["PREV", "$TARGET.inPlay"], false],
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
                         ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], 0],
                         ["OR",
-                            ["NOT_EQUAL", "$GAME.arkhamLoadingCards", true],
+                            ["NOT_EQUAL", "$GAME.arkham.loadingCards", true],
                             ["NOT",
                                 ["AND",
                                     ["EQUAL", "$TARGET.sides.A.type", "Location"],
@@ -269,7 +258,7 @@
                 "listenTo": ["/cardById/*/currentSide"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["EQUAL", "$TARGET.inPlay", true],
                         ["EQUAL", "$TARGET.cluesPlaced", false],
                         ["EQUAL", "$TARGET.currentFace.type", "Location"],
@@ -288,7 +277,7 @@
                 "listenTo": ["/firstPlayer"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["NOT_EQUAL", ["PREV", "$GAME.firstPlayer"], "$GAME.firstPlayer"]
                     ]
                 ],
@@ -510,7 +499,7 @@
             "args": [],
             "code": [
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["SET", "/playerData/$PLAYER_I/arkhamMythosPhaseCardDrawn", false]
+                    ["SET", "/playerData/$PLAYER_I/arkham/mythosPhaseCardDrawn", false]
                 ]],
                 ["PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE", null]
             ]
@@ -519,7 +508,7 @@
             "args": [],
             "code": [
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", null],
                     [
                         ["VAR", "$ACTIVE_MINI_INVESTIGATORS", ["GET_ACTIVE_MINI_INVESTIGATORS"]],
                         ["VAR", "$REMAINING", ["LENGTH", "$ACTIVE_MINI_INVESTIGATORS"]],
@@ -542,9 +531,9 @@
             "args": [],
             "code": [
                 ["COND",
-                    ["NOT_EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["NOT_EQUAL", "$GAME.arkham.activeInvestigator", null],
                     [
-                        ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$GAME.arkhamActiveInvestigator"]],
+                        ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$GAME.arkham.activeInvestigator"]],
                         ["DO_END_INVESTIGATOR_TURN", "$MINI_INVESTIGATOR.cardOwner", "$MINI_INVESTIGATOR.id", false, true, "$PLAYER_N"]
                     ]
                 ],
@@ -601,7 +590,7 @@
                         ]
                     ]
                 ]],
-                ["SET", "/arkhamActiveInvestigator", null]
+                ["SET", "/arkham/activeInvestigator", null]
             ]
         },
         "DO_STEP_U3": {
@@ -636,7 +625,7 @@
                         ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
                         ["VAR", "$CARDS_IN_HAND", 0],
                         ["COND",
-                            ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamHandSizeCountUnique", 0],
+                            ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.handSizeCountUnique", 0],
                             [
                                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "$HAND_ID"]]],
                                 ["VAR", "$UNIQUE_TITLES", ["LIST"]],
@@ -706,7 +695,7 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_UPDATE_EXTRA_DECK.TARGET_PLAYER"],
-                ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.layout.regions.playerNExtraDeck.visible", ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkhamShowExtraDeck", 0]]
+                ["NOT_EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.layout.regions.playerNExtraDeck.visible", ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0]]
             ]
         },
         "DO_UPDATE_EXTRA_DECK": {
@@ -826,7 +815,7 @@
                 ["VAR", "$PLAYER_ORDER_CONTROLLER", null],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["COND",
-                        ["GREATER_THAN", "$PLAYER_DATA.$PLAYER_I.arkhamCustomMythosPhasePlayerOrderController", 0],
+                        ["GREATER_THAN", "$PLAYER_DATA.$PLAYER_I.arkham.customMythosPhasePlayerOrderController", 0],
                         ["UPDATE_VAR", "$PLAYER_ORDER_CONTROLLER", "$PLAYER_I"]
                     ]
                 ]],
@@ -837,7 +826,7 @@
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                             ["COND",
                                 ["AND",
-                                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamMythosPhaseCardDrawn", false],
+                                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkham.mythosPhaseCardDrawn", false],
                                     ["EQUAL", ["GET_PLAYER_ELIMINATED", "$PLAYER_I"], false]
                                 ],
                                 ["UPDATE_VAR", "$PLAYER_LIST", ["APPEND", "$PLAYER_LIST", "$PLAYER_I"]]
@@ -896,7 +885,7 @@
                     ],
                     ["EQUAL", "$PROMPT_NAME", "askToDrawEncounterCard"],
                     [
-                        ["SET", "/playerData/$TARGET_PLAYER/arkhamMythosPhaseCardDrawn", true],
+                        ["SET", "/playerData/$TARGET_PLAYER/arkham/mythosPhaseCardDrawn", true],
                         ["PROMPT", "$TARGET_PLAYER", "askToDrawEncounterCard"]
                     ],
                     ["TRUE"],

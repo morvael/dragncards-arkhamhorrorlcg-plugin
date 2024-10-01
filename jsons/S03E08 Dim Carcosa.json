@@ -61,7 +61,7 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You opened the path below.", "You opened the path above."], "Dim Carcosa Scenario Question 1"]
         ],
         "Dim Carcosa Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["SCENARIO_INIT_RESUME", "Dim Carcosa Scenario Init"]
         ],
         "Dim Carcosa Scenario Init": [
@@ -74,33 +74,33 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have 5 or less total Doubt and Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Doubt than Conviction.", "You have 6 or more total Doubt and Conviction, and you have more Conviction than Doubt.", "You have 6 or more total Doubt and Conviction, and you have exactly equal Doubt and Conviction."], "Dim Carcosa Scenario Question 2"]
         ],
         "Dim Carcosa Scenario Question 2": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.I)", "03321a", 1, "sharedActStory"],
                     ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.II)", "03322a", 1, "sharedActStory"],
                     ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "C"],
                 [
                     ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.III)", "03323a", 1, "sharedActStory"],
                     ["SCENARIO_SKIP_QUESTION", "Dim Carcosa Scenario Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "D"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Use Search For the Stranger (v.II) as Act 2.", "Use Search For the Stranger (v.III) as Act 2."], "Dim Carcosa Scenario Question 3"]
             ]
         ],
         "Dim Carcosa Scenario Question 3": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.II)", "03322a", 1, "sharedActStory"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"],
                 ["DO_CREATE_STORY_CARD_SCN", "Search For the Stranger (v.III)", "03323a", 1, "sharedActStory"]
             ],
             ["ACTION_LIST", "Dim Carcosa Scenario Init Continue"]
@@ -128,9 +128,9 @@
             ["DO_SET_SPAWN_LOCATION", "$DEPTHS_OF_DEMHE.[1]", 45, 24],
             ["DO_LOAD_CARDS_SCN", "Dim Carcosa - Carcosa"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Shores of Hali", 5, 3, 3, 0],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Dark Spires", 5, 3, 3, 0]
             ],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Man in the Pallid Mask", "03059", "sharedNotInPlay"],
@@ -138,13 +138,13 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Chasing the Stranger” in Campaign Log.", ["LIST", "There are 2 or fewer tally marks.", "There are between 3-5 tally marks.", "There are between 6-8 tally marks.", "There are 9 or more tally marks."], "Dim Carcosa Scenario Question 4"]
         ],
         "Dim Carcosa Scenario Question 4": [
-            ["LOG", "└── Chasing the Stranger: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["LOG", "└── Chasing the Stranger: {{$GAME.arkham.scenarioAnswer4Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "B"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "C"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
             ],
             ["LOG", "└── Each investigator takes direct horror equal to half his or her sanity, rounded down (cannot be prevented)."],
@@ -156,7 +156,7 @@
                     ["DO_PLACE_HORROR_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$HORROR", true, null]
                 ]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "During this scenario, investigators are not defeated when they have horror on them equal to or greater than their sanity."],
+            ["SET", "/arkham/finalScenarioMessage", "During this scenario, investigators are not defeated when they have horror on them equal to or greater than their sanity."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

@@ -198,7 +198,7 @@
                     "06005b": { //During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventUpkeepDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventUpkeepDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],

@@ -65,13 +65,13 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Cultists Who Got Away” in Campaign Log.", ["LIST", "There are exactly 0 names.", "There are exactly 1 or 2 names.", "There are exactly 3 or 4 names.", "There are exactly 5 or 6 names."], "Return to The Devourer Below Scenario Question 1"]
         ],
         "Return to The Devourer Below Scenario Question 1": [
-            ["LOG", "└── Cultists Who Got Away: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Cultists Who Got Away: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3]
             ],
             ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
@@ -79,9 +79,9 @@
         ],
         "Return to The Devourer Below Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["DO_DISCARD_N_RANDOM_CARDS_FROM_HAND", "$PLAYER_I", 2, true, null]
                     ]]
@@ -91,9 +91,9 @@
         ],
         "Return to The Devourer Below Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Ghoul Priest", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],

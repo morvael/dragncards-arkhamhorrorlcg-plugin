@@ -68,9 +68,9 @@
         ],
         "At Death's Doorstep Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["VAR", "$ENTRY_HALL", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL.id", 6, true, null]
                 ]
@@ -79,9 +79,9 @@
         ],
         "At Death's Doorstep Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$OFFICE.id", 6, true, null]
                 ]
@@ -90,9 +90,9 @@
         ],
         "At Death's Doorstep Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["VAR", "$BILLIARDS_ROOM", ["GET_NAMED_MAP_LOCATION", "Billiards Room"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BILLIARDS_ROOM.id", 6, true, null]
                 ]
@@ -101,9 +101,9 @@
         ],
         "At Death's Doorstep Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer4Text}}"],
                     ["VAR", "$BALCONY", ["GET_NAMED_MAP_LOCATION", "Balcony"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BALCONY.id", 6, true, null]
                 ]
@@ -111,19 +111,19 @@
             ["VAR", "$FINAL_MESSAGE", "Realm of Death cards are in Pile A, The Watcher cards are in Pile B."],
             ["VAR", "$ABOVE_LOCATIONS", ["LIST"]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Entry Hall"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Office"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Billiards Room"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Balcony"]]
             ],
             ["COND",
@@ -133,7 +133,7 @@
                     ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} {{$EXTRA_INFO}}"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}}"],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}}"],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

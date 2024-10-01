@@ -6,8 +6,8 @@
             "args": ["$EVENT"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "INIT_EVENT.EVENT"],
-                ["SET", "/arkhamGameEvent{{$EVENT}}Counter", 1],
-                ["SET", "/arkhamGameEvent{{$EVENT}}", 0]
+                ["SET", "/arkham/gameEvent{{$EVENT}}Counter", 1],
+                ["SET", "/arkham/gameEvent{{$EVENT}}", 0]
             ]
         },
         // Returns true if game event can be signalled (state must be 0).
@@ -15,7 +15,7 @@
             "args": ["$EVENT"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CAN_SIGNAL_EVENT.EVENT"],
-                ["EQUAL", "$GAME.arkhamGameEvent{{$EVENT}}", 0]
+                ["EQUAL", "$GAME.arkham.gameEvent{{$EVENT}}", 0]
             ]
         },
         // Signals game event (sets state to 1).
@@ -23,7 +23,7 @@
             "args": ["$EVENT"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "SIGNAL_EVENT.EVENT"],
-                ["SET", "/arkhamGameEvent{{$EVENT}}", 1]
+                ["SET", "/arkham/gameEvent{{$EVENT}}", 1]
             ]
         },
         // Remembers this ability responded to this game event instance (by storing counter) and resets the game event (sets state to 0).
@@ -32,8 +32,8 @@
             "code": [
                 ["VALIDATE_NOT_NULL", "$CARD", "CONSUME_EVENT.CARD"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CONSUME_EVENT.EVENT"],
-                ["SET", "/cardById/$CARD.id/arkhamAbility{{$ABILITY}}GameEvent{{$EVENT}}Counter", "$GAME.arkhamGameEvent{{$EVENT}}Counter"],
-                ["SET", "/arkhamGameEvent{{$EVENT}}", 0]
+                ["SET", "/cardById/$CARD.id/arkhamAbility{{$ABILITY}}GameEvent{{$EVENT}}Counter", "$GAME.arkham.gameEvent{{$EVENT}}Counter"],
+                ["SET", "/arkham/gameEvent{{$EVENT}}", 0]
             ]
         },
         // Increases game event cancel flag and calls CONSUME_EVENT.
@@ -42,7 +42,7 @@
             "code": [
                 ["VALIDATE_NOT_NULL", "$CARD", "CANCEL_EVENT.CARD"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CANCEL_EVENT.EVENT"],
-                ["INCREASE_VAL", "/arkhamExecuteGameEventFlag", 1],
+                ["INCREASE_VAL", "/arkham/executeGameEventFlag", 1],
                 ["CONSUME_EVENT", "$CARD", "$EVENT", "$ABILITY"]
             ]
         },
@@ -51,7 +51,7 @@
             "args": ["$EVENT"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CAN_FINISH_EVENT.EVENT"],
-                ["EQUAL", "$GAME.arkhamGameEvent{{$EVENT}}", 1]
+                ["EQUAL", "$GAME.arkham.gameEvent{{$EVENT}}", 1]
             ]
         },
         // Finishes game event (sets state to 2) and calls event loop.
@@ -59,7 +59,7 @@
             "args": ["$EVENT"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "FINISH_EVENT.EVENT"],
-                ["SET", "/arkhamGameEvent{{$EVENT}}", 2],
+                ["SET", "/arkham/gameEvent{{$EVENT}}", 2],
                 ["EVENT_LOOP", "$EVENT"]
             ]
         },
@@ -70,11 +70,11 @@
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "EXECUTE_EVENT.EVENT"],
                 ["VALIDATE_NOT_EMPTY", "$DEFAULT_FUNCTION_NAME", "EXECUTE_EVENT.DEFAULT_FUNCTION_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$CANCEL_FUNCTION_NAME", "EXECUTE_EVENT.CANCEL_FUNCTION_NAME"],
-                ["SET", "/arkhamExecuteGameEventDefault", "$DEFAULT_FUNCTION_NAME"],
-                ["SET", "/arkhamExecuteGameEventCancel", "$CANCEL_FUNCTION_NAME"],
-                ["SET", "/arkhamExecuteGameEventFlag", 0],
-                ["INCREASE_VAL", "/arkhamGameEvent{{$EVENT}}Counter", 1],
-                ["SET", "/arkhamGameEvent{{$EVENT}}", 0],
+                ["SET", "/arkham/executeGameEventDefault", "$DEFAULT_FUNCTION_NAME"],
+                ["SET", "/arkham/executeGameEventCancel", "$CANCEL_FUNCTION_NAME"],
+                ["SET", "/arkham/executeGameEventFlag", 0],
+                ["INCREASE_VAL", "/arkham/gameEvent{{$EVENT}}Counter", 1],
+                ["SET", "/arkham/gameEvent{{$EVENT}}", 0],
                 ["EVENT_LOOP", "$EVENT"]
             ]
         },
@@ -86,16 +86,10 @@
                 ["COND",
                     ["CAN_SIGNAL_EVENT", "$EVENT"],
                     ["SIGNAL_EVENT", "$EVENT"],
-                    ["GREATER_THAN", "$GAME.arkhamExecuteGameEventFlag", 0],
-                    [
-                        ["VAR", "$MAP_RESULT", ["MAP", ["LIST", "$GAME.firstPlayer"], "$GAME.arkhamExecuteGameEventCancel"]],
-                        "$MAP_RESULT.[0]"
-                    ],
+                    ["GREATER_THAN", "$GAME.arkham.executeGameEventFlag", 0],
+                    ["$GAME.arkham.executeGameEventCancel", "$GAME.firstPlayer"],
                     ["TRUE"],
-                    [
-                        ["VAR", "$MAP_RESULT", ["MAP", ["LIST", "$GAME.firstPlayer"], "$GAME.arkhamExecuteGameEventDefault"]],
-                        "$MAP_RESULT.[0]"
-                    ]
+                    ["$GAME.arkham.executeGameEventDefault", "$GAME.firstPlayer"]
                 ]
             ]
         },
@@ -105,8 +99,8 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "INIT_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "INIT_PLAYER_EVENT.EVENT"],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}Counter", 1],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 0]
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}Counter", 1],
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}", 0]
             ]
         },
         // Returns true if player event can be signalled (state must be 0).
@@ -115,7 +109,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "CAN_SIGNAL_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CAN_SIGNAL_PLAYER_EVENT.EVENT"],
-                ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", 0]
+                ["EQUAL", "$PLAYER_DATA.$PLAYER.arkham.playerEvent{{$EVENT}}", 0]
             ]
         },
         // Signals player event (sets state to 1).
@@ -124,7 +118,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "SIGNAL_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "SIGNAL_PLAYER_EVENT.EVENT"],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 1]
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}", 1]
             ]
         },
         // Remembers this ability responded to this player event instance (by storing counter) and resets the player event (sets state to 0).
@@ -134,8 +128,8 @@
                 ["VALIDATE_PLAYER", "$PLAYER", "CONSUME_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_NULL", "$CARD", "CONSUME_PLAYER_EVENT.CARD"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CONSUME_PLAYER_EVENT.EVENT"],
-                ["SET", "/cardById/$CARD.id/arkhamAbility{{$ABILITY}}PlayerEvent{{$EVENT}}Counter", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}Counter"],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 0]
+                ["SET", "/cardById/$CARD.id/arkhamAbility{{$ABILITY}}PlayerEvent{{$EVENT}}Counter", "$PLAYER_DATA.$PLAYER.arkham.playerEvent{{$EVENT}}Counter"],
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}", 0]
             ]
         },
         // Increases player event cancel flag and calls CONSUME_PLAYER_EVENT.
@@ -145,7 +139,7 @@
                 ["VALIDATE_PLAYER", "$PLAYER", "CANCEL_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_NULL", "$CARD", "CANCEL_PLAYER_EVENT.CARD"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CANCEL_PLAYER_EVENT.EVENT"],
-                ["INCREASE_VAL", "/playerData/$PLAYER/arkhamExecutePlayerEventFlag", 1],
+                ["INCREASE_VAL", "/playerData/$PLAYER/arkham/executePlayerEventFlag", 1],
                 ["CONSUME_PLAYER_EVENT", "$PLAYER", "$CARD", "$EVENT", "$ABILITY"]
             ]
         },
@@ -155,7 +149,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "CAN_FINISH_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "CAN_FINISH_PLAYER_EVENT.EVENT"],
-                ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", 1]
+                ["EQUAL", "$PLAYER_DATA.$PLAYER.arkham.playerEvent{{$EVENT}}", 1]
             ]
         },
         // Finishes player event (sets state to 2) and calls event loop.
@@ -164,7 +158,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$PLAYER", "FINISH_PLAYER_EVENT.PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "FINISH_PLAYER_EVENT.EVENT"],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 2],
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}", 2],
                 ["PLAYER_EVENT_LOOP", "$PLAYER", "$EVENT"]
             ]
         },
@@ -176,11 +170,11 @@
                 ["VALIDATE_NOT_EMPTY", "$EVENT", "EXECUTE_PLAYER_EVENT.EVENT"],
                 ["VALIDATE_NOT_EMPTY", "$DEFAULT_FUNCTION_NAME", "EXECUTE_PLAYER_EVENT.DEFAULT_FUNCTION_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$CANCEL_FUNCTION_NAME", "EXECUTE_PLAYER_EVENT.CANCEL_FUNCTION_NAME"],
-                ["SET", "/playerData/$PLAYER/arkhamExecutePlayerEventDefault", "$DEFAULT_FUNCTION_NAME"],
-                ["SET", "/playerData/$PLAYER/arkhamExecutePlayerEventCancel", "$CANCEL_FUNCTION_NAME"],
-                ["SET", "/playerData/$PLAYER/arkhamExecutePlayerEventFlag", 0],
-                ["INCREASE_VAL", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}Counter", 1],
-                ["SET", "/playerData/$PLAYER/arkhamPlayerEvent{{$EVENT}}", 0],
+                ["SET", "/playerData/$PLAYER/arkham/executePlayerEventDefault", "$DEFAULT_FUNCTION_NAME"],
+                ["SET", "/playerData/$PLAYER/arkham/executePlayerEventCancel", "$CANCEL_FUNCTION_NAME"],
+                ["SET", "/playerData/$PLAYER/arkham/executePlayerEventFlag", 0],
+                ["INCREASE_VAL", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}Counter", 1],
+                ["SET", "/playerData/$PLAYER/arkham/playerEvent{{$EVENT}}", 0],
                 ["PLAYER_EVENT_LOOP", "$PLAYER", "$EVENT"]
             ]
         },
@@ -193,16 +187,10 @@
                 ["COND",
                     ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER", "$EVENT"],
                     ["SIGNAL_PLAYER_EVENT", "$PLAYER", "$EVENT"],
-                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER.arkhamExecutePlayerEventFlag", 0],
-                    [
-                        ["VAR", "$MAP_RESULT", ["MAP", ["LIST", "$PLAYER"], "$PLAYER_DATA.$PLAYER.arkhamExecutePlayerEventCancel"]],
-                        "$MAP_RESULT.[0]"
-                    ],
+                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER.arkham.executePlayerEventFlag", 0],
+                    ["$PLAYER_DATA.$PLAYER.arkham.executePlayerEventCancel", "$PLAYER"],
                     ["TRUE"],
-                    [
-                        ["VAR", "$MAP_RESULT", ["MAP", ["LIST", "$PLAYER"], "$PLAYER_DATA.$PLAYER.arkhamExecutePlayerEventDefault"]],
-                        "$MAP_RESULT.[0]"
-                    ]
+                    ["$PLAYER_DATA.$PLAYER.arkham.executePlayerEventDefault", "$PLAYER"]
                 ]
             ]
         },
@@ -235,15 +223,15 @@
             ]
         },
         // Extends TRIGGER_IN_PLAY_ANY: game EVENT must happen.
-        // Standard listener: "/arkhamGameEventEVENT"
+        // Standard listener: "/arkham/gameEventEVENT"
         "TRIGGER_ON_EVENT": {
             "args": ["$CARD", "$EVENT", {"$ABILITY": 0}],
             "code": [
                 // Validation skipped.
                 ["AND",
                     ["TRIGGER_IN_PLAY_ANY", "$CARD", "$ABILITY"],
-                    ["EQUAL", "$GAME.arkhamGameEvent{{$EVENT}}", 1],
-                    ["GREATER_THAN", "$GAME.arkhamGameEvent{{$EVENT}}Counter", ["GET_CARD_PROPERTY", "$CARD.id", "arkhamAbility{{$ABILITY}}GameEvent{{$EVENT}}Counter", 0]]
+                    ["EQUAL", "$GAME.arkham.gameEvent{{$EVENT}}", 1],
+                    ["GREATER_THAN", "$GAME.arkham.gameEvent{{$EVENT}}Counter", ["GET_CARD_PROPERTY", "$CARD.id", "arkhamAbility{{$ABILITY}}GameEvent{{$EVENT}}Counter", 0]]
                 ]
             ]
         },
@@ -260,16 +248,16 @@
             ]
         },
         // Extends TRIGGER_IN_PLAY: player EVENT must happen for PLAYER, CARD must be controlled by PLAYER.
-        // Standard listener: "/playerData/*/arkhamPlayerEventEVENT"
+        // Standard listener: "/playerData/*/arkham/playerEventEVENT"
         "TRIGGER_ON_PLAYER_EVENT": {
             "args": ["$PLAYER", "$CARD", "$EVENT", {"$ABILITY": 0}],
             "code": [
                 // Validation skipped.
                 ["AND",
                     ["TRIGGER_IN_PLAY", "$CARD", "$ABILITY"],
-                    ["EQUAL", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}", 1],
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER.arkham.playerEvent{{$EVENT}}", 1],
                     ["EQUAL", "$CARD.controller", "$PLAYER"],
-                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER.arkhamPlayerEvent{{$EVENT}}Counter", ["GET_CARD_PROPERTY", "$CARD.id", "arkhamAbility{{$ABILITY}}PlayerEvent{{$EVENT}}Counter", 0]]
+                    ["GREATER_THAN", "$PLAYER_DATA.$PLAYER.arkham.playerEvent{{$EVENT}}Counter", ["GET_CARD_PROPERTY", "$CARD.id", "arkhamAbility{{$ABILITY}}PlayerEvent{{$EVENT}}Counter", 0]]
                 ]
             ]
         },
@@ -297,7 +285,7 @@
             "eventsEndBeforeDraw": {
                 "type": "trigger",
                 "priority": 1000,
-                "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                 "condition": ["CAN_FINISH_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
                 "then": [
                     ["FINISH_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"]
@@ -306,7 +294,7 @@
             "eventsEndDraw": {
                 "type": "trigger",
                 "priority": 1000,
-                "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                 "condition": ["CAN_FINISH_PLAYER_EVENT", "$TARGET.id", "Draw"],
                 "then": [
                     ["FINISH_PLAYER_EVENT", "$TARGET.id", "Draw"]
@@ -315,7 +303,7 @@
             "eventsEndAfterDraw": {
                 "type": "trigger",
                 "priority": 1000,
-                "listenTo": ["/playerData/*/arkhamPlayerEventAfterDraw"],
+                "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
                 "condition": ["CAN_FINISH_PLAYER_EVENT", "$TARGET.id", "AfterDraw"],
                 "then": [
                     ["FINISH_PLAYER_EVENT", "$TARGET.id", "AfterDraw"]
@@ -324,7 +312,7 @@
             "eventsEndUpkeepDraw": {
                 "type": "trigger",
                 "priority": 1000,
-                "listenTo": ["/playerData/*/arkhamPlayerEventUpkeepDraw"],
+                "listenTo": ["/playerData/*/arkham/playerEventUpkeepDraw"],
                 "condition": ["CAN_FINISH_PLAYER_EVENT", "$TARGET.id", "UpkeepDraw"],
                 "then": [
                     ["FINISH_PLAYER_EVENT", "$TARGET.id", "UpkeepDraw"]

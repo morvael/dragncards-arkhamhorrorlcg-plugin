@@ -56,9 +56,9 @@
         ],
         "Return to Lost in Time and Space Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["DO_CREATE_STORY_CARD_SCN", "Into the Beyond (v. II)", "51055", 1, "sharedActStory"]
                 ],
                 ["TRUE"],

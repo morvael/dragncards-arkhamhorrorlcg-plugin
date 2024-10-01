@@ -112,30 +112,30 @@
             ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Rivertown", 1],
             ["DO_LOAD_N_CARDS_SCN", "Return to The Midnight Masks - Miskatonic University", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
-            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkham.numPlayers", 1], 1, [
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Disciple of the Devourer", "$SPAWN_SITES.[$I]", 3, 3, 0],
                 ["DO_PLACE_DOOM_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "Return to The Midnight Masks Scenario Question 1"]
         ],
         "Return to The Midnight Masks Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_DELETE_LOCATION_SCN", "Your House"],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3, 0]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "Return to The Midnight Masks Scenario Question 2"]
         ],
         "Return to The Midnight Masks Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Ghoul Priest", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],
