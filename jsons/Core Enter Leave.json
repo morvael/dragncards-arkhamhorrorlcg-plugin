@@ -131,7 +131,8 @@
                         ["IN_STRING", "$NEW_GROUP.groupType", "aside"],
                         ["IN_STRING", "$NEW_GROUP.groupType", "removed"],
                         ["IN_STRING", "$NEW_GROUP.groupType", "exiled"],
-                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"]
+                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
                     ],
                     0,
                     ["TRUE"],
@@ -164,7 +165,8 @@
                     ["AND",
                         ["OR",
                             ["IN_STRING", "$OLD_GROUP.groupType", "deck"],
-                            ["IN_STRING", "$OLD_GROUP.groupType", "hand"]
+                            ["IN_STRING", "$OLD_GROUP.groupType", "hand"],
+                            ["IN_STRING", "$OLD_GROUP.groupType", "selection"]
                         ],
                         ["OR",
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
@@ -184,7 +186,8 @@
                 ["COND",
                     ["OR",
                         ["IN_STRING", "$NEW_GROUP.groupType", "deck"],
-                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
                     ],
                     "B",
                     ["OR",
@@ -273,6 +276,7 @@
                 ["COND",
                     ["OR",
                         ["EQUAL", "$NEW_GROUP.id", "{{$TARGET_PLAYER}}Hand"],
+                        ["EQUAL", "$NEW_GROUP.id", "{{$TARGET_PLAYER}}Selection"],
                         ["AND",
                             ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.browseGroup.id", "$NEW_GROUP.id"],
                             ["IN_STRING", "$NEW_GROUP.groupType", "deck"]
@@ -401,7 +405,10 @@
         "GET_DESIRED_IN_HAND": {
             "args": ["$TARGET_CARD", "$NEW_GROUP"],
             "code": [
-                ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+                ["OR",
+                    ["IN_STRING", "$NEW_GROUP.groupType", "hand"],
+                    ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
+                ]
             ]
         },
         "CAN_CHANGE_IN_HAND": {

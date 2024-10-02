@@ -234,8 +234,8 @@
                 ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
             ]
         },
+        //Returns list of cards in given group targeted by given player.
         "GET_TARGETED_CARDS_IN_GROUP": {
-            "_comment": "Returns list of cards in given group targeted by given player.",
             "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
             "code": [
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
@@ -243,6 +243,18 @@
                 ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
                     ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
+                ]]
+            ]
+        },
+        //Returns list of cards in given group not targeted by given player.
+        "GET_NOT_TARGETED_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGETING_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["NOT_EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
                 ]]
             ]
         },

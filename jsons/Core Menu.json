@@ -562,6 +562,17 @@
                 ]
             },
             {
+                "label": "id:sendCardToHandMenu",
+                "actionList": "sendCardToHand",
+                "showIf": ["AND",
+                    ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:replaceLocationMenu",
                 "actionList": "replaceLocation",
                 "showIf": ["AND",

@@ -194,9 +194,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay", "your maximum hand size is increased by 2.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
                         ]
                     }
                 }
@@ -207,9 +207,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 1, "$THIS.inPlay", "your maximum hand size is increased by 1.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 1, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 1.", null]
                         ]
                     }
                 }
@@ -220,9 +220,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay", "your maximum hand size is increased by 2.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
                         ]
                     }
                 }

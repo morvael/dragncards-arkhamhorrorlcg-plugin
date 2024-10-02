@@ -33,7 +33,7 @@
                 ["COND",
                     ["CAN_ATTACH_CARD_FACEDOWN", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
                     [
-                        ["LOG", "└── {{$ALIAS_N}} wants to attach {{$ACTIVE_FACE.name}}."],
+                        ["LOG", "└── {{$ALIAS_N}} wants to attach {{$ACTIVE_FACE.name}} facedown."],
                         ["SET", "/cardById/$ACTIVE_CARD_ID/borderColor", "LightSteelBlue"],
                         ["SET", "/playerData/$PLAYER_N/cardToBeAttachedFacedownId", "$ACTIVE_CARD_ID"]
                     ],
@@ -87,6 +87,14 @@
                 ["DO_DETACH_CARD", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
                 ["TRUE"],
                 ["LOG", "└── You cannot detach {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "sendCardToHand": [
+            ["COND",
+                ["CAN_SEND_CARD_TO_HAND", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["DO_SEND_CARD_TO_HAND", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot take {{$ACTIVE_FACE.name}} into hand, {{$ALIAS_N}}."]
             ]
         ],
         "replaceLocation": [
@@ -463,6 +471,35 @@
                 ]
             ]
         },
+        "CAN_SEND_CARD_TO_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SEND_CARD_TO_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SEND_CARD_TO_HAND.TARGET_CARD_ID"]],
+                ["AND",
+                    ["GREATER_THAN", "$TARGET_CARD.cardIndex", 0],
+                    ["OR",
+                        ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                        ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"]
+                    ]
+                ]
+            ]
+        },
+        "DO_SEND_CARD_TO_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SEND_CARD_TO_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SEND_CARD_TO_HAND.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SEND_CARD_TO_HAND.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SEND_CARD_TO_HAND", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "take {{$TARGET_CARD.currentFace.name}} into hand.", "takes {{$TARGET_CARD.currentFace.name}} into hand."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], -1]
+                    ]
+                ]
+            ]
+        },
         "PRIVATE_DO_REPLACE_CARD_FULLY": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_CARD", "$REPLACED_CARD_ID", "$REPLACED_CARD", "$LOG_EVENT", "$ACTOR_PLAYER", "$FLIP_LOCATION"],
             "code": [
@@ -675,6 +712,9 @@
         },
         "detachCardMenu": {
             "English": "Detach (D)"
+        },
+        "sendCardToHandMenu": {
+            "English": "Take into hand"
         },
         "replaceLocation": {
             "English": "Replace"

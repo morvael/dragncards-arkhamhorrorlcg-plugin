@@ -810,6 +810,7 @@
                                     ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                                     ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
                                     ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
+                                    ["VAR", "$PLAYER_I_EXTRA_DECK", ["GET_CONTROLLER_EXTRA_DECK", "$PLAYER_I"]],
                                     ["VAR", "$PLAYER_I_ALIAS", ["GET_ALIAS", "$PLAYER_I"]],
                                     ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                         ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
@@ -824,6 +825,7 @@
                                     ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                         ["OR",
                                             ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                            ["EQUAL", "$CARD.groupId", "$PLAYER_I_EXTRA_DECK"],
                                             ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"]
                                         ],
                                         ["EQUAL", "$CARD.sides.A.hasBonded", true]

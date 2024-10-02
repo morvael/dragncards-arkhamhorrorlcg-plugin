@@ -178,7 +178,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Gate Box: Worlds within Worlds in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Gate Box: Worlds within Worlds in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Gate Box"]
                         ]
                     }
@@ -190,9 +190,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -3, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -3, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", -3, "$THIS.inPlay", "your maximum hand size is reduced by 3.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -3, "$THIS.inPlay", "{2:P}'s maximum hand size is reduced by 3.", null]
                         ]
                     },
                     "06005b": { //During each upkeep phase, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.
@@ -202,7 +202,7 @@
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
                         "then": [
                             ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, instead of drawing 1 card, discard all non-weakness cards in your hand and draw until you have 5 cards in hand.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: instead of drawing 1 card, {1:P} discards all non-weakness cards in their hand and draws until they have 5 cards in hand.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET.id"]],
                             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                                 ["EQUAL", "$CARD.groupId", "$HAND_ID"],
@@ -233,9 +233,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamHandSizeCountUnique", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "handSizeCountUnique", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamHandSizeCountUnique", 1, "$THIS.inPlay", "only the first copy of each card in your hand counts toward your maximum hand size.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "handSizeCountUnique", 1, "$THIS.inPlay", "Only the first copy of each card in {2:P}'s hand counts toward their maximum hand size.", null]
                         ]
                     }
                 }

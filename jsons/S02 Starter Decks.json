@@ -171,9 +171,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
@@ -184,9 +184,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
@@ -197,9 +197,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamUpkeepResourcesMod", 1, "$THIS.inPlay", "you collect 1 additional resource during each upkeep phase.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
@@ -213,7 +213,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
@@ -228,7 +228,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
@@ -240,9 +240,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamMaxHandSize", 2, "$THIS.inPlay", "your maximum hand size is increased by 2.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
                         ]
                     }
                 }
@@ -253,9 +253,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingResourcesMod", -2, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "startingResourcesMod", -2, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingResourcesMod", -2, "$THIS.inPlay", "you start each game with 2 fewer resources.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "startingResourcesMod", -2, "$THIS.inPlay", "{2:P} starts each game with 2 fewer resources.", null]
                         ]
                     }
                 }

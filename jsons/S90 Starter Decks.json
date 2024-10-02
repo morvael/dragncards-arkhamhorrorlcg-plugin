@@ -36,7 +36,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
                         ]
                     }
@@ -51,7 +51,7 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you begin the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
                         ]
                     }
@@ -98,120 +98,77 @@
                 ["LENGTH", "$SELECTED_CARDS"]
             ]
         },
+        "FILTER_PARALLEL_JIM_CULVER_CARDS": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.xp", null],
+                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
+                    ]
+                ]]
+            ]
+        },
         "DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
             "args": ["$THIS", "$TARGET"],
             "code": [
                 ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$VENGEFUL_SHADE", ["GET_NAMED_DECK_CARD", "90053", "$EXTRA_DECK_GROUP_ID"]], //Vengeful Shade
+                ["VAR", "$EXISTING_CARDS", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$EXTRA_DECK_GROUP_ID"]],
+                ["VAR", "$EXISTING_COUNT", ["LENGTH", "$EXISTING_CARDS"]],
                 ["COND",
-                    ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
-                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"],
+                    ["AND",
+                        ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
+                        ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                        ["EQUAL", "$EXISTING_COUNT", 9],
+                        ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$EXTRA_DECK_GROUP_ID"], 10]
+                    ],
+                    [
+                        //extra_deck loaded from meta data is a correct spirit deck, so choosing can be skipped
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", true, null],
+                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                    ],
                     ["TRUE"],
                     [
-                        ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 9 different Ally assets from any class level 0-2 and shuffle them into a separate “spirit deck”.", ["LIST", "$THIS", "$THIS.controller"]],
-                        ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
-                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
+                        ["DO_FSYSLOG", "{0:C}: {1:P} chooses 9 different Ally assets from any class level 0-2 and shuffles them into their spirit deck.", ["LIST", "$THIS", "$THIS.controller"]],
                         ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
-                        ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
-                        ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                        ["VAR", "$VENGEFUL_SHADE", ["ONE_CARD", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
-                            ["EQUAL", "$CARD.sides.A.databaseId", "90053"] //Vengeful Shade
-                        ]]],
-                        ["COND",
-                            ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
-                            ["MOVE_CARD", "$VENGEFUL_SHADE.id", "$EXTRA_GROUP_ID", -1]
-                        ],
-                        ["VAR", "$SELECTED_CARDS", ["FILTER_UNIQUE_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.groupId", "$SIDE_DECK_GROUP_ID"],
-                            ["EQUAL", "$CARD.sides.A.type", "Asset"],
-                            ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
-                            ["OR",
-                                ["EQUAL", "$CARD.sides.A.xp", null],
-                                ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
-                            ]
-                        ]]]],
-                        ["COND",
-                            ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 9],
-                            [
-                                ["DO_FSYSLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
-                                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                    ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
-                                ]],
-                                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
-                                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
-                            ],
-                            ["TRUE"],
-                            [
-                                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                    ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
-                                ]],
-                                ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
-                            ]
-                        ]
+                        // quietly move all cards present in extra deck to side deck
+                        ["VAR", "$ALL_EXISTING_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$EXTRA_DECK_GROUP_ID"]],
+                        ["FOR_EACH_VAL", "$CARD", "$ALL_EXISTING_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$SIDE_DECK_GROUP_ID", -1]
+                        ]],
+                        // show extra deck
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
+                        // move Vengeful Shade from side deck to extra deck
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "90053", "$SIDE_DECK_GROUP_ID", 1, "$EXTRA_DECK_GROUP_ID", true, null], //Vengeful Shade
+                        // show selection of valid cards from side deck
+                        ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$SIDE_DECK_GROUP_ID",
+                            ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$SIDE_DECK_GROUP_ID"],
+                            null,
+                            "Target {0} different Ally assets from any class level 0-2 to shuffle them into your spirit deck.",
+                            9, 9, true, "PARALLEL_JIM_CULVER_SELECTION_CALLBACK", "$THIS.id"]
                     ]
                 ]
             ]
         },
-        "DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK": {
-            "args": ["$TARGET_PLAYER"],
+        "PARALLEL_JIM_CULVER_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK.TARGET_PLAYER"],
-                ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_GROUP_ID", "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    [
-                        ["DO_FLOG", "{0:P} places different Ally assets from any class level 0-2 in their “spirit deck”.", ["LIST", "$TARGET_PLAYER"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["COND",
-                                ["AND",
-                                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
-                                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
-                                    ["OR",
-                                        ["EQUAL", "$CARD.sides.A.xp", null],
-                                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
-                                    ],
-                                    ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 10]
-                                ],
-                                ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
-                            ]
-                        ]]
-                    ]
-                ],
-                ["COND",
-                    ["AND",
-                        ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 10],
-                        ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$HAND_GROUP_ID.stackIds"], 0]
-                    ],
-                    ["PROMPT", "$TARGET_PLAYER", "decideAboutParallelJimCulverHand", ["DO_FORMAT_STRING", "{0} different Ally asset{0:S} from any class level 0-2", ["LIST", ["SUBTRACT", 10, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]],
-                    ["TRUE"],
-                    [
-                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
-                        ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$HAND_GROUP_ID"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$SIDE_DECK_GROUP_ID", -1]
-                        ]],
-                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
-                    ]
-                ]
-            ]
-        }
-    },
-    "prompts": {
-        "decideAboutParallelJimCulverHand": {
-            "args": ["$MESSAGE"],
-            "message": "Target cards in hand. First {{$MESSAGE}} will be placed in your “spirit deck”.",
-            "options": [
-                {
-                    "label": "Proceed.",
-                    "hotkey": "P",
-                    "code": [
-                        ["DO_PLACE_ALLY_ASSETS_IN_SPIRIT_DECK", "$PLAYER_N"]
-                    ]
-                }
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["DO_FSYSLOG", "{0:P} shuffles {1} Ally asset{1:S} into their spirit deck.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$CARD.id", "$CARD.groupId", 1, "$EXTRA_DECK_GROUP_ID", false, null]
+                ]],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", false, null],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
             ]
         }
     }

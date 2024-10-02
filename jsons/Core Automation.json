@@ -316,6 +316,13 @@
                 "{{$CONTROLLER}}Hand"
             ]
         },
+        "GET_CONTROLLER_SELECTION": {
+            "args": ["$CONTROLLER"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_SELECTION.CONTROLLER"],
+                "{{$CONTROLLER}}Selection"
+            ]
+        },
         "GET_CONTROLLER_EXTRA_DECK": {
             "args": ["$CONTROLLER"],
             "code": [

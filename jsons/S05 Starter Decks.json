@@ -216,44 +216,17 @@
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
                             ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate “hunch deck”.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} chooses 11 Insight events from their deck (one of which must be Unsolved Case) and shuffles them into their hunch deck.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
-                            ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
-                            ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
-                            ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                            ["VAR", "$UNSOLVED_CASE", ["ONE_CARD", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
-                                ["EQUAL", "$CARD.sides.A.databaseId", "05010"] //Unsolved Case
-                            ]]],
-                            ["COND",
-                                ["NOT_EQUAL", "$UNSOLVED_CASE", null],
-                                ["MOVE_CARD", "$UNSOLVED_CASE.id", "$EXTRA_GROUP_ID", -1]
-                            ],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
-                                ["EQUAL", "$CARD.sides.A.type", "Event"],
-                                ["IN_STRING", "$CARD.sides.A.traits", "Insight."]
-                            ]]],
-                            ["COND",
-                                ["LESS_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 10],
-                                [
-                                    ["DO_FSYSLOG", "{0:P} places Insight events in their “hunch deck”.", ["LIST", "$TARGET_PLAYER"]],
-                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                        ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
-                                    ]],
-                                    ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
-                                    ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$DECK_GROUP_ID", true, null],
-                                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
-                                ],
-                                ["TRUE"],
-                                [
-                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                        ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
-                                    ]],
-                                    ["PROMPT", "$TARGET_PLAYER", "decideAboutJoeDiamondHand", ["DO_FORMAT_STRING", "{0} Insight event{0:S}", ["LIST", ["SUBTRACT", 11, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]]
-                                ]
-                            ]
+                            ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                            ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
+                            ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "05010", "$DECK_GROUP_ID", 1, "$EXTRA_DECK_GROUP_ID", true, null], //Unsolved Case
+                            ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                                ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", ["LIST", "Event"], ["LIST", "Insight."], null],
+                                "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.05002",
+                                "Target {0} Insight events to shuffle them into your hunch deck.",
+                                10, 10, false, "JOE_DIAMOND_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     },
                     "05002b": { //Forced - When the investigation phase begins: Reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost. If it is still revealed at the end of the phase, shuffle it back into your hunch deck.
@@ -266,9 +239,9 @@
                             ["EQUAL", ["GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE", "$THIS"], "B"]
                         ],
                         "then": [
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, reveal the top card of your hunch deck. Until the end of the phase, you may play that card as if it were in your hand, at -2 cost.", ["LIST", "$THIS", "$THIS.controller"]],
-                            ["VAR", "$EXTRA_DECK_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
-                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_ID"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} reveals the top card of their hunch deck. Until the end of the phase, they may play that card as if it were in their hand, at -2 cost.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
+                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_GROUP_ID"]],
                             ["SET", "/cardById/$TOP_CARD.id/currentSide", "A"]
                         ]
                     },
@@ -282,11 +255,11 @@
                             ["EQUAL", ["GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE", "$THIS"], "A"]
                         ],
                         "then": [
-                            ["DO_FSYSLOG", "{0:C}: {1:P}, shuffle the revealed top card of your hunch deck back into your hunch deck.", ["LIST", "$THIS", "$THIS.controller"]],
-                            ["VAR", "$EXTRA_DECK_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
-                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_ID"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} shuffles the revealed top card of their hunch deck back into it.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$THIS.controller"]],
+                            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "$EXTRA_DECK_GROUP_ID"]],
                             ["SET", "/cardById/$TOP_CARD.id/currentSide", "B"],
-                            ["DO_SHUFFLE_GROUP", "$THIS.controller", "$EXTRA_DECK_ID", true, null]
+                            ["DO_SHUFFLE_GROUP", "$THIS.controller", "$EXTRA_DECK_GROUP_ID", true, null]
                         ]
                     }
                 }
@@ -310,9 +283,9 @@
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingCardsMod", 1, "$THIS.inPlay"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "startingCardsMod", 1, "$THIS.inPlay"],
                         "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "arkhamStartingCardsMod", 1, "$THIS.inPlay", "you begin each game with 1 additional card in your opening hand.", null]
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "startingCardsMod", 1, "$THIS.inPlay", "{2:P} begins each game with 1 additional card in their opening hand.", null]
                         ]
                     }
                 }
@@ -320,6 +293,21 @@
         }
     },
     "functions": {
+        "JOE_DIAMOND_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "JOE_DIAMOND_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "JOE_DIAMOND_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "JOE_DIAMOND_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["DO_FSYSLOG", "{0:P} shuffles {1} Insight event{1:S} into their hunch deck.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$CARD.id", "$CARD.groupId", 1, "$EXTRA_DECK_GROUP_ID", false, null]
+                ]],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", false, null],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        },
         "GET_JOE_DIAMOND_EXTRA_DECK_TOP_CARD_SIDE": {
             "args": ["$THIS"],
             "code": [
@@ -332,46 +320,6 @@
                 ]
             ]
         },
-        "DO_PLACE_INSIGHT_EVENTS_IN_HUNCH_DECK": {
-            "args": ["$TARGET_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_INSIGHT_EVENTS_IN_HUNCH_DECK.TARGET_PLAYER"],
-                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$EXTRA_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_GROUP_ID", "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    [
-                        ["DO_FLOG", "{0:P} places Insight events in their “hunch deck”.", ["LIST", "$TARGET_PLAYER"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["COND",
-                                ["AND",
-                                    ["EQUAL", "$CARD.sides.A.type", "Event"],
-                                    ["IN_STRING", "$CARD.sides.A.traits", "Insight."],
-                                    ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 11]
-                                ],
-                                ["MOVE_CARD", "$CARD.id", "$EXTRA_GROUP_ID", -1]
-                            ]
-                        ]]
-                    ]
-                ],
-                ["COND",
-                    ["AND",
-                        ["LESS_THAN", ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"], 11],
-                        ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$HAND_GROUP_ID.stackIds"], 0]
-                    ],
-                    ["PROMPT", "$TARGET_PLAYER", "decideAboutJoeDiamondHand", ["DO_FORMAT_STRING", "{0} Insight event{0:S}", ["LIST", ["SUBTRACT", 11, ["LENGTH", "$GROUP_BY_ID.$EXTRA_GROUP_ID.stackIds"]]]]],
-                    ["TRUE"],
-                    [
-                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_GROUP_ID", true, null],
-                        ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$HAND_GROUP_ID", "$DECK_GROUP_ID", true, null],
-                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
-                    ]
-                ]
-            ]
-        },
         "GET_DIANA_STANLEY_BONUS": {
             "args": ["$THIS"],
             "code": [
@@ -381,21 +329,6 @@
                     ["EQUAL", "$CARD.attachmentDirection", "behind"]
                 ]]],
                 ["ADD", 1, ["LENGTH", "$SELECTED_CARDS"]]
-            ]
-        }
-    },
-    "prompts": {
-        "decideAboutJoeDiamondHand": {
-            "args": ["$MESSAGE"],
-            "message": "Target cards in hand. First {{$MESSAGE}} will be placed in your “hunch deck”.",
-            "options": [
-                {
-                    "label": "Proceed.",
-                    "hotkey": "P",
-                    "code": [
-                        ["DO_PLACE_INSIGHT_EVENTS_IN_HUNCH_DECK", "$PLAYER_N"]
-                    ]
-                }
             ]
         }
     }

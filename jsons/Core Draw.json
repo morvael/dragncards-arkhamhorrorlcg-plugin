@@ -249,7 +249,10 @@
                 ["AND",
                     ["OR",
                         ["AND",
-                            ["EQUAL", "$SOURCE_GROUP.groupType", "hand"], //shuffle any hand into player's deck / extra deck
+                            ["OR", //shuffle any hand/selection into player's deck / extra deck
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "hand"],
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "selection"]
+                            ],
                             ["OR",
                                 ["EQUAL", "$TARGET_GROUP.groupType", "deckP"],
                                 ["EQUAL", "$TARGET_GROUP.groupType", "deckE"]

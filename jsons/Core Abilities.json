@@ -44,9 +44,9 @@
                     [
                         ["COND",
                             ["NOT_EQUAL", "$OFF_MESSAGE", null],
-                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
+                            ["DO_FSYSLOG", "{1:C}: {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
                         ],
-                        ["DECREASE_VAL", "/playerData/$CURRENT_CONTROLLER/$VARIABLE_NAME", "$CURRENT_VALUE"],
+                        ["DECREASE_VAL", "/playerData/$CURRENT_CONTROLLER/arkham/$VARIABLE_NAME", "$CURRENT_VALUE"],
                         ["UNSET", "/cardById/$THIS.id/$VALUE_VARIABLE"],
                         ["UNSET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE"],
                         ["UPDATE_VAR", "$CURRENT_VALUE", 0],
@@ -66,9 +66,9 @@
                     [
                         ["COND",
                             ["NOT_EQUAL", "$ON_MESSAGE", null],
-                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
+                            ["DO_FSYSLOG", "{1:C}: {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
                         ],
-                        ["INCREASE_VAL", "/playerData/$NEW_CONTROLLER/$VARIABLE_NAME", ["SUBTRACT", "$NEW_VALUE", "$CURRENT_VALUE"]],
+                        ["INCREASE_VAL", "/playerData/$NEW_CONTROLLER/arkham/$VARIABLE_NAME", ["SUBTRACT", "$NEW_VALUE", "$CURRENT_VALUE"]],
                         ["SET", "/cardById/$THIS.id/$VALUE_VARIABLE", "$NEW_VALUE"],
                         ["SET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE", "$NEW_CONTROLLER"]
                     ]
@@ -119,12 +119,11 @@
                     [
                         ["COND",
                             ["NOT_EQUAL", "$OFF_MESSAGE", null],
-                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
+                            ["DO_FSYSLOG", "{1:C}: {{$OFF_MESSAGE}}", ["LIST", ["ABS", "$CURRENT_VALUE"], "$THIS", "$CURRENT_CONTROLLER"]]
                         ],
                         ["FOR_EACH_VAL", "$SKILL_NAME", "$SKILL_NAMES", [
                             ["DO_SET_SKILL_BONUS", "$THIS.id", "controller", "$SKILL_NAME", null]
                         ]],
-                        ["DECREASE_VAL", "/playerData/$CURRENT_CONTROLLER/$VARIABLE_NAME", "$CURRENT_VALUE"],
                         ["UNSET", "/cardById/$THIS.id/$VALUE_VARIABLE"],
                         ["UNSET", "/cardById/$THIS.id/$CONTROLLER_VARIABLE"],
                         ["UPDATE_VAR", "$CURRENT_VALUE", 0],
@@ -144,7 +143,7 @@
                     [
                         ["COND",
                             ["NOT_EQUAL", "$ON_MESSAGE", null],
-                            ["DO_FSYSLOG", "{1:C}: {2:P}, {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
+                            ["DO_FSYSLOG", "{1:C}: {{$ON_MESSAGE}}", ["LIST", ["ABS", "$NEW_VALUE"], "$THIS", "$NEW_CONTROLLER"]]
                         ],
                         ["FOR_EACH_VAL", "$SKILL_NAME", "$SKILL_NAMES", [
                             ["DO_SET_SKILL_BONUS", "$THIS.id", "controller", "$SKILL_NAME", "$NEW_VALUE"]
