@@ -65,6 +65,12 @@
                         ]
                     ],
                     [
+                        ["COND",
+                            ["EQUAL", "$SOURCE_CARD_ID", null],
+                            ["DO_FSYSLOG", "{0:P} makes a valid autoselection.", ["LIST", "$TARGET_PLAYER"]],
+                            ["TRUE"],
+                            ["DO_FSYSLOG", "{0:P} makes a valid autoselection for {2:CID}.", ["LIST", "$TARGET_PLAYER", "$SOURCE_CARD_ID"]]
+                        ],
                         ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$SOURCE_GROUP_ID", true, null],
                         ["$CALLBACK_FUNCTION", "$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"]
                     ],
