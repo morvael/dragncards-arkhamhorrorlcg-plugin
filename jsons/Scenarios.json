@@ -153,6 +153,12 @@
                             {"label": "id:inTheClutchesOfChaos", "deckListId": "In the Clutches of Chaos Scenario"},
                             {"label": "id:beforeTheBlackThrone", "deckListId": "Before the Black Throne Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:theDreamEaters",
+                        "deckLists": [
+                            {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"}
+                        ]
                     }
                 ]
             },
@@ -504,6 +510,9 @@
         },
         "theDreamEaters": {
             "English": "The Dream-Eaters"
+        },
+        "beyondTheGatesOfSleep": {
+            "English": "Beyond the Gates of Sleep"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

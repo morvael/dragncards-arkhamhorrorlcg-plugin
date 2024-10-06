@@ -482,8 +482,8 @@
         "CAN_LOOK_AT_TOP_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_LOOK_AT_TOP_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_LOOK_AT_TOP_CARDS.TARGET_GROUP_ID"]],
                 ["AND",
                     ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]

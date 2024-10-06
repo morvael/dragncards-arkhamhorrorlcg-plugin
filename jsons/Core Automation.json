@@ -508,7 +508,13 @@
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["SET", "/playerData/$PLAYER_I/arkham/mythosPhaseCardDrawn", false]
                 ]],
-                ["PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE", null]
+                ["COND",
+                    ["OR",
+                        ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", "sharedEncounterDeck"], 0],
+                        ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", "sharedEncounterDiscard"], 0]
+                    ],
+                    ["PROMPT_NEXT_ACTIVE_PLAYER_MYTHOS_PHASE", null]
+                ]
             ]
         },
         "DO_STEP_I2": {
@@ -904,8 +910,18 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "UPKEEP_DRAW_DONE.TARGET_PLAYER"],
-                ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
-                ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+                ["COND",
+                    ["OR",
+                        ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]], 0],
+                        ["GREATER_THAN", ["GET_ALL_CARDS_IN_GROUP_COUNT", ["GET_CONTROLLER_DISCARD", "$TARGET_PLAYER"]], 0]
+                    ],
+                    [
+                        ["VAR", "$UPKEEP_CARDS", ["GET_UPKEEP_CARDS", "$TARGET_PLAYER", 1]],
+                        ["PROMPT", "$TARGET_PLAYER", "askToDrawPlayerCard", "$UPKEEP_CARDS", ["GET_NUMERIC_LOG", "", "", "$UPKEEP_CARDS", " card", " cards"]]
+                    ],
+                    ["TRUE"],
+                    ["PROMPT_NEXT_ACTIVE_PLAYER", "$TARGET_PLAYER", "askToDrawPlayerCard", "askToGainResource"]
+                ]
             ]
         },
         "UPKEEP_DRAW_CANCELED": {

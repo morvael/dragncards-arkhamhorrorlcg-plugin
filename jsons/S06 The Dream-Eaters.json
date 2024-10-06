@@ -1,0 +1,222 @@
+{
+    "preBuiltDecks": {
+        "Agents of Atlach-Nacha": {
+            "hideFromSearch": true,
+            "label": "Agents of Atlach-Nacha",
+            "cards": [
+                {"databaseId": "06084", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Grey Weaver
+                {"databaseId": "06085", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Will of the Spider-Mother
+            ]
+        },
+        "Agents of Nyarlathotep": {
+            "hideFromSearch": true,
+            "label": "Agents of Nyarlathotep",
+            "cards": [
+                {"databaseId": "06086", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Crawling Mist
+                {"databaseId": "06087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Chaos
+                {"databaseId": "06088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Discord
+                {"databaseId": "06089", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Law of 'Ygiroth: Pandemonium
+            ]
+        },
+        "Whispers of Hypnos": {
+            "hideFromSearch": true,
+            "label": "Whispers of Hypnos",
+            "cards": [
+                {"databaseId": "06090", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Whispers of Hypnos
+            ]
+        },
+        "Creatures of the Underworld": {
+            "hideFromSearch": true,
+            "label": "Creatures of the Underworld",
+            "cards": [
+                {"databaseId": "06091", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Hunting Ghast
+                {"databaseId": "06092", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Lumbering Gug
+            ]
+        },
+        "Dreamer's Curse": {
+            "hideFromSearch": true,
+            "label": "Dreamer's Curse",
+            "cards": [
+                {"databaseId": "06093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Dreamer's Curse
+                {"databaseId": "06094", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Somniphobia
+                {"databaseId": "06095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Deeper Slumber
+            ]
+        },
+        "Dreamlands": {
+            "hideFromSearch": true,
+            "label": "Dreamlands",
+            "cards": [
+                {"databaseId": "06096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Dreamlands Eclipse
+                {"databaseId": "06097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Prismatic Phenomenon
+            ]
+        },
+        "Merging Realities": {
+            "hideFromSearch": true,
+            "label": "Merging Realities",
+            "cards": [
+                {"databaseId": "06098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Night Terrors
+                {"databaseId": "06099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Glimpse of the Underworld
+                {"databaseId": "06100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Threads of Reality
+            ]
+        },
+        "Spiders": {
+            "hideFromSearch": true,
+            "label": "Spiders",
+            "cards": [
+                {"databaseId": "06101", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Spider of Leng
+                {"databaseId": "06102", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Swarm of Spiders
+                {"databaseId": "06103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Sickening Webs
+            ]
+        },
+        "Corsairs": {
+            "hideFromSearch": true,
+            "label": "Corsairs",
+            "cards": [
+                {"databaseId": "06104", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Hunted by Corsairs
+                {"databaseId": "06105", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Corsair of Leng
+            ]
+        },
+        "Zoogs": {
+            "hideFromSearch": true,
+            "label": "Zoogs",
+            "cards": [
+                {"databaseId": "06106", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Furtive Zoog
+                {"databaseId": "06107", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Stealthy Zoog
+                {"databaseId": "06108", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Inconspicuous Zoog
+                {"databaseId": "06109", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Zoog Burrow
+            ]
+        },
+        "The Dream-Quest Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Dream-Quest Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dream-Quest Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "The Dream-Quest Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dream-Quest Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Dream-Quest Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Dream-Quest Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Dream-Quest Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Web of Dreams Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Web of Dreams Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Web of Dreams Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "The Web of Dreams Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Web of Dreams Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Web of Dreams Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Web of Dreams Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Web of Dreams Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}

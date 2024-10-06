@@ -1,15 +1,15 @@
 {
     "functions": {
-        // returns true if any of the values present on TRAITS_LIST is contained by TRAITS (null TRAITS contain nothing)
-        "IN_TRAITS_LIST": {
-            "args": ["$TRAITS_LIST", "$TRAITS"],
+        // returns true if any of the values present on TRAIT_LIST is contained by TRAITS (null TRAITS contain nothing)
+        "IN_TRAIT_LIST": {
+            "args": ["$TRAIT_LIST", "$TRAITS"],
             "code": [
-                ["VALIDATE_NOT_NULL", "$TRAITS_LIST", "IN_TRAITS_LIST.TRAITS_LIST"],
+                ["VALIDATE_NOT_NULL", "$TRAIT_LIST", "IN_TRAIT_LIST.TRAIT_LIST"],
                 ["VAR", "$RESULT", false],
                 ["COND",
                     ["NOT_EQUAL", "$TRAITS", null],
                     [
-                        ["FOR_EACH_VAL", "$TRAIT", "$TRAITS_LIST", [
+                        ["FOR_EACH_VAL", "$TRAIT", "$TRAIT_LIST", [
                             ["COND",
                                 ["IN_STRING", "$TRAITS", "$TRAIT"],
                                 ["UPDATE_VAR", "$RESULT", true]
@@ -22,18 +22,26 @@
         },
         // returns a list of cards from SOURCE_GROUP_ID that match filter params
         "GET_FILTERED_CARDS": {
-            "args": ["$SOURCE_GROUP_ID", "$TYPES_LIST", "$TRAITS_LIST", "$EXCLUDED_TITLES_LIST"],
+            "args": ["$SOURCE_GROUP_ID", "$FACTION_LIST", "$TYPE_LIST", "$SUBTYPE_LIST", "$TRAIT_LIST", "$EXCLUDED_TITLES_LIST"],
             "code": [
                 ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "GET_FILTERED_CARDS.SOURCE_GROUP_ID"]],
                 ["VAR", "$FILTERED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$SOURCE_GROUP_ID"],
                     ["OR",
-                        ["EQUAL", "$TYPES_LIST", null],
-                        ["IN_LIST", "$TYPES_LIST", "$CARD.sides.A.type"]
+                        ["EQUAL", "$FACTION_LIST", null],
+                        ["IN_TRAIT_LIST", "$FACTION_LIST", "$CARD.sides.A.faction"]
                     ],
                     ["OR",
-                        ["EQUAL", "$TRAITS_LIST", null],
-                        ["IN_TRAITS_LIST", "$TRAITS_LIST", "$CARD.sides.A.traits"]
+                        ["EQUAL", "$TYPE_LIST", null],
+                        ["IN_LIST", "$TYPE_LIST", "$CARD.sides.A.type"]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$SUBTYPE_LIST", null],
+                        ["IN_LIST", "$SUBTYPE_LIST", "$CARD.sides.A.subtype"]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$TRAIT_LIST", null],
+                        ["IN_TRAIT_LIST", "$TRAIT_LIST", "$CARD.sides.A.traits"]
                     ],
                     ["OR",
                         ["EQUAL", "$EXCLUDED_TITLES_LIST", null],

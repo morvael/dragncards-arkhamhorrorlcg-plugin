@@ -295,6 +295,12 @@
                 ]
             ]
         },
+        "DO_DELETE_CARD_SCN": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["DO_DELETE_CARD", "$GAME.firstPlayer", "$TARGET_CARD_ID", true, null]
+            ]
+        },
         "DO_DELETE_LOCATION": {
             "args": ["$TARGET_PLAYER", "$LOCATION_CARD_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -771,6 +777,7 @@
                                 ["SET", "/arkham/scenarioName", "$SCENARIO_NAME"],
                                 ["SET", "/arkham/scenarioDifficulty", "Standard"],
                                 ["SET", "/arkham/scenarioAction", "$SCENARIO_ACTION"],
+                                ["SET", "/arkham/scenarioActionAfterStep7", null],
                                 ["SET", "/arkham/numScenarioQuestions", 0],
                                 ["SET", "/arkham/scenarioQuestionIndex", 0],
                                 ["SET", "/arkham/numPlayers", "$GAME.numPlayers"],
@@ -940,9 +947,7 @@
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
                 ["SET", "/arkham/scenarioDifficulty", "$DIFFICULTY_NAME"],
                 ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkham.chaosBagCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["DRAW_STARTING_HAND", "$PLAYER_I"]
-                ]]
+                ["GAIN_STARTING_RESOURCES"]
             ]
         },
         "GET_STARTING_RESOURCES": {
@@ -1015,16 +1020,31 @@
                 ]
             ]
         },
-        "DRAW_STARTING_HAND": {
-            "args": ["$PLAYER_I"],
+        "GAIN_STARTING_RESOURCES": {
+            "args": [],
             "code": [
-                ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
+                    ["COND",
+                        ["GREATER_THAN", "$STARTING_RESOURCES", 0],
+                        ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
+                    ]
+                ]],
                 ["COND",
-                    ["GREATER_THAN", "$STARTING_RESOURCES", 0],
-                    ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
-                ],
-                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
+                    ["NOT_EQUAL", "$GAME.arkham.scenarioActionAfterStep7", null],
+                    ["ACTION_LIST", "$GAME.arkham.scenarioActionAfterStep7"],
+                    ["TRUE"],
+                    ["DRAW_STARTING_HANDS"]
+                ]
+            ]
+        },
+        "DRAW_STARTING_HANDS": {
+            "args": [],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
+                    ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
+                ]]
             ]
         },
         "DEFAULT_DRAW_STARTING_HAND": {

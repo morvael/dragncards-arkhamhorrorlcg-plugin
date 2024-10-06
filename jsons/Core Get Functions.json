@@ -396,6 +396,17 @@
                 ]],
                 "$RESULT"
             ]
+        },
+        "BUMP_AND_ROTATE": {
+            "args": ["$NUM", "$MAX"],
+            "code": [
+                ["INCREASE_VAR", "$NUM", 1],
+                ["COND",
+                    ["GREATER_THAN", "$NUM", "$MAX"],
+                    ["UPDATE_VAR", "$NUM", 0]
+                ],
+                "$NUM"
+            ]
         }
     }
 }
