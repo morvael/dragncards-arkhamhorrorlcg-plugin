@@ -51,11 +51,11 @@
                 ["DO_CREATE_CARDS_SCN", "Enchanted Woods", "$ENCHANTED_WOODS.[$I]", 1, "sharedNotInPlay"]
             ]],
             ["VAR", "$ENCHANTED_WOODS_CIRCLE", ["LIST", "06054", "06056", "06050", "06055", "06052", "06053", "06051"]], //Enchanted Woods: The Moon-Tree, Enchanted Woods: Lost Woods, Enchanted Woods: Mystical Forest, Enchanted Woods: Fungal Forest, Enchanted Woods: Great Stone Circle, Enchanted Woods: Stone Trapdoor, Enchanted Woods: Village of Zoogs
-            ["VAR", "$ENCHANTED_WOODS_LEFT", ["LIST", 55, 75, 75, 75, 55, 35, 35]],
-            ["VAR", "$ENCHANTED_WOODS_TOP", ["LIST", 10, 10, 43, 76, 76, 76, 43]],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 55, 75, 75, 75, 55, 35, 35]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 10, 43, 76, 76, 76, 43]],
             ["VAR", "$J", ["RANDOM_INT", 0, 6]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
-                ["DO_SET_SPAWN_LOCATION", "$ENCHANTED_WOODS_CIRCLE.[$J]", "$ENCHANTED_WOODS_LEFT.[$I]", "$ENCHANTED_WOODS_TOP.[$I]"],
+                ["DO_SET_SPAWN_LOCATION", "$ENCHANTED_WOODS_CIRCLE.[$J]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"],
                 ["UPDATE_VAR", "$J", ["BUMP_AND_ROTATE", "$J", 6]]
             ]],
             ["DO_DELETE_CARD_SCN", ["GET_NAMED_CARD_ID", "$ENCHANTED_WOODS.[6]"]],
