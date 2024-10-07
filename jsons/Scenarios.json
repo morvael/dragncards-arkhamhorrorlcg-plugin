@@ -155,11 +155,17 @@
                         ]
                     },
                     {
-                        "label": "id:theDreamEaters",
+                        "label": "id:theDreamQuest",
                         "deckLists": [
                             {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"},
-                            {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
                             {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"}
+                        ]
+                    },
+                    {
+                        "label": "id:theWebOfDreams",
+                        "deckLists": [
+                            {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
+                            {"label": "id:aThousandShapesOfHorror", "deckListId": "A Thousand Shapes of Horror Scenario"}
                         ]
                     }
                 ]
@@ -513,6 +519,12 @@
         "theDreamEaters": {
             "English": "The Dream-Eaters"
         },
+        "theDreamQuest": {
+            "English": "The Dream-Quest (The Dream-Eaters A)"
+        },
+        "theWebOfDreams": {
+            "English": "The Web of Dreams (The Dream-Eaters B)"
+        },
         "beyondTheGatesOfSleep": {
             "English": "Beyond the Gates of Sleep"
         },
@@ -521,6 +533,9 @@
         },
         "theSearchForKadath": {
             "English": "The Search for Kadath"
+        },
+        "aThousandShapesOfHorror": {
+            "English": "A Thousand Shapes of Horror"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

@@ -1,0 +1,68 @@
+{
+    "preBuiltDecks": {
+        "A Thousand Shapes of Horror Scenario": {
+            "label": "A Thousand Shapes of Horror Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "A Thousand Shapes of Horror", null, "A Thousand Shapes of Horror Scenario Init"]
+            ]
+        },
+        "A Thousand Shapes of Horror": {
+            "hideFromSearch": true,
+            "label": "A Thousand Shapes of Horror",
+            "cards": [
+                {"databaseId": "06168", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //A Thousand Shapes of Horror
+                {"databaseId": "06169a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                            //The House with No Name
+                {"databaseId": "06170", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Thing with No Name
+                {"databaseId": "06171", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Dead with No Name
+                {"databaseId": "06172", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Searching the Unnamable
+                {"databaseId": "06173", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Endless Stairs
+                {"databaseId": "06174", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "79%"},  //Burial Ground
+                {"databaseId": "06175", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Entryway
+                {"databaseId": "06178", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"},  //Upstairs Hallway
+                {"databaseId": "06181", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Attic
+                {"databaseId": "06182", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Unmarked Tomb
+                {"databaseId": "06189", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Silver Key: Key to the Gate of Dreams
+                {"databaseId": "06183", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06184", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06185", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06186", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06187", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06188", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Mysterious Stairs
+                {"databaseId": "06190", "quantity": 4, "loadGroupId": "sharedPileA"},                                   //Endless Descent
+                {"databaseId": "06191", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Indescribable Apparition
+                {"databaseId": "06192", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Glowing Eyes
+                {"databaseId": "06193", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Deceptive Memories
+                {"databaseId": "06194", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Secrets in the Attic
+            ]
+        }
+    },
+    "actionLists": {
+        "A Thousand Shapes of Horror Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "A Thousand Shapes of Horror"],
+            ["DO_SET_SPAWN_LOCATION", "06181", 45, 7], //Attic
+            ["DO_SET_SPAWN_LOCATION", "06182", 20, 79], //Unmarked Tomb
+            ["DO_DELETE_CARD_SCN", ["GET_CARD_ID", "sharedDeckA", ["RANDOM_INT", 0, 5], 0]],
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Underworld"],
+            ["DO_LOAD_CARDS_SCN", "Merging Realities"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],            
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
+            ["VAR", "$UPSTAIRS_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "06179", "06180"]]],  //Library, Bedroom
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Upstairs Doorway", "$UPSTAIRS_DOORWAYS.[$I]", "$SPAWN_LEFTS.[$I]", 7]
+            ]],
+            ["VAR", "$DOWNSTAIRS_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "06176", "06177"]]],  //Den, Parlor
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Downstairs Doorway", "$DOWNSTAIRS_DOORWAYS.[$I]", "$SPAWN_LEFTS.[$I]", 55]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Burial Ground", 5, 7, 3, 0],
+            ["SET", "/arkham/finalScenarioMessage", "Mysterious Stairs cards are in Deck A, Endless Descent cards are in Pile A. One randomly chosen Mysterious Stairs location has been already removed from the game."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
