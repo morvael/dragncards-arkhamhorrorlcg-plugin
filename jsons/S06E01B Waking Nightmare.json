@@ -20,10 +20,10 @@
                 {"databaseId": "06067", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Looking for Answers
                 {"databaseId": "06068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Search for the Patient
                 {"databaseId": "06069", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Containing the Outbreak
-                {"databaseId": "06070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Waiting Room
-                {"databaseId": "06071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Emergency Room
-                {"databaseId": "06072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Experimental Therapies Ward
-                {"databaseId": "06073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},  //Records Office
+                {"databaseId": "06070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "31%"},  //Waiting Room
+                {"databaseId": "06071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"},  //Emergency Room
+                {"databaseId": "06072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},  //Experimental Therapies Ward
+                {"databaseId": "06073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "7%"},   //Records Office
                 {"databaseId": "06080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Dr. Shivani Maheswaran: Emergency Physician
                 {"databaseId": "06074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Stairwell
                 {"databaseId": "06081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Suspicious Orderly
@@ -73,7 +73,7 @@
         ],
         "Waking Nightmare Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Waking Nightmare"],
-            ["DO_SET_SPAWN_LOCATION", "06074", 70, 43], //Stairwell
+            ["DO_SET_SPAWN_LOCATION", "06074", 75, 55], //Stairwell
             ["DO_LOAD_CARDS_SCN", "Merging Realities"],
             ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
@@ -86,10 +86,10 @@
                 ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06080"], ["GET_CONTROLLER_PLAY", "$GAME.firstPlayer"], -1] //Dr. Shivani Maheswaran: Emergency Physician
             ],
             ["VAR", "$BASEMENT_DOORS", ["SHUFFLE_LIST", ["LIST", "06075", "06076", "06077"]]],  //Morgue, Operating Room, Private Room
-            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 45, 70]],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 35, 55, 75]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
                 ["DO_CREATE_CARDS_SCN", "Basement Door", "$BASEMENT_DOORS.[$I]", 1, "sharedNotInPlay"],
-                ["DO_SET_SPAWN_LOCATION", "$BASEMENT_DOORS.[$I]", "$SPAWN_LEFTS.[$I]", 76]
+                ["DO_SET_SPAWN_LOCATION", "$BASEMENT_DOORS.[$I]", "$SPAWN_LEFTS.[$I]", 79]
             ]],
             ["DO_LOAD_CARDS_SCN", "Waking Nightmare - Set Aside"],
             ["SET", "/arkham/finalScenarioMessage", "Agents of Atlach-Nacha cards are in Pile A, Spiders cards are in Pile B."],

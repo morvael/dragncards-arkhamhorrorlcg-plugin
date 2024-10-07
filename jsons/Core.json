@@ -132,7 +132,8 @@
             {"key": "'", "actionList": "moveClue", "label": "id:moveClue"},
             {"key": "[", "actionList": "sendToBack", "label": "id:sendToBack"},
             {"key": "]", "actionList": "bringToFront", "label": "id:bringToFront"},
-            {"key": "Delete", "actionList": "deleteSupplyCard", "label": "id:deleteSupplyCard"}
+            {"key": "Delete", "actionList": "removeCard", "label": "id:removeCard"},
+            {"key": "Ctrl+Delete", "actionList": "deleteSupplyCard", "label": "id:deleteSupplyCard"}
         ]
     },
     "imageUrlPrefix": {

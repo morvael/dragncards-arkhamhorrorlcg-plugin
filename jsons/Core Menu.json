@@ -269,7 +269,10 @@
                 "label": "id:spawnCardMenu",
                 "actionList": "spawnCard",
                 "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedPile"]
+                    ],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["GREATER_THAN", "$ACTIVE_CARD.spawnLeft", 0],
                     ["GREATER_THAN", "$ACTIVE_CARD.spawnTop", 0]

@@ -158,7 +158,8 @@
                         "label": "id:theDreamEaters",
                         "deckLists": [
                             {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"},
-                            {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"}
+                            {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
+                            {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"}
                         ]
                     }
                 ]
@@ -517,6 +518,9 @@
         },
         "wakingNightmare": {
             "English": "Waking Nightmare"
+        },
+        "theSearchForKadath": {
+            "English": "The Search for Kadath"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

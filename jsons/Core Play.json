@@ -323,7 +323,10 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_CARD.TARGET_CARD_ID"]],
                 ["AND",
-                    ["EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                        ["IN_STRING", "$TARGET_CARD.groupId", "sharedPile"]
+                    ],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                     ["GREATER_THAN", "$TARGET_CARD.spawnLeft", 0],
                     ["GREATER_THAN", "$TARGET_CARD.spawnTop", 0]

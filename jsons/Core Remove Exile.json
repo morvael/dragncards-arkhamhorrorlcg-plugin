@@ -276,11 +276,14 @@
         "setAsideCardMenu": {
             "English": "Set aside"
         },
+        "removeCard": {
+            "English": "Remove"
+        },
         "removeCardMenu": {
-            "English": "Remove from the game"
+            "English": "Remove (Delete)"
         },
         "exileCardMenu": {
-            "English": "Exile from the game"
+            "English": "Exile"
         },
         "browseAsideMenu": {
             "English": "Browse Set Aside"

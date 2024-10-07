@@ -160,7 +160,7 @@
             "English": "Delete"
         },
         "deleteSupplyCardMenu": {
-            "English": "Delete (Delete)"
+            "English": "Delete (Ctrl+Delete)"
         },
         "spawnMicroCardMenu": {
             "English": "Spawn counter"
