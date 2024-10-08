@@ -254,9 +254,15 @@
                 ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["COND",
-                        ["OR",
-                            ["EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
-                            ["NOT_EQUAL", "$CARD.currentFace.type", "Agenda"]
+                        ["AND",
+                            ["OR",
+                                ["EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
+                                ["NOT_EQUAL", "$CARD.currentFace.type", "Agenda"]
+                            ],
+                            ["OR",
+                                ["EQUAL", "$GAME.arkham.ignoreDoomOnInvestigators", false],
+                                ["NOT_EQUAL", "$CARD.currentFace.type", "Investigator"]
+                            ]
                         ],
                         ["INCREASE_VAR", "$DOOM", "$CARD.tokens.doom"]
                     ]
@@ -279,6 +285,10 @@
                             ["OR",
                                 ["EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
                                 ["NOT_EQUAL", "$CARD.currentFace.type", "Agenda"]
+                            ],
+                            ["OR",
+                                ["EQUAL", "$GAME.arkham.ignoreDoomOnInvestigators", false],
+                                ["NOT_EQUAL", "$CARD.currentFace.type", "Investigator"]
                             ]
                         ],
                         ["DO_REMOVE_DOOM_FROM_CARD", "$TARGET_PLAYER", "$CARD.id", "$CARD.tokens.doom", false, null]

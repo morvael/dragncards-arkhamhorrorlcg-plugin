@@ -1,0 +1,151 @@
+{
+    "preBuiltDecks": {
+        "Dark Side of the Moon Scenario": {
+            "label": "Dark Side of the Moon Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "Dark Side of the Moon", "Dark Side of the Moon Scenario Early Init", "Dark Side of the Moon Scenario Init"]
+            ]
+        },
+        "Dark Side of the Moon": {
+            "hideFromSearch": true,
+            "label": "Dark Side of the Moon",
+            "cards": [
+                {"databaseId": "06206", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Dark Side of the Moon
+                {"databaseId": "06207", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Silent Stirring
+                {"databaseId": "06208", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Alarm Is Raised
+                {"databaseId": "06209", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //They Are Upon You!
+                {"databaseId": "06210", "quantity": 1, "loadGroupId": "sharedActStory"},                                //In the Belly of the Moon-Beast
+                {"databaseId": "06211", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Exploring the Moon
+                {"databaseId": "06212", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Moon's Core
+                {"databaseId": "06213", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Unexpected Rescue
+                {"databaseId": "06215", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //City of the Moon-Beasts
+                {"databaseId": "06217", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "76%"},  //Temple of the Moon Lizard
+                {"databaseId": "06218", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Moon-Forest
+                {"databaseId": "06216", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //The Dark Crater
+                {"databaseId": "06219", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Caverns Beneath the Moon: Dark Side
+                {"databaseId": "06220", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Black Core
+                {"databaseId": "06221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Caverns Beneath the Moon: Light Side
+                {"databaseId": "06222", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Light Side of the Moon
+                {"databaseId": "06223", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The White Ship
+                {"databaseId": "06227", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Moonbound Byakhee
+                {"databaseId": "06228", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Cats from Saturn
+                {"databaseId": "06229", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Moon-Beast
+                {"databaseId": "06230", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Close Watch
+                {"databaseId": "06231", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Forced into Hiding
+                {"databaseId": "06232", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Lunar Patrol
+            ]
+        },
+        "Dark Side of the Moon - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Dark Side of the Moon - Set Aside",
+            "cards": [
+                {"databaseId": "06226", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Moon Lizard
+                {"databaseId": "06224", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Virgil Gray: Truly Inspired
+                {"databaseId": "06225", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Captain: Dreamlands Navigator
+                {"databaseId": "06233", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //False Awakening
+            ]
+        }
+    },
+    "actionLists": {
+        "Dark Side of the Moon Scenario Early Init": [
+            ["DARK_SIDE_OF_THE_MOON_SHOW_CAPTURED_CHOICE", "$GAME.firstPlayer"]
+        ],
+        "Dark Side of the Moon Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Dark Side of the Moon"],
+            ["DO_SET_SPAWN_LOCATION", "06219", 55, 10], //Caverns Beneath the Moon: Dark Side
+            ["DO_SET_SPAWN_LOCATION", "06220", 75, 43], //The Black Core
+            ["DO_SET_SPAWN_LOCATION", "06221", 75, 76], //Caverns Beneath the Moon: Light Side
+            ["DO_SET_SPAWN_LOCATION", "06222", 55, 76], //Light Side of the Moon
+            ["DO_SET_SPAWN_LOCATION", "06223", 55, 43], //The White Ship
+            ["DO_LOAD_CARDS_SCN", "Corsairs"],
+            ["DO_LOAD_CARDS_SCN", "Dreamer's Curse"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["VAR", "$NUM_CAPTURED", 0],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioDarkSideOfTheMoon{{$PLAYER_I}}Captured", true],
+                    ["INCREASE_VAR", "$NUM_CAPTURED", 1]
+                ]
+            ]],
+            ["COND",
+                ["GREATER_THAN", "$NUM_CAPTURED", 0],
+                [
+                    ["DO_SPAWN_LOCATION_SCN", "Moon-Beast Galley", "06214", 15, 10],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioDarkSideOfTheMoon{{$PLAYER_I}}Captured", true],
+                            [
+                                ["SET", "/playerData/$PLAYER_I/arkham/customSpawnLocation", "Moon-Beast Galley"],
+                                ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_LOCATION_RESULT", 2, true, null]
+                            ]
+                        ]
+                    ]]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Moon-Forest", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Randolph was captured.", "The above is not true."], "Dark Side of the Moon Scenario Question 1"]
+        ],
+        "Dark Side of the Moon Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["DO_PULL_PLAYER_DECK_CARD_SCN", "Randolph Carter: Expert Dreamer", "06059", "sharedNotInPlay"]
+                ]
+            ],
+            ["DO_LOAD_CARDS_SCN", "Dark Side of the Moon - Set Aside"],
+            ["SET", "/arkham/ignoreDoomOnInvestigators", true],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                ["DO_PLACE_DOOM_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", 1, true, null]
+            ]],
+            ["SET", "/arkham/finalScenarioMessage", "Doom on investigator cards does not count as doom. See “Alarm Level.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "DARK_SIDE_OF_THE_MOON_SHOW_CAPTURED_CHOICE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DARK_SIDE_OF_THE_MOON_SHOW_CAPTURED_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$INVESTIGATOR_NAME", ["DO_FORMAT_STRING", "{0:I}", ["LIST", "$TARGET_PLAYER"]]],
+                ["PROMPT", "$GAME.firstPlayer", "darkSideOfTheMoonChooseCaptured"],
+                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$INVESTIGATOR_NAME}} was captured.", "C", ["LIST", "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE_STR", "{{$TARGET_PLAYER}}", "true"]],
+                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$INVESTIGATOR_NAME}} was not captured.", "N", ["LIST", "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE_STR", "{{$TARGET_PLAYER}}", "false"]]
+            ]
+        },
+        "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE": {
+            "args": ["$TARGET_PLAYER", "$CAPTURED"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$CAPTURED", "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE.CAPTURED"],
+                ["DO_FLOG", "{0:I} was {1}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", "$CAPTURED", "captured", "not captured"]]],
+                ["SET", "/arkham/scenarioDarkSideOfTheMoon{{$TARGET_PLAYER}}Captured", "$CAPTURED"],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["SCENARIO_INIT_RESUME", "Dark Side of the Moon Scenario Init"],
+                    ["TRUE"],
+                    ["DARK_SIDE_OF_THE_MOON_SHOW_CAPTURED_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        },
+        "DARK_SIDE_OF_THE_MOON_CAPTURED_DONE_STR": {
+            "args": ["$TARGET_PLAYER", "$CAPTURED"],
+            "code": [
+                ["DARK_SIDE_OF_THE_MOON_CAPTURED_DONE", "$TARGET_PLAYER", ["EQUAL", "{{$CAPTURED}}", "true"]]
+            ]
+        }
+    },
+    "prompts": {
+        "darkSideOfTheMoonChooseCaptured": {
+            "args": [],
+            "message": "Check Campaign Log.",
+            "options": [
+            ]
+        }
+    }
+}

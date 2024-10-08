@@ -158,7 +158,8 @@
                         "label": "id:theDreamQuest",
                         "deckLists": [
                             {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"},
-                            {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"}
+                            {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"},
+                            {"label": "id:darkSideOfTheMoon", "deckListId": "Dark Side of the Moon Scenario"}
                         ]
                     },
                     {
@@ -536,6 +537,9 @@
         },
         "aThousandShapesOfHorror": {
             "English": "A Thousand Shapes of Horror"
+        },
+        "darkSideOfTheMoon": {
+            "English": "Dark Side of the Moon"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
