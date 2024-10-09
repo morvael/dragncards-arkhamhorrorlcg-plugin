@@ -292,6 +292,37 @@
                 "$DOOM"
             ]
         },
+        "CAN_CLEAR_DOOM_FROM_CARD": {
+            "args": ["$AGENDA_CARD", "$TARGET_CARD"],
+            "code": [
+                ["COND",                    
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "04055"],  //Something Stirs... (Do not remove doom from each location in play.)
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "04211"],  //The Lonely Caverns
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "06334"],  //The Bridge of Webs
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "06335"]   //A Trail of Twists
+                        ],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET_CARD.inPlay", true]
+                    ],
+                    false,
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "05326"],  //WHEEL OF FORTUNE • X (Do not remove doom from enemies when this agenda advances.)
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "05327"],  //It Awaits
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "05328"]   //The Final Countdown
+                        ],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"]
+                    ],
+                    false,
+                    ["EQUAL", "$TARGET_CARD.currentFace.databaseId", "05149"],  //Nahab: She Who Signed the Black Book (Do not remove doom from Nahab when the agenda advances.)
+                    false,
+                    ["TRUE"],
+                    true
+                ]
+            ]
+        },
         "DO_CLEAR_DOOM": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -311,7 +342,8 @@
                             ["OR",
                                 ["EQUAL", "$GAME.arkham.ignoreDoomOnInvestigators", false],
                                 ["NOT_EQUAL", "$CARD.currentFace.type", "Investigator"]
-                            ]
+                            ],
+                            ["CAN_CLEAR_DOOM_FROM_CARD", "$TARGET_CARD", "$CARD"]
                         ],
                         ["DO_REMOVE_DOOM_FROM_CARD", "$TARGET_PLAYER", "$CARD.id", "$CARD.tokens.doom", false, null]
                     ]

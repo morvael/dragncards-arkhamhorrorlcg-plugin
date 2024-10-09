@@ -35,6 +35,11 @@
     "actionLists": {
         "Weaver of the Cosmos Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Weaver of the Cosmos"],
+            ["WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY", "06346", "B"], //Atlach-Nacha: The Spider God
+            ["VAR", "$ATLACH_NACHA_LEGS", ["LIST", "06347", "06348", "06349", "06350"]], //Legs of Atlach-Nacha (4)
+            ["FOR_EACH_VAL", "$ATLACH_NACHA_LEG", "$ATLACH_NACHA_LEGS", [
+                ["WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY", "$ATLACH_NACHA_LEG", "A"]
+            ]],
             ["DO_LOAD_CARDS_SCN", "Agents of Atlach-Nacha"],
             ["DO_LOAD_CARDS_SCN", "Spiders"],
             ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
@@ -57,6 +62,15 @@
         ]
     },
     "functions": {
+        "WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY": {
+            "args": ["$DATABASE_ID", "$SIDE"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$SIDE", "WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY.SIDE"],
+                ["VAR", "$TARGET_CARD_ID", ["GET_NAMED_CARD_ID", "$DATABASE_ID"]],
+                ["SET", "/cardById/$TARGET_CARD_ID/sides/$SIDE/disableExhaustReady", true]
+            ]
+        },
         "WEAVER_OF_THE_COSMOS_SETUP_ACT_2": {
             "args": ["$TARGET_PLAYER"],
             "code": [
@@ -83,19 +97,21 @@
                     ["MOVE_CARD", "$GREAT_WEB_ID", "sharedLocations", -1],
                     ["DO_SET_CARD_LOCATION", "$GREAT_WEB_ID", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
                 ]],
-                ["VAR", "$ATLACH_NACHA_PARTS", ["LIST", "06346", "06347", "06348", "06349", "06350"]],
+                ["VAR", "$ATLACH_NACHA_PARTS", ["LIST", "06346", "06347", "06348", "06349", "06350"]], //Atlach-Nacha: The Spider God, Legs of Atlach-Nacha (4)
                 ["FOR_EACH_VAL", "$ATLACH_NACHA_PART", "$ATLACH_NACHA_PARTS", [
                     ["MOVE_CARD", ["GET_NAMED_CARD_ID", "$ATLACH_NACHA_PART"], "sharedLocations", -1]
-                ]],                
+                ]],
+                ["DO_SET_NAMED_CARD_SIDE", "06346", "B"], //Atlach-Nacha: The Spider God
                 ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA", "$TARGET_PLAYER", 0],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
-                    ["EQUAL", "$CARD.sides.A.databaseId", "06352"]
+                    ["EQUAL", "$CARD.sides.A.databaseId", "06352"] //The Spinner in Darkness
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
                 ]],
                 ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
                 ["SET", "/arkham/scenarioWeaverOfTheCosmosAct2Setup", true]
             ]
         },
@@ -105,11 +121,11 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.TARGET_PLAYER"],
                 ["VALIDATE_GE0", "$POSITION", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.POSITION"],
                 ["SET", "/arkham/scenarioWeaverOfTheCosmosAtlachNachaPosition", "$POSITION"],
-                ["VAR", "$TORSO", ["GET_NAMED_CARD_ID", "06346"]],
-                ["VAR", "$LEGNW", ["GET_NAMED_CARD_ID", "06347"]],
-                ["VAR", "$LEGNE", ["GET_NAMED_CARD_ID", "06348"]],
-                ["VAR", "$LEGSE", ["GET_NAMED_CARD_ID", "06350"]],
-                ["VAR", "$LEGSW", ["GET_NAMED_CARD_ID", "06349"]],
+                ["VAR", "$TORSO", ["GET_NAMED_CARD_ID", "06346"]], //Atlach-Nacha: The Spider God
+                ["VAR", "$LEGNW", ["GET_NAMED_CARD_ID", "06347"]], //Legs of Atlach-Nacha
+                ["VAR", "$LEGNE", ["GET_NAMED_CARD_ID", "06348"]], //Legs of Atlach-Nacha
+                ["VAR", "$LEGSE", ["GET_NAMED_CARD_ID", "06350"]], //Legs of Atlach-Nacha
+                ["VAR", "$LEGSW", ["GET_NAMED_CARD_ID", "06349"]], //Legs of Atlach-Nacha
                 ["COND",
                     ["EQUAL", "$POSITION", 0],
                     [
@@ -219,7 +235,7 @@
             },
             "06346": { //Atlach-Nacha: The Spider God
                 "ability" : {
-                    "A": [
+                    "B": [
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$THIS.groupId", "sharedLocations"],
