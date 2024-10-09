@@ -1,0 +1,77 @@
+{
+    "preBuiltDecks": {
+        "Where the Gods Dwell Scenario": {
+            "label": "Where the Gods Dwell Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "Where the Gods Dwell", null, "Where the Gods Dwell Scenario Init"]
+            ]
+        },
+        "Where the Gods Dwell": {
+            "hideFromSearch": true,
+            "label": "Where the Gods Dwell",
+            "cards": [
+                {"databaseId": "06286", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Where the Gods Dwell
+                {"databaseId": "06287", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Eye of Chaos
+                {"databaseId": "06288", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Shape of Chaos
+                {"databaseId": "06289", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Chaos Incarnate
+                {"databaseId": "06290", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Journey Through the Cold Wastes
+                {"databaseId": "06291", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Thing in the Robes
+                {"databaseId": "06292", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Beyond Dreams
+                {"databaseId": "06293", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Truth and Lies
+                {"databaseId": "06294", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Dream-Eaters
+                {"databaseId": "06295", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "7%"},   //Plateau of Leng
+                {"databaseId": "06296", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "31%"},  //Cold Wastes
+                {"databaseId": "06297", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"},  //Monastery of Leng
+                {"databaseId": "06298", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},  //Onyx Gates
+                {"databaseId": "06299", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},  //The Great Hall
+                {"databaseId": "06314", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Whispering Chaos: North
+                {"databaseId": "06315", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Whispering Chaos: East
+                {"databaseId": "06316", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Whispering Chaos: South
+                {"databaseId": "06317", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Whispering Chaos: West
+                {"databaseId": "06318", "quantity": 2, "loadGroupId": "sharedDeckA"},                                   //Myriad Forms
+                {"databaseId": "06086", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //The Crawling Mist
+                {"databaseId": "06312", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Dhole of the Wastes
+                {"databaseId": "06313", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Liar with No Face
+                {"databaseId": "06319", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Restless Journey: Fallacy
+                {"databaseId": "06320", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Restless Journey: Hardship
+                {"databaseId": "06321", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Restless Journey: Lies
+                {"databaseId": "06322", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Abandoned by the Gods
+            ]
+        },
+        "Where the Gods Dwell - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Where the Gods Dwell - Set Aside",
+            "cards": [
+                {"databaseId": "06311", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //High Priest Not to Be Described: Agent of the Other Gods
+            ]
+        }
+    },
+    "actionLists": {
+        "Where the Gods Dwell Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Where the Gods Dwell"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Nyarlathotep - Treacheries"],
+            ["DO_LOAD_CARDS_SCN", "Dreamer's Curse"],
+            ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Plateau of Leng", 5, 7, 3, 0],
+            ["VAR", "$FORSAKEN_TOWERS", ["SHUFFLE_LIST", ["LIST", "06300", "06301", "06302", "06303", "06304", "06305"]]], //Forsaken Tower: Of Illusion and Myth, Forsaken Tower: Of Life and Death, Forsaken Tower: Of Infinite Truth, Forsaken Tower: Of Eternal Flame, Forsaken Tower: Of the Queen of Night, Forsaken Tower: Of Primeval Light
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 55, 75, 55, 35]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 31, 55, 79, 55]],            
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_CREATE_CARDS_SCN", "Forsaken Tower", "$FORSAKEN_TOWERS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$FORSAKEN_TOWERS.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["VAR", "$NYARLATHOTEPS", ["SHUFFLE_LIST", ["LIST", "06306", "06307", "06308", "06309", "06310"]]], //Nyarlathotep: The Crawling Chaos, Nyarlathotep: The Faceless Whisperer, Nyarlathotep: Messenger of the Outer Gods, Nyarlathotep: God of a Thousand Forms, Nyarlathotep: Stalker Among the Stars
+            ["VAR", "$NUM_NYARLATHOTEPS", ["ADD", 1, "$GAME.arkham.numPlayers"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUM_NYARLATHOTEPS", 1, [
+                ["DO_CREATE_CARDS_SCN", "Nyarlathotep", "$NYARLATHOTEPS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Where the Gods Dwell - Set Aside"],
+            ["SET", "/arkham/finalScenarioMessage", "Whispering Chaos, Myriad Forms, The Crawling Mist, and the required number of Nyarlathotep cards are in Deck A. Two randomly chosen Forsaken Tower locations have been already removed from the game."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

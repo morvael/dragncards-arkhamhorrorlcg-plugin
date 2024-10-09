@@ -18,6 +18,15 @@
                 {"databaseId": "06089", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Law of 'Ygiroth: Pandemonium
             ]
         },
+        "Agents of Nyarlathotep - Treacheries": {
+            "hideFromSearch": true,
+            "label": "Agents of Nyarlathotep - Treacheries",
+            "cards": [
+                {"databaseId": "06087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Chaos
+                {"databaseId": "06088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Discord
+                {"databaseId": "06089", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Law of 'Ygiroth: Pandemonium
+            ]
+        },
         "Whispers of Hypnos": {
             "hideFromSearch": true,
             "label": "Whispers of Hypnos",

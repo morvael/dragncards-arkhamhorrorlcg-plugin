@@ -53,15 +53,6 @@
                 {"databaseId": "06154", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Wondrous Lands
             ]
         },
-        "The Search for Kadath - Agents of Nyarlathotep": {
-            "hideFromSearch": true,
-            "label": "The Search for Kadath - Agents of Nyarlathotep",
-            "cards": [
-                {"databaseId": "06087", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Chaos
-                {"databaseId": "06088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Law of 'Ygiroth: Discord
-                {"databaseId": "06089", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Law of 'Ygiroth: Pandemonium
-            ]
-        },
         "The Search for Kadath - Corsairs": {
             "hideFromSearch": true,
             "label": "The Search for Kadath - Corsairs",
@@ -123,7 +114,7 @@
             ["DO_SET_SPAWN_LOCATION", "06141", 45, 43], //Hazuth-Kleg
             ["DO_SET_SPAWN_LOCATION", "06142", 70, 43], //Temple of Unattainable Desires
             ["DO_SET_SPAWN_LOCATION", "06143", 70, 10], //City-Which-Appears-On-No-Map
-            ["DO_LOAD_CARDS_SCN", "The Search for Kadath - Agents of Nyarlathotep"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Nyarlathotep - Treacheries"],
             ["DO_LOAD_CARDS_SCN", "The Search for Kadath - Corsairs"],
             ["DO_LOAD_CARDS_SCN", "Dreamlands"],
             ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],

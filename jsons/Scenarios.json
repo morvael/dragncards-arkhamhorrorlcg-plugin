@@ -159,7 +159,8 @@
                         "deckLists": [
                             {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"},
                             {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"},
-                            {"label": "id:darkSideOfTheMoon", "deckListId": "Dark Side of the Moon Scenario"}
+                            {"label": "id:darkSideOfTheMoon", "deckListId": "Dark Side of the Moon Scenario"},
+                            {"label": "id:whereTheGodsDwell", "deckListId": "Where the Gods Dwell Scenario"}
                         ]
                     },
                     {
@@ -544,6 +545,9 @@
         },
         "pointOfNoReturn": {
             "English": "Point of No Return"
+        },
+        "whereTheGodsDwell": {
+            "English": "Where the Gods Dwell"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
