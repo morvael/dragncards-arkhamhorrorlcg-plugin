@@ -124,6 +124,7 @@
                             "skipShufflingSharedDeckB": false,                  // if true, disables shuffling the shared deck B at the end of scenario initialization
                             "skipShufflingSharedDeckC": false,                  // if true, disables shuffling the shared deck C at the end of scenario initialization
                             "offMapNotInPlay": false,                           // if true, offMap group is considered "not in play"
+                            "ignoreDoomOnInvestigators": false,                 // if true, doom on investigators is not counted for agenda advancement
                             "finalScenarioMessage": null,                       // text to append to the default text logged after scenario finishes initializing
                             "activeInvestigator": null,                         // name of the player whose turn it is now
                             // required by game event handling

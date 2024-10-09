@@ -12,7 +12,8 @@
             ["DO_UPDATE_INVESTIGATOR_NAMES"]
         ],
         "preLoadActionList": [
-            ["SET", "/arkham/loadingCards", true]
+            ["SET", "/arkham/loadingCards", true],
+            ["SET", "/lastLoadedCardIds", null]
         ],
         "postLoadActionList": [
             ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"],

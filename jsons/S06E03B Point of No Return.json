@@ -1,0 +1,114 @@
+{
+    "preBuiltDecks": {
+        "Point of No Return Scenario": {
+            "label": "Point of No Return Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "Point of No Return", "Point of No Return Scenario Early Init", "Point of No Return Scenario Init"]
+            ]
+        },
+        "Point of No Return": {
+            "hideFromSearch": true,
+            "label": "Point of No Return",
+            "cards": [
+                {"databaseId": "06247", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Point of No Return
+                {"databaseId": "06248", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //A Sinister Realm
+                {"databaseId": "06249", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Beset by Monsters
+                {"databaseId": "06252", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Descent
+                {"databaseId": "06253", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Black Expanse
+                {"databaseId": "06254", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},  //Vaults of Zin
+                {"databaseId": "06255", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"},  //City of Gugs
+                {"databaseId": "06256", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "31%"},  //Tower of Koth
+                {"databaseId": "06257", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "79%"},  //Plain of the Ghouls
+                {"databaseId": "06258", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Crag of the Ghouls
+                {"databaseId": "06259", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sea of Bones
+                {"databaseId": "06260", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Peaks of Thok
+                {"databaseId": "06261", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Vale of Pnath
+                {"databaseId": "06268", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Taste of Lifeblood
+                {"databaseId": "06269", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Lit by Death-Fire
+                {"databaseId": "06270", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Unexpected Ambush
+            ]
+        },
+        "Descent into the Pitch": {
+            "hideFromSearch": true,
+            "label": "Descent into the Pitch",
+            "cards": [
+                {"databaseId": "06273", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Pitch Spider
+                {"databaseId": "06274", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Shadow of Atlach-Nacha
+            ]
+        },
+        "Terror of the Vale": {
+            "hideFromSearch": true,
+            "label": "Terror of the Vale",
+            "cards": [
+                {"databaseId": "06271", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Slithering Dhole
+                {"databaseId": "06272", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Dhole Tunnel
+            ]
+        },
+        "Point of No Return - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Point of No Return - Set Aside",
+            "cards": [
+                {"databaseId": "06053", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Enchanted Woods: Stone Trapdoor
+                {"databaseId": "06267", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Gug Sentinel
+                {"databaseId": "06266", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Richard Upton Pickman: Venerable Ghoul
+                {"databaseId": "06275", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //False Awakening
+            ]
+        }
+    },
+    "actionLists": {
+        "Point of No Return Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Randolph did not survive the descent.", "Randolph survived the descent."], "Point of No Return Scenario Question 1"]
+        ],
+        "Point of No Return Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["SCENARIO_INIT_RESUME", "Point of No Return Scenario Init"]
+        ],
+        "Point of No Return Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Point of No Return"],
+            ["DO_SET_SPAWN_LOCATION", "06258", 35, 79], //Crag of the Ghouls
+            ["DO_SET_SPAWN_LOCATION", "06259", 55, 79], //Sea of Bones
+            ["DO_SET_SPAWN_LOCATION", "06260", 75, 79], //Peaks of Thok
+            ["DO_SET_SPAWN_LOCATION", "06261", 75, 55], //Vale of Pnath
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Underworld"],
+            ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Descent into the Pitch", "sharedPileA"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Terror of the Vale", "sharedPileB"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Agents of Atlach-Nacha", "sharedPileC"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Nightgaunts", "sharedPileD"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Vaults of Zin", 5, 7, 3, 0],
+            ["VAR", "$SEAS_OF_PITCH", ["SHUFFLE_LIST", ["LIST", "06262", "06263", "06264", "06265"]]], //Sea of Pitch, Sea of Pitch, Sea of Pitch, Sea of Pitch
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 55, 75, 75, 55]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 7, 7, 31, 31]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_CREATE_CARDS_SCN", "Sea of Pitch", "$SEAS_OF_PITCH.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$SEAS_OF_PITCH.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Point of No Return - Set Aside"],
+            ["DO_SET_SPAWN_LOCATION", "06053", 15, 7], //Enchanted Woods: Stone Trapdoor
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_CREATE_STORY_CARD_SCN", "Entering the Underworld (v. I)", "06250", 0, "sharedActStory"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["DO_CREATE_STORY_CARD_SCN", "Entering the Underworld (v. II)", "06251", 0, "sharedActStory"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Steps of the Bridge” in Campaign Log.", ["LIST", "There are no tally marks recorded.", "There are 1–4 tally marks.", "There are 5 or more tally marks."], "Point of No Return Scenario Question 2"]
+        ],
+        "Point of No Return Scenario Question 2": [
+            ["LOG", "└── Steps of the Bridge: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                ["DO_PLACE_DAMAGE_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], 1, true, null],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "C"],
+                ["DO_PLACE_DAMAGE_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], 2, true, null]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "Descent into the Pitch cards are in Pile A, Terror of the Vale cards are in Pile B, Agents of Atlach-Nacha cards are in Pile C, Nightgaunts cards are in Pile D."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

@@ -48,7 +48,7 @@
             ["DO_LOAD_CARDS_SCN", "Creatures of the Underworld"],
             ["DO_LOAD_CARDS_SCN", "Merging Realities"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-            ["DO_LOAD_CARDS_SCN", "Ghouls"],            
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Rats"],
             ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],

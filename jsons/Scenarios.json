@@ -166,7 +166,8 @@
                         "label": "id:theWebOfDreams",
                         "deckLists": [
                             {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
-                            {"label": "id:aThousandShapesOfHorror", "deckListId": "A Thousand Shapes of Horror Scenario"}
+                            {"label": "id:aThousandShapesOfHorror", "deckListId": "A Thousand Shapes of Horror Scenario"},
+                            {"label": "id:pointOfNoReturn", "deckListId": "Point of No Return Scenario"}
                         ]
                     }
                 ]
@@ -540,6 +541,9 @@
         },
         "darkSideOfTheMoon": {
             "English": "Dark Side of the Moon"
+        },
+        "pointOfNoReturn": {
+            "English": "Point of No Return"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"
