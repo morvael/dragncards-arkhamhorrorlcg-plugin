@@ -1,0 +1,278 @@
+{
+    "preBuiltDecks": {
+        "Weaver of the Cosmos Scenario": {
+            "label": "Weaver of the Cosmos Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "Weaver of the Cosmos", null, "Weaver of the Cosmos Scenario Init"]
+            ]
+        },
+        "Weaver of the Cosmos": {
+            "hideFromSearch": true,
+            "label": "Weaver of the Cosmos",
+            "cards": [
+                {"databaseId": "06333", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Weaver of the Cosmos
+                {"databaseId": "06334", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Bridge of Webs
+                {"databaseId": "06335", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //A Trail of Twists
+                {"databaseId": "06336", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Realities Interwoven
+                {"databaseId": "06337", "quantity": 1, "loadGroupId": "sharedActStory"},            //Journey Across the Bridge
+                {"databaseId": "06338", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Weaver of the Cosmos
+                {"databaseId": "06339", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Scheme's Demise
+                {"databaseId": "06346", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Atlach-Nacha: The Spider God
+                {"databaseId": "06347", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Legs of Atlach-Nacha
+                {"databaseId": "06348", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Legs of Atlach-Nacha
+                {"databaseId": "06349", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Legs of Atlach-Nacha
+                {"databaseId": "06350", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Legs of Atlach-Nacha
+                {"databaseId": "06352", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //The Spinner in Darkness
+                {"databaseId": "06351", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Web-Spinner
+                {"databaseId": "06353", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Caught in a Web
+                {"databaseId": "06354", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Endless Weaving
+            ]
+        }
+    },
+    "actionLists": {
+        "Weaver of the Cosmos Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Weaver of the Cosmos"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Atlach-Nacha"],
+            ["DO_LOAD_CARDS_SCN", "Spiders"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["VAR", "$GREAT_WEBS", ["SHUFFLE_LIST", ["LIST", "06340", "06340", "06340", "06341", "06341", "06342", "06342", "06342", "06343", "06343", "06344", "06344", "06345", "06345", "06345"]]], //The Great Web: Web-Stairs (3), The Great Web: Cosmic Web (2), The Great Web: Tangled Web (3), The Great Web: Prison of Cocoons (2), The Great Web: Vast Web (2), The Great Web: Web-Woven Island (3)
+            ["VAR", "$SPAWN_TOPS", ["LIST", 7, 31, 55, 79]],
+            ["DO_SPAWN_LOCATION_SCN", "The Great Web", "$GREAT_WEBS.[0]", 45, "$SPAWN_TOPS.[0]"],
+            ["VAR", "$STARTING_LOCATION_ID", "$DO_SPAWN_LOCATION_RESULT"],
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 4, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "The Great Web", "$GREAT_WEBS.[$I]", 45, "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["SET", "/arkham/scenarioWeaverOfTheCosmosBottommostLocation", "$DO_SPAWN_LOCATION_RESULT"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
+            ["FOR_EACH_START_STOP_STEP", "$I", 4, 15, 1, [
+                ["DO_CREATE_CARDS_SCN", "The Great Web", "$GREAT_WEBS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["SET", "/arkham/scenarioWeaverOfTheCosmosAct2Setup", false],
+            ["SET", "/arkham/finalScenarioMessage", "The Great Web locations are in Deck A. Use Act 1b's card ability to setup Act 2."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "WEAVER_OF_THE_COSMOS_SETUP_ACT_2": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SETUP_ACT_2.TARGET_PLAYER"],
+                ["DO_FLOG", "{0:P} sets up Act 2. Use Atlach-Nacha's card ability to spin it.", ["LIST", "$TARGET_PLAYER"]],
+                ["VAR", "$BOTTOMMOST_LOCATION", "$GAME.arkham.scenarioWeaverOfTheCosmosBottommostLocation"],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["EQUAL", "$CARD.sides.B.name", "The Great Web"],
+                    ["NOT_EQUAL", "$CARD.id", "$BOTTOMMOST_LOCATION"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["MOVE_CARD", "$CARD.id", "sharedRemoved", -1]
+                ]],
+                ["DO_SET_CARD_LOCATION", "$BOTTOMMOST_LOCATION", 45, 4],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BOTTOMMOST_LOCATION", false]
+                ]],
+                ["VAR", "$SPAWN_LEFTS", ["LIST", 80, 72, 45, 18, 10, 18, 72]],
+                ["VAR", "$SPAWN_TOPS", ["LIST", 43, 71, 82, 71, 43, 15, 15]],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
+                    ["VAR", "$GREAT_WEB_ID", ["GET_TOP_CARD_ID", "sharedDeckA"]],
+                    ["MOVE_CARD", "$GREAT_WEB_ID", "sharedLocations", -1],
+                    ["DO_SET_CARD_LOCATION", "$GREAT_WEB_ID", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+                ]],
+                ["VAR", "$ATLACH_NACHA_PARTS", ["LIST", "06346", "06347", "06348", "06349", "06350"]],
+                ["FOR_EACH_VAL", "$ATLACH_NACHA_PART", "$ATLACH_NACHA_PARTS", [
+                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "$ATLACH_NACHA_PART"], "sharedLocations", -1]
+                ]],                
+                ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA", "$TARGET_PLAYER", 0],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
+                    ["EQUAL", "$CARD.sides.A.databaseId", "06352"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
+                ]],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                ["SET", "/arkham/scenarioWeaverOfTheCosmosAct2Setup", true]
+            ]
+        },
+        "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA": {
+            "args": ["$TARGET_PLAYER", "$POSITION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.TARGET_PLAYER"],
+                ["VALIDATE_GE0", "$POSITION", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.POSITION"],
+                ["SET", "/arkham/scenarioWeaverOfTheCosmosAtlachNachaPosition", "$POSITION"],
+                ["VAR", "$TORSO", ["GET_NAMED_CARD_ID", "06346"]],
+                ["VAR", "$LEGNW", ["GET_NAMED_CARD_ID", "06347"]],
+                ["VAR", "$LEGNE", ["GET_NAMED_CARD_ID", "06348"]],
+                ["VAR", "$LEGSE", ["GET_NAMED_CARD_ID", "06350"]],
+                ["VAR", "$LEGSW", ["GET_NAMED_CARD_ID", "06349"]],
+                ["COND",
+                    ["EQUAL", "$POSITION", 0],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 0],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 31, 32, 0],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 59, 32, 0],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 59, 54, 0],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 31, 54, 0]
+                    ],
+                    ["EQUAL", "$POSITION", 1],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 45],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 43, 25, 45],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 63, 45, 45],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 47, 61, 45],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 27, 41, 45]
+                    ],
+                    ["EQUAL", "$POSITION", 2],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 90],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 56, 29, 90],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 56, 57, 90],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 34, 57, 90],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 34, 29, 90]
+                    ],
+                    ["EQUAL", "$POSITION", 3],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 135],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 63, 41, 135],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 43, 61, 135],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 27, 45, 135],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 47, 25, 135]
+                    ],
+                    ["EQUAL", "$POSITION", 4],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 180],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 59, 54, 180],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 31, 54, 180],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 31, 32, 180],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 59, 32, 180]
+                    ],
+                    ["EQUAL", "$POSITION", 5],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 225],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 47, 61, 225],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 27, 41, 225],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 43, 25, 225],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 63, 45, 225]
+                    ],
+                    ["EQUAL", "$POSITION", 6],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 270],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 34, 57, 270],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 34, 29, 270],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 56, 29, 270],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 56, 57, 270]
+                    ],
+                    ["EQUAL", "$POSITION", 7],
+                    [
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$TORSO", 45, 43, 315],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNW", 27, 45, 315],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGNE", 47, 25, 315],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSW", 63, 41, 315],
+                        ["DO_SET_CARD_LOCATION_AND_ROTATION", "$LEGSE", 43, 61, 315]
+                    ]
+                ]
+            ]
+        },
+        "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_CLOCKWISE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_CLOCKWISE.TARGET_PLAYER"],
+                ["VAR", "$POSITION", "$GAME.arkham.scenarioWeaverOfTheCosmosAtlachNachaPosition"],
+                ["INCREASE_VAR", "$POSITION", 1],
+                ["COND",
+                    ["GREATER_THAN", "$POSITION", 7],
+                    ["UPDATE_VAR", "$POSITION", 0]
+                ],
+                ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA", "$TARGET_PLAYER", "$POSITION"]
+            ]
+        },
+        "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_COUNTERCLOCKWISE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_COUNTERCLOCKWISE.TARGET_PLAYER"],
+                ["VAR", "$POSITION", "$GAME.arkham.scenarioWeaverOfTheCosmosAtlachNachaPosition"],
+                ["DECREASE_VAR", "$POSITION", 1],
+                ["COND",
+                    ["LESS_THAN", "$POSITION", 0],
+                    ["UPDATE_VAR", "$POSITION", 7]
+                ],
+                ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA", "$TARGET_PLAYER", "$POSITION"]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "06337": { //Journey Across the Bridge
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioWeaverOfTheCosmosAct2Setup", false],
+                            ["PROMPT", "$PLAYER_N", "weaverOfTheCosmosJourneyAcrossTheBridgeAbilityB"]
+                        ]
+                    ]
+                }
+            },
+            "06346": { //Atlach-Nacha: The Spider God
+                "ability" : {
+                    "A": [
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$THIS.groupId", "sharedLocations"],
+                                ["NOT_EQUAL", "$GAME.arkham.scenarioWeaverOfTheCosmosAtlachNachaPosition", null]
+                            ],
+                            ["PROMPT", "$PLAYER_N", "weaverOfTheCosmosAtlachNachaAbilityA"]
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "prompts": {
+        "weaverOfTheCosmosJourneyAcrossTheBridgeAbilityB": {
+            "args": [],
+            "message": "Do you want to setup Act 2?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["WEAVER_OF_THE_COSMOS_SETUP_ACT_2", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        },
+        "weaverOfTheCosmosAtlachNachaAbilityA": {
+            "args": [],
+            "message": "Do you want to spin Atlach-Nacha?",
+            "options": [
+                {
+                    "label": "Yes, clockwise (right).",
+                    "hotkey": "R",
+                    "code": [
+                        ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_CLOCKWISE", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Yes, counterclockwise (left).",
+                    "hotkey": "L",
+                    "code": [
+                        ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_COUNTERCLOCKWISE", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        }
+    }
+}

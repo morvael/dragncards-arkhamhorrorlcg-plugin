@@ -168,7 +168,8 @@
                         "deckLists": [
                             {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
                             {"label": "id:aThousandShapesOfHorror", "deckListId": "A Thousand Shapes of Horror Scenario"},
-                            {"label": "id:pointOfNoReturn", "deckListId": "Point of No Return Scenario"}
+                            {"label": "id:pointOfNoReturn", "deckListId": "Point of No Return Scenario"},
+                            {"label": "id:weaverOfTheCosmos", "deckListId": "Weaver of the Cosmos Scenario"}
                         ]
                     }
                 ]
@@ -548,6 +549,9 @@
         },
         "whereTheGodsDwell": {
             "English": "Where the Gods Dwell"
+        },
+        "weaverOfTheCosmos": {
+            "English": "Weaver of the Cosmos"
         },
         "returnToCampaigns": {
             "English": "Return to… Campaigns"

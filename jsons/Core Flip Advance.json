@@ -243,6 +243,28 @@
                     ],
                     ["UPDATE_VAR", "$DOOM", "$TARGET_CARD.currentFace.doom"]
                 ],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06334"],  //The Bridge of Webs
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06335"],  //A Trail of Twists
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06336"]   //Realities Interwoven
+                    ],
+                    ["INCREASE_VAR", "$DOOM", ["MULTIPLY", 2, "$GAME.arkham.numPlayers"]],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04055"],  //Something Stirs...
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04056"],  //The Temple Warden
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04212"]   //Eyes in the Dark
+                    ],
+                    ["INCREASE_VAR", "$DOOM", "$GAME.arkham.numPlayers"],
+                    ["AND",
+                        ["EQUAL", "$GAME.arkham.numPlayers", 1],
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09662"],  //Restless Dead
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "84002"]   //The Murder
+                        ]
+                    ],
+                    ["INCREASE_VAR", "$DOOM", 1]
+                ],
                 "$DOOM"
             ]
         },

@@ -285,6 +285,13 @@
                 ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
             ]
         },
+        "DO_SET_CARD_LOCATION_AND_ROTATION": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP", "$ROTATION"],
+            "code": [
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+                ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$ROTATION"]
+            ]
+        },
         "DO_CLEAR_TARGETED_FROM_LIST": {
             "_comment": "Unsets given player targeting cards from given list.",
             "args": ["$SELECTED_CARDS", "$TARGETING_PLAYER"],
