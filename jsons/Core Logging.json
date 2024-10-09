@@ -110,6 +110,21 @@
                 ]
             ]
         },
+        "VALIDATE_RANGE": {
+            "args": ["$PARAM", "$MIN", "$MAX", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["LESS_THAN", "$PARAM", "$MIN"],
+                    ["ABORT", "{{$DESCRIPTION}} is less than {{$MIN}}."],
+                    ["GREATER_THAN", "$PARAM", "$MAX"],
+                    ["ABORT", "{{$DESCRIPTION}} is greater than {{$MAX}}."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
         "VALIDATE_INDEX": {
             "args": ["$PARAM", "$DESCRIPTION"],
             "code": [

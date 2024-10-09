@@ -119,7 +119,7 @@
             "args": ["$TARGET_PLAYER", "$POSITION"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.TARGET_PLAYER"],
-                ["VALIDATE_GE0", "$POSITION", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.POSITION"],
+                ["VALIDATE_RANGE", "$POSITION", 0, 7, "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA.POSITION"],
                 ["SET", "/arkham/scenarioWeaverOfTheCosmosAtlachNachaPosition", "$POSITION"],
                 ["VAR", "$TORSO", ["GET_NAMED_CARD_ID", "06346"]], //Atlach-Nacha: The Spider God
                 ["VAR", "$LEGNW", ["GET_NAMED_CARD_ID", "06347"]], //Legs of Atlach-Nacha
