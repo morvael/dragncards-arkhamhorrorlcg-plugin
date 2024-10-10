@@ -110,7 +110,7 @@
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
                 ]],
-                ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
                 ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
                 ["SET", "/arkham/scenarioWeaverOfTheCosmosAct2Setup", true]
             ]
@@ -223,7 +223,7 @@
     },
     "automation": {
         "cards": {
-            "06337": { //Journey Across the Bridge
+            "06337": { //Journey Across the Bridge (The Edge of Dreams)
                 "ability" : {
                     "B": [
                         ["COND",
@@ -271,15 +271,15 @@
             "message": "Do you want to spin Atlach-Nacha?",
             "options": [
                 {
-                    "label": "Yes, clockwise (right).",
-                    "hotkey": "R",
+                    "label": "Yes, clockwise.",
+                    "hotkey": "C",
                     "code": [
                         ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_CLOCKWISE", "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Yes, counterclockwise (left).",
-                    "hotkey": "L",
+                    "label": "Yes, counterclockwise.",
+                    "hotkey": "R",
                     "code": [
                         ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_COUNTERCLOCKWISE", "$PLAYER_N"]
                     ]

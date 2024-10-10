@@ -470,6 +470,48 @@
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
             ]
         },
+        "DO_SPAWN_NAMED_AT_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_NAMED_AT_LOCATION_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$LOCATION_CARD_NAME", null],
+                        ["NOT_EQUAL", "$LEFT_MOD", null],
+                        ["NOT_EQUAL", "$TOP_MOD", null]
+                    ],
+                    [
+                        ["VAR", "$TARGET_CARD", ["GET_NAMED_CARD", "$TARGET_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$LOCATION_CARD", null]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                ["VAR", "$INDEX", -1],
+                                ["COND",
+                                    ["GREATER_THAN", "$ADD_TO_INDEX", 0],
+                                    ["UPDATE_VAR", "$INDEX", ["ADD", "$LOCATION_CARD.stackIndex", "$ADD_TO_INDEX"]]
+                                ],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"combine": false, "allowFlip": false}],
+                                ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
+                                ["DEFINE", "$DO_SPAWN_NAMED_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_NAMED_AT_LOCATION_SCN": {
+            "args": ["$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX"],
+            "code": [
+                ["DO_SPAWN_NAMED_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
+            ]
+        },
         "DO_SPAWN_AT_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -1335,6 +1377,20 @@
                     ["GREATER_EQUAL", "$GAME.arkham.customSpawnChoiceDone", "$GAME.numPlayers"],
                     ["ACTION_LIST", "$GAME.arkham.customSpawnChoiceScenarioContinueAction"]
                 ]
+            ]
+        },
+        "DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES.LOG_EVENT"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                    ["VAR", "$CLUES", ["GET_CLUES_ON_CARD", "$INVESTIGATOR.id"]],
+                    ["COND",
+                        ["GREATER_THAN", "$CLUES", 0],
+                        ["DO_REMOVE_CLUES_FROM_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$CLUES", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                ]]
             ]
         }
     },

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "Where the Gods Dwell", null, "Where the Gods Dwell Scenario Init"]
+                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "Where the Gods Dwell", "Where the Gods Dwell Scenario Early Init", "Where the Gods Dwell Scenario Init"]
             ]
         },
         "Where the Gods Dwell": {
@@ -50,6 +50,13 @@
         }
     },
     "actionLists": {
+        "Where the Gods Dwell Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Randolph survived the voyage.", "Randolph did not survive the voyage."], "Where the Gods Dwell Scenario Question 1"]
+        ],
+        "Where the Gods Dwell Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["SCENARIO_INIT_RESUME", "Where the Gods Dwell Scenario Init"]
+        ],
         "Where the Gods Dwell Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Where the Gods Dwell"],
             ["DO_LOAD_CARDS_SCN", "Agents of Nyarlathotep - Treacheries"],
@@ -59,7 +66,7 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Plateau of Leng", 5, 7, 3, 0],
             ["VAR", "$FORSAKEN_TOWERS", ["SHUFFLE_LIST", ["LIST", "06300", "06301", "06302", "06303", "06304", "06305"]]], //Forsaken Tower: Of Illusion and Myth, Forsaken Tower: Of Life and Death, Forsaken Tower: Of Infinite Truth, Forsaken Tower: Of Eternal Flame, Forsaken Tower: Of the Queen of Night, Forsaken Tower: Of Primeval Light
             ["VAR", "$SPAWN_LEFTS", ["LIST", 55, 75, 55, 35]],
-            ["VAR", "$SPAWN_TOPS", ["LIST", 31, 55, 79, 55]],            
+            ["VAR", "$SPAWN_TOPS", ["LIST", 31, 55, 79, 55]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
                 ["DO_CREATE_CARDS_SCN", "Forsaken Tower", "$FORSAKEN_TOWERS.[$I]", 1, "sharedNotInPlay"],
                 ["DO_SET_SPAWN_LOCATION", "$FORSAKEN_TOWERS.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
@@ -70,8 +77,100 @@
                 ["DO_CREATE_CARDS_SCN", "Nyarlathotep", "$NYARLATHOTEPS.[$I]", 1, "sharedDeckA"]
             ]],
             ["DO_LOAD_CARDS_SCN", "Where the Gods Dwell - Set Aside"],
-            ["SET", "/arkham/finalScenarioMessage", "Whispering Chaos, Myriad Forms, The Crawling Mist, and the required number of Nyarlathotep cards are in Deck A. Two randomly chosen Forsaken Tower locations have been already removed from the game."],
+            ["SET", "/arkham/scenarioWhereTheGodsDwellAct4Setup", false],
+            ["SET", "/arkham/finalScenarioMessage", "Whispering Chaos, Myriad Forms, The Crawling Mist, and the required number of Nyarlathotep cards are in Deck A. Two randomly chosen Forsaken Tower locations have been already removed from the game. Use Act 3b's card ability to setup Act 4."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
+    },
+    "functions": {
+        "WHERE_THE_GODS_DWELL_SETUP_ACT_4": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WHERE_THE_GODS_DWELL_SETUP_ACT_4.TARGET_PLAYER"],
+                ["DO_FLOG", "{0:P} sets up Act 4.", ["LIST", "$TARGET_PLAYER"]],
+                //Each investigator loses all of their clues.
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", false, null],
+                //Reveal The Onyx Castle and place each investigator in The Great Hall on its revealed side.
+                ["VAR", "$THE_GREAT_HALL", ["GET_NAMED_CARD_ID", "06299"]],
+                ["SET", "/cardById/$THE_GREAT_HALL/currentSide", "A"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$THE_GREAT_HALL", false]
+                ]],
+                //Remove each location other than The Great Hall from the game.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["NOT_EQUAL", "$CARD.id", "$THE_GREAT_HALL"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                //If an investigator’s deck contains Randolph Carter (Expert Dreamer) (The Dream-Eaters card #59), remove him from that deck for the remainder of the campaign.
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                    [
+                        ["VAR", "$RANDOLPH_CARTER", ["GET_NAMED_CARD", "06059"]], //Randolph Carter: Expert Dreamer
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$RANDOLPH_CARTER", null],
+                                ["CAN_EXILE_CARD_ANY", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.id", "$TARGET_PLAYER"]
+                            ],
+                            [
+                                ["DO_EXILE_CARD_ANY", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.id", true, "$TARGET_PLAYER"],
+                                ["DO_SHUFFLE_GROUP", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.groupId", true, null]
+                            ]
+                        ]
+                    ]
+                ],
+                //Shuffle the set-aside The Crawling Mist and each set-aside copy of Myriad Forms and Whispering Chaos (and Nyarlathotep enemies) into the encounter deck, ...
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedDeckA"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
+                ]],
+                //... along with the encounter discard pile.
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                //spawn Forsaken Towers
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Forsaken Tower"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                //advance story
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
+                ["SET", "/arkham/scenarioWhereTheGodsDwellAct4Setup", true]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "06292": { //Beyond Dreams (Where the Gods Dwell)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioWhereTheGodsDwellAct4Setup", false],
+                            ["PROMPT", "$PLAYER_N", "whereTheGodsDwellBeyondDreamsAbilityB"]
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "prompts": {
+        "whereTheGodsDwellBeyondDreamsAbilityB": {
+            "args": [],
+            "message": "Do you want to setup Act 4?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["WHERE_THE_GODS_DWELL_SETUP_ACT_4", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        }
     }
 }

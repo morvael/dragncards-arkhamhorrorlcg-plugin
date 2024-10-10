@@ -449,6 +449,18 @@
                 ],
                 ["DO_CHECK_HAND_SIZE", "$TARGET_PLAYER"]
             ]
+        },
+        "DO_MOVE_TO_VICTORY_DISPLAY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_VICTORY_DISPLAY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_VICTORY_DISPLAY.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_TO_VICTORY_DISPLAY.LOG_EVENT"],
+                ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_NAME}} to the Victory Display.", "moves {{$TARGET_NAME}} to the Victory Display."],
+                ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
+                ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVictoryDisplay", -1]
+            ]
         }
     },
     "prompts": {

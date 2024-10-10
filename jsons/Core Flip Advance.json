@@ -295,7 +295,7 @@
         "CAN_CLEAR_DOOM_FROM_CARD": {
             "args": ["$AGENDA_CARD", "$TARGET_CARD"],
             "code": [
-                ["COND",                    
+                ["COND",
                     ["AND",
                         ["OR",
                             ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "04055"],  //Something Stirs... (Do not remove doom from each location in play.)
