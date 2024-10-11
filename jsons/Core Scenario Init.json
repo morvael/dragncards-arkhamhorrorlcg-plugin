@@ -1185,7 +1185,7 @@
                         ["NOT_EQUAL", "$GAME.arkham.scenarioAction", null],
                         ["ACTION_LIST", "$GAME.arkham.scenarioAction"],
                         ["TRUE"],
-                        ["SCENARIO_INIT_FINISH", null]
+                        ["SCENARIO_INIT_FINISH"]
                     ]
                 ]
             ]
@@ -1202,7 +1202,7 @@
             "args": ["$NEXT_SCENARIO_ACTION"],
             "code": [
                 ["SET", "/arkham/scenarioAction", "$NEXT_SCENARIO_ACTION"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "ASK_SCENARIO_QUESTION_AND_CONTINUE": {
@@ -1213,7 +1213,7 @@
             ]
         },
         "SHOW_SCENARIO_QUESTION_PROMPT": {
-            "args": ["$DUMMY"],
+            "args": [],
             "code": [
                 ["COND",
                     ["LESS_THAN", "$GAME.arkham.scenarioQuestionIndex", "$GAME.arkham.numScenarioQuestions"],
@@ -1231,7 +1231,7 @@
                         ["NOT_EQUAL", "$GAME.arkham.scenarioAction", null],
                         ["ACTION_LIST", "$GAME.arkham.scenarioAction"],
                         ["TRUE"],
-                        ["SCENARIO_INIT_FINISH", null]
+                        ["SCENARIO_INIT_FINISH"]
                     ]
                 ]
             ]
@@ -1243,7 +1243,7 @@
                 ["LOG", "{{$ALIAS_N}} picks option {{$QUESTION_ANSWER}} in scenario question {{$GAME.arkham.scenarioQuestionIndex}}."],
                 ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "$QUESTION_ANSWER"],
                 ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "$QUESTION_TEXT"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "SCENARIO_SKIP_QUESTION_WITH_ANSWER": {
@@ -1256,7 +1256,7 @@
                 ["INCREASE_VAL", "/arkham/scenarioQuestionIndex", 1],
                 ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "$ANSWER"],
                 ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "$TEXT"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "SCENARIO_SKIP_QUESTION": {
@@ -1278,7 +1278,7 @@
                     ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "X"],
                     ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "dummy"]
                 ]],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "GET_FIRST_OF_SHUFFLED_LIST": {
@@ -1318,7 +1318,7 @@
             ]
         },
         "SCENARIO_INIT_FINISH": {
-            "args": ["$DUMMY"],
+            "args": [],
             "code": [
                 ["COND",
                     ["EQUAL", "$GAME.arkham.skipShufflingEncounterDeck", false],
