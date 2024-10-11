@@ -392,6 +392,17 @@
                 ]
             ]
         },
+        "NVL": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$A", null],
+                    "$B",
+                    ["TRUE"],
+                    "$A"
+                ]
+            ]
+        },
         "ABS": {
             "args": ["$VALUE"],
             "code": [
