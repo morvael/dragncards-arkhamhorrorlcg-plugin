@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "Weaver of the Cosmos", null, "Weaver of the Cosmos Scenario Init"]
+                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "Weaver of the Cosmos", "Weaver of the Cosmos Scenario Early Init", "Weaver of the Cosmos Scenario Init"]
             ]
         },
         "Weaver of the Cosmos": {
@@ -33,6 +33,20 @@
         }
     },
     "actionLists": {
+        "Weaver of the Cosmos Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Randolph did not survive the descent.", "Randolph survived the descent."], "Weaver of the Cosmos Scenario Question 1"]
+        ],
+        "Weaver of the Cosmos Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The black cat knows the truth.", "The above is not true."], "Weaver of the Cosmos Scenario Question 2"]
+        ],
+        "Weaver of the Cosmos Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"]
+            ],
+            ["SCENARIO_INIT_RESUME", "Weaver of the Cosmos Scenario Init"]
+        ],
         "Weaver of the Cosmos Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Weaver of the Cosmos"],
             ["WEAVER_OF_THE_COSMOS_DISABLE_EXHAUST_READY", "06346", "B"], //Atlach-Nacha: The Spider God
@@ -75,7 +89,29 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SETUP_ACT_2.TARGET_PLAYER"],
-                ["DO_FLOG", "{0:P} sets up Act 2. Use Atlach-Nacha's card ability to spin it.", ["LIST", "$TARGET_PLAYER"]],
+                ["DO_FLOG", "{0:P} sets up Act 2.", ["LIST", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"], //If Randolph survived the descent...
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"]  //...and the black cat knows the truth...
+                    ],
+                    ["DO_EXILE_NAMED_CARDS", "$TARGET_PLAYER", "Randolph Carter: Chained to the Waking World", true, null],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"], //Otherwise, if Randolph survived the descent...
+                    [
+                        ["LOG", "└── Campaign Log: The investigators are trapped in Atlach-Nacha's realm."],
+                        ["DO_EXILE_NAMED_CARDS", "$TARGET_PLAYER", "Randolph Carter: Chained to the Waking World", true, null],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
+                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-3", "chaos_m3"],
+                            ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
+                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-4", "chaos_m4"],
+                            ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-5", "chaos_m5"],
+                            ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-7", "chaos_m7"]
+                        ]
+                    ]
+                ],
                 ["VAR", "$BOTTOMMOST_LOCATION", "$GAME.arkham.scenarioWeaverOfTheCosmosBottommostLocation"],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "sharedLocations"],
@@ -84,34 +120,34 @@
                     ["NOT_EQUAL", "$CARD.id", "$BOTTOMMOST_LOCATION"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["MOVE_CARD", "$CARD.id", "sharedRemoved", -1]
+                    ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                 ]],
                 ["DO_SET_CARD_LOCATION", "$BOTTOMMOST_LOCATION", 45, 4],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BOTTOMMOST_LOCATION", false]
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BOTTOMMOST_LOCATION", true, null]
                 ]],
                 ["VAR", "$SPAWN_LEFTS", ["LIST", 80, 72, 45, 18, 10, 18, 72]],
                 ["VAR", "$SPAWN_TOPS", ["LIST", 43, 71, 82, 71, 43, 15, 15]],
                 ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
                     ["VAR", "$GREAT_WEB_ID", ["GET_TOP_CARD_ID", "sharedDeckA"]],
-                    ["MOVE_CARD", "$GREAT_WEB_ID", "sharedLocations", -1],
-                    ["DO_SET_CARD_LOCATION", "$GREAT_WEB_ID", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+                    ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$GREAT_WEB_ID", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
                 ]],
                 ["VAR", "$ATLACH_NACHA_PARTS", ["LIST", "06346", "06347", "06348", "06349", "06350"]], //Atlach-Nacha: The Spider God, Legs of Atlach-Nacha (4)
                 ["FOR_EACH_VAL", "$ATLACH_NACHA_PART", "$ATLACH_NACHA_PARTS", [
-                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "$ATLACH_NACHA_PART"], "sharedLocations", -1]
+                    ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "$ATLACH_NACHA_PART"], 45, 43]
                 ]],
-                ["DO_SET_NAMED_CARD_SIDE", "06346", "B"], //Atlach-Nacha: The Spider God
+                ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06346"], true, null], //Atlach-Nacha: The Spider God
                 ["WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA", "$TARGET_PLAYER", 0],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
                     ["EQUAL", "$CARD.sides.A.databaseId", "06352"] //The Spinner in Darkness
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$CARD.id", "sharedEncounterDeck"]
                 ]],
-                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
-                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["DO_FSYSLOG", "Use Atlach-Nacha's card ability to spin it.", null],
                 ["SET", "/arkham/scenarioWeaverOfTheCosmosAct2Setup", true]
             ]
         },
@@ -198,6 +234,7 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_CLOCKWISE.TARGET_PLAYER"],
+                ["DO_FLOG", "{0:P} spins Atlach-Nacha clockwise.", ["LIST", "$TARGET_PLAYER"]],
                 ["VAR", "$POSITION", "$GAME.arkham.scenarioWeaverOfTheCosmosAtlachNachaPosition"],
                 ["INCREASE_VAR", "$POSITION", 1],
                 ["COND",
@@ -211,6 +248,7 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WEAVER_OF_THE_COSMOS_SPIN_ATLACH_NACHA_COUNTERCLOCKWISE.TARGET_PLAYER"],
+                ["DO_FLOG", "{0:P} spins Atlach-Nacha counterclockwise.", ["LIST", "$TARGET_PLAYER"]],
                 ["VAR", "$POSITION", "$GAME.arkham.scenarioWeaverOfTheCosmosAtlachNachaPosition"],
                 ["DECREASE_VAR", "$POSITION", 1],
                 ["COND",

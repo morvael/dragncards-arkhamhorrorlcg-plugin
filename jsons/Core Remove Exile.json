@@ -104,13 +104,13 @@
         ]
     },
     "functions": {
+        //Checks if a card can be set aside.
         "CAN_SET_ASIDE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SET_ASIDE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SET_ASIDE_CARD.TARGET_CARD_ID"]],
                 ["AND",
-                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
@@ -120,33 +120,80 @@
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$TARGET_CARD.inHand", true],
-                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"]
-                        ]
-                    ],
-                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
+                    ]
                 ]
             ]
         },
+        //Sets aside a specific card (attached cards are first discarded). If the card is owned by the scenario attached cards are not discarded.
         "DO_SET_ASIDE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SET_ASIDE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SET_ASIDE_CARD.TARGET_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SET_ASIDE_CARD.LOG_EVENT"],
+                ["DEFINE", "$DO_SET_ASIDE_CARD_RESULT", false],
                 ["COND",
                     ["CAN_SET_ASIDE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "set {{$TARGET_NAME}} aside.", "sets {{$TARGET_NAME}} aside."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_ASIDE", "$TARGET_CARD.cardOwner"], -1]
+                        ["COND",
+                            ["EQUAL", "$TARGET_CARD.cardOwner", "shared"],
+                            ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "set{A} {0:P}'s {1:C} aside.", ["LIST", "$TARGET_CARD.cardOwner", "$TARGET_CARD"]],
+                            ["TRUE"],
+                            [
+                                ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "set{A} {0:P}'s {1:CA} aside.", ["LIST", "$TARGET_CARD.cardOwner", "$TARGET_CARD"]],
+                                ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null]
+                            ]
+                        ],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_ASIDE", "$TARGET_CARD.cardOwner"], -1],
+                        ["DEFINE", "$DO_SET_ASIDE_CARD_RESULT", true]
                     ]
                 ]
             ]
         },
+        //Sets aside all cards named $TARGET_NAME, and shuffles all groups affected by the operation (where allowed).
+        "DO_SET_ASIDE_NAMED_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SET_ASIDE_NAMED_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_SET_ASIDE_NAMED_CARDS.TARGET_NAME"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SET_ASIDE_NAMED_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "$TARGET_NAME"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "set{A} {0} card{0:S} aside.", ["LIST", "$SELECTED_COUNT"]],
+                        ["VAR", "$SHUFFLE_GROUPS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$DO_SET_ASIDE_CARD_RESULT", true],
+                                    ["EQUAL", ["IN_LIST", "$SHUFFLE_GROUPS", "$CARD.groupId"], false]
+                                ],
+                                ["UPDATE_VAR", "$SHUFFLE_GROUPS", ["APPEND", "$SHUFFLE_GROUPS", "$CARD.groupId"]]
+                            ]
+                        ]],
+                        ["FOR_EACH_VAL", "$SHUFFLE_GROUP", "$SHUFFLE_GROUPS", [
+                            ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$SHUFFLE_GROUP", "$LOG_EVENT", null]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        //Checks if a card can be removed.
         "CAN_REMOVE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
@@ -162,159 +209,87 @@
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
                     ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Encounter Card"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.name", "Player Card"],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.inHand", false],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
+                            ["EQUAL", "$TARGET_CARD.eliminated", true]
                         ],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.inHand", true],
-                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Location"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Story"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "Investigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "MiniInvestigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                            ["EQUAL", "$TARGET_CARD.eliminated", true]
                         ]
                     ]
                 ]
             ]
         },
+        //Removes a specific card (attached cards are first discarded).
         "DO_REMOVE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_REMOVE_CARD.TARGET_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_CARD.LOG_EVENT"],
+                ["DEFINE", "$DO_REMOVE_CARD_RESULT", false],
                 ["COND",
                     ["CAN_REMOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
-                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}} from the game.", "removes {{$TARGET_NAME}} from the game."],
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove{A} {0:P}'s {1:CA} from the game.", ["LIST", "$TARGET_CARD.cardOwner", "$TARGET_CARD"]],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1],
+                        ["DEFINE", "$DO_REMOVE_CARD_RESULT", true]
                     ]
                 ]
             ]
         },
-        "CAN_REMOVE_CARD_ANY": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+        //Removes all cards named $TARGET_NAME, and shuffles all groups affected by the operation (where allowed).
+        "DO_REMOVE_NAMED_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_REMOVE_CARD_ANY.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_REMOVE_CARD_ANY.TARGET_CARD_ID"]],
-                ["AND",
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Aside"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
-                    ["OR",
-                        ["AND",
-                            ["NOT_EQUAL", "$TARGET_CARD.currentFace.databaseId", null],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Agenda"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Act"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
-                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ]
-                            ]
-                        ],
-                        ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentFace.databaseId", null],
-                            ["OR",
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Asset"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Treachery"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Event"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Location"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Story"],
-                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "Investigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$TARGET_CARD.sides.A.type", "MiniInvestigator"],
-                                    ["EQUAL", "$TARGET_CARD.eliminated", true]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        },
-        "DO_REMOVE_CARD_ANY": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_CARD_ANY.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_REMOVE_CARD_ANY.TARGET_CARD_ID"]],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_CARD_ANY.LOG_EVENT"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_NAMED_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_REMOVE_NAMED_CARDS.TARGET_NAME"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_NAMED_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "$TARGET_NAME"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
-                    ["CAN_REMOVE_CARD_ANY", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
                     [
-                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME_ANY", "$TARGET_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$TARGET_NAME}} from the game.", "removes {{$TARGET_NAME}} from the game."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove{A} {0} card{0:S} from the game.", ["LIST", "$SELECTED_COUNT"]],
+                        ["VAR", "$SHUFFLE_GROUPS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$DO_REMOVE_CARD_RESULT", true],
+                                    ["EQUAL", ["IN_LIST", "$SHUFFLE_GROUPS", "$CARD.groupId"], false]
+                                ],
+                                ["UPDATE_VAR", "$SHUFFLE_GROUPS", ["APPEND", "$SHUFFLE_GROUPS", "$CARD.groupId"]]
+                            ]
+                        ]],
+                        ["FOR_EACH_VAL", "$SHUFFLE_GROUP", "$SHUFFLE_GROUPS", [
+                            ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$SHUFFLE_GROUP", "$LOG_EVENT", null]
+                        ]]
                     ]
                 ]
             ]
         },
+        //Checks if a card can be exiled.
         "CAN_EXILE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXILE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXILE_CARD.TARGET_CARD_ID"]],
                 ["AND",
-                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
@@ -324,65 +299,61 @@
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$TARGET_CARD.inHand", true],
-                            ["IN_STRING", "$TARGET_CARD.groupId", "$TARGET_PLAYER"]
-                        ]
-                    ],
-                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                    ]
                 ]
             ]
         },
+        //Exiles a specific card (attached cards are first discarded). If the card is owned by the scenario it is removed instead.
         "DO_EXILE_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_EXILE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_EXILE_CARD.TARGET_CARD_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_EXILE_CARD.LOG_EVENT"],
+                ["DEFINE", "$DO_EXILE_CARD_RESULT", false],
                 ["COND",
                     ["CAN_EXILE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
                     [
                         ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_NAME}} from the game.", "exiles {{$TARGET_NAME}} from the game."],
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "{0}{A} {1:P}'s {2:CA} from the game.", ["LIST", ["INLINE_IF", ["EQUAL", "$TARGET_CARD.cardOwner", "shared"], "remove", "exile"], "$TARGET_CARD.cardOwner", "$TARGET_CARD"]],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_EXILED", "$TARGET_CARD.cardOwner"], -1]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_EXILED", "$TARGET_CARD.cardOwner"], -1],
+                        ["DEFINE", "$DO_EXILE_CARD_RESULT", true]
                     ]
                 ]
             ]
         },
-        "CAN_EXILE_CARD_ANY": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+        //Exiles all cards named $TARGET_NAME, and shuffles all groups affected by the operation (where allowed).
+        "DO_EXILE_NAMED_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXILE_CARD_ANY.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXILE_CARD_ANY.TARGET_CARD_ID"]],
-                ["AND",
-                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
-                    ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedChaosBag"],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Aside"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Removed"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "Exiled"], true],
-                    ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.groupId", "SideDeck"], true],
-                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"]
-                ]
-            ]
-        },
-        "DO_EXILE_CARD_ANY": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_EXILE_CARD_ANY.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_EXILE_CARD_ANY.TARGET_CARD_ID"]],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_EXILE_CARD_ANY.LOG_EVENT"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_EXILE_NAMED_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_EXILE_NAMED_CARDS.TARGET_NAME"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_EXILE_NAMED_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "$TARGET_NAME"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
-                    ["CAN_EXILE_CARD_ANY", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
                     [
-                        ["VAR", "$TARGET_NAME", ["GET_CARD_NAME_ANY", "$TARGET_CARD_ID"]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile {{$TARGET_NAME}} from the game.", "exiles {{$TARGET_NAME}} from the game."],
-                        ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_EXILED", "$TARGET_CARD.cardOwner"], -1]
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "exile{A} {0} card{0:S} from the game.", ["LIST", "$SELECTED_COUNT"]],
+                        ["VAR", "$SHUFFLE_GROUPS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_EXILE_CARD", "$TARGET_PLAYER", "$CARD.id", "$LOG_EVENT", null],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$DO_EXILE_CARD_RESULT", true],
+                                    ["EQUAL", ["IN_LIST", "$SHUFFLE_GROUPS", "$CARD.groupId"], false]
+                                ],
+                                ["UPDATE_VAR", "$SHUFFLE_GROUPS", ["APPEND", "$SHUFFLE_GROUPS", "$CARD.groupId"]]
+                            ]
+                        ]],
+                        ["FOR_EACH_VAL", "$SHUFFLE_GROUP", "$SHUFFLE_GROUPS", [
+                            ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$SHUFFLE_GROUP", "$LOG_EVENT", null]
+                        ]]
                     ]
                 ]
             ]

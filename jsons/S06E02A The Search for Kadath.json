@@ -194,42 +194,42 @@
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06122"], //Kingdom of the Skai
                     [
                         //Search the encounter deck, discard pile, and all play areas for Cats of Ulthar, each Pack of Vooniths, and each card from the Zoogs encounter set, and remove them from the game.
-                        ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Cats of Ulthar"], false, null],
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Cats of Ulthar"], true, null],
                         ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Pack of Vooniths"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", "$CARD.id", false, null]
+                            ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                         ]],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.A.encounterSet", "Zoogs"]]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", "$CARD.id", false, null]
+                            ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                         ]],
                         //Shuffle each set-aside copy of Priest of a Thousand Masks into the encounter deck.
                         ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Priest of a Thousand Masks"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
+                            ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$CARD.id", "sharedEncounterDeck"]
                         ]]
                     ],
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06124"], //The Doom That Came Before
                     [
                         //Search the encounter deck, discard pile, and all play areas for the Beings of Ib enemy and remove it from the game.
-                        ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Beings of Ib"], false, null]
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Beings of Ib"], true, null]
                     ],
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06125"], //Seek Out the Night
                     [
                         //Search the encounter deck, discard pile, and all play areas for the Horde of Night and Stalking Manticore enemies and remove each of them from the game.
-                        ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Horde of Night"], false, null],
-                        ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Stalking Manticore"], false, null]
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Horde of Night"], true, null],
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Stalking Manticore"], true, null]
                     ],
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06126"], //The King's Decree
                     [
                         //Search the encounter deck, discard pile, and all play areas for The Crawling Mist enemy and remove it from the game.
-                        ["DO_REMOVE_CARD_ANY", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "The Crawling Mist"], false, null]
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "The Crawling Mist"], true, null]
                     ]
                 ],
                 //Shuffle the encounter discard pile into the encounter deck.
-                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
                 //Each investigator loses each of their clues.
-                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", false, null],
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
                 //Remove each location in play from the game (or place it in the victory display if it has Victory X and no clues on it). Each enemy and attachment at those locations is discarded. Investigators are not defeated during this process.
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.inPlay", true],
@@ -237,7 +237,7 @@
                     ["NOT_EQUAL", "$CARD.currentFace.databaseId", "06150"] //Tenebrous Nightgaunt
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$CARD.id", "", false, null]
+                    ["DO_DISCARD_CARD_ACT", "$TARGET_PLAYER", "$CARD.id"]
                 ]],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.inPlay", true],
@@ -249,9 +249,9 @@
                             ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
                             ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
                         ],
-                        ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$CARD.id", false, null],
+                        ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$CARD.id", true, null],
                         ["TRUE"],
-                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                     ]
                 ]],
                 ["COND",
@@ -262,20 +262,20 @@
                         ["VAR", "$MT_NGRANEK", ["GET_NAMED_CARD_ID", "06137"]], //Mt. Ngranek
                         ["VAR", "$NAMELESS_RUINS", ["GET_NAMED_CARD_ID", "06138"]], //Nameless Ruins
                         //Put each set-aside Oriab location into play (Baharna, Mt. Ngranek, and Nameless Ruins).
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$BAHARNA", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$MT_NGRANEK", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$NAMELESS_RUINS", false, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$BAHARNA", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$MT_NGRANEK", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$NAMELESS_RUINS", true, null],
                         //Place each investigator at Baharna.
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BAHARNA", false]
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BAHARNA", true, null]
                         ]],
                         //Search the encounter deck for 1 copy of Nightriders and spawn it at Mt. Ngranek. If there are 3 or 4 investigators in the game, search the encounter deck for another copy of Nightriders and spawn it at Nameless Ruins, as well. Shuffle the encounter deck.
-                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$MT_NGRANEK", 3, 3, 1, false, null],
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$MT_NGRANEK", 3, 3, 1, true, null],
                         ["COND",
                             ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
-                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$NAMELESS_RUINS", 3, 3, 1, false, null]
+                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$NAMELESS_RUINS", 3, 3, 1, true, null]
                         ],
-                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", false, null]
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", true, null]
                     ],
                     ["EQUAL", "$SETUP", 2],
                     [
@@ -284,15 +284,15 @@
                         ["VAR", "$SARNATH", ["GET_NAMED_CARD_ID", "06131"]], //Sarnath
                         ["VAR", "$RUINS_OF_IB", ["GET_NAMED_CARD_ID", "06132"]], //Ruins of Ib
                         //Put each set-aside Mnar location into play (Kadatheron, Sarnath, and Ruins of Ib).
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$KADATHERON", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SARNATH", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$RUINS_OF_IB", false, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$KADATHERON", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SARNATH", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$RUINS_OF_IB", true, null],
                         //Place each investigator at Kadatheron.
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$KADATHERON", false]
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$KADATHERON", true, null]
                         ]],
                         //Spawn the set-aside Beings of Ib enemy at Ruins of Ib.
-                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Beings of Ib", "$RUINS_OF_IB", 3, 3, 1, false, null]
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Beings of Ib", "$RUINS_OF_IB", 3, 3, 1, true, null]
                     ],
                     ["EQUAL", "$SETUP", 3],
                     [
@@ -301,17 +301,17 @@
                         ["VAR", "$FORBIDDEN_LANDS", ["GET_NAMED_CARD_ID", "06134"]], //Forbidden Lands
                         ["VAR", "$ZULAN_THEK", ["GET_NAMED_CARD_ID", "06135"]], //Zulan-Thek
                         //Put each set-aside Forbidden location into play (Ilek-Vad, Forbidden Lands, and Zulan-Thek).
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ILEK_VAD", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$FORBIDDEN_LANDS", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ZULAN_THEK", false, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ILEK_VAD", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$FORBIDDEN_LANDS", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ZULAN_THEK", true, null],
                         //Place each investigator at Ilek-Vad.
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$ILEK_VAD", false]
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$ILEK_VAD", true, null]
                         ]],
                         //Spawn the set-aside Stalking Manticore enemy at Forbidden Lands.
-                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Stalking Manticore", "$FORBIDDEN_LANDS", 3, 3, 1, false, null],
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Stalking Manticore", "$FORBIDDEN_LANDS", 3, 3, 1, true, null],
                         //Spawn the set-aside Horde of Night enemy at Zulan-Thek.
-                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Horde of Night", "$ZULAN_THEK", 3, 3, 1, false, null]
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Horde of Night", "$ZULAN_THEK", 3, 3, 1, true, null]
                     ],
                     ["EQUAL", "$SETUP", 4],
                     [
@@ -320,40 +320,40 @@
                         ["VAR", "$SERANNIAN", ["GET_NAMED_CARD_ID", "06140"]], //Serannian
                         ["VAR", "$HAZUTH_KLEG", ["GET_NAMED_CARD_ID", "06141"]], //Hazuth-Kleg
                         //Put Celephaïs, Serannian, and Hazuth-Kleg into play.
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CELEPHAIS", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SERANNIAN", false, null],
-                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$HAZUTH_KLEG", false, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CELEPHAIS", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SERANNIAN", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$HAZUTH_KLEG", true, null],
                         //Place each investigator at Celephaïs.
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CELEPHAIS", false]
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CELEPHAIS", true, null]
                         ]],
                         //Shuffle the set-aside The Crawling Mist into the encounter deck.
                         ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06086"], "sharedEncounterDeck", -1], //The Crawling Mist
                         //Search the encounter deck for 1 copy of Priest of a Thousand Masks and spawn it at Hazuth-Kleg. If there are 3 or 4 investigators in the game, search the encounter deck for another copy of Priest of a Thousand Masks and spawn it at Celephaïs, as well. Shuffle the encounter deck.
-                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$HAZUTH_KLEG", 3, 3, 1, false, null],
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$HAZUTH_KLEG", 3, 3, 1, true, null],
                         ["COND",
                             ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
-                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$CELEPHAIS", 3, 3, 1, false, null]
+                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$CELEPHAIS", 3, 3, 1, true, null]
                         ],
-                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", false, null]
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", true, null]
                     ]
                 ],
                 //Advance to Act 2a - ... (keep only one)
                 ["COND",
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06122"], //Kingdom of the Skai
-                    ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
+                    ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
                     ["TRUE"],
-                    ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "A"]
+                    ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", true, null]
                 ],
                 ["COND",
                     ["EQUAL", "$SETUP", 1],
-                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06123"], "sharedActStory", 0, 0, {"combine": false, "allowFlip": false}], //The Isle of Oriab
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06123"], "sharedActStory"], //The Isle of Oriab
                     ["EQUAL", "$SETUP", 2],
-                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06124"], "sharedActStory", 0, 0, {"combine": false, "allowFlip": false}], //The Doom That Came Before
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06124"], "sharedActStory"], //The Doom That Came Before
                     ["EQUAL", "$SETUP", 3],
-                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06125"], "sharedActStory", 0, 0, {"combine": false, "allowFlip": false}], //Seek Out the Night
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06125"], "sharedActStory"], //Seek Out the Night
                     ["EQUAL", "$SETUP", 4],
-                    ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06126"], "sharedActStory", 0, 0, {"combine": false, "allowFlip": false}] //The King's Decree
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06126"], "sharedActStory"] //The King's Decree
                 ],
                 //Handle Tenebrous Nightgaunts
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -370,10 +370,9 @@
                     ["DO_SET_CARD_LOCATION", "$CARD.id", "$SPAWN_LEFT", 10],
                     ["INCREASE_VAR", "$SPAWN_LEFT", 5]
                 ]],
-                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
-                    ["GREATER_THAN", "$SELECTED_COUNT", 0],
-                    ["DO_FSYSLOG", "Move each Tenebrous Nightgaunt to any City location.", ["LIST"]]
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    ["DO_FSYSLOG", "Move each Tenebrous Nightgaunt to any City location.", null]
                 ],
                 ["SET", "/arkham/scenarioTheSearchForKadath{{$SETUP}}Done", true]
             ]

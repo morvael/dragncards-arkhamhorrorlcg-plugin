@@ -248,7 +248,7 @@
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, "$PLAYER_N"],
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, null],
                     ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
                 ]
             },
@@ -267,7 +267,7 @@
                     ]
                 ],
                 "then": [
-                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, "$PLAYER_N"],
+                    ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_N", "$TARGET.id", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET.id"], true, null],
                     ["SET", "/cardById/$TARGET.id/cluesPlaced", true]
                 ]
             },

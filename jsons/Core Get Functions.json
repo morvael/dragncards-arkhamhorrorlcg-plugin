@@ -292,15 +292,6 @@
                 ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$ROTATION"]
             ]
         },
-        "DO_SET_NAMED_CARD_SIDE": {
-            "args": ["$TARGET_NAME", "$SIDE"],
-            "code": [
-                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_SET_NAMED_CARD_SIDE.TARGET_NAME"],
-                ["VALIDATE_NOT_EMPTY", "$SIDE", "DO_SET_NAMED_CARD_SIDE.SIDE"],
-                ["VAR", "$TARGET_CARD_ID", ["GET_NAMED_CARD_ID", "$TARGET_NAME"]],
-                ["SET", "/cardById/$TARGET_CARD_ID/currentSide", "$SIDE"]
-            ]
-        },
         "DO_CLEAR_TARGETED_FROM_LIST": {
             "_comment": "Unsets given player targeting cards from given list.",
             "args": ["$SELECTED_CARDS", "$TARGETING_PLAYER"],

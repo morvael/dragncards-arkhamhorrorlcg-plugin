@@ -247,6 +247,12 @@
                 ]
             ]
         },
+        "DO_DISCARD_CARD_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["DO_DISCARD_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "", true, null]
+            ]
+        },
         "CAN_DISCARD_RANDOM_CARDS_FROM_HAND": {
             "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [

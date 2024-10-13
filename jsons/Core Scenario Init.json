@@ -635,6 +635,71 @@
                 ["DO_SPAWN_HIDDEN_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
             ]
         },
+        "DO_PUT_INTO_PLAY_AT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PUT_INTO_PLAY_AT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PUT_INTO_PLAY_AT.TARGET_CARD_ID"]],
+                ["VALIDATE_GE0", "$LEFT", "DO_PUT_INTO_PLAY_AT.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "DO_PUT_INTO_PLAY_AT.TOP"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "put {{$TARGET_CARD.currentFace.name}} into play.", "puts {{$TARGET_CARD.currentFace.name}} into play."],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "putIntoPlay"],
+                ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""],
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_AT_SCN": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_PUT_INTO_PLAY_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_AT_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_PUT_INTO_PLAY_AT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_GROUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_GROUP.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_TO_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["COND",
+                    ["OR",
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "discard"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "pile"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
+                    ],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to the top of {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", 0, 0, {"combine": false, "allowFlip": false}]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", -1]
+                    ]
+                ]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_SCN": {
+            "args": ["$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
             "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE", "$Y_CHANGE"],
             "code": [
@@ -684,7 +749,7 @@
                                                                     ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}."],
                                                                     ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                                                                     ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
-                                                                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false]
+                                                                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false, null]
                                                                 ],
                                                                 ["TRUE"],
                                                                 [

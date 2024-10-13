@@ -679,7 +679,6 @@
                 "label": "id:setAsideCardMenu",
                 "actionList": "setAsideCard",
                 "showIf": ["AND",
-                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
@@ -689,13 +688,19 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
-                        ]
-                    ],
-                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                        ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"]
+                    ]
                 ]
             },
             {
@@ -711,50 +716,25 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
-                            ["OR",
-                                ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Event"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Act"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Location"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Story"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
                         ],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
-                            ["OR",
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Story"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Investigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "MiniInvestigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
                         ]
                     ]
                 ]
@@ -763,7 +743,6 @@
                 "label": "id:exileCardMenu",
                 "actionList": "exileCard",
                 "showIf": ["AND",
-                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
@@ -773,13 +752,11 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
-                        ]
-                    ],
-                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                        ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                    ]
                 ]
             },
             {

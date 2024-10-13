@@ -89,12 +89,12 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WHERE_THE_GODS_DWELL_SETUP_ACT_4.TARGET_PLAYER"],
                 ["DO_FLOG", "{0:P} sets up Act 4.", ["LIST", "$TARGET_PLAYER"]],
                 //Each investigator loses all of their clues.
-                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", false, null],
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
                 //Reveal The Onyx Castle and place each investigator in The Great Hall on its revealed side.
-                ["VAR", "$THE_GREAT_HALL", ["GET_NAMED_CARD_ID", "06299"]],
-                ["SET", "/cardById/$THE_GREAT_HALL/currentSide", "A"],
+                ["VAR", "$THE_GREAT_HALL", ["GET_NAMED_CARD_ID", "06299"]], //The Great Hall
+                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$THE_GREAT_HALL", true, null],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$THE_GREAT_HALL", false]
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$THE_GREAT_HALL", true, null]
                 ]],
                 //Remove each location other than The Great Hall from the game.
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
@@ -103,39 +103,24 @@
                     ["NOT_EQUAL", "$CARD.id", "$THE_GREAT_HALL"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                    ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                 ]],
                 //If an investigator’s deck contains Randolph Carter (Expert Dreamer) (The Dream-Eaters card #59), remove him from that deck for the remainder of the campaign.
-                ["COND",
-                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
-                    [
-                        ["VAR", "$RANDOLPH_CARTER", ["GET_NAMED_CARD", "06059"]], //Randolph Carter: Expert Dreamer
-                        ["COND",
-                            ["AND",
-                                ["NOT_EQUAL", "$RANDOLPH_CARTER", null],
-                                ["CAN_EXILE_CARD_ANY", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.id", "$TARGET_PLAYER"]
-                            ],
-                            [
-                                ["DO_EXILE_CARD_ANY", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.id", true, "$TARGET_PLAYER"],
-                                ["DO_SHUFFLE_GROUP", "$RANDOLPH_CARTER.controller", "$RANDOLPH_CARTER.groupId", true, null]
-                            ]
-                        ]
-                    ]
-                ],
+                ["DO_EXILE_NAMED_CARDS", "$TARGET_PLAYER", "Randolph Carter: Expert Dreamer", true, null],
                 //Shuffle the set-aside The Crawling Mist and each set-aside copy of Myriad Forms and Whispering Chaos (and Nyarlathotep enemies) into the encounter deck, ...
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedDeckA"]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$CARD.id", "sharedEncounterDeck"]
                 ]],
                 //... along with the encounter discard pile.
-                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", false, null],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
                 //spawn Forsaken Towers
                 ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Forsaken Tower"]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                    ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                 ]],
                 //advance story
-                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", false, null],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
                 ["SET", "/arkham/scenarioWhereTheGodsDwellAct4Setup", true]
             ]
         }
