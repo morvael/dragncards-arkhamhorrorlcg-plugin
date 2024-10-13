@@ -415,7 +415,7 @@
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXILED.CONTROLLER"],
                 ["COND",
                     ["EQUAL", "$CONTROLLER", "shared"],
-                    null,
+                    "sharedRemoved",
                     ["TRUE"],
                     "{{$CONTROLLER}}Exiled"
                 ]
