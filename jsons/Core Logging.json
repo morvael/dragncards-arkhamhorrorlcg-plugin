@@ -256,7 +256,7 @@
                             ],
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":P}"]]],
-                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":P\\}"]], ["GET_ALIAS", "$ARG"]]]
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":P\\}"]], ["INLINE_IF", ["EQUAL", "$ARG", "shared"], "the scenario", ["GET_ALIAS", "$ARG"]]]]
                             ],
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":I}"]]],
