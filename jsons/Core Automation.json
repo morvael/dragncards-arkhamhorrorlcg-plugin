@@ -293,42 +293,72 @@
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_INVESTIGATOR.CONTROLLER"],
-                "{{$CONTROLLER}}Investigator"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Investigator"
+                ]
             ]
         },
         "GET_CONTROLLER_PLAY": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_PLAY.CONTROLLER"],
-                "{{$CONTROLLER}}Play"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Play"
+                ]
             ]
         },
         "GET_CONTROLLER_THREAT": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_THREAT.CONTROLLER"],
-                "{{$CONTROLLER}}Threat"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Threat"
+                ]
             ]
         },
         "GET_CONTROLLER_HAND": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_HAND.CONTROLLER"],
-                "{{$CONTROLLER}}Hand"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Hand"
+                ]
             ]
         },
         "GET_CONTROLLER_SELECTION": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_SELECTION.CONTROLLER"],
-                "{{$CONTROLLER}}Selection"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Selection"
+                ]
             ]
         },
         "GET_CONTROLLER_EXTRA_DECK": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXTRA_DECK.CONTROLLER"],
-                "{{$CONTROLLER}}ExtraDeck"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}ExtraDeck"
+                ]
             ]
         },
         "GET_CONTROLLER_DECK": {
@@ -359,28 +389,48 @@
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_ASIDE.CONTROLLER"],
-                "{{$CONTROLLER}}Aside"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    "sharedNotInPlay",
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Aside"
+                ]
             ]
         },
         "GET_CONTROLLER_REMOVED": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_REMOVED.CONTROLLER"],
-                "{{$CONTROLLER}}Removed"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    "sharedRemoved",
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Removed"
+                ]
             ]
         },
         "GET_CONTROLLER_EXILED": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_EXILED.CONTROLLER"],
-                "{{$CONTROLLER}}Exiled"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}Exiled"
+                ]
             ]
         },
         "GET_CONTROLLER_SIDE_DECK": {
             "args": ["$CONTROLLER"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$CONTROLLER", "GET_CONTROLLER_SIDE_DECK.CONTROLLER"],
-                "{{$CONTROLLER}}SideDeck"
+                ["COND",
+                    ["EQUAL", "$CONTROLLER", "shared"],
+                    null,
+                    ["TRUE"],
+                    "{{$CONTROLLER}}SideDeck"
+                ]
             ]
         },
         "GET_PLAYER_CONTROLLER": {
