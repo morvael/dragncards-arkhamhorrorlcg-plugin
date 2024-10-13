@@ -185,6 +185,12 @@
                 ["DO_ADD_CHAOS_TOKEN", "$GAME.firstPlayer", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", 100, true, null]
             ]
         },
+        "DO_ADD_CHAOS_TOKEN_ACT": {
+            "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"],
+            "code": [
+                ["DO_ADD_CHAOS_TOKEN", "$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", 100, true, null]
+            ]
+        },
         "DO_ADD_CHAOS_TOKEN_ACTION": {
             "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID", "$MAX_CHAOS_TOKENS", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
