@@ -249,7 +249,7 @@
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0]
             ],
             ["DO_CREATE_MISSING_CARDS_SCN", "Lost Soul", "03227", 4, "sharedNotInPlay"],
-            ["SET", "/arkham/finalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

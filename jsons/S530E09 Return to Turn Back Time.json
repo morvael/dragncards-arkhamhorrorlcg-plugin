@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Turn Back Time", null, "Return to Turn Back Time Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Return to Turn Back Time Scenario Start"]
             ]
         },
         "Return to Turn Back Time": {
@@ -24,7 +24,7 @@
             "hideFromSearch": true,
             "label": "Return to Turn Back Time - Return to The Doom of Eztli",
             "cards": [
-                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs...
                 {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
                 {"databaseId": "53019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway: Rearranged by Time
                 {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Returns
@@ -47,6 +47,9 @@
         }
     },
     "actionLists": {
+        "Return to Turn Back Time Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Turn Back Time", null, "Return to Turn Back Time Scenario Init"]
+        ],
         "Return to Turn Back Time Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to Turn Back Time"],
             ["DO_LOAD_CARDS_SCN", "Return to Turn Back Time - Return to The Doom of Eztli"],
@@ -58,11 +61,11 @@
             ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: Repossess the Past", "04303", "sharedNotInPlay"],
-            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort"],
+            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages: ...A Device, of Some Sort"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
             ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

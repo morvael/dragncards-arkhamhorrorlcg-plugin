@@ -76,7 +76,7 @@
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Then, choose a Catacombs location adjacent to the starting location and reveal it."]
             ],
-            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

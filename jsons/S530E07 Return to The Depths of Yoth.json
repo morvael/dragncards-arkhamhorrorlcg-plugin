@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Depths of Yoth", "Return to The Depths of Yoth Scenario Early Init", "Return to The Depths of Yoth Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Return to The Depths of Yoth Scenario Start"]
             ]
         },
         "Return to The Depths of Yoth": {
@@ -43,6 +43,9 @@
         }
     },
     "actionLists": {
+        "Return to The Depths of Yoth Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Depths of Yoth", "Return to The Depths of Yoth Scenario Early Init", "Return to The Depths of Yoth Scenario Init"]
+        ],
         "Return to The Depths of Yoth Scenario Early Init": [
             ["SET", "/arkham/offMapNotInPlay", true],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You are forging your own path.", "Ichtaca's faith is restored.", "None of the above are true."], "Return to The Depths of Yoth Scenario Question 1"]
@@ -156,7 +159,7 @@
             ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$SCENARIO_CARD.id", 1, true, null],
             ["DO_LOAD_CARDS_SCN", "Return to The Depths of Yoth - Set Aside"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

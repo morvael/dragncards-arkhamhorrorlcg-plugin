@@ -14,7 +14,7 @@
             "label": "The Doom of Eztli",
             "cards": [
                 {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Doom of Eztli
-                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs...
                 {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
                 {"databaseId": "04057", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Into the Ruins
                 {"databaseId": "04058", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Magic and Science
@@ -22,7 +22,7 @@
                 {"databaseId": "04060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway
                 {"databaseId": "04062", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Awakens
                 {"databaseId": "04068", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Time
-                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Relic of Ages: …A Device, of Some Sort
+                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Relic of Ages: ...A Device, of Some Sort
                 {"databaseId": "04063", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall
                 {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber
                 {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Burial Pit

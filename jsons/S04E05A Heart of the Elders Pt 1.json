@@ -62,7 +62,7 @@
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Expedition Journal"], null],
                 ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult the expedition journal."]]
             ],
-            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this…"]],
+            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this..."]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Heart of the Elders Pt 1 Scenario Question 1"]
         ],
         "Heart of the Elders Pt 1 Scenario Question 1": [

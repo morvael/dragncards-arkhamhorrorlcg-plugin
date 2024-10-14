@@ -73,7 +73,7 @@
                     ["LOG", "└── Remember: Ichtaca left without you."],
                     ["COND",
                         ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
-                        ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We should be wary of them.", "Maybe I should listen to them after all…"], "Return to Threads of Fate Scenario Question 3"],
+                        ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "We should be wary of them.", "Maybe I should listen to them after all..."], "Return to Threads of Fate Scenario Question 3"],
                         ["TRUE"],
                         ["SCENARIO_SKIP_QUESTIONS", 1, "Return to Threads of Fate Scenario Early Init Continue"]
                     ]
@@ -104,7 +104,7 @@
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
             ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"],
             ["DO_PULL_PLAYER_DECK_CARD_SCN", "Alejandro Vela: Renowned Historian", "04051", "sharedNotInPlay"],
-            ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: …A Device, of Some Sort", "04061", "sharedNotInPlay"],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "Relic of Ages: ...A Device, of Some Sort", "04061", "sharedNotInPlay"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0],
             ["COND",
                 ["OR",

@@ -15,7 +15,7 @@
             "cards": [
                 {"databaseId": "04054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Doom of Eztli
                 {"databaseId": "53017", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Return to The Doom of Eztli
-                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs…
+                {"databaseId": "04055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Something Stirs...
                 {"databaseId": "04056", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Temple Warden
                 {"databaseId": "04057", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Into the Ruins
                 {"databaseId": "04058", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Magic and Science
@@ -23,7 +23,7 @@
                 {"databaseId": "53019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway: Rearranged by Time
                 {"databaseId": "53018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Harbinger of Valusia: The Sleeper Returns
                 {"databaseId": "53027", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Time: Rearranged by Time
-                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Relic of Ages: …A Device, of Some Sort
+                {"databaseId": "04061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Relic of Ages: ...A Device, of Some Sort
                 {"databaseId": "53025", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall: Rearranged by Time
                 {"databaseId": "53026", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber: Rearranged by Time
                 {"databaseId": "53020", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sealed Passage
@@ -53,7 +53,7 @@
             ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

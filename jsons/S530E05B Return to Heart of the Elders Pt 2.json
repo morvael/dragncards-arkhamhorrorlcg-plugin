@@ -133,7 +133,7 @@
                 ["DO_CREATE_CARDS_SCN", "Resentful Wilds", "53074", 1, "sharedVictoryDisplay"]
             ],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

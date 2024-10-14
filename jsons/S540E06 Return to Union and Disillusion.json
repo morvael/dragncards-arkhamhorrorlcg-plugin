@@ -290,7 +290,7 @@
                 ["EQUAL", "$GAME.arkham.scenarioAnswer11", "D"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
             ],
-            ["SET", "/arkham/finalScenarioMessage", "Anette's Coven cards are in Pile A, Silver Twilight Lodge cards are in Pile B, The Watcher cards are in Pile C. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Anette's Coven cards are in Pile A, Silver Twilight Lodge cards are in Pile B, The Watcher cards are in Pile C. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

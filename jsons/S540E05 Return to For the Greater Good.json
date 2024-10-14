@@ -123,7 +123,7 @@
             ["DO_CREATE_CARDS_SCN", "Cultist", "chaos_cultist", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Tablet", "chaos_tablet", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Elder Thing", "chaos_elder_thing", 1, "sharedTokens"],
-            ["SET", "/arkham/finalScenarioMessage", "Chaos Tokens in Tokens are Keys. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Chaos Tokens in Tokens are Keys. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

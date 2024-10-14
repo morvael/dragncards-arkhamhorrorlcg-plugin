@@ -137,7 +137,7 @@
                 ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
                 ["SET", "/cardById/$CARD.id/discardToOther", true]
             ]],
-            ["SET", "/arkham/finalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A. {{$EXTRA_INFO}}Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A. {{$EXTRA_INFO}}Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

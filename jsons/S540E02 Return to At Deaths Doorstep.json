@@ -140,7 +140,7 @@
                     ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} {{$EXTRA_INFO}}"]
                 ]
             ],
-            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} When act 1b instructs the players to shuffle the Realm of Death encounter set into the encounter deck, shuffle in the Unstable Realm encounter set instead. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} When act 1b instructs the players to shuffle the Realm of Death encounter set into the encounter deck, shuffle in the Unstable Realm encounter set instead. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Shattered Aeons", "Return to Shattered Aeons Scenario Early Init", "Return to Shattered Aeons Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Return to Shattered Aeons Scenario Start"]
             ]
         },
         "Return to Shattered Aeons": {
@@ -51,6 +51,9 @@
         }
     },
     "actionLists": {
+        "Return to Shattered Aeons Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to Shattered Aeons", "Return to Shattered Aeons Scenario Early Init", "Return to Shattered Aeons Scenario Init"]
+        ],
         "Return to Shattered Aeons Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Return to Shattered Aeons Scenario Question 1"]
         ],
@@ -129,7 +132,7 @@
                     ]]
                 ]
             ],
-            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

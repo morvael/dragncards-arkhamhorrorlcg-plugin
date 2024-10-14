@@ -115,7 +115,7 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You fled the dinner party.", "The above is not true."], "Return to Echoes of the Past Scenario Question 2"]
         ],
         "Return to Echoes of the Past Scenario Question 2": [
-            ["SET", "/arkham/finalScenarioMessage", "Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Remember the rule from the back of the “Return to...” scenario card."],
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [

@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Shattered Aeons Scenario Start"]
             ]
         },
         "Shattered Aeons": {
@@ -46,6 +46,9 @@
         }
     },
     "actionLists": {
+        "Shattered Aeons Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+        ],
         "Shattered Aeons Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Shattered Aeons Scenario Question 1"]
         ],

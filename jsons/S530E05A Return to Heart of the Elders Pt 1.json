@@ -92,7 +92,7 @@
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Expedition Journal"], null],
                 ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult the expedition journal."]]
             ],
-            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this…"]],
+            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this..."]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Return to Heart of the Elders Pt 1 Scenario Question 1"]
         ],
         "Return to Heart of the Elders Pt 1 Scenario Question 1": [
@@ -182,7 +182,7 @@
                 ["DO_CREATE_CARDS_SCN", "Random Ruins", "$RUINS.[0]", 1, "sharedDeckA"]
             ],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
