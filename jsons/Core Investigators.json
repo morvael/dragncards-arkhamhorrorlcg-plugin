@@ -544,8 +544,10 @@
                                             ["EQUAL", "$CARD.currentFace.name", "Tablet"],
                                             ["EQUAL", "$CARD.currentFace.name", "Frost"]
                                         ],
-                                        ["UPDATE_VAR", "$CHAOS_TOKENS", "{{$CHAOS_TOKENS}}{{$CHAOS_TOKENS_SEPARATOR}}{{$CARD.currentFace.name}}"],
-                                        ["UPDATE_VAR", "$CHAOS_TOKENS_SEPARATOR", " & "]
+                                        [
+                                            ["UPDATE_VAR", "$CHAOS_TOKENS", "{{$CHAOS_TOKENS}}{{$CHAOS_TOKENS_SEPARATOR}}{{$CARD.currentFace.name}}"],
+                                            ["UPDATE_VAR", "$CHAOS_TOKENS_SEPARATOR", " & "]
+                                        ]
                                     ]
                                 ],
                                 ["TRUE"],
