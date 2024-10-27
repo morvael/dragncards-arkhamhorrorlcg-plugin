@@ -163,6 +163,53 @@
             ]
         }
     },
+    "functions": {
+        "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PHASE_NAME", "$ACTION_NAME", "$NEW_STEP"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$PHASE_NAME", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.PHASE_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$ACTION_NAME", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.ACTION_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$NEW_STEP", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.NEW_STEP"],
+                ["DO_FSYSLOG", "{0:C}: the {1} phase is {2}.", ["LIST", "$TARGET_CARD", "$PHASE_NAME", "$ACTION_NAME"]],
+                ["SET", "/stepId", "$NEW_STEP"],
+                ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", true, null]
+            ]
+        },
+        "THE_GOLD_POCKET_WATCH_ABILITY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_GOLD_POCKET_WATCH_ABILITY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_GOLD_POCKET_WATCH_ABILITY.TARGET_CARD_ID"]],
+                ["COND",
+                    ["OR",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", "$TARGET_CARD.controller"],
+                        ["NOT_EQUAL", "$TARGET_CARD.inPlay", true]
+                    ],
+                    ["DO_FSYSLOG", "You cannot use {0:C}, {1:P}.", ["LIST", "$TARGET_CARD", "$TARGET_PLAYER"]],
+                    ["EQUAL", "$GAME.stepId", "M1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "mythos", "skipped", "I1"],
+                    ["EQUAL", "$GAME.stepId", "M5"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "mythos", "repeated", "M1"],
+                    ["EQUAL", "$GAME.stepId", "I1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "investigator", "skipped", "E1"],
+                    ["EQUAL", "$GAME.stepId", "I3"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "investigator", "repeated", "I1"],
+                    ["EQUAL", "$GAME.stepId", "E1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "enemy", "skipped", "U1"],
+                    ["EQUAL", "$GAME.stepId", "E4"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "enemy", "repeated", "E1"],
+                    ["EQUAL", "$GAME.stepId", "U1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "upkeep", "skipped", "M1"],
+                    ["EQUAL", "$GAME.stepId", "U6"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "upkeep", "repeated", "U1"],
+                    ["TRUE"],
+                    ["DO_FSYSLOG", "You cannot use {0:C} now, {1:P}.", ["LIST", "$TARGET_CARD", "$TARGET_PLAYER"]]
+                ]
+            ]
+        }
+    },
     "automation": {
         "cards": {
             "02003": { //Jenny Barnes: The Dilettante
@@ -258,6 +305,13 @@
                             ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "startingResourcesMod", -2, "$THIS.inPlay", "{2:P} starts each game with 2 fewer resources.", null]
                         ]
                     }
+                }
+            },
+            "02305": { //The Gold Pocket Watch: Stealing Time
+                "ability" : {
+                    "A": [ //(reaction) When a phase begins, remove The Gold Pocket Watch from the game: Skip this phase. / (reaction) After a phase ends, remove The Gold Pocket Watch from the game: Repeat that phase.
+                        ["THE_GOLD_POCKET_WATCH_ABILITY", "$PLAYER_N", "$THIS.id"]
+                    ]
                 }
             }
         }
