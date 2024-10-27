@@ -115,7 +115,6 @@
                     ["AND",
                         ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["OR",
-                            ["EQUAL", "$GAME.stepId", "M1"],
                             ["EQUAL", "$GAME.stepId", "M2"],
                             ["EQUAL", "$GAME.stepId", "M3"],
                             ["EQUAL", "$GAME.stepId", "M4"],
@@ -132,8 +131,6 @@
                 ],
                 "then": [
                     ["COND",
-                        ["EQUAL", "$GAME.stepId", "M1"],
-                        ["DO_STEP_M1"],
                         ["EQUAL", "$GAME.stepId", "M2"],
                         ["DO_STEP_M2"],
                         ["EQUAL", "$GAME.stepId", "M3"],
@@ -501,13 +498,6 @@
                 ]
             ]
         },
-        "DO_STEP_M1": {
-            "args": [],
-            "code": [
-                ["LOG", "└── Round number advances."],
-                ["INCREASE_VAL", "/roundNumber", 1]
-            ]
-        },
         "DO_STEP_M2": {
             "args": [],
             "code": [
@@ -553,7 +543,7 @@
                                     ["PROMPT_ADD_OPTION", "$PLAYER_N", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_ADVANCE_STORY_STR", "{{$PLAYER_N}}", "{{$CARD.groupId}}", "true", "{{$PLAYER_N}}"]],
                                     ["INCREASE_VAR", "$INDEX", 1]
                                 ]],
-                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel.", "X", ["LIST"]]
+                                ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel.", "X"]
                             ],
                             ["EQUAL", "$ADVANCABLE_AGENDAS_COUNT", 1],
                             [

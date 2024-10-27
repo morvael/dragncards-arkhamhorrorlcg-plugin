@@ -171,7 +171,7 @@
                             ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath4Done", false],
                             ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The kingdom of the Timeless Realm to the east.", "T", ["LIST", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "4", "the kingdom of the Timeless Realm to the east"]]
                         ],
-                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Cancel.", "X", ["LIST"]]
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Cancel.", "X"]
                     ]
                 ]
             ]
