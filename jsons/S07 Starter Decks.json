@@ -1,0 +1,184 @@
+{
+    "preBuiltDecks": {
+        "Sister Mary Starter Deck": {
+            "label": "Sister Mary Starter Deck",
+            "cards": [
+                {"databaseId": "07001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01024", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07006", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07007", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07017", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07018", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07019", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07031", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Amanda Sharpe Starter Deck": {
+            "label": "Amanda Sharpe Starter Deck",
+            "cards": [
+                {"databaseId": "07002", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01035", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07024", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Trish Scarborough Starter Deck": {
+            "label": "Trish Scarborough Starter Deck",
+            "cards": [
+                {"databaseId": "07003", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01044", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01045", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01047", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01053", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07011", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07026", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07027", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07028", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Dexter Drake Starter Deck": {
+            "label": "Dexter Drake Starter Deck",
+            "cards": [
+                {"databaseId": "07004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01044", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01047", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01058", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01086", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07012", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07026", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07027", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07028", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07029", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        },
+        "Silas Marsh Starter Deck": {
+            "label": "Silas Marsh Starter Deck",
+            "cards": [
+                {"databaseId": "07005", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01081", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07015", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07034", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07035", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07036", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07037", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "07001": { //Sister Mary: The Nun
+                "rules": {
+                    "07001a": { //During setup, add 2 bless tokens to the chaos bag.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: During setup, add 2 bless tokens to the chaos bag.", ["LIST", "$THIS"]],
+                            ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"],
+                            ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

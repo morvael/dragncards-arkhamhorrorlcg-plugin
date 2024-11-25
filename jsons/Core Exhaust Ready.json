@@ -121,7 +121,10 @@
                 ["LOG", "└── Each exhausted card readies."],
                 ["VAR", "$ALL_EXHAUSTED_CARDS", ["GET_ALL_EXHAUSTED_CARDS", "$TARGET_PLAYER", "$ACTOR_PLAYER"]],
                 ["FOR_EACH_VAL", "$CARD", "$ALL_EXHAUSTED_CARDS", [
-                    ["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                    ["COND",
+                        ["NOT_EQUAL", "$CARD.sides.A.databaseId", "07309"], //Jacob Morrison: Coast Guard Captain (Jacob Morrison does not ready during the upkeep phase.)
+                        ["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                    ]
                 ]]
             ]
         }

@@ -77,6 +77,16 @@
                         ]
                     },
                     {
+                        "label": "id:theInnsmouthConspiracy",
+                        "deckLists": [
+                            {"label": "id:sisterMaryStarterDeck", "deckListId": "Sister Mary Starter Deck"},
+                            {"label": "id:amandaSharpeStarterDeck", "deckListId": "Amanda Sharpe Starter Deck"},
+                            {"label": "id:trishScarboroughStarterDeck", "deckListId": "Trish Scarborough Starter Deck"},
+                            {"label": "id:dexterDrakeStarterDeck", "deckListId": "Dexter Drake Starter Deck"},
+                            {"label": "id:silasMarshStarterDeck", "deckListId": "Silas Marsh Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -370,6 +380,21 @@
         "patriceHathawayStarterDeck": {
             "English": "Patrice Hathaway Starter Deck"
         },
+        "sisterMaryStarterDeck": {
+            "English": "Sister Mary Starter Deck"
+        },
+        "amandaSharpeStarterDeck": {
+            "English": "Amanda Sharpe Starter Deck"
+        },
+        "trishScarboroughStarterDeck": {
+            "English": "Trish Scarborough Starter Deck"
+        },
+        "dexterDrakeStarterDeck": {
+            "English": "Dexter Drake Starter Deck"
+        },
+        "silasMarshStarterDeck": {
+            "English": "Silas Marsh Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -552,6 +577,9 @@
         },
         "weaverOfTheCosmos": {
             "English": "Weaver of the Cosmos"
+        },
+        "theInnsmouthConspiracy": {
+            "English": "The Innsmouth Conspiracy"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"
