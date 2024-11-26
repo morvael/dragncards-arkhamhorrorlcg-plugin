@@ -172,13 +172,80 @@
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: During setup, add 2 bless tokens to the chaos bag.", ["LIST", "$THIS"]],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} adds 2 bless tokens to the chaos bag.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"],
                             ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"]
                         ]
                     }
                 }
+            },
+            "07303": { //Ancestral Knowledge
+                "rules": {
+                    "07303a": { //Before drawing your opening hand: Attach 5 random non-weakness skills from your deck facedown to this card.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} may attach 5 random non-weakness skills from their deck facedown to this card.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PROMPT", "$THIS.controller", "ancestralKnowledgeChoice", "$THIS.id"]
+                        ]
+                    }
+                }
             }
+        }
+    },
+    "functions": {
+        "ANCESTRAL_KNOWLEDGE_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$ATTACH"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "ANCESTRAL_KNOWLEDGE_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "ANCESTRAL_KNOWLEDGE_CHOICE.SOURCE_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$ATTACH", "ANCESTRAL_KNOWLEDGE_CHOICE.ATTACH"],
+                ["DO_FLOG", "{0:P} will {1} {2:C}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$ATTACH", true], "use", "not use"], "$SOURCE_CARD"]],
+                ["COND",
+                    ["EQUAL", "$ATTACH", true],
+                    [
+                        ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                        ["VAR", "$SELECTED_CARDS", ["CHOOSE_N", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
+                            ["EQUAL", "$CARD.sides.A.type", "Skill"],
+                            ["NOT_EQUAL", "$CARD.sides.A.subtype", "Weakness"],
+                            ["NOT_EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"]
+                        ]], 5]],
+                        ["DO_FSYSLOG", "{0:P} attaches {1} random non-weakness skill{1:S} from their deck facedown to Ancestral Knowledge.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", "$SOURCE_CARD.id", false, null],
+                            ["DO_PEEK_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                        ]],
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$DECK_GROUP_ID", false, null]
+                    ]
+                ],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        }
+    },
+    "prompts": {
+        "ancestralKnowledgeChoice": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "Do you want to attach 5 random non-weakness skills from your deck facedown to Ancestral Knowledge?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["ANCESTRAL_KNOWLEDGE_CHOICE", "$PLAYER_N", "$TARGET_CARD_ID", true]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["ANCESTRAL_KNOWLEDGE_CHOICE", "$PLAYER_N", "$TARGET_CARD_ID", false]
+                    ]
+                }
+            ]
         }
     }
 }
