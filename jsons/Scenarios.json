@@ -181,6 +181,12 @@
                             {"label": "id:pointOfNoReturn", "deckListId": "Point of No Return Scenario"},
                             {"label": "id:weaverOfTheCosmos", "deckListId": "Weaver of the Cosmos Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:theInnsmouthConspiracy",
+                        "deckLists": [
+                            {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"}
+                        ]
                     }
                 ]
             },
@@ -580,6 +586,9 @@
         },
         "theInnsmouthConspiracy": {
             "English": "The Innsmouth Conspiracy"
+        },
+        "thePitOfDespair": {
+            "English": "The Pit of Despair"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

@@ -1,0 +1,160 @@
+{
+    "preBuiltDecks": {
+        "Agents of Dagon": {
+            "hideFromSearch": true,
+            "label": "Agents of Dagon",
+            "cards": [
+                {"databaseId": "07084", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Priest of Dagon
+                {"databaseId": "07085", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Initiate of Dagon
+            ]
+        },
+        "Agents of Hydra": {
+            "hideFromSearch": true,
+            "label": "Agents of Hydra",
+            "cards": [
+                {"databaseId": "07086", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Lloigor
+                {"databaseId": "07087", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Psychic Pull
+            ]
+        },
+        "Creatures of the Deep": {
+            "hideFromSearch": true,
+            "label": "Creatures of the Deep",
+            "cards": [
+                {"databaseId": "07088", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Deep One Bull
+                {"databaseId": "07089", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Lurking Deep One
+                {"databaseId": "07090", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Deep One Assault
+            ]
+        },
+        "Rising Tide": {
+            "hideFromSearch": true,
+            "label": "Rising Tide",
+            "cards": [
+                {"databaseId": "07091", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Undertow
+                {"databaseId": "07092", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Rising Tides
+                {"databaseId": "07093", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Riptide
+            ]
+        },
+        "Fog over Innsmouth": {
+            "hideFromSearch": true,
+            "label": "Fog over Innsmouth",
+            "cards": [
+                {"databaseId": "07094", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Winged One
+                {"databaseId": "07095", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Fog over Innsmouth
+            ]
+        },
+        "Shattered Memories": {
+            "hideFromSearch": true,
+            "label": "Shattered Memories",
+            "cards": [
+                {"databaseId": "07096", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Macabre Memento
+                {"databaseId": "07097", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Fractured Consciousness
+                {"databaseId": "07098", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Memory of Oblivion
+            ]
+        },
+        "Malfunction": {
+            "hideFromSearch": true,
+            "label": "Malfunction",
+            "cards": [
+                {"databaseId": "07099", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Malfunction
+            ]
+        },
+        "Syzygy": {
+            "hideFromSearch": true,
+            "label": "Syzygy",
+            "cards": [
+                {"databaseId": "07100", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Tidal Alignment
+                {"databaseId": "07101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Syzygy
+            ]
+        },
+        "Flooded Caverns": {
+            "hideFromSearch": true,
+            "label": "Flooded Caverns",
+            "cards": [
+                {"databaseId": "07102", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Underwater Cavern
+                {"databaseId": "07103", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Tidal Pool
+                {"databaseId": "07104", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Underground River
+            ]
+        },
+        "The Locals": {
+            "hideFromSearch": true,
+            "label": "The Locals",
+            "cards": [
+                {"databaseId": "07105", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Innsmouth Troublemaker
+                {"databaseId": "07106", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Innsmouth Look
+                {"databaseId": "07107", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Furtive Locals
+            ]
+        },
+        "The Innsmouth Conspiracy Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Innsmouth Conspiracy Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Innsmouth Conspiracy Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "The Innsmouth Conspiracy Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Innsmouth Conspiracy Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Innsmouth Conspiracy Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Innsmouth Conspiracy Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Innsmouth Conspiracy Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    }
+}
