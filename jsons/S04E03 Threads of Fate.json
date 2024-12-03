@@ -32,19 +32,6 @@
                 {"databaseId": "04145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Nobody's Home
                 {"databaseId": "04146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Conspiracy of Blood
             ]
-        },
-        "Threads of Fate - The Midnight Masks": {
-            "hideFromSearch": true,
-            "label": "Threads of Fate - The Midnight Masks",
-            "cards": [
-                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Rivertown
-                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Miskatonic University
-                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Downtown: First Bank of Arkham
-                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Easttown
-                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Northside
-                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Shadow
-                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //False Lead
-            ]
         }
     },
     "actionLists": {
@@ -95,7 +82,7 @@
             ["DO_LOAD_CARDS_SCN", "Threads of Fate"],
             ["DO_SET_SPAWN_LOCATION", "04143", 45, 10], //Town Hall
             ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
-            ["DO_LOAD_CARDS_SCN", "Threads of Fate - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Arkham"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],

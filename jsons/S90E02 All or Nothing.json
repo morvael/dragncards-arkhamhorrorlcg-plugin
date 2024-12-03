@@ -9,7 +9,7 @@
                 ["VAR", "$SKIDS_OTOOLE", ["GET_NAMED_CARD", "\"Skids\" O'Toole"]],
                 ["COND",
                     ["NOT_EQUAL", "$SKIDS_OTOOLE", null],
-                    ["SCENARIO_INIT", "Challenge Scenarios", "Challenge Scenarios", "All or Nothing", null, "All or Nothing Scenario Init"],
+                    ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "All or Nothing", null, "All or Nothing Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── \"Skids\" O'Toole must be chosen as one of the investigators when playing this scenario."]
                 ]

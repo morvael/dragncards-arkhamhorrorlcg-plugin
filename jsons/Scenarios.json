@@ -263,7 +263,10 @@
                 "label": "id:challengeScenarios",
                 "deckLists": [
                     {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"},
-                    {"label": "id:allOrNothing", "deckListId": "All or Nothing Scenario"}
+                    {"label": "id:allOrNothing", "deckListId": "All or Nothing Scenario"},
+                    {"label": "id:badBlood", "deckListId": "Bad Blood Scenario"},
+                    {"label": "id:byTheBook", "deckListId": "By the Book Scenario"},
+                    {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"}
                 ]
             },
             {
@@ -734,6 +737,15 @@
         },
         "allOrNothing": {
             "English": "All or Nothing"
+        },
+        "badBlood": {
+            "English": "Bad Blood"
+        },
+        "byTheBook": {
+            "English": "By the Book"
+        },
+        "redTideRising": {
+            "English": "Red Tide Rising"
         },
         "miscellaneous": {
             "English": "Miscellaneous"

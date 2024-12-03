@@ -1,0 +1,79 @@
+{
+    "preBuiltDecks": {
+        "Bad Blood Scenario": {
+            "label": "Bad Blood Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$AGNES_BAKER", ["GET_NAMED_CARD", "Agnes Baker"]],
+                ["COND",
+                    ["NOT_EQUAL", "$AGNES_BAKER", null],
+                    ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "Bad Blood", null, "Bad Blood Scenario Init"],
+                    ["TRUE"],
+                    ["LOG", "└── Agnes Baker must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "Bad Blood": {
+            "hideFromSearch": true,
+            "label": "Bad Blood",
+            "cards": [
+                {"databaseId": "90020", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Bad Blood
+                {"databaseId": "90021", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Hyperborean Blood
+                {"databaseId": "90022", "quantity": 1, "loadGroupId": "sharedActStory"},                                //A Walk Down Memory Lane
+                {"databaseId": "04141", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Velma's Diner
+                {"databaseId": "04142", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //Curiositie Shoppe
+                {"databaseId": "04143", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Town Hall
+                {"databaseId": "90023", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Elspeth Baudin: Hyperborean Sorceress
+                {"databaseId": "04144", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //The Secret Must Be Kept
+                {"databaseId": "04145", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Nobody's Home
+                {"databaseId": "04146", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Conspiracy of Blood
+            ]
+        }
+    },
+    "actionLists": {
+        "Bad Blood Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Bad Blood"],
+            ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Arkham"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Velma's Diner", 5, 7, 3, 0],
+            ["VAR", "$EXTRAS", ["SHUFFLE_LIST", ["LIST", "04117a", "04126a", "04128a", "04133a"]]], //Eztli Exhibit, Arkham Police Station, Train Tracks, Black Cave (The Relic Is Missing!, Missing Persons, At the Station, Trial of the Huntress)
+            ["COND",
+                ["EQUAL", "$EXTRAS.[0]", "04117a"], //Eztli Exhibit (The Relic Is Missing!)
+                [
+                    ["DO_CREATE_CARDS_SCN", "Eztli Exhibit", "04117a", 1, "sharedLocations"],
+                    ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", 15, 76]
+                ],
+                ["EQUAL", "$EXTRAS.[0]", "04126a"], //Arkham Police Station (Missing Persons)
+                [
+                    ["DO_CREATE_CARDS_SCN", "Arkham Police Station", "04126a", 1, "sharedLocations"],
+                    ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", 64, 10]
+                ],
+                ["EQUAL", "$EXTRAS.[0]", "04128a"], //Train Tracks (At the Station)
+                [
+                    ["DO_CREATE_CARDS_SCN", "Train Tracks", "04128a", 1, "sharedLocations"],
+                    ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", 26, 10]
+                ],
+                ["EQUAL", "$EXTRAS.[0]", "04133a"], //Black Cave (Trial of the Huntress)
+                [
+                    ["DO_CREATE_CARDS_SCN", "Black Cave", "04133a", 1, "sharedLocations"],
+                    ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", 75, 76]
+                ]
+            ],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Elspeth Baudin", "Curiositie Shoppe", 3, 3, 0],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$CARD.id", 1, true, null]
+            ]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

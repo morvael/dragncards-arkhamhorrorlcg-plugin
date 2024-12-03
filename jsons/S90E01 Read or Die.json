@@ -18,7 +18,7 @@
                                 ["FOR_EACH_VAL", "$TOME", "$TOMES", [
                                     ["MOVE_CARD", "$TOME.id", "sharedDeckA", -1]
                                 ]],
-                                ["SCENARIO_INIT", "Challenge Scenarios", "Challenge Scenarios", "Read or Die", null, "Read or Die Scenario Init"]
+                                ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "Read or Die", null, "Read or Die Scenario Init"]
                             ],
                             ["TRUE"],
                             ["LOG", "└── Daisy Walker's deck must include at least 4 Tome assets. Tome weaknesses do not count toward this total."]

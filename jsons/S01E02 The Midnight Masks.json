@@ -36,6 +36,19 @@
                 {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //False Lead
             ]
         },
+        "The Midnight Masks - Arkham": {
+            "hideFromSearch": true,
+            "label": "The Midnight Masks - Arkham",
+            "cards": [
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Rivertown
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Miskatonic University
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Downtown: First Bank of Arkham
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Easttown
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Northside
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Shadow
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //False Lead
+            ]
+        },
         "The Midnight Masks - Southside": {
             "hideFromSearch": true,
             "label": "The Midnight Masks - Southside",
