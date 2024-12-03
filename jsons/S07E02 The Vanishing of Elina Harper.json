@@ -1,0 +1,68 @@
+{
+    "preBuiltDecks": {
+        "The Vanishing of Elina Harper Scenario": {
+            "label": "The Vanishing of Elina Harper Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "The Vanishing of Elina Harper", null, "The Vanishing of Elina Harper Scenario Init"]
+            ]
+        },
+        "The Vanishing of Elina Harper": {
+            "hideFromSearch": true,
+            "label": "The Vanishing of Elina Harper",
+            "cards": [
+                {"databaseId": "07056", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Vanishing of Elina Harper
+                {"databaseId": "07062a", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                      //Finding Agent Harper
+                {"databaseId": "07057", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Decrepit Decay
+                {"databaseId": "07058", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Growing Suspicion
+                {"databaseId": "07059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Frantic Pursuit
+                {"databaseId": "07060", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Search for Agent Harper
+                {"databaseId": "07061", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Rescue
+                {"databaseId": "07065", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Innsmouth Square
+                {"databaseId": "07063", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "26%"},  //Marsh Refinery
+                {"databaseId": "07066", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Innsmouth Harbour
+                {"databaseId": "07068", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "60%"},  //Fish Street Bridge
+                {"databaseId": "07067", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "26%"},  //First National Grocery
+                {"databaseId": "07064", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "60%"},  //Gilman House
+                {"databaseId": "07069", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //The Little Bookshop
+                {"databaseId": "07082", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Thomas Dawson: Soldier in a New War
+                {"databaseId": "07083", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Elina Harper: Knows Too Much
+            ]
+        }
+    },
+    "actionLists": {
+        "The Vanishing of Elina Harper Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Vanishing of Elina Harper"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Dagon"],
+            ["DO_LOAD_CARDS_SCN", "Fog over Innsmouth"],
+            ["DO_LOAD_CARDS_SCN", "The Locals"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Innsmouth Square", 5, 7, 3, 0],
+            ["DO_ATTACH_ID_TO_ID", "07062a", "07056", false], //Finding Agent Harper, The Vanishing of Elina Harper
+            ["VAR", "$SUSPECTS", ["SHUFFLE_LIST", ["LIST", "07076", "07077", "07078", "07079", "07080", "07081"]]], //Robert Friendly: Disgruntled Dockworker, Zadok Allen: Drunk and Disorderly, Brian Burnham: Wants Out, Barnabas Marsh: The Change Is upon Him, Joyce Little: Bookshop Owner, Othera Gilman: Proprietress of the Hotel
+            ["VAR", "$HIDEOUTS", ["SHUFFLE_LIST", ["LIST", "07070", "07071", "07072", "07073", "07074", "07075"]]], //Esoteric Order of Dagon, Sawbone Alley, Shoreward Slums, The House on Water Street, Innsmouth Jail, New Church Green
+            ["VAR", "$SCENARIO_CARD_ID", ["GET_SCENARIO_CARD_ID"]],
+            ["DO_CREATE_CARDS_SCN", "Suspect", "$SUSPECTS.[0]", 1, "sharedScenarioReference"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+            ["DO_ATTACH_CARD_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", "$SCENARIO_CARD_ID", true, null],
+            ["DO_CREATE_CARDS_SCN", "Hideout", "$HIDEOUTS.[0]", 1, "sharedScenarioReference"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+            ["DO_ATTACH_CARD_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", "$SCENARIO_CARD_ID", true, null],
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Suspect", "$SUSPECTS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 1, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Hideout", "$HIDEOUTS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Hunting Nightgaunt", "sharedEncounterDeck", 2, "sharedNotInPlay"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Winged One", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the Leads deck."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

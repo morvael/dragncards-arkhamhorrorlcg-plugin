@@ -832,6 +832,29 @@
                 ]
             ]
         },
+        "DO_ATTACH_ID_TO_ID": {
+            "args": ["$TARGET_DATABASE_ID", "$PARENT_DATABASE_ID", "$FLIP_FACEDOWN"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_ATTACH_ID_TO_ID.TARGET_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$PARENT_DATABASE_ID", "DO_ATTACH_ID_TO_ID.PARENT_DATABASE_ID"],
+                ["VALIDATE_BOOLEAN", "$FLIP_FACEDOWN", "DO_ATTACH_ID_TO_ID.FLIP_FACEDOWN"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_BY_DATABASE_ID", "$TARGET_DATABASE_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_BY_DATABASE_ID", "$PARENT_DATABASE_ID"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["NOT_EQUAL", "$PARENT_CARD", null]
+                    ],
+                    [
+                        ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$TARGET_CARD.id", "$PARENT_CARD.id", true, null],
+                        ["COND",
+                            ["EQUAL", "$FLIP_FACEDOWN", true],
+                            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET_CARD.id", true, null]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "DO_CREATE_DECK_CARD_SCN": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
             "code": [

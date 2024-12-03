@@ -185,7 +185,8 @@
                     {
                         "label": "id:theInnsmouthConspiracy",
                         "deckLists": [
-                            {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"}
+                            {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"},
+                            {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"}
                         ]
                     }
                 ]
@@ -589,6 +590,9 @@
         },
         "thePitOfDespair": {
             "English": "The Pit of Despair"
+        },
+        "theVanishingOfElinaHarper": {
+            "English": "The Vanishing of Elina Harper"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"
