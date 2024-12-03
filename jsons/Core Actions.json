@@ -63,6 +63,18 @@
                 ["TRUE"],
                 ["LOG", "└── You cannot attempt to evade {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
             ]
+        ],
+        "moveAllCardsUp": [
+            ["DO_MOVE_CARDS_ON_MAP", "$PLAYER_N", 0, -5, "up"]
+        ],
+        "moveAllCardsDown": [
+            ["DO_MOVE_CARDS_ON_MAP", "$PLAYER_N", 0, 5, "down"]
+        ],
+        "moveAllCardsLeft": [
+            ["DO_MOVE_CARDS_ON_MAP", "$PLAYER_N", -5, 0, "left"]
+        ],
+        "moveAllCardsRight": [
+            ["DO_MOVE_CARDS_ON_MAP", "$PLAYER_N", 5, 0, "right"]
         ]
     },
     "functions": {
@@ -201,6 +213,25 @@
                 ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                 ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"]
             ]
+        },
+        "DO_MOVE_CARDS_ON_MAP": {
+            "args": ["$TARGET_PLAYER", "$MOVE_X", "$MOVE_Y", "$DESCRIPTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_CARDS_ON_MAP.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DESCRIPTION", "DO_MOVE_CARDS_ON_MAP.DESCRIPTION"],
+                ["DO_FLOG", "{0:P} moves all cards {1}.", ["LIST", "$TARGET_PLAYER", "$DESCRIPTION"]],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "sharedLocations"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["EQUAL", "$CARD.cardIndex", 0],
+                        [
+                            ["VAR", "$X", ["ADD", ["GET_CARD_LEFT", "$CARD.id"], "$MOVE_X"]],
+                            ["VAR", "$Y", ["ADD", ["GET_CARD_TOP", "$CARD.id"], "$MOVE_Y"]],
+                            ["DO_SET_CARD_LOCATION", "$CARD.id", "$X", "$Y"]
+                        ]
+                    ]
+                ]]
+            ]
         }
     },
     "labels": {
@@ -227,6 +258,18 @@
         },
         "evadeActionMenu": {
             "English": "Attempt to evade"
+        },
+        "moveAllCardsUp": {
+            "English": "Move cards up"
+        },
+        "moveAllCardsDown": {
+            "English": "Move cards down"
+        },
+        "moveAllCardsLeft": {
+            "English": "Move cards left"
+        },
+        "moveAllCardsRight": {
+            "English": "Move cards right"
         }
     }
 }

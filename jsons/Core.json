@@ -108,7 +108,11 @@
             {"key": "W", "actionList": "drawPlayerCard", "label": "id:drawPlayerCard"},
             {"key": "Shift+X", "actionList": "discardVoid", "label": "id:discardVoid"},
             {"key": "Y", "actionList": "addBlessToken", "label": "id:addBlessToken"},
-            {"key": "Shift+Y", "actionList": "removeBlessToken", "label": "id:removeBlessToken"}
+            {"key": "Shift+Y", "actionList": "removeBlessToken", "label": "id:removeBlessToken"},
+            {"key": "Ctrl+ArrowUp", "actionList": "moveAllCardsUp", "label": "id:moveAllCardsUp"},
+            {"key": "Ctrl+ArrowDown", "actionList": "moveAllCardsDown", "label": "id:moveAllCardsDown"},
+            {"key": "Ctrl+ArrowLeft", "actionList": "moveAllCardsLeft", "label": "id:moveAllCardsLeft"},
+            {"key": "Ctrl+ArrowRight", "actionList": "moveAllCardsRight", "label": "id:moveAllCardsRight"}
         ],
         "card": [
             {"key": "7", "actionList": "calculateWillpower", "label": "id:calculateWillpower"},
