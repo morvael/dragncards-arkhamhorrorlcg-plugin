@@ -394,6 +394,28 @@
                 ]
             ]
         },
+        "MAX": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$A", "$B"],
+                    "$A",
+                    ["TRUE"],
+                    "$B"
+                ]
+            ]
+        },
+        "MIN": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$A", "$B"],
+                    "$B",
+                    ["TRUE"],
+                    "$A"
+                ]
+            ]
+        },
         "ABS": {
             "args": ["$VALUE"],
             "code": [

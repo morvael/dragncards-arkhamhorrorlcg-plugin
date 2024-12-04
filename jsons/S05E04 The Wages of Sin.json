@@ -92,7 +92,7 @@
                 ["EQUAL", "$CARD.currentSide", "B"]
             ]]],
             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                ["SET", "/cardById/$CARD.id/currentSide", "B"]
+                ["SET", "/cardById/$CARD.id/currentSide", "A"]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Hangman's Brook", 5, 7, 3, 0],
             ["VAR", "$HERETICS", ["SHUFFLE_LIST", ["LIST", "05178a", "05178c", "05178e", "05178g", "05178i", "05178k"]]],  //Heretic, Heretic, Heretic, Heretic, Heretic, Heretic
