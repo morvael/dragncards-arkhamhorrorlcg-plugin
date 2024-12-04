@@ -1,0 +1,103 @@
+{
+    "preBuiltDecks": {
+        "Laid to Rest Scenario": {
+            "label": "Laid to Rest Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$JIM_CULVER", ["GET_NAMED_CARD", "Jim Culver"]],
+                ["COND",
+                    ["NOT_EQUAL", "$JIM_CULVER", null],
+                    [
+                        ["COND",
+                            ["EQUAL", ["CAN_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$JIM_CULVER"], true],
+                            ["SCENARIO_INIT", "Challenge Scenarios C", "Challenge Scenarios", "Laid to Rest", null, "Laid to Rest Scenario Init"],
+                            ["TRUE"],
+                            ["LOG", "└── Jim Culver must have a spirit deck, regardless of which version of Jim Culver is being played."]
+                        ]
+                    ],
+                    ["TRUE"],
+                    ["LOG", "└── Jim Culver must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "Laid to Rest": {
+            "hideFromSearch": true,
+            "label": "Laid to Rest",
+            "cards": [
+                {"databaseId": "90054", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Laid to Rest
+                {"databaseId": "90055", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Gathering Mists
+                {"databaseId": "90056", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Laid to Rest
+                {"databaseId": "05166", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Hangman's Brook
+                {"databaseId": "05167", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"},  //Haunted Fields
+                {"databaseId": "05168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "31%"},  //Abandoned Chapel
+                {"databaseId": "05176", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "7%"},   //Chapel Attic
+                {"databaseId": "05179", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Vengeful Witch
+                {"databaseId": "05180", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Malevolent Spirit
+                {"databaseId": "05181", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Punishment
+                {"databaseId": "05182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Burdens of the Past
+                {"databaseId": "05183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ominous Portents
+                {"databaseId": "05184", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Grave-Light
+                {"databaseId": "05185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Bane of the Living
+                {"databaseId": "90057a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                          //Jean Devereux: Seeking Closure
+                {"databaseId": "90058", "quantity": 4, "loadGroupId": "sharedEncounterDeck"}                            //Ravenous Spirit: Possessed
+            ]
+        }
+    },
+    "actionLists": {
+        "Laid to Rest Scenario Init": [
+            ["VAR", "$JIM_CULVER", ["GET_NAMED_CARD", "Jim Culver"]],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Beyond: Black Netherworld", "90052", ["GET_CONTROLLER_PLAY", "$JIM_CULVER.controller"]],
+            ["DO_LOAD_CARDS_SCN", "Laid to Rest"],
+            ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
+            ["DO_LOAD_CARDS_SCN", "City of Sins"],
+            ["DO_LOAD_CARDS_SCN", "Inexorable Fate"],
+            ["DO_LOAD_CARDS_SCN", "Realm of Death"],
+            ["DO_LOAD_CARDS_SCN", "Trapped Spirits"],
+            ["DO_LOAD_CARDS_SCN", "Witchcraft"],
+            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - The Gallows", 1],
+            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - Heretics' Graves", 1],
+            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - Chapel Crypt", 1],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"],
+                ["EQUAL", "$CARD.currentSide", "B"]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["SET", "/cardById/$CARD.id/currentSide", "A"]
+            ]],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                ["EQUAL", "$CARD.currentFace.type", "Location"]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$CARD.id", ["MAX", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], "$GAME.arkham.numPlayers"], true, null],
+                ["SET", "/cardById/$CARD.id/cluesPlaced", true]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Hangman's Brook", 5, 7, 3, 0],
+            ["VAR", "$HERETICS", ["SHUFFLE_LIST", ["LIST", "05178a", "05178c", "05178e", "05178g", "05178i", "05178k"]]],  //Heretic, Heretic, Heretic, Heretic, Heretic, Heretic
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_CREATE_CARDS_SCN", "Heretic", "$HERETICS.[$I]", 1, "sharedDeckA"],
+                ["SET", "/cardById/$GAME.lastLoadedCardIds.[0]/currentSide", "A"]
+            ]],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Jean Devereux", "Hangman's Brook", 3, 3, 1],
+            ["VAR", "$LOCATIONS", ["LIST", "The Gallows", "Heretics' Graves", "Chapel Attic", "Chapel Crypt"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Ravenous Spirit", "$LOCATIONS.[$I]", 3, 3, 1]
+            ]],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                ["IN_STRING", "$CARD.sides.A.traits", "Spectral."]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["MOVE_CARD", "$CARD.id", "sharedDeckA", -1],
+                ["SET", "/cardById/$CARD.id/cardDeck", "sharedDeckA"],
+                ["SET", "/cardById/$CARD.id/cardDiscard", "sharedDiscardA"],
+                ["SET", "/cardById/$CARD.id/discardToOther", true]
+            ]],
+            ["SET", "/arkham/finalScenarioMessage", "Spectral cards are in Deck A, The Watcher cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

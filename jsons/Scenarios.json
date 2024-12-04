@@ -266,7 +266,8 @@
                     {"label": "id:allOrNothing", "deckListId": "All or Nothing Scenario"},
                     {"label": "id:badBlood", "deckListId": "Bad Blood Scenario"},
                     {"label": "id:byTheBook", "deckListId": "By the Book Scenario"},
-                    {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"}
+                    {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"},
+                    {"label": "id:laidToRest", "deckListId": "Laid to Rest Scenario"}
                 ]
             },
             {
@@ -746,6 +747,9 @@
         },
         "redTideRising": {
             "English": "Red Tide Rising"
+        },
+        "laidToRest": {
+            "English": "Laid to Rest"
         },
         "miscellaneous": {
             "English": "Miscellaneous"

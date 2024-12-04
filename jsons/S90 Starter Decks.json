@@ -57,6 +57,40 @@
                     }
                 }
             },
+            "02004": { //Jim Culver: The Musician (original in Laid to Rest scenario)
+                "rules": {
+                    "02004a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["AND",
+                            ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
+                            ["EQUAL", "$GAME.arkham.scenarioName", "Laid to Rest"],
+                            ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"]
+                        ],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
+            },
+            "9004902004": { //Jim Culver: The Musician (parallel front in Laid to Rest scenario)
+                "rules": {
+                    "9004902004a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["AND",
+                            ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
+                            ["EQUAL", "$GAME.arkham.scenarioName", "Laid to Rest"],
+                            ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"]
+                        ],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
+            },
             "90049": { //Jim Culver: The Musician (parallel)
                 "rules": {
                     "90049a": { //"spirit deck"
@@ -110,6 +144,44 @@
                         ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
                     ]
                 ]]
+            ]
+        },
+        "CAN_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$VENGEFUL_SHADE", ["GET_NAMED_DECK_CARD", "90053", "$EXTRA_DECK_GROUP_ID"]], //Vengeful Shade
+                ["VAR", "$EXISTING_CARDS", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$EXTRA_DECK_GROUP_ID"]],
+                ["VAR", "$EXISTING_COUNT", ["LENGTH", "$EXISTING_CARDS"]],
+                ["COND",
+                    ["AND",
+                        ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
+                        ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                        ["EQUAL", "$EXISTING_COUNT", 9],
+                        ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$EXTRA_DECK_GROUP_ID"], 10]
+                    ],
+                    true,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                        ["VAR", "$VENGEFUL_SHADE_SIDE", ["GET_NAMED_DECK_CARD", "90053", "$SIDE_DECK_GROUP_ID"]], //Vengeful Shade
+                        ["VAR", "$EXISTING_CARDS_SIDE", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$SIDE_DECK_GROUP_ID"]],
+                        ["VAR", "$EXISTING_COUNT_SIDE", ["LENGTH", "$EXISTING_CARDS_SIDE"]],
+                        ["COND",
+                            ["AND",
+                                ["OR",
+                                    ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                                    ["NOT_EQUAL", "$VENGEFUL_SHADE_SIDE", null]
+                                ],
+                                ["GREATER_EQUAL", ["ADD", "$EXISTING_COUNT", "$EXISTING_COUNT_SIDE"], 9]
+                            ],
+                            true,
+                            ["TRUE"],
+                            false
+                        ]
+                    ]
+                ]
             ]
         },
         "DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
