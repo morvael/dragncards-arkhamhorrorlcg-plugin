@@ -186,7 +186,8 @@
                         "label": "id:theInnsmouthConspiracy",
                         "deckLists": [
                             {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"},
-                            {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"}
+                            {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"},
+                            {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"}
                         ]
                     }
                 ]
@@ -597,6 +598,9 @@
         },
         "theVanishingOfElinaHarper": {
             "English": "The Vanishing of Elina Harper"
+        },
+        "inTooDeep": {
+            "English": "In Too Deep"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

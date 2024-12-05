@@ -1,0 +1,243 @@
+{
+    "preBuiltDecks": {
+        "In Too Deep Scenario": {
+            "label": "In Too Deep Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "In Too Deep", null, "In Too Deep Scenario Init"]
+            ]
+        },
+        "In Too Deep": {
+            "hideFromSearch": true,
+            "label": "In Too Deep",
+            "cards": [
+                {"databaseId": "07123", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //In Too Deep
+                {"databaseId": "07124", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Barricaded Streets
+                {"databaseId": "07125", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Relentless Tide
+                {"databaseId": "07126", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Flooded Streets
+                {"databaseId": "07127", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Rage of the Deep
+                {"databaseId": "07128", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Through the Labyrinth
+                {"databaseId": "07129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "10%"},  //Esoteric Order of Dagon
+                {"databaseId": "07130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "76%"},   //Sawbone Alley
+                {"databaseId": "07131", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "76%"},  //Shoreward Slums
+                {"databaseId": "07132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "10%"},  //The House on Water Street
+                {"databaseId": "07133", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Innsmouth Jail
+                {"databaseId": "07134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //New Church Green
+                {"databaseId": "07135", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //The Little Bookshop
+                {"databaseId": "07136", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Fish Street Bridge
+                {"databaseId": "07137", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //First National Grocery
+                {"databaseId": "07138", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Innsmouth Harbour
+                {"databaseId": "07139", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Innsmouth Square
+                {"databaseId": "07140", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "76%"},  //Gilman House
+                {"databaseId": "07141", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "10%"},  //Marsh Refinery
+                {"databaseId": "07142", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "10%"},   //Railroad Station
+                {"databaseId": "07143", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "76%"},  //Desolate Coastline
+                {"databaseId": "07145", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Ravager from the Deep
+                {"databaseId": "07146", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Emerging Deep One
+                {"databaseId": "07147", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Deep One Invasion
+                {"databaseId": "07148", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Pulled Back
+                {"databaseId": "07149", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Inundated
+            ]
+        },
+        "In Too Deep - Set Aside": {
+            "hideFromSearch": true,
+            "label": "In Too Deep - Set Aside",
+            "cards": [
+                {"databaseId": "07150", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Joe Sargent: Rattletrap Bus Driver
+                {"databaseId": "07151", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Teachings of the Order
+                {"databaseId": "07144", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Innsmouth Shoggoth
+                {"databaseId": "07062a", "quantity": 1, "loadGroupId": "sharedNotInPlay"}   //Angry Mob (Finding Agent Harper)
+            ]
+        }
+    },
+    "actionLists": {
+        "In Too Deep Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "In Too Deep"],
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Deep"],
+            ["DO_LOAD_CARDS_SCN", "Rising Tide"],
+            ["DO_LOAD_CARDS_SCN", "Syzygy"],
+            ["DO_LOAD_CARDS_SCN", "The Locals"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Cthulhu"],
+            //top row
+            ["IN_TOO_DEEP_PLACE_BARRIER", 3, "Railroad Station", "Esoteric Order of Dagon"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Esoteric Order of Dagon", "New Church Green"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 3, "New Church Green", "Marsh Refinery"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Marsh Refinery", "The House on Water Street"],
+            //between top and middle row
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Railroad Station", "The Little Bookshop"],
+            //middle row
+            ["IN_TOO_DEEP_PLACE_BARRIER", 2, "The Little Bookshop", "First National Grocery"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 2, "First National Grocery", "Innsmouth Square"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 2, "Innsmouth Square", "Fish Street Bridge"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Fish Street Bridge", "Innsmouth Harbour"],
+            //bottom row
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Sawbone Alley", "Gilman House"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 3, "Gilman House", "Innsmouth Jail"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 1, "Innsmouth Jail", "Shoreward Slums"],
+            ["IN_TOO_DEEP_PLACE_BARRIER", 2, "Shoreward Slums", "Desolate Coastline"],
+            //end barriers
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Desolate Coastline", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Possible Hideouts” in Campaign Log.", ["LIST", "Esoteric Order of Dagon.", "Sawbone Alley.", "Shoreward Slums.", "The House on Water Street.", "Innsmouth Jail.", "New Church Green.", "No location is circled."], "In Too Deep Scenario Question 1"]
+        ],
+        "In Too Deep Scenario Question 1": [
+            ["LOG", "└── Possible Hideouts: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["VAR", "$OTHER_KEYS", ["LIST", "key_red", "key_blue", "key_green", "key_yellow", "key_purple", "key_white"]], //Red Key, Blue Key, Green Key, Yellow Key, Purple Key, White Key
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "Esoteric Order of Dagon"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "Sawbone Alley"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "Shoreward Slums"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "The House on Water Street"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "E"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "Innsmouth Jail"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "F"],
+                ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Black Key", "key_black", "New Church Green"],
+                ["TRUE"],
+                ["UPDATE_VAR", "$OTHER_KEYS", ["APPEND", "$OTHER_KEYS", "key_black"]] //Black Key
+            ],
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", "$OTHER_KEYS"]],
+            ["VAR", "$KEYS_COUNT", ["LENGTH", "$KEYS"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$KEYS_COUNT", 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Robert Friendly is out for blood.", "The above is not true."], "In Too Deep Scenario Question 2"]
+        ],
+        "In Too Deep Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Robert Friendly: Disgruntled Dockworker", "07076", "Innsmouth Harbour", 3, 3]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Zadok Allen is out for blood.", "The above is not true."], "In Too Deep Scenario Question 3"]
+        ],
+        "In Too Deep Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Zadok Allen: Drunk and Disorderly", "07077", "Fish Street Bridge", 3, 3]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Brian Burnham is out for blood.", "The above is not true."], "In Too Deep Scenario Question 4"]
+        ],
+        "In Too Deep Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Brian Burnham: Wants Out", "07078", "First National Grocery", 3, 3]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Barnabas Marsh is out for blood.", "The above is not true."], "In Too Deep Scenario Question 5"]
+        ],
+        "In Too Deep Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Barnabas Marsh: The Change Is upon Him", "07079", "Marsh Refinery", 3, 3]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Joyce Little is out for blood.", "The above is not true."], "In Too Deep Scenario Question 6"]
+        ],
+        "In Too Deep Scenario Question 6": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer6", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer6Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Joyce Little: Bookshop Owner", "07080", "The Little Bookshop", 3, 3]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Othera Gilman is out for blood.", "The above is not true."], "In Too Deep Scenario Question 7"]
+        ],
+        "In Too Deep Scenario Question 7": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer7Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Othera Gilman: Proprietress of the Hotel", "07081", "Gilman House", 3, 3]
+                ]
+            ],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Young Deep One", "sharedEncounterDeck", 2, "sharedNotInPlay"],
+            ["DO_LOAD_CARDS_SCN", "In Too Deep - Set Aside"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "07062a"], false, null], //Angry Mob (Finding Agent Harper)
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 12, "sharedTokens"],
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "The House on Water Street"],
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "Innsmouth Harbour"],
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "Desolate Coastline"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "IN_TOO_DEEP_PLACE_BARRIER": {
+            "args": ["$NUMBER", "$LOCATION_NAME_1", "$LOCATION_NAME_2"],
+            "code": [
+                ["DO_FSYSLOG", "{0:P} places {1} barrier{1:S} between {2} and {3}.", ["LIST", "$GAME.firstPlayer", "$NUMBER", "$LOCATION_NAME_1", "$LOCATION_NAME_2"]],
+                ["VAR", "$LOCATION_CARD_1", ["GET_NAMED_MAP_LOCATION", "$LOCATION_NAME_1"]],
+                ["VAR", "$LOCATION_CARD_2", ["GET_NAMED_MAP_LOCATION", "$LOCATION_NAME_2"]],
+                ["VAR", "$X1", ["TO_INT", ["GET_CARD_LEFT", "$LOCATION_CARD_1.id"]]],
+                ["VAR", "$Y1", ["TO_INT", ["GET_CARD_TOP", "$LOCATION_CARD_1.id"]]],
+                ["VAR", "$X2", ["TO_INT", ["GET_CARD_LEFT", "$LOCATION_CARD_2.id"]]],
+                ["VAR", "$Y2", ["TO_INT", ["GET_CARD_TOP", "$LOCATION_CARD_2.id"]]],
+                ["VAR", "$SX", 0],
+                ["VAR", "$SY", 0],
+                ["VAR", "$MX", 0],
+                ["VAR", "$MY", 0],
+                ["VAR", "$XMOD", 0.35],
+                ["VAR", "$YMOD", 0.35],
+                ["COND",
+                    ["EQUAL", "$Y1", "$Y2"], //vertical barrier
+                    [
+                        ["COND",
+                            ["LESS_THAN", "$X2", "$X1"],
+                            [
+                                ["VAR", "$TMPX", "$X2"],
+                                ["UPDATE_VAR", "$X2", "$X1"],
+                                ["UPDATE_VAR", "$X1", "$TMPX"]
+                            ]
+                        ],
+                        ["VAR", "$X1R", ["ADD", "$X1", 10]],
+                        ["VAR", "$DIFF", ["SUBTRACT", "$X2", "$X1R"]],
+                        ["VAR", "$CX", ["ADD", "$X1R", ["DIVIDE", "$DIFF", 2]]],
+                        ["VAR", "$CY", ["ADD", "$Y1", 7]],
+                        ["UPDATE_VAR", "$SX", "$CX"],
+                        ["UPDATE_VAR", "$SY", ["SUBTRACT", "$CY", ["DIVIDE", ["MULTIPLY", ["SUBTRACT", "$NUMBER", 1], 3.75], 2]]],
+                        ["UPDATE_VAR", "$MY", 3.75]
+                    ],
+                    ["TRUE"], //horizontal barrier
+                    [
+                        ["COND",
+                            ["LESS_THAN", "$Y2", "$Y1"],
+                            [
+                                ["VAR", "$TMPY", "$Y2"],
+                                ["UPDATE_VAR", "$Y2", "$Y1"],
+                                ["UPDATE_VAR", "$Y1", "$TMPY"]
+                            ]
+                        ],
+                        ["VAR", "$Y1R", ["ADD", "$Y1", 14]],
+                        ["VAR", "$DIFF", ["SUBTRACT", "$Y2", "$Y1R"]],
+                        ["VAR", "$CX", ["ADD", "$X1", 5]],
+                        ["VAR", "$CY", ["ADD", "$Y1R", ["DIVIDE", "$DIFF", 2]]],
+                        ["UPDATE_VAR", "$SX", ["SUBTRACT", "$CX", ["DIVIDE", ["MULTIPLY", ["SUBTRACT", "$NUMBER", 1], 3.25], 2]]],
+                        ["UPDATE_VAR", "$SY", "$CY"],
+                        ["UPDATE_VAR", "$MX", 3.25]
+                    ]
+                ],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUMBER", 1, [
+                    ["DO_CREATE_CARDS", "$GAME.firstPlayer", "1 Resource", "token_resource_1", 1, "sharedLocations", false, null],
+                    ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", ["SUBTRACT", "$SX", "$XMOD"], ["SUBTRACT", "$SY", "$YMOD"]],
+                    ["INCREASE_VAR", "$SX", "$MX"],
+                    ["INCREASE_VAR", "$SY", "$MY"]
+                ]]
+            ]
+        }
+    }
+}
