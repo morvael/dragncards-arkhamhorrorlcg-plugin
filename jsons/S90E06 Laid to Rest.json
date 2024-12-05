@@ -43,6 +43,30 @@
                 {"databaseId": "90057a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                          //Jean Devereux: Seeking Closure
                 {"databaseId": "90058", "quantity": 4, "loadGroupId": "sharedEncounterDeck"}                            //Ravenous Spirit: Possessed
             ]
+        },
+        "Laid to Rest - The Gallows": {
+            "hideFromSearch": true,
+            "label": "Laid to Rest - The Gallows",
+            "cards": [
+                {"databaseId": "05169", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "7%"},   //The Gallows
+                {"databaseId": "05170", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "7%"}    //The Gallows
+            ]
+        },
+        "Laid to Rest - Heretics' Graves": {
+            "hideFromSearch": true,
+            "label": "Laid to Rest - Heretics' Graves",
+            "cards": [
+                {"databaseId": "05171", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "31%"},   //Heretics' Graves
+                {"databaseId": "05172", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "31%"}    //Heretics' Graves
+            ]
+        },
+        "Laid to Rest - Chapel Crypt": {
+            "hideFromSearch": true,
+            "label": "Laid to Rest - Chapel Crypt",
+            "cards": [
+                {"databaseId": "05173", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"},  //Chapel Crypt
+                {"databaseId": "05174", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "31%"}   //Chapel Crypt
+            ]
         }
     },
     "actionLists": {
@@ -56,9 +80,9 @@
             ["DO_LOAD_CARDS_SCN", "Realm of Death"],
             ["DO_LOAD_CARDS_SCN", "Trapped Spirits"],
             ["DO_LOAD_CARDS_SCN", "Witchcraft"],
-            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - The Gallows", 1],
-            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - Heretics' Graves", 1],
-            ["DO_LOAD_N_CARDS_SCN", "The Wages of Sin - Chapel Crypt", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Laid to Rest - The Gallows", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Laid to Rest - Heretics' Graves", 1],
+            ["DO_LOAD_N_CARDS_SCN", "Laid to Rest - Chapel Crypt", 1],
             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                 ["EQUAL", "$CARD.groupId", "sharedLocations"],
                 ["EQUAL", "$CARD.currentFace.type", "Location"],
