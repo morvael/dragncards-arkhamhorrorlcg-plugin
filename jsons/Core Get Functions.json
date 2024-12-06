@@ -226,6 +226,22 @@
                 ]]
             ]
         },
+        "GET_NAMED_MAP_CARD": {
+            "_comment": "Returns a card from sharedLocations with given currentFace name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
         "GET_ALL_CARDS_IN_GROUP": {
             "_comment": "Returns list of all cards in given group.",
             "args": ["$TARGET_GROUP_ID"],

@@ -187,7 +187,8 @@
                         "deckLists": [
                             {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"},
                             {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"},
-                            {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"}
+                            {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"},
+                            {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"}
                         ]
                     }
                 ]
@@ -601,6 +602,9 @@
         },
         "inTooDeep": {
             "English": "In Too Deep"
+        },
+        "devilReef": {
+            "English": "Devil Reef"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

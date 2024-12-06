@@ -750,7 +750,7 @@
                         ["NOT_EQUAL", "$Y_CHANGE", null]
                     ],
                     [
-                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_CARD", "$LOCATION_CARD_NAME"]],
                         ["COND",
                             ["NOT_EQUAL", "$LOCATION_CARD", null],
                             [
@@ -783,7 +783,7 @@
                                                             ["COND",
                                                                 ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.arkham.customSpawnLocation", null],
                                                                 [
-                                                                    ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$PLAYER_DATA.$PLAYER_I.arkham.customSpawnLocation"]],
+                                                                    ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_CARD", "$PLAYER_DATA.$PLAYER_I.arkham.customSpawnLocation"]],
                                                                     ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}."],
                                                                     ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                                                                     ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
