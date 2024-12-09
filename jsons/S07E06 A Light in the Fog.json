@@ -58,7 +58,7 @@
             ["DO_LOAD_CARDS_SCN", "Syzygy"],
             ["DO_LOAD_CARDS_SCN", "Striking Fear"],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Falcon Point Gatehouse", 5, 7, 3, 0],
-            ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Underground River"],
+            ["DO_DELETE_NAMED_CARDS_SCN", "Underground River"],
             ["DO_CREATE_CARDS_SCN", "White Key", "key_white", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Black Key", "key_black", 1, "sharedTokens"],
             ["DO_CREATE_CARDS_SCN", "Blue Key", "key_blue", 1, "sharedTokens"],
