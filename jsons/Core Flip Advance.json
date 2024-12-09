@@ -245,21 +245,23 @@
                 ],
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06334"],  //The Bridge of Webs
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06334"],  //The Bridge of Webs (This agenda gets +2 (per investigator) doom threshold.)
                         ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06335"],  //A Trail of Twists
                         ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06336"]   //Realities Interwoven
                     ],
                     ["INCREASE_VAR", "$DOOM", ["MULTIPLY", 2, "$GAME.arkham.numPlayers"]],
                     ["OR",
-                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04055"],  //Something Stirs...
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04055"],  //Something Stirs... (This agenda gets +1 (per investigator) doom threshold.)
                         ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04056"],  //The Temple Warden
-                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04212"]   //Eyes in the Dark
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "04212"],  //Eyes in the Dark
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90066a"], //Something Else Stirs...
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90067"]   //Guardian of the Relics
                     ],
                     ["INCREASE_VAR", "$DOOM", "$GAME.arkham.numPlayers"],
                     ["AND",
                         ["EQUAL", "$GAME.arkham.numPlayers", 1],
                         ["OR",
-                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09662"],  //Restless Dead
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09662"],  //Restless Dead (If there is only one investigator in the game, this agenda gets +1 doom threshold.)
                             ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "84002"]   //The Murder
                         ]
                     ],
@@ -301,7 +303,8 @@
                             ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "04055"],  //Something Stirs... (Do not remove doom from each location in play.)
                             ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "04211"],  //The Lonely Caverns
                             ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "06334"],  //The Bridge of Webs
-                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "06335"]   //A Trail of Twists
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "06335"],  //A Trail of Twists
+                            ["EQUAL", "$AGENDA_CARD.sides.A.databaseId", "90066a"]  //Something Else Stirs...
                         ],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                         ["EQUAL", "$TARGET_CARD.inPlay", true]

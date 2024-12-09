@@ -269,7 +269,8 @@
                     {"label": "id:badBlood", "deckListId": "Bad Blood Scenario"},
                     {"label": "id:byTheBook", "deckListId": "By the Book Scenario"},
                     {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"},
-                    {"label": "id:laidToRest", "deckListId": "Laid to Rest Scenario"}
+                    {"label": "id:laidToRest", "deckListId": "Laid to Rest Scenario"},
+                    {"label": "id:relicsOfThePast", "deckListId": "Relics of the Past Scenario"}
                 ]
             },
             {
@@ -759,6 +760,9 @@
         "laidToRest": {
             "English": "Laid to Rest"
         },
+        "relicsOfThePast": {
+            "English": "Relics of the Past"
+        },        
         "miscellaneous": {
             "English": "Miscellaneous"
         },
