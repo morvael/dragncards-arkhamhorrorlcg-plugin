@@ -757,6 +757,10 @@
                         ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08011a"], //Discipline: Alignment of Spirit
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08012a"], //Discipline: Quiescence of Thought
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08013a"], //Discipline: Prescience of Fate
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
                     ]
                 ]

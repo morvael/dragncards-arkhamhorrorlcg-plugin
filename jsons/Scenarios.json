@@ -188,7 +188,8 @@
                             {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"},
                             {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"},
                             {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"},
-                            {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"}
+                            {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"},
+                            {"label": "id:horrorInHighGear", "deckListId": "Horror in High Gear Scenario"}
                         ]
                     }
                 ]
@@ -607,6 +608,9 @@
         "devilReef": {
             "English": "Devil Reef"
         },
+        "horrorInHighGear": {
+            "English": "Horror in High Gear"
+        },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"
         },
@@ -762,7 +766,7 @@
         },
         "relicsOfThePast": {
             "English": "Relics of the Past"
-        },        
+        },
         "miscellaneous": {
             "English": "Miscellaneous"
         },

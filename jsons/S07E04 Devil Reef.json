@@ -51,7 +51,7 @@
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["UPDATE_VAR", "$ANSWERS_2", ["APPEND", "$ANSWERS_2", ["DO_FORMAT_STRING", "{0:P} gets Thomas Dawson.", ["LIST", "$PLAYER_I"]]]]
                     ]],
-                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_2", "Devil Reef Scenario Question 2"]     
+                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_2", "Devil Reef Scenario Question 2"]
                 ]
             ]
         ],

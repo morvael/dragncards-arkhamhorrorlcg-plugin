@@ -1,0 +1,173 @@
+{
+    "preBuiltDecks": {
+        "Horror in High Gear Scenario": {
+            "label": "Horror in High Gear Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "Horror in High Gear", null, "Horror in High Gear Scenario Init"]
+            ]
+        },
+        "Horror in High Gear": {
+            "hideFromSearch": true,
+            "label": "Horror in High Gear",
+            "cards": [
+                {"databaseId": "07198", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Horror in High Gear
+                {"databaseId": "07199", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Chase is On! (v. I)
+                {"databaseId": "07200", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Chase is On! (v. II)
+                {"databaseId": "07201", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Hot Pursuit
+                {"databaseId": "07202", "quantity": 1, "loadGroupId": "sharedActStory"},            //Pedal to the Metal
+                {"databaseId": "07210", "quantity": 6, "loadGroupId": "sharedPileA"},               //Long Way Around
+                {"databaseId": "07213", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Pursuing Motorcar
+                {"databaseId": "07214", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Hit Van
+                {"databaseId": "07215", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Hybrid Assassin
+                {"databaseId": "07216", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Bumpy Ride
+                {"databaseId": "07217", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //"I can't see!"
+                {"databaseId": "07218", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Eyes in the Trees
+                {"databaseId": "07219", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //"They're catching up!"
+            ]
+        }
+    },
+    "actionLists": {
+        "Horror in High Gear Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Horror in High Gear"],
+            ["DO_LOAD_CARDS_SCN", "Fog over Innsmouth"],
+            ["DO_LOAD_CARDS_SCN", "Malfunction"],
+            ["DO_LOAD_CARDS_SCN", "Shattered Memories"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["VAR", "$ROADS", ["SHUFFLE_LIST", ["LIST", "07204a", "07204b", "07204c", "07205a", "07205b", "07206a", "07206b", "07207a", "07207b", "07208a", "07208b", "07208c", "07209a", "07209b"]]], //Dimly Lit Road (3), Cliffside Road (2), Fork in the Road (2), Intersection (2), Tight Turn (3), Desolate Road (2)
+            ["VAR", "$ROADS_BOTTOM", ["SHUFFLE_LIST", ["LIST", "$ROADS.[0]", "$ROADS.[1]", "07203"]]],  //Falcon Point Approach
+            ["FOR_EACH_START_STOP_STEP", "$I", 2, 14, 1, [
+                ["DO_CREATE_CARDS_SCN", "Old Innsmouth Road", "$ROADS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Old Innsmouth Road", "$ROADS_BOTTOM.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 7, 22, 37]],
+            ["SET", "/arkham/scenarioHorrorInHighGearRearmostLocation", null],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckA"]],
+                ["DO_PUT_INTO_PLAY_AT_SCN", "$TOP_CARD.id", "$SPAWN_LEFTS.[$I]", 43],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioHorrorInHighGearRearmostLocation", null],
+                    ["SET", "/arkham/scenarioHorrorInHighGearRearmostLocation", "$TOP_CARD.id"]
+                ],
+                ["SET", "/arkham/scenarioHorrorInHighGearFrontLocation", "$TOP_CARD.id"]
+            ]],
+            ["SET", "/arkham/scenarioHorrorInHighGearChosenThomasDawsonCar", 0],
+            ["SET", "/arkham/scenarioHorrorInHighGearChosenElinaHarperCar", 0],
+            ["HORROR_IN_HIGH_GEAR_SHOW_VEHICLE_CHOICE", "$GAME.firstPlayer"]
+        ],
+        "Horror in High Gear Scenario Init Continue": [
+            ["COND",
+                ["AND",
+                    ["GREATER_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenThomasDawsonCar", 0],
+                    ["GREATER_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenElinaHarperCar", 0]
+                ],
+                [
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Thomas Dawson's Car: Running", "07211a", "$GAME.arkham.scenarioHorrorInHighGearFrontLocation", 0, -12],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Elina Harper's Car: Running", "07212a", "$GAME.arkham.scenarioHorrorInHighGearFrontLocation", 0, 12]
+                ],
+                ["GREATER_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenThomasDawsonCar", 0],
+                ["DO_SPAWN_AT_LOCATION_SCN", "Thomas Dawson's Car: Running", "07211a", "$GAME.arkham.scenarioHorrorInHighGearFrontLocation", 0, 12],
+                ["GREATER_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenElinaHarperCar", 0],
+                ["DO_SPAWN_AT_LOCATION_SCN", "Elina Harper's Car: Running", "07212a", "$GAME.arkham.scenarioHorrorInHighGearFrontLocation", 0, 12]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$GAME.arkham.scenarioHorrorInHighGearFrontLocation", 5, 7, 3, 0],
+            ["COND",
+                ["GREATER_THAN", "$GAME.arkham.numPlayers", 1],
+                [
+                    ["VAR", "$SELECTED_CARDS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                        ["EQUAL", "$CARD.sides.A.type", "Enemy"],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Vehicle."]
+                    ]]]],
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "$SELECTED_CARDS.[0].id", "$GAME.arkham.scenarioHorrorInHighGearRearmostLocation", 0, 12, 0],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkham.numPlayers", 4],
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "$SELECTED_CARDS.[1].id", "$GAME.arkham.scenarioHorrorInHighGearRearmostLocation", 0, -12, 0]
+                    ]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Terror of Devil Reef is dead.", "The above is not true."], "Horror in High Gear Scenario Question 1"]
+        ],
+        "Horror in High Gear Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["DO_DELETE_NAMED_CARDS_SCN", "The Chase is On! (v. I)"]
+                ],
+                ["TRUE"],
+                ["DO_DELETE_NAMED_CARDS_SCN", "The Chase is On! (v. II)"]
+            ],
+            ["VAR", "$FINAL_MESSAGE", "Deck A is the Road deck. Long Way Around cards are in Pile A. See “Vehicles”, “Running / Stopped”, and “Road X.”"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioHorrorInHighGearChosenThomasDawsonCar", 2],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Choose driver for Thomas Dawson's Car."]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioHorrorInHighGearChosenElinaHarperCar", 2],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Choose driver for Elina Harper's Car."]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Reveal the front Old Innsmouth Road location and trigger its Road X keyword."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "HORROR_IN_HIGH_GEAR_SHOW_VEHICLE_CHOICE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "HORROR_IN_HIGH_GEAR_SHOW_VEHICLE_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$INVESTIGATOR_NAME", ["DO_FORMAT_STRING", "{0:I}", ["LIST", "$TARGET_PLAYER"]]],
+                ["PROMPT", "$TARGET_PLAYER", "horrorInHighGearChooseVehicle"],
+                ["COND",
+                    ["LESS_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenThomasDawsonCar", 2],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Thomas Dawson's Car.", "T", ["LIST", "HORROR_IN_HIGH_GEAR_VEHICLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "T"]]
+                ],
+                ["COND",
+                    ["LESS_THAN", "$GAME.arkham.scenarioHorrorInHighGearChosenElinaHarperCar", 2],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Elina Harper's Car.", "E", ["LIST", "HORROR_IN_HIGH_GEAR_VEHICLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "E"]]
+                ]
+            ]
+        },
+        "HORROR_IN_HIGH_GEAR_VEHICLE_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CHOICE_LETTER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "HORROR_IN_HIGH_GEAR_VEHICLE_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CHOICE_LETTER", "HORROR_IN_HIGH_GEAR_VEHICLE_CHOICE_DONE.CHOICE_LETTER"],
+                ["COND",
+                    ["EQUAL", "$CHOICE_LETTER", "T"],
+                    [
+                        ["DO_FLOG", "{0:P} choose Thomas Dawson's Car.", ["LIST", "$TARGET_PLAYER"]],
+                        ["INCREASE_VAL", "/arkham/scenarioHorrorInHighGearChosenThomasDawsonCar", 1],
+                        ["SET", "/playerData/$TARGET_PLAYER/arkham/customSpawnLocation", "Thomas Dawson's Car"]
+                    ],
+                    ["EQUAL", "$CHOICE_LETTER", "E"],
+                    [
+                        ["DO_FLOG", "{0:P} choose Elina Harper's Car.", ["LIST", "$TARGET_PLAYER"]],
+                        ["INCREASE_VAL", "/arkham/scenarioHorrorInHighGearChosenElinaHarperCar", 1],
+                        ["SET", "/playerData/$TARGET_PLAYER/arkham/customSpawnLocation", "Elina Harper's Car"]
+                    ]
+                ],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["ACTION_LIST", "Horror in High Gear Scenario Init Continue"],
+                    ["TRUE"],
+                    ["HORROR_IN_HIGH_GEAR_SHOW_VEHICLE_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "horrorInHighGearChooseVehicle": {
+            "args": [],
+            "message": "Choose a vehicle to board.",
+            "options": [
+            ]
+        }
+    }
+}
