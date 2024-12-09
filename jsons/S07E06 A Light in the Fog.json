@@ -119,7 +119,7 @@
                     ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
                 ]
             ],
-            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 12, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 16, "sharedTokens"],
             ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
