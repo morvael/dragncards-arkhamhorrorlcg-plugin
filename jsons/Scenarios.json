@@ -264,6 +264,12 @@
                 ]
             },
             {
+                "label": "id:sideStories",
+                "deckLists": [
+                    {"label": "id:curseOfTheRougarou", "deckListId": "Curse of the Rougarou Scenario"}
+                ]
+            },
+            {
                 "label": "id:challengeScenarios",
                 "deckLists": [
                     {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"},
@@ -746,6 +752,12 @@
         },
         "returnToBeforeTheBlackThrone": {
             "English": "Return to Before the Black Throne"
+        },
+        "sideStories": {
+            "English": "Side Stories"
+        },
+        "curseOfTheRougarou": {
+            "English": "Curse of the Rougarou"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

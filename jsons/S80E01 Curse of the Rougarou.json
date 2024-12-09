@@ -1,0 +1,104 @@
+{
+    "preBuiltDecks": {
+        "Curse of the Rougarou Scenario": {
+            "label": "Curse of the Rougarou Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Side Stories A", "Side Stories", "Curse of the Rougarou", null, "Curse of the Rougarou Scenario Init"]
+            ]
+        },
+        "The Bayou": {
+            "hideFromSearch": true,
+            "label": "The Bayou",
+            "cards": [
+                {"databaseId": "81001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Curse of the Rougarou
+                {"databaseId": "81002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //A Creature of the Bayou
+                {"databaseId": "81003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Rougarou Feeds
+                {"databaseId": "81004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Curse Spreads
+                {"databaseId": "81005", "quantity": 1, "loadGroupId": "sharedActStory"},            //Finding Lady Esprit
+                {"databaseId": "81006", "quantity": 1, "loadGroupId": "sharedActStory"},            //Hunting the Rougarou
+                {"databaseId": "81007", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Cursed Shores
+                {"databaseId": "81008", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Garden District
+                {"databaseId": "81009", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Broadmoor
+                {"databaseId": "81010", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Brackish Waters
+                {"databaseId": "81011", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Audubon Park
+                {"databaseId": "81012", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Faubourg Marigny
+                {"databaseId": "81013", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Forgotten Marsh
+                {"databaseId": "81014", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Trapper's Cabin
+                {"databaseId": "81015", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Twisted Underbrush
+                {"databaseId": "81016", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Foul Swamp
+                {"databaseId": "81017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Ritual Grounds
+                {"databaseId": "81018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Overgrown Cairns
+                {"databaseId": "81019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Lady Esprit: Dangerous Bokor
+                {"databaseId": "81020", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Bear Trap
+                {"databaseId": "81021", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Fishing Net
+                {"databaseId": "81022", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Bog Gator
+                {"databaseId": "81023", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Swamp Leech
+                {"databaseId": "81024", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Cursed Swamp
+                {"databaseId": "81025", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Spectral Mist
+                {"databaseId": "81026", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},       //Dragged Under
+                {"databaseId": "81027", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Ripples on the Surface
+            ]
+        },
+        "Curse of the Rougarou": {
+            "hideFromSearch": true,
+            "label": "Curse of the Rougarou",
+            "cards": [
+                {"databaseId": "81028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Rougarou: Cursed Soul
+                {"databaseId": "81029", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Curse of the Rougarou
+                {"databaseId": "81030", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Monstrous Transformation
+                {"databaseId": "81031", "quantity": 2, "loadGroupId": "sharedPileA"},       //Slime-Covered Dhole
+                {"databaseId": "81032", "quantity": 2, "loadGroupId": "sharedPileA"},       //Marsh Gug
+                {"databaseId": "81033", "quantity": 1, "loadGroupId": "sharedPileA"},       //Dark Young Host
+                {"databaseId": "81034", "quantity": 5, "loadGroupId": "sharedPileA"},       //On the Prowl
+                {"databaseId": "81035", "quantity": 2, "loadGroupId": "sharedPileA"},       //Beast of the Bayou
+                {"databaseId": "81036", "quantity": 3, "loadGroupId": "sharedPileA"}        //Insatiable Bloodlust
+            ]
+        }
+    },
+    "actionLists": {
+        "Curse of the Rougarou Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Bayou"],
+            ["DO_SET_SPAWN_LOCATION", "81007", 45, 24], //Cursed Shores
+            ["DO_SET_SPAWN_LOCATION", "81008", 35, 5], //Garden District
+            ["DO_SET_SPAWN_LOCATION", "81009", 55, 5], //Broadmoor
+            ["DO_SET_SPAWN_LOCATION", "81010", 26, 43], //Brackish Waters
+            ["DO_SET_SPAWN_LOCATION", "81011", 7, 53], //Audubon Park
+            ["DO_SET_SPAWN_LOCATION", "81012", 7, 33], //Faubourg Marigny
+            ["DO_SET_SPAWN_LOCATION", "81013", 64, 43], //Forgotten Marsh
+            ["DO_SET_SPAWN_LOCATION", "81014", 83, 33], //Trapper's Cabin
+            ["DO_SET_SPAWN_LOCATION", "81015", 83, 53], //Twisted Underbrush
+            ["DO_SET_SPAWN_LOCATION", "81016", 45, 62], //Foul Swamp
+            ["DO_SET_SPAWN_LOCATION", "81017", 55, 81], //Ritual Grounds
+            ["DO_SET_SPAWN_LOCATION", "81018", 35, 81], //Overgrown Cairns
+            ["DO_LOAD_CARDS_SCN", "Curse of the Rougarou"],
+            ["VAR", "$BIOMES", ["SHUFFLE_LIST", ["LIST", "New Orleans", "Riverside", "Wilderness", "Unhallowed"]]],
+            ["DO_FSYSLOG", "{0} locations are removed from the game.", ["LIST", "$BIOMES.[0]"]],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
+                ["IN_STRING", "$CARD.sides.A.traits", "{{$BIOMES.[0]}}."]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["DO_DELETE_NAMED_CARDS", "$GAME.firstPlayer", "$CARD.id", false, null]
+            ]],
+            ["DO_FSYSLOG", "{0} locations are put into play.", ["LIST", "$BIOMES.[1]"]],
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
+                ["IN_STRING", "$CARD.sides.A.traits", "{{$BIOMES.[1]}}."]
+            ]]],
+            ["VAR", "$STARTING_LOCATION_ID", null],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["DO_SPAWN_CARD", "$GAME.firstPlayer", "$CARD.id", false, null],
+                ["COND",
+                    ["IN_STRING", "$CARD.sides.A.traits", "Bayou."],
+                    ["UPDATE_VAR", "$STARTING_LOCATION_ID", "$CARD.id"]
+                ]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$STARTING_LOCATION_ID", 5, 7, 3, 0],
+            ["SET", "/arkham/finalScenarioMessage", "Curse of the Rougarou cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
