@@ -189,7 +189,8 @@
                             {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"},
                             {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"},
                             {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"},
-                            {"label": "id:horrorInHighGear", "deckListId": "Horror in High Gear Scenario"}
+                            {"label": "id:horrorInHighGear", "deckListId": "Horror in High Gear Scenario"},
+                            {"label": "id:aLightInTheFog", "deckListId": "A Light in the Fog Scenario"}
                         ]
                     }
                 ]
@@ -610,6 +611,9 @@
         },
         "horrorInHighGear": {
             "English": "Horror in High Gear"
+        },
+        "aLightInTheFog": {
+            "English": "A Light in the Fog"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

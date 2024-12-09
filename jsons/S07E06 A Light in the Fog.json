@@ -1,0 +1,127 @@
+{
+    "preBuiltDecks": {
+        "A Light in the Fog Scenario": {
+            "label": "A Light in the Fog Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "A Light in the Fog", null, "A Light in the Fog Scenario Init"]
+            ]
+        },
+        "A Light in the Fog": {
+            "hideFromSearch": true,
+            "label": "A Light in the Fog",
+            "cards": [
+                {"databaseId": "07231", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //A Light in the Fog
+                {"databaseId": "07252", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Captured!
+                {"databaseId": "07232", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Fog on the Bay
+                {"databaseId": "07233", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Unchanging as the Sea
+                {"databaseId": "07234", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Tide Rises
+                {"databaseId": "07235", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Terror at Falcon Point
+                {"databaseId": "07236", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Lighthouse
+                {"databaseId": "07237", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Finding the Path
+                {"databaseId": "07238", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Worshippers of the Deep
+                {"databaseId": "07239", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "24%"},  //Falcon Point Gatehouse
+                {"databaseId": "07240", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "24%"},  //Lighthouse Stairwell
+                {"databaseId": "07241", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "5%"},   //Lantern Room
+                {"databaseId": "07242", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "24%"},  //Falcon Point Cliffside
+                {"databaseId": "07243", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "24%"},  //Lighthouse Keeper's Cottage
+                {"databaseId": "07244", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sunken Grotto: Upper Depths
+                {"databaseId": "07245", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sunken Grotto: Lower Depths
+                {"databaseId": "07246", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sunken Grotto: Final Depths
+                {"databaseId": "07253", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Oceiros Marsh: Keeper of the Lighthouse
+                {"databaseId": "07259", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Worth His Salt
+                {"databaseId": "07260", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Taken Captive
+                {"databaseId": "07247", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Shrine to Hydra
+                {"databaseId": "07248", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Deep One Nursery
+                {"databaseId": "07249", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //The Moon Room
+                {"databaseId": "07250", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sunken Archives
+                {"databaseId": "07251", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Pump Room
+                {"databaseId": "07254", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Deep One Nursemaid
+                {"databaseId": "07255", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Deep One Hatchling
+                {"databaseId": "07256", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hideous Lullaby
+                {"databaseId": "07257", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Kiss of Brine
+                {"databaseId": "07258", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Totality
+            ]
+        }
+    },
+    "actionLists": {
+        "A Light in the Fog Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "A Light in the Fog"],
+            ["DO_SET_SPAWN_LOCATION", "07244", 55, 43], //Sunken Grotto: Upper Depths
+            ["DO_SET_SPAWN_LOCATION", "07245", 55, 62], //Sunken Grotto: Lower Depths
+            ["DO_SET_SPAWN_LOCATION", "07246", 55, 81], //Sunken Grotto: Final Depths
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Deep"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Flooded Caverns", "sharedDeckA"],
+            ["DO_LOAD_CARDS_SCN", "Rising Tide"],
+            ["DO_LOAD_CARDS_SCN", "Syzygy"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Falcon Point Gatehouse", 5, 7, 3, 0],
+            ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Underground River"],
+            ["DO_CREATE_CARDS_SCN", "White Key", "key_white", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Black Key", "key_black", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Blue Key", "key_blue", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Yellow Key", "key_yellow", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Red Key", "key_red", 1, "sharedTokens"],
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", ["LIST", "key_green", "key_purple"]]],  //Green Key, Purple Key
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The idol was brought to the lighthouse.", "The above is not true."], "A Light in the Fog Scenario Question 1"]
+        ],
+        "A Light in the Fog Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Waveworn Idol", "07179", 1, "sharedNotInPlay"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The mantle was brought to the lighthouse.", "The above is not true."], "A Light in the Fog Scenario Question 2"]
+        ],
+        "A Light in the Fog Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Awakened Mantle", "07180", 1, "sharedNotInPlay"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The headdress was brought to the lighthouse.", "The above is not true."], "A Light in the Fog Scenario Question 3"]
+        ],
+        "A Light in the Fog Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["DO_CREATE_CARDS_SCN", "Headdress of Y'ha-nthlei", "07181", 1, "sharedNotInPlay"]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators reached Falcon Point after sunrise.", "The above is not true."], "A Light in the Fog Scenario Question 4"]
+        ],
+        "A Light in the Fog Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The tide has grown stronger.", "The above is not true."], "A Light in the Fog Scenario Question 5"]
+        ],
+        "A Light in the Fog Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
+                ]
+            ],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 12, "sharedTokens"],
+            ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
