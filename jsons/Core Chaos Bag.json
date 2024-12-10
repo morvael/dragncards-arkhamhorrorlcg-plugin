@@ -378,7 +378,7 @@
             "code": [
                 ["DO_REMOVE_CHAOS_TOKENS", "$GAME.firstPlayer", "$CHAOS_TOKEN_DATABASE_ID", "$NUMBER", true, null]
             ]
-        },        
+        },
         "DO_REMOVE_ALL_CHAOS_TOKENS": {
             "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [

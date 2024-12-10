@@ -114,7 +114,7 @@
                 ["TRUE"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "Secrets of the Sea (v. I)"]
             ],
-            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 11, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 18, "sharedTokens"],
             ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A. See “Location Adjacency in Devil Reef” and “Vehicles.”"],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

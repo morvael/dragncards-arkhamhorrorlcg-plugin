@@ -169,7 +169,7 @@
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Young Deep One", "sharedEncounterDeck", 2, "sharedNotInPlay"],
             ["DO_LOAD_CARDS_SCN", "In Too Deep - Set Aside"],
             ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "07062a"], false, null], //Angry Mob (Finding Agent Harper)
-            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 12, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 16, "sharedTokens"],
             ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "The House on Water Street"],
             ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "Innsmouth Harbour"],
             ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "Desolate Coastline"],

@@ -55,7 +55,7 @@
             ["FOR_EACH_START_STOP_STEP", "$I", 3, 8, 1, [
                 ["DO_CREATE_CARDS_SCN", "Tidal Tunnel", "$TIDAL_TUNNELS.[$I]", 1, "sharedDeckA"]
             ]],
-            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 12, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 19, "sharedTokens"],
             ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A. Off Map is “The Depths” (out of play). See “Location Adjacency in the Pit.”"],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
