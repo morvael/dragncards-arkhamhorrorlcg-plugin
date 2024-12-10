@@ -232,6 +232,22 @@
                     ]
                 ]]
             ]
+        },
+        "DO_MOVE_CARDS_ON_MAP_BY_DELTA": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_X", "$SOURCE_Y", "$TARGET_X", "$TARGET_Y", "$DESCRIPTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_CARDS_ON_MAP_BY_DELTA.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DESCRIPTION", "DO_MOVE_CARDS_ON_MAP_BY_DELTA.DESCRIPTION"],
+                ["VAR", "$MOVE_X", ["SUBTRACT", "$TARGET_X", "$SOURCE_X"]],
+                ["VAR", "$MOVE_Y", ["SUBTRACT", "$TARGET_Y", "$SOURCE_Y"]],
+                ["COND",
+                    ["OR",
+                        ["NOT_EQUAL", "$MOVE_X", 0],
+                        ["NOT_EQUAL", "$MOVE_Y", 0]
+                    ],
+                    ["DO_MOVE_CARDS_ON_MAP", "$TARGET_PLAYER", "$MOVE_X", "$MOVE_Y", "$DESCRIPTION"]
+                ]                
+            ]
         }
     },
     "labels": {

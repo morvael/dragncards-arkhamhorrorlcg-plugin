@@ -176,7 +176,8 @@
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Lloigor", "sharedEncounterDeck", 1, "sharedNotInPlay"],
             ["DO_LOAD_CARDS_SCN", "Into the Maelstrom - Set Aside"],
             ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 18, "sharedTokens"],
-            ["SET", "/arkham/finalScenarioMessage", "Y'ha-nthlei cards are in Deck A, Y'ha-nthlei Sanctum cards are in Deck B. See “Location Adjacency in Y'ha-nthlei.”"],
+            ["SET", "/arkham/scenarioIntoTheMaelstromAct2Setup", false],
+            ["SET", "/arkham/finalScenarioMessage", "Y'ha-nthlei cards are in Deck A, Y'ha-nthlei Sanctum cards are in Deck B."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },
@@ -216,7 +217,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$SCENARIO_QUESTION", "INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE.SCENARIO_QUESTION"],
                 ["PROMPT", "$GAME.firstPlayer", "intoTheMaelstromChooseDivingSuit"],
-                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", ["DO_FORMAT_STRING", "{0:P} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]], "A", ["LIST", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "A", "{{$SCENARIO_QUESTION}}"]],
+                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", ["DO_FORMAT_STRING", "{0:I} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]], "A", ["LIST", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "A", "{{$SCENARIO_QUESTION}}"]],
                 ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "The above is not true.", "B", ["LIST", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "B", "{{$SCENARIO_QUESTION}}"]]
             ]
         },
@@ -230,7 +231,7 @@
                 ["COND",
                     ["EQUAL", "$CHOICE_LETTER", "A"],
                     [
-                        ["DO_FSYSLOG", "Campaign Log: {0:P} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]],
+                        ["DO_FSYSLOG", "Campaign Log: {0:I} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]],
                         ["DO_CREATE_CARDS_SCN", "Diving Suit", "07338", 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"]]
                     ]
                 ],
@@ -248,6 +249,119 @@
             "code": [
                 ["INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE", "$TARGET_PLAYER", "$CHOICE_LETTER", ["CALC", "{{$SCENARIO_QUESTION}}"]]
             ]
+        },
+        "INTO_THE_MAELSTROM_SETUP_ACT_2": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "INTO_THE_MAELSTROM_SETUP_ACT_2.TARGET_PLAYER"],
+                ["DO_FLOG", "{0:P} sets up Act 2.", ["LIST", "$TARGET_PLAYER"]],
+                //Remove each location other than Gateway to Y'ha-nthlei from the game (or add them to the victory display if they have Victory X and no clues remaining).
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["NOT_EQUAL", "$CARD.currentFace.name", "Gateway to Y'ha-nthlei"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
+                            ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
+                        ],
+                        ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$CARD.id", true, null],
+                        ["TRUE"],
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                    ]
+                ]],
+                //Put set-aside locations into play as shown in the Campaign Guide, following the "Act 2 Setup" instructions.
+                ["VAR", "$GATEWAY_ID", ["GET_NAMED_CARD_ID", "Gateway to Y'ha-nthlei"]],
+                ["VAR", "$GATEWAY_LEFT", 45],
+                ["VAR", "$GATEWAY_TOP", 10],
+                ["VAR", "$YHANTHLEI_SPAWN_LEFTS", null],
+                ["VAR", "$YHANTHLEI_SPAWN_TOPS", null],
+                ["VAR", "$SANCTUM_SPAWN_LEFTS", null],
+                ["VAR", "$SANCTUM_SPAWN_TOPS", null],
+                ["VAR", "$LAIR_SPAWN_LEFTS", null],
+                ["VAR", "$LAIR_SPAWN_TOPS", null],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.numPlayers", 1], //A, B, C removed - 5x3 grid
+                    [
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_LEFTS", ["LIST", 26, 45, 64, 45]],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_TOPS", ["LIST", 43, 43, 43, 76]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_LEFTS", ["LIST", 7, 83, 7, 83]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_TOPS", ["LIST", 43, 43, 76, 76]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_LEFTS", ["LIST", 26, 64]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_TOPS", ["LIST", 76, 76]]
+                    ],
+                    ["EQUAL", "$GAME.arkham.numPlayers", 2], //A, B removed - 5x4 grid
+                    [
+                        ["UPDATE_VAR", "$GATEWAY_TOP", 7],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_LEFTS", ["LIST", 26, 45, 64, 45, 45]],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_TOPS", ["LIST", 31, 31, 31, 55, 79]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_LEFTS", ["LIST", 7, 83, 26, 64]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_TOPS", ["LIST", 31, 31, 55, 55]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_LEFTS", ["LIST", 26, 64]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_TOPS", ["LIST", 79, 79]]
+                    ],
+                    ["EQUAL", "$GAME.arkham.numPlayers", 3], //C removed - 7x3 grid
+                    [
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_LEFTS", ["LIST", 17, 31, 45, 59, 73, 45]],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_TOPS", ["LIST", 43, 43, 43, 43, 43, 76]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_LEFTS", ["LIST", 3, 87, 17, 73]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_TOPS", ["LIST", 43, 43, 76, 76]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_LEFTS", ["LIST", 31, 59]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_TOPS", ["LIST", 76, 76]]
+                    ],
+                    ["TRUE"], //none removed - 7x4 grid
+                    [
+                        ["UPDATE_VAR", "$GATEWAY_TOP", 7],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_LEFTS", ["LIST", 17, 31, 45, 59, 73, 45, 45]],
+                        ["UPDATE_VAR", "$YHANTHLEI_SPAWN_TOPS", ["LIST", 31, 31, 31, 31, 31, 55, 79]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_LEFTS", ["LIST", 3, 87, 17, 73]],
+                        ["UPDATE_VAR", "$SANCTUM_SPAWN_TOPS", ["LIST", 31, 31, 55, 55]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_LEFTS", ["LIST", 31, 59]],
+                        ["UPDATE_VAR", "$LAIR_SPAWN_TOPS", ["LIST", 79, 79]]
+                    ]
+                ],
+                ["DO_MOVE_CARDS_ON_MAP_BY_DELTA", "$TARGET_PLAYER", ["GET_CARD_LEFT", "$GATEWAY_ID"], ["GET_CARD_TOP", "$GATEWAY_ID"], "$GATEWAY_LEFT", "$GATEWAY_TOP", "towards Gateway to Y'ha-nthlei"],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, ["LENGTH", "$YHANTHLEI_SPAWN_LEFTS"], 1, [
+                    ["VAR", "$YHANTHLEI_ID", ["GET_TOP_CARD_ID", "sharedDeckA"]],
+                    ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$YHANTHLEI_ID", "$YHANTHLEI_SPAWN_LEFTS.[$I]", "$YHANTHLEI_SPAWN_TOPS.[$I]"],
+                    ["DO_SPAWN_ATTACHED_TO_LOCATION_ACT", "$TARGET_PLAYER", "Partially Flooded", "flooded", "$YHANTHLEI_ID"]
+                ]],
+                ["DO_DELETE_DECK_CARDS_ACT", "$TARGET_PLAYER", "sharedDeckA"],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, ["LENGTH", "$SANCTUM_SPAWN_LEFTS"], 1, [
+                    ["VAR", "$SANCTUM_ID", ["GET_TOP_CARD_ID", "sharedDeckB"]],
+                    ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$SANCTUM_ID", "$SANCTUM_SPAWN_LEFTS.[$I]", "$SANCTUM_SPAWN_TOPS.[$I]"],
+                    ["DO_SPAWN_ATTACHED_TO_LOCATION_ACT", "$TARGET_PLAYER", "Fully Flooded", "flooded", "$SANCTUM_ID"],
+                    ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$DO_SPAWN_ATTACHED_TO_LOCATION_RESULT", false, null]
+                ]],
+                ["DO_DELETE_DECK_CARDS_ACT", "$TARGET_PLAYER", "sharedDeckB"],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Lair of Hydra: High Temple of Mother Hydra"], "$LAIR_SPAWN_LEFTS.[0]", "$LAIR_SPAWN_TOPS.[0]"],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Lair of Dagon: Sanctuary of Father Dagon"], "$LAIR_SPAWN_LEFTS.[1]", "$LAIR_SPAWN_TOPS.[1]"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$GATEWAY_ID", true, null]
+                ]],
+                //Put the set-aside Hydra enemy into play in the Lair of Hydra, (Deep in Slumber) side faceup.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "Hydra: Deep in Slumber", "Lair of Hydra: High Temple of Mother Hydra", 3, 3, 1],
+                //Put the set-aside Dagon enemy into play in the Lair of Dagon.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "Dagon: Deep in Slumber", "Lair of Dagon: Sanctuary of Father Dagon", 3, 3, 1],
+                ["DO_FSYSLOG", "Check Campaign Log. If Dagon has awakened - flip him to the Awakened and Enraged side. See “Location Adjacency in Y'ha-nthlei.”", null],
+                ["SET", "/arkham/scenarioIntoTheMaelstromAct2Setup", true]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "07315": { //Back into the Depths (To Y'ha-nthlei)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioIntoTheMaelstromAct2Setup", false],
+                            ["PROMPT", "$PLAYER_N", "intoTheMaelstromBackIntoTheDepthsAbilityB"]
+                        ]
+                    ]
+                }
+            }
         }
     },
     "prompts": {
@@ -255,6 +369,23 @@
             "args": [],
             "message": "Check Campaign Log.",
             "options": [
+            ]
+        },
+        "intoTheMaelstromBackIntoTheDepthsAbilityB": {
+            "args": [],
+            "message": "Do you want to setup Act 2? Discard each card at locations other than Gateway to Y'ha-nthlei first.",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["INTO_THE_MAELSTROM_SETUP_ACT_2", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
             ]
         }
     }

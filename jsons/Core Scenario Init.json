@@ -399,6 +399,42 @@
                 ["DO_DELETE_NAMED_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
             ]
         },
+        "DO_DELETE_DECK_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DELETE_DECK_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DELETE_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DELETE_DECK_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x cards in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_COUNT}}x cards in {{$TARGET_GROUP.label}} from the game."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DELETE_CARD", "$CARD.id"]
+                        ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove a card in {{$TARGET_GROUP.label}} from the game.", "removes a card in {{$TARGET_GROUP.label}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_DECK_CARDS_SCN": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_DELETE_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
             "args": ["$TARGET_NAME"],
             "code": [
@@ -512,6 +548,12 @@
                 ["DO_SPAWN_NAMED_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
             ]
         },
+        "DO_SPAWN_NAMED_AT_LOCATION_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX"],
+            "code": [
+                ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
+            ]
+        },
         "DO_SPAWN_AT_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -588,6 +630,12 @@
             "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME"],
             "code": [
                 ["DO_SPAWN_ATTACHED_TO_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", true, null]
+            ]
+        },
+        "DO_SPAWN_ATTACHED_TO_LOCATION_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_SPAWN_ATTACHED_TO_LOCATION", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", true, null]
             ]
         },
         "DO_SPAWN_LOCATION": {
