@@ -246,7 +246,7 @@
                         ["NOT_EQUAL", "$MOVE_Y", 0]
                     ],
                     ["DO_MOVE_CARDS_ON_MAP", "$TARGET_PLAYER", "$MOVE_X", "$MOVE_Y", "$DESCRIPTION"]
-                ]                
+                ]
             ]
         }
     },
