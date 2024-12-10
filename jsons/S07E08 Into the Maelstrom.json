@@ -1,0 +1,261 @@
+{
+    "preBuiltDecks": {
+        "Into the Maelstrom Scenario": {
+            "label": "Into the Maelstrom Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "Into the Maelstrom", null, "Into the Maelstrom Scenario Init"]
+            ]
+        },
+        "Into the Maelstrom": {
+            "hideFromSearch": true,
+            "label": "Into the Maelstrom",
+            "cards": [
+                {"databaseId": "07311", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Into the Maelstrom
+                {"databaseId": "07312", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Under the Surface
+                {"databaseId": "07313", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Celestial Alignment
+                {"databaseId": "07314", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Flood
+                {"databaseId": "07315", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Back into the Depths
+                {"databaseId": "07316", "quantity": 1, "loadGroupId": "sharedActStory"},                                //City of the Deep (v. I)
+                {"databaseId": "07320", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Gateway to Y'ha-nthlei
+                {"databaseId": "07328", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lair of Dagon: Sanctuary of Father Dagon
+                {"databaseId": "07329", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lair of Hydra: High Temple of Mother Hydra
+                {"databaseId": "07317", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //City of the Deep (v. II)
+                {"databaseId": "07318", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //City of the Deep (v. III)
+                {"databaseId": "07321", "quantity": 2, "loadGroupId": "sharedDeckA"},                                   //Sunken Halls
+                {"databaseId": "07322", "quantity": 2, "loadGroupId": "sharedDeckA"},                                   //Vault of Riches
+                {"databaseId": "07323", "quantity": 3, "loadGroupId": "sharedDeckA"},                                   //Undersea Corridors
+                {"databaseId": "07324", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Statues in the Deep
+                {"databaseId": "07325", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Submerged Temple
+                {"databaseId": "07326", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Syzygy Chamber
+                {"databaseId": "07327", "quantity": 1, "loadGroupId": "sharedDeckB"},                                   //Onyx Guardians
+                {"databaseId": "07333", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Dagon's Brood
+                {"databaseId": "07334", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Hydra's Brood
+                {"databaseId": "07335", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Treacherous Depths
+                {"databaseId": "07336", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Conspiracy of Deep Ones
+                {"databaseId": "07337", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Thalassophobia
+            ]
+        },
+        "Into the Maelstrom - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Into the Maelstrom - Set Aside",
+            "cards": [
+                {"databaseId": "07332", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Aquatic Abomination
+                {"databaseId": "07331a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Hydra: Deep in Slumber
+                {"databaseId": "07330a", "quantity": 1, "loadGroupId": "sharedNotInPlay"}   //Dagon: Deep in Slumber
+            ]
+        }
+    },
+    "actionLists": {
+        "Into the Maelstrom Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Into the Maelstrom"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Hydra"],
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Deep"],
+            ["DO_LOAD_CARDS_SCN", "Shattered Memories"],
+            ["DO_LOAD_CARDS_SCN", "Syzygy"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators possess the key to Y'ha-nthlei.", "The above is not true."], "Into the Maelstrom Scenario Question 1"]
+        ],
+        "Into the Maelstrom Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["INTO_THE_MAELSTROM_ASK_KEY_QUESTION", "blue", "Into the Maelstrom Scenario Question 2"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Into the Maelstrom Scenario Init Continue 1"]
+            ]
+        ],
+        "Into the Maelstrom Scenario Question 2": [
+            ["INTO_THE_MAELSTROM_PROCESS_KEY_ANSWER", "$GAME.arkham.scenarioAnswer2Text", "Blue Key", "key_blue"],
+            ["ACTION_LIST", "Into the Maelstrom Scenario Init Continue 1"]
+        ],
+        "Into the Maelstrom Scenario Init Continue 1": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators possess a map of Y'ha-nthlei.", "The above is not true."], "Into the Maelstrom Scenario Question 3"]
+        ],
+        "Into the Maelstrom Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["INTO_THE_MAELSTROM_ASK_KEY_QUESTION", "red", "Into the Maelstrom Scenario Question 4"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Into the Maelstrom Scenario Init Continue 2"]
+            ]
+        ],
+        "Into the Maelstrom Scenario Question 4": [
+            ["INTO_THE_MAELSTROM_PROCESS_KEY_ANSWER", "$GAME.arkham.scenarioAnswer4Text", "Red Key", "key_red"],
+            ["ACTION_LIST", "Into the Maelstrom Scenario Init Continue 2"]
+        ],
+        "Into the Maelstrom Scenario Init Continue 2": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The guardian of Y'ha-nthlei is dispatched.", "The above is not true."], "Into the Maelstrom Scenario Question 5"]
+        ],
+        "Into the Maelstrom Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
+                    ["INTO_THE_MAELSTROM_ASK_KEY_QUESTION", "green", "Into the Maelstrom Scenario Question 6"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Into the Maelstrom Scenario Init Continue 3"]
+            ]
+        ],
+        "Into the Maelstrom Scenario Question 6": [
+            ["INTO_THE_MAELSTROM_PROCESS_KEY_ANSWER", "$GAME.arkham.scenarioAnswer6Text", "Green Key", "key_green"],
+            ["ACTION_LIST", "Into the Maelstrom Scenario Init Continue 3"]
+        ],
+        "Into the Maelstrom Scenario Init Continue 3": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The gateway to Y'ha-nthlei recognizes you as its rightful keeper.", "The above is not true."], "Into the Maelstrom Scenario Question 7"]
+        ],
+        "Into the Maelstrom Scenario Question 7": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer7Text}}"],
+                    ["INTO_THE_MAELSTROM_ASK_KEY_QUESTION", "yellow", "Into the Maelstrom Scenario Question 8"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Into the Maelstrom Scenario Init Continue 4"]
+            ]
+        ],
+        "Into the Maelstrom Scenario Question 8": [
+            ["INTO_THE_MAELSTROM_PROCESS_KEY_ANSWER", "$GAME.arkham.scenarioAnswer8Text", "Yellow Key", "key_yellow"],
+            ["ACTION_LIST", "Into the Maelstrom Scenario Init Continue 4"]
+        ],
+        "Into the Maelstrom Scenario Init Continue 4": [
+            ["VAR", "$KEYS", ["LIST"]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["UPDATE_VAR", "$KEYS", ["APPEND", "$KEYS", "key_blue"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"],
+                ["UPDATE_VAR", "$KEYS", ["APPEND", "$KEYS", "key_red"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "B"],
+                ["UPDATE_VAR", "$KEYS", ["APPEND", "$KEYS", "key_green"]]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "B"],
+                ["UPDATE_VAR", "$KEYS", ["APPEND", "$KEYS", "key_yellow"]]
+            ],
+            ["VAR", "$EXTRA_KEYS", ["SHUFFLE_LIST", ["LIST", "key_purple", "key_white", "key_black"]]],
+            ["VAR", "$I", 0],
+            ["WHILE",
+                ["AND",
+                    ["LESS_THAN", ["LENGTH", "$KEYS"], 4],
+                    ["LESS_THAN", "$I", 3]
+                ],
+                [
+                    ["UPDATE_VAR", "$KEYS", ["APPEND", "$KEYS", "$EXTRA_KEYS.[$I]"]],
+                    ["INCREASE_VAR", "$I", 1]
+                ]
+            ],
+            ["UPDATE_VAR", "$KEYS", ["SHUFFLE_LIST", "$KEYS"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["LENGTH", "$KEYS"], 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Partially Flooded", "flooded", "Gateway to Y'ha-nthlei"],
+            ["VAR", "$TIDAL_TUNNELS", ["SHUFFLE_LIST", ["LIST", "07102", "07102", "07103", "07103", "07104", "07104", "07319", "07319"]]], //Underwater Cavern, Underwater Cavern, Tidal Pool, Tidal Pool, Underground River, Underground River, Dark Abyss, Dark Abyss
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 45, 70, 20, 70, 20, 45, 70]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 10, 10, 43, 43, 76, 76, 76]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 8, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "Tidal Tunnel", "$TIDAL_TUNNELS.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gateway to Y'ha-nthlei", 5, 7, 3, 0],
+            ["INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE", "$GAME.firstPlayer", 9]
+        ],
+        "Into the Maelstrom Scenario Init Continue 5": [
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Lloigor", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["DO_LOAD_CARDS_SCN", "Into the Maelstrom - Set Aside"],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 18, "sharedTokens"],
+            ["SET", "/arkham/finalScenarioMessage", "Y'ha-nthlei cards are in Deck A, Y'ha-nthlei Sanctum cards are in Deck B. See “Location Adjacency in Y'ha-nthlei.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "INTO_THE_MAELSTROM_ASK_KEY_QUESTION": {
+            "args":["$KEY_COLOR", "$NEXT_SCENARIO_ACTION"],
+            "code":[
+                ["COND",
+                    ["EQUAL", "$GAME.numPlayers", 1],
+                    ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "A", ["DO_FORMAT_STRING", "{0:P} gets the {1} key.", ["LIST", "$GAME.firstPlayer", "$KEY_COLOR"]], "$NEXT_SCENARIO_ACTION"],
+                    ["TRUE"],
+                    [
+                        ["VAR", "$ANSWERS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["UPDATE_VAR", "$ANSWERS", ["APPEND", "$ANSWERS", ["DO_FORMAT_STRING", "{0:P} gets the {1} key.", ["LIST", "$PLAYER_I", "$KEY_COLOR"]]]]
+                        ]],
+                        ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS", "$NEXT_SCENARIO_ACTION"]
+                    ]
+                ]
+            ]
+        },
+        "INTO_THE_MAELSTROM_PROCESS_KEY_ANSWER": {
+            "args":["$ANSWER_TEXT", "$KEY_NAME", "$KEY_DATABASE_ID"],
+            "code":[
+                ["LOG", "└── Decision: {{$ANSWER_TEXT}}"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["EQUAL", ["IN_STRING", "$ANSWER_TEXT", ["GET_ALIAS", "$PLAYER_I"]], true],
+                        ["DO_CREATE_CARDS_SCN", "$KEY_NAME", "$KEY_DATABASE_ID", 1, ["GET_CONTROLLER_PLAY", "$PLAYER_I"]]
+                    ]
+                ]]
+            ]
+        },
+        "INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$SCENARIO_QUESTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$SCENARIO_QUESTION", "INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE.SCENARIO_QUESTION"],
+                ["PROMPT", "$GAME.firstPlayer", "intoTheMaelstromChooseDivingSuit"],
+                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", ["DO_FORMAT_STRING", "{0:P} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]], "A", ["LIST", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "A", "{{$SCENARIO_QUESTION}}"]],
+                ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "The above is not true.", "B", ["LIST", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "B", "{{$SCENARIO_QUESTION}}"]]
+            ]
+        },
+        "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CHOICE_LETTER", "$SCENARIO_QUESTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CHOICE_LETTER", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE.CHOICE_LETTER"],
+                ["VALIDATE_GT0", "$SCENARIO_QUESTION", "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE.SCENARIO_QUESTION"],
+                ["DO_FLOG", "{0:P} picks option {1} in scenario question {2}.", ["LIST", "$GAME.firstPlayer", "$CHOICE_LETTER", "$SCENARIO_QUESTION"]],
+                ["COND",
+                    ["EQUAL", "$CHOICE_LETTER", "A"],
+                    [
+                        ["DO_FSYSLOG", "Campaign Log: {0:P} possesses a diving suit.", ["LIST", "$TARGET_PLAYER"]],
+                        ["DO_CREATE_CARDS_SCN", "Diving Suit", "07338", 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"]]
+                    ]
+                ],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["ACTION_LIST", "Into the Maelstrom Scenario Init Continue 5"],
+                    ["TRUE"],
+                    ["INTO_THE_MAELSTROM_SHOW_DIVING_SUIT_CHOICE", "$NEXT_PLAYER", ["ADD", "$SCENARIO_QUESTION", 1]]
+                ]
+            ]
+        },
+        "INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE_STR": {
+            "args": ["$TARGET_PLAYER", "$CHOICE_LETTER", "$SCENARIO_QUESTION"],
+            "code": [
+                ["INTO_THE_MAELSTROM_DIVING_SUIT_CHOICE_DONE", "$TARGET_PLAYER", "$CHOICE_LETTER", ["CALC", "{{$SCENARIO_QUESTION}}"]]
+            ]
+        }
+    },
+    "prompts": {
+        "intoTheMaelstromChooseDivingSuit": {
+            "args": [],
+            "message": "Check Campaign Log.",
+            "options": [
+            ]
+        }
+    }
+}

@@ -105,7 +105,7 @@
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
                 ]],
-                //If an investigator’s deck contains Randolph Carter (Expert Dreamer) (The Dream-Eaters card #59), remove him from that deck for the remainder of the campaign.
+                //If an investigator's deck contains Randolph Carter (Expert Dreamer) (The Dream-Eaters card #59), remove him from that deck for the remainder of the campaign.
                 ["DO_EXILE_NAMED_CARDS", "$TARGET_PLAYER", "Randolph Carter: Expert Dreamer", true, null],
                 //Shuffle the set-aside The Crawling Mist and each set-aside copy of Myriad Forms and Whispering Chaos (and Nyarlathotep enemies) into the encounter deck, ...
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedDeckA"]]],

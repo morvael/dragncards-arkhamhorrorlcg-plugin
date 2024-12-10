@@ -191,7 +191,8 @@
                             {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"},
                             {"label": "id:horrorInHighGear", "deckListId": "Horror in High Gear Scenario"},
                             {"label": "id:aLightInTheFog", "deckListId": "A Light in the Fog Scenario"},
-                            {"label": "id:theLairOfDagon", "deckListId": "The Lair of Dagon Scenario"}
+                            {"label": "id:theLairOfDagon", "deckListId": "The Lair of Dagon Scenario"},
+                            {"label": "id:intoTheMaelstrom", "deckListId": "Into the Maelstrom Scenario"}
                         ]
                     }
                 ]
@@ -624,6 +625,9 @@
         },
         "theLairOfDagon": {
             "English": "The Lair of Dagon"
+        },
+        "intoTheMaelstrom": {
+            "English": "Into the Maelstrom"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"
