@@ -122,13 +122,13 @@
             ["DO_LOAD_CARDS_SCN", "Return to The Unspeakable Oath - Asylum"],
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-2", "chaos_m2"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m2", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m3", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-4", "chaos_m4"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m4", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"]
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m5", 1]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Conviction than Doubt.", "You have more Doubt than Conviction."], "Return to The Unspeakable Oath Scenario Question 2"]
         ],

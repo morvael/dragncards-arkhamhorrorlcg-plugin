@@ -62,16 +62,14 @@
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["LOG", "└── Campaign Log: You have accepted your fate."],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Tablet", "chaos_tablet"],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Tablet", "chaos_tablet"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_tablet", 2],
                     ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "The Tower • XVI: Circumstances Beyond Your Control", "05042", 2],
                     ["DO_CREATE_DECK_MISSING_CARD_SCN", "$GAME.firstPlayer", "Ace of Rods: The Fateful Step", "05040", 2]
                 ],
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["LOG", "└── Campaign Log: You have rejected your fate."],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"]
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 2]
                 ]
             ],
             ["SCENARIO_INIT_RESUME", "The Witching Hour Scenario Init"]

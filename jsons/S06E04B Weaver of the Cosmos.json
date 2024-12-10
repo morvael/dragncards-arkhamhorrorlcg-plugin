@@ -102,13 +102,13 @@
                         ["DO_EXILE_NAMED_CARDS", "$TARGET_PLAYER", "Randolph Carter: Chained to the Waking World", true, null],
                         ["COND",
                             ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
-                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-3", "chaos_m3"],
+                            ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_m3", 1],
                             ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
-                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-4", "chaos_m4"],
+                            ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_m4", 1],
                             ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
-                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-5", "chaos_m5"],
+                            ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_m5", 1],
                             ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
-                            ["DO_ADD_CHAOS_TOKEN_ACT", "$TARGET_PLAYER", "-7", "chaos_m7"]
+                            ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_m7", 1]
                         ]
                     ]
                 ],

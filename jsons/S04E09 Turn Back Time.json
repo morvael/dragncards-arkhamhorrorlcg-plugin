@@ -57,7 +57,7 @@
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Final Mistake", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Entombed", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Crypt Chill", "sharedEncounterDeck", 1, "sharedDeckA"],
-            ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
+            ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
             ["DO_LOAD_CARDS_SCN", "Poison"],
             ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]

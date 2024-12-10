@@ -52,7 +52,7 @@
                 ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
                     ["LOG", "└── Remember: You listened to Ichtaca's tale."],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Cultist", "chaos_cultist"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_cultist", 1],
                     ["SCENARIO_SKIP_QUESTIONS", 1, "Return to Threads of Fate Scenario Early Init Continue"]
                 ],
                 ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
@@ -72,9 +72,9 @@
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "Cultist", "chaos_cultist"],
-                    ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "Tablet", "chaos_tablet"],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"]
+                    ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "chaos_cultist"],
+                    ["DO_REMOVE_ALL_CHAOS_TOKENS_SCN", "chaos_tablet"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1]
                 ]
             ],
             ["ACTION_LIST", "Return to Threads of Fate Scenario Early Init Continue"]

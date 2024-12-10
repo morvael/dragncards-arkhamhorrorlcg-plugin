@@ -63,13 +63,13 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$LAST_CAR_ID", 5, 7, 0, 3],
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-2", "chaos_m2"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m2", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m3", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-4", "chaos_m4"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m4", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"]
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m5", 1]
             ],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

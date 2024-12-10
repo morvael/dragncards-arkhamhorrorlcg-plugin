@@ -173,8 +173,7 @@
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
                             ["DO_FSYSLOG", "{0:C}: {1:P} adds 2 bless tokens to the chaos bag.", ["LIST", "$THIS", "$THIS.controller"]],
-                            ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"],
-                            ["DO_ADD_CHAOS_TOKEN", "$THIS.controller", "Bless", "chaos_bless", 10, true, "$THIS.controller"]
+                            ["DO_ADD_CHAOS_TOKENS_ACT", "$THIS.controller", "chaos_bless", 2]
                         ]
                     }
                 }
