@@ -150,14 +150,14 @@
                 ],
                 ["TRUE"],
                 ["SCENARIO_SKIP_QUESTION", "The Lair of Dagon Scenario Init Continue 2"]
-            ],
+            ]
         ],
         "The Lair of Dagon Scenario Question 6": [
             ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer6Text}}"],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["COND",
                     ["EQUAL", ["IN_STRING", "$GAME.arkham.scenarioAnswer6Text", ["GET_ALIAS", "$PLAYER_I"]], true],
-                    ["DO_CREATE_CARDS_SCN", "Thomas Dawson: Soldier in a New War", "07082", ["GET_CONTROLLER_PLAY", "$PLAYER_I"]]
+                    ["DO_CREATE_CARDS_SCN", "Thomas Dawson: Soldier in a New War", "07082", 1, ["GET_CONTROLLER_PLAY", "$PLAYER_I"]]
                 ]
             ]],
             ["ACTION_LIST", "The Lair of Dagon Scenario Init Continue 2"]
