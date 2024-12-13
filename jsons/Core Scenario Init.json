@@ -435,6 +435,43 @@
                 ["DO_DELETE_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", true, null]
             ]
         },
+        "DO_DELETE_NAMED_DECK_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DELETE_NAMED_DECK_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_DELETE_NAMED_DECK_CARDS.TARGET_NAME"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DELETE_NAMED_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DELETE_NAMED_DECK_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "$TARGET_GROUP_ID"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DELETE_CARD", "$CARD.id"]
+                        ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_NAMED_DECK_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_NAMED_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_DELETE_NAMED_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
             "args": ["$TARGET_NAME"],
             "code": [
@@ -986,6 +1023,15 @@
                 ["FOR_EACH_VAL", "$WEAKNESS_ID", "$USED_WEAKNESSES", [
                     ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
                 ]],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.numPlayers", 1],
+                    [
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06035"]], //Self-Centered (Multiplayer only.)
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06036"]], //Kleptomania
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06037"]], //Narcolepsy
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06038"]]  //Your Worst Nightmare
+                    ]
+                ],
                 ["AT_INDEX", "$AVAILABLE_WEAKNESSES", ["RANDOM_INT", 0, ["SUBTRACT", ["LENGTH", "$AVAILABLE_WEAKNESSES"], 1]]]
             ]
         },

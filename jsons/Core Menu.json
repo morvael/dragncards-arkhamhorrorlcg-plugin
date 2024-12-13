@@ -34,7 +34,10 @@
                 "label": "id:spawnMicroCardMenu",
                 "actionList": "spawnMicroCard",
                 "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniAssistant"]
+                    ],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
             },
@@ -52,6 +55,8 @@
                 "actionList": "deleteSupplyCard",
                 "showIf": ["OR",
                     ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "MiniAssistant"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "MicroAssistant"],
                     ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                     ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
@@ -322,6 +327,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MicroAssistant"],
                         ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
@@ -657,7 +663,33 @@
                         ]
                     ],
                     ["AND",
-                        ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                        ["OR",
+                            ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"], //replacement for missing ACTIVE_GROUP or access to groups
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedAgendaStory"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStory"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedScenarioReference"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedVoid"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedOffMap"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryB"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryC"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryD"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryE"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"]
+                        ],
                         ["OR",
                             ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                             ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -671,7 +703,10 @@
                             ["NOT_EQUAL", "$ACTIVE_FACE.victoryPoints", null],
                             ["NOT_EQUAL", "$ACTIVE_FACE.vengeance", null],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
-                            ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                            ["AND",
+                                ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                                ["NOT_EQUAL", "$ACTIVE_CARD.cardOwner", "shared"]
+                            ],
                             ["NOT_EQUAL", "$ACTIVE_CARD.cardDiscard", ""]
                         ]
                     ]
@@ -753,7 +788,7 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
-                    ["OR",
+                    ["OR", //replacement for IS_PLAYER_CARD
                         ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
@@ -761,6 +796,7 @@
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08012a"], //Discipline: Quiescence of Thought
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08013a"], //Discipline: Prescience of Fate
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "10005"],  //Flux Stabilizer: Inactive
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
                     ]
                 ]

@@ -342,6 +342,12 @@
                         ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
                     ],
                     null,
+                    ["AND",
+                        ["EQUAL", "$NEW_GROUP.canHaveAttachments", true],
+                        ["NOT_EQUAL", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentFace", null],
+                        ["EQUAL", ["IN_STRING", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentFace.subtype", "Weakness"], true]
+                    ],
+                    "shared",
                     ["IN_STRING", "$NEW_GROUP.id", "player1"],
                     "player1",
                     ["IN_STRING", "$NEW_GROUP.id", "player2"],
@@ -364,7 +370,7 @@
                         ["NOT_EQUAL", "$NEW_GROUP", null],
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["IS_PLAYER_CARD", "$TARGET_CARD"],
                             ["EQUAL", "$TARGET_CARD.sides.A.type", "Supplies"]
                         ]
                     ],
@@ -456,7 +462,7 @@
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                            ["EQUAL", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentSide", "B"],
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
                             ["OR",
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],

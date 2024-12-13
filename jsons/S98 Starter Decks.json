@@ -1,4 +1,34 @@
 {
+   "preBuiltDecks": {
+        "Gloria Goldberg Starter Deck": {
+            "label": "Gloria Goldberg Starter Deck",
+            "cards": [
+                {"databaseId": "98019", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "02025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "02229", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "02232", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03233", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04109", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "05032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "05158", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06116", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07029", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "07117", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "60415", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "98020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "98021", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Gloria Goldberg starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        }
+    },
     "automation": {
         "cards": {
             "98019": { //Gloria Goldberg: The Writer (promo)

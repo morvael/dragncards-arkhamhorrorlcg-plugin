@@ -301,7 +301,7 @@
             },
             "03264": { //Stick to the Plan
                 "rules": {
-                    "03264a": { //Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
+                    "03264a": { //(reaction) Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],

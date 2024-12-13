@@ -87,6 +87,37 @@
                         ]
                     },
                     {
+                        "label": "id:edgeOfTheEarth",
+                        "deckLists": [
+                            {"label": "id:danielaReyesStarterDeck", "deckListId": "Daniela Reyes Starter Deck"},
+                            {"label": "id:normanWithersStarterDeck", "deckListId": "Norman Withers Starter Deck"},
+                            {"label": "id:montereyJackStarterDeck", "deckListId": "Monterey Jack Starter Deck"},
+                            {"label": "id:lilyChenStarterDeck", "deckListId": "Lily Chen Starter Deck"},
+                            {"label": "id:bobJenkinsStarterDeck", "deckListId": "Bob Jenkins Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theScarletKeys",
+                        "deckLists": [
+                            {"label": "id:carsonSinclairStarterDeck", "deckListId": "Carson Sinclair Starter Deck"},
+                            {"label": "id:vincentLeeStarterDeck", "deckListId": "Vincent Lee Starter Deck"},
+                            {"label": "id:kymaniJonesStarterDeck", "deckListId": "Kymani Jones Starter Deck"},
+                            {"label": "id:aminaZidaneStarterDeck", "deckListId": "Amina Zidane Starter Deck"},
+                            {"label": "id:darrellSimmonsStarterDeck", "deckListId": "Darrell Simmons Starter Deck"},
+                            {"label": "id:charlieKaneStarterDeck", "deckListId": "Charlie Kane Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theFeastOfHemlockVale",
+                        "deckLists": [
+                            {"label": "id:wilsonRichardsStarterDeck", "deckListId": "Wilson Richards Starter Deck"},
+                            {"label": "id:kateWinthropStarterDeck", "deckListId": "Kate Winthrop Starter Deck"},
+                            {"label": "id:alessandraZorziStarterDeck", "deckListId": "Alessandra Zorzi Starter Deck"},
+                            {"label": "id:kohakuNarukamiStarterDeck", "deckListId": "Kōhaku Narukami Starter Deck"},
+                            {"label": "id:hankSamsonStarterDeck", "deckListId": "Hank Samson Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -94,6 +125,12 @@
                             {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
                             {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
                             {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:otherDecks",
+                        "deckLists": [
+                            {"label": "id:gloriaGoldbergStarterDeck", "deckListId": "Gloria Goldberg Starter Deck"}
                         ]
                     }
                 ]
@@ -419,6 +456,54 @@
         "silasMarshStarterDeck": {
             "English": "Silas Marsh Starter Deck"
         },
+        "danielaReyesStarterDeck": {
+            "English": "Daniela Reyes Starter Deck"
+        },
+        "normanWithersStarterDeck": {
+            "English": "Norman Withers Starter Deck"
+        },
+        "montereyJackStarterDeck": {
+            "English": "Monterey Jack Starter Deck"
+        },
+        "lilyChenStarterDeck": {
+            "English": "Lily Chen Starter Deck"
+        },
+        "bobJenkinsStarterDeck": {
+            "English": "Bob Jenkins Starter Deck"
+        },
+        "carsonSinclairStarterDeck": {
+            "English": "Carson Sinclair Starter Deck"
+        },
+        "vincentLeeStarterDeck": {
+            "English": "Vincent Lee Starter Deck"
+        },
+        "kymaniJonesStarterDeck": {
+            "English": "Kymani Jones Starter Deck"
+        },
+        "aminaZidaneStarterDeck": {
+            "English": "Amina Zidane Starter Deck"
+        },
+        "darrellSimmonsStarterDeck": {
+            "English": "Darrell Simmons Starter Deck"
+        },
+        "charlieKaneStarterDeck": {
+            "English": "Charlie Kane Starter Deck"
+        },
+        "wilsonRichardsStarterDeck": {
+            "English": "Wilson Richards Starter Deck"
+        },
+        "kateWinthropStarterDeck": {
+            "English": "Kate Winthrop Starter Deck"
+        },
+        "alessandraZorziStarterDeck": {
+            "English": "Alessandra Zorzi Starter Deck"
+        },
+        "kohakuNarukamiStarterDeck": {
+            "English": "Kōhaku Narukami Starter Deck"
+        },
+        "hankSamsonStarterDeck": {
+            "English": "Hank Samson Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -436,6 +521,12 @@
         },
         "stellaClarkStarterDeck": {
             "English": "Stella Clark Starter Deck"
+        },
+        "otherDecks": {
+            "English": "Other Decks"
+        },
+        "gloriaGoldbergStarterDeck": {
+            "English": "Gloria Goldberg Starter Deck"
         },
         "campaigns": {
             "English": "Campaigns"
@@ -628,6 +719,15 @@
         },
         "intoTheMaelstrom": {
             "English": "Into the Maelstrom"
+        },
+        "edgeOfTheEarth": {
+            "English": "Edge of the Earth"
+        },
+        "theScarletKeys": {
+            "English": "The Scarlet Keys"
+        },
+        "theFeastOfHemlockVale": {
+            "English": "The Feast of Hemlock Vale"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

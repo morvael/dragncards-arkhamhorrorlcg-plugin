@@ -75,6 +75,8 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
                 ["OR",
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniAssistant"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroAssistant"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                     ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
@@ -104,7 +106,10 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_MICRO_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_MICRO_CARD.TARGET_CARD_ID"]],
                 ["AND",
-                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniAssistant"]
+                    ],
                     ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"]
                 ]
             ]

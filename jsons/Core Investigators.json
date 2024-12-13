@@ -104,6 +104,17 @@
                 ]]
             ]
         },
+        "GET_MINI_ASSISTANTS": {
+            "_comment": "Returns all MiniAssistant type card owned by given player, or empty list.",
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_MINI_INVESTIGATOR.TARGET_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
+                    ["EQUAL", "$CARD.currentFace.type", "MiniAssistant"]
+                ]]
+            ]
+        },
         "GET_PLAYER_ELIMINATED": {
             "_comment": "Returns true when given player has no owned Investigator card or it is marked as eliminated.",
             "args": ["$TARGET_PLAYER"],
@@ -231,8 +242,7 @@
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.controller", "$TARGET_PLAYER"],
                     ["EQUAL", "$CARD.inAdvanced", true],
-                    ["EQUAL", "$CARD.sides.B.databaseId", null],
-                    ["EQUAL", "$CARD.sides.B.name", "Player Card"],
+                    ["IS_PLAYER_CARD", "$CARD"],
                     ["EQUAL", "$CARD.cardIndex", 0],
                     ["GREATER_THAN", ["GET_ATTACHED_CARDS_COUNT", "$CARD.id"], 0]
                 ]]],
@@ -245,7 +255,7 @@
                     ["NOT_EQUAL", "$CARD.currentFace.type", "Enemy"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                    ["DO_FORCE_DISCARD", "$TARGET_PLAYER", "$CARD.id", false, null]
                 ]],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$THREAT_ID"],
@@ -265,8 +275,7 @@
                     ["NOT_EQUAL", "$CARD.groupId", "$REMOVED_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$EXILED_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$SIDE_DECK_ID"],
-                    ["EQUAL", "$CARD.sides.B.databaseId", null],
-                    ["EQUAL", "$CARD.sides.B.name", "Player Card"]
+                    ["IS_PLAYER_CARD", "$CARD"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["MOVE_CARD", "$CARD.id", "$REMOVED_ID", -1]
@@ -327,6 +336,11 @@
                         ["UNSET", "/cardById/$MINI_INVESTIGATOR.id/borderColor"],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/turnDone", true],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "B"],
+                        ["VAR", "$MINI_ASSISTANTS", ["GET_MINI_ASSISTANTS", "$TARGET_CARD.cardOwner"]],
+                        ["FOR_EACH_VAL", "$CARD", "$MINI_ASSISTANTS", [
+                            ["UNSET", "/cardById/$CARD.id/borderColor"],
+                            ["SET", "/cardById/$CARD.id/currentSide", "B"]
+                        ]],
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$SET_PHASE", true],
@@ -379,6 +393,10 @@
                         ["SET", "/arkham/activeInvestigator", "$TARGET_CARD.cardOwner"],
                         ["SET", "/cardById/$INVESTIGATOR.id/borderColor", "HotPink"],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/borderColor", "HotPink"],
+                        ["VAR", "$MINI_ASSISTANTS", ["GET_MINI_ASSISTANTS", "$TARGET_CARD.cardOwner"]],
+                        ["FOR_EACH_VAL", "$CARD", "$MINI_ASSISTANTS", [
+                            ["SET", "/cardById/$CARD.id/borderColor", "HotPink"]
+                        ]],
                         ["COND",
                             ["NOT_EQUAL", "$GAME.stepId", "I2"],
                             ["SET", "/stepId", "I2"]

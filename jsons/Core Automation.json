@@ -652,7 +652,12 @@
                             ["SET", "/cardById/$INVESTIGATOR.id/turnDone", false],
                             ["UNSET", "/cardById/$MINI_INVESTIGATOR.id/borderColor"],
                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/turnDone", false],
-                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"]
+                            ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
+                            ["VAR", "$MINI_ASSISTANTS", ["GET_MINI_ASSISTANTS", "$PLAYER_I"]],
+                            ["FOR_EACH_VAL", "$CARD", "$MINI_ASSISTANTS", [
+                                ["UNSET", "/cardById/$CARD.id/borderColor"],
+                                ["SET", "/cardById/$CARD.id/currentSide", "A"]
+                            ]]
                         ]
                     ]
                 ]],

@@ -211,7 +211,7 @@
                 "rules": {
                     "05002a": { //During the setup of each scenario, you must choose 11 Insight events from your deck (one of which must be Unsolved Case) and shuffle them into a separate "hunch deck".
                         "type": "trigger",
-                        "priority": 9, //"During the setup" (Joe Diamond) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "priority": 9, //"During the setup" (Joe Diamond) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [

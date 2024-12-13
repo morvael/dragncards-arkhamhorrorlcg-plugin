@@ -180,7 +180,7 @@
             },
             "07303": { //Ancestral Knowledge
                 "rules": {
-                    "07303a": { //Before drawing your opening hand: Attach 5 random non-weakness skills from your deck facedown to this card.
+                    "07303a": { //(reaction) Before drawing your opening hand: Attach 5 random non-weakness skills from your deck facedown to this card.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],

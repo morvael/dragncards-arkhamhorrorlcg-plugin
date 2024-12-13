@@ -61,7 +61,7 @@
                 "rules": {
                     "02004a": { //"spirit deck"
                         "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["AND",
                             ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
@@ -78,7 +78,7 @@
                 "rules": {
                     "9004902004a": { //"spirit deck"
                         "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["AND",
                             ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
@@ -95,7 +95,7 @@
                 "rules": {
                     "90049a": { //"spirit deck"
                         "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
@@ -108,7 +108,7 @@
                 "rules": {
                     "0200490049a": { //"spirit deck"
                         "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan)
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
                         "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [

@@ -1,0 +1,199 @@
+{
+   "preBuiltDecks": {
+        "Wilson Richards Starter Deck": {
+            "label": "Wilson Richards Starter Deck",
+            "cards": [
+                {"databaseId": "10001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10002", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10003", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10023", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10108", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10110", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Wilson Richards starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Kate Winthrop Starter Deck": {
+            "label": "Kate Winthrop Starter Deck",
+            "cards": [
+                {"databaseId": "10004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10005", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10040", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10042", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10043", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10044", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10050", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Kate Winthrop starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Alessandra Zorzi Starter Deck": {
+            "label": "Alessandra Zorzi Starter Deck",
+            "cards": [
+                {"databaseId": "10009", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10010", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10011", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10062", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10069", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10071", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10073", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10094", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10114", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10128", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10130", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Alessandra Zorzi starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Kōhaku Narukami Starter Deck": {
+            "label": "Kōhaku Narukami Starter Deck",
+            "cards": [
+                {"databaseId": "10012", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10024", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10029", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10046", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10068", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10075", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10084", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10085", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10095", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Kōhaku Narukami starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Hank Samson Starter Deck": {
+            "label": "Hank Samson Starter Deck",
+            "cards": [
+                {"databaseId": "10015", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10109", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10110", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10111", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10112", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10113", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10115", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10116", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10129", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01074", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01078", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Hank Samson starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "10079": { //Bewitching
+                "rules": {
+                    "10079a": { //(reaction) Before you draw your opening hand: Search your deck for up to 3 different Trick cards, and attach them facedown to Bewitching. Shuffle your deck.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} searches their deck for up to 3 different Trick cards, and attaches them facedown to Bewitching. Shuffles their deck.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                            ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                                ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Trick."], null],
+                                "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.10079",
+                                "Target between {0} and {1} different Trick cards to attach them facedown to Bewitching.",
+                                0, 3, true, "BEWITCHING_SELECTION_CALLBACK", "$THIS.id"]
+                        ]
+                    }
+                }
+            },
+            "10109": { //Pelt Shipment
+                "rules": {
+                    "10109a": { //While Pelt Shipment is in your hand, your maximum hand size is reduced by 3.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inHand", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -3, "$THIS.inHand"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -3, "$THIS.inHand", "{2:P}'s maximum hand size is reduced by 3.", null]
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "functions": {
+        "BEWITCHING_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEWITCHING_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "BEWITCHING_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "BEWITCHING_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["DO_FSYSLOG", "{0:P} attaches {1} Trick card{1:S} facedown to Bewitching.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", "$SOURCE_CARD.id", false, null],
+                    ["DO_PEEK_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        }
+    }
+}

@@ -81,7 +81,10 @@
                     ],
                     4,
                     ["AND",
-                        ["EQUAL", "$TARGET_CARD.inPlay", true],
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.inPlay", true],
+                            ["EQUAL", "$GROUP_BY_ID.{{$TARGET_CARD.groupId}}.canHaveAttachments", true]
+                        ],
                         ["OR",
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "Treachery"],
@@ -95,7 +98,10 @@
                             ["NOT_EQUAL", "$TARGET_CARD.currentFace.victoryPoints", null],
                             ["NOT_EQUAL", "$TARGET_CARD.currentFace.vengeance", null],
                             ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["AND",
+                                ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                                ["NOT_EQUAL", "$TARGET_CARD.cardOwner", "shared"]
+                            ],
                             ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
                         ]
                     ],
@@ -173,7 +179,7 @@
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                                 ["AND",
                                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                                    ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
+                                    ["NOT_EQUAL", "$TARGET_CARD.cardOwner", "shared"]
                                 ],
                                 ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""]
                             ],
@@ -221,7 +227,7 @@
                     ],
                     ["AND",
                         ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
-                        ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"]
+                        ["NOT_EQUAL", "$TARGET_CARD.cardOwner", "shared"]
                     ],
                     ["COND",
                         ["EQUAL", ["GET_PLAYER_ELIMINATED", "$TARGET_CARD.cardOwner"], true],
@@ -403,6 +409,32 @@
                 ["DO_SELECT_N_RANDOM_CARDS_IN_HAND", "$TARGET_PLAYER", ["CALC", "{{$NUMBER}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
         },
+        "DO_FORCE_DISCARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_FORCE_DISCARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_FORCE_DISCARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_FORCE_DISCARD.LOG_EVENT"],
+                ["VAR", "$CONTROLLER", ["GET_PLAYER_CONTROLLER", "$TARGET_PLAYER", "$TARGET_CARD_ID"]],
+                ["COND",
+                    ["GREATER_THAN", ["GET_DISCARD_CARD_MODE", "$CONTROLLER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"], 0],
+                    ["DO_DISCARD_CARD", "$CONTROLLER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                    ["TRUE"],
+                    ["COND",
+                        ["EQUAL", ["GET_PLAYER_ELIMINATED", "$TARGET_CARD.cardOwner"], true],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$CONTROLLER", "remove {{$TARGET_CARD.currentFace.name}} from the game.", "removes {{$TARGET_CARD.currentFace.name}} from the game."],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_REMOVED", "$TARGET_CARD.cardOwner"], -1]
+                        ],
+                        ["TRUE"],
+                        [
+                            ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$CONTROLLER", "discard {{$TARGET_CARD.currentFace.name}}.", "discards {{$TARGET_CARD.currentFace.name}}."],
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0, {"combine": false}]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "DO_FORCE_DISCARD_ALL_ATTACHED_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -414,7 +446,7 @@
                     [
                         ["VAR", "$SELECTED_CARDS", ["GET_ATTACHED_CARDS", "$TARGET_CARD_ID"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["VAR", "$CONTROLLER", ["GET_PLAYER_CONTROLLER", "$TARGET_PLAYER", "$TARGET_CARD_ID"]],
+                            ["VAR", "$CONTROLLER", ["GET_PLAYER_CONTROLLER", "$TARGET_PLAYER", "$CARD.id"]],
                             ["COND",
                                 ["GREATER_THAN", ["GET_DISCARD_CARD_MODE", "$CONTROLLER", "$CARD.id", "$ACTOR_PLAYER"], 0],
                                 ["DO_DISCARD_CARD", "$CONTROLLER", "$CARD.id", "$LOG_EVENT", "$ACTOR_PLAYER"],
@@ -466,6 +498,61 @@
                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move {{$TARGET_NAME}} to the Victory Display.", "moves {{$TARGET_NAME}} to the Victory Display."],
                 ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
                 ["MOVE_CARD", "$TARGET_CARD_ID", "sharedVictoryDisplay", -1]
+            ]
+        },
+        "CAN_LEAVE_PLAY": {
+            "args": ["$TARGET_CARD_ID", "$AUTOMATIC"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_LEAVE_PLAY.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$AUTOMATIC", "CAN_LEAVE_PLAY.AUTOMATIC"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "03009"], //Sophie: In Loving Memory (Sophie cannot leave play.)
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08113"]  //Unscrupulous Loan (Cannot leave play.)
+                    ],
+                    false,
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "03011"], //The King in Yellow: Act 1 (It cannot leave play except through the (reaction) ability below.)
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10135"], //Maimed Hand (It cannot leave play except by the (action) (action) ability below.)
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10136"], //Back Injury
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10137"], //The Silver Moth
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10138"]  //Vow of Drzytelech
+                        ],
+                        ["EQUAL", "$AUTOMATIC", true]
+                    ],
+                    false,
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "01009"], //The Necronomicon: John Dee Translation (It cannot leave play while it has 1 or more horror on it.)
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "01509"], //The Necronomicon: John Dee Translation
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90003"]  //The Necronomicon: John Dee Translation
+                        ],
+                        ["GREATER_THAN", ["GET_HORROR_ON_CARD", "$TARGET_CARD_ID"], 0]
+                    ],
+                    false,
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "05019"], //Baron Samedi: Lord of the Cemetery (He cannot leave play while he has less than 3 doom on him.)
+                            ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "99003"]  //Baron Samedi: Lord of the Cemetery (promo)
+                        ],
+                        ["LESS_THAN", ["GET_DOOM_ON_CARD", "$TARGET_CARD_ID"], 3]
+                    ],
+                    false,
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09007"], //Wounded Bystander: On Death's Doorstep (It cannot leave play while it has damage (unless it is defeated).)
+                        ["GREATER_THAN", ["GET_DAMAGE_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["LESS_THAN", ["GET_DAMAGE_ON_CARD", "$TARGET_CARD_ID"], 5]
+                    ],
+                    false,
+                    ["AND",
+                        ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "53012"], //Dendromorphosis: "Natural" Transformation (It cannot leave play while it has no damage on it.)
+                        ["EQUAL", ["GET_DAMAGE_ON_CARD", "$TARGET_CARD_ID"], 0]
+                    ],
+                    false,
+                    ["TRUE"],
+                    true
+                ]
             ]
         }
     },
