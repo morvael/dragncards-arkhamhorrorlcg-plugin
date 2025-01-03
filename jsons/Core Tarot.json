@@ -121,7 +121,7 @@
     "prompts": {
         "selectTarotReadingMode": {
             "args": [],
-            "message": "Pick tarot reading type",
+            "message": "Pick tarot reading type.",
             "options": [
                 {
                     "label": "1-Card Reading (“Chaos”).",

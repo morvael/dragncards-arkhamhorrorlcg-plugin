@@ -151,6 +151,7 @@
                             // special
                             "deckAttachments": {},                              // information about card attachments (contained in arkham.build deck "attachments_" metadata); format: "databaseId": ["databaseId", ...]
                             "deckCustomizable": {},                             // information about card customization (contained in deck "cus_" metadata); format: "databaseId": { "index": ["value", ...], ...}
+                            "tabooId": 0,                                       // information about taboo used (contained in deck "taboo_id" data)
                             "showExtraDeck": 0,                                 // if greater than 0, extra deck group is shown for player (can be enabled by some cards during scenario setup or when loading a deck from arkham.build with "extra_deck" metadata)
                             "playerInPlay": false,                              // if true, player groups are considered "in play" (automatically set to true after replacing Random Basic Weakness and spawning bonded cards; many card automations respond to their card's "inPlay" change and configure other variables)
                             // reset in SCENARIO_INIT

@@ -321,6 +321,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Story"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Upgrade"],
                         ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
@@ -332,6 +333,7 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Upgrade Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"],
                         ["AND",
@@ -927,6 +929,10 @@
             {
                 "label": "id:tarotReadingMenu",
                 "actionList": "tarotReading"
+            },
+            {
+                "label": "id:selectTabooMenu",
+                "actionList": "selectTaboo"
             }
         ]
     }

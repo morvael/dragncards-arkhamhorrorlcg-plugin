@@ -461,6 +461,7 @@
                     false,
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"],
                         ["AND",
                             ["EQUAL", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentSide", "B"],
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
@@ -749,7 +750,8 @@
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                         ["VAR", "$DESIRED_IN_PLAY", ["AND",
                             ["EQUAL", "$IN_PLAY", true],
-                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"]
                         ]],
                         ["COND",
                             ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],
@@ -776,7 +778,8 @@
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                         ["VAR", "$DESIRED_IN_PLAY", ["AND",
                             ["EQUAL", "$IN_PLAY", true],
-                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"]
                         ]],
                         ["COND",
                             ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],

@@ -43,6 +43,7 @@
     "cardBacks": {
         "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.webp"},
         "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.webp"},
+        "Upgrade Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/upgrade.webp"},
         "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/concealed.webp"}
     },
     "cardTypes": {
@@ -60,6 +61,7 @@
         "Location":               {"width": 0.69, "height": 1.00, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Story":                  {"width": 0.69, "height": 1.00, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
         "Key":                    {"width": 0.69, "height": 1.00, "tokens": ["resource","clue","damage","horror","doom","freeze"]},
+        "Upgrade":                {"width": 0.69, "height": 1.00, "tokens": []},
         "ChaosToken":             {"width": 0.28, "height": 0.28, "tokens": []},
         "FirstInvestigatorToken": {"width": 0.57, "height": 0.55, "tokens": []},
         "KeyToken":               {"width": 0.19, "height": 0.19, "tokens": []},

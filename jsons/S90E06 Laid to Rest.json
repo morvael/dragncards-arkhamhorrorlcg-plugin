@@ -96,7 +96,7 @@
                 ["EQUAL", "$CARD.currentFace.type", "Location"]
             ]]],
             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$CARD.id", ["MAX", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], "$GAME.arkham.numPlayers"], true, null],
+                ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$CARD.id", ["MAX2", ["GET_CARD_CLUES_REQUIREMENT", "$CARD.id"], "$GAME.arkham.numPlayers"], true, null],
                 ["SET", "/cardById/$CARD.id/cluesPlaced", true]
             ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Hangman's Brook", 5, 7, 3, 0],

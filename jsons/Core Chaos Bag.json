@@ -288,7 +288,7 @@
                 ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
                 ["VAR", "$MAX_CHAOS_TOKENS", ["GET_CHAOS_TOKEN_MAX", "$CHAOS_TOKEN_DATABASE_ID"]],
                 ["VAR", "$LEFT_TO_ADD", ["SUBTRACT", "$MAX_CHAOS_TOKENS", "$CHAOS_TOKEN_COUNT"]],
-                ["VAR", "$TO_ADD", ["MIN", "$NUMBER", "$LEFT_TO_ADD"]],
+                ["VAR", "$TO_ADD", ["MIN2", "$NUMBER", "$LEFT_TO_ADD"]],
                 ["COND",
                     ["EQUAL", "$TO_ADD", 1],
                     [
@@ -350,7 +350,7 @@
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_CHAOS_TOKENS.LOG_EVENT"],
                 ["VAR", "$CHAOS_TOKEN_NAME", ["GET_CHAOS_TOKEN_NAME", "$CHAOS_TOKEN_DATABASE_ID"]],
                 ["VAR", "$CHAOS_TOKEN_COUNT", ["GET_CHAOS_TOKEN_COUNT", "$CHAOS_TOKEN_NAME"]],
-                ["VAR", "$TO_REMOVE", ["MIN", "$NUMBER", "$CHAOS_TOKEN_COUNT"]],
+                ["VAR", "$TO_REMOVE", ["MIN2", "$NUMBER", "$CHAOS_TOKEN_COUNT"]],
                 ["COND",
                     ["EQUAL", "$TO_REMOVE", 1],
                     [

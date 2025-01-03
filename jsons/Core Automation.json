@@ -101,7 +101,14 @@
                         ]
                     ]
                 ],
-                ["SET", "/cardById/$TARGET_ID/controller", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
+                ["SET", "/cardById/$TARGET_ID/controller", "$CARD_BY_ID.$TARGET_ID.cardOwner"],
+                ["COND",
+                    ["AND",
+                        ["IS_CUSTOMIZABLE", "$TARGET.sides.A.databaseId"],
+                        ["IS_VALID_PLAYER", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
+                    ],
+                    ["DO_SPAWN_CUSTOMIZABLE", "$TARGET_ID", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
+                ]
             ]],
             ["SET", "/arkham/loadingCards", false]
         ],
