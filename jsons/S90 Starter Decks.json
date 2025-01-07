@@ -15,17 +15,7 @@
                 }
             },
             "9000101002": { //Daisy Walker: The Librarian (parallel front)
-                "rules": {
-                    "9000101002a": { //You get +1 willpower and +1 sanity for each Tome asset you control. (sanity not coded)
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
-                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay"],
-                        "then": [
-                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay", null, null]
-                        ]
-                    }
-                }
+                "inheritFrom": "90001"
             },
             "90046": { //"Ashcan" Pete: The Drifter (parallel)
                 "rules": {
@@ -43,19 +33,7 @@
                 }
             },
             "9004602005": { //"Ashcan" Pete: The Drifter (parallel front)
-                "rules": {
-                    "9004602005a": { //You begin the game with Pete's Guitar in play.
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "then": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
-                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
-                        ]
-                    }
-                }
+                "inheritFrom": "90046"
             },
             "02004": { //Jim Culver: The Musician (original in Laid to Rest scenario)
                 "rules": {
@@ -75,21 +53,7 @@
                 }
             },
             "9004902004": { //Jim Culver: The Musician (parallel front in Laid to Rest scenario)
-                "rules": {
-                    "9004902004a": { //"spirit deck"
-                        "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
-                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
-                        "condition": ["AND",
-                            ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
-                            ["EQUAL", "$GAME.arkham.scenarioName", "Laid to Rest"],
-                            ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"]
-                        ],
-                        "then": [
-                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
-                        ]
-                    }
-                }
+                "inheritFrom": "02004"
             },
             "90049": { //Jim Culver: The Musician (parallel)
                 "rules": {
@@ -105,17 +69,7 @@
                 }
             },
             "0200490049": { //Jim Culver: The Musician (parallel back)
-                "rules": {
-                    "0200490049a": { //"spirit deck"
-                        "type": "trigger",
-                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
-                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
-                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
-                        "then": [
-                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
-                        ]
-                    }
-                }
+                "inheritFrom": "90049"
             }
         }
     },

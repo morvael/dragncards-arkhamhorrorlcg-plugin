@@ -201,17 +201,7 @@
                 }
             },
             "98007": { //Norman Withers: The Astronomer (promo)
-                "rules": {
-                    "98007a": { //Play with the top card of your deck revealed.
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "playWithTopDeckCardRevealed", 1, "$THIS.inPlay"],
-                        "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "playWithTopDeckCardRevealed", 1, "$THIS.inPlay", "{2:P} plays with the top card of their deck revealed.", null]
-                        ]
-                    }
-                }
+                "inheritFrom": "08004"
             }
         }
     },

@@ -226,30 +226,10 @@
                 }
             },
             "0200390084": { //Jenny Barnes: The Dilettante (parallel back)
-                "rules": {
-                    "0200390084a": { //You collect 1 additional resource during each upkeep phase.
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
-                        "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
-                        ]
-                    }
-                }
+                "inheritFrom": "02003"
             },
             "98001": { //Jenny Barnes: The Dilettante (promo)
-                "rules": {
-                    "98001a": { //You collect 1 additional resource during each upkeep phase.
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
-                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
-                        "then": [
-                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
-                        ]
-                    }
-                }
+                "inheritFrom": "02003"
             },
             "02005": { //"Ashcan" Pete: The Drifter
                 "rules": {
@@ -267,19 +247,7 @@
                 }
             },
             "0200590046": { //"Ashcan" Pete: The Drifter (parallel back)
-                "rules": {
-                    "0200590046a": { //You begin the game with Duke in play.
-                        "type": "trigger",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "then": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
-                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
-                        ]
-                    }
-                }
+                "inheritFrom": "02005"
             },
             "02020": { //Laboratory Assistant
                 "rules": {
