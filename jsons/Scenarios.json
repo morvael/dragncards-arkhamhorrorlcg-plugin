@@ -305,7 +305,8 @@
             {
                 "label": "id:sideStories",
                 "deckLists": [
-                    {"label": "id:curseOfTheRougarou", "deckListId": "Curse of the Rougarou Scenario"}
+                    {"label": "id:curseOfTheRougarou", "deckListId": "Curse of the Rougarou Scenario"},
+                    {"label": "id:carnevaleOfHorrors", "deckListId": "Carnevale of Horrors Scenario"}
                 ]
             },
             {
@@ -866,6 +867,9 @@
         },
         "curseOfTheRougarou": {
             "English": "Curse of the Rougarou"
+        },
+        "carnevaleOfHorrors": {
+            "English": "Carnevale of Horrors"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"
