@@ -59,13 +59,15 @@
                 ]
             ]
         },
-        "DO_CREATE_MISSING_CARDS_SCN": {
-            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
+        "DO_CREATE_MISSING_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_MISSING_CARDS_SCN.TARGET_NAME"],
-                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_MISSING_CARDS_SCN.TARGET_DATABASE_ID"],
-                ["VALIDATE_GT0", "$TARGET_MAX_QUANTITY", "DO_CREATE_MISSING_CARDS_SCN.TARGET_MAX_QUANTITY"],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_CREATE_MISSING_CARDS_SCN.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CREATE_MISSING_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_CREATE_MISSING_CARDS.TARGET_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_CREATE_MISSING_CARDS.TARGET_DATABASE_ID"],
+                ["VALIDATE_GT0", "$TARGET_MAX_QUANTITY", "DO_CREATE_MISSING_CARDS.TARGET_MAX_QUANTITY"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_CREATE_MISSING_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CREATE_MISSING_CARDS.LOG_EVENT"],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_DATABASE_ID"]
                 ]]],
@@ -74,9 +76,15 @@
                     ["LESS_THAN", "$SELECTED_COUNT", "$TARGET_MAX_QUANTITY"],
                     [
                         ["VAR", "$CARDS_TO_ADD", ["SUBTRACT", "$TARGET_MAX_QUANTITY", "$SELECTED_COUNT"]],
-                        ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$CARDS_TO_ADD", "$TARGET_GROUP_ID"]
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$CARDS_TO_ADD", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                     ]
                 ]
+            ]
+        },
+        "DO_CREATE_MISSING_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_CREATE_MISSING_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
         "DO_MOVE_DECK_CARDS": {
@@ -223,6 +231,37 @@
                 ["DO_LOAD_CARDS", "$GAME.firstPlayer", "$LOAD_LIST_ID", true, null]
             ]
         },
+        "DO_LOAD_CARDS_INTO": {
+            "args": ["$TARGET_PLAYER", "$LOAD_LIST_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_LOAD_CARDS_INTO.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOAD_LIST_ID", "DO_LOAD_CARDS_INTO.LOAD_LIST_ID"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_LOAD_CARDS_INTO.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_LOAD_CARDS_INTO.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "load cards from {{$LOAD_LIST_ID}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "loads cards from {{$LOAD_LIST_ID}} {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
+                ["LOAD_CARDS", "$LOAD_LIST_ID"],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$GAME.lastLoadedCardIds", null],
+                        ["GREATER_THAN", ["LENGTH", "$GAME.lastLoadedCardIds"], 0]
+                    ],
+                    [
+                        ["FOR_EACH_VAL", "$CARD_ID", "$GAME.lastLoadedCardIds", [
+                            ["COND",
+                                ["NOT_EQUAL", "$CARD_BY_ID.$CARD_ID.groupId", "$TARGET_GROUP_ID"],
+                                ["MOVE_CARD", "$CARD_ID", "$TARGET_GROUP_ID", -1]
+                            ]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "DO_LOAD_CARDS_INTO_SCN": {
+            "args": ["$LOAD_LIST_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_LOAD_CARDS_INTO", "$GAME.firstPlayer", "$LOAD_LIST_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_LOAD_N_CARDS": {
             "args": ["$TARGET_PLAYER", "$LOAD_LIST_ID", "$NUMBER_TO_LOAD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -285,6 +324,12 @@
                         ["DELETE_CARD", "$TARGET_CARD_ID"]
                     ]
                 ]
+            ]
+        },
+        "DO_DELETE_CARD_SCN": {
+            "args": ["$TARGET_CARD_ID"],
+            "code": [
+                ["DO_DELETE_CARD", "$GAME.firstPlayer", "$TARGET_CARD_ID", true, null]
             ]
         },
         "DO_DELETE_LOCATION": {
@@ -352,6 +397,79 @@
             "args": ["$TARGET_NAME"],
             "code": [
                 ["DO_DELETE_NAMED_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", true, null]
+            ]
+        },
+        "DO_DELETE_DECK_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DELETE_DECK_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DELETE_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DELETE_DECK_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x cards in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_COUNT}}x cards in {{$TARGET_GROUP.label}} from the game."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DELETE_CARD", "$CARD.id"]
+                        ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove a card in {{$TARGET_GROUP.label}} from the game.", "removes a card in {{$TARGET_GROUP.label}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_DECK_CARDS_SCN": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_DELETE_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_DELETE_NAMED_DECK_CARDS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DELETE_NAMED_DECK_CARDS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_DELETE_NAMED_DECK_CARDS.TARGET_NAME"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_DELETE_NAMED_DECK_CARDS.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_DELETE_NAMED_DECK_CARDS.LOG_EVENT"],
+                ["VAR", "$SELECTED_CARDS", ["GET_NAMED_DECK_CARDS", "$TARGET_NAME", "$TARGET_GROUP_ID"]],
+                ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
+                ["COND",
+                    ["GREATER_THAN", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_COUNT}}x {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game."],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DELETE_CARD", "$CARD.id"]
+                        ]]
+                    ],
+                    ["EQUAL", "$SELECTED_COUNT", 1],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game.", "removes {{$SELECTED_CARDS.[0].sides.A.name}} in {{$TARGET_GROUP.label}} from the game."],
+                        ["DELETE_CARD", "$SELECTED_CARDS.[0].id"]
+                    ]
+                ]
+            ]
+        },
+        "DO_DELETE_NAMED_DECK_CARDS_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_NAMED_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_DELETE_NAMED_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_DELETE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_GROUP_ID", true, null]
             ]
         },
         "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN": {
@@ -425,6 +543,54 @@
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_CARD_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
             ]
         },
+        "DO_SPAWN_NAMED_AT_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_NAMED_AT_LOCATION_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$LOCATION_CARD_NAME", null],
+                        ["NOT_EQUAL", "$LEFT_MOD", null],
+                        ["NOT_EQUAL", "$TOP_MOD", null]
+                    ],
+                    [
+                        ["VAR", "$TARGET_CARD", ["GET_NAMED_CARD", "$TARGET_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$LOCATION_CARD", null]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}} at {{$LOCATION_CARD.currentFace.name}}."],
+                                ["VAR", "$INDEX", -1],
+                                ["COND",
+                                    ["GREATER_THAN", "$ADD_TO_INDEX", 0],
+                                    ["UPDATE_VAR", "$INDEX", ["ADD", "$LOCATION_CARD.stackIndex", "$ADD_TO_INDEX"]]
+                                ],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"combine": false, "allowFlip": false}],
+                                ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
+                                ["DEFINE", "$DO_SPAWN_NAMED_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_NAMED_AT_LOCATION_SCN": {
+            "args": ["$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX"],
+            "code": [
+                ["DO_SPAWN_NAMED_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
+            ]
+        },
+        "DO_SPAWN_NAMED_AT_LOCATION_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX"],
+            "code": [
+                ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "$TARGET_NAME", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$ADD_TO_INDEX", true, null]
+            ]
+        },
         "DO_SPAWN_AT_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -463,6 +629,50 @@
             "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD"],
             "code": [
                 ["DO_SPAWN_AT_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", true, null]
+            ]
+        },
+        "DO_SPAWN_ATTACHED_TO_LOCATION": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_ATTACHED_TO_LOCATION_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$TARGET_DATABASE_ID", null],
+                        ["NOT_EQUAL", "$LOCATION_CARD_NAME", null]
+                    ],
+                    [
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "sharedLocations", false, null],
+                        ["VAR", "$TARGET_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                        ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$TARGET_CARD", null],
+                                ["NOT_EQUAL", "$LOCATION_CARD", null]
+                            ],
+                            [
+                                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} attached to {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}} attached to {{$LOCATION_CARD.currentFace.name}}."],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", -1],
+                                ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD.id", "$LOCATION_CARD.id", false, null],
+                                ["DEFINE", "$DO_SPAWN_ATTACHED_TO_LOCATION_RESULT", "$TARGET_CARD.id"]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_ATTACHED_TO_LOCATION_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_SPAWN_ATTACHED_TO_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", true, null]
+            ]
+        },
+        "DO_SPAWN_ATTACHED_TO_LOCATION_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME"],
+            "code": [
+                ["DO_SPAWN_ATTACHED_TO_LOCATION", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", true, null]
             ]
         },
         "DO_SPAWN_LOCATION": {
@@ -548,6 +758,71 @@
                 ["DO_SPAWN_HIDDEN_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
             ]
         },
+        "DO_PUT_INTO_PLAY_AT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PUT_INTO_PLAY_AT.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PUT_INTO_PLAY_AT.TARGET_CARD_ID"]],
+                ["VALIDATE_GE0", "$LEFT", "DO_PUT_INTO_PLAY_AT.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "DO_PUT_INTO_PLAY_AT.TOP"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "put {{$TARGET_CARD.currentFace.name}} into play.", "puts {{$TARGET_CARD.currentFace.name}} into play."],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "putIntoPlay"],
+                ["MOVE_CARD", "$TARGET_CARD_ID", "sharedLocations", -1],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""],
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_AT_SCN": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_PUT_INTO_PLAY_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_AT_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_PUT_INTO_PLAY_AT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_GROUP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_GROUP.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_TO_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["COND",
+                    ["OR",
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "discard"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "pile"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
+                    ],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to the top of {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", 0, 0, {"combine": false, "allowFlip": false}]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", -1]
+                    ]
+                ]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_SCN": {
+            "args": ["$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {
             "args": ["$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$X_CHANGE", "$Y_CHANGE"],
             "code": [
@@ -560,7 +835,7 @@
                         ["NOT_EQUAL", "$Y_CHANGE", null]
                     ],
                     [
-                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$LOCATION_CARD_NAME"]],
+                        ["VAR", "$LOCATION_CARD", ["GET_NAMED_MAP_CARD", "$LOCATION_CARD_NAME"]],
                         ["COND",
                             ["NOT_EQUAL", "$LOCATION_CARD", null],
                             [
@@ -575,10 +850,10 @@
                                             ["COND",
                                                 ["NOT_EQUAL", "$INVESTIGATOR", null],
                                                 [
-                                                    ["VAR", "$MINI_DATABASE_ID", "m{{$INVESTIGATOR.sides.A.databaseId}}"],
+                                                    ["VAR", "$MINI_DATABASE_ID", ["GET_MINI_ID", "m", "$INVESTIGATOR.sides.A.databaseId"]],
                                                     ["COND",
                                                         ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
-                                                        ["UPDATE_VAR", "$MINI_DATABASE_ID", "m{{$INVESTIGATOR.originalInvestigatorId}}"]
+                                                        ["UPDATE_VAR", "$MINI_DATABASE_ID", ["GET_MINI_ID", "m", "$INVESTIGATOR.originalInvestigatorId"]]
                                                     ],
                                                     ["DO_CREATE_CARDS", "$PLAYER_I", "{{$INVESTIGATOR.sides.A.name}}", "$MINI_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$PLAYER_I"], false, null],
                                                     ["COND",
@@ -591,13 +866,13 @@
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "A"],
                                                             ["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", false],
                                                             ["COND",
-                                                                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamCustomSpawnLocation", null],
+                                                                ["NOT_EQUAL", "$PLAYER_DATA.$PLAYER_I.arkham.customSpawnLocation", null],
                                                                 [
-                                                                    ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_LOCATION", "$PLAYER_DATA.$PLAYER_I.arkhamCustomSpawnLocation"]],
+                                                                    ["VAR", "$CUSTOM_LOCATION_CARD", ["GET_NAMED_MAP_CARD", "$PLAYER_DATA.$PLAYER_I.arkham.customSpawnLocation"]],
                                                                     ["DO_LOG", true, null, "$PLAYER_I", "spawn {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}.", "spawns {{$MINI_INVESTIGATOR.sides.A.name}} at {{$CUSTOM_LOCATION_CARD.currentFace.name}}."],
                                                                     ["MOVE_CARD", "$MINI_INVESTIGATOR.id", "sharedLocations", -1],
                                                                     ["DO_SET_CARD_LOCATION", "$MINI_INVESTIGATOR.id", "$X", "$Y"],
-                                                                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false]
+                                                                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CUSTOM_LOCATION_CARD.id", false, null]
                                                                 ],
                                                                 ["TRUE"],
                                                                 [
@@ -680,6 +955,29 @@
                 ]
             ]
         },
+        "DO_ATTACH_ID_TO_ID": {
+            "args": ["$TARGET_DATABASE_ID", "$PARENT_DATABASE_ID", "$FLIP_FACEDOWN"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_DATABASE_ID", "DO_ATTACH_ID_TO_ID.TARGET_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$PARENT_DATABASE_ID", "DO_ATTACH_ID_TO_ID.PARENT_DATABASE_ID"],
+                ["VALIDATE_BOOLEAN", "$FLIP_FACEDOWN", "DO_ATTACH_ID_TO_ID.FLIP_FACEDOWN"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_BY_DATABASE_ID", "$TARGET_DATABASE_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_BY_DATABASE_ID", "$PARENT_DATABASE_ID"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_CARD", null],
+                        ["NOT_EQUAL", "$PARENT_CARD", null]
+                    ],
+                    [
+                        ["DO_ATTACH_CARD", "$GAME.firstPlayer", "$TARGET_CARD.id", "$PARENT_CARD.id", true, null],
+                        ["COND",
+                            ["EQUAL", "$FLIP_FACEDOWN", true],
+                            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TARGET_CARD.id", true, null]
+                        ]
+                    ]
+                ]
+            ]
+        },
         "DO_CREATE_DECK_CARD_SCN": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
             "code": [
@@ -717,8 +1015,7 @@
                 ]],
                 ["VAR", "$AVAILABLE_WEAKNESSES", ["LIST"]],
                 ["FOR_EACH_VAL", "$SET_UUID", "$USED_SET_UUIDS", [
-                    ["VAR", "$MAP_RESULT", ["MAP", ["LIST", "$SET_UUID"], "$FUNCTION_NAME"]],
-                    ["VAR", "$SET_WEAKNESSES", "$MAP_RESULT.[0]"],
+                    ["VAR", "$SET_WEAKNESSES", ["$FUNCTION_NAME", "$SET_UUID"]],
                     ["FOR_EACH_VAL", "$WEAKNESS_ID", "$SET_WEAKNESSES", [
                         ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["APPEND", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
                     ]]
@@ -726,131 +1023,152 @@
                 ["FOR_EACH_VAL", "$WEAKNESS_ID", "$USED_WEAKNESSES", [
                     ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "$WEAKNESS_ID"]]
                 ]],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.numPlayers", 1],
+                    [
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06035"]], //Self-Centered (Multiplayer only.)
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06036"]], //Kleptomania
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06037"]], //Narcolepsy
+                        ["UPDATE_VAR", "$AVAILABLE_WEAKNESSES", ["REMOVE_FROM_LIST_BY_VALUE", "$AVAILABLE_WEAKNESSES", "06038"]]  //Your Worst Nightmare
+                    ]
+                ],
                 ["AT_INDEX", "$AVAILABLE_WEAKNESSES", ["RANDOM_INT", 0, ["SUBTRACT", ["LENGTH", "$AVAILABLE_WEAKNESSES"], 1]]]
             ]
         },
         "SCENARIO_INIT": {
             "args": ["$CHAOS_BAG_CAMPAIGN_NAME", "$CAMPAIGN_NAME", "$SCENARIO_NAME", "$SCENARIO_EARLY_ACTION", "$SCENARIO_ACTION"],
             "code": [
-                ["VAR", "$PRESENT_INVESTIGATORS", 0],
-                ["VAR", "$PRESENT_DECKS", 0],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
-                    ["COND",
-                        ["NOT_EQUAL", "$INVESTIGATOR_I", null],
-                        ["INCREASE_VAR", "$PRESENT_INVESTIGATORS", 1]
-                    ],
-                    ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
-                    ["COND",
-                        ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$PLAYER_I_DECK.stackIds"], 20],
-                        ["INCREASE_VAR", "$PRESENT_DECKS", 1]
-                    ]
-                ]],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamSkipDeckCheck", true],
-                    ["UPDATE_VAR", "$PRESENT_DECKS", "$GAME.numPlayers"]
-                ],
-                ["COND",
-                    ["AND",
-                        ["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
-                        ["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
-                    ],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", true],
                     [
-                        ["SET", "/arkhamScenarioInit", true],
-                        ["SET", "/arkhamChaosBagCampaignName", "$CHAOS_BAG_CAMPAIGN_NAME"],
-                        ["SET", "/arkhamCampaignName", "$CAMPAIGN_NAME"],
-                        ["SET", "/arkhamScenarioName", "$SCENARIO_NAME"],
-                        ["SET", "/arkhamScenarioAction", "$SCENARIO_ACTION"],
-                        ["SET", "/arkhamScenarioDifficulty", "Standard"],
-                        ["SET", "/arkhamNumScenarioQuestions", 0],
-                        ["SET", "/arkhamScenarioQuestionIndex", 0],
-                        ["SET", "/arkhamNumPlayers", "$GAME.numPlayers"],
-                        ["SET", "/arkhamCustomMythosPhasePlayerOrderController", null],
-                        ["SET", "/arkhamTraumaDone", 0],
-                        ["SET", "/arkhamStartingHandDone", 0],
-                        ["SET", "/arkhamActiveInvestigator", null],
-                        ["SET", "/arkhamSkipShufflingEncounterDeck", false],
-                        ["SET", "/arkhamSkipShufflingSharedDeckA", false],
-                        ["SET", "/arkhamSkipShufflingSharedDeckB", false],
-                        ["SET", "/arkhamSkipShufflingSharedDeckC", false],
-                        ["SET", "/arkhamOffMapNotInPlay", false],
-                        ["SET", "/arkhamFinalScenarioMessage", null],
-                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
-                        ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkhamScenarioName}} scenario with {{$GAME.arkhamNumPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
-                        ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
-                        ["DO_UPDATE_INVESTIGATOR_NAMES"],
-                        ["INIT_ALL_EVENTS"],
+                        ["VAR", "$PRESENT_INVESTIGATORS", 0],
+                        ["VAR", "$PRESENT_DECKS", 0],
                         ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                            ["SET", "/playerData/$PLAYER_I/arkhamMythosPhaseCardDrawn", false],
-                            ["SET", "/playerData/$PLAYER_I/arkhamBonusCharges", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopDeckCardRevealed", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamShowExtraDeck", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamPlayWithTopExtraDeckCardRevealed", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamUpkeepResourcesMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingDamageMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamUpkeepCardsMod", 0],
-                            ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", false],
-                            ["SET", "/playerData/$PLAYER_I/arkhamCustomSpawnLocation", null],
-                            ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
                             ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
-                            ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
+                            ["COND",
+                                ["NOT_EQUAL", "$INVESTIGATOR_I", null],
+                                ["INCREASE_VAR", "$PRESENT_INVESTIGATORS", 1]
+                            ],
                             ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
-                            ["VAR", "$PLAYER_I_ALIAS", ["GET_ALIAS", "$PLAYER_I"]],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"],
-                                ["EQUAL", "$CARD.sides.A.name", "Random Basic Weakness"]
-                            ]]],
-                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["LOG", "└── Replacing Random Basic Weakness in {{$PLAYER_I_ALIAS}}'s deck."],
-                                ["DELETE_CARD", "$CARD.id"],
-                                ["DO_CREATE_CARDS", "$PLAYER_I", "random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_WEAKNESSES"], 1, "$PLAYER_I_DECK", false, null]
-                            ]],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["OR",
-                                    ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                    ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"]
-                                ],
-                                ["EQUAL", "$CARD.sides.A.hasBonded", true]
-                            ]]],
-                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["DO_SPAWN_BONDED" , "$CARD.sides.A.databaseId", "$PLAYER_I"]
-                            ]],
-                            ["SET", "/playerData/$PLAYER_I/arkhamPlayerInPlay", true],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                ["EQUAL", "$CARD.sides.A.type", "Key"]
-                            ]]],
-                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["ATTACH_CARD", "$CARD.id", "$INVESTIGATOR_I.id"]
-                            ]],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
-                                ["EQUAL", "$CARD.sides.A.permanent", true]
-                            ]]],
-                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
-                            ]]
+                            ["COND",
+                                ["GREATER_THAN", ["LENGTH", "$GROUP_BY_ID.$PLAYER_I_DECK.stackIds"], 20],
+                                ["INCREASE_VAR", "$PRESENT_DECKS", 1]
+                            ]
                         ]],
                         ["COND",
-                            ["NOT_EQUAL", "$SCENARIO_EARLY_ACTION", null],
-                            ["ACTION_LIST", "$SCENARIO_EARLY_ACTION"],
+                            ["EQUAL", "$GAME.arkham.skipDeckCheck", true],
+                            ["UPDATE_VAR", "$PRESENT_DECKS", "$GAME.numPlayers"]
+                        ],
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$PRESENT_INVESTIGATORS", "$GAME.numPlayers"],
+                                ["EQUAL", "$PRESENT_DECKS", "$GAME.numPlayers"]
+                            ],
+                            [
+                                ["SET", "/arkham/chaosBagCampaignName", "$CHAOS_BAG_CAMPAIGN_NAME"],
+                                ["SET", "/arkham/campaignName", "$CAMPAIGN_NAME"],
+                                ["SET", "/arkham/scenarioName", "$SCENARIO_NAME"],
+                                ["SET", "/arkham/scenarioDifficulty", "Standard"],
+                                ["SET", "/arkham/scenarioAction", "$SCENARIO_ACTION"],
+                                ["SET", "/arkham/scenarioActionAfterStep7", null],
+                                ["SET", "/arkham/numScenarioQuestions", 0],
+                                ["SET", "/arkham/scenarioQuestionIndex", 0],
+                                ["SET", "/arkham/numPlayers", "$GAME.numPlayers"],
+                                ["SET", "/arkham/traumaDone", 0],
+                                ["SET", "/arkham/startingHandDone", 0],
+                                ["SET", "/arkham/customSpawnChoiceDone", 0],
+                                ["SET", "/arkham/customSpawnChoiceScenarioContinueAction", null],
+                                ["SET", "/arkham/skipShufflingEncounterDeck", false],
+                                ["SET", "/arkham/skipShufflingSharedDeckA", false],
+                                ["SET", "/arkham/skipShufflingSharedDeckB", false],
+                                ["SET", "/arkham/skipShufflingSharedDeckC", false],
+                                ["SET", "/arkham/offMapNotInPlay", false],
+                                ["SET", "/arkham/finalScenarioMessage", null],
+                                ["SET", "/arkham/activeInvestigator", null],
+                                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
+                                ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkham.scenarioName}} scenario with {{$GAME.arkham.numPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
+                                ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
+                                ["DO_UPDATE_INVESTIGATOR_NAMES"],
+                                ["INIT_ALL_EVENTS"],
+                                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                    ["SET", "/playerData/$PLAYER_I/arkham/playWithTopDeckCardRevealed", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/playWithTopExtraDeckCardRevealed", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/startingDamageMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/startingHorrorMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/startingResourcesMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/startingCardsMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/disableMulligan", false],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/customSpawnLocation", null],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/customMythosPhasePlayerOrderController", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/mythosPhaseCardDrawn", false],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/bonusCharges", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/upkeepResourcesMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/upkeepCardsMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/maxHandSize", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/handSizeCountUnique", 0],
+                                    ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
+                                    ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                                    ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
+                                    ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
+                                    ["VAR", "$PLAYER_I_EXTRA_DECK", ["GET_CONTROLLER_EXTRA_DECK", "$PLAYER_I"]],
+                                    ["VAR", "$PLAYER_I_ALIAS", ["GET_ALIAS", "$PLAYER_I"]],
+                                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                        ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                        ["EQUAL", "$CARD.sides.A.subtype", "Basic Weakness"],
+                                        ["EQUAL", "$CARD.sides.A.name", "Random Basic Weakness"]
+                                    ]]],
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["LOG", "└── Replacing Random Basic Weakness in {{$PLAYER_I_ALIAS}}'s deck."],
+                                        ["DELETE_CARD", "$CARD.id"],
+                                        ["DO_CREATE_CARDS", "$PLAYER_I", "random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_WEAKNESSES"], 1, "$PLAYER_I_DECK", false, null]
+                                    ]],
+                                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                        ["OR",
+                                            ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                            ["EQUAL", "$CARD.groupId", "$PLAYER_I_EXTRA_DECK"],
+                                            ["EQUAL", "$CARD.id", "$INVESTIGATOR_I.id"]
+                                        ],
+                                        ["EQUAL", "$CARD.sides.A.hasBonded", true]
+                                    ]]],
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["DO_SPAWN_BONDED" , "$CARD.sides.A.databaseId", "$PLAYER_I"]
+                                    ]],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/playerInPlay", true],
+                                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                        ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                        ["EQUAL", "$CARD.sides.A.type", "Key"]
+                                    ]]],
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["ATTACH_CARD", "$CARD.id", "$INVESTIGATOR_I.id"]
+                                    ]],
+                                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                        ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                        ["EQUAL", "$CARD.sides.A.permanent", true]
+                                    ]]],
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
+                                    ]]
+                                ]],
+                                ["COND",
+                                    ["NOT_EQUAL", "$SCENARIO_EARLY_ACTION", null],
+                                    ["ACTION_LIST", "$SCENARIO_EARLY_ACTION"],
+                                    ["TRUE"],
+                                    ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
+                                ]
+                            ],
                             ["TRUE"],
-                            ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
+                            ["LOG", "└── Not all players have loaded their investigators and/or decks."]
                         ]
                     ],
                     ["TRUE"],
-                    ["LOG", "└── Not all players have loaded their investigators and/or decks."]
+                    ["LOG", "└── To load another scenario, clear the table."]
                 ]
             ]
         },
         "SCENARIO_INIT_RESUME": {
             "args": ["$NEXT_SCENARIO_ACTION"],
             "code": [
-                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["SET", "/arkham/scenarioAction", "$NEXT_SCENARIO_ACTION"],
                 ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
             ]
         },
@@ -859,7 +1177,7 @@
             "code": [
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["PROMPT", "$PLAYER_I", "startingPhysicalTrauma"],
-                    ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$PLAYER_I.arkhamStartingDamageMod", 10, 1, [
+                    ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$PLAYER_I.arkham.startingDamageMod", 10, 1, [
                         ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$I}} trauma.", "{{$I}}", ["LIST", "PLACE_STARTING_DAMAGE_ON_INVESTIGATOR_STR", "{{$I}}"]]
                     ]]
                 ]]
@@ -888,7 +1206,7 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["PROMPT", "$TARGET_PLAYER", "startingMentalTrauma"],
-                ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingHorrorMod", 10, 1, [
+                ["FOR_EACH_START_STOP_STEP", "$I", "$PLAYER_DATA.$TARGET_PLAYER.arkham.startingHorrorMod", 10, 1, [
                     ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$I}} trauma.", "{{$I}}", ["LIST", "PLACE_STARTING_HORROR_ON_INVESTIGATOR_STR", "{{$I}}"]]
                 ]]
             ]
@@ -903,9 +1221,9 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "declare no mental trauma of {{$INVESTIGATOR.currentFace.name}}.", "declares no mental trauma of {{$INVESTIGATOR.currentFace.name}}."]
                 ],
-                ["INCREASE_VAL", "/arkhamTraumaDone", 1],
+                ["INCREASE_VAL", "/arkham/traumaDone", 1],
                 ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamTraumaDone", "$GAME.numPlayers"],
+                    ["GREATER_EQUAL", "$GAME.arkham.traumaDone", "$GAME.numPlayers"],
                     ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
                 ]
             ]
@@ -920,11 +1238,9 @@
             "args": ["$DIFFICULTY_NAME"],
             "code": [
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
-                ["SET", "/arkhamScenarioDifficulty", "$DIFFICULTY_NAME"],
-                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkhamChaosBagCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
-                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                    ["DRAW_STARTING_HAND", "$PLAYER_I"]
-                ]]
+                ["SET", "/arkham/scenarioDifficulty", "$DIFFICULTY_NAME"],
+                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkham.chaosBagCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
+                ["GAIN_STARTING_RESOURCES"]
             ]
         },
         "GET_STARTING_RESOURCES": {
@@ -932,7 +1248,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_STARTING_RESOURCES.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_STARTING_RESOURCES.DEFAULT_NUMBER"],
-                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingResourcesMod"]],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.startingResourcesMod"]],
                 ["COND",
                     ["LESS_THAN", "$NUMBER", 0],
                     0,
@@ -946,7 +1262,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_UPKEEP_RESOURCES.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_UPKEEP_RESOURCES.DEFAULT_NUMBER"],
-                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamUpkeepResourcesMod"]],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.upkeepResourcesMod"]],
                 ["COND",
                     ["LESS_THAN", "$NUMBER", 0],
                     0,
@@ -960,7 +1276,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_STARTING_CARDS.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_STARTING_CARDS.DEFAULT_NUMBER"],
-                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamStartingCardsMod"]],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.startingCardsMod"]],
                 ["COND",
                     ["LESS_THAN", "$NUMBER", 0],
                     0,
@@ -974,7 +1290,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_UPKEEP_CARDS.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_UPKEEP_CARDS.DEFAULT_NUMBER"],
-                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkhamUpkeepCardsMod"]],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.upkeepCardsMod"]],
                 ["COND",
                     ["LESS_THAN", "$NUMBER", 0],
                     0,
@@ -983,45 +1299,72 @@
                 ]
             ]
         },
-        "DRAW_STARTING_HAND": {
-            "args": ["$PLAYER_I"],
+        "GET_MAX_HAND_SIZE": {
+            "args": ["$TARGET_PLAYER", "$DEFAULT_NUMBER"],
             "code": [
-                ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_MAX_HAND_SIZE.TARGET_PLAYER"],
+                ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_MAX_HAND_SIZE.DEFAULT_NUMBER"],
+                ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.maxHandSize"]],
                 ["COND",
-                    ["GREATER_THAN", "$STARTING_RESOURCES", 0],
-                    ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
-                ],
-                ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
-                ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
+        "GAIN_STARTING_RESOURCES": {
+            "args": [],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$STARTING_RESOURCES", ["GET_STARTING_RESOURCES", "$PLAYER_I", 5]],
+                    ["COND",
+                        ["GREATER_THAN", "$STARTING_RESOURCES", 0],
+                        ["DO_GAIN_RESOURCES", "$PLAYER_I", "$STARTING_RESOURCES", true, null]
+                    ]
+                ]],
+                ["COND",
+                    ["NOT_EQUAL", "$GAME.arkham.scenarioActionAfterStep7", null],
+                    ["ACTION_LIST", "$GAME.arkham.scenarioActionAfterStep7"],
+                    ["TRUE"],
+                    ["DRAW_STARTING_HANDS"]
+                ]
+            ]
+        },
+        "DRAW_STARTING_HANDS": {
+            "args": [],
+            "code": [
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_SHUFFLE_GROUP", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null],
+                    ["DEFAULT_DRAW_STARTING_HAND", "$PLAYER_I"]
+                ]]
             ]
         },
         "DEFAULT_DRAW_STARTING_HAND": {
             "args": ["$PLAYER_I"],
             "code": [
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw", "BEFORE_DRAW_DONE", "BEFORE_DRAW_DONE"]
+            ]
+        },
+        "BEFORE_DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "Draw", "DRAW_DONE", "OPENING_HAND_FINISHED"]
+            ]
+        },
+        "DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
                 ["COND",
-                    ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
-                    ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "BeforeDraw"],
+                    ["GREATER_THAN", "$STARTING_CARDS", 0],
+                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkham.disableMulligan", false],
+                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
                     ["TRUE"],
-                    [
-                        ["COND",
-                            ["CAN_SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
-                            ["SIGNAL_PLAYER_EVENT", "$PLAYER_I", "Draw"],
-                            ["TRUE"],
-                            [
-                                ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$PLAYER_I", 5]],
-                                ["COND",
-                                    ["GREATER_THAN", "$STARTING_CARDS", 0],
-                                    ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], "$STARTING_CARDS", true, true, null]
-                                ],
-                                ["COND",
-                                    ["EQUAL", "$PLAYER_DATA.$PLAYER_I.arkhamDisableMulligan", false],
-                                    ["PROMPT", "$PLAYER_I", "decideAboutMulligan"],
-                                    ["TRUE"],
-                                    ["STARTING_HAND_DONE"]
-                                ]
-                            ]
-                        ]
-                    ]
+                    ["OPENING_HAND_FINISHED", "$PLAYER_I"]
                 ]
             ]
         },
@@ -1043,20 +1386,26 @@
                     ["TRUE"],
                     ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
                 ],
-                ["STARTING_HAND_DONE"]
+                ["OPENING_HAND_FINISHED", "$PLAYER_N"]
             ]
         },
-        "STARTING_HAND_DONE": {
-            "args": [],
+        "OPENING_HAND_FINISHED": {
+            "args": ["$PLAYER_I"],
             "code": [
-                ["INCREASE_VAL", "/arkhamStartingHandDone", 1],
+                ["EXECUTE_PLAYER_EVENT", "$PLAYER_I", "AfterDraw", "AFTER_DRAW_DONE", "AFTER_DRAW_DONE"]
+            ]
+        },
+        "AFTER_DRAW_DONE": {
+            "args": ["$PLAYER_I"],
+            "code": [
+                ["INCREASE_VAL", "/arkham/startingHandDone", 1],
                 ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamStartingHandDone", "$GAME.numPlayers"],
+                    ["GREATER_EQUAL", "$GAME.arkham.startingHandDone", "$GAME.numPlayers"],
                     ["COND",
-                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
-                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                        ["NOT_EQUAL", "$GAME.arkham.scenarioAction", null],
+                        ["ACTION_LIST", "$GAME.arkham.scenarioAction"],
                         ["TRUE"],
-                        ["SCENARIO_INIT_FINISH", null]
+                        ["SCENARIO_INIT_FINISH"]
                     ]
                 ]
             ]
@@ -1064,16 +1413,16 @@
         "ADD_SCENARIO_QUESTION": {
             "args": ["$MESSAGE", "$LIST_OF_QUESTIONS"],
             "code": [
-                ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "$MESSAGE"],
-                ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", "$LIST_OF_QUESTIONS"],
-                ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1]
+                ["SET", "/arkham/scenarioQuestion{{$GAME.arkham.numScenarioQuestions}}", "$MESSAGE"],
+                ["SET", "/arkham/scenarioQuestionList{{$GAME.arkham.numScenarioQuestions}}", "$LIST_OF_QUESTIONS"],
+                ["INCREASE_VAL", "/arkham/numScenarioQuestions", 1]
             ]
         },
         "SCENARIO_INIT_CONTINUE": {
             "args": ["$NEXT_SCENARIO_ACTION"],
             "code": [
-                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SET", "/arkham/scenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "ASK_SCENARIO_QUESTION_AND_CONTINUE": {
@@ -1084,14 +1433,14 @@
             ]
         },
         "SHOW_SCENARIO_QUESTION_PROMPT": {
-            "args": ["$DUMMY"],
+            "args": [],
             "code": [
                 ["COND",
-                    ["LESS_THAN", "$GAME.arkhamScenarioQuestionIndex", "$GAME.arkhamNumScenarioQuestions"],
+                    ["LESS_THAN", "$GAME.arkham.scenarioQuestionIndex", "$GAME.arkham.numScenarioQuestions"],
                     [
-                        ["PROMPT", "$GAME.firstPlayer", "scenarioQuestion", "$GAME.arkhamScenarioQuestion{{$GAME.arkhamScenarioQuestionIndex}}"],
+                        ["PROMPT", "$GAME.firstPlayer", "scenarioQuestion", "$GAME.arkham.scenarioQuestion{{$GAME.arkham.scenarioQuestionIndex}}"],
                         ["VAR", "$INDEX", 0],
-                        ["FOR_EACH_VAL", "$QUESTION_I", "$GAME.arkhamScenarioQuestionList{{$GAME.arkhamScenarioQuestionIndex}}", [
+                        ["FOR_EACH_VAL", "$QUESTION_I", "$GAME.arkham.scenarioQuestionList{{$GAME.arkham.scenarioQuestionIndex}}", [
                             ["VAR", "$LETTER", ["SUBSTRING", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "$INDEX", 1]],
                             ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$QUESTION_I", "{{$LETTER}}", ["LIST", "SCENARIO_QUESTION_ANSWER", "{{$LETTER}}", "{{$QUESTION_I}}"]],
                             ["INCREASE_VAR", "$INDEX", 1]
@@ -1099,10 +1448,10 @@
                     ],
                     ["TRUE"],
                     ["COND",
-                        ["NOT_EQUAL", "$GAME.arkhamScenarioAction", null],
-                        ["ACTION_LIST", "$GAME.arkhamScenarioAction"],
+                        ["NOT_EQUAL", "$GAME.arkham.scenarioAction", null],
+                        ["ACTION_LIST", "$GAME.arkham.scenarioAction"],
                         ["TRUE"],
-                        ["SCENARIO_INIT_FINISH", null]
+                        ["SCENARIO_INIT_FINISH"]
                     ]
                 ]
             ]
@@ -1110,24 +1459,24 @@
         "SCENARIO_QUESTION_ANSWER": {
             "args": ["$QUESTION_ANSWER", "$QUESTION_TEXT"],
             "code": [
-                ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
-                ["LOG", "{{$ALIAS_N}} picks option {{$QUESTION_ANSWER}} in scenario question {{$GAME.arkhamScenarioQuestionIndex}}."],
-                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "$QUESTION_ANSWER"],
-                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "$QUESTION_TEXT"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["INCREASE_VAL", "/arkham/scenarioQuestionIndex", 1],
+                ["LOG", "{{$ALIAS_N}} picks option {{$QUESTION_ANSWER}} in scenario question {{$GAME.arkham.scenarioQuestionIndex}}."],
+                ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "$QUESTION_ANSWER"],
+                ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "$QUESTION_TEXT"],
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "SCENARIO_SKIP_QUESTION_WITH_ANSWER": {
             "args": ["$ANSWER", "$TEXT", "$NEXT_SCENARIO_ACTION"],
             "code": [
-                ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "dummy"],
-                ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
-                ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1],
-                ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
-                ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
-                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "$ANSWER"],
-                ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "$TEXT"],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SET", "/arkham/scenarioQuestion{{$GAME.arkham.numScenarioQuestions}}", "dummy"],
+                ["SET", "/arkham/scenarioQuestionList{{$GAME.arkham.numScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
+                ["INCREASE_VAL", "/arkham/numScenarioQuestions", 1],
+                ["SET", "/arkham/scenarioAction", "$NEXT_SCENARIO_ACTION"],
+                ["INCREASE_VAL", "/arkham/scenarioQuestionIndex", 1],
+                ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "$ANSWER"],
+                ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "$TEXT"],
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "SCENARIO_SKIP_QUESTION": {
@@ -1141,15 +1490,15 @@
             "code": [
                 ["VALIDATE_GT0", "$NUMBER_OF_QUESTIONS", "SCENARIO_SKIP_QUESTIONS.NUMBER_OF_QUESTIONS"],
                 ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUMBER_OF_QUESTIONS", 1, [
-                    ["SET", "/arkhamScenarioQuestion{{$GAME.arkhamNumScenarioQuestions}}", "dummy"],
-                    ["SET", "/arkhamScenarioQuestionList{{$GAME.arkhamNumScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
-                    ["INCREASE_VAL", "/arkhamNumScenarioQuestions", 1],
-                    ["SET", "/arkhamScenarioAction", "$NEXT_SCENARIO_ACTION"],
-                    ["INCREASE_VAL", "/arkhamScenarioQuestionIndex", 1],
-                    ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}", "X"],
-                    ["SET", "/arkhamScenarioAnswer{{$GAME.arkhamScenarioQuestionIndex}}Text", "dummy"]
+                    ["SET", "/arkham/scenarioQuestion{{$GAME.arkham.numScenarioQuestions}}", "dummy"],
+                    ["SET", "/arkham/scenarioQuestionList{{$GAME.arkham.numScenarioQuestions}}", ["LIST", "dummy", "dummy"]],
+                    ["INCREASE_VAL", "/arkham/numScenarioQuestions", 1],
+                    ["SET", "/arkham/scenarioAction", "$NEXT_SCENARIO_ACTION"],
+                    ["INCREASE_VAL", "/arkham/scenarioQuestionIndex", 1],
+                    ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}", "X"],
+                    ["SET", "/arkham/scenarioAnswer{{$GAME.arkham.scenarioQuestionIndex}}Text", "dummy"]
                 ]],
-                ["SHOW_SCENARIO_QUESTION_PROMPT", null]
+                ["SHOW_SCENARIO_QUESTION_PROMPT"]
             ]
         },
         "GET_FIRST_OF_SHUFFLED_LIST": {
@@ -1189,49 +1538,49 @@
             ]
         },
         "SCENARIO_INIT_FINISH": {
-            "args": ["$DUMMY"],
+            "args": [],
             "code": [
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamSkipShufflingEncounterDeck", false],
+                    ["EQUAL", "$GAME.arkham.skipShufflingEncounterDeck", false],
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null]
                 ],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckA", false],
+                    ["EQUAL", "$GAME.arkham.skipShufflingSharedDeckA", false],
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null]
                 ],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckB", false],
+                    ["EQUAL", "$GAME.arkham.skipShufflingSharedDeckB", false],
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null]
                 ],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamSkipShufflingSharedDeckC", false],
+                    ["EQUAL", "$GAME.arkham.skipShufflingSharedDeckC", false],
                     ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckC", true, null]
                 ],
                 ["SET", "/roundNumber", 1],
-                ["SET", "/arkhamScenarioInit", false],
+                ["SET", "/arkham/scenarioInit", false],
                 ["SET", "/stepId", "I1"],
                 ["DO_REFRESH_ALL_STORIES"],
                 ["SCENARIO_INIT_RESOURCES"],
                 ["SCENARIO_INIT_CLUES"],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamFinalScenarioMessage", null],
+                    ["EQUAL", "$GAME.arkham.finalScenarioMessage", null],
                     ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign."],
                     ["TRUE"],
-                    ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign. {{$GAME.arkhamFinalScenarioMessage}}"]
+                    ["LOG", "└── Game begins with the Investigation phase. Adjust the Chaos Bag to match your Campaign. {{$GAME.arkham.finalScenarioMessage}}"]
                 ]
             ]
         },
         "SCENARIO_CUSTOM_SPAWN_CHOICE": {
             "args": ["$LOCATION_NAMES", "$SCENARIO_CONTINUE_ACTION"],
             "code": [
-                ["SET", "/arkhamCustomSpawnChoiceDone", 0],
-                ["SET", "/arkhamCustomSpawnChoiceScenarioContinueAction", "$SCENARIO_CONTINUE_ACTION"],
+                ["SET", "/arkham/customSpawnChoiceDone", 0],
+                ["SET", "/arkham/customSpawnChoiceScenarioContinueAction", "$SCENARIO_CONTINUE_ACTION"],
                 ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                     ["PROMPT", "$PLAYER_I", "askForCustomSpawnChoice"],
                     ["VAR", "$INDEX", 0],
                     ["FOR_EACH_VAL", "$LOCATION_NAME", "$LOCATION_NAMES", [
                         ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$LOCATION_NAME}}", "{{$LETTER}}", ["LIST", "DO_MAKE_CUSTOM_SPAWN_CHOICE", "{{$PLAYER_I}}", "{{$LOCATION_NAME}}"]],
+                        ["PROMPT_ADD_OPTION", "$PLAYER_I", "{{$LOCATION_NAME}}.", "{{$LETTER}}", ["LIST", "DO_MAKE_CUSTOM_SPAWN_CHOICE", "{{$PLAYER_I}}", "{{$LOCATION_NAME}}"]],
                         ["INCREASE_VAR", "$INDEX", 1]
                     ]]
                 ]]
@@ -1242,12 +1591,26 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MAKE_CUSTOM_SPAWN_CHOICE.TARGET_PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$LOCATION_CARD_NAME", "DO_MAKE_CUSTOM_SPAWN_CHOICE.LOCATION_CARD_NAME"],
-                ["SET", "/playerData/$TARGET_PLAYER/arkhamCustomSpawnLocation", "$LOCATION_CARD_NAME"],
-                ["INCREASE_VAL", "/arkhamCustomSpawnChoiceDone", 1],
+                ["SET", "/playerData/$TARGET_PLAYER/arkham/customSpawnLocation", "$LOCATION_CARD_NAME"],
+                ["INCREASE_VAL", "/arkham/customSpawnChoiceDone", 1],
                 ["COND",
-                    ["GREATER_EQUAL", "$GAME.arkhamCustomSpawnChoiceDone", "$GAME.numPlayers"],
-                    ["ACTION_LIST", "$GAME.arkhamCustomSpawnChoiceScenarioContinueAction"]
+                    ["GREATER_EQUAL", "$GAME.arkham.customSpawnChoiceDone", "$GAME.numPlayers"],
+                    ["ACTION_LIST", "$GAME.arkham.customSpawnChoiceScenarioContinueAction"]
                 ]
+            ]
+        },
+        "DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES.LOG_EVENT"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                    ["VAR", "$CLUES", ["GET_CLUES_ON_CARD", "$INVESTIGATOR.id"]],
+                    ["COND",
+                        ["GREATER_THAN", "$CLUES", 0],
+                        ["DO_REMOVE_CLUES_FROM_CARD", "$PLAYER_I", "$INVESTIGATOR.id", "$CLUES", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                    ]
+                ]]
             ]
         }
     },
@@ -1266,7 +1629,7 @@
         },
         "chooseScenarioDifficulty": {
             "args": [],
-            "message": "Choose {{$GAME.arkhamScenarioName}} difficulty.",
+            "message": "Choose {{$GAME.arkham.scenarioName}} difficulty.",
             "options": [
                 {
                     "label": "Easy.",

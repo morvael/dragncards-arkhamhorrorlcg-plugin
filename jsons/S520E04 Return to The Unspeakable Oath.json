@@ -21,7 +21,7 @@
                 {"databaseId": "03163", "quantity": 1, "loadGroupId": "sharedActStory"},            //Arkham Asylum
                 {"databaseId": "03166", "quantity": 1, "loadGroupId": "sharedActStory"},            //Planning the Escape
                 {"databaseId": "03167", "quantity": 1, "loadGroupId": "sharedActStory"},            //No Asylum
-                {"databaseId": "03182a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Daniel Chesterfield: He's Not Doing All Too Well
+                {"databaseId": "03182b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Daniel Chesterfield: He's Not Doing All Too Well
                 {"databaseId": "52037", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Host of Insanity
                 {"databaseId": "52038", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Radical Treatment
                 {"databaseId": "03178", "quantity": 1, "loadGroupId": "sharedDeckC"},               //Patient Confinement: Daniel's Cell
@@ -72,9 +72,9 @@
         ],
         "Return to The Unspeakable Oath Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["VAR", "$PLAYER_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
                         ["DO_SHUFFLE_GROUP", "$PLAYER_I", "$PLAYER_DECK", true, null],
@@ -121,26 +121,26 @@
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Asylum Halls: Western Patient Wing", 5, 7, 3, 0],
             ["DO_LOAD_CARDS_SCN", "Return to The Unspeakable Oath - Asylum"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-2", "chaos_m2"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Standard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-4", "chaos_m4"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"]
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m2", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m3", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m4", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m5", 1]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Conviction than Doubt.", "You have more Doubt than Conviction."], "Return to The Unspeakable Oath Scenario Question 2"]
         ],
         "Return to The Unspeakable Oath Scenario Question 2": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["DO_CREATE_STORY_CARD_SCN", "\"The Really Bad Ones\" (v. III)", "52035", 1, "sharedActStory"], //"The Really Bad Ones" (v. III)
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["DO_CREATE_STORY_CARD_SCN", "\"The Really Bad Ones\" (v. IV)", "52036", 1, "sharedActStory"]   //"The Really Bad Ones" (v. IV)
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Monster enemy cards are in Deck A, Possessed (Lunatic) enemy cards are in Deck B, Patient Confinement cards are in Deck C."],
+            ["SET", "/arkham/finalScenarioMessage", "Monster enemy cards are in Deck A, Possessed (Lunatic) enemy cards are in Deck B, Patient Confinement cards are in Deck C."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -70,8 +70,8 @@
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
                 ["DO_CREATE_CARDS_SCN", "Exhibit Hall", "$EXHIBIT_HALLS_BOTTOM.[$I]", 1, "sharedDeckA"]
             ]],
-            ["SET", "/arkhamSkipShufflingSharedDeckA", true],
-            ["SET", "/arkhamFinalScenarioMessage", "Exhibit Hall cards are in Deck A."],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
+            ["SET", "/arkham/finalScenarioMessage", "Exhibit Hall cards are in Deck A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

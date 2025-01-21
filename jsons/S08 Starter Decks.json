@@ -1,42 +1,222 @@
 {
+    "preBuiltDecks": {
+        "Daniela Reyes Starter Deck": {
+            "label": "Daniela Reyes Starter Deck",
+            "cards": [
+                {"databaseId": "08001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01023", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08002", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08003", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08074", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08094", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08126", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Daniela Reyes starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Norman Withers Starter Deck": {
+            "label": "Norman Withers Starter Deck",
+            "cards": [
+                {"databaseId": "08004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01036", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08005", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08006", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08032", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08034", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08097", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Norman Withers starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Monterey Jack Starter Deck": {
+            "label": "Monterey Jack Starter Deck",
+            "cards": [
+                {"databaseId": "08007", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08008", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08033", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08047", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08126", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Monterey Jack starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Lily Chen Starter Deck": {
+            "label": "Lily Chen Starter Deck",
+            "cards": [
+                {"databaseId": "08010", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01060", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01061", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01063", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01067", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08011a", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08015", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08060", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08061", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08094", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08116", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Lily Chen starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Bob Jenkins Starter Deck": {
+            "label": "Bob Jenkins Starter Deck",
+            "cards": [
+                {"databaseId": "08016", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01045", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08018", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08047", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08072", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08073", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08074", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08094", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08112", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Bob Jenkins starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        }
+    },
     "automation": {
         "cards": {
             "08004": { //Norman Withers: The Astronomer
                 "rules": {
-                    "08004a": {
-                        "type": "passive",
+                    "08004a": { //Play with the top card of your deck revealed.
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
-                        ],
-                        "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "playWithTopDeckCardRevealed", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "playWithTopDeckCardRevealed", 1, "$THIS.inPlay", "{2:P} plays with the top card of their deck revealed.", null]
+                        ]
+                    }
+                }
+            },
+            "08031": { //Forced Learning
+                "rules": {
+                    "08031a": { //During each upkeep phase, instead of drawing 1 card, draw 2 cards and discard 1 of them.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventUpkeepDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                        "then": [
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: instead of drawing 1 card, {1:P} draws 2 cards and discard 1 of them.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                            ["VAR", "$OLD_HAND", ["GET_ALL_CARDS_IN_GROUP", "$HAND_GROUP_ID"]],
+                            ["DO_DRAW_CARDS", "$TARGET_PLAYER", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], 2, true, null],
+                            ["VAR", "$NEW_HAND", ["GET_ALL_CARDS_IN_GROUP", "$HAND_GROUP_ID"]],
+                            ["VAR", "$NEW_CARDS", ["LIST"]],
+                            ["FOR_EACH_VAL", "$NEW_CARD", "$NEW_HAND", [
+                                ["VAR", "$FOUND", false],
+                                ["FOR_EACH_VAL", "$OLD_CARD", "$OLD_HAND", [
+                                    ["COND",
+                                        ["EQUAL", "$NEW_CARD.id", "$OLD_CARD.id"],
+                                        ["UPDATE_VAR", "$FOUND", true]
+                                    ]
+                                ]],
+                                ["COND",
+                                    ["EQUAL", "$FOUND", false],
+                                    ["UPDATE_VAR", "$NEW_CARDS", ["APPEND", "$NEW_CARDS", "$NEW_CARD"]]
+                                ]
+                            ]],
+                            ["COND",
+                                ["GREATER_THAN", ["LENGTH", "$NEW_CARDS"], 0],
+                                [
+                                    ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
+                                        "$NEW_CARDS",
+                                        null,
+                                        "Target {0} card to discard it.",
+                                        1, 1, false, "FORCED_LEARNING_SELECTION_CALLBACK", "$THIS.id"]
+                                ],
+                                ["TRUE"],
+                                ["PLAYER_EVENT_LOOP", "$TARGET.id", "UpkeepDraw"]
+                            ]
                         ]
                     }
                 }
             },
             "98007": { //Norman Withers: The Astronomer (promo)
-                "rules": {
-                    "98007a": {
-                        "type": "passive",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
-                        ],
-                        "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamPlayWithTopDeckCardRevealed", 1]
-                        ]
-                    }
-                }
+                "inheritFrom": "08004"
             }
+        }
+    },
+    "functions": {
+        "FORCED_LEARNING_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FORCED_LEARNING_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "FORCED_LEARNING_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "FORCED_LEARNING_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "UpkeepDraw"]
+            ]
         }
     }
 }

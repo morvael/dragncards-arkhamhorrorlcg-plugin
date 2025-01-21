@@ -1,0 +1,62 @@
+{
+    "preBuiltDecks": {
+        "Carnevale of Horrors Scenario": {
+            "label": "Carnevale of Horrors Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Side Stories B", "Side Stories", "Carnevale of Horrors", null, "Carnevale of Horrors Scenario Init"]
+            ]
+        },
+        "Carnevale of Horrors": {
+            "hideFromSearch": true,
+            "label": "Carnevale of Horrors",
+            "cards": [
+                {"databaseId": "82001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Carnevale of Horrors
+                {"databaseId": "82002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Festivities Begin
+                {"databaseId": "82003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Shadow of the Eclipse
+                {"databaseId": "82004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Chaos at the Carnevale
+                {"databaseId": "82005", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Carnevale Conspiracy
+                {"databaseId": "82006", "quantity": 1, "loadGroupId": "sharedActStory"},            //Get to the Boats!
+                {"databaseId": "82007", "quantity": 1, "loadGroupId": "sharedActStory"},            //Row!
+                {"databaseId": "82027", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Cnidathqua: The Many-armed Beast
+                {"databaseId": "82025", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Pantalone
+                {"databaseId": "82024", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Medico Della Peste
+                {"databaseId": "82023", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Bauta
+                {"databaseId": "82026", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Gilded Volto
+                {"databaseId": "82022", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},       //Abbess Allegria Di Biase: Most Blessed
+                {"databaseId": "82028", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Poleman
+                {"databaseId": "82029", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Carnevale Sentinel
+                {"databaseId": "82030", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Writhing Appendage
+                {"databaseId": "82031", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Mass Hysteria
+                {"databaseId": "82032", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Lost in Venice
+                {"databaseId": "82033", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Watchers' Gaze
+                {"databaseId": "82034", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Chaos in the Water
+                {"databaseId": "82035", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Mesmerize
+                {"databaseId": "82036", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Abduction
+                {"databaseId": "82037", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}        //Acrid Miasma
+            ]
+        }
+    },
+    "actionLists": {
+        "Carnevale of Horrors Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Carnevale of Horrors"],
+            ["VAR", "$VENICE", ["SHUFFLE_LIST", ["CONCAT_LISTS", ["LIST", "82008", "82009"], ["CHOOSE_N", ["LIST", "82010", "82011", "82012", "82013", "82014", "82015", "82016"], 6]]]], //San Marco Basilica, Canal-side, Streets of Venice, Rialto Bridge, Venetian Garden, Bridge of Sighs, Flooded Square, Accademia Bridge, The Guardian
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 45, 62, 70, 62, 45, 28, 20, 28]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 20, 43, 66, 76, 66, 43, 20]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 8, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "$CARD_DB.{{$VENICE.[$I]}}.A.name", "$VENICE.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],            
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "San Marco Basilica", 5, 7, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Abbess Allegria Di Biase", "San Marco Basilica", 3, 3, 1],
+            ["UPDATE_VAR", "$VENICE", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$VENICE", "82008"]],
+            ["VAR", "$CARNEVALE_GOERS", ["SHUFFLE_LIST", ["LIST", "82017", "82018", "82019", "82020", "82021", "82021", "82021"]]], //Don Lagorio: Secret Servant, Elisabetta Magro: High Servant of the Order, Salvatore Neri: Master of Illusions, Savio Corvi: Dark Lurker, Innocent Reveler (3)
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
+                ["DO_SPAWN_AT_LOCATION_SCN", "Masked Carnevale-Goer", "$CARNEVALE_GOERS.[$I]", "$VENICE.[$I]", 3, 3],
+                ["SET", "/cardById/$DO_SPAWN_AT_LOCATION_RESULT/currentSide", "B"]
+            ]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

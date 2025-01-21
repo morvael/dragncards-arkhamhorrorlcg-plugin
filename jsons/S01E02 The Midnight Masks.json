@@ -28,6 +28,27 @@
                 {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                           //False Lead
             ]
         },
+        "The Midnight Masks - Treacheries": {
+            "hideFromSearch": true,
+            "label": "The Midnight Masks - Treacheries",
+            "cards": [
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Hunting Shadow
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //False Lead
+            ]
+        },
+        "The Midnight Masks - Arkham": {
+            "hideFromSearch": true,
+            "label": "The Midnight Masks - Arkham",
+            "cards": [
+                {"databaseId": "01125", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "76%"},  //Rivertown
+                {"databaseId": "01129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "76%"},  //Miskatonic University
+                {"databaseId": "01130", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Downtown: First Bank of Arkham
+                {"databaseId": "01132", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Easttown
+                {"databaseId": "01134", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Northside
+                {"databaseId": "01135", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Shadow
+                {"databaseId": "01136", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //False Lead
+            ]
+        },
         "The Midnight Masks - Southside": {
             "hideFromSearch": true,
             "label": "The Midnight Masks - Southside",
@@ -67,30 +88,30 @@
             ["DO_LOAD_N_CARDS_SCN", "The Midnight Masks - Downtown", 1],
             ["DO_LOAD_N_CARDS_SCN", "The Midnight Masks - Southside", 1],
             ["VAR", "$SPAWN_SITES", ["LIST", "Southside", "Downtown", "Graveyard"]],
-            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkhamNumPlayers", 1], 1, [
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["SUBTRACT", "$GAME.arkham.numPlayers", 1], 1, [
                 ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Acolyte", "$SPAWN_SITES.[$I]", 3, 3, 0],
                 ["DO_PLACE_DOOM_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", 1, true, null]
             ]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Your house has burned to the ground.", "Your house is still standing."], "The Midnight Masks Scenario Question 1"]
         ],
         "The Midnight Masks Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_DELETE_LOCATION_SCN", "Your House"],
                     ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rivertown", 5, 7, 3, 0]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your House", 5, 7, 3, 0]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The Ghoul Priest is still alive.", "The above is not true."], "The Midnight Masks Scenario Question 2"]
         ],
         "The Midnight Masks Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Ghoul Priest", "01116", 1, "sharedEncounterDeck"]
                 ]
             ],

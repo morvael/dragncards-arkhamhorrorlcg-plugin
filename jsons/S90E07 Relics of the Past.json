@@ -1,0 +1,85 @@
+{
+    "preBuiltDecks": {
+        "Relics of the Past Scenario": {
+            "label": "Relics of the Past Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$MONTEREY_JACK", ["GET_NAMED_CARD", "Monterey Jack"]],
+                ["COND",
+                    ["NOT_EQUAL", "$MONTEREY_JACK", null],
+                    ["SCENARIO_INIT", "Challenge Scenarios D", "Challenge Scenarios", "Relics of the Past", null, "Relics of the Past Scenario Init"],
+                    ["TRUE"],
+                    ["LOG", "└── Monterey Jack must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "Relics of the Past": {
+            "hideFromSearch": true,
+            "label": "Relics of the Past",
+            "cards": [
+                {"databaseId": "90065", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Relics of the Past
+                {"databaseId": "90066a", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                            //Something Else Stirs...
+                {"databaseId": "90067", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Guardian of the Relics
+                {"databaseId": "90068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Crumbling Ruin
+                {"databaseId": "90069", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Find the Way Out!
+                {"databaseId": "04060", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Entryway
+                {"databaseId": "90077", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Vengeant Past
+                {"databaseId": "90071", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Inner Chamber
+                {"databaseId": "04064", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Grand Chamber
+                {"databaseId": "04065", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Burial Pit
+                {"databaseId": "04066", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Underground Ruins
+                {"databaseId": "90070", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Secret Passage
+                {"databaseId": "90072", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Ancient Hall
+                {"databaseId": "rop_chalk", "quantity": 1, "loadGroupId": "sharedPileA"},                               //Chalk
+                {"databaseId": "rop_compass", "quantity": 1, "loadGroupId": "sharedPileA"},                             //Compass
+                {"databaseId": "rop_journal", "quantity": 1, "loadGroupId": "sharedPileA"},                             //Journal
+                {"databaseId": "rop_satchel", "quantity": 1, "loadGroupId": "sharedPileA"},                             //Satchel
+                {"databaseId": "rop_torches", "quantity": 1, "loadGroupId": "sharedPileA"}                              //Torches
+            ]
+        },
+        "Relics of the Past - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Relics of the Past - Set Aside",
+            "cards": [
+                {"databaseId": "90073", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Jade Crocodile: Effigy of the Guardian
+                {"databaseId": "90074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Obsidian Jaguar: Effigy of the Huntress
+                {"databaseId": "90075", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Citrine Snake: Effigy of the Child
+                {"databaseId": "90076", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Turquoise Eagle: Effigy of the Watcher
+            ]
+        }
+    },
+    "actionLists": {
+        "Relics of the Past Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Relics of the Past"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Traps"],
+            ["DO_LOAD_CARDS_SCN", "Forgotten Ruins"],
+            ["DO_LOAD_CARDS_SCN", "Serpents"],
+            ["DO_LOAD_CARDS_SCN", "Yig's Venom"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Deep Dark", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Final Mistake", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Pit Viper", "sharedEncounterDeck", 3, "sharedDeckA"],
+            ["COND",
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                    ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"]
+                ],
+                [
+                    ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Locked Door", "sharedEncounterDeck", 1, "sharedDeckA"],
+                    ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Entombed", "sharedEncounterDeck", 1, "sharedDeckA"]
+                ]
+            ],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Brood of Yig", "sharedEncounterDeck", 3, "sharedNotInPlay"],
+            ["DO_LOAD_CARDS_SCN", "Relics of the Past - Set Aside"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entryway", 5, 7, 3, 0],
+            ["DO_LOAD_CARDS_SCN", "Poison"],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck. Supplies unique to this scenario are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

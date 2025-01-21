@@ -214,7 +214,7 @@
                         ["PROMPT", "$TARGET_PLAYER", "askHowManyToShuffle", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
                         ["FOR_EACH_START_STOP_STEP", "$I", 2, "$AVAILABLE_NUMBER", 1, [
                             ["VAR", "$LETTER", ["SUBSTRING", "XX2345678901", "$I", 1]],
-                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_SHUFFLE_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card.", " cards."], "{{$LETTER}}", ["LIST", "DO_SHUFFLE_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
                         ]]
                     ]
                 ]
@@ -249,7 +249,10 @@
                 ["AND",
                     ["OR",
                         ["AND",
-                            ["EQUAL", "$SOURCE_GROUP.groupType", "hand"], //shuffle any hand into player's deck / extra deck
+                            ["OR", //shuffle any hand/selection into player's deck / extra deck
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "hand"],
+                                ["EQUAL", "$SOURCE_GROUP.groupType", "selection"]
+                            ],
                             ["OR",
                                 ["EQUAL", "$TARGET_GROUP.groupType", "deckP"],
                                 ["EQUAL", "$TARGET_GROUP.groupType", "deckE"]
@@ -291,6 +294,21 @@
                             ["SHUFFLE_GROUP", "$TARGET_GROUP_ID"]
                         ]
                     ]
+                ]
+            ]
+        },
+        "DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE.SOURCE_GROUP_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE.LOG_EVENT"],
+                ["COND",
+                    ["CAN_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
+                    ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+                    ["TRUE"],
+                    ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"]
                 ]
             ]
         },
@@ -479,8 +497,8 @@
         "CAN_LOOK_AT_TOP_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_GROUP_ID", "$ACTOR_PLAYER"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_PLAYER"],
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_DISCARD_RANDOM_CARDS_FROM_HAND.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_LOOK_AT_TOP_CARDS.TARGET_PLAYER"],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "CAN_LOOK_AT_TOP_CARDS.TARGET_GROUP_ID"]],
                 ["AND",
                     ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
                     ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 0]
@@ -504,7 +522,7 @@
                         ["PROMPT", "$TARGET_PLAYER", "askHowManyToLookAt", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
                         ["FOR_EACH_START_STOP_STEP", "$I", 1, "$AVAILABLE_NUMBER", 1, [
                             ["VAR", "$LETTER", ["SUBSTRING", "X1234567890", "$I", 1]],
-                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card", " cards"], "{{$LETTER}}", ["LIST", "DO_LOOK_AT_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["GET_NUMERIC_LOG", "", "", "$I", " card.", " cards."], "{{$LETTER}}", ["LIST", "DO_LOOK_AT_TOP_N_CARDS_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_GROUP_ID}}", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
                         ]]
                     ]
                 ]
@@ -601,7 +619,7 @@
             "message": "You should now take one horror due to empty deck during draw.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
@@ -609,7 +627,7 @@
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips taking one horror due to empty deck during draw."]
@@ -622,7 +640,7 @@
             "message": "You should now draw 1 encounter card.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["DO_DRAW_CARDS", "$PLAYER_N", "sharedEncounterDeck", 1, true, "$PLAYER_N"],
@@ -630,7 +648,7 @@
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips drawing 1 encounter card."],
@@ -644,7 +662,7 @@
             "message": "You should now draw {{$TEXT}}.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["COND",
@@ -655,7 +673,7 @@
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips drawing {{$TEXT}}."],

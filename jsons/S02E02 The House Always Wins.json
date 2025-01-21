@@ -68,7 +68,7 @@
                 ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "$BACK_HALL_DOORWAYS.[$I]", 1, "sharedNotInPlay"],
                 ["DO_SET_SPAWN_LOCATION", "$BACK_HALL_DOORWAYS.[$I]", 70, "$SPAWN_TOPS.[$I]"]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Hideous Abominations cards are in Deck A, Striking Fear cards are in Pile A."],
+            ["SET", "/arkham/finalScenarioMessage", "Hideous Abominations cards are in Deck A, Striking Fear cards are in Pile A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

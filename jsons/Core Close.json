@@ -22,8 +22,8 @@
     ],
     "saveGame": {
         "metadata": {
-            "Campaign - Scenario": "{{$GAME.arkhamCampaignName}} - {{$GAME.arkhamScenarioName}}",
-            "Difficulty": "{{$GAME.arkhamScenarioDifficulty}}",
+            "Campaign - Scenario": "{{$GAME.arkham.campaignName}} - {{$GAME.arkham.scenarioName}}",
+            "Difficulty": "{{$GAME.arkham.scenarioDifficulty}}",
             "Investigators": [
                 ["VAR", "$INVESTIGATORS", ""],
                 ["VAR", "$SEPARATOR", ""],

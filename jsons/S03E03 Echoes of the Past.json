@@ -46,8 +46,8 @@
         ],
         "Echoes of the Past Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
             ],
             ["SCENARIO_INIT_RESUME", "Echoes of the Past Scenario Init"]
         ],
@@ -55,7 +55,7 @@
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past"],
             ["DO_LOAD_CARDS_SCN", "Cult of the Yellow Sign"],
             ["DO_LOAD_CARDS_SCN", "Delusions"],
-            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
             ["DO_LOAD_CARDS_SCN", "Locked Doors"],
             ["DO_LOAD_CARDS_SCN", "Dark Cult"],
             ["VAR", "$SOCIETIES_0", ["SHUFFLE_LIST", ["LIST", "03128", "03129", "03130"]]], //Historical Society: Meeting Room, Historical Society: Record Office, Historical Society: Historical Museum
@@ -69,10 +69,10 @@
             ]],
             ["DO_LOAD_CARDS_SCN", "Echoes of the Past - Historical Society"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["VAR", "$ENTRY_HALL_CARD", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
-                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL_CARD.id", "$GAME.arkhamNumPlayers", true, null]
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL_CARD.id", "$GAME.arkham.numPlayers", true, null]
                 ]
             ],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Entry Hall", 5, 7, 3, 0],
@@ -83,15 +83,15 @@
                 ["IN_STRING", "$CARD.currentFace.traits", "Third Floor."]
             ]]]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamNumPlayers", 2],
+                ["EQUAL", "$GAME.arkham.numPlayers", 2],
                 [
                     ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 1]
                 ],
-                ["EQUAL", "$GAME.arkhamNumPlayers", 3],
+                ["EQUAL", "$GAME.arkham.numPlayers", 3],
                 [
                     ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 2]
                 ],
-                ["EQUAL", "$GAME.arkhamNumPlayers", 4],
+                ["EQUAL", "$GAME.arkham.numPlayers", 4],
                 [
                     ["UPDATE_VAR", "$SEEKERS_TO_SPAWN", 3],
                     ["UPDATE_VAR", "$SPAWN_LOCATIONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
@@ -111,10 +111,10 @@
         ],
         "Echoes of the Past Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
-                    ["SET", "/arkhamFinalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game."]
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["SET", "/arkham/finalScenarioMessage", "Each investigator can take 1 additional action during their first turn of this game."]
                 ]
             ],
             ["SCENARIO_INIT_CONTINUE", null]

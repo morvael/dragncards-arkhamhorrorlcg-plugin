@@ -1,0 +1,63 @@
+{
+    "preBuiltDecks": {
+        "The Pit of Despair Scenario": {
+            "label": "The Pit of Despair Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "The Pit of Despair", null, "The Pit of Despair Scenario Init"]
+            ]
+        },
+        "The Pit of Despair": {
+            "hideFromSearch": true,
+            "label": "The Pit of Despair",
+            "cards": [
+                {"databaseId": "07041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Pit of Despair
+                {"databaseId": "07042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Awakening
+                {"databaseId": "07043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Water Rises
+                {"databaseId": "07044", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Sacrifice for the Deep
+                {"databaseId": "07045", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Pit
+                {"databaseId": "07046", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Escape
+                {"databaseId": "07047", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Unfamiliar Chamber
+                {"databaseId": "07051", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Idol Chamber
+                {"databaseId": "07050", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Altar to Dagon
+                {"databaseId": "07052", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sealed Exit
+                {"databaseId": "07053", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Amalgam
+                {"databaseId": "07054", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Blindsense
+                {"databaseId": "07055", "quantity": 3, "loadGroupId": "sharedNotInPlay"}                                //From the Depths
+            ]
+        }
+    },
+    "actionLists": {
+        "The Pit of Despair Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Pit of Despair"],
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Deep"],
+            ["DO_LOAD_CARDS_SCN", "Rising Tide"],
+            ["DO_LOAD_CARDS_SCN", "Shattered Memories"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Cthulhu"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["DO_CREATE_CARDS_SCN", "Blue Key", "key_blue", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Green Key", "key_green", 1, "sharedTokens"],
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", ["LIST", "key_red", "key_yellow", "key_purple"]]],  //Red Key, Yellow Key, Purple Key
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Unfamiliar Chamber", 5, 7, 3, 0],
+            ["VAR", "$TIDAL_TUNNELS", ["SHUFFLE_LIST", ["LIST", "07102", "07102", "07103", "07103", "07104", "07104", "07048", "07049"]]], //Underwater Cavern, Underwater Cavern, Tidal Pool, Tidal Pool, Underground River, Underground River, Bone-Ridden Pit, Fish Graveyard
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 45, 26, 64]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 31, 7, 7]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Tidal Tunnel", "$TIDAL_TUNNELS.[$I]", 1, "sharedLocations"],
+                ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 3, 8, 1, [
+                ["DO_CREATE_CARDS_SCN", "Tidal Tunnel", "$TIDAL_TUNNELS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 19, "sharedTokens"],
+            ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A. Off Map is “The Depths” (out of play). See “Location Adjacency in the Pit.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

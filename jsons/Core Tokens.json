@@ -239,7 +239,7 @@
                         ["VAR", "$INDEX", 0],
                         ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
                             ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
                             ["INCREASE_VAR", "$INDEX", 1]
                         ]]
                     ],
@@ -327,14 +327,14 @@
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
-                        ["GREATER_THAN", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkhamBonusCharges", 0],
+                        ["GREATER_THAN", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkham.bonusCharges", 0],
                         ["IN_STRING", "$TARGET_CARD.currentFace.text", "Uses ("],
                         ["OR",
                             ["IN_STRING", "$TARGET_CARD.currentFace.text", " charges)."],
                             ["IN_STRING", "$TARGET_CARD.currentFace.text", " charge)."]
                         ]
                     ],
-                    ["INCREASE_VAR", "$USES", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkhamBonusCharges"]
+                    ["INCREASE_VAR", "$USES", "$PLAYER_DATA.{{$TARGET_CARD.controller}}.arkham.bonusCharges"]
                 ],
                 "$USES"
             ]
@@ -438,14 +438,14 @@
             "message": "You should now place 1 doom on the current agenda.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["DO_PLACE_DOOM_ON_CURRENT_AGENDA", "$PLAYER_N", 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips placing 1 doom on the current agenda."]
@@ -458,7 +458,7 @@
             "message": "You should now gain {{$TEXT}}.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["COND",
@@ -469,7 +469,7 @@
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips gaining {{$TEXT}}."],
@@ -480,8 +480,22 @@
         }
     },
     "preBuiltDecks": {
-        "key_tokens": {
-            "label": "key_tokens",
+        "Standard Tokens": {
+            "label": "Standard Tokens",
+            "cards": [
+                {"databaseId": "token_resource_1",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_resource_3",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_resource_5",  "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_clue_doom_1", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_clue_doom_3", "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_damage_1",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_damage_3",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_horror_1",    "quantity": 1, "loadGroupId": "sharedTokens"},
+                {"databaseId": "token_horror_3",    "quantity": 1, "loadGroupId": "sharedTokens"}
+            ]
+        },
+        "Key Tokens": {
+            "label": "Key Tokens",
             "cards": [
                 {"databaseId": "key_red",    "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "key_blue",   "quantity": 1, "loadGroupId": "sharedTokens"},
@@ -492,14 +506,14 @@
                 {"databaseId": "key_white",  "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
-        "flooded_tokens": {
-            "label": "flooded_tokens",
+        "Flooded Token": {
+            "label": "Flooded Token",
             "cards": [
-                {"databaseId": "flooded", "quantity": 19, "loadGroupId": "sharedTokens"}
+                {"databaseId": "flooded", "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
-        "seal_tokens": {
-            "label": "seal_tokens",
+        "Seal Tokens": {
+            "label": "Seal Tokens",
             "cards": [
                 {"databaseId": "seal_first",  "quantity": 1, "loadGroupId": "sharedTokens"},
                 {"databaseId": "seal_second", "quantity": 1, "loadGroupId": "sharedTokens"},

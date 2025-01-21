@@ -26,7 +26,7 @@
             "enterLeaveRefreshPlayerCardsInPlay": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayerInPlay"],
+                "listenTo": ["/playerData/*/arkham/playerInPlay"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_CARDS_IN_PLAY", "$TARGET"]
                 ],
@@ -37,7 +37,7 @@
             "enterLeaveRefreshOffMap": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/arkhamOffMapNotInPlay"],
+                "listenTo": ["/arkham/offMapNotInPlay"],
                 "condition": [
                     ["CAN_REFRESH_OFF_MAP"]
                 ],
@@ -59,7 +59,7 @@
             "enterLeaveRefreshPlayerDeckB": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayWithTopDeckCardRevealed"],
+                "listenTo": ["/playerData/*/arkham/playWithTopDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}Deck"]
                 ],
@@ -70,7 +70,7 @@
             "enterLeaveRefreshPlayerDeckC": {
                 "type": "trigger",
                 "priority": 0,
-                "listenTo": ["/playerData/*/arkhamPlayWithTopExtraDeckCardRevealed"],
+                "listenTo": ["/playerData/*/arkham/playWithTopExtraDeckCardRevealed"],
                 "condition": [
                     ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
                 ],
@@ -84,7 +84,7 @@
                 "listenTo": ["/groupById/sharedAgendaStory/stackIds", "/groupById/sharedActStory/stackIds", "/groupById/sharedActStoryB/stackIds", "/groupById/sharedActStoryC/stackIds", "/groupById/sharedActStoryD/stackIds", "/groupById/sharedActStoryE/stackIds"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["CAN_REFRESH_STORY", "$TARGET"]
                     ]
                 ],
@@ -98,7 +98,7 @@
                 "listenTo": ["/cardById/*/attachmentDirection"],
                 "condition": [
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                        ["EQUAL", "$GAME.arkham.scenarioInit", false],
                         ["OR",
                             ["EQUAL", "$TARGET.groupId", "sharedAgendaStory"],
                             ["EQUAL", "$TARGET.groupId", "sharedActStory"],
@@ -131,7 +131,8 @@
                         ["IN_STRING", "$NEW_GROUP.groupType", "aside"],
                         ["IN_STRING", "$NEW_GROUP.groupType", "removed"],
                         ["IN_STRING", "$NEW_GROUP.groupType", "exiled"],
-                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"]
+                        ["IN_STRING", "$NEW_GROUP.groupType", "sideDeck"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
                     ],
                     0,
                     ["TRUE"],
@@ -164,11 +165,13 @@
                     ["AND",
                         ["OR",
                             ["IN_STRING", "$OLD_GROUP.groupType", "deck"],
-                            ["IN_STRING", "$OLD_GROUP.groupType", "hand"]
+                            ["IN_STRING", "$OLD_GROUP.groupType", "hand"],
+                            ["IN_STRING", "$OLD_GROUP.groupType", "selection"]
                         ],
                         ["OR",
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Tarot Card"]
+                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Tarot Card"],
+                            ["EQUAL", "$TARGET_CARD.sides.A.encounterSet", ""]
                         ]
                     ],
                     "A",
@@ -178,14 +181,13 @@
             ]
         },
         "GET_DESIRED_ENTER_SIDE": {
-            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$NEW_GROUP"],
             "code": [
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$NEW_GROUP.groupType", "deck"],
-                        ["EQUAL", "$NEW_GROUP.groupType", "deckS"],
-                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+                        ["IN_STRING", "$NEW_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "hand"],
+                        ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
                     ],
                     "B",
                     ["OR",
@@ -205,12 +207,11 @@
             ]
         },
         "GET_DESIRED_CURRENT_SIDE": {
-            "_comment": "deckP and deckE groups left out as currentSide there is controlled by stackIds listener",
             "args": ["$TARGET_CARD", "$OLD_GROUP", "$NEW_GROUP"],
             "code": [
                 ["COND",
                     ["OR",
-                        ["EQUAL", "$NEW_GROUP.groupType", "deckP"],
+                        ["EQUAL", "$NEW_GROUP.groupType", "deckP"], //deckP and deckE groups left out as currentSide there is controlled by stackIds listener
                         ["EQUAL", "$NEW_GROUP.groupType", "deckE"]
                     ],
                     null,
@@ -275,6 +276,7 @@
                 ["COND",
                     ["OR",
                         ["EQUAL", "$NEW_GROUP.id", "{{$TARGET_PLAYER}}Hand"],
+                        ["EQUAL", "$NEW_GROUP.id", "{{$TARGET_PLAYER}}Selection"],
                         ["AND",
                             ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.browseGroup.id", "$NEW_GROUP.id"],
                             ["IN_STRING", "$NEW_GROUP.groupType", "deck"]
@@ -340,6 +342,12 @@
                         ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
                     ],
                     null,
+                    ["AND",
+                        ["EQUAL", "$NEW_GROUP.canHaveAttachments", true],
+                        ["NOT_EQUAL", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentFace", null],
+                        ["EQUAL", ["IN_STRING", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentFace.subtype", "Weakness"], true]
+                    ],
+                    "shared",
                     ["IN_STRING", "$NEW_GROUP.id", "player1"],
                     "player1",
                     ["IN_STRING", "$NEW_GROUP.id", "player2"],
@@ -362,7 +370,7 @@
                         ["NOT_EQUAL", "$NEW_GROUP", null],
                         ["OR",
                             ["NOT_EQUAL", "$TARGET_CARD.controller", "shared"],
-                            ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                            ["IS_PLAYER_CARD", "$TARGET_CARD"],
                             ["EQUAL", "$TARGET_CARD.sides.A.type", "Supplies"]
                         ]
                     ],
@@ -403,7 +411,10 @@
         "GET_DESIRED_IN_HAND": {
             "args": ["$TARGET_CARD", "$NEW_GROUP"],
             "code": [
-                ["IN_STRING", "$NEW_GROUP.groupType", "hand"]
+                ["OR",
+                    ["IN_STRING", "$NEW_GROUP.groupType", "hand"],
+                    ["IN_STRING", "$NEW_GROUP.groupType", "selection"]
+                ]
             ]
         },
         "CAN_CHANGE_IN_HAND": {
@@ -444,14 +455,15 @@
                     ["IN_STRING", "$NEW_GROUP.groupType", "story"],
                     null,
                     ["AND",
-                        ["EQUAL", "$GAME.arkhamOffMapNotInPlay", true],
+                        ["EQUAL", "$GAME.arkham.offMapNotInPlay", true],
                         ["EQUAL", "$NEW_GROUP.id", "sharedOffMap"]
                     ],
                     false,
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                        ["EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"],
                         ["AND",
-                            ["EQUAL", "$TARGET_CARD.currentSide", "B"],
+                            ["EQUAL", "$CARD_BY_ID.{{$TARGET_CARD.id}}.currentSide", "B"],
                             ["EQUAL", "$TARGET_CARD.sides.B.databaseId", null],
                             ["OR",
                                 ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
@@ -463,13 +475,13 @@
                     ["IN_STRING", "$NEW_GROUP.groupType", "inPlay"],
                     ["COND",
                         ["IN_STRING", "$NEW_GROUP.id", "player1"],
-                        ["EQUAL", "$PLAYER_DATA.player1.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player1.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player2"],
-                        ["EQUAL", "$PLAYER_DATA.player2.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player2.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player3"],
-                        ["EQUAL", "$PLAYER_DATA.player3.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player3.arkham.playerInPlay", true],
                         ["IN_STRING", "$NEW_GROUP.id", "player4"],
-                        ["EQUAL", "$PLAYER_DATA.player4.arkhamPlayerInPlay", true],
+                        ["EQUAL", "$PLAYER_DATA.player4.arkham.playerInPlay", true],
                         ["TRUE"],
                         true
                     ],
@@ -643,21 +655,21 @@
             "code": [
                 ["COND",
                     ["EQUAL", "$TARGET_GROUP.id", "player1Deck"],
-                    "$PLAYER_DATA.player1.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player1.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player1ExtraDeck"],
-                    "$PLAYER_DATA.player1.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player1.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player2Deck"],
-                    "$PLAYER_DATA.player2.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player2.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player2ExtraDeck"],
-                    "$PLAYER_DATA.player2.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player2.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player3Deck"],
-                    "$PLAYER_DATA.player3.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player3.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player3ExtraDeck"],
-                    "$PLAYER_DATA.player3.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player3.arkham.playWithTopExtraDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player4Deck"],
-                    "$PLAYER_DATA.player4.arkhamPlayWithTopDeckCardRevealed",
+                    "$PLAYER_DATA.player4.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player4ExtraDeck"],
-                    "$PLAYER_DATA.player4.arkhamPlayWithTopExtraDeckCardRevealed",
+                    "$PLAYER_DATA.player4.arkham.playWithTopExtraDeckCardRevealed",
                     ["TRUE"],
                     0
                 ]
@@ -738,7 +750,8 @@
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                         ["VAR", "$DESIRED_IN_PLAY", ["AND",
                             ["EQUAL", "$IN_PLAY", true],
-                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"]
                         ]],
                         ["COND",
                             ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],
@@ -765,7 +778,8 @@
                         ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
                         ["VAR", "$DESIRED_IN_PLAY", ["AND",
                             ["EQUAL", "$IN_PLAY", true],
-                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"]
+                            ["NOT_EQUAL", "$TARGET_CARD.attachmentDirection", "behind"],
+                            ["NOT_EQUAL", "$TARGET_CARD.sides.B.name", "Upgrade Card"]
                         ]],
                         ["COND",
                             ["NOT_EQUAL", "$TARGET_CARD.inPlay", "$DESIRED_IN_PLAY"],

@@ -28,7 +28,7 @@
                 {"databaseId": "05083", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Balcony
                 {"databaseId": "05084", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Office
                 {"databaseId": "54028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Wine Cellar
-                {"databaseId": "05085", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Josef Meiger: Lodge Host
+                {"databaseId": "05085b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Josef Meiger: Lodge Host
                 {"databaseId": "05071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Entry Hall
                 {"databaseId": "05072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Victorian Halls
                 {"databaseId": "05073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Trophy Room
@@ -62,7 +62,7 @@
         "Return to At Death's Doorstep Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Return to At Death's Doorstep"],
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Senator Nathaniel Rhodes", "Entry Hall", 3, 3, 0],
-            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$GAME.arkhamNumPlayers", true, null],
+            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$GAME.arkham.numPlayers", true, null],
             ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
             ["DO_LOAD_CARDS_SCN", "Spectral Predators"],
             ["DO_LOAD_CARDS_SCN", "Bloodthirsty Spirits"],
@@ -75,9 +75,9 @@
         ],
         "Return to At Death's Doorstep Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["VAR", "$ENTRY_HALL", ["GET_NAMED_MAP_LOCATION", "Entry Hall"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$ENTRY_HALL.id", 6, true, null]
                 ]
@@ -86,9 +86,9 @@
         ],
         "Return to At Death's Doorstep Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["VAR", "$OFFICE", ["GET_NAMED_MAP_LOCATION", "Office"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$OFFICE.id", 6, true, null]
                 ]
@@ -97,9 +97,9 @@
         ],
         "Return to At Death's Doorstep Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["VAR", "$BILLIARDS_ROOM", ["GET_NAMED_MAP_LOCATION", "Billiards Room"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BILLIARDS_ROOM.id", 6, true, null]
                 ]
@@ -108,9 +108,9 @@
         ],
         "Return to At Death's Doorstep Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
-                    ["LOG", "└── Missing Persons: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["LOG", "└── Missing Persons: {{$GAME.arkham.scenarioAnswer4Text}}"],
                     ["VAR", "$BALCONY", ["GET_NAMED_MAP_LOCATION", "Balcony"]],
                     ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$BALCONY.id", 6, true, null]
                 ]
@@ -118,19 +118,19 @@
             ["VAR", "$FINAL_MESSAGE", "Unstable Realm cards are in Pile A, The Watcher cards are in Pile B."],
             ["VAR", "$ABOVE_LOCATIONS", ["LIST"]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Entry Hall"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Office"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Billiards Room"]]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 ["UPDATE_VAR", "$ABOVE_LOCATIONS", ["APPEND", "$ABOVE_LOCATIONS", "Balcony"]]
             ],
             ["COND",
@@ -140,7 +140,7 @@
                     ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} {{$EXTRA_INFO}}"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}} When act 1b instructs the players to shuffle the Realm of Death encounter set into the encounter deck, shuffle in the Unstable Realm encounter set instead. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} When act 1b instructs the players to shuffle the Realm of Death encounter set into the encounter deck, shuffle in the Unstable Realm encounter set instead. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

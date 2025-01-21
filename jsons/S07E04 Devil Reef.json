@@ -1,0 +1,122 @@
+{
+    "preBuiltDecks": {
+        "Devil Reef Scenario": {
+            "label": "Devil Reef Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "Devil Reef", "Devil Reef Scenario Early Init", "Devil Reef Scenario Init"]
+            ]
+        },
+        "Devil Reef": {
+            "hideFromSearch": true,
+            "label": "Devil Reef",
+            "cards": [
+                {"databaseId": "07163", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Devil Reef
+                {"databaseId": "07164", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Secrets of the Sea (v. I)
+                {"databaseId": "07165", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Secrets of the Sea (v. II)
+                {"databaseId": "07166", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Devil of the Depths
+                {"databaseId": "07167", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Reef of Mysteries
+                {"databaseId": "07168", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "52%"},  //Churning Waters
+                {"databaseId": "07178", "quantity": 1, "loadGroupId": "sharedLocations", "left": "48%", "top": "55%"},  //Fishing Vessel
+                {"databaseId": "07180", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Awakened Mantle
+                {"databaseId": "07181", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Headdress of Y'ha-nthlei
+                {"databaseId": "07179", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Waveworn Idol
+                {"databaseId": "07174a", "quantity": 1, "loadGroupId": "sharedDeckA"},                                  //Bootlegger's Hideaway
+                {"databaseId": "07174b", "quantity": 1, "loadGroupId": "sharedDeckA"},                                  //Bootlegger's Hideaway
+                {"databaseId": "07182", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Deep One Predator
+                {"databaseId": "07183", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Hunting Deep One
+                {"databaseId": "07184", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Shapes in the Water
+                {"databaseId": "07185", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Aquatic Ambush
+                {"databaseId": "07186", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Horrors from the Deep
+                {"databaseId": "07187", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Stowaway
+                {"databaseId": "07188", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Dragged Under
+            ]
+        }
+    },
+    "actionLists": {
+        "Devil Reef Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The mission was successful.", "The mission failed."], "Devil Reef Scenario Question 1"]
+        ],
+        "Devil Reef Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Elina Harper: Knows Too Much"],
+            ["COND",
+                ["EQUAL", "$GAME.numPlayers", 1],
+                ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "A", ["DO_FORMAT_STRING", "{0:P} gets Thomas Dawson.", ["LIST", "$GAME.firstPlayer"]], "Devil Reef Scenario Question 2"],
+                ["TRUE"],
+                [
+                    ["VAR", "$ANSWERS_2", ["LIST"]],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["UPDATE_VAR", "$ANSWERS_2", ["APPEND", "$ANSWERS_2", ["DO_FORMAT_STRING", "{0:P} gets Thomas Dawson.", ["LIST", "$PLAYER_I"]]]]
+                    ]],
+                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_2", "Devil Reef Scenario Question 2"]
+                ]
+            ]
+        ],
+        "Devil Reef Scenario Question 2": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["COND",
+                    ["EQUAL", ["IN_STRING", "$GAME.arkham.scenarioAnswer2Text", ["GET_ALIAS", "$PLAYER_I"]], true],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                        ["DO_PULL_PLAYER_DECK_CARD_SCN", "Thomas Dawson: Soldier in a New War", "07082", ["GET_CONTROLLER_HAND", "$PLAYER_I"]],
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                        ["DO_PULL_PLAYER_DECK_CARD_SCN", "Thomas Dawson: Soldier in a New War", "07082", ["GET_CONTROLLER_DECK", "$PLAYER_I"]]
+                    ]
+                ]
+            ]],
+            ["SCENARIO_INIT_RESUME", "Devil Reef Scenario Init"]
+        ],
+        "Devil Reef Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Devil Reef"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Hydra"],
+            ["DO_LOAD_CARDS_SCN", "Creatures of the Deep"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Flooded Caverns", "sharedDeckA"],
+            ["DO_LOAD_CARDS_SCN", "Malfunction"],
+            ["DO_LOAD_CARDS_SCN", "Rising Tide"],
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "Fully Flooded", "flooded", "Churning Waters"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$DO_SPAWN_ATTACHED_TO_LOCATION_RESULT", false, null],
+            ["DO_CREATE_CARDS_SCN", "Purple Key", "key_purple", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "White Key", "key_white", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Black Key", "key_black", 1, "sharedTokens"],
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", ["LIST", "key_yellow", "key_green", "key_red", "key_blue"]]],  //Yellow Key, Green Key, Red Key, Blue Key
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 4, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Fishing Vessel", 5, 7, 3, 0],
+            ["VAR", "$DEVIL_REEFS", ["SHUFFLE_LIST", ["LIST", "07169", "07170", "07171", "07172", "07173"]]], //Lonely Isle, Hidden Cove, Waveworn Island, Salt Marshes, Black Reef
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 45, 17, 73, 17, 73]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 24, 43, 43, 62, 62]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
+                ["DO_CREATE_CARDS_SCN", "Devil Reef", "$DEVIL_REEFS.[$I]", 1, "sharedLocations"],
+                ["DO_SET_CARD_LOCATION", "$GAME.lastLoadedCardIds.[0]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["VAR", "$CYCLOPEAN_RUINS", ["SHUFFLE_LIST", ["LIST", "07176a", "07176b"]]], //Cyclopean Ruins, Cyclopean Ruins
+            ["VAR", "$DEEP_ONE_GROTTOS", ["SHUFFLE_LIST", ["LIST", "07175a", "07175b"]]], //Deep One Grotto, Deep One Grotto
+            ["VAR", "$TEMPLES_OF_THE_UNION", ["SHUFFLE_LIST", ["LIST", "07177a", "07177b"]]], //Temple of the Union, Temple of the Union
+            ["VAR", "$UNFATHOMABLE_DEPTHS", ["SHUFFLE_LIST", ["LIST", "$CYCLOPEAN_RUINS.[0]", "$DEEP_ONE_GROTTOS.[0]", "$TEMPLES_OF_THE_UNION.[0]"]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unfathomable Depths", "$UNFATHOMABLE_DEPTHS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Memories Recovered” in Campaign Log.", ["LIST", "Battle with a horrifying devil.", "The above is not true."], "Devil Reef Scenario Question 3"]
+        ],
+        "Devil Reef Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Memories Recovered: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["DO_DELETE_NAMED_CARDS_SCN", "Secrets of the Sea (v. II)"]
+                ],
+                ["TRUE"],
+                ["DO_DELETE_NAMED_CARDS_SCN", "Secrets of the Sea (v. I)"]
+            ],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 18, "sharedTokens"],
+            ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A. See “Location Adjacency in Devil Reef” and “Vehicles.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

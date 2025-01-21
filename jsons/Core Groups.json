@@ -20,7 +20,8 @@
         "aside":      {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false},
         "removed":    {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false},
         "exiled":     {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false},
-        "sideDeck":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false}
+        "sideDeck":   {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false},
+        "selection":  {"canHaveAttachments": false, "canHaveTokens": false, "shuffleOnLoad": false}
     },
     "groups": {
         "sharedLocations":         {"groupType": "inPlay",     "label": "id:sharedLocations",         "tableLabel": ""},
@@ -31,6 +32,7 @@
         "sharedScenarioReference": {"groupType": "inPlayS",    "label": "id:sharedScenarioReference", "tableLabel": "id:sharedScenarioReferenceShort"},
         "sharedVoid":              {"groupType": "inPlayV",    "label": "id:sharedVoid",              "tableLabel": "id:sharedVoidShort"},
         "player4Hand":             {"groupType": "hand",       "label": "id:player4Hand",             "tableLabel": "id:playerHandShort"},
+        "player4Selection":        {"groupType": "selection",  "label": "id:player4Selection",        "tableLabel": "id:playerSelectionShort"},
         "player4ExtraDeck":        {"groupType": "deckE",      "label": "id:player4ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player4Deck":             {"groupType": "deckP",      "label": "id:player4Deck",             "tableLabel": "id:playerDeckShort"},
         "player4Discard":          {"groupType": "discardP",   "label": "id:player4Discard",          "tableLabel": "id:playerDiscardShort"},
@@ -38,6 +40,7 @@
         "player4Investigator":     {"groupType": "inPlay",     "label": "id:player4Investigator",     "tableLabel": "id:player4InvestigatorShort"},
         "player4Play":             {"groupType": "inPlay",     "label": "id:player4Play",             "tableLabel": "id:playerPlayShort"},
         "player3Hand":             {"groupType": "hand",       "label": "id:player3Hand",             "tableLabel": "id:playerHandShort"},
+        "player3Selection":        {"groupType": "selection",  "label": "id:player3Selection",        "tableLabel": "id:playerSelectionShort"},
         "player3ExtraDeck":        {"groupType": "deckE",      "label": "id:player3ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player3Deck":             {"groupType": "deckP",      "label": "id:player3Deck",             "tableLabel": "id:playerDeckShort"},
         "player3Discard":          {"groupType": "discardP",   "label": "id:player3Discard",          "tableLabel": "id:playerDiscardShort"},
@@ -45,6 +48,7 @@
         "player3Investigator":     {"groupType": "inPlay",     "label": "id:player3Investigator",     "tableLabel": "id:player3InvestigatorShort"},
         "player3Play":             {"groupType": "inPlay",     "label": "id:player3Play",             "tableLabel": "id:playerPlayShort"},
         "player2Hand":             {"groupType": "hand",       "label": "id:player2Hand",             "tableLabel": "id:playerHandShort"},
+        "player2Selection":        {"groupType": "selection",  "label": "id:player2Selection",        "tableLabel": "id:playerSelectionShort"},
         "player2ExtraDeck":        {"groupType": "deckE",      "label": "id:player2ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player2Deck":             {"groupType": "deckP",      "label": "id:player2Deck",             "tableLabel": "id:playerDeckShort"},
         "player2Discard":          {"groupType": "discardP",   "label": "id:player2Discard",          "tableLabel": "id:playerDiscardShort"},
@@ -52,6 +56,7 @@
         "player2Investigator":     {"groupType": "inPlay",     "label": "id:player2Investigator",     "tableLabel": "id:player2InvestigatorShort"},
         "player2Play":             {"groupType": "inPlay",     "label": "id:player2Play",             "tableLabel": "id:playerPlayShort"},
         "player1Hand":             {"groupType": "hand",       "label": "id:player1Hand",             "tableLabel": "id:playerHandShort"},
+        "player1Selection":        {"groupType": "selection",  "label": "id:player1Selection",        "tableLabel": "id:playerSelectionShort"},
         "player1ExtraDeck":        {"groupType": "deckE",      "label": "id:player1ExtraDeck",        "tableLabel": "id:playerExtraDeckShort"},
         "player1Deck":             {"groupType": "deckP",      "label": "id:player1Deck",             "tableLabel": "id:playerDeckShort"},
         "player1Discard":          {"groupType": "discardP",   "label": "id:player1Discard",          "tableLabel": "id:playerDiscardShort"},
@@ -138,6 +143,9 @@
         "playerHandShort": {
             "English": "Hand"
         },
+        "playerSelectionShort": {
+            "English": "Selection"
+        },
         "playerExtraDeckShort": {
             "English": "Extra"
         },
@@ -180,6 +188,9 @@
         "player4Hand": {
             "English": "Player 4 Hand"
         },
+        "player4Selection": {
+            "English": "Player 4 Selection"
+        },
         "player4ExtraDeck": {
             "English": "Player 4 Extra Deck"
         },
@@ -212,6 +223,9 @@
         },
         "player3Hand": {
             "English": "Player 3 Hand"
+        },
+        "player3Selection": {
+            "English": "Player 3 Selection"
         },
         "player3ExtraDeck": {
             "English": "Player 3 Extra Deck"
@@ -246,6 +260,9 @@
         "player2Hand": {
             "English": "Player 2 Hand"
         },
+        "player2Selection": {
+            "English": "Player 2 Selection"
+        },
         "player2ExtraDeck": {
             "English": "Player 2 Extra Deck"
         },
@@ -278,6 +295,9 @@
         },
         "player1Hand": {
             "English": "Player 1 Hand"
+        },
+        "player1Selection": {
+            "English": "Player 1 Selection"
         },
         "player1ExtraDeck": {
             "English": "Player 1 Extra Deck"

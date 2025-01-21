@@ -67,6 +67,57 @@
                         ]
                     },
                     {
+                        "label": "id:theDreamEaters",
+                        "deckLists": [
+                            {"label": "id:tommyMuldoonStarterDeck", "deckListId": "Tommy Muldoon Starter Deck"},
+                            {"label": "id:mandyThompsonStarterDeck", "deckListId": "Mandy Thompson Starter Deck"},
+                            {"label": "id:tonyMorganStarterDeck", "deckListId": "Tony Morgan Starter Deck"},
+                            {"label": "id:lukeRobinsonStarterDeck", "deckListId": "Luke Robinson Starter Deck"},
+                            {"label": "id:patriceHathawayStarterDeck", "deckListId": "Patrice Hathaway Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theInnsmouthConspiracy",
+                        "deckLists": [
+                            {"label": "id:sisterMaryStarterDeck", "deckListId": "Sister Mary Starter Deck"},
+                            {"label": "id:amandaSharpeStarterDeck", "deckListId": "Amanda Sharpe Starter Deck"},
+                            {"label": "id:trishScarboroughStarterDeck", "deckListId": "Trish Scarborough Starter Deck"},
+                            {"label": "id:dexterDrakeStarterDeck", "deckListId": "Dexter Drake Starter Deck"},
+                            {"label": "id:silasMarshStarterDeck", "deckListId": "Silas Marsh Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:edgeOfTheEarth",
+                        "deckLists": [
+                            {"label": "id:danielaReyesStarterDeck", "deckListId": "Daniela Reyes Starter Deck"},
+                            {"label": "id:normanWithersStarterDeck", "deckListId": "Norman Withers Starter Deck"},
+                            {"label": "id:montereyJackStarterDeck", "deckListId": "Monterey Jack Starter Deck"},
+                            {"label": "id:lilyChenStarterDeck", "deckListId": "Lily Chen Starter Deck"},
+                            {"label": "id:bobJenkinsStarterDeck", "deckListId": "Bob Jenkins Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theScarletKeys",
+                        "deckLists": [
+                            {"label": "id:carsonSinclairStarterDeck", "deckListId": "Carson Sinclair Starter Deck"},
+                            {"label": "id:vincentLeeStarterDeck", "deckListId": "Vincent Lee Starter Deck"},
+                            {"label": "id:kymaniJonesStarterDeck", "deckListId": "Kymani Jones Starter Deck"},
+                            {"label": "id:aminaZidaneStarterDeck", "deckListId": "Amina Zidane Starter Deck"},
+                            {"label": "id:darrellSimmonsStarterDeck", "deckListId": "Darrell Simmons Starter Deck"},
+                            {"label": "id:charlieKaneStarterDeck", "deckListId": "Charlie Kane Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:theFeastOfHemlockVale",
+                        "deckLists": [
+                            {"label": "id:wilsonRichardsStarterDeck", "deckListId": "Wilson Richards Starter Deck"},
+                            {"label": "id:kateWinthropStarterDeck", "deckListId": "Kate Winthrop Starter Deck"},
+                            {"label": "id:alessandraZorziStarterDeck", "deckListId": "Alessandra Zorzi Starter Deck"},
+                            {"label": "id:kohakuNarukamiStarterDeck", "deckListId": "Kōhaku Narukami Starter Deck"},
+                            {"label": "id:hankSamsonStarterDeck", "deckListId": "Hank Samson Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -74,6 +125,12 @@
                             {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
                             {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
                             {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
+                        ]
+                    },
+                    {
+                        "label": "id:otherDecks",
+                        "deckLists": [
+                            {"label": "id:gloriaGoldbergStarterDeck", "deckListId": "Gloria Goldberg Starter Deck"}
                         ]
                     }
                 ]
@@ -142,6 +199,37 @@
                             {"label": "id:unionAndDisillusion", "deckListId": "Union and Disillusion Scenario"},
                             {"label": "id:inTheClutchesOfChaos", "deckListId": "In the Clutches of Chaos Scenario"},
                             {"label": "id:beforeTheBlackThrone", "deckListId": "Before the Black Throne Scenario"}
+                        ]
+                    },
+                    {
+                        "label": "id:theDreamQuest",
+                        "deckLists": [
+                            {"label": "id:beyondTheGatesOfSleep", "deckListId": "Beyond the Gates of Sleep Scenario"},
+                            {"label": "id:theSearchForKadath", "deckListId": "The Search for Kadath Scenario"},
+                            {"label": "id:darkSideOfTheMoon", "deckListId": "Dark Side of the Moon Scenario"},
+                            {"label": "id:whereTheGodsDwell", "deckListId": "Where the Gods Dwell Scenario"}
+                        ]
+                    },
+                    {
+                        "label": "id:theWebOfDreams",
+                        "deckLists": [
+                            {"label": "id:wakingNightmare", "deckListId": "Waking Nightmare Scenario"},
+                            {"label": "id:aThousandShapesOfHorror", "deckListId": "A Thousand Shapes of Horror Scenario"},
+                            {"label": "id:pointOfNoReturn", "deckListId": "Point of No Return Scenario"},
+                            {"label": "id:weaverOfTheCosmos", "deckListId": "Weaver of the Cosmos Scenario"}
+                        ]
+                    },
+                    {
+                        "label": "id:theInnsmouthConspiracy",
+                        "deckLists": [
+                            {"label": "id:thePitOfDespair", "deckListId": "The Pit of Despair Scenario"},
+                            {"label": "id:theVanishingOfElinaHarper", "deckListId": "The Vanishing of Elina Harper Scenario"},
+                            {"label": "id:inTooDeep", "deckListId": "In Too Deep Scenario"},
+                            {"label": "id:devilReef", "deckListId": "Devil Reef Scenario"},
+                            {"label": "id:horrorInHighGear", "deckListId": "Horror in High Gear Scenario"},
+                            {"label": "id:aLightInTheFog", "deckListId": "A Light in the Fog Scenario"},
+                            {"label": "id:theLairOfDagon", "deckListId": "The Lair of Dagon Scenario"},
+                            {"label": "id:intoTheMaelstrom", "deckListId": "Into the Maelstrom Scenario"}
                         ]
                     }
                 ]
@@ -215,8 +303,31 @@
                 ]
             },
             {
+                "label": "id:sideStories",
+                "deckLists": [
+                    {"label": "id:curseOfTheRougarou", "deckListId": "Curse of the Rougarou Scenario"},
+                    {"label": "id:carnevaleOfHorrors", "deckListId": "Carnevale of Horrors Scenario"}
+                ]
+            },
+            {
+                "label": "id:challengeScenarios",
+                "deckLists": [
+                    {"label": "id:readOrDie", "deckListId": "Read or Die Scenario"},
+                    {"label": "id:allOrNothing", "deckListId": "All or Nothing Scenario"},
+                    {"label": "id:badBlood", "deckListId": "Bad Blood Scenario"},
+                    {"label": "id:byTheBook", "deckListId": "By the Book Scenario"},
+                    {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"},
+                    {"label": "id:laidToRest", "deckListId": "Laid to Rest Scenario"},
+                    {"label": "id:relicsOfThePast", "deckListId": "Relics of the Past Scenario"}
+                ]
+            },
+            {
                 "label": "id:miscellaneous",
                 "deckLists": [
+                    {"label": "id:standardTokens", "deckListId": "Standard Tokens"},
+                    {"label": "id:keyTokens", "deckListId": "Key Tokens"},
+                    {"label": "id:floodedToken", "deckListId": "Flooded Token"},
+                    {"label": "id:sealTokens", "deckListId": "Seal Tokens"},
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
                     {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"},
                     {"label": "id:tarotCardsDeckC", "deckListId": "Tarot Cards - Deck C"},
@@ -316,6 +427,84 @@
         "marieLambeauStarterDeck": {
             "English": "Marie Lambeau Starter Deck"
         },
+        "tommyMuldoonStarterDeck": {
+            "English": "Tommy Muldoon Starter Deck"
+        },
+        "mandyThompsonStarterDeck": {
+            "English": "Mandy Thompson Starter Deck"
+        },
+        "tonyMorganStarterDeck": {
+            "English": "Tony Morgan Starter Deck"
+        },
+        "lukeRobinsonStarterDeck": {
+            "English": "Luke Robinson Starter Deck"
+        },
+        "patriceHathawayStarterDeck": {
+            "English": "Patrice Hathaway Starter Deck"
+        },
+        "sisterMaryStarterDeck": {
+            "English": "Sister Mary Starter Deck"
+        },
+        "amandaSharpeStarterDeck": {
+            "English": "Amanda Sharpe Starter Deck"
+        },
+        "trishScarboroughStarterDeck": {
+            "English": "Trish Scarborough Starter Deck"
+        },
+        "dexterDrakeStarterDeck": {
+            "English": "Dexter Drake Starter Deck"
+        },
+        "silasMarshStarterDeck": {
+            "English": "Silas Marsh Starter Deck"
+        },
+        "danielaReyesStarterDeck": {
+            "English": "Daniela Reyes Starter Deck"
+        },
+        "normanWithersStarterDeck": {
+            "English": "Norman Withers Starter Deck"
+        },
+        "montereyJackStarterDeck": {
+            "English": "Monterey Jack Starter Deck"
+        },
+        "lilyChenStarterDeck": {
+            "English": "Lily Chen Starter Deck"
+        },
+        "bobJenkinsStarterDeck": {
+            "English": "Bob Jenkins Starter Deck"
+        },
+        "carsonSinclairStarterDeck": {
+            "English": "Carson Sinclair Starter Deck"
+        },
+        "vincentLeeStarterDeck": {
+            "English": "Vincent Lee Starter Deck"
+        },
+        "kymaniJonesStarterDeck": {
+            "English": "Kymani Jones Starter Deck"
+        },
+        "aminaZidaneStarterDeck": {
+            "English": "Amina Zidane Starter Deck"
+        },
+        "darrellSimmonsStarterDeck": {
+            "English": "Darrell Simmons Starter Deck"
+        },
+        "charlieKaneStarterDeck": {
+            "English": "Charlie Kane Starter Deck"
+        },
+        "wilsonRichardsStarterDeck": {
+            "English": "Wilson Richards Starter Deck"
+        },
+        "kateWinthropStarterDeck": {
+            "English": "Kate Winthrop Starter Deck"
+        },
+        "alessandraZorziStarterDeck": {
+            "English": "Alessandra Zorzi Starter Deck"
+        },
+        "kohakuNarukamiStarterDeck": {
+            "English": "Kōhaku Narukami Starter Deck"
+        },
+        "hankSamsonStarterDeck": {
+            "English": "Hank Samson Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -333,6 +522,12 @@
         },
         "stellaClarkStarterDeck": {
             "English": "Stella Clark Starter Deck"
+        },
+        "otherDecks": {
+            "English": "Other Decks"
+        },
+        "gloriaGoldbergStarterDeck": {
+            "English": "Gloria Goldberg Starter Deck"
         },
         "campaigns": {
             "English": "Campaigns"
@@ -466,8 +661,77 @@
         "beforeTheBlackThrone": {
             "English": "Before the Black Throne"
         },
+        "theDreamEaters": {
+            "English": "The Dream-Eaters"
+        },
+        "theDreamQuest": {
+            "English": "The Dream-Quest (The Dream-Eaters A)"
+        },
+        "theWebOfDreams": {
+            "English": "The Web of Dreams (The Dream-Eaters B)"
+        },
+        "beyondTheGatesOfSleep": {
+            "English": "Beyond the Gates of Sleep"
+        },
+        "wakingNightmare": {
+            "English": "Waking Nightmare"
+        },
+        "theSearchForKadath": {
+            "English": "The Search for Kadath"
+        },
+        "aThousandShapesOfHorror": {
+            "English": "A Thousand Shapes of Horror"
+        },
+        "darkSideOfTheMoon": {
+            "English": "Dark Side of the Moon"
+        },
+        "pointOfNoReturn": {
+            "English": "Point of No Return"
+        },
+        "whereTheGodsDwell": {
+            "English": "Where the Gods Dwell"
+        },
+        "weaverOfTheCosmos": {
+            "English": "Weaver of the Cosmos"
+        },
+        "theInnsmouthConspiracy": {
+            "English": "The Innsmouth Conspiracy"
+        },
+        "thePitOfDespair": {
+            "English": "The Pit of Despair"
+        },
+        "theVanishingOfElinaHarper": {
+            "English": "The Vanishing of Elina Harper"
+        },
+        "inTooDeep": {
+            "English": "In Too Deep"
+        },
+        "devilReef": {
+            "English": "Devil Reef"
+        },
+        "horrorInHighGear": {
+            "English": "Horror in High Gear"
+        },
+        "aLightInTheFog": {
+            "English": "A Light in the Fog"
+        },
+        "theLairOfDagon": {
+            "English": "The Lair of Dagon"
+        },
+        "intoTheMaelstrom": {
+            "English": "Into the Maelstrom"
+        },
+        "edgeOfTheEarth": {
+            "English": "Edge of the Earth"
+        },
+        "theScarletKeys": {
+            "English": "The Scarlet Keys"
+        },
+        "theFeastOfHemlockVale": {
+            "English": "The Feast of Hemlock Vale"
+        },
         "returnToCampaigns": {
-            "English": "Return to… Campaigns"
+            "English": "Return to... Campaigns"
         },
         "returnToTheNightOfTheZealot": {
             "English": "Return to The Night of the Zealot"
@@ -598,8 +862,53 @@
         "returnToBeforeTheBlackThrone": {
             "English": "Return to Before the Black Throne"
         },
+        "sideStories": {
+            "English": "Side Stories"
+        },
+        "curseOfTheRougarou": {
+            "English": "Curse of the Rougarou"
+        },
+        "carnevaleOfHorrors": {
+            "English": "Carnevale of Horrors"
+        },
+        "challengeScenarios": {
+            "English": "Challenge Scenarios"
+        },
+        "readOrDie": {
+            "English": "Read or Die"
+        },
+        "allOrNothing": {
+            "English": "All or Nothing"
+        },
+        "badBlood": {
+            "English": "Bad Blood"
+        },
+        "byTheBook": {
+            "English": "By the Book"
+        },
+        "redTideRising": {
+            "English": "Red Tide Rising"
+        },
+        "laidToRest": {
+            "English": "Laid to Rest"
+        },
+        "relicsOfThePast": {
+            "English": "Relics of the Past"
+        },
         "miscellaneous": {
             "English": "Miscellaneous"
+        },
+        "standardTokens": {
+            "English": "Standard Tokens"
+        },
+        "keyTokens": {
+            "English": "Key Tokens"
+        },
+        "floodedToken": {
+            "English": "Flooded Token"
+        },
+        "sealTokens": {
+            "English": "Seal Tokens"
         },
         "theForgottenAgeSupplies": {
             "English": "The Forgotten Age Supplies"

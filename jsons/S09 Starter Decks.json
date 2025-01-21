@@ -1,0 +1,324 @@
+{
+   "preBuiltDecks": {
+        "Carson Sinclair Starter Deck": {
+            "label": "Carson Sinclair Starter Deck",
+            "cards": [
+                {"databaseId": "09001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09002", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09003", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09022", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09024", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09028", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09031", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09088", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Carson Sinclair starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Vincent Lee Starter Deck": {
+            "label": "Vincent Lee Starter Deck",
+            "cards": [
+                {"databaseId": "09004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09005", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09006", "quantity": 4, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09007", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09040", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09044", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09045", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09046", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09047", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09049", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09084", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Vincent Lee starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Kymani Jones Starter Deck": {
+            "label": "Kymani Jones Starter Deck",
+            "cards": [
+                {"databaseId": "09008", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09060", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09062", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09068", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09069", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09099", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Kymani Jones starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Amina Zidane Starter Deck": {
+            "label": "Amina Zidane Starter Deck",
+            "cards": [
+                {"databaseId": "09011", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01075", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09012", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09014", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09082", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09083", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09084", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09085", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09086", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09088", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Amina Zidane starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Darrell Simmons Starter Deck": {
+            "label": "Darrell Simmons Starter Deck",
+            "cards": [
+                {"databaseId": "09015", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09016", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09017", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09041", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09044", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09045", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09047", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09104", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09108", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09120", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Darrell Simmons starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        },
+        "Charlie Kane Starter Deck": {
+            "label": "Charlie Kane Starter Deck",
+            "cards": [
+                {"databaseId": "09018", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01048", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01052", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01076", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09020", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09022", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09027", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09028", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Charlie Kane starter deck by: https://www.youtube.com/@PlayingBoardGames"]
+            ]
+        }
+    },
+     "automation": {
+        "cards": {
+            "09004": { //Vincent Lee: The Doctor
+                "rules": {
+                    "09004a": { //You begin each game with 1 (per investigator) copies of On the Mend set aside, out of play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with {2} {3} of On the Mend set aside, out of play.", ["LIST", "$THIS", "$THIS.controller", "$GAME.arkham.numPlayers", ["INLINE_IF", ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 2], "copies", "copy"]]],
+                            ["DO_DELETE_NAMED_DECK_CARDS", "$THIS.controller", "On the Mend", ["GET_CONTROLLER_DECK", "$THIS.controller"], false, null],
+                            ["DO_CREATE_MISSING_CARDS", "$THIS.controller", "On the Mend", "09006", "$GAME.arkham.numPlayers", ["GET_CONTROLLER_ASIDE", "$THIS.controller"], false, null]
+                        ]
+                    }
+                }
+            },
+            "09015": { //Darrell Simmons: The Photographer
+                "rules": {
+                    "09015a": { //You begin the game with Darrell's Kodak in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Darrell's Kodak: Proof in the Pudding in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Darrell's Kodak"]
+                        ]
+                    }
+                }
+            },
+            "09077": { //Underworld Market
+                "rules": {
+                    "09077a": { //(reaction) Before drawing your opening hand, choose 10 Illicit cards from your deck: Shuffle them together and place them next to Underworld Market, as your market deck.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["AND",
+                            ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["CAN_SETUP_UNDERWORLD_MARKET_MARKET_DECK", "$THIS"]
+                        ],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} may choose 10 Illicit cards from their deck to shuffle them together as their market deck.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PROMPT", "$THIS.controller", "underworldMarketChoice", "$THIS.id"]
+                        ]
+                    }
+                }
+            },
+            "09080": { //Summoned Servitor
+                "ability" : {
+                    "A": [
+                        ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$THIS.controller"]],
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$THIS.inPlay", true],
+                                ["NOT_EQUAL", "$MINI_INVESTIGATOR", null],
+                                ["EQUAL", "$MINI_INVESTIGATOR.groupId", "sharedLocations"]
+                            ],
+                            [
+                                ["DO_LOG", true, "$PLAYER_N", "$THIS.controller", "spawn Summoned Servitor mini card.", "spawns Summoned Servitor mini card."],
+                                ["DO_CREATE_CARDS", "$THIS.controller", "Summoned Servitor", "m09080", 1, ["GET_CONTROLLER_INVESTIGATOR", "$THIS.controller"], false, null],
+                                ["VAR", "$MINI_SERVITOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                                ["MOVE_CARD", "$MINI_SERVITOR_ID", "sharedLocations", -1],
+                                ["DO_SET_CARD_LOCATION", "$MINI_SERVITOR_ID", ["ADD", ["GET_CARD_LEFT", "$MINI_INVESTIGATOR.id"], 1], ["ADD", ["GET_CARD_TOP", "$MINI_INVESTIGATOR.id"], 1]],
+                                ["SET", "/cardById/$MINI_SERVITOR_ID/currentSide", "$MINI_INVESTIGATOR.currentSide"],
+                                ["COND",
+                                    ["NOT_EQUAL", "$MINI_INVESTIGATOR.borderColor", null],
+                                    ["SET", "/cardById/$MINI_SERVITOR_ID/borderColor", "$MINI_INVESTIGATOR.borderColor"]
+                                ]
+                            ]
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "functions": {
+        "CAN_SETUP_UNDERWORLD_MARKET_MARKET_DECK": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Illicit."]
+                ]]],
+                ["AND",
+                    ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
+                    ["GREATER_EQUAL", ["LENGTH", "$SELECTED_CARDS"], 10]
+                ]
+            ]
+        },
+        "UNDERWORLD_MARKET_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$CHOOSE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "UNDERWORLD_MARKET_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "UNDERWORLD_MARKET_CHOICE.SOURCE_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$CHOOSE", "UNDERWORLD_MARKET_CHOICE.CHOOSE"],
+                ["DO_FLOG", "{0:P} will {1} {2:C}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$CHOOSE", true], "use", "not use"], "$SOURCE_CARD"]],
+                ["COND",
+                    ["EQUAL", "$CHOOSE", true],
+                    [
+                        ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                        ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                            ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Illicit."], null],
+                            "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.09077",
+                            "Target {0} Illicit cards to shuffle them together as your market deck.",
+                            10, 10, false, "UNDERWORLD_MARKET_SELECTION_CALLBACK", "$SOURCE_CARD.id"]
+                    ],
+                    ["TRUE"],
+                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                ]
+            ]
+        },
+        "UNDERWORLD_MARKET_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "UNDERWORLD_MARKET_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "UNDERWORLD_MARKET_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "UNDERWORLD_MARKET_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["DO_FSYSLOG", "{0:P} shuffles {1} Illicit card{1:S} together as their market deck.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$CARD.id", "$CARD.groupId", 1, "$EXTRA_DECK_GROUP_ID", false, null]
+                ]],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", false, null],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        }
+    },
+    "prompts": {
+        "underworldMarketChoice": {
+            "args": ["$TARGET_CARD_ID"],
+            "message": "Do you want to choose 10 Illicit cards from your deck to shuffle them together as your market deck?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["UNDERWORLD_MARKET_CHOICE", "$PLAYER_N", "$TARGET_CARD_ID", true]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["UNDERWORLD_MARKET_CHOICE", "$PLAYER_N", "$TARGET_CARD_ID", false]
+                    ]
+                }
+            ]
+        }
+    }
+}

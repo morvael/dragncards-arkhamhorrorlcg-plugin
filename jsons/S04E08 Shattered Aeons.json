@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Shattered Aeons Scenario Start"]
             ]
         },
         "Shattered Aeons": {
@@ -21,8 +21,8 @@
                 {"databaseId": "04319", "quantity": 1, "loadGroupId": "sharedActStory"},            //Search for the Brotherhood
                 {"databaseId": "04320", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Yithian Relic
                 {"databaseId": "04321", "quantity": 1, "loadGroupId": "sharedActStory"},            //Mend the Shatter
-                {"databaseId": "04325", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Ichtaca: Scion of Yig
-                {"databaseId": "04326", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Alejandro Vela: Or, Is He?
+                {"databaseId": "04325b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Ichtaca: Scion of Yig
+                {"databaseId": "04326b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //Alejandro Vela: Or, Is He?
                 {"databaseId": "04337", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Formless Spawn: From the Abyss
                 {"databaseId": "04343", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Relic of Ages: Unleash the Timestream
                 {"databaseId": "04330", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //A Pocket in Time
@@ -46,16 +46,19 @@
         }
     },
     "actionLists": {
+        "Shattered Aeons Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "The Forgotten Age", "Shattered Aeons", "Shattered Aeons Scenario Early Init", "Shattered Aeons Scenario Init"]
+        ],
         "Shattered Aeons Scenario Early Init": [
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The braziers are lit.", "The braziers remain unlit."], "Shattered Aeons Scenario Question 1"]
         ],
         "Shattered Aeons Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 2]
+                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkham/startingCardsMod", 2]
                     ]]
                 ]
             ],
@@ -69,13 +72,13 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Chaos Bag.", ["LIST", "There are more Cultist tokens in the chaos bag than Tablet tokens.", "There are more Tablet tokens in the chaos bag than Cultist tokens.", "There is an equal number of Cultist and Tablet tokens in the chaos bag."], "Shattered Aeons Scenario Question 2"]
         ],
         "Shattered Aeons Scenario Question 2": [
-            ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Chaos Bag: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["DO_LOAD_CARDS_SCN", "Dark Cult"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["DO_LOAD_CARDS_SCN", "Agents of Yig"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "C"],
                 [
                     ["DO_LOAD_CARDS_SCN", "Dark Cult"],
                     ["DO_LOAD_CARDS_SCN", "Agents of Yig"]
@@ -89,28 +92,28 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig's Fury” in Campaign Log.", ["LIST", "There are between 0 and 9 tally marks.", "There are between 10 and 19 tally marks.", "There are between 20 and 29 tally marks.", "There are between 30 and 39 tally marks.", "There are between 40 and 49 tally marks.", "There are between 50 and 59 tally marks.", "There are between 60 and 69 tally marks.", "There are between 70 and 79 tally marks.", "There are between 80 and 89 tally marks.", "There are between 90 and 99 tally marks.", "There are over 100 tally marks."], "Shattered Aeons Scenario Question 3"]
         ],
         "Shattered Aeons Scenario Question 3": [
-            ["LOG", "└── Yig's Fury: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Yig's Fury: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["VAR", "$CARDS_TO_MOVE", 0],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 1],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "C"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "D"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 3],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "E"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 4],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "F"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "F"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 5],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "G"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "G"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 6],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "H"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "H"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 7],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "I"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "I"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 8],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "J"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "J"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 9],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "K"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "K"],
                 ["UPDATE_VAR", "$CARDS_TO_MOVE", 10]
             ],
             ["COND",
@@ -127,7 +130,7 @@
                     ]]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck, Shattered locations are in Pile A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

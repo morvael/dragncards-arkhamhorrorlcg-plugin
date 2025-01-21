@@ -110,6 +110,21 @@
                 ]
             ]
         },
+        "VALIDATE_RANGE": {
+            "args": ["$PARAM", "$MIN", "$MAX", "$DESCRIPTION"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PARAM", null],
+                    ["ABORT", "{{$DESCRIPTION}} is null."],
+                    ["LESS_THAN", "$PARAM", "$MIN"],
+                    ["ABORT", "{{$DESCRIPTION}} is less than {{$MIN}}."],
+                    ["GREATER_THAN", "$PARAM", "$MAX"],
+                    ["ABORT", "{{$DESCRIPTION}} is greater than {{$MAX}}."],
+                    ["TRUE"],
+                    "$GAME"
+                ]
+            ]
+        },
         "VALIDATE_INDEX": {
             "args": ["$PARAM", "$DESCRIPTION"],
             "code": [
@@ -174,6 +189,34 @@
                 ["DO_LOG", true, null, "$TARGET_PLAYER", "dummy", "$TEXT_WITHOUT_ACTOR"]
             ]
         },
+        "DO_LOGF": {
+            "args": ["$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "$FORMAT_STRING", "$ARGS"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$LOG_EVENT", true],
+                    [
+                        ["VAR", "$TEXT", ["DO_FORMAT_STRING", "$FORMAT_STRING", "$ARGS"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$ACTOR_PLAYER", null],
+                            ["COND",
+                                ["EQUAL", "$ACTOR_PLAYER", "$TARGET_PLAYER"],
+                                ["LOG", ["GET_ALIAS", "$TARGET_PLAYER"], " ", ["REGEX_REPLACE", "$TEXT", "\\{A\\}", "s"]],
+                                ["TRUE"],
+                                ["LOG", ["GET_ALIAS", "$ACTOR_PLAYER"], " makes ", ["GET_ALIAS", "$TARGET_PLAYER"], " ", ["REGEX_REPLACE", "$TEXT", "\\{A\\}", ""]]
+                            ],
+                            ["TRUE"],
+                            ["LOG", "└── ", ["GET_ALIAS", "$TARGET_PLAYER"], " ", ["REGEX_REPLACE", "$TEXT", "\\{A\\}", "s"]]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_LOGF_SCN": {
+            "args": ["$TARGET_PLAYER", "$FORMAT_STRING", "$ARGS"],
+            "code": [
+                ["DO_LOGF", true, null, "$TARGET_PLAYER", "$FORMAT_STRING", "$ARGS"]
+            ]
+        },
         "GET_NUMERIC_LOG": {
             "args": ["$PREFIX_SINGLE", "$PREFIX_MANY", "$NUMBER", "$SUFFIX_SINGLE", "$SUFFIX_MANY"],
             "code": [
@@ -212,6 +255,10 @@
                                 ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", "\\}"]], "{{$ARG}}"]]
                             ],
                             ["COND",
+                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":P}'s "]]],
+                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":P\\}'s "]], ["INLINE_IF", ["EQUAL", "$ARG", "shared"], "", ["JOIN_STRING", ["GET_ALIAS", "$ARG"], "'s "]]]]
+                            ],
+                            ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":P}"]]],
                                 ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":P\\}"]], ["GET_ALIAS", "$ARG"]]]
                             ],
@@ -244,10 +291,6 @@
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":G}"]]],
                                 ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":G\\}"]], "$ARG.label"]]
-                            ],
-                            ["COND",
-                                ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":L}"]]],
-                                ["UPDATE_VAR", "$FORMAT_STRING", ["REGEX_REPLACE", "$FORMAT_STRING", ["JOIN_STRING", "\\{", ["JOIN_STRING", "{{$I}}", ":L\\}"]], ["LENGTH", "$ARG"]]]
                             ],
                             ["COND",
                                 ["IN_STRING", "$FORMAT_STRING", ["JOIN_STRING", "{", ["JOIN_STRING", "{{$I}}", ":S}"]]],

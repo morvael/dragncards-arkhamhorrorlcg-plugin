@@ -1,0 +1,92 @@
+{
+    "preBuiltDecks": {
+        "All or Nothing Scenario": {
+            "label": "All or Nothing Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$SKIDS_OTOOLE", ["GET_NAMED_CARD", "\"Skids\" O'Toole"]],
+                ["COND",
+                    ["NOT_EQUAL", "$SKIDS_OTOOLE", null],
+                    ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "All or Nothing", null, "All or Nothing Scenario Init"],
+                    ["TRUE"],
+                    ["LOG", "└── \"Skids\" O'Toole must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "All or Nothing": {
+            "hideFromSearch": true,
+            "label": "All or Nothing",
+            "cards": [
+                {"databaseId": "90011", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //All or Nothing
+                {"databaseId": "90012", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Eyes All Around You
+                {"databaseId": "90013", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Playing Cards
+                {"databaseId": "90014", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Hot on your Tail
+                {"databaseId": "02078", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Clover Club Pit Boss
+                {"databaseId": "02081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Something in the Drinks
+                {"databaseId": "02082", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Arousing Suspicions
+            ]
+        },
+        "All or Nothing - Set Aside": {
+            "hideFromSearch": true,
+            "label": "All or Nothing - Set Aside",
+            "cards": [
+                {"databaseId": "90016", "quantity": 4, "loadGroupId": "sharedNotInPlay"},   //Clover Club Bouncer
+                {"databaseId": "90015", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Siobhan Riley: O'Bannion Enforcer
+            ]
+        },
+        "All or Nothing - Clover Club": {
+            "hideFromSearch": true,
+            "label": "All or Nothing - Clover Club",
+            "cards": [
+                {"databaseId": "02070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},  //La Bella Luna
+                {"databaseId": "02071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "43%"},  //Clover Club Lounge
+                {"databaseId": "02072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "76%"},  //Clover Club Bar
+                {"databaseId": "02073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Clover Club Cardroom
+                {"databaseId": "02074", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}   //Darkened Hall
+            ]
+        }
+    },
+    "actionLists": {
+        "All or Nothing Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "All or Nothing"],
+            ["DO_LOAD_CARDS_SCN", "Bad Luck"],
+            ["DO_LOAD_CARDS_SCN", "Naomi's Crew"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Do you want to use the cards included in the Return to the House Always Wins encounter set?", ["LIST", "Yes.", "No."], "All or Nothing Scenario Question 1"]
+        ],
+        "All or Nothing Scenario Question 1": [
+            ["LOG", "└── Include Return to the House Always Wins: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["DO_CREATE_CARDS_SCN", "Clover Club Stage", "51017", 1, "sharedNotInPlay"],
+                    ["DO_SET_SPAWN_LOCATION", "51017", 3, 59], //Clover Club Stage
+                    ["DO_CREATE_CARDS_SCN", "Caught Cheating", "51018", 2, "sharedEncounterDeck"],
+                    ["DO_CREATE_CARDS_SCN", "Raise the Stakes", "51019", 2, "sharedEncounterDeck"],
+                    ["LOG", "└── Remember: “Skids” O'Toole has “cheated.”"]
+                ]
+            ],
+            ["VAR", "$BACK_HALL_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "02075", "02076", "02077"]]],  //Art Gallery, VIP Area, Back Alley
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 43, 76]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Back Hall Doorway", "$BACK_HALL_DOORWAYS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$BACK_HALL_DOORWAYS.[$I]", 70, "$SPAWN_TOPS.[$I]"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "All or Nothing - Set Aside"],
+            ["DO_LOAD_CARDS_SCN", "All or Nothing - Clover Club"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["DO_DELETE_LOCATION_SCN", "Clover Club Lounge"],
+                    ["DO_SPAWN_LOCATION_SCN", "Clover Club Lounge", "51016", 20, 43]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "La Bella Luna", 5, 7, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Clover Club Pit Boss", "Clover Club Lounge", 3, 3, 0],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

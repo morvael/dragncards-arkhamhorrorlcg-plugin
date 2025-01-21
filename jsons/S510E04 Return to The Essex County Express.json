@@ -15,7 +15,7 @@
             "cards": [
                 {"databaseId": "02159", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Essex County Express
                 {"databaseId": "51025", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Return to The Essex County Express
-                {"databaseId": "51026", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Where There's Smoke
+                {"databaseId": "51026b", "quantity": 1, "loadGroupId": "sharedAgendaStory"},        //Where There's Smoke
                 {"databaseId": "51027", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //A Tear in Reality (v.II)
                 {"databaseId": "02161", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Maw Widens
                 {"databaseId": "02162", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Rolling Backwards
@@ -66,14 +66,14 @@
             ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$LAST_CAR_ID", true, null],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$LAST_CAR_ID", 5, 7, 0, 3],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-2", "chaos_m2"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Standard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-4", "chaos_m4"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"]
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m2", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m3", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m4", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m5", 1]
             ],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]

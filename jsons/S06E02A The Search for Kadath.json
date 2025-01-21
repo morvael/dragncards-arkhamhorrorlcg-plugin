@@ -1,0 +1,428 @@
+{
+    "preBuiltDecks": {
+        "The Search for Kadath Scenario": {
+            "label": "The Search for Kadath Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "The Search for Kadath", "The Search for Kadath Scenario Early Init", "The Search for Kadath Scenario Init"]
+            ]
+        },
+        "The Search for Kadath": {
+            "hideFromSearch": true,
+            "label": "The Search for Kadath",
+            "cards": [
+                {"databaseId": "06119", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Search for Kadath
+                {"databaseId": "06120", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Journey Across the Dreamlands
+                {"databaseId": "06121", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Agents of the Outer Gods
+                {"databaseId": "06122", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Kingdom of the Skai
+                {"databaseId": "06123", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Isle of Oriab
+                {"databaseId": "06124", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Doom That Came Before
+                {"databaseId": "06125", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Seek Out the Night
+                {"databaseId": "06126", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The King's Decree
+                {"databaseId": "06127", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Ulthar
+                {"databaseId": "06128", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Skai River
+                {"databaseId": "06129", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},  //Dylath-Leen
+                {"databaseId": "06130", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Kadatheron
+                {"databaseId": "06131", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Sarnath
+                {"databaseId": "06132", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Ruins of Ib
+                {"databaseId": "06133", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Ilek-Vad
+                {"databaseId": "06134", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Forbidden Lands
+                {"databaseId": "06135", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Zulan-Thek
+                {"databaseId": "06136", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Baharna
+                {"databaseId": "06137", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Mt. Ngranek
+                {"databaseId": "06138", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Nameless Ruins
+                {"databaseId": "06139", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Celephaïs
+                {"databaseId": "06140", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Serannian
+                {"databaseId": "06141", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Hazuth-Kleg
+                {"databaseId": "06142", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Temple of Unattainable Desires
+                {"databaseId": "06143", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //City-Which-Appears-On-No-Map
+                {"databaseId": "06144", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Virgil Gray: Writer of Strange Tales
+                {"databaseId": "06145", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Cats of Ulthar
+                {"databaseId": "06146", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Stalking Manticore
+                {"databaseId": "06086", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Crawling Mist
+                {"databaseId": "06147", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Horde of Night
+                {"databaseId": "06148", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Beings of Ib
+                {"databaseId": "06150", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Tenebrous Nightgaunt
+                {"databaseId": "06105", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Corsair of Leng
+                {"databaseId": "06149", "quantity": 3, "loadGroupId": "sharedNotInPlay"},                               //Priest of a Thousand Masks
+                {"databaseId": "06151", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Pack of Vooniths
+                {"databaseId": "06152", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Nightriders
+                {"databaseId": "06153", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Song of the Magah Bird
+                {"databaseId": "06154", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Wondrous Lands
+            ]
+        },
+        "The Search for Kadath - Corsairs": {
+            "hideFromSearch": true,
+            "label": "The Search for Kadath - Corsairs",
+            "cards": [
+                {"databaseId": "06104", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Hunted by Corsairs
+            ]
+        }
+    },
+    "actionLists": {
+        "The Search for Kadath Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators parleyed with the Zoogs.", "The investigators were saved by Randolph Carter.", "The cats collected their tribute from the Zoogs."], "The Search for Kadath Scenario Question 1"]
+        ],
+        "The Search for Kadath Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
+                ["SCENARIO_SKIP_QUESTION", "The Search for Kadath Scenario Early Init Continue 1"],
+                ["TRUE"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Leave empty-handed.", "Force your way into the temple."], "The Search for Kadath Scenario Question 2"]
+            ]
+        ],
+        "The Search for Kadath Scenario Question 2": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                ["LOG", "└── Campaign Log: The investigators forced their way into the temple."]
+            ],
+            ["ACTION_LIST", "The Search for Kadath Scenario Early Init Continue 1"]
+        ],
+        "The Search for Kadath Scenario Early Init Continue 1": [
+            ["COND",
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"]
+                ],
+                [
+                    ["LOG", "└── Campaign Log: Record 1 tally mark next to “Evidence of Kadath.”"],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                        ["LOG", "└── Campaign Log: Record 1 tally mark next to “Evidence of Kadath.” Each investigator earns 2 experience."]
+                    ]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "The Search for Kadath Scenario Init"]
+        ],
+        "The Search for Kadath Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Search for Kadath"],
+            ["DO_SET_SPAWN_LOCATION", "06130", 45, 43], //Kadatheron
+            ["DO_SET_SPAWN_LOCATION", "06131", 45, 10], //Sarnath
+            ["DO_SET_SPAWN_LOCATION", "06132", 70, 43], //Ruins of Ib
+            ["DO_SET_SPAWN_LOCATION", "06133", 45, 43], //Ilek-Vad
+            ["DO_SET_SPAWN_LOCATION", "06134", 45, 10], //Forbidden Lands
+            ["DO_SET_SPAWN_LOCATION", "06135", 70, 10], //Zulan-Thek
+            ["DO_SET_SPAWN_LOCATION", "06136", 45, 43], //Baharna
+            ["DO_SET_SPAWN_LOCATION", "06137", 45, 10], //Mt. Ngranek
+            ["DO_SET_SPAWN_LOCATION", "06138", 70, 43], //Nameless Ruins
+            ["DO_SET_SPAWN_LOCATION", "06139", 20, 43], //Celephaïs
+            ["DO_SET_SPAWN_LOCATION", "06140", 20, 10], //Serannian
+            ["DO_SET_SPAWN_LOCATION", "06141", 45, 43], //Hazuth-Kleg
+            ["DO_SET_SPAWN_LOCATION", "06142", 70, 43], //Temple of Unattainable Desires
+            ["DO_SET_SPAWN_LOCATION", "06143", 70, 10], //City-Which-Appears-On-No-Map
+            ["DO_LOAD_CARDS_SCN", "Agents of Nyarlathotep - Treacheries"],
+            ["DO_LOAD_CARDS_SCN", "The Search for Kadath - Corsairs"],
+            ["DO_LOAD_CARDS_SCN", "Dreamlands"],
+            ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],
+            ["DO_LOAD_CARDS_SCN", "Zoogs"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Ulthar", 5, 7, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Pack of Vooniths", "Skai River", 3, 3, 0],
+            ["DO_ATTACH_CARD_FACEDOWN", "$GAME.firstPlayer", ["GET_TOP_CARD_ID", ["GET_CONTROLLER_DECK", "$GAME.firstPlayer"]], "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", true, null],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
+                [
+                    ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Pack of Vooniths", "Dylath-Leen", 3, 3, 0],
+                    ["DO_ATTACH_CARD_FACEDOWN", "$GAME.firstPlayer", ["GET_TOP_CARD_ID", ["GET_CONTROLLER_DECK", "$GAME.firstPlayer"]], "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", true, null]
+                ]
+            ],
+            ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06144"], ["GET_CONTROLLER_PLAY", "$GAME.firstPlayer"], -1], //Virgil Gray: Writer of Strange Tales
+            ["SET", "/arkham/scenarioTheSearchForKadath1Done", false],
+            ["SET", "/arkham/scenarioTheSearchForKadath2Done", false],
+            ["SET", "/arkham/scenarioTheSearchForKadath3Done", false],
+            ["SET", "/arkham/scenarioTheSearchForKadath4Done", false],
+            ["SET", "/arkham/finalScenarioMessage", "Oriab locations are in Pile A, Mnar locations are in Pile B, Forbidden Lands locations are in Pile C, Timeless Realm locations are in Pile D. Use Act 1b's or 2b's card ability to setup any Act 2."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE.TARGET_CARD_ID"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath1Done", true],
+                        ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath2Done", true],
+                        ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath3Done", true],
+                        ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath4Done", true]
+                    ],
+                    ["DO_FSYSLOG", "Proceed to (→R1), {0:P}.", ["LIST", "$TARGET_PLAYER"]],
+                    ["TRUE"],
+                    [
+                        ["PROMPT", "$TARGET_PLAYER", "theSearchForKadathChooseDestination"],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath1Done", false],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The isle of Oriab to the south.", "O", ["LIST", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "1", "the isle of Oriab to the south"]]
+                        ],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath2Done", false],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The ancient land of Mnar to the west.", "M", ["LIST", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "2", "the ancient land of Mnar to the west"]]
+                        ],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath3Done", false],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Forbidden Lands to the north.", "F", ["LIST", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "3", "the Forbidden Lands to the north"]]
+                        ],
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioTheSearchForKadath4Done", false],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The kingdom of the Timeless Realm to the east.", "T", ["LIST", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "4", "the kingdom of the Timeless Realm to the east"]]
+                        ],
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Cancel.", "X"]
+                    ]
+                ]
+            ]
+        },
+        "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE_STR": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SETUP", "$DESCRIPTION"],
+            "code": [
+                ["THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE", "$TARGET_PLAYER", "$TARGET_CARD_ID", ["CALC", "{{$SETUP}}"], "$DESCRIPTION"]
+            ]
+        },
+        "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SETUP", "$DESCRIPTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE.TARGET_CARD_ID"]],
+                ["VALIDATE_RANGE", "$SETUP", 1, 4, "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE.SETUP"],
+                ["VALIDATE_NOT_EMPTY", "$DESCRIPTION", "THE_SEARCH_FOR_KADATH_DESTINATION_CHOICE_DONE.DESCRIPTION"],
+                ["DO_FLOG", "{0:P} sets up Act 2. The investigator{1:S} will visit {2}.", ["LIST", "$TARGET_PLAYER", "$GAME.arkham.numPlayers", "$DESCRIPTION"]],
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06122"], //Kingdom of the Skai
+                    [
+                        //Search the encounter deck, discard pile, and all play areas for Cats of Ulthar, each Pack of Vooniths, and each card from the Zoogs encounter set, and remove them from the game.
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Cats of Ulthar"], true, null],
+                        ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Pack of Vooniths"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                        ]],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.A.encounterSet", "Zoogs"]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                        ]],
+                        //Shuffle each set-aside copy of Priest of a Thousand Masks into the encounter deck.
+                        ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "Priest of a Thousand Masks"]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$CARD.id", "sharedEncounterDeck"]
+                        ]]
+                    ],
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06124"], //The Doom That Came Before
+                    [
+                        //Search the encounter deck, discard pile, and all play areas for the Beings of Ib enemy and remove it from the game.
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Beings of Ib"], true, null]
+                    ],
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06125"], //Seek Out the Night
+                    [
+                        //Search the encounter deck, discard pile, and all play areas for the Horde of Night and Stalking Manticore enemies and remove each of them from the game.
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Horde of Night"], true, null],
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Stalking Manticore"], true, null]
+                    ],
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06126"], //The King's Decree
+                    [
+                        //Search the encounter deck, discard pile, and all play areas for The Crawling Mist enemy and remove it from the game.
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "The Crawling Mist"], true, null]
+                    ]
+                ],
+                //Shuffle the encounter discard pile into the encounter deck.
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
+                //Each investigator loses each of their clues.
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
+                //Remove each location in play from the game (or place it in the victory display if it has Victory X and no clues on it). Each enemy and attachment at those locations is discarded. Investigators are not defeated during this process.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Enemy"],
+                    ["NOT_EQUAL", "$CARD.currentFace.databaseId", "06150"] //Tenebrous Nightgaunt
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DISCARD_CARD_ACT", "$TARGET_PLAYER", "$CARD.id"]
+                ]],
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
+                            ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
+                        ],
+                        ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$CARD.id", true, null],
+                        ["TRUE"],
+                        ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                    ]
+                ]],
+                ["COND",
+                    ["EQUAL", "$SETUP", 1],
+                    [
+                        //Oriab
+                        ["VAR", "$BAHARNA", ["GET_NAMED_CARD_ID", "06136"]], //Baharna
+                        ["VAR", "$MT_NGRANEK", ["GET_NAMED_CARD_ID", "06137"]], //Mt. Ngranek
+                        ["VAR", "$NAMELESS_RUINS", ["GET_NAMED_CARD_ID", "06138"]], //Nameless Ruins
+                        //Put each set-aside Oriab location into play (Baharna, Mt. Ngranek, and Nameless Ruins).
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$BAHARNA", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$MT_NGRANEK", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$NAMELESS_RUINS", true, null],
+                        //Place each investigator at Baharna.
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$BAHARNA", true, null]
+                        ]],
+                        //Search the encounter deck for 1 copy of Nightriders and spawn it at Mt. Ngranek. If there are 3 or 4 investigators in the game, search the encounter deck for another copy of Nightriders and spawn it at Nameless Ruins, as well. Shuffle the encounter deck.
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$MT_NGRANEK", 3, 3, 1, true, null],
+                        ["COND",
+                            ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
+                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Nightriders", "$NAMELESS_RUINS", 3, 3, 1, true, null]
+                        ],
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", true, null]
+                    ],
+                    ["EQUAL", "$SETUP", 2],
+                    [
+                        //Mnar
+                        ["VAR", "$KADATHERON", ["GET_NAMED_CARD_ID", "06130"]], //Kadatheron
+                        ["VAR", "$SARNATH", ["GET_NAMED_CARD_ID", "06131"]], //Sarnath
+                        ["VAR", "$RUINS_OF_IB", ["GET_NAMED_CARD_ID", "06132"]], //Ruins of Ib
+                        //Put each set-aside Mnar location into play (Kadatheron, Sarnath, and Ruins of Ib).
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$KADATHERON", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SARNATH", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$RUINS_OF_IB", true, null],
+                        //Place each investigator at Kadatheron.
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$KADATHERON", true, null]
+                        ]],
+                        //Spawn the set-aside Beings of Ib enemy at Ruins of Ib.
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Beings of Ib", "$RUINS_OF_IB", 3, 3, 1, true, null]
+                    ],
+                    ["EQUAL", "$SETUP", 3],
+                    [
+                        //Forbidden Lands
+                        ["VAR", "$ILEK_VAD", ["GET_NAMED_CARD_ID", "06133"]], //Ilek-Vad
+                        ["VAR", "$FORBIDDEN_LANDS", ["GET_NAMED_CARD_ID", "06134"]], //Forbidden Lands
+                        ["VAR", "$ZULAN_THEK", ["GET_NAMED_CARD_ID", "06135"]], //Zulan-Thek
+                        //Put each set-aside Forbidden location into play (Ilek-Vad, Forbidden Lands, and Zulan-Thek).
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ILEK_VAD", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$FORBIDDEN_LANDS", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$ZULAN_THEK", true, null],
+                        //Place each investigator at Ilek-Vad.
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$ILEK_VAD", true, null]
+                        ]],
+                        //Spawn the set-aside Stalking Manticore enemy at Forbidden Lands.
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Stalking Manticore", "$FORBIDDEN_LANDS", 3, 3, 1, true, null],
+                        //Spawn the set-aside Horde of Night enemy at Zulan-Thek.
+                        ["DO_SPAWN_NAMED_AT_LOCATION", "$TARGET_PLAYER", "Horde of Night", "$ZULAN_THEK", 3, 3, 1, true, null]
+                    ],
+                    ["EQUAL", "$SETUP", 4],
+                    [
+                        //Timeless Realm
+                        ["VAR", "$CELEPHAIS", ["GET_NAMED_CARD_ID", "06139"]], //Celephaïs
+                        ["VAR", "$SERANNIAN", ["GET_NAMED_CARD_ID", "06140"]], //Serannian
+                        ["VAR", "$HAZUTH_KLEG", ["GET_NAMED_CARD_ID", "06141"]], //Hazuth-Kleg
+                        //Put Celephaïs, Serannian, and Hazuth-Kleg into play.
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$CELEPHAIS", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$SERANNIAN", true, null],
+                        ["DO_SPAWN_CARD", "$TARGET_PLAYER", "$HAZUTH_KLEG", true, null],
+                        //Place each investigator at Celephaïs.
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$CELEPHAIS", true, null]
+                        ]],
+                        //Shuffle the set-aside The Crawling Mist into the encounter deck.
+                        ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06086"], "sharedEncounterDeck", -1], //The Crawling Mist
+                        //Search the encounter deck for 1 copy of Priest of a Thousand Masks and spawn it at Hazuth-Kleg. If there are 3 or 4 investigators in the game, search the encounter deck for another copy of Priest of a Thousand Masks and spawn it at Celephaïs, as well. Shuffle the encounter deck.
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$HAZUTH_KLEG", 3, 3, 1, true, null],
+                        ["COND",
+                            ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
+                            ["DO_SPAWN_ENCOUNTER_AT_LOCATION", "$TARGET_PLAYER", "Priest of a Thousand Masks", "$CELEPHAIS", 3, 3, 1, true, null]
+                        ],
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedEncounterDeck", true, null]
+                    ]
+                ],
+                //Advance to Act 2a - ... (keep only one)
+                ["COND",
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06122"], //Kingdom of the Skai
+                    ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                    ["TRUE"],
+                    ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", true, null]
+                ],
+                ["COND",
+                    ["EQUAL", "$SETUP", 1],
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06123"], "sharedActStory"], //The Isle of Oriab
+                    ["EQUAL", "$SETUP", 2],
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06124"], "sharedActStory"], //The Doom That Came Before
+                    ["EQUAL", "$SETUP", 3],
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06125"], "sharedActStory"], //Seek Out the Night
+                    ["EQUAL", "$SETUP", 4],
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "06126"], "sharedActStory"] //The King's Decree
+                ],
+                //Handle Tenebrous Nightgaunts
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Enemy"],
+                    ["EQUAL", "$CARD.currentFace.databaseId", "06150"] //Tenebrous Nightgaunt
+                ]]],
+                ["VAR", "$SPAWN_LEFT", 5],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["COND",
+                        ["NOT_EQUAL", "$CARD.groupId", "sharedLocations"],
+                        ["MOVE_CARD", "$CARD.id", "sharedLocations", -1]
+                    ],
+                    ["DO_SET_CARD_LOCATION", "$CARD.id", "$SPAWN_LEFT", 10],
+                    ["INCREASE_VAR", "$SPAWN_LEFT", 5]
+                ]],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    ["DO_FSYSLOG", "Move each Tenebrous Nightgaunt to any City location.", null]
+                ],
+                ["SET", "/arkham/scenarioTheSearchForKadath{{$SETUP}}Done", true]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "06122": { //Kingdom of the Skai (To the Sea!)
+                "ability" : {
+                    "B": [
+                        ["THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE", "$PLAYER_N", "$THIS.id"]
+                    ]
+                }
+            },
+            "06123": { //The Isle of Oriab (Where to?)
+                "ability" : {
+                    "B": [
+                        ["THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE", "$PLAYER_N", "$THIS.id"]
+                    ]
+                }
+            },
+            "06124": { //The Doom That Came Before (Where to?)
+                "ability" : {
+                    "B": [
+                        ["THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE", "$PLAYER_N", "$THIS.id"]
+                    ]
+                }
+            },
+            "06125": { //Seek Out the Night (Where to?)
+                "ability" : {
+                    "B": [
+                        ["THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE", "$PLAYER_N", "$THIS.id"]
+                    ]
+                }
+            },
+            "06126": { //The King's Decree (Where to?)
+                "ability" : {
+                    "B": [
+                        ["THE_SEARCH_FOR_KADATH_SHOW_DESTINATION_CHOICE", "$PLAYER_N", "$THIS.id"]
+                    ]
+                }
+            }
+        }
+    },
+    "prompts": {
+        "theSearchForKadathChooseDestination": {
+            "args": [],
+            "message": "Which place do you want to visit?",
+            "options": [
+            ]
+        }
+    }
+}

@@ -97,14 +97,14 @@
             ["DO_LOAD_N_CARDS_SCN", "Blood on the Altar - Schoolhouse", 1],
             ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "Bishop's Brook", "Burned Ruins", "Osborn's General Store", "Congregational Church", "House in the Reeds", "Schoolhouse"]]],
             ["DO_DELETE_LOCATION_SCN", "$LOCATIONS.[0]"],
-            ["SET", "/arkhamScenarioBloodOnTheAltarRemovedLocation", "$LOCATIONS.[0]"],
+            ["SET", "/arkham/scenarioBloodOnTheAltarRemovedLocation", "$LOCATIONS.[0]"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Dr. Henry Armitage was kidnapped.", "The above is not true."], "Blood on the Altar Scenario Question 1"]
         ],
         "Blood on the Altar Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Dr. Henry Armitage: The Head Librarian", "02040", 1, "sharedDeckA"]
                 ]
             ],
@@ -112,9 +112,9 @@
         ],
         "Blood on the Altar Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Professor Warren Rice: Professor of Languages", "02061", 1, "sharedDeckA"]
                 ]
             ],
@@ -122,9 +122,9 @@
         ],
         "Blood on the Altar Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Dr. Francis Morgan: Professor of Archaeology", "02080", 1, "sharedDeckA"]
                 ]
             ],
@@ -132,9 +132,9 @@
         ],
         "Blood on the Altar Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
                     ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
                 ]
             ],
@@ -142,24 +142,24 @@
         ],
         "Blood on the Altar Scenario Question 5": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
                     ["DO_LOAD_CARDS_SCN", "Naomi's Crew"]
                 ]
             ],
             ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedEncounterDeck", true, null],
-            ["SET", "/arkhamSkipShufflingEncounterDeck", true],
+            ["SET", "/arkham/skipShufflingEncounterDeck", true],
             ["DO_MOVE_DECK_CARDS_SCN", "Encounter Card", "sharedEncounterDeck", 3, "sharedDeckB"],
             ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckB", true, null],
-            ["VAR", "$LOCATIONS", ["REMOVE_FROM_LIST_BY_VALUE", ["LIST", "Bishop's Brook", "Burned Ruins", "Osborn's General Store", "Congregational Church", "House in the Reeds", "Schoolhouse"], "$GAME.arkhamScenarioBloodOnTheAltarRemovedLocation"]],
+            ["VAR", "$LOCATIONS", ["REMOVE_FROM_LIST_BY_VALUE", ["LIST", "Bishop's Brook", "Burned Ruins", "Osborn's General Store", "Congregational Church", "House in the Reeds", "Schoolhouse"], "$GAME.arkham.scenarioBloodOnTheAltarRemovedLocation"]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
                 ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckB"]],
                 ["SET", "/cardById/$TOP_CARD.id/disableSideChange", true],
                 ["DO_SPAWN_HIDDEN_AT_LOCATION_SCN", "$TOP_CARD.id", "$LOCATIONS.[$I]", -3, -3],
                 ["SET", "/cardById/$TOP_CARD.id/disableSideChange", false]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Potential sacrifices cards are in Deck A."],
+            ["SET", "/arkham/finalScenarioMessage", "Potential sacrifices cards are in Deck A."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

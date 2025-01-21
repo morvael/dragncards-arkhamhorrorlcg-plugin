@@ -1,0 +1,99 @@
+{
+    "preBuiltDecks": {
+        "Waking Nightmare Scenario": {
+            "label": "Waking Nightmare Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Web of Dreams", "The Web of Dreams", "Waking Nightmare", "Waking Nightmare Scenario Early Init", "Waking Nightmare Scenario Init"]
+            ]
+        },
+        "Waking Nightmare": {
+            "hideFromSearch": true,
+            "label": "Waking Nightmare",
+            "cards": [
+                {"databaseId": "06063", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Waking Nightmare
+                {"databaseId": "06064", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Halls of St. Mary's
+                {"databaseId": "06065", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Infestation Spreads
+                {"databaseId": "06066", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Hospital of Horrors
+                {"databaseId": "06067", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Looking for Answers
+                {"databaseId": "06068", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Search for the Patient
+                {"databaseId": "06069", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Containing the Outbreak
+                {"databaseId": "06070", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "31%"},  //Waiting Room
+                {"databaseId": "06071", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "55%"},  //Emergency Room
+                {"databaseId": "06072", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "55%"},  //Experimental Therapies Ward
+                {"databaseId": "06073", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "7%"},   //Records Office
+                {"databaseId": "06080", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Dr. Shivani Maheswaran: Emergency Physician
+                {"databaseId": "06074", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Stairwell
+                {"databaseId": "06081", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Suspicious Orderly
+            ]
+        },
+        "Waking Nightmare - Agents of Atlach-Nacha": {
+            "hideFromSearch": true,
+            "label": "Waking Nightmare - Agents of Atlach-Nacha",
+            "cards": [
+                {"databaseId": "06084", "quantity": 2, "loadGroupId": "sharedPileA"},   //Grey Weaver
+                {"databaseId": "06085", "quantity": 2, "loadGroupId": "sharedPileA"}    //Will of the Spider-Mother
+            ]
+        },
+        "Waking Nightmare - Spiders": {
+            "hideFromSearch": true,
+            "label": "Waking Nightmare - Spiders",
+            "cards": [
+                {"databaseId": "06101", "quantity": 1, "loadGroupId": "sharedPileB"},   //Spider of Leng
+                {"databaseId": "06102", "quantity": 3, "loadGroupId": "sharedPileB"},   //Swarm of Spiders
+                {"databaseId": "06103", "quantity": 2, "loadGroupId": "sharedPileB"}    //Sickening Webs
+            ]
+        },
+        "Waking Nightmare - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Waking Nightmare - Set Aside",
+            "cards": [
+                {"databaseId": "06079", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Randolph Carter: Chained to the Waking World
+                {"databaseId": "06083", "quantity": 3, "loadGroupId": "sharedNotInPlay"},   //Outbreak
+                {"databaseId": "06082", "quantity": 2, "loadGroupId": "sharedNotInPlay"},   //Corrupted Orderly
+                {"databaseId": "06078", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //The Infestation Begins...
+            ]
+        }
+    },
+    "actionLists": {
+        "Waking Nightmare Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Convince Doctor Maheswaran to come with you while you investigate, for her safety and yours.", "Convince Doctor Maheswaran to stay with the patients and keep them safe while you investigate."], "Waking Nightmare Scenario Question 1"]
+        ],
+        "Waking Nightmare Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: Dr. Maheswaran joined the investigation."],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["LOG", "└── Campaign Log: Dr. Maheswaran stayed with her patients."]
+            ],
+            ["SCENARIO_INIT_RESUME", "Waking Nightmare Scenario Init"]
+        ],
+        "Waking Nightmare Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Waking Nightmare"],
+            ["DO_SET_SPAWN_LOCATION", "06074", 75, 55], //Stairwell
+            ["DO_LOAD_CARDS_SCN", "Merging Realities"],
+            ["DO_LOAD_CARDS_SCN", "Whispers of Hypnos"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Waking Nightmare - Agents of Atlach-Nacha"],
+            ["DO_LOAD_CARDS_SCN", "Waking Nightmare - Spiders"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Waiting Room", 5, 7, 3, 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["MOVE_CARD", ["GET_NAMED_CARD_ID", "06080"], ["GET_CONTROLLER_PLAY", "$GAME.firstPlayer"], -1] //Dr. Shivani Maheswaran: Emergency Physician
+            ],
+            ["VAR", "$BASEMENT_DOORS", ["SHUFFLE_LIST", ["LIST", "06075", "06076", "06077"]]],  //Morgue, Operating Room, Private Room
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 35, 55, 75]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Basement Door", "$BASEMENT_DOORS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$BASEMENT_DOORS.[$I]", "$SPAWN_LEFTS.[$I]", 79]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Waking Nightmare - Set Aside"],
+            ["SET", "/arkham/finalScenarioMessage", "Agents of Atlach-Nacha cards are in Pile A, Spiders cards are in Pile B."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

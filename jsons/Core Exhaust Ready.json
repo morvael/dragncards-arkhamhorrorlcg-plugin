@@ -24,6 +24,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_EXHAUST_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_EXHAUST_CARD.TARGET_CARD_ID"]],
                 ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.disableExhaustReady", true],
                     ["EQUAL", "$TARGET_CARD.inAdvanced", true],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
@@ -66,8 +67,9 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_READY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_READY_CARD.TARGET_CARD_ID"]],
                 ["AND",
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.disableExhaustReady", true],
                     ["EQUAL", "$TARGET_CARD.inAdvanced", true],
-                    ["EQUAL", "$TARGET_CARD.rotation", 90],
+                    ["NOT_EQUAL", "$TARGET_CARD.rotation", 0],
                     ["OR",
                         ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Asset"],
@@ -119,7 +121,10 @@
                 ["LOG", "└── Each exhausted card readies."],
                 ["VAR", "$ALL_EXHAUSTED_CARDS", ["GET_ALL_EXHAUSTED_CARDS", "$TARGET_PLAYER", "$ACTOR_PLAYER"]],
                 ["FOR_EACH_VAL", "$CARD", "$ALL_EXHAUSTED_CARDS", [
-                    ["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                    ["COND",
+                        ["NOT_EQUAL", "$CARD.sides.A.databaseId", "07309"], //Jacob Morrison: Coast Guard Captain (Jacob Morrison does not ready during the upkeep phase.)
+                        ["DO_READY_CARD", "$TARGET_PLAYER", "$CARD.id", false, "$ACTOR_PLAYER"]
+                    ]
                 ]]
             ]
         }
@@ -130,14 +135,14 @@
             "message": "You should now ready exhausted cards.",
             "options": [
                 {
-                    "label": "Yes, proceed (follow the rules)",
+                    "label": "Yes, proceed (follow the rules).",
                     "hotkey": "Y",
                     "code": [
                         ["DO_READY_ALL_CARDS", "$PLAYER_N", "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "No, skip that (ignore the rules)",
+                    "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
                         ["LOG", "└── {{$ALIAS_N}} skips readying exhausted cards."]

@@ -65,27 +65,27 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the path winds before you” in Campaign Log.", ["LIST", "6 tally marks.", "5 tally marks.", "4 tally marks.", "3 tally marks.", "2 tally marks.", "1 tally mark.", "0 tally marks."], "Return to Before the Black Throne Scenario Question 1"]
         ],
         "Return to Before the Black Throne Scenario Question 1": [
-            ["LOG", "└── The path winds before you: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── The path winds before you: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["VAR", "$TOKENS", 0],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["UPDATE_VAR", "$TOKENS", 6],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["UPDATE_VAR", "$TOKENS", 5],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 ["UPDATE_VAR", "$TOKENS", 4],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
                 ["UPDATE_VAR", "$TOKENS", 3],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "E"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "E"],
                 ["UPDATE_VAR", "$TOKENS", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "F"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "F"],
                 ["UPDATE_VAR", "$TOKENS", 1]
             ],
             ["COND",
                 ["GREATER_THAN", "$TOKENS", 0],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$TOKENS", true, null]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Cosmos cards are in Deck A. Off Map is “next to the agenda deck” (in play). When the game begins, the investigators may remove 2 resources from the scenario reference card to have each investigator begin the game with a Nightgaunt Steed story asset in play. Remove each remaining Nightgaunt Steed from the game."],
+            ["SET", "/arkham/finalScenarioMessage", "Cosmos cards are in Deck A. Off Map is “next to the agenda deck” (in play). When the game begins, the investigators may remove 2 resources from the scenario reference card to have each investigator begin the game with a Nightgaunt Steed story asset in play. Remove each remaining Nightgaunt Steed from the game."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

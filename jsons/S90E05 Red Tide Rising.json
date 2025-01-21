@@ -1,0 +1,142 @@
+{
+    "preBuiltDecks": {
+        "Red Tide Rising Scenario": {
+            "label": "Red Tide Rising Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
+                ["COND",
+                    ["NOT_EQUAL", "$WENDY_ADAMS", null],
+                    ["SCENARIO_INIT", "Challenge Scenarios B", "Challenge Scenarios", "Red Tide Rising", null, "Red Tide Rising Scenario Init"],
+                    ["TRUE"],
+                    ["LOG", "└── Wendy Adams must be chosen as one of the investigators when playing this scenario."]
+                ]
+            ]
+        },
+        "Red Tide Rising": {
+            "hideFromSearch": true,
+            "label": "Red Tide Rising",
+            "cards": [
+                {"databaseId": "90041", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Red Tide Rising
+                {"databaseId": "90042", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The New Girl
+                {"databaseId": "90043", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Trail Goes Cold
+                {"databaseId": "90044", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Searching for Dad
+                {"databaseId": "07065", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Innsmouth Square
+                {"databaseId": "07063", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "26%"},  //Marsh Refinery
+                {"databaseId": "07066", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Innsmouth Harbour
+                {"databaseId": "07068", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "60%"},  //Fish Street Bridge
+                {"databaseId": "07067", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "26%"},  //First National Grocery
+                {"databaseId": "07064", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "60%"},  //Gilman House
+                {"databaseId": "07069", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"}    //The Little Bookshop
+            ]
+        }
+    },
+    "actionLists": {
+        "Red Tide Rising Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Red Tide Rising"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Dagon"],
+            ["DO_LOAD_CARDS_SCN", "Fog over Innsmouth"],
+            ["DO_LOAD_CARDS_SCN", "The Locals"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "Nightgaunts"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
+            ["VAR", "$SUSPECTS", ["SHUFFLE_LIST", ["LIST", "07076", "07077", "07078", "07079", "07080", "07081"]]], //Robert Friendly: Disgruntled Dockworker, Zadok Allen: Drunk and Disorderly, Brian Burnham: Wants Out, Barnabas Marsh: The Change Is upon Him, Joyce Little: Bookshop Owner, Othera Gilman: Proprietress of the Hotel
+            ["VAR", "$HIDEOUTS", ["SHUFFLE_LIST", ["LIST", "07070", "07071", "07072", "07073", "07074", "07075"]]], //Esoteric Order of Dagon, Sawbone Alley, Shoreward Slums, The House on Water Street, Innsmouth Jail, New Church Green
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Suspect", "$SUSPECTS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Hideout", "$HIDEOUTS.[$I]", 1, "sharedDeckA"]
+            ]],
+            ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
+            ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckA"]],
+            ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
+            ["COND",
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07076"], //Robert Friendly: Disgruntled Dockworker
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "Innsmouth Harbour"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07077"], //Zadok Allen: Drunk and Disorderly
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "Fish Street Bridge"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07078"], //Brian Burnham: Wants Out
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "First National Grocery"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07079"], //Barnabas Marsh: The Change Is upon Him
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "Marsh Refinery"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07080"], //Joyce Little: Bookshop Owner
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "The Little Bookshop"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07081"], //Othera Gilman: Proprietress of the Hotel
+                ["RED_TIDE_RISING_ENEMY_DRAWN", "$TOP_CARD", "Gilman House"],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07070"], //Esoteric Order of Dagon
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 7, 10],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07071"], //Sawbone Alley
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 7, 76],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07072"], //Shoreward Slums
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 83, 76],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07073"], //The House on Water Street
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 83, 10],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07074"], //Innsmouth Jail
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 45, 76],
+                ["EQUAL", "$TOP_CARD.sides.A.databaseId", "07075"], //New Church Green
+                ["RED_TIDE_RISING_LOCATION_DRAWN", "$TOP_CARD", 45, 10]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Innsmouth Square", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Winged One", "sharedEncounterDeck", 1, "sharedNotInPlay"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Hunting Nightgaunt", "sharedEncounterDeck", 2, "sharedNotInPlay"],
+            ["DO_CREATE_CARDS_SCN", "Angry Mob", "07062a", 1, "sharedNotInPlay"], //Finding Agent Harper
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+            ["VAR", "$NUM_INVESTIGATORS", "$GAME.arkham.numPlayers"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["INCREASE_VAR", "$NUM_INVESTIGATORS", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["INCREASE_VAR", "$NUM_INVESTIGATORS", 2]
+            ],
+            ["COND",
+                ["EQUAL", "$NUM_INVESTIGATORS", 2],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$NUM_INVESTIGATORS", 3],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
+                ["GREATER_EQUAL", "$NUM_INVESTIGATORS", 4],
+                [
+                    ["VAR", "$SELECTED_CARDS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedNotInPlay"],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Monster."]
+                    ]]]],
+                    ["DO_MOVE_NAMED_DECK_CARDS_SCN", "$SELECTED_CARDS.[0].id", "sharedNotInPlay", 1, "sharedDeckA"],
+                    ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
+                    ["COND",
+                        ["EQUAL", "$NUM_INVESTIGATORS", 5],
+                        ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                        ["EQUAL", "$NUM_INVESTIGATORS", 6],
+                        ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+                    ]
+                ]
+            ],
+            ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
+            ["DO_CREATE_CARDS_SCN", "Mysterious Photo", "90045a", 1, ["GET_CONTROLLER_PLAY", "$WENDY_ADAMS.controller"]],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the Leads deck. Wendy Adams may choose which side the Mysterious Photo card starts on."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "RED_TIDE_RISING_ENEMY_DRAWN": {
+            "args": ["$TARGET_CARD", "$LOCATION_NAME"],
+            "code": [
+                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$TARGET_CARD.id", "$LOCATION_NAME", 3, 3, 1],
+                ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$TARGET_CARD.id", "$GAME.arkham.numPlayers", true, null],
+                ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
+                ["SET", "/playerData/$WENDY_ADAMS.controller/arkham/customSpawnLocation", "$LOCATION_NAME"]
+            ]
+        },
+        "RED_TIDE_RISING_LOCATION_DRAWN": {
+            "args": ["$TARGET_CARD", "$LEFT", "$TOP"],
+            "code": [
+                ["DO_PUT_INTO_PLAY_AT_SCN", "$TARGET_CARD.id", "$LEFT", "$TOP"],
+                ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
+                ["SET", "/playerData/$WENDY_ADAMS.controller/arkham/customSpawnLocation", "$TARGET_CARD.sides.A.name"]
+            ]
+        }
+    }
+}

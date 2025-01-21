@@ -9,9 +9,23 @@
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
-                        ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
-                        ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
-                        ["CALC", "{{$LEFT}}"]
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD_STACK_ID", null],
+                            [
+                                ["VAR", "$LEFT", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.left"],
+                                ["COND",
+                                    ["GREATER_THAN", ["LENGTH", "$LEFT"], 1],
+                                    [
+                                        ["VAR", "$LEFT", ["SUBSTRING", "$LEFT", 0, ["SUBTRACT", ["LENGTH", "$LEFT"], 1]]],
+                                        ["CALC", "{{$LEFT}}"]
+                                    ],
+                                    ["TRUE"],
+                                    0
+                                ]
+                            ],
+                            ["TRUE"],
+                            0
+                        ]
                     ],
                     ["TRUE"],
                     0
@@ -27,9 +41,23 @@
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
-                        ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
-                        ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
-                        ["CALC", "{{$TOP}}"]
+                        ["COND",
+                            ["NOT_EQUAL", "$TARGET_CARD_STACK_ID", null],
+                            [
+                                ["VAR", "$TOP", "$STACK_BY_ID.$TARGET_CARD_STACK_ID.top"],
+                                ["COND",
+                                    ["GREATER_THAN", ["LENGTH", "$TOP"], 1],
+                                    [
+                                        ["VAR", "$TOP", ["SUBSTRING", "$TOP", 0, ["SUBTRACT", ["LENGTH", "$TOP"], 1]]],
+                                        ["CALC", "{{$TOP}}"]
+                                    ],
+                                    ["TRUE"],
+                                    0
+                                ]
+                            ],
+                            ["TRUE"],
+                            0
+                        ]
                     ],
                     ["TRUE"],
                     0
@@ -42,6 +70,14 @@
             "code": [
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TOP_CARD.TARGET_GROUP_ID"]],
                 ["GET_CARD", "$TARGET_GROUP.id", 0, 0]
+            ]
+        },
+        "GET_TOP_CARD_ID": {
+            "_comment": "Returns id of top card of given group, or null.",
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TOP_CARD_ID.TARGET_GROUP_ID"]],
+                ["GET_CARD_ID", "$TARGET_GROUP.id", 0, 0]
             ]
         },
         "GET_CURRENT_AGENDAS": {
@@ -190,6 +226,22 @@
                 ]]
             ]
         },
+        "GET_NAMED_MAP_CARD": {
+            "_comment": "Returns a card from sharedLocations with given currentFace name/databaseId/id, or null.",
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION.TARGET_NAME"],
+                ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
         "GET_ALL_CARDS_IN_GROUP": {
             "_comment": "Returns list of all cards in given group.",
             "args": ["$TARGET_GROUP_ID"],
@@ -206,8 +258,8 @@
                 ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
             ]
         },
+        //Returns list of cards in given group targeted by given player.
         "GET_TARGETED_CARDS_IN_GROUP": {
-            "_comment": "Returns list of cards in given group targeted by given player.",
             "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
             "code": [
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
@@ -215,6 +267,18 @@
                 ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
                     ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
+                ]]
+            ]
+        },
+        //Returns list of cards in given group not targeted by given player.
+        "GET_NOT_TARGETED_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGETING_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["NOT_EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
                 ]]
             ]
         },
@@ -235,6 +299,13 @@
                 ["VAR", "$TARGET_CARD_STACK_ID", ["GET_STACK_ID", "$TARGET_CARD.groupId", "$TARGET_CARD.stackIndex"]],
                 ["SET", "/stackById/$TARGET_CARD_STACK_ID/left", "{{$LEFT}}%"],
                 ["SET", "/stackById/$TARGET_CARD_STACK_ID/top",  "{{$TOP}}%"]
+            ]
+        },
+        "DO_SET_CARD_LOCATION_AND_ROTATION": {
+            "args": ["$TARGET_CARD_ID", "$LEFT", "$TOP", "$ROTATION"],
+            "code": [
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+                ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$ROTATION"]
             ]
         },
         "DO_CLEAR_TARGETED_FROM_LIST": {
@@ -285,6 +356,137 @@
             "code": [
                 ["VAR", "$SCENARIO_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
                 "$SCENARIO_CARD.id"
+            ]
+        },
+        "GET_CARD_TITLE": {
+            "args": ["$CARD_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CARD_NAME", "GET_CARD_TITLE.CARD_NAME"],
+                ["COND",
+                    ["EQUAL", ["IN_STRING", "$CARD_NAME", ":"], true],
+                    ["REGEX_REPLACE", "$CARD_NAME", ":.+", ""],
+                    ["TRUE"],
+                    "$CARD_NAME"
+                ]
+            ]
+        },
+        "GET_CARD_PROPERTY": {
+            "args": ["$TARGET_CARD_ID", "$PROPERTY", "$DEFAULT"],
+            "code": [
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_CARD_PROPERTY.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$PROPERTY", "GET_CARD_PROPERTY.PROPERTY"],
+                ["VALIDATE_NOT_NULL", "$DEFAULT", "GET_CARD_PROPERTY.DEFAULT"],
+                ["VAR", "$VALUE", "$CARD_BY_ID.$TARGET_CARD_ID.$PROPERTY"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$VALUE", null],
+                        ["EQUAL", "$VALUE", ""]
+                    ],
+                    "$DEFAULT",
+                    ["TRUE"],
+                    "$VALUE"
+                ]
+            ]
+        },
+        "INLINE_IF": {
+            "args": ["$TEST", "$A", "$B"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$TEST", true],
+                    "$A",
+                    ["TRUE"],
+                    "$B"
+                ]
+            ]
+        },
+        "NVL": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$A", null],
+                    "$B",
+                    ["TRUE"],
+                    "$A"
+                ]
+            ]
+        },
+        "MAX2": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$A", "$B"],
+                    "$A",
+                    ["TRUE"],
+                    "$B"
+                ]
+            ]
+        },
+        "MIN2": {
+            "args": ["$A", "$B"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$A", "$B"],
+                    "$B",
+                    ["TRUE"],
+                    "$A"
+                ]
+            ]
+        },
+        "ABS": {
+            "args": ["$VALUE"],
+            "code": [
+                ["COND",
+                    ["GREATER_EQUAL", "$VALUE", 0],
+                    "$VALUE",
+                    ["TRUE"],
+                    ["TO_INT", ["MULTIPLY", "$VALUE", -1]]
+                ]
+            ]
+        },
+        "FILTER_UNIQUE_CARDS": {
+            "args": ["$SELECTED_CARDS"],
+            "code": [
+                ["VAR", "$TITLES", ["LIST"]],
+                ["VAR", "$RESULT", ["LIST"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["VAR", "$TITLE", ["GET_CARD_TITLE", "$CARD.sides.A.name"]],
+                    ["COND",
+                        ["EQUAL", ["IN_LIST", "$TITLES", "$TITLE"], false],
+                        [
+                            ["UPDATE_VAR", "$TITLES", ["APPEND", "$TITLES", "$TITLE"]],
+                            ["UPDATE_VAR", "$RESULT", ["APPEND", "$RESULT", "$CARD"]]
+                        ]
+                    ]
+                ]],
+                "$RESULT"
+            ]
+        },
+        "BUMP_AND_ROTATE": {
+            "args": ["$NUM", "$MAX"],
+            "code": [
+                ["INCREASE_VAR", "$NUM", 1],
+                ["COND",
+                    ["GREATER_THAN", "$NUM", "$MAX"],
+                    ["UPDATE_VAR", "$NUM", 0]
+                ],
+                "$NUM"
+            ]
+        },
+        "IS_PLAYER_CARD": {
+            "args": ["$TARGET_CARD"],
+            "code": [
+                ["VALIDATE_NOT_NULL", "$TARGET_CARD", "IS_PLAYER_CARD.TARGET_CARD"],
+                ["OR",
+                    ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08011a"], //Discipline: Alignment of Spirit
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08012a"], //Discipline: Quiescence of Thought
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08013a"], //Discipline: Prescience of Fate
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10005"],  //Flux Stabilizer: Inactive
+                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                ]
             ]
         }
     }

@@ -207,13 +207,14 @@
         "cards": {
             "03001": { //Mark Harrigan: The Soldier
                 "rules": {
-                    "03001a": {
+                    "03001a": { //You begin the game with Sophie (In Loving Memory) in play.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Sophie: In Loving Memory in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Sophie"]
                         ]
                     }
@@ -221,45 +222,47 @@
             },
             "03003": { //Sefina Rousseau: The Painter
                 "rules": {
-                    "03003a": {
+                    "03003a": { //Forced - When you would draw your opening hand: Draw 13 cards, instead. Choose up to 5 events to place beneath this card and keep 8 cards as your opening hand. Discard the rest. (You cannot mulligan.)
                         "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventDraw"],
+                        "listenTo": ["/playerData/*/arkham/playerEventDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "Draw"],
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$THIS.controller", 13]],
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "Draw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} draws 13 cards instead of drawing their opening hand. Chooses up to 5 events to place beneath Sefina Rousseau and keeps 8 cards as their opening hand. Discards the rest. (They cannot mulligan.)", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                            ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                            ["VAR", "$STARTING_CARDS", ["GET_STARTING_CARDS", "$TARGET_PLAYER", 13]],
                             ["COND",
                                 ["GREATER_THAN", "$STARTING_CARDS", 0],
-                                ["DO_DRAW_CARDS_EXT", "$THIS.controller", ["GET_CONTROLLER_DECK", "$THIS.controller"], "$STARTING_CARDS", true, true, null]
+                                ["DO_DRAW_CARDS_EXT", "$TARGET_PLAYER", "$DECK_GROUP_ID", "$STARTING_CARDS", true, true, null]
                             ],
-                            ["PROMPT", "$THIS.controller", "decideAboutSefinaHand1"]
+                            ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
+                                ["GET_FILTERED_CARDS", "$HAND_GROUP_ID", null, ["LIST", "Event"], null, null, ["LIST", "The Painted World"]],
+                                null,
+                                "Target between {0} and {1} events to place beneath Sefina Rousseau.",
+                                0, 5, false, "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1", "$THIS.id"]
                         ]
                     }
                 }
             },
             "03004": { //Akachi Onyele: The Shaman
                 "rules": {
-                    "03004a": {
-                        "type": "passive",
+                    "03004a": { //Your assets with "uses (charges)" enter play with 1 additional charge on them.
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
-                        ],
-                        "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamBonusCharges", 1]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "bonusCharges", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "bonusCharges", 1, "$THIS.inPlay", "{2:P}'s assets with “uses (charges)” enter play with 1 additional charge on them.", null]
                         ]
                     }
                 }
             },
             "03006": { //Lola Hayes: The Actress
                 "rules": {
-                    "03006a": {
+                    "03006a": { //Forced - After you draw your opening hand: Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
@@ -269,41 +272,50 @@
                             ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
                             ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
                         ]
+                    },
+                    "03006b": { //Forced - After you draw your opening hand: Choose a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} chooses a role (Survivor, Guardian, Seeker, Rogue, Mystic, or Neutral). They can only play, commit, or trigger abilities on Neutral cards or cards of their role.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "AfterDraw"]
+                        ]
+                    }
+                }
+            },
+            "03041": { //Drawing the Sign
+                "rules": {
+                    "03041a": { //Your maximum hand size is reduced by 5.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -5, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", -5, "$THIS.inPlay", "{2:P}'s maximum hand size is reduced by 5.", null]
+                        ]
                     }
                 }
             },
             "03264": { //Stick to the Plan
                 "rules": {
-                    "03264a": {
+                    "03264a": { //(reaction) Before you draw your opening hand: Search your deck for up to 3 different Tactic and/or Supply events, and attach them facedown to Stick to the Plan. Shuffle your deck.
                         "type": "trigger",
-                        "priority": 20,
-                        "listenTo": ["/playerData/*/arkhamPlayerEventBeforeDraw"],
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
                         "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
                         "then": [
-                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "BeforeDraw"],
-                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} searches their deck for up to 3 different Tactic and/or Supply events, and attaches them facedown to Stick to the Plan. Shuffles their deck.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
                             ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
-                            ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                                ["EQUAL", "$CARD.groupId", "$DECK_GROUP_ID"],
-                                ["EQUAL", "$CARD.sides.A.type", "Event"],
-                                ["OR",
-                                    ["IN_STRING", "$CARD.sides.A.traits", "Tactic."],
-                                    ["IN_STRING", "$CARD.sides.A.traits", "Supply."]
-                                ]
-                            ]]],
-                            ["COND",
-                                ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 0],
-                                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"],
-                                ["TRUE"],
-                                [
-                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                                        ["MOVE_CARD", "$CARD.id", "$HAND_GROUP_ID", -1]
-                                    ]],
-                                    ["PROMPT", "$TARGET_PLAYER", "decideAboutStickToThePlanHand", "$THIS.id"]
-                                ]
-                            ]
+                            ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                                ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, ["LIST", "Event"], null, ["LIST", "Tactic.", "Supply."], null],
+                                "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.03264",
+                                "Target between {0} and {1} different Tactic and/or Supply events to attach them facedown to Stick to the Plan.",
+                                0, 3, true, "STICK_TO_THE_PLAN_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     }
                 }
@@ -361,63 +373,46 @@
         ]
     },
     "functions": {
-        "DO_PLACE_EVENTS_BENEATH_SEFINA": {
-            "args": ["$TARGET_PLAYER"],
+        "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_EVENTS_BENEATH_SEFINA.TARGET_PLAYER"],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    [
-                        ["DO_FLOG", "{0:P} places events beneath {0:I}.", ["LIST", "$TARGET_PLAYER"]],
-                        ["VAR", "$EVENTS", 0],
-                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["COND",
-                                ["AND",
-                                    ["EQUAL", "$CARD.sides.A.type", "Event"],
-                                    ["LESS_THAN", "$EVENTS", 5]
-                                ],
-                                [
-                                    ["DO_PUT_CARD_BENEATH", "$TARGET_PLAYER", "$CARD.id", "$INVESTIGATOR.id", true, null],
-                                    ["INCREASE_VAR", "$EVENTS", 1]
-                                ]
-                            ]
-                        ]]
-                    ]
-                ],
-                ["DO_DISCARD_EXCESS_SEFINA_CARDS", "$TARGET_PLAYER", 100]
-            ]
-        },
-        "DO_DISCARD_EXCESS_SEFINA_CARDS": {
-            "args": ["$TARGET_PLAYER", "$CARDS_TO_DISCARD"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_DISCARD_EXCESS_SEFINA_CARDS.TARGET_PLAYER"],
-                ["VALIDATE_GT0", "$CARDS_TO_DISCARD", "DO_DISCARD_EXCESS_SEFINA_CARDS.CARDS_TO_DISCARD"],
-                ["VAR", "$HAND_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_ID", "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    [
-                        ["DO_FLOG", "{0:P} discards {1:L} of {2} excess card{2:S} from hand.", ["LIST", "$TARGET_PLAYER", "$SELECTED_CARDS", "$CARDS_TO_DISCARD"]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
-                        ]]
-                    ]
-                ],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1.SELECTED_CARDS"],
+                ["DO_FSYSLOG", "{0:P} places {1} event{1:S} beneath Sefina Rousseau.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_PUT_CARD_BENEATH", "$TARGET_PLAYER", "$CARD.id", "$SOURCE_CARD.id", false, null]
+                ]],
+                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
+                ["VAR", "$HAND_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$HAND_GROUP_ID"]],
+                ["VAR", "$HAND_COUNT", ["LENGTH", "$HAND_CARDS"]],
                 ["VAR", "$CARDS_KEPT", ["GET_STARTING_CARDS", "$TARGET_PLAYER", 8]],
-                ["VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]],
                 ["COND",
-                    ["GREATER_THAN", "$CARDS_IN_HAND", "$CARDS_KEPT"],
+                    ["GREATER_THAN", "$HAND_COUNT", "$CARDS_KEPT"],
                     [
-                        ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$CARDS_IN_HAND", "$CARDS_KEPT"]],
-                        ["PROMPT", "$TARGET_PLAYER", "decideAboutSefinaHand2", ["DO_FORMAT_STRING", "{0} excess card{0:S}", ["LIST", "$CARDS_TO_DISCARD"]], "$CARDS_TO_DISCARD"]
+                        ["VAR", "$CARDS_TO_DISCARD", ["SUBTRACT", "$HAND_COUNT", "$CARDS_KEPT"]],
+                        ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
+                            "$HAND_CARDS",
+                            null,
+                            "Target {0} excess card{0:S} to discard from hand.",
+                            "$CARDS_TO_DISCARD", "$CARDS_TO_DISCARD", false, "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2", "$SOURCE_CARD_ID"]
                     ],
                     ["TRUE"],
-                    ["STARTING_HAND_DONE"]
+                    ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "Draw"]
                 ]
+            ]
+        },
+        "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2.SELECTED_CARDS"],
+                ["DO_FSYSLOG", "{0:P} discards {1} excess card{1:S} from their hand.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "Draw"]
             ]
         },
         "CAN_SWITCH_ROLE": {
@@ -450,81 +445,18 @@
                 ]
             ]
         },
-        "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+        "STICK_TO_THE_PLAN_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN.TARGET_PLAYER"],
-                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN.TARGET_CARD_ID"]],
-                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
-                ["VAR", "$HAND_GROUP_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"]],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$HAND_GROUP_ID", "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    [
-                        ["DO_FLOG", "{0:P} attaches Tactic and/or Supply events facedown to Stick to the Plan.", ["LIST", "$TARGET_PLAYER"]],
-                        ["VAR", "$EVENTS", 0],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["COND",
-                                ["AND",
-                                    ["EQUAL", "$CARD.sides.A.type", "Event"],
-                                    ["OR",
-                                        ["IN_STRING", "$CARD.sides.A.traits", "Tactic."],
-                                        ["IN_STRING", "$CARD.sides.A.traits", "Supply."]
-                                    ],
-                                    ["LESS_THAN", "$EVENTS", 3]
-                                ],
-                                [
-                                    ["DO_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", "$TARGET_CARD.id", true, null],
-                                    ["INCREASE_VAR", "$EVENTS", 1]
-                                ]
-                            ]
-                        ]]
-                    ]
-                ],
-                ["DO_SHUFFLE_GROUP_INTO_GROUP", "$TARGET_PLAYER", "$HAND_GROUP_ID", "$DECK_GROUP_ID", true, null],
-                ["DEFAULT_DRAW_STARTING_HAND", "$TARGET_PLAYER"]
-            ]
-        }
-    },
-    "prompts": {
-        "decideAboutSefinaHand1": {
-            "args": [],
-            "message": "Target cards in hand. First 5 events will be placed beneath Sefina Rousseau.",
-            "options": [
-                {
-                    "label": "Proceed.",
-                    "hotkey": "P",
-                    "code": [
-                        ["DO_PLACE_EVENTS_BENEATH_SEFINA", "$PLAYER_N"]
-                    ]
-                }
-            ]
-        },
-        "decideAboutSefinaHand2": {
-            "args": ["$MESSAGE", "$CARDS_TO_DISCARD"],
-            "message": "You should discard {{$MESSAGE}} from hand. Target cards to discard.",
-            "options": [
-                {
-                    "label": "Proceed.",
-                    "hotkey": "P",
-                    "code": [
-                        ["DO_DISCARD_EXCESS_SEFINA_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD"]
-                    ]
-                }
-            ]
-        },
-        "decideAboutStickToThePlanHand": {
-            "args": ["$TARGET_CARD_ID"],
-            "message": "Target cards in hand. First 3 Tactic and/or Supply events will be attached facedown to Stick to the Plan.",
-            "options": [
-                {
-                    "label": "Proceed.",
-                    "hotkey": "P",
-                    "code": [
-                        ["DO_PLACE_TACTIC_OR_SUPPLY_EVENTS_UNDER_STICK_TO_THE_PLAN", "$PLAYER_N", "$TARGET_CARD_ID"]
-                    ]
-                }
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "STICK_TO_THE_PLAN_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "STICK_TO_THE_PLAN_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "STICK_TO_THE_PLAN_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["DO_FSYSLOG", "{0:P} attaches {1} Tactic and/or Supply event{1:S} facedown to Stick to the Plan.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_ATTACH_CARD_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", "$SOURCE_CARD.id", false, null],
+                    ["DO_PEEK_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
             ]
         }
     },

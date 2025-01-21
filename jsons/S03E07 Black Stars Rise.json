@@ -84,8 +84,8 @@
         ],
         "Black Stars Rise Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
             ],
             ["SCENARIO_INIT_RESUME", "Black Stars Rise Scenario Init"]
         ],
@@ -133,8 +133,8 @@
                 ["DO_CREATE_DECK_CARD_SCN", "$PLAYER_I", "random Madness, Pact, Cultist, or Detective weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_MADNESS_PACT_CULTIST_DETECTIVE_WEAKNESSES"]]
             ]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["SET", "/arkhamFinalScenarioMessage", "During this scenario, as a triggered ability, an investigator may remove 1 doom from an agenda in play. (Group limit once per game.)"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["SET", "/arkham/finalScenarioMessage", "During this scenario, as a triggered ability, an investigator may remove 1 doom from an agenda in play. (Group limit once per game.)"]
             ],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

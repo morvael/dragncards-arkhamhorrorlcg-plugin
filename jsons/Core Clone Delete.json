@@ -31,7 +31,9 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_CLONE_SUPPLY_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_CLONE_SUPPLY_CARD.TARGET_CARD_ID"]],
-                ["AND",
+                ["OR",
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                    ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
                 ]
             ]
@@ -50,6 +52,7 @@
                         ["VAR", "$NEW_CARD_ID", "$GAME.lastLoadedCardIds.[0]"],
                         ["SET", "/cardById/$NEW_CARD_ID/cardOwner", "shared"],
                         ["SET", "/cardById/$NEW_CARD_ID/controller", "$TARGET_CARD.controller"],
+                        ["SET", "/cardById/$NEW_CARD_ID/currentSide", "$TARGET_CARD.currentSide"],
                         ["COND",
                             ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
                             [
@@ -72,6 +75,10 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_DELETE_SUPPLY_CARD.TARGET_CARD_ID"]],
                 ["OR",
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroInvestigator"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniAssistant"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroAssistant"],
+                    ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
+                    ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Tarot"],
                     ["IN_STRING", "$TARGET_CARD.groupId", "Removed"]
@@ -99,7 +106,10 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_SPAWN_MICRO_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_SPAWN_MICRO_CARD.TARGET_CARD_ID"]],
                 ["AND",
-                    ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniAssistant"]
+                    ],
                     ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"]
                 ]
             ]
@@ -133,10 +143,10 @@
                 ["COND",
                     ["NOT_EQUAL", "$INVESTIGATOR", null],
                     [
-                        ["VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.sides.A.databaseId}}"],
+                        ["VAR", "$MICRO_DATABASE_ID", ["GET_MINI_ID", "u", "$INVESTIGATOR.sides.A.databaseId"]],
                         ["COND",
                             ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
-                            ["UPDATE_VAR", "$MICRO_DATABASE_ID", "u{{$INVESTIGATOR.originalInvestigatorId}}"]
+                            ["UPDATE_VAR", "$MICRO_DATABASE_ID", ["GET_MINI_ID", "u", "$INVESTIGATOR.originalInvestigatorId"]]
                         ],
                         ["DO_CREATE_CARDS", "$TARGET_PLAYER", "{{$INVESTIGATOR.sides.A.name}}", "$MICRO_DATABASE_ID", 1, ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"], false, null],
                         ["VAR", "$MICRO_INVESTIGATOR", "$CARD_BY_ID.{{$GAME.lastLoadedCardIds.[0]}}"],
@@ -155,7 +165,7 @@
             "English": "Delete"
         },
         "deleteSupplyCardMenu": {
-            "English": "Delete (Delete)"
+            "English": "Delete (Ctrl+Delete)"
         },
         "spawnMicroCardMenu": {
             "English": "Spawn counter"

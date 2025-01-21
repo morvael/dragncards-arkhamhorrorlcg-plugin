@@ -62,17 +62,17 @@
                 ["NOT_EQUAL", ["GET_NAMED_PLAYER_DECK_CARD", "Expedition Journal"], null],
                 ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "Let's consult the expedition journal."]]
             ],
-            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this…"]],
+            ["UPDATE_VAR", "$ANSWERS_1", ["APPEND", "$ANSWERS_1", "I wish we knew more about this..."]],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_1", "Heart of the Elders Pt 1 Scenario Question 1"]
         ],
         "Heart of the Elders Pt 1 Scenario Question 1": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult with Ichtaca."],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1Text", "Let's consult with Ichtaca."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Ichtaca"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult with Alejandro."],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1Text", "Let's consult with Alejandro."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Alejandro Vela"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1Text", "Let's consult the expedition journal."],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1Text", "Let's consult the expedition journal."],
                 ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Expedition Journal"]
             ],
             ["SCENARIO_INIT_RESUME", "Heart of the Elders Pt 1 Scenario Init"]
@@ -82,10 +82,10 @@
         ],
         "Heart of the Elders Pt 1 Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
-                    ["SET", "/arkhamFinalScenarioMessage", "Skip this scenario and proceed immediately to Resolution 1."],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["SET", "/arkham/finalScenarioMessage", "Skip this scenario and proceed immediately to Resolution 1."],
                     ["SCENARIO_INIT_CONTINUE", null]
                 ],
                 ["TRUE"],
@@ -102,25 +102,25 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 paths are known to you.", "4 paths are known to you.", "3 paths are known to you.", "2 paths are known to you.", "1 path is known to you.", "0 paths are known to you."], "Heart of the Elders Pt 1 Scenario Question 3"]
         ],
         "Heart of the Elders Pt 1 Scenario Question 3": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["VAR", "$MOUTH_OF_KNYAN", ["GET_NAMED_MAP_LOCATION", "Mouth of K'n-yan"]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 5, true, null],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 4, true, null],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "C"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 3, true, null],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "D"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 2, true, null],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "E"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "E"],
                 ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$MOUTH_OF_KNYAN.id", 1, true, null]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Have you played this scenario before during this campaign and have reached act 2 before?", ["LIST", "Yes.", "No."], "Heart of the Elders Pt 1 Scenario Question 4"]
         ],
         "Heart of the Elders Pt 1 Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
                     ["LOG", "└── You have played this scenario before during this campaign and have reached act 2 before."],
                     ["VAR", "$ACT_CARD", ["GET_NAMED_CARD", "Search for the Pattern"]],
@@ -130,7 +130,7 @@
                     ["SET", "/cardById/$ACT_CARD.id/currentSide", "B"],
                     ["DO_SET_CARD_LOCATION", "$ACT_CARD.id", ["ADD", ["GET_CARD_LEFT", "$MOUTH_OF_KNYAN.id"], 3], ["ADD", ["GET_CARD_TOP", "$MOUTH_OF_KNYAN.id"], 3]]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "B"],
                 ["LOG", "└── You haven't played this scenario before during this campaign or haven't reached act 2 before."]
             ],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Pitfall", "sharedEncounterDeck", 1, "sharedDeckA"],
@@ -142,17 +142,17 @@
         "Heart of the Elders Pt 1 Scenario Question 5": [
             ["VAR", "$RUINS", ["SHUFFLE_LIST", ["LIST", "04074", "04075", "04218"]]], //Temple of the Fang, Overgrown Ruins, Stone Altar
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
                     ["DO_SPAWN_LOCATION_SCN", "Random Ruins", "$RUINS.[0]", 64, 43],
                     ["SET", "/cardById/$DO_SPAWN_LOCATION_RESULT/currentSide", "A"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "B"],
                 ["DO_CREATE_CARDS_SCN", "Random Ruins", "$RUINS.[0]", 1, "sharedDeckA"]
             ],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

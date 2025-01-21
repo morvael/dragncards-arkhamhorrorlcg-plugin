@@ -44,14 +44,6 @@
                 {"databaseId": "05309", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Lodge Enforcer
                 {"databaseId": "05310", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Secrets of the Beyond
             ]
-        },
-        "Return to In the Clutches of Chaos - The Midnight Masks": {
-            "hideFromSearch": true,
-            "label": "Return to In the Clutches of Chaos - The Midnight Masks",
-            "cards": [
-                {"databaseId": "01135",  "quantity": 3, "loadGroupId": "sharedEncounterDeck"},  //Hunting Shadow
-                {"databaseId": "01136",  "quantity": 2, "loadGroupId": "sharedEncounterDeck"}   //False Lead
-            ]
         }
     },
     "actionLists": {
@@ -69,32 +61,32 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Anette Mason is possessed by evil.", "Carl Sanford possesses the secrets of the universe."], "Return to In the Clutches of Chaos Scenario Question 1"]
         ],
         "Return to In the Clutches of Chaos Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
                     ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos - Music of the Damned"],
                     ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
                     ["DO_LOAD_CARDS_SCN", "City of the Damned"],
                     ["DO_LOAD_CARDS_SCN", "Hexcraft"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos - Secrets of the Universe"],
                     ["DO_LOAD_CARDS_SCN", "Silver Twilight Lodge"],
                     ["DO_LOAD_CARDS_SCN", "Striking Fear"],
-                    ["DO_LOAD_CARDS_SCN", "Return to In the Clutches of Chaos - The Midnight Masks"]
+                    ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"]
                 ]
             ],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Piper of Azathoth", "sharedEncounterDeck", 1, "sharedNotInPlay"],
             ["VAR", "$BREACHES_REPEAT", 1],
             ["VAR", "$BREACHES_NUMBER", 2],
             ["COND",
-                ["EQUAL", "$GAME.arkhamNumPlayers", 2],
+                ["EQUAL", "$GAME.arkham.numPlayers", 2],
                 ["UPDATE_VAR", "$BREACHES_REPEAT", 2],
-                ["EQUAL", "$GAME.arkhamNumPlayers", 3],
+                ["EQUAL", "$GAME.arkham.numPlayers", 3],
                 ["UPDATE_VAR", "$BREACHES_REPEAT", 3],
-                ["EQUAL", "$GAME.arkhamNumPlayers", 4],
+                ["EQUAL", "$GAME.arkham.numPlayers", 4],
                 [
                     ["UPDATE_VAR", "$BREACHES_REPEAT", 3],
                     ["UPDATE_VAR", "$BREACHES_NUMBER", 3]
@@ -110,7 +102,7 @@
                     ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$SELECTED_CARDS.[$J].id", 1, true, null]
                 ]]
             ]],
-            ["SET", "/arkhamFinalScenarioMessage", "Locations removed from the game during setup are in Deck A."],
+            ["SET", "/arkham/finalScenarioMessage", "Locations removed from the game during setup are in Deck A."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

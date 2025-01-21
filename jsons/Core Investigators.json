@@ -10,7 +10,7 @@
         ],
         "investigatorTurn": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                ["EQUAL", "$GAME.arkham.activeInvestigator", null],
                 ["ACTION_LIST", "investigatorStartTurn"],
                 ["TRUE"],
                 ["ACTION_LIST", "investigatorEndTurn"]
@@ -31,7 +31,8 @@
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "I2"],
                         ["EQUAL", "$GAME.stepId", "W3"],
-                        ["EQUAL", "$GAME.stepId", "I2.1"]
+                        ["EQUAL", "$GAME.stepId", "I2.1"],
+                        ["EQUAL", "$GAME.stepId", "I2.2"]
                     ]
                 ],
                 ["DO_END_INVESTIGATOR_TURN", "$ACTIVE_CARD.cardOwner", "$ACTIVE_CARD_ID", true, true, "$PLAYER_N"],
@@ -103,6 +104,17 @@
                 ]]
             ]
         },
+        "GET_MINI_ASSISTANTS": {
+            "_comment": "Returns all MiniAssistant type card owned by given player, or empty list.",
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_MINI_INVESTIGATOR.TARGET_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
+                    ["EQUAL", "$CARD.currentFace.type", "MiniAssistant"]
+                ]]
+            ]
+        },
         "GET_PLAYER_ELIMINATED": {
             "_comment": "Returns true when given player has no owned Investigator card or it is marked as eliminated.",
             "args": ["$TARGET_PLAYER"],
@@ -124,7 +136,7 @@
                 ["VALIDATE_NOT_EMPTY", "$REASON", "CAN_ELIMINATE_INVESTIGATOR.REASON"],
                 ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
                     ["NOT_EQUAL", "$TARGET_CARD.eliminated", true],
                     ["NOT_EQUAL", "$MINI_INVESTIGATOR", null]
@@ -163,7 +175,7 @@
                                         ["FOR_EACH_VAL", "$PLAYER_I", "$POSSIBLE_LEADS", [
                                             ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                                             ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
-                                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "$ALIAS_I", "{{$LETTER}}", ["LIST", "DO_ELIMINATE_INVESTIGATOR_FINAL", "{{$TARGET_CARD_ID}}", "{{$PLAYER_I}}"]]
+                                            ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "DO_ELIMINATE_INVESTIGATOR_FINAL", "{{$TARGET_CARD_ID}}", "{{$PLAYER_I}}"]]
                                         ]]
                                     ],
                                     ["EQUAL", ["LENGTH", "$POSSIBLE_LEADS"], 1],
@@ -214,7 +226,7 @@
                 ],
                 ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"]],
                 ["COND",
-                    ["EQUAL", "$TARGET_PLAYER", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$TARGET_PLAYER", "$GAME.arkham.activeInvestigator"],
                     ["DO_END_INVESTIGATOR_TURN", "$TARGET_PLAYER", "$MINI_INVESTIGATOR.id", false, false, null]
                 ],
                 ["SET", "/cardById/$TARGET_CARD_ID/tokens/resource", 0],
@@ -230,8 +242,7 @@
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.controller", "$TARGET_PLAYER"],
                     ["EQUAL", "$CARD.inAdvanced", true],
-                    ["EQUAL", "$CARD.sides.B.databaseId", null],
-                    ["EQUAL", "$CARD.sides.B.name", "Player Card"],
+                    ["IS_PLAYER_CARD", "$CARD"],
                     ["EQUAL", "$CARD.cardIndex", 0],
                     ["GREATER_THAN", ["GET_ATTACHED_CARDS_COUNT", "$CARD.id"], 0]
                 ]]],
@@ -244,7 +255,7 @@
                     ["NOT_EQUAL", "$CARD.currentFace.type", "Enemy"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                    ["DO_FORCE_DISCARD", "$TARGET_PLAYER", "$CARD.id", false, null]
                 ]],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.groupId", "$THREAT_ID"],
@@ -264,8 +275,7 @@
                     ["NOT_EQUAL", "$CARD.groupId", "$REMOVED_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$EXILED_ID"],
                     ["NOT_EQUAL", "$CARD.groupId", "$SIDE_DECK_ID"],
-                    ["EQUAL", "$CARD.sides.B.databaseId", null],
-                    ["EQUAL", "$CARD.sides.B.name", "Player Card"]
+                    ["IS_PLAYER_CARD", "$CARD"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["MOVE_CARD", "$CARD.id", "$REMOVED_ID", -1]
@@ -273,7 +283,7 @@
                 ["SET", "/playerData/$TARGET_PLAYER/resources", 0],
                 ["SET", "/cardById/$MINI_INVESTIGATOR.id/eliminated", true],
                 ["SET", "/cardById/$TARGET_CARD_ID/eliminated", true],
-                ["SET", "/playerData/$TARGET_PLAYER/arkhamPlayerInPlay", false]
+                ["SET", "/playerData/$TARGET_PLAYER/arkham/playerInPlay", false]
             ]
         },
         "GET_ACTIVE_MINI_INVESTIGATORS": {
@@ -296,8 +306,8 @@
                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                 ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", "$TARGET_CARD.cardOwner"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", "$TARGET_CARD.cardOwner"],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"]
@@ -320,12 +330,17 @@
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                         ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "end {{$MINI_INVESTIGATOR.currentFace.name}}'s turn.", "ends {{$MINI_INVESTIGATOR.currentFace.name}}'s turn."],
-                        ["SET", "/arkhamActiveInvestigator", null],
+                        ["SET", "/arkham/activeInvestigator", null],
                         ["UNSET", "/cardById/$INVESTIGATOR.id/borderColor"],
                         ["SET", "/cardById/$INVESTIGATOR.id/turnDone", true],
                         ["UNSET", "/cardById/$MINI_INVESTIGATOR.id/borderColor"],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/turnDone", true],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/currentSide", "B"],
+                        ["VAR", "$MINI_ASSISTANTS", ["GET_MINI_ASSISTANTS", "$TARGET_CARD.cardOwner"]],
+                        ["FOR_EACH_VAL", "$CARD", "$MINI_ASSISTANTS", [
+                            ["UNSET", "/cardById/$CARD.id/borderColor"],
+                            ["SET", "/cardById/$CARD.id/currentSide", "B"]
+                        ]],
                         ["COND",
                             ["AND",
                                 ["EQUAL", "$SET_PHASE", true],
@@ -345,8 +360,8 @@
                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                 ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", null],
                     ["OR",
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniInvestigator"]
@@ -375,9 +390,13 @@
                         ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                         ["VAR", "$MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_CARD.cardOwner"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "start {{$MINI_INVESTIGATOR.currentFace.name}}'s turn.", "starts {{$MINI_INVESTIGATOR.currentFace.name}}'s turn."],
-                        ["SET", "/arkhamActiveInvestigator", "$TARGET_CARD.cardOwner"],
+                        ["SET", "/arkham/activeInvestigator", "$TARGET_CARD.cardOwner"],
                         ["SET", "/cardById/$INVESTIGATOR.id/borderColor", "HotPink"],
                         ["SET", "/cardById/$MINI_INVESTIGATOR.id/borderColor", "HotPink"],
+                        ["VAR", "$MINI_ASSISTANTS", ["GET_MINI_ASSISTANTS", "$TARGET_CARD.cardOwner"]],
+                        ["FOR_EACH_VAL", "$CARD", "$MINI_ASSISTANTS", [
+                            ["SET", "/cardById/$CARD.id/borderColor", "HotPink"]
+                        ]],
                         ["COND",
                             ["NOT_EQUAL", "$GAME.stepId", "I2"],
                             ["SET", "/stepId", "I2"]
@@ -431,6 +450,37 @@
                 "$SKILL"
             ]
         },
+        "DO_SET_SKILL_BONUS": {
+            "args": ["$SOURCE_CARD_ID", "$TARGET_CARD_ID", "$SKILL_PROPERTY", "$VALUE"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "DO_SET_SKILL_BONUS.SKILL_PROPERTY"],
+                ["VAR", "$EXTERNAL_NAME", "arkham_{{$TARGET_CARD_ID}}_{{$SKILL_PROPERTY}}_bonus"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$VALUE", null],
+                        ["EQUAL", "$VALUE", 0]
+                    ],
+                    ["UNSET", "/cardById/$SOURCE_CARD_ID/$EXTERNAL_NAME"],
+                    ["TRUE"],
+                    ["SET", "/cardById/$SOURCE_CARD_ID/$EXTERNAL_NAME", "$VALUE"]
+                ]
+            ]
+        },
+        "DO_FORMAT_SKILL_BONUS": {
+            "args": ["$MESSAGE", "$INFO", "$VALUE", "$SUFFIX"],
+            "code": [
+                ["COND",
+                    ["GREATER_THAN", "$VALUE", 0],
+                    "{{$MESSAGE}}{{$INFO}} +{{$VALUE}}{{$SUFFIX}}, ",
+                    ["LESS_THAN", "$VALUE", 0],
+                    "{{$MESSAGE}}{{$INFO}} {{$VALUE}}{{$SUFFIX}}, ",
+                    ["GREATER_THAN", ["LENGTH", "$SUFFIX"], 0],
+                    "{{$MESSAGE}}{{$INFO}} {{$SUFFIX}}, ",
+                    ["TRUE"],
+                    "$MESSAGE"
+                ]
+            ]
+        },
         "CAN_CALCULATE_SKILL": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
             "code": [
@@ -439,7 +489,7 @@
                 ["VALIDATE_NOT_EMPTY", "$SKILL_NAME", "CAN_CALCULATE_SKILL.SKILL_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$SKILL_PROPERTY", "CAN_CALCULATE_SKILL.SKILL_PROPERTY"],
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "Investigator"],
                     ["NOT_EQUAL", "$TARGET_CARD.eliminated", true]
                 ]
@@ -456,16 +506,52 @@
                 ["COND",
                     ["CAN_CALCULATE_SKILL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$SKILL_NAME", "$SKILL_PROPERTY", "$ACTOR_PLAYER"],
                     [
+                        //total variable and analytics message
+                        ["VAR", "$TOTAL", 0],
+                        ["VAR", "$MESSAGE", ""],
+                        //investigator's base value
                         ["VAR", "$INVESTIGATOR_SKILL", ["GET_CARD_SKILL", "$TARGET_CARD_ID", "$SKILL_PROPERTY"]],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "base", "$INVESTIGATOR_SKILL", ""]],
+                        ["INCREASE_VAR", "$TOTAL", "$INVESTIGATOR_SKILL"],
+                        //dynamic bonuses from other cards (id based)
+                        ["VAR", "$EXTERNAL_NAME", "arkham_{{$TARGET_CARD_ID}}_{{$SKILL_PROPERTY}}_bonus"],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", null],
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", 0]
+                        ]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["VAR", "$EXTERNAL_BONUS", "$CARD.{{$EXTERNAL_NAME}}"],
+                            ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", ["GET_CARD_TITLE", "$CARD.currentFace.name"], "$EXTERNAL_BONUS", ""]],
+                            ["INCREASE_VAR", "$TOTAL", "$EXTERNAL_BONUS"]
+                        ]],
+                        //dynamic bonuses from other cards (controller-based)
+                        ["VAR", "$EXTERNAL_NAME", "arkham_controller_{{$SKILL_PROPERTY}}_bonus"],
+                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", null],
+                            ["NOT_EQUAL", "$CARD.{{$EXTERNAL_NAME}}", 0],
+                            ["EQUAL", "$CARD.controller", "$TARGET_CARD.controller"]
+                        ]]],
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["VAR", "$EXTERNAL_BONUS", "$CARD.{{$EXTERNAL_NAME}}"],
+                            ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", ["GET_CARD_TITLE", "$CARD.currentFace.name"], "$EXTERNAL_BONUS", ""]],
+                            ["INCREASE_VAR", "$TOTAL", "$EXTERNAL_BONUS"]
+                        ]],
+                        //chaos tokens and skill icons
+                        ["VAR", "$AUTO_FAIL", false],
                         ["VAR", "$SUM_CHAOS_TOKENS", 0],
                         ["VAR", "$SUM_SKILL_ICONS", 0],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.groupId", "sharedVoid"]]],
-                        ["VAR", "$SUFFIX", ""],
+                        ["VAR", "$CHAOS_TOKENS", ""],
+                        ["VAR", "$CHAOS_TOKENS_SEPARATOR", ""],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["COND",
                                 ["EQUAL", "$CARD.currentFace.type", "ChaosToken"],
                                 [
                                     ["INCREASE_VAR", "$SUM_CHAOS_TOKENS", ["GET_CARD_SKILL", "$CARD.id", "skillWild"]],
+                                    ["COND",
+                                        ["EQUAL", "$CARD.currentFace.name", "Auto Fail"],
+                                        ["UPDATE_VAR", "$AUTO_FAIL", true]
+                                    ],
                                     ["COND",
                                         ["OR",
                                             ["EQUAL", "$CARD.currentFace.name", "Auto Fail"],
@@ -476,7 +562,10 @@
                                             ["EQUAL", "$CARD.currentFace.name", "Tablet"],
                                             ["EQUAL", "$CARD.currentFace.name", "Frost"]
                                         ],
-                                        ["UPDATE_VAR", "$SUFFIX", "{{$SUFFIX}} & {{$CARD.currentFace.name}}"]
+                                        [
+                                            ["UPDATE_VAR", "$CHAOS_TOKENS", "{{$CHAOS_TOKENS}}{{$CHAOS_TOKENS_SEPARATOR}}{{$CARD.currentFace.name}}"],
+                                            ["UPDATE_VAR", "$CHAOS_TOKENS_SEPARATOR", " & "]
+                                        ]
                                     ]
                                 ],
                                 ["TRUE"],
@@ -486,20 +575,37 @@
                                 ]
                             ]
                         ]],
-                        ["VAR", "$CHAOS_TOKENS_TEXT", ""],
                         ["COND",
-                            ["GREATER_EQUAL", "$SUM_CHAOS_TOKENS", 0],
-                            ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "+"]
+                            ["AND",
+                                ["NOT_EQUAL", "$SUM_CHAOS_TOKENS", 0],
+                                ["GREATER_THAN", ["LENGTH", "$CHAOS_TOKENS"], 0]
+                            ],
+                            ["UPDATE_VAR", "$CHAOS_TOKENS", " & {{$CHAOS_TOKENS}}"]
                         ],
-                        ["UPDATE_VAR", "$CHAOS_TOKENS_TEXT", "{{$CHAOS_TOKENS_TEXT}}{{$SUM_CHAOS_TOKENS}}{{$SUFFIX}}"],
-                        ["VAR", "$SKILL_ICONS_TEXT", ""],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "chaos", "$SUM_CHAOS_TOKENS", "$CHAOS_TOKENS"]],
+                        ["INCREASE_VAR", "$TOTAL", "$SUM_CHAOS_TOKENS"],
+                        ["UPDATE_VAR", "$MESSAGE", ["DO_FORMAT_SKILL_BONUS", "$MESSAGE", "icons", "$SUM_SKILL_ICONS", ""]],
+                        ["INCREASE_VAR", "$TOTAL", "$SUM_SKILL_ICONS"],
+                        //final format
                         ["COND",
-                            ["GREATER_EQUAL", "$SUM_SKILL_ICONS", 0],
-                            ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "+"]
+                            ["GREATER_THAN", ["LENGTH", "$MESSAGE"], 0],
+                            [
+                                ["UPDATE_VAR", "$MESSAGE", ["SUBSTRING", "$MESSAGE", 0, ["SUBTRACT", ["LENGTH", "$MESSAGE"], 2]]],
+                                ["UPDATE_VAR", "$MESSAGE", " ({{$MESSAGE}})"]
+                            ]
                         ],
-                        ["UPDATE_VAR", "$SKILL_ICONS_TEXT", "{{$SKILL_ICONS_TEXT}}{{$SUM_SKILL_ICONS}}"],
-                        ["VAR", "$TOTAL", ["ADD", "$INVESTIGATOR_SKILL", ["ADD", "$SUM_CHAOS_TOKENS", "$SUM_SKILL_ICONS"]]],
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "calculate {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}}).", "calculates {{$TARGET_CARD.currentFace.name}}'s base {{$SKILL_NAME}} value: {{$TOTAL}} (investigator {{$INVESTIGATOR_SKILL}}, chaos {{$CHAOS_TOKENS_TEXT}}, icons {{$SKILL_ICONS_TEXT}})."]
+                        //apply Auto Fail & minimum value
+                        ["COND",
+                            ["OR",
+                                ["EQUAL", "$AUTO_FAIL", true],
+                                ["LESS_THAN", "$TOTAL", 0]
+                            ],
+                            ["UPDATE_VAR", "$TOTAL", 0]
+                        ],
+                        //use investigator's short name
+                        ["VAR", "$INVESTIGATOR_NAME", ["GET_CARD_TITLE", "$TARGET_CARD.currentFace.name"]],
+                        //log
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "check {{$INVESTIGATOR_NAME}}'s {{$SKILL_NAME}}: {{$TOTAL}}{{$MESSAGE}}.", "checks {{$INVESTIGATOR_NAME}}'s {{$SKILL_NAME}}: {{$TOTAL}}{{$MESSAGE}}"]
                     ]
                 ]
             ]
@@ -511,35 +617,35 @@
             "message": "Select fate of {{$CARD_BY_ID.$TARGET_CARD_ID.currentFace.name}}.",
             "options": [
                 {
-                    "label": "Resigned",
+                    "label": "Resigned.",
                     "hotkey": "R",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "resignation", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Defated by damage",
+                    "label": "Defated by damage.",
                     "hotkey": "D",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "damage", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Defated by horror",
+                    "label": "Defated by horror.",
                     "hotkey": "H",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "horror", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Other",
+                    "label": "Other.",
                     "hotkey": "O",
                     "code": [
                         ["DO_ELIMINATE_INVESTIGATOR", "$TARGET_PLAYER", "$TARGET_CARD_ID", "other reasons", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Cancel",
+                    "label": "Cancel.",
                     "hotkey": "X"
                 }
             ]

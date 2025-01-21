@@ -51,10 +51,10 @@
             ["VAR", "$LOLA", ["GET_NAMED_CARD", "Lola Hayes"]],
             ["COND",
                 ["NOT_EQUAL", "$LOLA", null],
-                ["SET", "/playerData/$LOLA.controller/arkhamCustomSpawnLocation", "Backstage"]
+                ["SET", "/playerData/$LOLA.controller/arkham/customSpawnLocation", "Backstage"]
             ],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
-            ["SET", "/arkhamFinalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B. Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "Act 2a has already been chosen randomly. Lobby Doorway cards are in Deck A, Backstage Doorway cards are in Deck B. Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_ID", "03060", true],   //Royal Emissary: Messenger from Aldebaran
             ["SCENARIO_INIT_CONTINUE", null]
         ]

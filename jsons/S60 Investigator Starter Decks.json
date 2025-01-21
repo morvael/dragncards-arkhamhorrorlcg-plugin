@@ -185,5 +185,48 @@
                 {"databaseId": "60531", "quantity": 2, "loadGroupId": "playerNSideDeck"}
             ]
         }
+    },
+    "automation": {
+        "cards": {
+            "60202": { //Vault of Knowledge
+                "rules": {
+                    "60202a": { //Your maximum hand size is increased by 2.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
+                        ]
+                    }
+                }
+            },
+            "60205": { //Arcane Enlightenment
+                "rules": {
+                    "60205a": { //Your maximum hand size is increased by 1.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 1, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 1.", null]
+                        ]
+                    }
+                }
+            },
+            "60212": { //Laboratory Assistant
+                "rules": {
+                    "60212a": { //Your maximum hand size is increased by 2.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
+                        ]
+                    }
+                }
+            }
+        }
     }
 }

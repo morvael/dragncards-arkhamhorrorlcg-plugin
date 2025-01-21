@@ -19,7 +19,7 @@
                 {"databaseId": "03203", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Third Night
                 {"databaseId": "03206", "quantity": 1, "loadGroupId": "sharedActStory"},            //Pursuing Shadows
                 {"databaseId": "03207", "quantity": 1, "loadGroupId": "sharedActStory"},            //Stalked by Shadows
-                {"databaseId": "03221", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The Organist: Hopeless, I Defied Him
+                {"databaseId": "03221b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},          //The Organist: Hopeless, I Defied Him
                 {"databaseId": "03222", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Stealthy Byakhee
                 {"databaseId": "03223", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Twin Suns
                 {"databaseId": "03224", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Deadly Fate
@@ -71,14 +71,14 @@
         ],
         "A Phantom of Truth Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"]
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
             ],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Lost Soul", "03227", 1]
             ]],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["SCENARIO_SKIP_QUESTIONS", 3, "A Phantom of Truth Scenario Early Init Continue 1"],
                 ["TRUE"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You intruded on a secret meeting.", "You slayed the monsters at the dinner party.", "None of the above are true."], "A Phantom of Truth Scenario Question 2"]
@@ -86,14 +86,14 @@
         ],
         "A Phantom of Truth Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["LOG", "└── Each investigator suffers 1 mental trauma."],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingHorrorMod", 1]
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingHorrorMod", 1]
                     ]]
                 ]
             ],
@@ -101,9 +101,9 @@
         ],
         "A Phantom of Truth Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["VAR", "$ANSWERS_4", ["LIST"]],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                         ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
@@ -116,11 +116,11 @@
             ]
         ],
         "A Phantom of Truth Scenario Question 4": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer4Text}}"],
             ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
                 ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
                 ["COND",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer4Text", "{{$ALIAS_I}} earns the Paranoia weakness."],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer4Text", "{{$ALIAS_I}} earns the Paranoia weakness."],
                     ["DO_CREATE_DECK_CARDS_SCN", "$PLAYER_I", "Paranoia", "01097", 1]
                 ]
             ]],
@@ -130,20 +130,20 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Chasing the Stranger” in Campaign Log.", ["LIST", "There are 3 or fewer tally marks.", "There are 4 or more tally marks."], "A Phantom of Truth Scenario Question 5"]
         ],
         "A Phantom of Truth Scenario Question 5": [
-            ["LOG", "└── Chasing the Stranger: {{$GAME.arkhamScenarioAnswer5Text}}"],
+            ["LOG", "└── Chasing the Stranger: {{$GAME.arkham.scenarioAnswer5Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "B"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "How could any of this be beautiful to you?", "What exactly am I looking at?"], "A Phantom of Truth Scenario Question 6"],
                 ["TRUE"],
                 ["SCENARIO_SKIP_QUESTION", "A Phantom of Truth Scenario Early Init Continue 2"]
             ]
         ],
         "A Phantom of Truth Scenario Question 6": [
-            ["LOG", "└── Decision: {{$GAME.arkhamScenarioAnswer6Text}}"],
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer6Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer6", "A"],
                 ["LOG", "└── Mark one Conviction in your Campaign Log."],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer6", "B"],
                 ["LOG", "└── Mark one Doubt in your Campaign Log."]
             ],
             ["ACTION_LIST", "A Phantom of Truth Scenario Early Init Continue 2"]
@@ -153,11 +153,11 @@
         ],
         "A Phantom of Truth Scenario Question 7": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer7Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer7Text}}"],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 3]
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingResourcesMod", 3]
                     ]]
                 ]
             ],
@@ -169,19 +169,19 @@
             ["DO_LOAD_CARDS_SCN", "Byakhee"],
             ["DO_LOAD_CARDS_SCN", "The Stranger"],
             ["DO_LOAD_CARDS_SCN", "Agents of Hastur"],
-            ["DO_LOAD_CARDS_SCN", "The Path to Carcosa - The Midnight Masks"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You have more (or equal) Doubt than Conviction.", "You have more Conviction than Doubt."], "A Phantom of Truth Scenario Question 8"]
         ],
         "A Phantom of Truth Scenario Question 8": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer8Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer8Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer8", "A"],
                 [
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03223"], //Twin Suns
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01135"], //Hunting Shadow
                     ["DO_CREATE_STORY_CARD_SCN", "The Parisian Conspiracy (v. I)", "03204", 0, "sharedActStory"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer8", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer8", "B"],
                 [
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "03090"], //Black Stars Rise
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "01136"], //False Lead
@@ -193,7 +193,7 @@
             ["DO_LOAD_N_CARDS_SCN", "A Phantom of Truth - Le Marais", 1],
             ["DO_LOAD_CARDS_SCN", "A Phantom of Truth - Paris"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer7", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer7", "A"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Montparnasse", 5, 7, 3, 0],
                 ["TRUE"],
                 ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Gare d'Orsay", 5, 7, 3, 0]

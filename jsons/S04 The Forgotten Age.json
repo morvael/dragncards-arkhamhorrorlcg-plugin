@@ -186,5 +186,71 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         }
+    },
+    "functions": {
+        "THE_FORGOTTEN_AGE_REPLACE_INVESTIGATOR_WITH_BODY_OF_A_YITHIAN": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_FORGOTTEN_AGE_REPLACE_INVESTIGATOR_WITH_BODY_OF_A_YITHIAN.TARGET_PLAYER"],
+                ["VAR", "$OLD_INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "Body of a Yithian: Captive in Another Form", "04244", 1, ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"], true, null],
+                ["VAR", "$NEW_INVESTIGATOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                ["DO_REPLACE_CARD_FULLY", "$TARGET_PLAYER", "$NEW_INVESTIGATOR_ID", "$OLD_INVESTIGATOR.id", true, null],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/sides/A/name", "$OLD_INVESTIGATOR.sides.A.name"],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/sides/B/name", "$OLD_INVESTIGATOR.sides.B.name"],
+                ["SET", "/cardById/$NEW_INVESTIGATOR_ID/originalInvestigatorId", "$OLD_INVESTIGATOR.sides.A.databaseId"],
+                ["DO_DELETE_CARD", "$TARGET_PLAYER", "$OLD_INVESTIGATOR.id", true, null]
+            ]
+        },
+        "THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE.CONTINUE_ACTION"],
+                ["PROMPT", "$TARGET_PLAYER", "theForgottenAgeChooseBody", "$CONTINUE_ACTION"]
+            ]
+        },
+        "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$REPLACE", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$REPLACE", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.REPLACE"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.CONTINUE_ACTION"],
+                ["DO_FLOG", "{0:P}'s will {1} Body of a Yithian instead of {0:I}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$REPLACE", true], "use", "not use"]]],
+                ["COND",
+                    ["EQUAL", "$REPLACE", true],
+                    ["THE_FORGOTTEN_AGE_REPLACE_INVESTIGATOR_WITH_BODY_OF_A_YITHIAN", "$TARGET_PLAYER"]
+                ],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["ACTION_LIST", "$CONTINUE_ACTION"],
+                    ["TRUE"],
+                    ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "theForgottenAgeChooseBody": {
+            "args": ["$CONTINUE_ACTION"],
+            "message": "Do you have to use the Body of a Yithian as your investigator?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["THE_FORGOTTEN_AGE_BODY_CHOICE_DONE", "$PLAYER_N", true, "$CONTINUE_ACTION"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["THE_FORGOTTEN_AGE_BODY_CHOICE_DONE", "$PLAYER_N", false, "$CONTINUE_ACTION"]
+                    ]
+                }
+            ]
+        }
     }
 }

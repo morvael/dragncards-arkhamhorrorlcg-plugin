@@ -1,0 +1,177 @@
+{
+    "preBuiltDecks": {
+        "The Lair of Dagon Scenario": {
+            "label": "The Lair of Dagon Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Innsmouth Conspiracy", "The Innsmouth Conspiracy", "The Lair of Dagon", "The Lair of Dagon Scenario Early Init", "The Lair of Dagon Scenario Init"]
+            ]
+        },
+        "The Lair of Dagon": {
+            "hideFromSearch": true,
+            "label": "The Lair of Dagon",
+            "cards": [
+                {"databaseId": "07274", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Lair of Dagon
+                {"databaseId": "07275", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Initiation (v. I)
+                {"databaseId": "07276", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Initiation (v. II)
+                {"databaseId": "07277", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What Lurks Below (v. I)
+                {"databaseId": "07278", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //What Lurks Below (v. II)
+                {"databaseId": "07279", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Ritual Advances
+                {"databaseId": "07280", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The First Oath
+                {"databaseId": "07281", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Second Oath
+                {"databaseId": "07282", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Third Oath
+                {"databaseId": "07283", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Grand Entryway
+                {"databaseId": "07286", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Foul Corridors
+                {"databaseId": "07289", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Hall of Silence
+                {"databaseId": "07290", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Doorway to the Depths
+                {"databaseId": "07291", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lair of Dagon
+                {"databaseId": "07300b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Y'ha-nthlei Statue: Mysterious Relic
+                {"databaseId": "07293", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Apostle of Dagon
+                {"databaseId": "07292b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Dagon: Deep in Slumber
+                {"databaseId": "07294", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Cerenerian Deep One
+                {"databaseId": "07295", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Fulfill the Oaths
+                {"databaseId": "07296", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Secret Gathering
+                {"databaseId": "07297", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Esoteric Ritual
+                {"databaseId": "07298", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Heralds of the Deep
+                {"databaseId": "07299", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Stone Barrier
+            ]
+        }
+    },
+    "actionLists": {
+        "The Lair of Dagon Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Memories Recovered” in Campaign Log.", ["LIST", "Decision to stick together.", "The above is not true."], "The Lair of Dagon Scenario Question 1"]
+        ],
+        "The Lair of Dagon Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Memories Recovered: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Elina Harper: Knows Too Much"],
+            ["SCENARIO_INIT_RESUME", "The Lair of Dagon Scenario Init"]
+        ],
+        "The Lair of Dagon Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Lair of Dagon"],
+            ["DO_LOAD_CARDS_SCN", "Agents of Dagon"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Flooded Caverns", "sharedDeckA"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Syzygy", "sharedPileA"],
+            ["DO_LOAD_CARDS_SCN", "Dark Cult"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_CREATE_CARDS_SCN", "Black Key", "key_black", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Blue Key", "key_blue", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Green Key", "key_green", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Purple Key", "key_purple", 1, "sharedTokens"],
+            ["DO_CREATE_CARDS_SCN", "Red Key", "key_red", 1, "sharedTokens"],
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", ["LIST", "key_white", "key_yellow"]]],  //White Key, Yellow Key
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_CREATE_CARDS_SCN", "Unknown Key", "$KEYS.[$I]", 1, "sharedTokens"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null]
+            ]],
+            ["VAR", "$HALLS_1", ["SHUFFLE_LIST", ["LIST", "07284", "07285"]]], //Hall of Blood, Hall of the Deep
+            ["VAR", "$HALLS_2", ["SHUFFLE_LIST", ["LIST", "07287", "07288"]]], //Hall of Loyalty, Hall of Rebirth
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 20, 70]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 2, 1, [
+                ["DO_SPAWN_LOCATION_SCN", "First Floor Hall", "$HALLS_1.[$I]", "$SPAWN_LEFTS.[$I]", 76],
+                ["DO_SPAWN_LOCATION_SCN", "Second Floor Hall", "$HALLS_2.[$I]", "$SPAWN_LEFTS.[$I]", 43]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Grand Entryway", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Memories Recovered” in Campaign Log.", ["LIST", "There are 4 or fewer memories recorded.", "There are 5-7 memories recorded.", "There are 8 or more memories recorded."], "The Lair of Dagon Scenario Question 2"]
+        ],
+        "The Lair of Dagon Scenario Question 2": [
+            ["LOG", "└── Memories Recovered: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_bless", 5],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_curse", 2],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "C"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_curse", 5]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Memories Recovered” in Campaign Log.", ["LIST", "Jailbreak.", "The above is not true."], "The Lair of Dagon Scenario Question 3"]
+        ],
+        "The Lair of Dagon Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Memories Recovered: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Possible Suspects” in Campaign Log.", ["LIST", "Robert Friendly.", "Zadok Allen.", "Brian Burnham.", "Barnabas Marsh.", "Joyce Little.", "Othera Gilman.", "No suspect is circled."], "The Lair of Dagon Scenario Question 4"]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "The Lair of Dagon Scenario Init Continue 1"]
+            ]
+        ],
+        "The Lair of Dagon Scenario Question 4": [
+            ["LOG", "└── Possible Suspects: {{$GAME.arkham.scenarioAnswer4Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
+                ["DO_CREATE_CARDS_SCN", "Robert Friendly: Disgruntled Dockworker", "07076", 1, "sharedNotInPlay"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "B"],
+                ["DO_CREATE_CARDS_SCN", "Zadok Allen: Drunk and Disorderly", "07077", 1, "sharedNotInPlay"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "C"],
+                ["DO_CREATE_CARDS_SCN", "Brian Burnham: Wants Out", "07078", 1, "sharedNotInPlay"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "D"],
+                ["DO_CREATE_CARDS_SCN", "Barnabas Marsh: The Change Is upon Him", "07079", 1, "sharedNotInPlay"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "E"],
+                ["DO_CREATE_CARDS_SCN", "Joyce Little: Bookshop Owner", "07080", 1, "sharedNotInPlay"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "F"],
+                ["DO_CREATE_CARDS_SCN", "Othera Gilman: Proprietress of the Hotel", "07081", 1, "sharedNotInPlay"]
+            ],
+            ["ACTION_LIST", "The Lair of Dagon Scenario Init Continue 1"]
+        ],
+        "The Lair of Dagon Scenario Init Continue 1": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Memories Recovered” in Campaign Log.", ["LIST", "Encounter with a secret cult.", "The above is not true."], "The Lair of Dagon Scenario Question 5"]
+        ],
+        "The Lair of Dagon Scenario Question 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
+                [
+                    ["LOG", "└── Memories Recovered: {{$GAME.arkham.scenarioAnswer5Text}}"],
+                    ["DO_DELETE_NAMED_CARDS_SCN", "The Initiation (v. II)"]
+                ],
+                ["TRUE"],
+                ["DO_DELETE_NAMED_CARDS_SCN", "The Initiation (v. I)"]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["COND",
+                        ["EQUAL", "$GAME.numPlayers", 1],
+                        ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "A", ["DO_FORMAT_STRING", "{0:P} gets Thomas Dawson.", ["LIST", "$GAME.firstPlayer"]], "The Lair of Dagon Scenario Question 6"],
+                        ["TRUE"],
+                        [
+                            ["VAR", "$ANSWERS_6", ["LIST"]],
+                            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                                ["UPDATE_VAR", "$ANSWERS_6", ["APPEND", "$ANSWERS_6", ["DO_FORMAT_STRING", "{0:P} gets Thomas Dawson.", ["LIST", "$PLAYER_I"]]]]
+                            ]],
+                            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", "$ANSWERS_6", "The Lair of Dagon Scenario Question 6"]
+                        ]
+                    ]
+                ],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "The Lair of Dagon Scenario Init Continue 2"]
+            ]
+        ],
+        "The Lair of Dagon Scenario Question 6": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer6Text}}"],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["COND",
+                    ["EQUAL", ["IN_STRING", "$GAME.arkham.scenarioAnswer6Text", ["GET_ALIAS", "$PLAYER_I"]], true],
+                    ["DO_CREATE_CARDS_SCN", "Thomas Dawson: Soldier in a New War", "07082", 1, ["GET_CONTROLLER_PLAY", "$PLAYER_I"]]
+                ]
+            ]],
+            ["ACTION_LIST", "The Lair of Dagon Scenario Init Continue 2"]
+        ],
+        "The Lair of Dagon Scenario Init Continue 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_DELETE_NAMED_CARDS_SCN", "What Lurks Below (v. II)"],
+                ["TRUE"],
+                ["DO_DELETE_NAMED_CARDS_SCN", "What Lurks Below (v. I)"]
+            ],
+            ["DO_CREATE_CARDS_SCN", "Flooded", "flooded", 19, "sharedTokens"],
+            ["SET", "/arkham/finalScenarioMessage", "Tidal Tunnel cards are in Deck A, Syzygy cards are in Pile A. See “Spending Keys.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

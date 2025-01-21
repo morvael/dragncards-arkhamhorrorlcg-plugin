@@ -1,0 +1,359 @@
+{
+    "preBuiltDecks": {
+        "Beyond the Gates of Sleep Scenario": {
+            "label": "Beyond the Gates of Sleep Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Dream-Quest", "The Dream-Quest", "Beyond the Gates of Sleep", "Beyond the Gates of Sleep Scenario Early Init", "Beyond the Gates of Sleep Scenario Init"]
+            ]
+        },
+        "Beyond the Gates of Sleep": {
+            "hideFromSearch": true,
+            "label": "Beyond the Gates of Sleep",
+            "cards": [
+                {"databaseId": "06039", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Beyond the Gates of Sleep
+                {"databaseId": "06040", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Journey through the Gates
+                {"databaseId": "06041", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Entering the Dreamlands
+                {"databaseId": "06042", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Trial of Nasht and Kaman-Thah
+                {"databaseId": "06043", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Final Descent
+                {"databaseId": "06044", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Path
+                {"databaseId": "06045", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "76%"},  //Seventy Steps: Of Lighter Slumber
+                {"databaseId": "06046", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //The Cavern of Flame
+                {"databaseId": "06059", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Randolph Carter: Expert Dreamer
+                {"databaseId": "06060", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Laboring Gug
+                {"databaseId": "06058", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Nasht: Priest of the Dreamlands
+                {"databaseId": "06057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Kaman-Thah: Priest of the Dreamlands
+                {"databaseId": "06047", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Seven Hundred Steps: Of Deeper Slumber
+                {"databaseId": "06048", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Base of the Steps
+                {"databaseId": "06049", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Enchanted Path
+                {"databaseId": "06061", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Ancient Zoog
+                {"databaseId": "06062", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Lost in the Woods
+            ]
+        }
+    },
+    "actionLists": {
+        "Beyond the Gates of Sleep Scenario Early Init": [
+            ["SET", "/arkham/scenarioActionAfterStep7", "Beyond the Gates of Sleep Scenario Step 7 Init"],
+            ["SCENARIO_INIT_RESUME", "Beyond the Gates of Sleep Scenario Init"]
+        ],
+        "Beyond the Gates of Sleep Scenario Step 7 Init": [
+            ["BEYOND_THE_GATES_OF_SLEEP_SHOW_DREAM_CHOICE", "$GAME.firstPlayer"]
+        ],
+        "Beyond the Gates of Sleep Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Beyond the Gates of Sleep"],
+            ["DO_SET_SPAWN_LOCATION", "06047", 15, 10], //Seven Hundred Steps: Of Deeper Slumber
+            ["DO_SET_SPAWN_LOCATION", "06048", 35, 10], //Base of the Steps
+            ["DO_SET_SPAWN_LOCATION", "06049", 55, 43], //The Enchanted Path
+            ["VAR", "$ENCHANTED_WOODS", ["SHUFFLE_LIST", ["LIST", "06050", "06051", "06052", "06053", "06054", "06055", "06056"]]],  //Enchanted Woods: Mystical Forest, Enchanted Woods: Village of Zoogs, Enchanted Woods: Great Stone Circle, Enchanted Woods: Stone Trapdoor, Enchanted Woods: The Moon-Tree, Enchanted Woods: Fungal Forest, Enchanted Woods: Lost Woods
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
+                ["DO_CREATE_CARDS_SCN", "Enchanted Woods", "$ENCHANTED_WOODS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["VAR", "$ENCHANTED_WOODS_CIRCLE", ["LIST", "06054", "06056", "06050", "06055", "06052", "06053", "06051"]], //Enchanted Woods: The Moon-Tree, Enchanted Woods: Lost Woods, Enchanted Woods: Mystical Forest, Enchanted Woods: Fungal Forest, Enchanted Woods: Great Stone Circle, Enchanted Woods: Stone Trapdoor, Enchanted Woods: Village of Zoogs
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 55, 75, 75, 75, 55, 35, 35]],
+            ["VAR", "$SPAWN_TOPS", ["LIST", 10, 10, 43, 76, 76, 76, 43]],
+            ["VAR", "$J", ["RANDOM_INT", 0, 6]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 7, 1, [
+                ["DO_SET_SPAWN_LOCATION", "$ENCHANTED_WOODS_CIRCLE.[$J]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"],
+                ["UPDATE_VAR", "$J", ["BUMP_AND_ROTATE", "$J", 6]]
+            ]],
+            ["DO_DELETE_CARD_SCN", ["GET_NAMED_CARD_ID", "$ENCHANTED_WOODS.[6]"]],
+            ["DO_LOAD_CARDS_SCN", "Agents of Nyarlathotep"],
+            ["DO_LOAD_CARDS_SCN", "Zoogs"],
+            ["DO_LOAD_CARDS_SCN", "Dreamer's Curse"],
+            ["DO_LOAD_CARDS_SCN", "Dreamlands"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Seventy Steps", 5, 7, 3, 0],
+            ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "sharedEncounterDeck"]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["MOVE_CARD", "$CARD.id", "sharedDeckA", -1]
+            ]],
+            ["SET", "/arkham/finalScenarioMessage", "Encounter deck cards are in Deck A. One randomly chosen Enchanted Woods location has been already removed from the game. This scenario does not begin with an encounter deck in play. See “Steps of Slumber.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "BEYOND_THE_GATES_OF_SLEEP_SHOW_DREAM_CHOICE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_SHOW_DREAM_CHOICE.TARGET_PLAYER"],
+                ["PROMPT", "$TARGET_PLAYER", "beyondTheGatesOfSleepChooseDream"],
+                ["VAR", "$CHOICES_ADDED", 0],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICES", "$TARGET_PLAYER", false],
+                ["COND",
+                    ["EQUAL", "$CHOICES_ADDED", 0],
+                    ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICES", "$TARGET_PLAYER", true]
+                ]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICES": {
+            "args": ["$TARGET_PLAYER", "$IGNORE_CHOSEN"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICES.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$IGNORE_CHOSEN", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICES.IGNORE_CHOSEN"],
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Guardian dream", "G", ["LIST", "Guardian."], null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Seeker dream", "S", ["LIST", "Seeker."], null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Rogue dream", "R", ["LIST", "Rogue."], null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Mystic dream", "M", ["LIST", "Mystic."], null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Survivor dream", "S", ["LIST", "Survivor."], null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Criminal dream", "1", null, ["LIST", "Criminal."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Drifter dream", "2", null, ["LIST", "Drifter."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Hunter dream", "3", null, ["LIST", "Hunter."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Medic or Assistant dream", "4", null, ["LIST", "Medic.", "Assistant."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Miskatonic or Scholar dream", "5", null, ["LIST", "Miskatonic.", "Scholar."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Veteran dream", "6", null, ["LIST", "Veteran."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Wayfarer dream", "7", null, ["LIST", "Wayfarer."], "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Neutral dream 1", "8", null, null, "$IGNORE_CHOSEN"],
+                ["BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE", "$TARGET_PLAYER", "$INVESTIGATOR", "Neutral dream 2", "9", null, null, "$IGNORE_CHOSEN"]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$INVESTIGATOR", "$DREAM_NAME", "$LETTER", "$FACTION_LIST", "$TRAIT_LIST", "$IGNORE_CHOSEN"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$INVESTIGATOR", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE.INVESTIGATOR"],
+                ["VALIDATE_NOT_EMPTY", "$DREAM_NAME", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE.DREAM_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$LETTER", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE.LETTER"],
+                ["VALIDATE_BOOLEAN", "$IGNORE_CHOSEN", "BEYOND_THE_GATES_OF_SLEEP_ADD_DREAM_CHOICE.IGNORE_CHOSEN"],
+                ["COND",
+                    ["AND",
+                        ["OR",
+                            ["EQUAL", "$IGNORE_CHOSEN", true],
+                            ["NOT_EQUAL", "$GAME.arkham.scenarioBeyondTheGatesOfSleepDreamChosen{{$LETTER}}", true]
+                        ],
+                        ["OR",
+                            ["EQUAL", "$FACTION_LIST", null],
+                            ["IN_TRAIT_LIST", "$FACTION_LIST", "$INVESTIGATOR.sides.A.faction"]
+                        ],
+                        ["OR",
+                            ["EQUAL", "$TRAIT_LIST", null],
+                            ["IN_TRAIT_LIST", "$TRAIT_LIST", "$INVESTIGATOR.sides.A.traits"]
+                        ],
+                        ["OR",
+                            ["NOT_EQUAL", "$DREAM_NAME", "Medic or Assistant dream"],
+                            ["GREATER_EQUAL", "$GAME.numPlayers", 2]
+                        ]
+                    ],
+                    [
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$DREAM_NAME}}.", "{{$LETTER}}", ["LIST", "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_DONE", "{{$TARGET_PLAYER}}", "{{$DREAM_NAME}}", "{{$LETTER}}"]],
+                        ["INCREASE_VAR", "$CHOICES_ADDED", 1]
+                    ]
+                ]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$DREAM_NAME", "$LETTER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DREAM_NAME", "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_DONE.DREAM_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$LETTER", "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_DONE.LETTER"],
+                ["DO_FLOG", "{0:P} choose {1}.", ["LIST", "$TARGET_PLAYER", "$DREAM_NAME"]],
+                ["SET", "/arkham/scenarioBeyondTheGatesOfSleepDreamChosen{{$LETTER}}", true],
+                ["COND",
+                    ["EQUAL", "$DREAM_NAME", "Guardian dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", ["LIST", "Guardian."], null],
+                    ["EQUAL", "$DREAM_NAME", "Seeker dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", ["LIST", "Seeker."], null],
+                    ["EQUAL", "$DREAM_NAME", "Rogue dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", ["LIST", "Rogue."], null],
+                    ["EQUAL", "$DREAM_NAME", "Mystic dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", ["LIST", "Mystic."], null],
+                    ["EQUAL", "$DREAM_NAME", "Survivor dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", ["LIST", "Survivor."], null],
+                    ["EQUAL", "$DREAM_NAME", "Criminal dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", null, ["LIST", "Criminal.", "Illicit."]],
+                    ["EQUAL", "$DREAM_NAME", "Drifter dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_DRIFTER", "$TARGET_PLAYER"],
+                    ["EQUAL", "$DREAM_NAME", "Hunter dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", null, ["LIST", "Weapon."]],
+                    ["EQUAL", "$DREAM_NAME", "Medic or Assistant dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_MEDIC", "$TARGET_PLAYER"],
+                    ["EQUAL", "$DREAM_NAME", "Miskatonic or Scholar dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", null, ["LIST", "Tome."]],
+                    ["EQUAL", "$DREAM_NAME", "Veteran dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_VETERAN", "$TARGET_PLAYER"],
+                    ["EQUAL", "$DREAM_NAME", "Wayfarer dream"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD", "$TARGET_PLAYER", null, ["LIST", "Wayfarer.", "Relic."]],
+                    ["EQUAL", "$DREAM_NAME", "Neutral dream 1"],
+                    [
+                        ["DO_GAIN_RESOURCES", "$TARGET_PLAYER", 2, true, null], //resources are given directly, as this happens after starting resources have been collected
+                        ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+                    ],
+                    ["EQUAL", "$DREAM_NAME", "Neutral dream 2"],
+                    [
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/startingCardsMod", 1],
+                        ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+                    ],
+                    ["TRUE"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD": {
+            "args": ["$TARGET_PLAYER", "$FACTION_LIST", "$TRAIT_LIST"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD.TARGET_PLAYER"],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                    ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", "$FACTION_LIST", ["LIST", "Asset", "Event"], ["LIST", ""], "$TRAIT_LIST", null],
+                    null,
+                    "You may target a card to play it (paying its cost).",
+                    0, 1, false, "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD_SELECTION_CALLBACK", null]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "BEYOND_THE_GATES_OF_SLEEP_PLAY_CARD_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["SET", "/arkham/scenarioInit", false], //scenarioInit flag has to be disabled while playing the card so that cost is paid and uses resources are placed
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_PLAY_CARD", "$TARGET_PLAYER", "$CARD.id", "play", true, null]
+                ]],
+                ["SET", "/arkham/scenarioInit", true],
+                ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_DRIFTER": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_DRIFTER.TARGET_PLAYER"],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                    ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, ["LIST", "Basic Weakness"], null, null],
+                    null,
+                    "You may target a basic weakness to replace it and suffer 1 trauma of your choice.",
+                    0, 1, false, "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_SELECTION_CALLBACK", null]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$REPLACED", 0],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DELETE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null],
+                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "random Basic Weakness", ["GET_RANDOM_WEAKNESS_DATABASE_ID", "GET_LIST_OF_WEAKNESSES"], 1, "$DECK_GROUP_ID", true, null],
+                    ["INCREASE_VAR", "$REPLACED", 1]
+                ]],
+                ["COND",
+                    ["GREATER_THAN", "$REPLACED", 0],
+                    ["PROMPT", "$TARGET_PLAYER", "beyondTheGatesOfSleepChooseTrauma"],
+                    ["TRUE"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_TRAUMA": {
+            "args": ["$TARGET_PLAYER", "$TRAUMA"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_TRAUMA.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$TRAUMA", "BEYOND_THE_GATES_OF_SLEEP_DRIFTER_TRAUMA.TRAUMA"],
+                ["DO_FLOG", "{0:P} choose {1} trauma.", ["LIST", "$TARGET_PLAYER", "$TRAUMA"]],
+                ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_MEDIC": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_MEDIC.TARGET_PLAYER"],
+                ["PROMPT", "$TARGET_PLAYER", "beyondTheGatesOfSleepChooseInvestigator"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["COND",
+                        ["NOT_EQUAL", "$PLAYER_I", "$TARGET_PLAYER"],
+                        [
+                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                            ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "BEYOND_THE_GATES_OF_SLEEP_MEDIC_CHOICE", "{{$TARGET_PLAYER}}", "{{$PLAYER_I}}"]]
+                        ]
+                    ]
+                ]]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_MEDIC_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$PLAYER_I"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_MEDIC_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_PLAYER", "$PLAYER_I", "BEYOND_THE_GATES_OF_SLEEP_MEDIC_CHOICE.PLAYER_I"],
+                ["DO_FLOG", "{0:P} choose {1:P}.", ["LIST", "$TARGET_PLAYER", "$PLAYER_I"]],
+                ["DO_GAIN_RESOURCES", "$PLAYER_I", 2, true, null], //resources are given directly, as this happens after starting resources have been collected
+                ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingCardsMod", 1],
+                ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_VETERAN": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                //Search your deck for up to 2 Tactic and/or Supply cards and begin this scenario with them as additional cards in your opening hand.
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_VETERAN.TARGET_PLAYER"],
+                ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                    ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Tactic.", "Supply."], null],
+                    null,
+                    "Target between {0} and {1} Tactic and/or Supply cards to begin this scenario with them as additional cards in your opening hand.",
+                    0, 2, false, "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK", null]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_SEND_CARD_TO_HAND", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
+            ]
+        },
+        "BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["DRAW_STARTING_HANDS"],
+                    ["TRUE"],
+                    ["BEYOND_THE_GATES_OF_SLEEP_SHOW_DREAM_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "beyondTheGatesOfSleepChooseDream": {
+            "args": [],
+            "message": "Choose your dream.",
+            "options": [
+            ]
+        },
+        "beyondTheGatesOfSleepChooseTrauma": {
+            "args": [],
+            "message": "Choose trauma to suffer.",
+            "options": [
+                {
+                    "label": "Physical.",
+                    "hotkey": "P",
+                    "code": [
+                        ["BEYOND_THE_GATES_OF_SLEEP_DRIFTER_TRAUMA", "$PLAYER_N", "physical"]
+                    ]
+                },
+                {
+                    "label": "Mental.",
+                    "hotkey": "M",
+                    "code": [
+                        ["BEYOND_THE_GATES_OF_SLEEP_DRIFTER_TRAUMA", "$PLAYER_N", "mental"]
+                    ]
+                }
+            ]
+        },
+        "beyondTheGatesOfSleepChooseInvestigator": {
+            "args": [],
+            "message": "Choose the investigator to get 2 additional resources and 1 additional card in their opening hand.",
+            "options": [
+            ]
+        }
+    }
+}

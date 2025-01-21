@@ -64,12 +64,12 @@
         ],
         "Where Doom Awaits Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                     ["COND",
-                        ["GREATER_EQUAL", "$GAME.arkhamNumPlayers", 3],
+                        ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
                         ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 2, true, null],
                         ["TRUE"],
                         ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$INVESTIGATOR.id", 1, true, null]
@@ -90,40 +90,40 @@
             ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Diverging Path", 3],
             ["DO_LOAD_N_CARDS_SCN", "Where Doom Awaits - Altered Path", 3],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Easy"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-3", "chaos_m3"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Standard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-5", "chaos_m5"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Hard"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-6", "chaos_m6"],
-                ["EQUAL", "$GAME.arkhamScenarioDifficulty", "Expert"],
-                ["DO_ADD_CHAOS_TOKEN_SCN", "-7", "chaos_m7"]
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m3", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Standard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m5", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m6", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_m7", 1]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators restored Silas Bishop.", "The above is not true."], "Where Doom Awaits Scenario Question 2"]
         ],
         "Where Doom Awaits Scenario Question 2": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
                     ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. I)", "02278", 1, "sharedActStory"],
                     ["SCENARIO_SKIP_QUESTION", "Where Doom Awaits Scenario Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators failed to recover the Necronomicon.", "The Necronomicon was stolen.", "None of the above are true."], "Where Doom Awaits Scenario Question 3"]
             ]
         ],
         "Where Doom Awaits Scenario Question 3": [
             ["COND",
                 ["OR",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"]
                 ],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
                     ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. II)", "02279", 1, "sharedActStory"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "C"],
                 ["DO_CREATE_STORY_CARD_SCN", "Ascending the Hill (v. III)", "02280", 1, "sharedActStory"]
             ],
             ["ACTION_LIST", "Where Doom Awaits Scenario Init Continue"]
@@ -132,32 +132,32 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "5 brood escaped into the wild.", "4 brood escaped into the wild.", "3 brood escaped into the wild.", "2 brood escaped into the wild.", "1 brood escaped into the wild.", "No brood escaped into the wild."], "Where Doom Awaits Scenario Question 4"]
         ],
         "Where Doom Awaits Scenario Question 4": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 5],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "B"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 4],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "C"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 3],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "D"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "D"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "E"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "E"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators put Silas Bishop out of his misery.", "The above is not true."], "Where Doom Awaits Scenario Question 5"]
         ],
         "Where Doom Awaits Scenario Question 5": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer5Text}}"],
                     ["DO_CREATE_CARDS_SCN", "Conglomeration of Spheres", "02103", 1, "sharedEncounterDeck"],
                     ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Conglomeration of Spheres", "Ascending Path", 3, 3, 0],
                     ["DO_LOAD_CARDS_SCN", "Where Doom Awaits - Hideous Abominations"]
                 ]
             ],
-            ["SET", "/arkhamFinalScenarioMessage", "Diverging Path cards are in Deck A, Altered Path cards are in Deck B."],
+            ["SET", "/arkham/finalScenarioMessage", "Diverging Path cards are in Deck A, Altered Path cards are in Deck B."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

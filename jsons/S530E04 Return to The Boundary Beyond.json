@@ -95,32 +95,32 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators forged a bond with Ichtaca.", "Ichtaca is in the dark."], "Return to The Boundary Beyond Scenario Question 1"]
         ],
         "Return to The Boundary Beyond Scenario Question 1": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingCardsMod", 2]
+                        ["DECREASE_VAL", "/playerData/$PLAYER_I/arkham/startingCardsMod", 2]
                     ]]
                 ]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators found the missing relic.", "The relic is missing."], "Return to The Boundary Beyond Scenario Question 2"]
         ],
         "Return to The Boundary Beyond Scenario Question 2": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
-                ["DO_REPLACE_CARD_SCN", "04061", "Relic of Ages: Forestalling the Future", "04191"] //Relic of Ages: …A Device, of Some Sort -> Relic of Ages: Forestalling the Future
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["DO_REPLACE_CARD_SCN", "04061", "Relic of Ages: Forestalling the Future", "04191"] //Relic of Ages: ...A Device, of Some Sort -> Relic of Ages: Forestalling the Future
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators rescued Alejandro.", "Alejandro is missing."], "Return to The Boundary Beyond Scenario Question 3"]
         ],
         "Return to The Boundary Beyond Scenario Question 3": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 [
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkhamStartingResourcesMod", 2]
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingResourcesMod", 2]
                     ]]
                 ]
             ],
@@ -128,11 +128,11 @@
         ],
         "Return to The Boundary Beyond Scenario Question 4": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
-                    ["LOG", "└── Supplies: {{$GAME.arkhamScenarioAnswer4Text}}"],
+                    ["LOG", "└── Supplies: {{$GAME.arkham.scenarioAnswer4Text}}"],
                     ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
-                        ["SET", "/playerData/$PLAYER_I/arkhamDisableMulligan", true]
+                        ["SET", "/playerData/$PLAYER_I/arkham/disableMulligan", true]
                     ]]
                 ]
             ],
@@ -145,9 +145,9 @@
         ],
         "Return to The Boundary Beyond Scenario Question 5": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
-                    ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer5Text}}"],
+                    ["LOG", "└── Chaos Bag: {{$GAME.arkham.scenarioAnswer5Text}}"],
                     ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
                     ["DO_LOAD_CARDS_SCN", "Cult of Pnakotus"]
                 ]
@@ -156,17 +156,17 @@
         ],
         "Return to The Boundary Beyond Scenario Question 6": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer6", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer6", "A"],
                 [
-                    ["LOG", "└── Chaos Bag: {{$GAME.arkhamScenarioAnswer6Text}}"],
+                    ["LOG", "└── Chaos Bag: {{$GAME.arkham.scenarioAnswer6Text}}"],
                     ["DO_LOAD_CARDS_SCN", "Venomous Hate"],
                     ["DO_LOAD_CARDS_SCN", "Guardians of Time"]
                 ]
             ],
             ["COND",
                 ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer5", "B"],
-                    ["EQUAL", "$GAME.arkhamScenarioAnswer6", "B"]
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer5", "B"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer6", "B"]
                 ],
                 [
                     ["DO_LOAD_CARDS_SCN", "Pnakotic Brotherhood"],
@@ -184,7 +184,7 @@
         "Return to The Boundary Beyond Scenario Init Continue": [
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Zócalo", 5, 7, 3, 0],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", false],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

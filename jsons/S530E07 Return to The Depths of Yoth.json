@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Depths of Yoth", "Return to The Depths of Yoth Scenario Early Init", "Return to The Depths of Yoth Scenario Init"]
+                ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$GAME.firstPlayer", "Return to The Depths of Yoth Scenario Start"]
             ]
         },
         "Return to The Depths of Yoth": {
@@ -43,24 +43,27 @@
         }
     },
     "actionLists": {
+        "Return to The Depths of Yoth Scenario Start": [
+            ["SCENARIO_INIT", "The Forgotten Age", "Return to The Forgotten Age", "Return to The Depths of Yoth", "Return to The Depths of Yoth Scenario Early Init", "Return to The Depths of Yoth Scenario Init"]
+        ],
         "Return to The Depths of Yoth Scenario Early Init": [
-            ["SET", "/arkhamOffMapNotInPlay", true],
+            ["SET", "/arkham/offMapNotInPlay", true],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You are forging your own path.", "Ichtaca's faith is restored.", "None of the above are true."], "Return to The Depths of Yoth Scenario Question 1"]
         ],
         "Return to The Depths of Yoth Scenario Question 1": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
-                    ["DO_ADD_CHAOS_TOKEN_SCN", "Elder Thing", "chaos_elder_thing"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
                     ["SCENARIO_SKIP_QUESTIONS", 2, "Return to The Depths of Yoth Scenario Early Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 [
-                    ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer1Text}}"],
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
                     ["SCENARIO_SKIP_QUESTIONS", 2, "Return to The Depths of Yoth Scenario Early Init Continue"]
                 ],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 [
                     ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Ichtaca"],
                     ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The relic is missing.", "The investigators found the missing relic."], "Return to The Depths of Yoth Scenario Question 2"]
@@ -68,19 +71,19 @@
             ]
         ],
         "Return to The Depths of Yoth Scenario Question 2": [
-            ["LOG", "└── Campaign Log: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["SCENARIO_SKIP_QUESTION", "Return to The Depths of Yoth Scenario Early Init Continue"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check supplies.", ["LIST", "Any investigator has a pocketknife.", "The above is not true."], "Return to The Depths of Yoth Scenario Question 3"]
             ]
         ],
         "Return to The Depths of Yoth Scenario Question 3": [
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
-                ["LOG", "└── Supplies: {{$GAME.arkhamScenarioAnswer3Text}}"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                ["LOG", "└── Supplies: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "B"],
                 ["DO_DELETE_ANY_PLAYER_DECK_CARD_SCN", "Relic of Ages"]
             ],
             ["ACTION_LIST", "Return to The Depths of Yoth Scenario Early Init Continue"]
@@ -97,32 +100,32 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Yig's Fury” in Campaign Log.", ["LIST", "There are 0 tally marks.", "There are 1-5 tally marks.", "There are 6-10 tally marks.", "There are 11-14 tally marks.", "There are 15-17 tally marks.", "There are 18-20 tally marks.", "There are 21 or more tally marks."], "Return to The Depths of Yoth Scenario Question 4"]
         ],
         "Return to The Depths of Yoth Scenario Question 4": [
-            ["LOG", "└── Yig's Fury: {{$GAME.arkhamScenarioAnswer4Text}}"],
+            ["LOG", "└── Yig's Fury: {{$GAME.arkham.scenarioAnswer4Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 [
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Yig"],
                     ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Pit Warden"]
                 ]
             ],
             ["COND",
-                ["IN_STRING", "CDEFG", "$GAME.arkhamScenarioAnswer4"],
+                ["IN_STRING", "CDEFG", "$GAME.arkham.scenarioAnswer4"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "04278"]  //The Descent Begins
             ],
             ["COND",
-                ["IN_STRING", "DEFG", "$GAME.arkhamScenarioAnswer4"],
+                ["IN_STRING", "DEFG", "$GAME.arkham.scenarioAnswer4"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "04279"]  //Horrific Descent
             ],
             ["COND",
-                ["IN_STRING", "EFG", "$GAME.arkhamScenarioAnswer4"],
+                ["IN_STRING", "EFG", "$GAME.arkham.scenarioAnswer4"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "04280"]  //Endless Caverns
             ],
             ["COND",
-                ["IN_STRING", "FG", "$GAME.arkhamScenarioAnswer4"],
+                ["IN_STRING", "FG", "$GAME.arkham.scenarioAnswer4"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "04281"]  //City of Blood
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "G"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "G"],
                 ["DO_DELETE_NAMED_CARDS_SCN", "04282"]  //Fury That Shakes the Earth
             ],
             ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "04287", "04288", "04289", "04290", "04291", "04292", "04293", "04294", "04295"]]], //City of the Serpents, Hall of Heresy, Crumbling Precipice, Caverns of Yoth, Forked Path, Bridge over N'kai, Broken Passage, Abandoned Site, Bright Canyon
@@ -139,7 +142,7 @@
         "Return to The Depths of Yoth Scenario Question 5": [
             ["VAR", "$FINAL_MESSAGE", "Deck A is the exploration deck. Off Map is Pursuit (out of play)."],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer5", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer5", "A"],
                 [
                     ["LOG", "└── Campaign Log: The Harbinger is still alive."],
                     ["DO_CREATE_CARDS_SCN", "Harbinger of Valusia: The Sleeper Returns", "53018", 1, "sharedNotInPlay"],
@@ -147,16 +150,16 @@
                 ]
             ],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer4", "G"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "G"],
                 ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Yig", "sharedEncounterDeck", 1, "sharedOffMap"],
-                ["NOT_EQUAL", "$GAME.arkhamScenarioAnswer4", "A"],
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
                 ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Yig", "sharedEncounterDeck", 1, "sharedNotInPlay"]
             ],
             ["VAR", "$SCENARIO_CARD", ["ONE_CARD", "$CARD", ["EQUAL", "$CARD.currentFace.type", "Scenario"]]],
             ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$SCENARIO_CARD.id", 1, true, null],
             ["DO_LOAD_CARDS_SCN", "Return to The Depths of Yoth - Set Aside"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to…” scenario card."],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Remember the rule from the back of the “Return to...” scenario card."],
             ["DO_ATTACH_REFERENCE_TO_SCENARIO", true],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

@@ -163,56 +163,123 @@
             ]
         }
     },
+    "functions": {
+        "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PHASE_NAME", "$ACTION_NAME", "$NEW_STEP"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_EMPTY", "$PHASE_NAME", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.PHASE_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$ACTION_NAME", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.ACTION_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$NEW_STEP", "THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP.NEW_STEP"],
+                ["DO_FSYSLOG", "{0:C}: the {1} phase is {2}.", ["LIST", "$TARGET_CARD", "$PHASE_NAME", "$ACTION_NAME"]],
+                ["SET", "/stepId", "$NEW_STEP"],
+                ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", true, null]
+            ]
+        },
+        "THE_GOLD_POCKET_WATCH_ABILITY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_GOLD_POCKET_WATCH_ABILITY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "THE_GOLD_POCKET_WATCH_ABILITY.TARGET_CARD_ID"]],
+                ["COND",
+                    ["OR",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", "$TARGET_CARD.controller"],
+                        ["NOT_EQUAL", "$TARGET_CARD.inPlay", true]
+                    ],
+                    ["DO_FSYSLOG", "You cannot use {0:C}, {1:P}.", ["LIST", "$TARGET_CARD", "$TARGET_PLAYER"]],
+                    ["EQUAL", "$GAME.stepId", "M1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "mythos", "skipped", "I1"],
+                    ["EQUAL", "$GAME.stepId", "M5"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "mythos", "repeated", "M1"],
+                    ["EQUAL", "$GAME.stepId", "I1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "investigator", "skipped", "E1"],
+                    ["EQUAL", "$GAME.stepId", "I3"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "investigator", "repeated", "I1"],
+                    ["EQUAL", "$GAME.stepId", "E1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "enemy", "skipped", "U1"],
+                    ["EQUAL", "$GAME.stepId", "E4"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "enemy", "repeated", "E1"],
+                    ["EQUAL", "$GAME.stepId", "U1"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "upkeep", "skipped", "M1"],
+                    ["EQUAL", "$GAME.stepId", "U6"],
+                    ["THE_GOLD_POCKET_WATCH_ABILITY_SET_STEP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "upkeep", "repeated", "U1"],
+                    ["TRUE"],
+                    ["DO_FSYSLOG", "You cannot use {0:C} now, {1:P}.", ["LIST", "$TARGET_CARD", "$TARGET_PLAYER"]]
+                ]
+            ]
+        }
+    },
     "automation": {
         "cards": {
             "02003": { //Jenny Barnes: The Dilettante
                 "rules": {
-                    "02003a": {
-                        "type": "passive",
+                    "02003a": { //You collect 1 additional resource during each upkeep phase.
+                        "type": "trigger",
                         "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                        ],
-                        "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "upkeepResourcesMod", 1, "$THIS.inPlay", "{2:P} collects 1 additional resource during each upkeep phase.", null]
                         ]
                     }
                 }
             },
+            "0200390084": { //Jenny Barnes: The Dilettante (parallel back)
+                "inheritFrom": "02003"
+            },
             "98001": { //Jenny Barnes: The Dilettante (promo)
-                "rules": {
-                    "98001a": {
-                        "type": "passive",
-                        "priority": 10,
-                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
-                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
-                        "onDo": [
-                            ["CARD_ABILITY_ON", "$THIS"],
-                            ["INCREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                        ],
-                        "offDo": [
-                            ["CARD_ABILITY_OFF", "$THIS"],
-                            ["DECREASE_VAL", "/playerData/$THIS.controller/arkhamUpkeepResourcesMod", 1]
-                        ]
-                    }
-                }
+                "inheritFrom": "02003"
             },
             "02005": { //"Ashcan" Pete: The Drifter
                 "rules": {
-                    "02005a": {
+                    "02005a": { //You begin the game with Duke in play.
                         "type": "trigger",
                         "priority": 10,
                         "listenTo": ["/cardById/$THIS_ID/inPlay"],
                         "condition": ["TRIGGER_IN_PLAY", "$THIS"],
                         "then": [
                             ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Duke: Loyal Hound in play.", ["LIST", "$THIS", "$THIS.controller"]],
                             ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Duke"]
                         ]
                     }
+                }
+            },
+            "0200590046": { //"Ashcan" Pete: The Drifter (parallel back)
+                "inheritFrom": "02005"
+            },
+            "02020": { //Laboratory Assistant
+                "rules": {
+                    "02020a": { //Your maximum hand size is increased by 2.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "maxHandSize", 2, "$THIS.inPlay", "{2:P}'s maximum hand size is increased by 2.", null]
+                        ]
+                    }
+                }
+            },
+            "02037": { //Indebted
+                "rules": {
+                    "02037a": { //You start each game with 2 fewer resources.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "startingResourcesMod", -2, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "startingResourcesMod", -2, "$THIS.inPlay", "{2:P} starts each game with 2 fewer resources.", null]
+                        ]
+                    }
+                }
+            },
+            "02305": { //The Gold Pocket Watch: Stealing Time
+                "ability" : {
+                    "A": [ //(reaction) When a phase begins, remove The Gold Pocket Watch from the game: Skip this phase. / (reaction) After a phase ends, remove The Gold Pocket Watch from the game: Repeat that phase.
+                        ["THE_GOLD_POCKET_WATCH_ABILITY", "$PLAYER_N", "$THIS.id"]
+                    ]
                 }
             }
         }

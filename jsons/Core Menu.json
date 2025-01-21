@@ -23,7 +23,7 @@
                 "label": "id:moveClueToActMenu",
                 "actionList": "moveClueToAct",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.stackIndex", 0],
                     ["EQUAL", "$ACTIVE_CARD.cardIndex", 0],
                     ["EQUAL", "$ACTIVE_FACE.type", "Act"],
@@ -34,14 +34,19 @@
                 "label": "id:spawnMicroCardMenu",
                 "actionList": "spawnMicroCard",
                 "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniAssistant"]
+                    ],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
             },
             {
                 "label": "id:cloneSupplyCardMenu",
                 "actionList": "cloneSupplyCard",
-                "showIf": ["AND",
+                "showIf": ["OR",
+                    ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                    ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
                 ]
             },
@@ -50,6 +55,10 @@
                 "actionList": "deleteSupplyCard",
                 "showIf": ["OR",
                     ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "MiniAssistant"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "MicroAssistant"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                    ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"]
@@ -113,8 +122,8 @@
                 "label": "id:investigateActionMenu",
                 "actionList": "investigateAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
@@ -123,7 +132,7 @@
                 "label": "id:moveClueToInvestigatorMenu",
                 "actionList": "moveClueToInvestigator",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
                     ["GREATER_THAN", "$ACTIVE_CARD.tokens.clue", 0]
@@ -133,8 +142,8 @@
                 "label": "id:moveActionMenu",
                 "actionList": "moveAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"]
                 ]
@@ -143,8 +152,8 @@
                 "label": "id:actionActionMenu",
                 "actionList": "actionAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -157,7 +166,7 @@
                 "label": "id:freeActionMenu",
                 "actionList": "freeAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -170,7 +179,7 @@
                 "label": "id:reactionActionMenu",
                 "actionList": "reactionAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_CARD.inPlay", true],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.controller", "shared"],
@@ -183,8 +192,8 @@
                 "label": "id:fightActionMenu",
                 "actionList": "fightAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -196,8 +205,8 @@
                 "label": "id:engageActionMenu",
                 "actionList": "engageAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -212,8 +221,8 @@
                 "label": "id:evadeActionMenu",
                 "actionList": "evadeAction",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$PLAYER_N", "$GAME.arkhamActiveInvestigator"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$PLAYER_N", "$GAME.arkham.activeInvestigator"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
@@ -265,7 +274,10 @@
                 "label": "id:spawnCardMenu",
                 "actionList": "spawnCard",
                 "showIf": ["AND",
-                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                        ["IN_STRING", "$ACTIVE_CARD.groupId", "sharedPile"]
+                    ],
                     ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                     ["GREATER_THAN", "$ACTIVE_CARD.spawnLeft", 0],
                     ["GREATER_THAN", "$ACTIVE_CARD.spawnTop", 0]
@@ -309,15 +321,19 @@
                         ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Story"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Key"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Upgrade"],
                         ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MicroInvestigator"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "MicroAssistant"],
+                        ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                         ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Upgrade Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
                         ["EQUAL", "$ACTIVE_FACE.name", "Concealed Card"],
                         ["AND",
@@ -343,6 +359,7 @@
                 "label": "id:exhaustCardMenu",
                 "actionList": "exhaustCard",
                 "showIf": ["AND",
+                    ["NOT_EQUAL", "$ACTIVE_FACE.disableExhaustReady", true],
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
                     ["OR",
                         ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
@@ -359,8 +376,9 @@
                 "label": "id:readyCardMenu",
                 "actionList": "readyCard",
                 "showIf": ["AND",
+                    ["NOT_EQUAL", "$ACTIVE_FACE.disableExhaustReady", true],
                     ["EQUAL", "$ACTIVE_CARD.inAdvanced", true],
-                    ["EQUAL", "$ACTIVE_CARD.rotation", 90],
+                    ["NOT_EQUAL", "$ACTIVE_CARD.rotation", 0],
                     ["OR",
                         ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
                         ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
@@ -389,11 +407,13 @@
                                 ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Story"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Key"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "ChaosToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "SealToken"],
+                                ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Supplies"]
                             ]
                         ],
@@ -408,11 +428,13 @@
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Story"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "ChaosToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "KeyToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "FloodedToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "SealToken"],
+                                ["IN_STRING", "$ACTIVE_CARD.sides.A.type", "StandardToken"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Supplies"]
                             ]
                         ]
@@ -555,6 +577,17 @@
                 ]
             },
             {
+                "label": "id:sendCardToHandMenu",
+                "actionList": "sendCardToHand",
+                "showIf": ["AND",
+                    ["GREATER_THAN", "$ACTIVE_CARD.cardIndex", 0],
+                    ["OR",
+                        ["EQUAL", "$GAME.playerData.$PLAYER_N.blockUnsafeActions", false],
+                        ["NOT_EQUAL", "$ACTIVE_FACE.type", "FirstInvestigatorToken"]
+                    ]
+                ]
+            },
+            {
                 "label": "id:replaceLocationMenu",
                 "actionList": "replaceLocation",
                 "showIf": ["AND",
@@ -632,7 +665,33 @@
                         ]
                     ],
                     ["AND",
-                        ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                        ["OR",
+                            ["EQUAL", "$ACTIVE_CARD.inPlay", true],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"], //replacement for missing ACTIVE_GROUP or access to groups
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedAgendaStory"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStory"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedScenarioReference"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedVoid"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player4Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player3Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player2Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Threat"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "player1Play"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedOffMap"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryB"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryC"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryD"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedActStoryE"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                            ["EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"]
+                        ],
                         ["OR",
                             ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
                             ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
@@ -646,7 +705,10 @@
                             ["NOT_EQUAL", "$ACTIVE_FACE.victoryPoints", null],
                             ["NOT_EQUAL", "$ACTIVE_FACE.vengeance", null],
                             ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Encounter Card"],
-                            ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                            ["AND",
+                                ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                                ["NOT_EQUAL", "$ACTIVE_CARD.cardOwner", "shared"]
+                            ],
                             ["NOT_EQUAL", "$ACTIVE_CARD.cardDiscard", ""]
                         ]
                     ]
@@ -656,7 +718,6 @@
                 "label": "id:setAsideCardMenu",
                 "actionList": "setAsideCard",
                 "showIf": ["AND",
-                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
@@ -666,13 +727,19 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
-                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
-                        ]
-                    ],
-                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                        ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"]
+                    ]
                 ]
             },
             {
@@ -688,50 +755,25 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
                     ["OR",
+                        ["EQUAL", "$ACTIVE_FACE.name", "Encounter Card"],
+                        ["EQUAL", "$ACTIVE_FACE.name", "Player Card"],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", false],
-                            ["OR",
-                                ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Event"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Act"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Location"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Story"],
-                                ["EQUAL", "$ACTIVE_FACE.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
+                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
                         ],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Asset"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Treachery"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Event"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Agenda"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Act"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Location"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Story"],
+                        ["EQUAL", "$ACTIVE_FACE.type", "Key"],
                         ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"],
-                            ["OR",
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Asset"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Treachery"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Event"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Story"],
-                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Investigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ],
-                                ["AND",
-                                    ["EQUAL", "$ACTIVE_CARD.sides.A.type", "MiniInvestigator"],
-                                    ["EQUAL", "$ACTIVE_CARD.eliminated", true]
-                                ]
-                            ]
+                            ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"],
+                            ["EQUAL", "$ACTIVE_CARD.eliminated", true]
                         ]
                     ]
                 ]
@@ -740,7 +782,6 @@
                 "label": "id:exileCardMenu",
                 "actionList": "exileCard",
                 "showIf": ["AND",
-                    ["NOT_EQUAL", "$ACTIVE_CARD.controller", "shared"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.groupId", "sharedTokens"],
@@ -749,22 +790,25 @@
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Removed"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "Exiled"], true],
                     ["NOT_EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], true],
-                    ["OR",
-                        ["EQUAL", "$ACTIVE_CARD.currentSide", "A"],
-                        ["AND",
-                            ["EQUAL", "$ACTIVE_CARD.inHand", true],
-                            ["IN_STRING", "$ACTIVE_CARD.groupId", "$PLAYER_N"]
-                        ]
-                    ],
-                    ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"]
+                    ["OR", //replacement for IS_PLAYER_CARD
+                        ["EQUAL", "$ACTIVE_CARD.sides.B.name", "Player Card"],
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "03009"],  //Sophie: In Loving Memory
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "06015a"], //Dream-Gate: Wondrous Journey
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08011a"], //Discipline: Alignment of Spirit
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08012a"], //Discipline: Quiescence of Thought
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08013a"], //Discipline: Prescience of Fate
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "10005"],  //Flux Stabilizer: Inactive
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                    ]
                 ]
             },
             {
                 "label": "id:investigatorStartTurnMenu",
                 "actionList": "investigatorStartTurn",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", null],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", null],
                     ["OR",
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
@@ -782,8 +826,8 @@
                 "label": "id:investigatorEndTurnMenu",
                 "actionList": "investigatorEndTurn",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
-                    ["EQUAL", "$GAME.arkhamActiveInvestigator", "$ACTIVE_CARD.cardOwner"],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.activeInvestigator", "$ACTIVE_CARD.cardOwner"],
                     ["OR",
                         ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                         ["EQUAL", "$ACTIVE_FACE.type", "MiniInvestigator"]
@@ -791,7 +835,8 @@
                     ["OR",
                         ["EQUAL", "$GAME.stepId", "I2"],
                         ["EQUAL", "$GAME.stepId", "W3"],
-                        ["EQUAL", "$GAME.stepId", "I2.1"]
+                        ["EQUAL", "$GAME.stepId", "I2.1"],
+                        ["EQUAL", "$GAME.stepId", "I2.2"]
                     ]
                 ]
             },
@@ -799,7 +844,7 @@
                 "label": "id:calculateWillpowerMenu",
                 "actionList": "calculateWillpower",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -808,7 +853,7 @@
                 "label": "id:calculateIntellectMenu",
                 "actionList": "calculateIntellect",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -817,7 +862,7 @@
                 "label": "id:calculateCombatMenu",
                 "actionList": "calculateCombat",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -826,7 +871,7 @@
                 "label": "id:calculateAgilityMenu",
                 "actionList": "calculateAgility",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -835,7 +880,7 @@
                 "label": "id:eliminateInvestigatorMenu",
                 "actionList": "eliminateInvestigator",
                 "showIf": ["AND",
-                    ["EQUAL", "$GAME.arkhamScenarioInit", false],
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
                     ["EQUAL", "$ACTIVE_FACE.type", "Investigator"],
                     ["NOT_EQUAL", "$ACTIVE_CARD.eliminated", true]
                 ]
@@ -884,6 +929,10 @@
             {
                 "label": "id:tarotReadingMenu",
                 "actionList": "tarotReading"
+            },
+            {
+                "label": "id:selectTabooMenu",
+                "actionList": "selectTaboo"
             }
         ]
     }

@@ -1,0 +1,201 @@
+{
+    "automation": {
+        "cards": {
+            "90001": { //Daisy Walker: The Librarian (parallel)
+                "rules": {
+                    "90001a": { //You get +1 willpower and +1 sanity for each Tome asset you control. (sanity not coded)
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/*/inPlay", "/cardById/*/controller"],
+                        "condition": ["CAN_CHANGE_SKILL_BONUS", "$THIS", ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_SKILL_BONUS", "$THIS", ["LIST", "skillWillpower"], ["GET_PARALLEL_DAISY_WALKER_BONUS", "$THIS"], "$THIS.inPlay", null, null]
+                        ]
+                    }
+                }
+            },
+            "9000101002": { //Daisy Walker: The Librarian (parallel front)
+                "inheritFrom": "90001"
+            },
+            "90046": { //"Ashcan" Pete: The Drifter (parallel)
+                "rules": {
+                    "90046a": { //You begin the game with Pete's Guitar in play.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game with Pete's Guitar: Still Holdin' Up in play.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["DO_BEGIN_WITH_CARD_IN_PLAY", "$THIS.controller", "Pete's Guitar"]
+                        ]
+                    }
+                }
+            },
+            "9004602005": { //"Ashcan" Pete: The Drifter (parallel front)
+                "inheritFrom": "90046"
+            },
+            "02004": { //Jim Culver: The Musician (original in Laid to Rest scenario)
+                "rules": {
+                    "02004a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["AND",
+                            ["EQUAL", "$GAME.arkham.campaignName", "Challenge Scenarios"],
+                            ["EQUAL", "$GAME.arkham.scenarioName", "Laid to Rest"],
+                            ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"]
+                        ],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
+            },
+            "9004902004": { //Jim Culver: The Musician (parallel front in Laid to Rest scenario)
+                "inheritFrom": "02004"
+            },
+            "90049": { //Jim Culver: The Musician (parallel)
+                "rules": {
+                    "90049a": { //"spirit deck"
+                        "type": "trigger",
+                        "priority": 9, //"During the setup" (Jim Culver) must happen before "Before you draw your opening hand" (Stick to the Plan, Bewitching)
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$THIS", "$TARGET"]
+                        ]
+                    }
+                }
+            },
+            "0200490049": { //Jim Culver: The Musician (parallel back)
+                "inheritFrom": "90049"
+            }
+        }
+    },
+    "functions": {
+        "GET_PARALLEL_DAISY_WALKER_BONUS": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.controller", "$THIS.controller"],
+                    ["EQUAL", "$CARD.currentFace.type", "Asset"],
+                    ["IN_STRING", "$CARD.currentFace.traits", "Tome."]
+                ]]],
+                ["LENGTH", "$SELECTED_CARDS"]
+            ]
+        },
+        "FILTER_PARALLEL_JIM_CULVER_CARDS": {
+            "args": ["$TARGET_GROUP_ID"],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["EQUAL", "$CARD.sides.A.type", "Asset"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Ally."],
+                    ["OR",
+                        ["EQUAL", "$CARD.sides.A.xp", null],
+                        ["LESS_EQUAL", "$CARD.sides.A.xp", 2]
+                    ]
+                ]]
+            ]
+        },
+        "CAN_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$VENGEFUL_SHADE", ["GET_NAMED_DECK_CARD", "90053", "$EXTRA_DECK_GROUP_ID"]], //Vengeful Shade
+                ["VAR", "$EXISTING_CARDS", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$EXTRA_DECK_GROUP_ID"]],
+                ["VAR", "$EXISTING_COUNT", ["LENGTH", "$EXISTING_CARDS"]],
+                ["COND",
+                    ["AND",
+                        ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
+                        ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                        ["EQUAL", "$EXISTING_COUNT", 9],
+                        ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$EXTRA_DECK_GROUP_ID"], 10]
+                    ],
+                    true,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                        ["VAR", "$VENGEFUL_SHADE_SIDE", ["GET_NAMED_DECK_CARD", "90053", "$SIDE_DECK_GROUP_ID"]], //Vengeful Shade
+                        ["VAR", "$EXISTING_CARDS_SIDE", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$SIDE_DECK_GROUP_ID"]],
+                        ["VAR", "$EXISTING_COUNT_SIDE", ["LENGTH", "$EXISTING_CARDS_SIDE"]],
+                        ["COND",
+                            ["AND",
+                                ["OR",
+                                    ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                                    ["NOT_EQUAL", "$VENGEFUL_SHADE_SIDE", null]
+                                ],
+                                ["GREATER_EQUAL", ["ADD", "$EXISTING_COUNT", "$EXISTING_COUNT_SIDE"], 9]
+                            ],
+                            true,
+                            ["TRUE"],
+                            false
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK": {
+            "args": ["$THIS", "$TARGET"],
+            "code": [
+                ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["VAR", "$VENGEFUL_SHADE", ["GET_NAMED_DECK_CARD", "90053", "$EXTRA_DECK_GROUP_ID"]], //Vengeful Shade
+                ["VAR", "$EXISTING_CARDS", ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$EXTRA_DECK_GROUP_ID"]],
+                ["VAR", "$EXISTING_COUNT", ["LENGTH", "$EXISTING_CARDS"]],
+                ["COND",
+                    ["AND",
+                        ["GREATER_THAN", "$PLAYER_DATA.$TARGET_PLAYER.arkham.showExtraDeck", 0],
+                        ["NOT_EQUAL", "$VENGEFUL_SHADE", null],
+                        ["EQUAL", "$EXISTING_COUNT", 9],
+                        ["EQUAL", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$EXTRA_DECK_GROUP_ID"], 10]
+                    ],
+                    [
+                        //extra_deck loaded from meta data is a correct spirit deck, so choosing can be skipped
+                        ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", true, null],
+                        ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_FSYSLOG", "{0:C}: {1:P} chooses 9 different Ally assets from any class level 0-2 and shuffles them into their spirit deck.", ["LIST", "$THIS", "$THIS.controller"]],
+                        ["VAR", "$SIDE_DECK_GROUP_ID", ["GET_CONTROLLER_SIDE_DECK", "$TARGET_PLAYER"]],
+                        // quietly move all cards present in extra deck to side deck
+                        ["VAR", "$ALL_EXISTING_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$EXTRA_DECK_GROUP_ID"]],
+                        ["FOR_EACH_VAL", "$CARD", "$ALL_EXISTING_CARDS", [
+                            ["MOVE_CARD", "$CARD.id", "$SIDE_DECK_GROUP_ID", -1]
+                        ]],
+                        // show extra deck
+                        ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/showExtraDeck", 1],
+                        // move Vengeful Shade from side deck to extra deck
+                        ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "90053", "$SIDE_DECK_GROUP_ID", 1, "$EXTRA_DECK_GROUP_ID", true, null], //Vengeful Shade
+                        // show selection of valid cards from side deck
+                        ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$SIDE_DECK_GROUP_ID",
+                            ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$SIDE_DECK_GROUP_ID"],
+                            null,
+                            "Target {0} different Ally assets from any class level 0-2 to shuffle them into your spirit deck.",
+                            9, 9, true, "PARALLEL_JIM_CULVER_SELECTION_CALLBACK", "$THIS.id"]
+                    ]
+                ]
+            ]
+        },
+        "PARALLEL_JIM_CULVER_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "PARALLEL_JIM_CULVER_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["VAR", "$EXTRA_DECK_GROUP_ID", ["GET_CONTROLLER_EXTRA_DECK", "$TARGET_PLAYER"]],
+                ["DO_FSYSLOG", "{0:P} shuffles {1} Ally asset{1:S} into their spirit deck.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$CARD.id", "$CARD.groupId", 1, "$EXTRA_DECK_GROUP_ID", false, null]
+                ]],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$EXTRA_DECK_GROUP_ID", false, null],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        }
+    }
+}

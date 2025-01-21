@@ -51,31 +51,31 @@
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "3 Pit Vipers are listed.", "2 Pit Vipers are listed.", "1 Pit Viper is listed.", "0 Pit Vipers are listed."], "Heart of the Elders Pt 2 Scenario Question 1"]
         ],
         "Heart of the Elders Pt 2 Scenario Question 1": [
-            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer1Text}}"],
+            ["LOG", "└── The jungle watches: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
                 ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 3, "sharedVictoryDisplay"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
                 ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 2, "sharedVictoryDisplay"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer1", "C"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
                 ["DO_CREATE_CARDS_SCN", "Pit Viper", "04078", 1, "sharedVictoryDisplay"]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "2 Basilisks are listed.", "1 Basilisk is listed.", "0 Basilisks are listed."], "Heart of the Elders Pt 2 Scenario Question 2"]
         ],
         "Heart of the Elders Pt 2 Scenario Question 2": [
-            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer2Text}}"],
+            ["LOG", "└── The jungle watches: {{$GAME.arkham.scenarioAnswer2Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
                 ["DO_CREATE_CARDS_SCN", "Basilisk", "04220", 2, "sharedVictoryDisplay"],
-                ["EQUAL", "$GAME.arkhamScenarioAnswer2", "B"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
                 ["DO_CREATE_CARDS_SCN", "Basilisk", "04220", 1, "sharedVictoryDisplay"]
             ],
             ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “the jungle watches” in Campaign Log.", ["LIST", "1 Boa Constrictor is listed.", "0 Boa Constrictors are listed."], "Heart of the Elders Pt 2 Scenario Question 3"]
         ],
         "Heart of the Elders Pt 2 Scenario Question 3": [
-            ["LOG", "└── The jungle watches: {{$GAME.arkhamScenarioAnswer3Text}}"],
+            ["LOG", "└── The jungle watches: {{$GAME.arkham.scenarioAnswer3Text}}"],
             ["COND",
-                ["EQUAL", "$GAME.arkhamScenarioAnswer3", "A"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
                 ["DO_CREATE_CARDS_SCN", "Boa Constrictor", "04079", 1, "sharedVictoryDisplay"]
             ],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Pitfall", "sharedEncounterDeck", 1, "sharedDeckA"],
@@ -83,7 +83,7 @@
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Deep Dark", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Final Mistake", "sharedEncounterDeck", 1, "sharedDeckA"],
             ["DO_LOAD_CARDS_SCN", "Poison"],
-            ["SET", "/arkhamFinalScenarioMessage", "Deck A is the exploration deck."],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the exploration deck."],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     }

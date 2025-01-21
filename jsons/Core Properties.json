@@ -93,6 +93,93 @@
         "game": ["loopUntilInvestigatorsDone"],
         "player": ["blockUnsafeActions"]
     },
+    "functions": {
+        "DO_INIT_GAME_PROPERTIES": {
+            "args": [],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.arkham", null],
+                    [
+                        ["SET", "/arkham", {
+                            // special
+                            "scenarioInit": true,                               // true until a scenario is loaded, used to disable some automations and actions before that happens (and loading another scenario afterwards)
+                            "loadingCards": false,                              // true between start of preLoadActionList and end of postLoadActionList, used to disable some automations when cards are loaded
+                            "skipDeckCheck": false,                             // if true, bypass deck size requirement at start of SCENARIO_INIT
+                            // reset in SCENARIO_INIT
+                            "chaosBagCampaignName": "No Campaign",              // name used to determine Chaos Bag prebuilt deck name (alongside scenarioDifficulty)
+                            "campaignName": "No Campaign",                      // name used when saving the game
+                            "scenarioName": "No Scenario",                      // name used when saving the game and in some messages
+                            "scenarioDifficulty": "Standard",                   // scenario difficulty (Easy, Standard, Hard, Expert)
+                            "scenarioAction": null,                             // name of the next action list to call during scenario setup when default code ends processing
+                            "scenarioActionAfterStep7": null,                   // name of the action list to call during scenario setup when resources have been collected (step 7), but before drawing opening hand (step 8)
+                            "numScenarioQuestions": 0,                          // number of scenario questions registered
+                            "scenarioQuestionIndex": 0,                         // index of next scenario question to ask
+                            "numPlayers": "$GAME.numPlayers",                   // number of player (can't be changed once scenario is underway, so it must be stored on the side)
+                            "traumaDone": 0,                                    // number of players who have completed their trauma choices (a barrier)
+                            "startingHandDone": 0,                              // number of players who have completed drawing their starting hand (a barrier)
+                            "customSpawnChoiceDone": 0,                         // number of players who have completed their starting location choice (a barrier)
+                            "customSpawnChoiceScenarioContinueAction": null,    // name of the action list to call during scenario setup when all players have completed their starting location choice
+                            "skipShufflingEncounterDeck": false,                // if true, disables shuffling the encounter deck at the end of scenario initialization
+                            "skipShufflingSharedDeckA": false,                  // if true, disables shuffling the shared deck A at the end of scenario initialization
+                            "skipShufflingSharedDeckB": false,                  // if true, disables shuffling the shared deck B at the end of scenario initialization
+                            "skipShufflingSharedDeckC": false,                  // if true, disables shuffling the shared deck C at the end of scenario initialization
+                            "offMapNotInPlay": false,                           // if true, offMap group is considered "not in play"
+                            "ignoreDoomOnInvestigators": false,                 // if true, doom on investigators is not counted for agenda advancement
+                            "finalScenarioMessage": null,                       // text to append to the default text logged after scenario finishes initializing
+                            "activeInvestigator": null,                         // name of the player whose turn it is now
+                            // required by game event handling
+                            "executeGameEventDefault": null,                    // single argument (first player is supplied) function name to call after game event processes without being cancelled
+                            "executeGameEventCancel": null,                     // single argument (first player is supplied) function name to call after game event processes with being cancelled
+                            "executeGameEventFlag": 0                           // if greater than 0, game event is considered cancelled
+                        }],
+                        ["DO_INIT_PLAYER_PROPERTIES", "player1"],
+                        ["DO_INIT_PLAYER_PROPERTIES", "player2"],
+                        ["DO_INIT_PLAYER_PROPERTIES", "player3"],
+                        ["DO_INIT_PLAYER_PROPERTIES", "player4"],
+                        ["LOG", "Welcome to Arkham Horror. Set first player, load your decks, then load a scenario. Do not manipulate the board until the game begins."]
+                    ]
+                ]
+            ]
+        },
+        "DO_INIT_PLAYER_PROPERTIES": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$PLAYER_DATA.$TARGET_PLAYER.arkham", null],
+                    [
+                        ["SET", "/playerData/$TARGET_PLAYER/arkham", {
+                            // special
+                            "deckAttachments": {},                              // information about card attachments (contained in arkham.build deck "attachments_" metadata); format: "databaseId": ["databaseId", ...]
+                            "deckCustomizable": {},                             // information about card customization (contained in deck "cus_" metadata); format: "databaseId": { "index": ["value", ...], ...}
+                            "tabooId": 0,                                       // information about taboo used (contained in deck "taboo_id" data)
+                            "showExtraDeck": 0,                                 // if greater than 0, extra deck group is shown for player (can be enabled by some cards during scenario setup or when loading a deck from arkham.build with "extra_deck" metadata)
+                            "playerInPlay": false,                              // if true, player groups are considered "in play" (automatically set to true after replacing Random Basic Weakness and spawning bonded cards; many card automations respond to their card's "inPlay" change and configure other variables)
+                            // reset in SCENARIO_INIT
+                            "playWithTopDeckCardRevealed": 0,                   // if greater than 0, top card of player's deck is faceup (A) at all times
+                            "playWithTopExtraDeckCardRevealed": 0,              // if greater than 0, top card of player's extra deck is faceup (A) at all times
+                            "startingDamageMod": 0,                             // modifier to starting physical trauma (affects options available in prompt)
+                            "startingHorrorMod": 0,                             // modifier to starting mental trauma (affects options available in prompt)
+                            "startingResourcesMod": 0,                          // modifier to starting resources (5)
+                            "startingCardsMod": 0,                              // modifier to the number of cards in opening hand (5)
+                            "disableMulligan": false,                           // if true, mulligan is skipped when drawing the opening hand
+                            "customSpawnLocation": null,                        // if not null, mini investigator card is spawned at this named location, instead of the scenario default location
+                            "customMythosPhasePlayerOrderController": 0,        // if greater than 0, player is considered mythos phase order controller (used by Gloria Goldberg)
+                            "mythosPhaseCardDrawn": false,                      // if true, it means player has drawn his mythos phase card and should not be listed again as valid choice (used by Gloria Goldberg)
+                            "bonusCharges": 0,                                  // modifier to resources placed on cards with "Uses (charges)"
+                            "upkeepResourcesMod": 0,                            // modifier to resources recieved during upkeep phase
+                            "upkeepCardsMod": 0,                                // modifier to cards drawn during upkeep phase
+                            "maxHandSize": 0,                                   // modifier to max hand size checked during upkeep phase
+                            "handSizeCountUnique": 0,                           // if greater than 0, each title counts only once when checking max hand size during upkeep phase
+                            // required by player event handling
+                            "executePlayerEventDefault": null,                  // single argument (this player is supplied) function name to call after player event processes without being cancelled
+                            "executePlayerEventCancel": null,                   // single argument (this player is supplied) function name to call after player event processes with being cancelled
+                            "executePlayerEventFlag": 0                         // if greater than 0, player event is considered cancelled
+                        }]
+                    ]
+                ]
+            ]
+        }
+    },
     "labels": {
         "resources": {
             "English": "Resources"
