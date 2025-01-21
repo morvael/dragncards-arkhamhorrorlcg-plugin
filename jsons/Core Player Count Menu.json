@@ -1,0 +1,24 @@
+{
+    "playerCountMenu": [
+        {
+            "label": "1",
+            "numPlayers": 1,
+            "layoutId": "layout1Player"
+        },
+        {
+            "label": "2",
+            "numPlayers": 2,
+            "layoutId": "layout2Player"
+        },
+        {
+            "label": "3",
+            "numPlayers": 3,
+            "layoutId": "layout3Player"
+        },
+        {
+            "label": "4",
+            "numPlayers": 4,
+            "layoutId": "layout4Player"
+        }
+    ]
+}
