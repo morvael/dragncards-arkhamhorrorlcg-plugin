@@ -363,6 +363,7 @@
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Reference"],
+                                ["EQUAL", "$TARGET_CARD.currentFace.type", "Location"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
                                 ["EQUAL", "$TARGET_CARD.currentFace.type", "Key"]
                             ]
@@ -378,6 +379,7 @@
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Skill"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Enemy"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Reference"],
+                                ["EQUAL", "$TARGET_CARD.sides.A.type", "Location"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Story"],
                                 ["EQUAL", "$TARGET_CARD.sides.A.type", "Key"]
                             ]

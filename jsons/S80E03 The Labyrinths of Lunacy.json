@@ -1,0 +1,275 @@
+{
+    "preBuiltDecks": {
+        "The Labyrinths of Lunacy Scenario": {
+            "label": "The Labyrinths of Lunacy Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Side Stories C", "Side Stories", "The Labyrinths of Lunacy", "The Labyrinths of Lunacy Scenario Early Init", "The Labyrinths of Lunacy Scenario Init"]
+            ]
+        },
+        "The Labyrinths of Lunacy - Epic Multiplayer Mode": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Epic Multiplayer Mode",
+            "cards": [
+                {"databaseId": "70001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Labyrinths of Lunacy
+                {"databaseId": "70002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Awakening
+                {"databaseId": "70004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Agony and Despair
+                {"databaseId": "70006", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Mastermind
+                {"databaseId": "70040", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Key of Mysteries
+                {"databaseId": "70041", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Mysterious Syringe
+                {"databaseId": "70048", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Eixodolon: Your Anguish Is My Power
+                {"databaseId": "70049", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Eixodolon's Pet: You Are Not Its First Victim, Or Its Last
+                {"databaseId": "70042", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Rot Diagram
+                {"databaseId": "70044", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Hunger Diagram
+                {"databaseId": "70046", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Decay Diagram
+                {"databaseId": "70052", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Faceless Abductor
+                {"databaseId": "70053", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Tortured Victim
+                {"databaseId": "70054", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Mi-Go Guard
+                {"databaseId": "70055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Unnatural Weariness
+                {"databaseId": "70056", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Poisonous Gas
+                {"databaseId": "70057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Dreadful Mechanism
+                {"databaseId": "70058", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Blood and Rust
+                {"databaseId": "70059", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Paradox Effect
+                {"databaseId": "70061", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Harvested Pain
+            ]
+        },
+        "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group A": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group A",
+            "cards": [
+                {"databaseId": "70007", "quantity": 1, "loadGroupId": "sharedActStory"},    //Sealed In (Group A)
+                {"databaseId": "70011", "quantity": 1, "loadGroupId": "sharedActStory"},    //Distortions in Time (Group A)
+                {"databaseId": "70014", "quantity": 1, "loadGroupId": "sharedActStory"},    //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Rain
+                {"databaseId": "70020", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Sorrows
+                {"databaseId": "70022", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group B": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group B",
+            "cards": [
+                {"databaseId": "70008", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Watery Grave (Group B)
+                {"databaseId": "70012", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Seeping Death (Group B)
+                {"databaseId": "70014", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},   //Chamber of Rain
+                {"databaseId": "70020", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "7%"},   //Chamber of Sorrows
+                {"databaseId": "70022", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group C": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group C",
+            "cards": [
+                {"databaseId": "70009", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Levers (Group C)
+                {"databaseId": "70013", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Pet (Group C)
+                {"databaseId": "70014", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Rain
+                {"databaseId": "70020", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Sorrows
+                {"databaseId": "70022", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "55%"},  //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "79%"}   //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - The Jailor": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - The Jailor",
+            "cards": [
+                {"databaseId": "70051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Jailor
+                {"databaseId": "70033", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Arcane Runes
+                {"databaseId": "70034", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Rift
+                {"databaseId": "70035", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Vent
+                {"databaseId": "70036", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Dilemma
+                {"databaseId": "70037", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //The Gate
+                {"databaseId": "70038", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Encrypted Glyphs
+            ]
+        },
+        "The Labyrinths of Lunacy - Single Group Mode": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Single Group Mode",
+            "cards": [
+                {"databaseId": "70001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //The Labyrinths of Lunacy
+                {"databaseId": "70003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Awakening
+                {"databaseId": "70005", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Agony and Despair
+                {"databaseId": "70006", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Mastermind
+                {"databaseId": "70040", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Key of Mysteries
+                {"databaseId": "70041", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Mysterious Syringe
+                {"databaseId": "70048", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Eixodolon: Your Anguish Is My Power
+                {"databaseId": "70050", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Eixodolon's Pet: You Are Not Its First Victim, Or Its Last
+                {"databaseId": "70043", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Rot Diagram
+                {"databaseId": "70045", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Hunger Diagram
+                {"databaseId": "70047", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Decay Diagram
+                {"databaseId": "70052", "quantity": 2, "loadGroupId": "sharedNotInPlay"},           //Faceless Abductor
+                {"databaseId": "70053", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Tortured Victim
+                {"databaseId": "70054", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Mi-Go Guard
+                {"databaseId": "70055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Unnatural Weariness
+                {"databaseId": "70056", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Poisonous Gas
+                {"databaseId": "70057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Dreadful Mechanism
+                {"databaseId": "70058", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Blood and Rust
+                {"databaseId": "70060", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Paradox Effect
+                {"databaseId": "70061", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Harvested Pain
+            ]
+        },
+        "The Labyrinths of Lunacy - Single Group Mode - Group A": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Single Group Mode - Group A",
+            "cards": [
+                {"databaseId": "70007", "quantity": 1, "loadGroupId": "sharedActStory"},    //Sealed In (Group A)
+                {"databaseId": "70011", "quantity": 1, "loadGroupId": "sharedActStory"},    //Distortions in Time (Group A)
+                {"databaseId": "70015", "quantity": 1, "loadGroupId": "sharedActStory"},    //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Rain
+                {"databaseId": "70021", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Sorrows
+                {"databaseId": "70023", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - Single Group Mode - Group B": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Single Group Mode - Group B",
+            "cards": [
+                {"databaseId": "70008", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Watery Grave (Group B)
+                {"databaseId": "70012", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Seeping Death (Group B)
+                {"databaseId": "70015", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "7%"},   //Chamber of Rain
+                {"databaseId": "70021", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "7%"},   //Chamber of Sorrows
+                {"databaseId": "70023", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - Single Group Mode - Group C": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Single Group Mode - Group C",
+            "cards": [
+                {"databaseId": "70010", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Levers (Group C)
+                {"databaseId": "70013", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Pet (Group C)
+                {"databaseId": "70015", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Escape
+                {"databaseId": "70019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Rain
+                {"databaseId": "70021", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Chamber of Sorrows
+                {"databaseId": "70023", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "55%"},  //Chamber of Night
+                {"databaseId": "70024", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "79%"}   //Chamber of Regret
+            ]
+        },
+        "The Labyrinths of Lunacy - Remaining Locations": {
+            "hideFromSearch": true,
+            "label": "The Labyrinths of Lunacy - Remaining Locations",
+            "cards": [
+                {"databaseId": "70028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Hunger
+                {"databaseId": "70029", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Decay
+                {"databaseId": "70030", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Rot
+                {"databaseId": "70031", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Chamber of Poison
+                {"databaseId": "70032", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Abandoned Warehouse
+            ]
+        }
+    },
+    "actionLists": {
+        "The Labyrinths of Lunacy Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play in Epic Multiplayer Mode.", "Play in Single Group Mode."], "The Labyrinths of Lunacy Scenario Question 1"]
+        ],
+        "The Labyrinths of Lunacy Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play as Group A.", "Play as Group B.", "Play as Group C."], "The Labyrinths of Lunacy Scenario Question 2"]
+        ],
+        "The Labyrinths of Lunacy Scenario Question 2": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["SCENARIO_INIT_RESUME", "The Labyrinths of Lunacy Scenario Init"]
+        ],
+        "The Labyrinths of Lunacy Scenario Init": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Epic Multiplayer Mode"],
+                ["TRUE"],
+                ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Single Group Mode"]
+            ],
+            ["VAR", "$CHAMBERS_OF_SECRETS", ["SHUFFLE_LIST", ["LIST", "70016", "70017", "70018"]]],  //Chamber of Secrets: Bloody Prison, Chamber of Secrets: Mysterious Prison, Chamber of Secrets: Enshrouded Prison
+            ["VAR", "$LAST_CHAMBER_OF_SECRETS_ID", ""],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                        ["DO_CREATE_CARDS_SCN", "Chamber of Secrets", "$CHAMBERS_OF_SECRETS.[$I]", 1, "sharedNotInPlay"],
+                        ["UPDATE_VAR", "$LAST_CHAMBER_OF_SECRETS_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["DO_SET_SPAWN_LOCATION", "$CHAMBERS_OF_SECRETS.[$I]", 55, 7]
+                    ]]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group B"],
+                    ["TRUE"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Epic Multiplayer Mode - Group C"]
+                ],
+                ["TRUE"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Single Group Mode - Group A"],
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Single Group Mode - Group B"],
+                    ["TRUE"],
+                    ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Single Group Mode - Group C"]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["DO_SPAWN_LOCATION_SCN", "Chamber of Secrets", "$CHAMBERS_OF_SECRETS.[0]", 55, 7],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Chamber of Secrets", 5, 7, 3, 0],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                        ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "Key of Mysteries", "Chamber of Secrets", 3, 3, 1]
+                    ]
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                [
+                    ["VAR", "$RANDOM_PLAYER", ["RANDOM_INT", 1, "$GAME.numPlayers"]],
+                    ["SET", "/playerData/player{{$RANDOM_PLAYER}}/arkham/customSpawnLocation", "Chamber of Rain"],
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Chamber of Sorrows", 5, 7, 3, 0]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Chamber of Night", 5, 7, 3, 0],
+                    ["COND",
+                        ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                        ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$LAST_CHAMBER_OF_SECRETS_ID", ["GET_SCENARIO_CARD_ID"], true, null]
+                    ]
+                ]
+            ],
+            ["VAR", "$LABYRINTHINE_HALLS", ["SHUFFLE_LIST", ["LIST", "70025", "70026", "70027"]]],  //Labyrinthine Halls: Foul-smelling Path, Labyrinthine Halls: Corpse-filled Path, Labyrinthine Halls: Overgrown Path
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Labyrinthine Halls", "$LABYRINTHINE_HALLS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - Remaining Locations"],
+            ["DO_SET_SPAWN_LOCATION", "70019", 15, 7],  //Chamber of Rain
+            ["DO_SET_SPAWN_LOCATION", "70020", 35, 7],  //Chamber of Sorrows
+            ["DO_SET_SPAWN_LOCATION", "70021", 35, 7],  //Chamber of Sorrows
+            ["DO_SET_SPAWN_LOCATION", "70022", 75, 55], //Chamber of Night
+            ["DO_SET_SPAWN_LOCATION", "70023", 75, 55], //Chamber of Night
+            ["DO_SET_SPAWN_LOCATION", "70024", 75, 79], //Chamber of Regret
+            ["DO_SET_SPAWN_LOCATION", "70028", 35, 55], //Chamber of Hunger
+            ["DO_SET_SPAWN_LOCATION", "70029", 55, 55], //Chamber of Decay
+            ["DO_SET_SPAWN_LOCATION", "70030", 15, 55], //Chamber of Rot
+            ["DO_SET_SPAWN_LOCATION", "70031", 15, 79], //Chamber of Poison
+            ["DO_SET_SPAWN_LOCATION", "70032", 35, 79], //Abandoned Warehouse
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_LOAD_CARDS_SCN", "The Labyrinths of Lunacy - The Jailor"]
+            ],
+            ["DO_CREATE_CARDS_SCN", "Eixodolon's Note", "70039", 1, ["GET_CONTROLLER_PLAY", "$GAME.firstPlayer"]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 2],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_tablet", 2],
+                ["TRUE"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_cultist", 2]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

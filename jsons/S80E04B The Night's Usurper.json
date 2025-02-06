@@ -1,0 +1,118 @@
+{
+    "preBuiltDecks": {
+        "The Night's Usurper Scenario": {
+            "label": "The Night's Usurper Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Side Stories D", "Side Stories", "The Night's Usurper", null, "The Night's Usurper Scenario Init"]
+            ]
+        },
+        "The Night's Usurper": {
+            "hideFromSearch": true,
+            "label": "The Night's Usurper",
+            "cards": [
+                {"databaseId": "83016", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Night's Usurper
+                {"databaseId": "83017", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Brotherhood Bides Their Time
+                {"databaseId": "83018", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Schemes in the Dark Beyond
+                {"databaseId": "83019", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Search for the Gate
+                {"databaseId": "83020", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Into the Gate
+                {"databaseId": "83021", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Night's Usurper
+                {"databaseId": "83037", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Expedition Camp
+                {"databaseId": "83057", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Khopesh of the Abyss: Manifested Malice
+                {"databaseId": "83058", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Summoned Nightgaunt: Gift from Nodens
+                {"databaseId": "83028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Eldritch Gate
+                {"databaseId": "83027a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Xzharah: Chosen of the Beast
+                {"databaseId": "83022b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //A Dream Betwixt
+                {"databaseId": "83023b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //The Great Abyss
+                {"databaseId": "83024b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Tunnels under Ngranek
+                {"databaseId": "83025b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Stairway to Sarkomand
+                {"databaseId": "83026b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //Mist-Filled Caverns
+                {"databaseId": "83029", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Dreaded Shantak
+                {"databaseId": "83030", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Speaker for the Dark Pharaoh
+            ]
+        }
+    },
+    "actionLists": {
+        "The Night's Usurper Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Night's Usurper"],
+            ["DO_LOAD_CARDS_SCN", "Sands of Egypt"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Expedition Camp", 5, 7, 3, 0],
+            ["DO_LOAD_CARDS_INTO_SCN", "Sands of Egypt - Locations", "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Abyssal Reach", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "The Black Wind", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Terror Under the Pyramids", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Swarm of Locusts", "sharedEncounterDeck", 1, "sharedDeckA"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play in Campaign Mode.", "Play in Standalone Mode."], "The Night's Usurper Scenario Question 1"]
+        ],
+        "The Night's Usurper Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Dr. Layla El Masri has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 2"],
+                ["TRUE"],
+                [
+                    ["VAR", "$SCENARIO_CARD_ID", ["GET_SCENARIO_CARD_ID"]],
+                    ["VAR", "$BROTHERHOOD", ["SHUFFLE_LIST", ["LIST", "83031a", "83032a", "83033a", "83034a", "83035a", "83036a"]]], //Dr. Layla El Masri: Hieratic Translator, Dr. Wentworth Moore: Dark Supplicant, Nadia Nimr: Priestess of the Beast, Farid: Seedy Salesman, Nassor: Brotherhood Operative, Professor Nathaniel Taylor: Keeper of Antiquities
+                    ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                        ["DO_CREATE_CARDS_SCN", "Brotherhood of the Beast", "$BROTHERHOOD.[$I]", 1, "sharedNotInPlay"],
+                        ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", "$SCENARIO_CARD_ID", true, null]
+                    ]],
+                    ["SCENARIO_SKIP_QUESTIONS", 6, "The Night's Usurper Init Continue"]
+                ]
+            ]
+        ],
+        "The Night's Usurper Scenario Question 2": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 2, "Dr. Layla El Masri: Hieratic Translator", "83031a"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Dr. Wentworth Moore has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 3"]
+        ],
+        "The Night's Usurper Scenario Question 3": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 3, "Dr. Wentworth Moore: Dark Supplicant", "83032a"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Nadia Nimr has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 4"]
+        ],
+        "The Night's Usurper Scenario Question 4": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 4, "Nadia Nimr: Priestess of the Beast", "83033a"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Farid has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 5"]
+        ],
+        "The Night's Usurper Scenario Question 5": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 5, "Farid: Seedy Salesman", "83034a"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Nassor has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 6"]
+        ],
+        "The Night's Usurper Scenario Question 6": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 6, "Nassor: Brotherhood Operative", "83035a"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Brotherhood Agents Who Escaped” in Campaign Log.", ["LIST", "Professor Nathaniel Taylor has escaped.", "The above is not true."], "The Night's Usurper Scenario Question 7"]
+        ],
+        "The Night's Usurper Scenario Question 7": [
+            ["THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD", 7, "Professor Nathaniel Taylor: Keeper of Antiquities", "83036a"],
+            ["ACTION_LIST", "The Night's Usurper Init Continue"]
+        ],
+        "The Night's Usurper Init Continue": [
+            ["VAR", "$FINAL_MESSAGE", "Deck A is the exploration deck. See “Strength of the Abyss.”"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Place a number of resource tokens on the scenario reference card (under “Strength of the Abyss”) equal to the number listed in parentheses next to “dreamers in the abyss” in your Campaign Log."],
+                ["TRUE"],
+                ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$GAME.numPlayers", true, null]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}}"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "THE_NIGHTS_USURPER_SPAWN_BROTHERHOOD": {
+            "args": ["$QUESTION", "$TARGET_NAME", "$TARGET_DATABASE_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioAnswer{{$QUESTION}}", "A"],
+                    [
+                        ["VAR", "$ANSWER_TEXT", "$GAME.arkham.scenarioAnswer{{$QUESTION}}Text"],
+                        ["LOG", "└── Brotherhood Agents Who Escaped: {{$ANSWER_TEXT}}"],
+                        ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "sharedNotInPlay"],
+                        ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", ["GET_SCENARIO_CARD_ID"], true, null]
+                    ]
+                ]
+            ]
+        }
+    }
+}

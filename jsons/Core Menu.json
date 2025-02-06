@@ -519,6 +519,7 @@
                                 ["EQUAL", "$ACTIVE_FACE.type", "Skill"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Enemy"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_FACE.type", "Location"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Story"],
                                 ["EQUAL", "$ACTIVE_FACE.type", "Key"]
                             ]
@@ -534,6 +535,7 @@
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Skill"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Enemy"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Reference"],
+                                ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Location"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Story"],
                                 ["EQUAL", "$ACTIVE_CARD.sides.A.type", "Key"]
                             ]

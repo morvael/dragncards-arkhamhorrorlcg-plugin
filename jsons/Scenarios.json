@@ -306,7 +306,10 @@
                 "label": "id:sideStories",
                 "deckLists": [
                     {"label": "id:curseOfTheRougarou", "deckListId": "Curse of the Rougarou Scenario"},
-                    {"label": "id:carnevaleOfHorrors", "deckListId": "Carnevale of Horrors Scenario"}
+                    {"label": "id:carnevaleOfHorrors", "deckListId": "Carnevale of Horrors Scenario"},
+                    {"label": "id:theLabyrinthsOfLunacy", "deckListId": "The Labyrinths of Lunacy Scenario"},
+                    {"label": "id:theEternalSlumber", "deckListId": "The Eternal Slumber Scenario"},
+                    {"label": "id:theNightsUsurper", "deckListId": "The Night's Usurper Scenario"}
                 ]
             },
             {
@@ -870,6 +873,15 @@
         },
         "carnevaleOfHorrors": {
             "English": "Carnevale of Horrors"
+        },
+        "theLabyrinthsOfLunacy": {
+            "English": "The Labyrinths of Lunacy"
+        },
+        "theEternalSlumber": {
+            "English": "The Eternal Slumber (Guardians of the Abyss A)"
+        },
+        "theNightsUsurper": {
+            "English": "The Night's Usurper (Guardians of the Abyss B)"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

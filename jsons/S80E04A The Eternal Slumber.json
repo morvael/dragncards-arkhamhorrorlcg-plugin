@@ -1,0 +1,90 @@
+{
+    "preBuiltDecks": {
+        "The Eternal Slumber Scenario": {
+            "label": "The Eternal Slumber Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Side Stories D", "Side Stories", "The Eternal Slumber", null, "The Eternal Slumber Scenario Init"]
+            ]
+        },
+        "The Eternal Slumber": {
+            "hideFromSearch": true,
+            "label": "The Eternal Slumber",
+            "cards": [
+                {"databaseId": "83001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Eternal Slumber
+                {"databaseId": "83002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Jessie's Request
+                {"databaseId": "83003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Curse of the Abyss
+                {"databaseId": "83004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Garden of Shadows
+                {"databaseId": "83005", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Curse of Endless Sleep
+                {"databaseId": "83006", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Secrets in the Sand
+                {"databaseId": "83007", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Hour of Judgment
+                {"databaseId": "83008", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "31%"},  //Streets of Cairo
+                {"databaseId": "83011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"},  //Outskirts of Cairo
+                {"databaseId": "83012", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "7%"},   //Temple Courtyard
+                {"databaseId": "83010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "55%"},  //Museum of Egyptian Antiquities
+                {"databaseId": "83009", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "31%"},   //Cairo Bazaar
+                {"databaseId": "83037", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "31%"},  //Expedition Camp
+                {"databaseId": "83013", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Neith: Harbinger of the Abyss
+                {"databaseId": "83055", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //John & Jessie Burke: Relentless in Pursuit
+                {"databaseId": "83056", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ancient Ankh: Aegis of the Harbinger
+                {"databaseId": "83045", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Abyssal Revenant
+                {"databaseId": "83014", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Humble Supplicant
+                {"databaseId": "83015", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Creature from the Abyss
+            ]
+        },
+        "Sands of Egypt - Locations": {
+            "hideFromSearch": true,
+            "label": "Sands of Egypt - Locations",
+            "cards": [
+                {"databaseId": "83038", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Nile River
+                {"databaseId": "83039", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Sands of Dashur
+                {"databaseId": "83040", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Dunes of the Sahara
+                {"databaseId": "83041", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Untouched Vault
+                {"databaseId": "83042", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Faceless Sphinx
+                {"databaseId": "83043", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Desert Oasis
+                {"databaseId": "83044", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Sandswept Ruins
+            ]
+        },
+        "Sands of Egypt": {
+            "hideFromSearch": true,
+            "label": "Sands of Egypt",
+            "cards": [
+                {"databaseId": "83046", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Thing in the Sarcophagus
+                {"databaseId": "83047", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Eclipse
+                {"databaseId": "83048", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Sandstorm
+                {"databaseId": "83049", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Terror Under the Pyramids
+                {"databaseId": "83050", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Swarm of Locusts
+                {"databaseId": "83051", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Slumber
+                {"databaseId": "83052", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Dark Sacrifice
+                {"databaseId": "83053", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //The Black Wind
+                {"databaseId": "83054", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Abyssal Reach
+            ]
+        }        
+    },
+    "actionLists": {
+        "The Eternal Slumber Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Eternal Slumber"],
+            ["DO_LOAD_CARDS_SCN", "Sands of Egypt - Locations"],
+            ["DO_SET_SPAWN_LOCATION", "83038", 83, 31], //Nile River
+            ["DO_SET_SPAWN_LOCATION", "83039", 83, 55], //Sands of Dashur
+            ["DO_SET_SPAWN_LOCATION", "83040", 83, 79], //Dunes of the Sahara
+            ["DO_SET_SPAWN_LOCATION", "83041", 64, 79], //Untouched Vault
+            ["DO_SET_SPAWN_LOCATION", "83042", 83, 7],  //Faceless Sphinx
+            ["DO_SET_SPAWN_LOCATION", "83043", 64, 7],  //Desert Oasis
+            ["DO_SET_SPAWN_LOCATION", "83044", 64, 55], //Sandswept Ruins
+            ["DO_LOAD_CARDS_SCN", "Sands of Egypt"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Streets of Cairo", 5, 7, 3, 0],
+            ["VAR", "$SCENARIO_CARD_ID", ["GET_SCENARIO_CARD_ID"]],
+            ["VAR", "$BROTHERHOOD", ["SHUFFLE_LIST", ["LIST", "83031a", "83032a", "83033a", "83034a", "83035a", "83036a"]]], //Dr. Layla El Masri: Hieratic Translator, Dr. Wentworth Moore: Dark Supplicant, Nadia Nimr: Priestess of the Beast, Farid: Seedy Salesman, Nassor: Brotherhood Operative, Professor Nathaniel Taylor: Keeper of Antiquities
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["DO_CREATE_CARDS_SCN", "Brotherhood of the Beast", "$BROTHERHOOD.[$I]", 1, "sharedNotInPlay"],
+                ["DO_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", "$SCENARIO_CARD_ID", true, null]
+            ]],
+            ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", "$SCENARIO_CARD_ID", "$GAME.numPlayers", true, null],
+            ["SET", "/arkham/finalScenarioMessage", "See “Strength of the Abyss.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
