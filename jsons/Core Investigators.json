@@ -104,6 +104,17 @@
                 ]]
             ]
         },
+        "GET_MICRO_INVESTIGATORS": {
+            "_comment": "Returns all MicroInvestigator type card owned by given player, or empty list.",
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_MICRO_INVESTIGATORS.TARGET_PLAYER"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
+                    ["EQUAL", "$CARD.currentFace.type", "MicroInvestigator"]
+                ]]
+            ]
+        },
         "GET_MINI_ASSISTANTS": {
             "_comment": "Returns all MiniAssistant type card owned by given player, or empty list.",
             "args": ["$TARGET_PLAYER"],

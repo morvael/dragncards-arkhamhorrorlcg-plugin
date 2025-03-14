@@ -185,7 +185,7 @@
                         ],
                         ["VAR", "$CHAOS_TOKEN", ["GET_TOP_CARD", "sharedChaosBag"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reveal {{$CHAOS_TOKEN.sides.A.name}} Chaos Token from the Chaos Bag.", "reveals {{$CHAOS_TOKEN.sides.A.name}} Chaos Token from the Chaos Bag."],
-                        ["MOVE_CARD", "$CHAOS_TOKEN.id", "sharedVoid", 0, 0, {"combine": false, "allowFlip": false}]
+                        ["MOVE_CARD", "$CHAOS_TOKEN.id", "sharedVoid", 0, 0, {"allowFlip": false}]
                     ]
                 ]
             ]

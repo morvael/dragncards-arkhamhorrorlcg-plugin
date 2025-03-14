@@ -78,6 +78,28 @@
                     ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.{{$TARGET.id}}ExtraDeck"]
                 ]
             },
+            "enterLeaveRefreshEncounterDeckA": {
+                "type": "trigger",
+                "priority": 0,
+                "listenTo": ["/groupById/sharedEncounterDeck/stackIds"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_DECK", "$TARGET"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_DECK", "$TARGET"]
+                ]
+            },
+            "enterLeaveRefreshEncounterDeckB": {
+                "type": "trigger",
+                "priority": 0,
+                "listenTo": ["/arkham/playWithEncounterDeckCardRevealed"],
+                "condition": [
+                    ["CAN_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.sharedEncounterDeck"]
+                ],
+                "then": [
+                    ["DO_REFRESH_PLAYER_DECK", "$GROUP_BY_ID.sharedEncounterDeck"]
+                ]
+            },
             "enterLeaveRefreshStoryA": {
                 "type": "trigger",
                 "priority": 0,
@@ -654,6 +676,8 @@
             "args": ["$TARGET_GROUP"],
             "code": [
                 ["COND",
+                    ["EQUAL", "$TARGET_GROUP.id", "sharedEncounterDeck"],
+                    "$GAME.arkham.playWithEncounterDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player1Deck"],
                     "$PLAYER_DATA.player1.arkham.playWithTopDeckCardRevealed",
                     ["EQUAL", "$TARGET_GROUP.id", "player1ExtraDeck"],

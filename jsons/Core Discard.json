@@ -123,7 +123,7 @@
                     ["EQUAL", "$DISCARD_CARD_MODE", 1],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}.", "discards {{$TARGET_CARD.sides.A.name}} from the top of {{$TARGET_GROUP.label}}."],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP.id"], 0, 0, {"combine": false}]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_PAIRED_GROUP_ID", "$TARGET_GROUP.id"], 0, 0]
                     ],
                     ["EQUAL", "$DISCARD_CARD_MODE", 2],
                     ["COND",
@@ -217,13 +217,13 @@
                         ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}."],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine": false}]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0]
                     ],
                     ["EQUAL", "$TARGET_CARD.sides.B.name", "Encounter Card"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, 0, {"combine": false}]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedEncounterDiscard", 0, 0]
                     ],
                     ["AND",
                         ["EQUAL", "$TARGET_CARD.sides.B.name", "Player Card"],
@@ -240,7 +240,7 @@
                         [
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}}."],
                             ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0, {"combine": false}]
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0]
                         ]
                     ],
                     ["NOT_EQUAL", "$TARGET_CARD.cardDiscard", ""],
@@ -248,7 +248,7 @@
                         ["VAR", "$DISCARD_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_CARD.cardDiscard", "DO_DISCARD_CARD_FINAL.TARGET_CARD.cardDiscard"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "discard {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}.", "discards {{$TARGET_NAME}}{{$SUFFIX}} to {{$DISCARD_GROUP.label}}."],
                         ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", null],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0, {"combine": false}]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.cardDiscard", 0, 0]
                     ]
                 ]
             ]
@@ -429,7 +429,7 @@
                         ["TRUE"],
                         [
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$CONTROLLER", "discard {{$TARGET_CARD.currentFace.name}}.", "discards {{$TARGET_CARD.currentFace.name}}."],
-                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0, {"combine": false}]
+                            ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_DISCARD", "$TARGET_CARD.cardOwner"], 0, 0]
                         ]
                     ]
                 ]
@@ -460,7 +460,7 @@
                                     ["TRUE"],
                                     [
                                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$CONTROLLER", "discard {{$CARD.currentFace.name}}.", "discards {{$CARD.currentFace.name}}."],
-                                        ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_DISCARD", "$CARD.cardOwner"], 0, 0, {"combine": false}]
+                                        ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_DISCARD", "$CARD.cardOwner"], 0, 0]
                                     ]
                                 ]
                             ]

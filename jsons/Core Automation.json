@@ -108,6 +108,18 @@
                         ["IS_VALID_PLAYER", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
                     ],
                     ["DO_SPAWN_CUSTOMIZABLE", "$TARGET_ID", "$CARD_BY_ID.$TARGET_ID.cardOwner"]
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$TARGET.sides.A.databaseId", "11068a"], //The Great Work: Divide and Unite
+                        ["OR",
+                            ["EQUAL", "$TARGET.groupId", "player1Investigator"],
+                            ["EQUAL", "$TARGET.groupId", "player2Investigator"],
+                            ["EQUAL", "$TARGET.groupId", "player3Investigator"],
+                            ["EQUAL", "$TARGET.groupId", "player4Investigator"]
+                        ]
+                    ],
+                    ["SET", "/cardById/$TARGET_ID/currentSide", "B"] //Lost Homunculus: The Forgotten Child
                 ]
             ]],
             ["SET", "/arkham/loadingCards", false]
@@ -719,7 +731,7 @@
                             ["TRUE"],
                             ["UPDATE_VAR", "$CARDS_IN_HAND", ["GET_ALL_CARDS_IN_GROUP_COUNT", "$HAND_ID"]]
                         ],
-                        ["VAR", "$MAX_HAND_SIZE", ["GET_MAX_HAND_SIZE", "$TARGET_PLAYER", 8]],
+                        ["VAR", "$MAX_HAND_SIZE", ["GET_MAX_HAND_SIZE", "$TARGET_PLAYER", ["GET_DEFAULT_MAX_HAND_SIZE", "$TARGET_PLAYER"]]],
                         ["COND",
                             ["GREATER_THAN", "$CARDS_IN_HAND", "$MAX_HAND_SIZE"],
                             [

@@ -118,6 +118,18 @@
                         ]
                     },
                     {
+                        "label": "id:theDrownedCity",
+                        "deckLists": [
+                            {"label": "id:marionTavaresStarterDeck", "deckListId": "Marion Tavares Starter Deck"},
+                            {"label": "id:luciusGallowayStarterDeck", "deckListId": "Lucius Galloway Starter Deck"},
+                            {"label": "id:agathaCraneSeekerStarterDeck", "deckListId": "Agatha Crane (Seeker) Starter Deck"},
+                            {"label": "id:agathaCraneMysticStarterDeck", "deckListId": "Agatha Crane (Mystic) Starter Deck"},
+                            {"label": "id:michaelMcGlenStarterDeck", "deckListId": "Michael McGlen Starter Deck"},
+                            {"label": "id:gloriaGoldbergStarterDeck", "deckListId": "Gloria Goldberg Starter Deck"},
+                            {"label": "id:georgeBarnabyStarterDeck", "deckListId": "George Barnaby Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
@@ -130,7 +142,7 @@
                     {
                         "label": "id:otherDecks",
                         "deckLists": [
-                            {"label": "id:gloriaGoldbergStarterDeck", "deckListId": "Gloria Goldberg Starter Deck"}
+                            {"label": "id:gloriaGoldbergPromoStarterDeck", "deckListId": "Gloria Goldberg (Promo) Starter Deck"}
                         ]
                     }
                 ]
@@ -508,6 +520,27 @@
         "hankSamsonStarterDeck": {
             "English": "Hank Samson Starter Deck"
         },
+        "marionTavaresStarterDeck": {
+            "English": "Marion Tavares Starter Deck"
+        },
+        "luciusGallowayStarterDeck": {
+            "English": "Lucius Galloway Starter Deck"
+        },
+        "agathaCraneSeekerStarterDeck": {
+            "English": "Agatha Crane (Seeker) Starter Deck"
+        },
+        "agathaCraneMysticStarterDeck": {
+            "English": "Agatha Crane (Mystic) Starter Deck"
+        },
+        "michaelMcGlenStarterDeck": {
+            "English": "Michael McGlen Starter Deck"
+        },
+        "gloriaGoldbergStarterDeck": {
+            "English": "Gloria Goldberg Starter Deck"
+        },
+        "georgeBarnabyStarterDeck": {
+            "English": "George Barnaby Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
@@ -529,8 +562,8 @@
         "otherDecks": {
             "English": "Other Decks"
         },
-        "gloriaGoldbergStarterDeck": {
-            "English": "Gloria Goldberg Starter Deck"
+        "gloriaGoldbergPromoStarterDeck": {
+            "English": "Gloria Goldberg (Promo) Starter Deck"
         },
         "campaigns": {
             "English": "Campaigns"
@@ -732,6 +765,9 @@
         },
         "theFeastOfHemlockVale": {
             "English": "The Feast of Hemlock Vale"
+        },
+        "theDrownedCity": {
+            "English": "The Drowned City"
         },
         "returnToCampaigns": {
             "English": "Return to... Campaigns"

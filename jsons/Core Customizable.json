@@ -848,7 +848,9 @@
                     ["EQUAL", "$NAME_VALUE_LIST_ID", "skill"],
                     ["UPDATE_VAR", "$NAME_VALUE_LIST", ["GET_SKILL_OPTIONS_LIST"]],
                     ["EQUAL", "$NAME_VALUE_LIST_ID", "slot"],
-                    ["UPDATE_VAR", "$NAME_VALUE_LIST", ["GET_SLOT_OPTIONS_LIST"]]
+                    ["UPDATE_VAR", "$NAME_VALUE_LIST", ["GET_SLOT_OPTIONS_LIST"]],
+                    ["EQUAL", "$NAME_VALUE_LIST_ID", "transfiguration"],
+                    ["UPDATE_VAR", "$NAME_VALUE_LIST", ["GET_TRANSFIGURATION_OPTIONS_LIST"]]
                 ],
                 ["VALIDATE_NOT_NULL", "$NAME_VALUE_LIST", "PAGING_PROMPT.NAME_VALUE_LIST_ID"],
                 ["VAR", "$LIST_LENGTH", ["LENGTH", "$NAME_VALUE_LIST"]],

@@ -61,7 +61,7 @@
                 {"databaseId": "83053", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //The Black Wind
                 {"databaseId": "83054", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Abyssal Reach
             ]
-        }        
+        }
     },
     "actionLists": {
         "The Eternal Slumber Scenario Init": [

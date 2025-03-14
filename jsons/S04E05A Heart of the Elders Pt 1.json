@@ -126,7 +126,7 @@
                     ["VAR", "$ACT_CARD", ["GET_NAMED_CARD", "Search for the Pattern"]],
                     ["VAR", "$MOUTH_OF_KNYAN", ["GET_NAMED_MAP_LOCATION", "Mouth of K'n-yan"]],
                     ["DO_LOG_SCN", "$GAME.firstPlayer", "spawns {{$ACT_CARD.sides.B.name}} at {{$MOUTH_OF_KNYAN.currentFace.name}}."],
-                    ["MOVE_CARD", "$ACT_CARD.id", "$MOUTH_OF_KNYAN.groupId", ["ADD", "$MOUTH_OF_KNYAN.stackIndex", 1], 0, {"combine": false, "allowFlip": false}],
+                    ["MOVE_CARD", "$ACT_CARD.id", "$MOUTH_OF_KNYAN.groupId", ["ADD", "$MOUTH_OF_KNYAN.stackIndex", 1], 0, {"allowFlip": false}],
                     ["SET", "/cardById/$ACT_CARD.id/currentSide", "B"],
                     ["DO_SET_CARD_LOCATION", "$ACT_CARD.id", ["ADD", ["GET_CARD_LEFT", "$MOUTH_OF_KNYAN.id"], 3], ["ADD", ["GET_CARD_TOP", "$MOUTH_OF_KNYAN.id"], 3]]
                 ],

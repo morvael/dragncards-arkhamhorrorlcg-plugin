@@ -62,7 +62,7 @@
                                 ["DO_SET_CARD_LOCATION", "$NEW_CARD_ID", ["ADD", "$LEFT", 3], ["ADD", "$TOP", 3]]
                             ],
                             ["TRUE"],
-                            ["MOVE_CARD", "$NEW_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"combine": false, "allowFlip": false}]
+                            ["MOVE_CARD", "$NEW_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"allowFlip": false}]
                         ]
                     ]
                 ]

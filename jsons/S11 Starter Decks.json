@@ -1,0 +1,392 @@
+{
+   "preBuiltDecks": {
+        "Marion Tavares Starter Deck": {
+            "label": "Marion Tavares Starter Deck",
+            "cards": [
+                {"databaseId": "11001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11002", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11003", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11021", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11024", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11096", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01024", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01022", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01017", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01019", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01018", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Marion Tavares starter deck by: plugin's author"]
+            ]
+        },
+        "Lucius Galloway Starter Deck": {
+            "label": "Lucius Galloway Starter Deck",
+            "cards": [
+                {"databaseId": "11004", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11005", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11006", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11035", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11036", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11039", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11052", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01046", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Lucius Galloway starter deck by: https://derbk.com/ancientevils/building-on-a-limited-card-pool-the-drowned-city-core-pt-1/"]
+            ]
+        },
+        "Agatha Crane (Seeker) Starter Deck": {
+            "label": "Agatha Crane (Seeker) Starter Deck",
+            "cards": [
+                {"databaseId": "11007", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11040", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11072", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11096", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Agatha Crane (Seeker) starter deck by: plugin's author"]
+            ]
+        },
+        "Agatha Crane (Mystic) Starter Deck": {
+            "label": "Agatha Crane (Mystic) Starter Deck",
+            "cards": [
+                {"databaseId": "11008", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11009", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11010", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11040", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11072", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11096", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01064", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01038", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01033", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Agatha Crane (Mystic) starter deck by: plugin's author"]
+            ]
+        },
+        "Michael McGlen Starter Deck": {
+            "label": "Michael McGlen Starter Deck",
+            "cards": [
+                {"databaseId": "11011", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11012", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11013", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11022", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11023", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11050", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11051", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11053", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11054", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11056", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11057", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01047", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01016", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01092", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Michael McGlen starter deck by: https://derbk.com/ancientevils/building-on-a-limited-card-pool-the-drowned-city-core-pt-2/"]
+            ]
+        },
+        "Gloria Goldberg Starter Deck": {
+            "label": "Gloria Goldberg Starter Deck",
+            "cards": [
+                {"databaseId": "11014", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11015", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11016", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11069", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11071", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11096", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01059", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01065", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01062", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01066", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01050", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder Gloria Goldberg starter deck by: plugin's author"]
+            ]
+        },
+        "George Barnaby Starter Deck": {
+            "label": "George Barnaby Starter Deck",
+            "cards": [
+                {"databaseId": "11017", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "11018", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11019", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11034", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11081", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11082", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11083", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11084", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11085", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "11088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01087", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01088", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01080", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01090", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01093", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01073", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01091", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01089", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01079", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01072", "quantity": 2, "loadGroupId": "playerNDeck"}
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial placeholder George Barnaby starter deck by: plugin's author"]
+            ]
+        }
+    },    
+    "automation": {
+        "cards": {
+            "11014": { //Gloria Goldberg: The Writer
+                "rules": {
+                    "11014a": { //You choose the investigator order during the mythos phase.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "customMythosPhasePlayerOrderController", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "customMythosPhasePlayerOrderController", 1, "$THIS.inPlay", "{2:P} chooses the investigator order during the mythos phase.", null]
+                        ]
+                    }
+                }
+            },
+            "98019": { //Gloria Goldberg: The Writer (promo)
+                "inheritFrom": "11014"
+            },
+            "11017": { //George Barnaby: The Lawyer
+                "rules": {
+                    "11017a": { //Your max hand size is equal to the number of facedown cards beneath George Barnaby. (Limit 5 cards.)
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller", "/cardById/$THIS_ID/attachedCount"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "defaultMaxHandSize", ["GET_GEORGE_BARNABY_BONUS", "$THIS"], "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "defaultMaxHandSize", ["GET_GEORGE_BARNABY_BONUS", "$THIS"], "$THIS.inPlay", "{2:P}'s base maximum hand size is equal to {0}.", null]
+                        ]
+                    },
+                    "11017b": { //Additional Setup: After drawing your opening hand, you may place any number of cards in your hand facedown beneath George Barnaby.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} may place any number of cards in their hand facedown beneath George Barnaby.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "AfterDraw"]
+                        ]
+                    }
+                }
+            },
+            "11030": { //Locked and Loaded
+                "rules": {
+                    "11030a": { //Your Firearm assets with "Uses (ammo)" enter play with 1 additional ammo on them.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_BONUS", "$THIS", "bonusAmmo", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_BONUS", "$THIS", "bonusAmmo", 1, "$THIS.inPlay", "{2:P}'s firearm assets with “uses (ammo)” enter play with 1 additional ammo on them.", null]
+                        ]
+                    }
+                }
+            },
+            "11073": { //Eye of Ghathanothoa
+                "rules": {
+                    "11073a": { //Play with the top of the encounter deck revealed.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay", "/cardById/$THIS_ID/controller"],
+                        "condition": ["CAN_CHANGE_CONTROLLER_GLOBAL_BONUS", "$THIS", "playWithEncounterDeckCardRevealed", 1, "$THIS.inPlay"],
+                        "then": [
+                            ["DO_CHANGE_CONTROLLER_GLOBAL_BONUS", "$THIS", "playWithEncounterDeckCardRevealed", 1, "$THIS.inPlay", "Investigators play with the top card of the encounter deck revealed.", null]
+                        ]
+                    }
+                }
+            },
+            "11076": { //Transfiguration
+                "ability" : {
+                    "A": [
+                        ["VAR", "$OLD_INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_N"]],
+                        ["VAR", "$OLD_MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$PLAYER_N"]],
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$THIS.groupId", "sharedVoid"],
+                                ["NOT_EQUAL", "$OLD_INVESTIGATOR", null],
+                                ["NOT_EQUAL", "$OLD_MINI_INVESTIGATOR", null]
+                            ],
+                            [
+                                ["VAR", "$OLD_NAME", ["GET_CARD_TITLE", "$OLD_INVESTIGATOR.currentFace.name"]],
+                                ["PAGING_PROMPT", "$PLAYER_N", "Transfigure {{$OLD_NAME}}", "transfiguration", 0, "DO_TRANSFIGURATION_CALLBACK", "$PLAYER_N", "$THIS_ID", " "]
+                            ]
+                        ]
+                    ]
+                }
+            },
+            "11080": { //Eldritch Brand
+                "rules": {
+                    "11080a": { //(reaction) Before you draw your opening hand: Search your deck for your branded spell and play it (paying its cost).
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventBeforeDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "BeforeDraw"],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} searches their deck for their branded spell and plays it (paying its cost). Shuffles their deck.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["VAR", "$DECK_GROUP_ID", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"]],
+                            ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
+                                ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Spell."], null],
+                                "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.11080",
+                                "Target your branded spell to play it (paying its cost).",
+                                0, 1, false, "ELDRITCH_BRAND_SELECTION_CALLBACK", "$THIS.id"]
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "functions": {
+        "GET_GEORGE_BARNABY_BONUS": {
+            "args": ["$THIS"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.parentCardId", "$THIS.id"],
+                    ["NOT_EQUAL", "$CARD.id", "$THIS.id"],
+                    ["EQUAL", "$CARD.attachmentDirection", "behind"]
+                ]]],
+                ["MIN2", 5, ["LENGTH", "$SELECTED_CARDS"]]
+            ]
+        },
+        "DO_TRANSFIGURATION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$ITEM_NAME", "$ITEM_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_TRANSFIGURATION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_TRANSFIGURATION_CALLBACK.TARGET_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$ITEM_VALUE", "DO_TRANSFIGURATION_CALLBACK.ITEM_VALUE"],
+                ["VAR", "$OLD_INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["VAR", "$OLD_MINI_INVESTIGATOR", ["GET_MINI_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$OLD_INVESTIGATOR", null],
+                        ["NOT_EQUAL", "$OLD_MINI_INVESTIGATOR", null]
+                    ],
+                    [
+                        ["VAR", "$OLD_NAME", ["GET_CARD_TITLE", "$OLD_INVESTIGATOR.currentFace.name"]],
+                        ["COND",
+                            ["NOT_EQUAL", ["INDEX_OF", "$OLD_INVESTIGATOR.sides.A.databaseId", "$ITEM_VALUE"], 0],
+                            [
+                                //log
+                                ["VAR", "$NEW_NAME", ["GET_VALID_TRANSFIGURATION_CARD_NAME", "$ITEM_VALUE"]],
+                                ["DO_LOG", true, "$ACTOR_PLAYER", "$TARGET_PLAYER", "transfigure {{$OLD_NAME}} into {{$NEW_NAME}}.", "transfigures {{$OLD_NAME}} into {{$NEW_NAME}}."],
+                                ["VAR", "$INVESTIGATOR_GROUP_ID", ["GET_CONTROLLER_INVESTIGATOR", "$TARGET_PLAYER"]],
+                                //replace main investigator card
+                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_DB.{{$ITEM_VALUE}}.A.name", "$ITEM_VALUE", 1, "$INVESTIGATOR_GROUP_ID", false, null],
+                                ["VAR", "$NEW_INVESTIGATOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                                ["DO_REPLACE_CARD_FULLY", "$TARGET_PLAYER", "$NEW_INVESTIGATOR_ID", "$OLD_INVESTIGATOR.id", false, null],
+                                ["DO_DELETE_CARD", "$TARGET_PLAYER", "$OLD_INVESTIGATOR.id", false, null],
+                                //replace mini investigator card
+                                ["VAR", "$MINI_DATABASE_ID", ["GET_MINI_ID", "m", "$ITEM_VALUE"]],
+                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_DB.{{$MINI_DATABASE_ID}}.A.name", "$MINI_DATABASE_ID", 1, "$INVESTIGATOR_GROUP_ID", false, null],
+                                ["VAR", "$NEW_MINI_INVESTIGATOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                                ["DO_REPLACE_CARD_FULLY", "$TARGET_PLAYER", "$NEW_MINI_INVESTIGATOR_ID", "$OLD_MINI_INVESTIGATOR.id", false, null],
+                                ["SET", "/cardById/$NEW_MINI_INVESTIGATOR_ID/currentSide", "$OLD_MINI_INVESTIGATOR.currentSide"],
+                                ["DO_DELETE_CARD", "$TARGET_PLAYER", "$OLD_MINI_INVESTIGATOR.id", false, null],
+                                //replace micro investigator tokens
+                                ["VAR", "$MICRO_DATABASE_ID", ["GET_MINI_ID", "u", "$ITEM_VALUE"]],
+                                ["VAR", "$MICRO_INVESTIGATORS", ["GET_MICRO_INVESTIGATORS", "$TARGET_PLAYER"]],
+                                ["FOR_EACH_VAL", "$CARD", "$MICRO_INVESTIGATORS", [
+                                    ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_DB.{{$MICRO_DATABASE_ID}}.A.name", "$MICRO_DATABASE_ID", 1, "$INVESTIGATOR_GROUP_ID", false, null],
+                                    ["VAR", "$NEW_MICRO_INVESTIGATOR_ID", "$GAME.lastLoadedCardIds.[0]"],
+                                    ["DO_REPLACE_CARD_FULLY", "$TARGET_PLAYER", "$NEW_MICRO_INVESTIGATOR_ID", "$CARD.id", false, null],
+                                    ["SET", "/cardById/$NEW_MICRO_INVESTIGATOR_ID/currentSide", "$CARD.currentSide"],
+                                    ["DO_DELETE_CARD", "$TARGET_PLAYER", "$CARD.id", false, null]
+                                ]]
+                            ],
+                            ["TRUE"],
+                            ["DO_LOG", true, "$ACTOR_PLAYER", "$TARGET_PLAYER", "keep {{$OLD_NAME}}.", "keeps {{$OLD_NAME}}."]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "ELDRITCH_BRAND_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "ELDRITCH_BRAND_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_CARD", ["GET_CARD_AND_VALIDATE", "$SOURCE_CARD_ID", "ELDRITCH_BRAND_SELECTION_CALLBACK.SOURCE_CARD_ID"]],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "ELDRITCH_BRAND_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["DO_FSYSLOG", "{0:P} plays their branded spell{1:S} (paying its cost).", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"]]],
+                ["SET", "/arkham/scenarioInit", false], //scenarioInit flag has to be disabled while playing the card so that cost is paid and uses resources are placed
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_PLAY_CARD", "$TARGET_PLAYER", "$CARD.id", "play", true, null]
+                ]],
+                ["SET", "/arkham/scenarioInit", true],
+                ["PLAYER_EVENT_LOOP", "$TARGET_PLAYER", "BeforeDraw"]
+            ]
+        }
+    }
+}

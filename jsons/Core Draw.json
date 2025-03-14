@@ -287,7 +287,7 @@
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "shuffle {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}.", "shuffles {{$SOURCE_GROUP.label}} into {{$TARGET_GROUP.label}}."],
                         ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_GROUP", "$SOURCE_GROUP_ID"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine": false}]
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0]
                         ]],
                         ["COND",
                             ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],
@@ -338,7 +338,7 @@
                             ["GET_NUMERIC_LOG", "shuffles ", "shuffles ", "$NUMBER", " card into {{$TARGET_GROUP.label}}.", " cards into {{$TARGET_GROUP.label}}."]
                         ],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0, {"combine": false}]
+                            ["MOVE_CARD", "$CARD.id", "$TARGET_GROUP_ID", 0, 0]
                         ]],
                         ["COND",
                             ["GREATER_THAN", ["LENGTH", "$TARGET_GROUP.stackIds"], 1],

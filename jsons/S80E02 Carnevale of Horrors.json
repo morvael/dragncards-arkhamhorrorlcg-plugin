@@ -47,7 +47,7 @@
             ["VAR", "$SPAWN_TOPS", ["LIST", 10, 20, 43, 66, 76, 66, 43, 20]],
             ["FOR_EACH_START_STOP_STEP", "$I", 0, 8, 1, [
                 ["DO_SPAWN_LOCATION_SCN", "$CARD_DB.{{$VENICE.[$I]}}.A.name", "$VENICE.[$I]", "$SPAWN_LEFTS.[$I]", "$SPAWN_TOPS.[$I]"]
-            ]],            
+            ]],
             ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "San Marco Basilica", 5, 7, 3, 0],
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Abbess Allegria Di Biase", "San Marco Basilica", 3, 3, 1],
             ["UPDATE_VAR", "$VENICE", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$VENICE", "82008"]],

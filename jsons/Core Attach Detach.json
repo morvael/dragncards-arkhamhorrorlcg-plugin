@@ -265,13 +265,14 @@
                             ["TRUE"],
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_NAME}} to {{$PARENT_CARD.currentFace.name}}."]
                         ],
-                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
                         ["COND",
                             ["AND",
                                 ["NOT_EQUAL", ["IN_STRING", "$TARGET_CARD.currentFace.type", "Token"], true],
                                 ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "Supplies"]
                             ],
-                            ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"]
+                            ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID", {"combine": "left"}],
+                            ["TRUE"],
+                            ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID", {"combine": "right"}]
                         ]
                     ]
                 ]
@@ -337,9 +338,8 @@
                             ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "attach {{$TARGET_CARD.sides.B.name}} facedown to {{$PARENT_CARD.currentFace.name}}.", "attaches {{$TARGET_CARD.sides.B.name}} facedown to {{$PARENT_CARD.currentFace.name}}."]
                         ],
                         ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", true],
-                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
+                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID", {"combine": "left"}],
                         ["SET", "/cardById/$TARGET_CARD_ID/disableSideChange", false],
-                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "left"],
                         ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
                     ]
                 ]
@@ -429,8 +429,7 @@
                         ["VAR", "$TARGET_NAME", ["GET_CARD_NAME", "$TARGET_CARD_ID"]],
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "place {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}.", "places {{$TARGET_NAME}} beneath {{$PARENT_CARD.currentFace.name}}."],
                         ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "placeBehind"],
-                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID"],
-                        ["SET", "/cardById/$TARGET_CARD_ID/attachmentDirection", "behind"],
+                        ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID", {"combine": "behind"}],
                         ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
                     ]
                 ]
@@ -469,7 +468,7 @@
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["ADD", "$LEFT", 3], ["ADD", "$TOP", 3]]
                             ],
                             ["TRUE"],
-                            ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"combine": false, "allowFlip": false}]
+                            ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", ["ADD", "$TARGET_CARD.stackIndex", 1], 0, {"allowFlip": false}]
                         ]
                     ]
                 ]
@@ -519,13 +518,19 @@
                         ["UPDATE_VAR", "$REPLACED_ATTACHED", ["APPEND", "$REPLACED_ATTACHED", "$CARD"]]
                     ]
                 ]],
-                ["MOVE_CARD", "$TARGET_CARD_ID", "$REPLACED_CARD.groupId", ["ADD", "$REPLACED_CARD.stackIndex", 1], 0, {"combine": false, "allowFlip": false}],
+                ["UPDATE_VAR", "$REPLACED_ATTACHED", ["SORT_OBJ_LIST", "$REPLACED_ATTACHED", "$CARD", "$CARD.cardIndex"]],
+                ["MOVE_CARD", "$TARGET_CARD_ID", "$REPLACED_CARD.groupId", ["ADD", "$REPLACED_CARD.stackIndex", 1], 0, {"allowFlip": false}],
                 ["COND",
                     ["EQUAL", "$REPLACED_CARD.groupId", "sharedLocations"],
                     ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", ["GET_CARD_LEFT", "$REPLACED_CARD_ID"], ["GET_CARD_TOP", "$REPLACED_CARD_ID"]]
                 ],
                 ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$REPLACED_CARD.rotation"],
                 ["SET", "/cardById/$TARGET_CARD_ID/targeting", "$REPLACED_CARD.targeting"],
+                ["SET", "/cardById/$TARGET_CARD_ID/turnDone", "$REPLACED_CARD.turnDone"],
+                ["COND",
+                    ["EQUAL", ["DEFINED", "$REPLACED_CARD.borderColor"], true],
+                    ["SET", "/cardById/$TARGET_CARD_ID/borderColor", "$REPLACED_CARD.borderColor"]
+                ],
                 ["COND",
                     ["AND",
                         ["EQUAL", "$FLIP_LOCATION", true],
@@ -535,8 +540,7 @@
                 ],
                 ["DO_MOVE_TOKENS", "$REPLACED_CARD_ID", "$TARGET_CARD_ID"],
                 ["FOR_EACH_VAL", "$CARD", "$REPLACED_ATTACHED", [
-                    ["ATTACH_CARD", "$CARD.id", "$TARGET_CARD_ID"],
-                    ["SET", "/cardById/$CARD.id/attachmentDirection", "$CARD.attachmentDirection"]
+                    ["ATTACH_CARD", "$CARD.id", "$TARGET_CARD_ID", ["PROCESS_MAP", {"combine": "$CARD.attachmentDirection"}]]
                 ]],
                 ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}]
             ]
@@ -647,7 +651,7 @@
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "send {{$TARGET_CARD.currentFace.name}} to back.", "sends {{$TARGET_CARD.currentFace.name}} to back."],
                         ["VAR", "$TARGET_LEFT", ["GET_CARD_LEFT", "$TARGET_CARD_ID"]],
                         ["VAR", "$TARGET_TOP", ["GET_CARD_TOP", "$TARGET_CARD_ID"]],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", 0, 0, {"combine": false, "allowFlip": false}],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_CARD.groupId", 0, 0, {"allowFlip": false}],
                         ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$TARGET_LEFT", "$TARGET_TOP"]
                     ]
                 ]

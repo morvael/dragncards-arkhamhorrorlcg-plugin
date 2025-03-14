@@ -4,7 +4,7 @@
         {"label": "id:layout2Player", "layoutId": "layout2Player", "numPlayers": 2},
         {"label": "id:layout3Player", "layoutId": "layout3Player", "numPlayers": 3},
         {"label": "id:layout4Player", "layoutId": "layout4Player", "numPlayers": 4}
-    ],    
+    ],
     "layouts": {
         "layout1Player": {
             "cardSize": 14,

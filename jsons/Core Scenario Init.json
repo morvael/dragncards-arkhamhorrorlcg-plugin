@@ -31,7 +31,7 @@
             "code": [
                 ["DO_CREATE_CARDS_SCN", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "$TARGET_GROUP_ID"],
                 ["VAR", "$CREATED_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
-                ["MOVE_CARD", "$CREATED_CARD_ID", "$TARGET_GROUP_ID", "$TARGET_INDEX", 0, {"combine": false, "allowFlip": false}]
+                ["MOVE_CARD", "$CREATED_CARD_ID", "$TARGET_GROUP_ID", "$TARGET_INDEX", 0, {"allowFlip": false}]
             ]
         },
         "DO_CREATE_DECK_CARDS_SCN": {
@@ -527,7 +527,7 @@
                                     ["GREATER_THAN", "$ADD_TO_INDEX", 0],
                                     ["UPDATE_VAR", "$INDEX", ["ADD", "$LOCATION_CARD.stackIndex", "$ADD_TO_INDEX"]]
                                 ],
-                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"combine": false, "allowFlip": false}],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"allowFlip": false}],
                                 ["SET", "/cardById/$TARGET_CARD.id/currentSide", "A"],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_ENCOUNTER_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
@@ -570,7 +570,7 @@
                                     ["GREATER_THAN", "$ADD_TO_INDEX", 0],
                                     ["UPDATE_VAR", "$INDEX", ["ADD", "$LOCATION_CARD.stackIndex", "$ADD_TO_INDEX"]]
                                 ],
-                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"combine": false, "allowFlip": false}],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", "$INDEX", 0, {"allowFlip": false}],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_NAMED_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
                             ]
@@ -724,7 +724,7 @@
                             ],
                             [
                                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.sides.B.name}} at {{$LOCATION_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.sides.B.name}} at {{$LOCATION_CARD.currentFace.name}}."],
-                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", 0, 0, {"combine": false, "allowFlip": false}],
+                                ["MOVE_CARD", "$TARGET_CARD.id", "sharedLocations", 0, 0, {"allowFlip": false}],
                                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD.id", ["ADD", ["GET_CARD_LEFT", "$LOCATION_CARD.id"], "$LEFT_MOD"], ["ADD", ["GET_CARD_TOP", "$LOCATION_CARD.id"], "$TOP_MOD"]],
                                 ["DEFINE", "$DO_SPAWN_HIDDEN_AT_LOCATION_RESULT", "$TARGET_CARD.id"]
                             ]
@@ -801,7 +801,7 @@
                     ],
                     [
                         ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to the top of {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
-                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", 0, 0, {"combine": false, "allowFlip": false}]
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", 0, 0, {"allowFlip": false}]
                     ],
                     ["TRUE"],
                     [
@@ -1085,6 +1085,7 @@
                                 ["SET", "/arkham/offMapNotInPlay", false],
                                 ["SET", "/arkham/finalScenarioMessage", null],
                                 ["SET", "/arkham/activeInvestigator", null],
+                                ["SET", "/arkham/playWithEncounterDeckCardRevealed", 0],
                                 ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$GAME.firstPlayer"]],
                                 ["LOG", "└── {{$ALIAS_N}} initializes {{$GAME.arkham.scenarioName}} scenario with {{$GAME.arkham.numPlayers}} player(s) and ", ["GET_ALIAS", "$GAME.firstPlayer"], "'s {{$INVESTIGATOR.currentFace.name}} as the lead investigator."],
                                 ["DO_UPDATE_LEAD_INVESTIGATOR_TOKEN"],
@@ -1102,8 +1103,10 @@
                                     ["SET", "/playerData/$PLAYER_I/arkham/customMythosPhasePlayerOrderController", 0],
                                     ["SET", "/playerData/$PLAYER_I/arkham/mythosPhaseCardDrawn", false],
                                     ["SET", "/playerData/$PLAYER_I/arkham/bonusCharges", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/bonusAmmo", 0],
                                     ["SET", "/playerData/$PLAYER_I/arkham/upkeepResourcesMod", 0],
                                     ["SET", "/playerData/$PLAYER_I/arkham/upkeepCardsMod", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/defaultMaxHandSize", 8],
                                     ["SET", "/playerData/$PLAYER_I/arkham/maxHandSize", 0],
                                     ["SET", "/playerData/$PLAYER_I/arkham/handSizeCountUnique", 0],
                                     ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
@@ -1291,6 +1294,19 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_UPKEEP_CARDS.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$DEFAULT_NUMBER", "GET_UPKEEP_CARDS.DEFAULT_NUMBER"],
                 ["VAR", "$NUMBER", ["ADD", "$DEFAULT_NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.upkeepCardsMod"]],
+                ["COND",
+                    ["LESS_THAN", "$NUMBER", 0],
+                    0,
+                    ["TRUE"],
+                    "$NUMBER"
+                ]
+            ]
+        },
+        "GET_DEFAULT_MAX_HAND_SIZE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_DEFAULT_MAX_HAND_SIZE.TARGET_PLAYER"],
+                ["VAR", "$NUMBER", "$PLAYER_DATA.$TARGET_PLAYER.arkham.defaultMaxHandSize"],
                 ["COND",
                     ["LESS_THAN", "$NUMBER", 0],
                     0,

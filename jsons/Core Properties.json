@@ -127,6 +127,7 @@
                             "ignoreDoomOnInvestigators": false,                 // if true, doom on investigators is not counted for agenda advancement
                             "finalScenarioMessage": null,                       // text to append to the default text logged after scenario finishes initializing
                             "activeInvestigator": null,                         // name of the player whose turn it is now
+                            "playWithEncounterDeckCardRevealed": 0,             // if greater than 0, top card of encounter deck is faceup (A) at all times
                             // required by game event handling
                             "executeGameEventDefault": null,                    // single argument (first player is supplied) function name to call after game event processes without being cancelled
                             "executeGameEventCancel": null,                     // single argument (first player is supplied) function name to call after game event processes with being cancelled
@@ -166,8 +167,10 @@
                             "customMythosPhasePlayerOrderController": 0,        // if greater than 0, player is considered mythos phase order controller (used by Gloria Goldberg)
                             "mythosPhaseCardDrawn": false,                      // if true, it means player has drawn his mythos phase card and should not be listed again as valid choice (used by Gloria Goldberg)
                             "bonusCharges": 0,                                  // modifier to resources placed on cards with "Uses (charges)"
+                            "bonusAmmo": 0,                                     // modifier to resources placed on cards with "Uses (ammo)"
                             "upkeepResourcesMod": 0,                            // modifier to resources recieved during upkeep phase
                             "upkeepCardsMod": 0,                                // modifier to cards drawn during upkeep phase
+                            "defaultMaxHandSize": 8,                            // default max hand size checked during upkeep phase
                             "maxHandSize": 0,                                   // modifier to max hand size checked during upkeep phase
                             "handSizeCountUnique": 0,                           // if greater than 0, each title counts only once when checking max hand size during upkeep phase
                             // required by player event handling

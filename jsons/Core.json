@@ -3,6 +3,7 @@
     "tutorialUrl": "https://github.com/morvael/dragncards-arkhamhorrorlcg-plugin/wiki",
     "backgroundUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/background.webp",
     "announcements": [
+        "2025-03-11: TDC player cards",
         "2025-02-06: 3 Side Stories (TLoL, TES, TNU)",
         "2025-01-17: Carnevale of Horrors",
         "2025-01-03: Customizable cards",
@@ -163,7 +164,7 @@
     },
     "spawnExistingCardModal": {
         "columnProperties": ["name", "faction", "type", "traits", "packName", "numberInPack"],
-        "loadGroupIds": ["sharedNotInPlay","sharedLocations","player1Hand","player2Hand","player3Hand","player4Hand","player1Deck","player2Deck","player3Deck","player4Deck"]
+        "loadGroupIds": ["sharedNotInPlay","sharedLocations","player1Hand","player2Hand","player3Hand","player4Hand","player1Deck","player2Deck","player3Deck","player4Deck","player1Investigator","player2Investigator","player3Investigator","player4Investigator","sharedEncounterDeck"]
     },
     "topBarCounters": {
         "shared": [
