@@ -16,13 +16,13 @@
             ["COND",
                 ["GREATER_THAN", ["LENGTH", "$SELECTED_VOID"], 0],
                 [
-                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "discard Void.", "discards Void."],
+                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "discard Limbo.", "discards Limbo."],
                     ["FOR_EACH_VAL", "$CARD", "$SELECTED_VOID", [
                         ["DO_DISCARD_CARD", ["GET_PLAYER_CONTROLLER", "$PLAYER_N", "$CARD.id"], "$CARD.id", true, null]
                     ]]
                 ],
                 ["TRUE"],
-                ["LOG", "└── You cannot discard Void, {{$ALIAS_N}}."]
+                ["LOG", "└── You cannot discard Limbo, {{$ALIAS_N}}."]
             ]
         ],
         "discardRandomCardsFromHand": [
@@ -644,10 +644,10 @@
             "English": "Discard (X)"
         },
         "discardVoid": {
-            "English": "Discard Void"
+            "English": "Discard Limbo"
         },
         "discardVoidMenu": {
-            "English": "Discard Void (Shift+X)"
+            "English": "Discard Limbo (Shift+X)"
         },
         "discardRandomCardsFromHandMenu": {
             "English": "Discard N random cards"
