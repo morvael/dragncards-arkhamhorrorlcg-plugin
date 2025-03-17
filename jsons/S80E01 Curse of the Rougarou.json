@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Side Stories A", "Side Stories", "Curse of the Rougarou", null, "Curse of the Rougarou Scenario Init"]
+                ["SCENARIO_INIT", "Curse of the Rougarou", "Side Stories", "Curse of the Rougarou", null, "Curse of the Rougarou Scenario Init"]
             ]
         },
         "The Bayou": {

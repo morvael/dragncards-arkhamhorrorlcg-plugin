@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
-        "Side Stories A Chaos Bag - Easy": {
+        "Curse of the Rougarou Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Side Stories A Chaos Bag - Easy",
+            "label": "Curse of the Rougarou Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -20,9 +20,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories A Chaos Bag - Standard": {
+        "Curse of the Rougarou Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Side Stories A Chaos Bag - Standard",
+            "label": "Curse of the Rougarou Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -40,9 +40,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories A Chaos Bag - Hard": {
+        "Curse of the Rougarou Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Side Stories A Chaos Bag - Hard",
+            "label": "Curse of the Rougarou Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -61,9 +61,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories A Chaos Bag - Expert": {
+        "Curse of the Rougarou Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Side Stories A Chaos Bag - Expert",
+            "label": "Curse of the Rougarou Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -82,9 +82,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories B Chaos Bag - Easy": {
+        "Carnevale of Horrors Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Side Stories B Chaos Bag - Easy",
+            "label": "Carnevale of Horrors Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -101,9 +101,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories B Chaos Bag - Standard": {
+        "Carnevale of Horrors Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Side Stories B Chaos Bag - Standard",
+            "label": "Carnevale of Horrors Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -120,9 +120,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories B Chaos Bag - Hard": {
+        "Carnevale of Horrors Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Side Stories B Chaos Bag - Hard",
+            "label": "Carnevale of Horrors Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -140,9 +140,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories B Chaos Bag - Expert": {
+        "Carnevale of Horrors Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Side Stories B Chaos Bag - Expert",
+            "label": "Carnevale of Horrors Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -160,9 +160,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories C Chaos Bag - Easy": {
+        "The Labyrinths of Lunacy Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Side Stories C Chaos Bag - Easy",
+            "label": "The Labyrinths of Lunacy Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -176,9 +176,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories C Chaos Bag - Standard": {
+        "The Labyrinths of Lunacy Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Side Stories C Chaos Bag - Standard",
+            "label": "The Labyrinths of Lunacy Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -192,9 +192,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories C Chaos Bag - Hard": {
+        "The Labyrinths of Lunacy Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Side Stories C Chaos Bag - Hard",
+            "label": "The Labyrinths of Lunacy Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -209,9 +209,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories C Chaos Bag - Expert": {
+        "The Labyrinths of Lunacy Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Side Stories C Chaos Bag - Expert",
+            "label": "The Labyrinths of Lunacy Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -226,9 +226,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories D Chaos Bag - Easy": {
+        "Guardians of the Abyss Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Side Stories D Chaos Bag - Easy",
+            "label": "Guardians of the Abyss Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -245,9 +245,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories D Chaos Bag - Standard": {
+        "Guardians of the Abyss Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Side Stories D Chaos Bag - Standard",
+            "label": "Guardians of the Abyss Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -264,9 +264,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories D Chaos Bag - Hard": {
+        "Guardians of the Abyss Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Side Stories D Chaos Bag - Hard",
+            "label": "Guardians of the Abyss Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -284,9 +284,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Side Stories D Chaos Bag - Expert": {
+        "Guardians of the Abyss Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Side Stories D Chaos Bag - Expert",
+            "label": "Guardians of the Abyss Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -297,6 +297,80 @@
                 {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Murder at the Excelsior Hotel Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "Murder at the Excelsior Hotel Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Murder at the Excelsior Hotel Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "Murder at the Excelsior Hotel Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Murder at the Excelsior Hotel Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "Murder at the Excelsior Hotel Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Murder at the Excelsior Hotel Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "Murder at the Excelsior Hotel Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},

@@ -81,6 +81,7 @@
         "sharedPileB":             {"groupType": "pile",       "label": "id:sharedPileB",             "tableLabel": "id:sharedPileBShort"},
         "sharedPileC":             {"groupType": "pile",       "label": "id:sharedPileC",             "tableLabel": "id:sharedPileCShort"},
         "sharedPileD":             {"groupType": "pile",       "label": "id:sharedPileD",             "tableLabel": "id:sharedPileDShort"},
+        "sharedPileE":             {"groupType": "pile",       "label": "id:sharedPileE",             "tableLabel": "id:sharedPileEShort"},
         "sharedChaosBag":          {"groupType": "chaosBag",   "label": "id:sharedChaosBag",          "tableLabel": "id:sharedChaosBagShort"},
         "player4Aside":            {"groupType": "aside",      "label": "id:player4Aside",            "tableLabel": "id:playerAsideShort"},
         "player4Removed":          {"groupType": "removed",    "label": "id:player4Removed",          "tableLabel": "id:playerRemovedShort"},
@@ -436,6 +437,12 @@
         },
         "sharedPileDShort": {
             "English": "Pile D"
+        },
+        "sharedPileE": {
+            "English": "Pile E"
+        },
+        "sharedPileEShort": {
+            "English": "Pile E"
         },
         "sharedChaosBag": {
             "English": "Chaos Bag"

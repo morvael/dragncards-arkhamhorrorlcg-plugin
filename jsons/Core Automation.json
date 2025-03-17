@@ -75,6 +75,11 @@
                             [
                                 ["SET", "/cardById/$TARGET_ID/cardDeck", "sharedPileD"],
                                 ["SET", "/cardById/$TARGET_ID/cardDiscard", "sharedPileD"]
+                            ],
+                            ["EQUAL", "$TARGET.groupId", "sharedPileE"],
+                            [
+                                ["SET", "/cardById/$TARGET_ID/cardDeck", "sharedPileE"],
+                                ["SET", "/cardById/$TARGET_ID/cardDiscard", "sharedPileE"]
                             ]
                         ],
                         ["COND",

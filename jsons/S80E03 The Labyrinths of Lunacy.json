@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Side Stories C", "Side Stories", "The Labyrinths of Lunacy", "The Labyrinths of Lunacy Scenario Early Init", "The Labyrinths of Lunacy Scenario Init"]
+                ["SCENARIO_INIT", "The Labyrinths of Lunacy", "Side Stories", "The Labyrinths of Lunacy", "The Labyrinths of Lunacy Scenario Early Init", "The Labyrinths of Lunacy Scenario Init"]
             ]
         },
         "The Labyrinths of Lunacy - Epic Multiplayer Mode": {

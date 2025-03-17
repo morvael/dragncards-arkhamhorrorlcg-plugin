@@ -321,7 +321,8 @@
                     {"label": "id:carnevaleOfHorrors", "deckListId": "Carnevale of Horrors Scenario"},
                     {"label": "id:theLabyrinthsOfLunacy", "deckListId": "The Labyrinths of Lunacy Scenario"},
                     {"label": "id:theEternalSlumber", "deckListId": "The Eternal Slumber Scenario"},
-                    {"label": "id:theNightsUsurper", "deckListId": "The Night's Usurper Scenario"}
+                    {"label": "id:theNightsUsurper", "deckListId": "The Night's Usurper Scenario"},
+                    {"label": "id:murderAtTheExcelsiorHotel", "deckListId": "Murder at the Excelsior Hotel Scenario"}
                 ]
             },
             {
@@ -346,7 +347,7 @@
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
                     {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"},
                     {"label": "id:tarotCardsDeckC", "deckListId": "Tarot Cards - Deck C"},
-                    {"label": "id:tarotCardsPileD", "deckListId": "Tarot Cards - Pile D"}
+                    {"label": "id:tarotCardsPileE", "deckListId": "Tarot Cards - Pile E"}
                 ]
             }
         ]
@@ -919,6 +920,9 @@
         "theNightsUsurper": {
             "English": "The Night's Usurper (Guardians of the Abyss B)"
         },
+        "murderAtTheExcelsiorHotel": {
+            "English": "Murder at the Excelsior Hotel Scenario"
+        },
         "challengeScenarios": {
             "English": "Challenge Scenarios"
         },
@@ -967,8 +971,8 @@
         "tarotCardsDeckC": {
             "English": "Tarot Cards - Deck C"
         },
-        "tarotCardsPileD": {
-            "English": "Tarot Cards - Pile D"
+        "tarotCardsPileE": {
+            "English": "Tarot Cards - Pile E"
         }
     }
 }

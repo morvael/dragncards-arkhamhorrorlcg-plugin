@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Side Stories D", "Side Stories", "The Night's Usurper", null, "The Night's Usurper Scenario Init"]
+                ["SCENARIO_INIT", "Guardians of the Abyss", "Side Stories", "The Night's Usurper", null, "The Night's Usurper Scenario Init"]
             ]
         },
         "The Night's Usurper": {

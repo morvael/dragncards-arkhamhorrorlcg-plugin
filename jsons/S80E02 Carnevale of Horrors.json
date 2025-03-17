@@ -6,7 +6,7 @@
 
             ],
             "postLoadActionList": [
-                ["SCENARIO_INIT", "Side Stories B", "Side Stories", "Carnevale of Horrors", null, "Carnevale of Horrors Scenario Init"]
+                ["SCENARIO_INIT", "Carnevale of Horrors", "Side Stories", "Carnevale of Horrors", null, "Carnevale of Horrors Scenario Init"]
             ]
         },
         "Carnevale of Horrors": {

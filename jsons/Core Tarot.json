@@ -194,31 +194,31 @@
                 {"databaseId": "tarot_21_the_world", "quantity": 1, "loadGroupId": "sharedDeckC"}           //The World • XXI
             ]
         },
-        "Tarot Cards - Pile D": {
-            "label": "Tarot Cards - Pile D",
+        "Tarot Cards - Pile E": {
+            "label": "Tarot Cards - Pile E",
             "cards": [
-                {"databaseId": "tarot_00_the_fool", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Fool • 0
-                {"databaseId": "tarot_01_the_magician", "quantity": 1, "loadGroupId": "sharedPileD"},       //The Magician • I
-                {"databaseId": "tarot_02_the_high_priestess", "quantity": 1, "loadGroupId": "sharedPileD"}, //The High Priestess • II
-                {"databaseId": "tarot_03_the_empress", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Empress • III
-                {"databaseId": "tarot_04_the_emperor", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Emperor • IV
-                {"databaseId": "tarot_05_the_hierophant", "quantity": 1, "loadGroupId": "sharedPileD"},     //The Hierophant • V
-                {"databaseId": "tarot_06_the_lovers", "quantity": 1, "loadGroupId": "sharedPileD"},         //The Lovers • VI
-                {"databaseId": "tarot_07_the_chariot", "quantity": 1, "loadGroupId": "sharedPileD"},        //The Chariot • VII
-                {"databaseId": "tarot_08_strength", "quantity": 1, "loadGroupId": "sharedPileD"},           //Strength • VIII
-                {"databaseId": "tarot_09_the_hermit", "quantity": 1, "loadGroupId": "sharedPileD"},         //The Hermit • IX
-                {"databaseId": "tarot_10_wheel_of_fortune", "quantity": 1, "loadGroupId": "sharedPileD"},   //Wheel of Fortune • X
-                {"databaseId": "tarot_11_justice", "quantity": 1, "loadGroupId": "sharedPileD"},            //Justice • XI
-                {"databaseId": "tarot_12_the_hanged_man", "quantity": 1, "loadGroupId": "sharedPileD"},     //The Hanged Man • XII
-                {"databaseId": "tarot_13_death", "quantity": 1, "loadGroupId": "sharedPileD"},              //Death • XIII
-                {"databaseId": "tarot_14_temperance", "quantity": 1, "loadGroupId": "sharedPileD"},         //Temperance • XIV
-                {"databaseId": "tarot_15_the_devil", "quantity": 1, "loadGroupId": "sharedPileD"},          //The Devil • XV
-                {"databaseId": "tarot_16_the_tower", "quantity": 1, "loadGroupId": "sharedPileD"},          //The Tower • XVI
-                {"databaseId": "tarot_17_the_star", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Star • XVII
-                {"databaseId": "tarot_18_the_moon", "quantity": 1, "loadGroupId": "sharedPileD"},           //The Moon • XVIII
-                {"databaseId": "tarot_19_the_sun", "quantity": 1, "loadGroupId": "sharedPileD"},            //The Sun • XIX
-                {"databaseId": "tarot_20_judgement", "quantity": 1, "loadGroupId": "sharedPileD"},          //Judgement • XX
-                {"databaseId": "tarot_21_the_world", "quantity": 1, "loadGroupId": "sharedPileD"}           //The World • XXI
+                {"databaseId": "tarot_00_the_fool", "quantity": 1, "loadGroupId": "sharedPileE"},           //The Fool • 0
+                {"databaseId": "tarot_01_the_magician", "quantity": 1, "loadGroupId": "sharedPileE"},       //The Magician • I
+                {"databaseId": "tarot_02_the_high_priestess", "quantity": 1, "loadGroupId": "sharedPileE"}, //The High Priestess • II
+                {"databaseId": "tarot_03_the_empress", "quantity": 1, "loadGroupId": "sharedPileE"},        //The Empress • III
+                {"databaseId": "tarot_04_the_emperor", "quantity": 1, "loadGroupId": "sharedPileE"},        //The Emperor • IV
+                {"databaseId": "tarot_05_the_hierophant", "quantity": 1, "loadGroupId": "sharedPileE"},     //The Hierophant • V
+                {"databaseId": "tarot_06_the_lovers", "quantity": 1, "loadGroupId": "sharedPileE"},         //The Lovers • VI
+                {"databaseId": "tarot_07_the_chariot", "quantity": 1, "loadGroupId": "sharedPileE"},        //The Chariot • VII
+                {"databaseId": "tarot_08_strength", "quantity": 1, "loadGroupId": "sharedPileE"},           //Strength • VIII
+                {"databaseId": "tarot_09_the_hermit", "quantity": 1, "loadGroupId": "sharedPileE"},         //The Hermit • IX
+                {"databaseId": "tarot_10_wheel_of_fortune", "quantity": 1, "loadGroupId": "sharedPileE"},   //Wheel of Fortune • X
+                {"databaseId": "tarot_11_justice", "quantity": 1, "loadGroupId": "sharedPileE"},            //Justice • XI
+                {"databaseId": "tarot_12_the_hanged_man", "quantity": 1, "loadGroupId": "sharedPileE"},     //The Hanged Man • XII
+                {"databaseId": "tarot_13_death", "quantity": 1, "loadGroupId": "sharedPileE"},              //Death • XIII
+                {"databaseId": "tarot_14_temperance", "quantity": 1, "loadGroupId": "sharedPileE"},         //Temperance • XIV
+                {"databaseId": "tarot_15_the_devil", "quantity": 1, "loadGroupId": "sharedPileE"},          //The Devil • XV
+                {"databaseId": "tarot_16_the_tower", "quantity": 1, "loadGroupId": "sharedPileE"},          //The Tower • XVI
+                {"databaseId": "tarot_17_the_star", "quantity": 1, "loadGroupId": "sharedPileE"},           //The Star • XVII
+                {"databaseId": "tarot_18_the_moon", "quantity": 1, "loadGroupId": "sharedPileE"},           //The Moon • XVIII
+                {"databaseId": "tarot_19_the_sun", "quantity": 1, "loadGroupId": "sharedPileE"},            //The Sun • XIX
+                {"databaseId": "tarot_20_judgement", "quantity": 1, "loadGroupId": "sharedPileE"},          //Judgement • XX
+                {"databaseId": "tarot_21_the_world", "quantity": 1, "loadGroupId": "sharedPileE"}           //The World • XXI
             ]
         }
     }

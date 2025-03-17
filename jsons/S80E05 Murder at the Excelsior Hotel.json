@@ -1,0 +1,86 @@
+{
+    "preBuiltDecks": {
+        "Murder at the Excelsior Hotel Scenario": {
+            "label": "Murder at the Excelsior Hotel Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Murder at the Excelsior Hotel", "Side Stories", "Murder at the Excelsior Hotel", null, "Murder at the Excelsior Hotel Scenario Init"]
+            ]
+        },
+        "Murder at the Excelsior Hotel": {
+            "hideFromSearch": true,
+            "label": "Murder at the Excelsior Hotel",
+            "cards": [
+                {"databaseId": "84001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Murder at the Excelsior Hotel
+                {"databaseId": "84002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Murder
+                {"databaseId": "84003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Special Investigation
+                {"databaseId": "84004", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Happened...?
+                {"databaseId": "84005", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Following Leads                
+                {"databaseId": "84010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"},  //Room 225: Scene of the Crime
+                {"databaseId": "84011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "31%"},  //Suite Balcony
+                {"databaseId": "84012", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "31%"},  //Second Floor Hall
+                {"databaseId": "84013", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "55%"},  //Foyer
+                {"databaseId": "84014", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Restaurant
+                {"databaseId": "84043", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. I)
+                {"databaseId": "84044", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. II)
+                {"databaseId": "84045", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. III)
+                {"databaseId": "84046", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. IV)
+                {"databaseId": "84047", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. V)
+                {"databaseId": "84048", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. VI)
+                {"databaseId": "84049", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. VII)
+                {"databaseId": "84050", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. VIII)
+                {"databaseId": "84051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. IX)
+                {"databaseId": "84052", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The True Culprit (v. X)
+                {"databaseId": "84006", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Bloodstained Dagger: The Murder Weapon
+                {"databaseId": "84015", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Hotel Roof
+                {"databaseId": "84016", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Room 212
+                {"databaseId": "84017", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Room 245
+                {"databaseId": "84018", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Office
+                {"databaseId": "84019", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Basement
+                {"databaseId": "84009", "quantity": 3, "loadGroupId": "sharedNotInPlay"},                               //Arkham Officer
+                {"databaseId": "84008", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sergeant Monroe: Two Days Until Retirement
+                {"databaseId": "84007", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //What Have You Done?
+                {"databaseId": "84028", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Alien Device: Machinations from Beyond
+                {"databaseId": "84034", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Tome of Rituals: Blasphemous Volume
+                {"databaseId": "84037", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Sinister Solution: Vile Concoction
+                {"databaseId": "84031", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Manager's Key: Stained by Blood
+                {"databaseId": "84040", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Time-Worn Locket: Mournful Vision of the Past
+                {"databaseId": "84029", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Otherworldly Meddler: Presence from Beyond the Stars
+                {"databaseId": "84030", "quantity": 3, "loadGroupId": "sharedPileA"},                                   //Encephalon Signal
+                {"databaseId": "84035", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Dimensional Shambler
+                {"databaseId": "84036", "quantity": 3, "loadGroupId": "sharedPileB"},                                   //Cultist of the Enclave
+                {"databaseId": "84032", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Hotel Manager: Let the Feast Begin
+                {"databaseId": "84033", "quantity": 3, "loadGroupId": "sharedPileC"},                                   //Hotel Security
+                {"databaseId": "84041", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Vengeful Specter: The First Victim
+                {"databaseId": "84042", "quantity": 3, "loadGroupId": "sharedPileD"},                                   //Chilling Presence
+                {"databaseId": "84038", "quantity": 1, "loadGroupId": "sharedPileE"},                                   //Harvested Brain
+                {"databaseId": "84039", "quantity": 3, "loadGroupId": "sharedPileE"},                                   //Morbid Awareness
+                {"databaseId": "84020", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Mr. Trombly: Maddened Concierge
+                {"databaseId": "84021", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Conspicuous Staff
+                {"databaseId": "84022", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Hotel Guest
+                {"databaseId": "84023", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Noxious Fumes
+                {"databaseId": "84024", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Driven to Madness
+                {"databaseId": "84025", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Blood on your Hands
+                {"databaseId": "84026", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Incriminating Evidence
+                {"databaseId": "84027", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Violent Outburst
+            ]
+        }
+    },
+    "actionLists": {
+        "Murder at the Excelsior Hotel Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Murder at the Excelsior Hotel"],
+            ["DO_SET_SPAWN_LOCATION", "84015", 15, 7], //Hotel Roof
+            ["DO_SET_SPAWN_LOCATION", "84016", 35, 7], //Room 212
+            ["DO_SET_SPAWN_LOCATION", "84017", 55, 7], //Room 245
+            ["DO_SET_SPAWN_LOCATION", "84018", 55, 55], //Office
+            ["DO_SET_SPAWN_LOCATION", "84019", 55, 79], //Basement
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Bloodstained Dagger", "sharedNotInPlay", 1, ["GET_CONTROLLER_PLAY", "$GAME.firstPlayer"]],
+            ["SET", "/playerData/$GAME.firstPlayer/arkham/customSpawnLocation", "Room 225"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Foyer", 5, 7, 3, 0],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the Leads deck, Alien Interference cards are in Pile A, Dark Rituals cards are in Pile B, Excelsior Management cards are in Pile C, Sins of the Past cards are in Pile D, Vile Experiments cards are in Pile E."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
