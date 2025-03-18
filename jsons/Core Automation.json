@@ -125,6 +125,19 @@
                         ]
                     ],
                     ["SET", "/cardById/$TARGET_ID/currentSide", "B"] //Lost Homunculus: The Forgotten Child
+                ],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$TARGET.sides.A.databaseId", "85037"], //Subject 8L-08: Extraspacial Anomaly
+                        ["EQUAL", "$TARGET.sides.A.databaseId", "85038"]  //Subject 8L-08: Extraspacial Anomaly
+                    ],
+                    [
+                        ["SET", "/cardById/$TARGET_ID/sides/A/width", 1.00],
+                        ["SET", "/cardById/$TARGET_ID/sides/A/height", 0.69],
+                        ["SET", "/cardById/$TARGET_ID/sides/B/width", 1.00],
+                        ["SET", "/cardById/$TARGET_ID/sides/B/height", 0.69],
+                        ["SET", "/cardById/$TARGET_ID/sides/B/imageUrl", "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter_sideways.webp"]
+                    ]
                 ]
             ]],
             ["SET", "/arkham/loadingCards", false]

@@ -1,0 +1,138 @@
+{
+    "preBuiltDecks": {
+        "The Blob That Ate Everything Scenario": {
+            "label": "The Blob That Ate Everything Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Blob That Ate Everything", "Side Stories", "The Blob That Ate Everything", "The Blob That Ate Everything Scenario Early Init", "The Blob That Ate Everything Scenario Init"]
+            ]
+        },
+        "The Blob That Ate Everything": {
+            "hideFromSearch": true,
+            "label": "The Blob That Ate Everything",
+            "cards": [
+                {"databaseId": "85001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Blob That Ate Everything
+                {"databaseId": "85002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Anomaly Spreads
+                {"databaseId": "85003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Anomaly Swells
+                {"databaseId": "85004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Anomaly Consumes
+                {"databaseId": "85010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //The Crater
+                {"databaseId": "85025", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //University Chemist
+                {"databaseId": "85026", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Meteorite Sample
+                {"databaseId": "85027", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go General
+                {"databaseId": "85028", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Military's Plan
+                {"databaseId": "85029", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Universal Solvent
+                {"databaseId": "85030", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Pet Oozeling
+                {"databaseId": "85031", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go Weapon
+                {"databaseId": "85032", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Lt. Wilson Stewart: Logistical Genius
+                {"databaseId": "85033", "quantity": 3, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go Drone
+                {"databaseId": "85034", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go Harvester
+                {"databaseId": "85035", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go Meddler
+                {"databaseId": "85036", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Mi-Go Abductor
+                {"databaseId": "85043", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Vulnerable Heart
+                {"databaseId": "85040", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Grasping Ooze
+                {"databaseId": "85041", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Cubic Ooze
+                {"databaseId": "85042", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Oozewraith
+                {"databaseId": "85021", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Rescue the Chemist
+                {"databaseId": "85022", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Recover the Sample
+                {"databaseId": "85023", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Drive Off the Mi-Go
+                {"databaseId": "85024", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Defuse the Explosives
+                {"databaseId": "85039", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Oozeling
+                {"databaseId": "85040", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Grasping Ooze
+                {"databaseId": "85041", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Cubic Ooze
+                {"databaseId": "85044", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Reality Acid
+                {"databaseId": "85045", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Devouring Ooze
+                {"databaseId": "85046", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Corrosive Slime
+                {"databaseId": "85047", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Consuming Maw
+                {"databaseId": "85048", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Wave of Ooze
+                {"databaseId": "85049", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Caustic Dissemination
+                {"databaseId": "85050", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Sticky Feet
+                {"databaseId": "85051", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Replication
+                {"databaseId": "85052", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //"It's got me!"
+                {"databaseId": "85053", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Alien Food Chain
+            ]
+        },
+        "The Blob That Ate Everything - Epic Multiplayer Mode": {
+            "hideFromSearch": true,
+            "label": "The Blob That Ate Everything - Epic Multiplayer Mode",
+            "cards": [
+                {"databaseId": "85005", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Expose the Anomaly (Epic)
+                {"databaseId": "85007", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Extraterrestrial Physiology
+                {"databaseId": "85008", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Blackwater's Bane (Epic)
+                {"databaseId": "85037", "quantity": 1, "loadGroupId": "sharedLocations", "left": "1%", "top": "4%"} //Subject 8L-08: Extraspacial Anomaly (Epic)
+            ]
+        },
+        "The Blob That Ate Everything - Single Group Mode": {
+            "hideFromSearch": true,
+            "label": "The Blob That Ate Everything - Single Group Mode",
+            "cards": [
+                {"databaseId": "85006", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Expose the Anomaly (Single)
+                {"databaseId": "85007", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Extraterrestrial Physiology
+                {"databaseId": "85009", "quantity": 1, "loadGroupId": "sharedActStory"},                            //Blackwater's Bane (Single)
+                {"databaseId": "85038", "quantity": 1, "loadGroupId": "sharedLocations", "left": "1%", "top": "4%"} //Subject 8L-08: Extraspacial Anomaly (Single)
+            ]
+        }
+    },
+    "actionLists": {
+        "The Blob That Ate Everything Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play in Epic Multiplayer Mode.", "Play in Single Group Mode."], "The Blob That Ate Everything Scenario Question 1"]
+        ],
+        "The Blob That Ate Everything Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of players", ["ADD", "$GAME.arkham.numPlayers", 1], 1000, 0, "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", ""],
+                ["TRUE"],
+                ["THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "{{$GAME.arkham.numPlayers}}"]
+            ]
+        ],
+        "The Blob That Ate Everything Scenario Init": [
+            ["VAR", "$HEALTH", ["MULTIPLY", "$GAME.arkham.scenarioTheBlobThatAteEverythingNumberOfPlayers", 15]],
+            ["VAR", "$CLUES", ["MULTIPLY", "$GAME.arkham.scenarioTheBlobThatAteEverythingNumberOfPlayers", 2]],
+            ["VAR", "$COUNTERMEASURES", ["HALF_ROUNDING_UP", "$GAME.arkham.scenarioTheBlobThatAteEverythingNumberOfPlayers"]],
+            ["DO_LOAD_CARDS_SCN", "The Blob That Ate Everything"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "The Blob That Ate Everything - Epic Multiplayer Mode"],
+                    ["VAR", "$ANOMALY_ID", ["GET_NAMED_CARD_ID", "Expose the Anomaly"]],
+                    ["SET", "/cardById/$ANOMALY_ID/sides/A/clues", "$CLUES"]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "The Blob That Ate Everything - Single Group Mode"],
+                    ["INCREASE_VAR", "$HEALTH", 15]
+                ]
+            ],
+            ["VAR", "$SUBJECT_ID", ["GET_NAMED_CARD_ID", "Subject 8L-08"]],
+            ["SET", "/cardById/$SUBJECT_ID/sides/A/health", "$HEALTH"],
+            ["SET", "/cardById/$SUBJECT_ID/sides/A/healthPerInvestigator", 0],
+            ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$COUNTERMEASURES", true, null],
+            ["VAR", "$QUARANTINE_ZONES", ["SHUFFLE_LIST", ["LIST", "85014", "85015", "85016", "85017", "85018", "85018", "85019", "85019", "85020", "85020"]]],  //Sewer, Bridge, Water Tower, Church, Oozy Lakebed (2), Slimy Streets (2), Desiccated Farmland (2)
+            ["VAR", "$INNER_RING", ["SHUFFLE_LIST", ["LIST", "$QUARANTINE_ZONES.[0]", "$QUARANTINE_ZONES.[1]", "85011", "85012"]]],  //Research Site, Temporary HQ
+            ["VAR", "$OUTER_RING", ["SHUFFLE_LIST", ["LIST", "$QUARANTINE_ZONES.[2]", "$QUARANTINE_ZONES.[3]", "$QUARANTINE_ZONES.[4]", "85013"]]],  //Fungus Mound
+            ["DO_SPAWN_LOCATIONS_SCN", null, "$INNER_RING", ["LIST", 45, 64, 45, 26], ["LIST", 24, 43, 62, 43], 0, 4, 0],
+            ["DO_SPAWN_LOCATIONS_SCN", null, "$OUTER_RING", ["LIST", 45, 83, 45, 7], ["LIST", 5, 43, 81, 43], 0, 4, 0],
+            ["DO_SPAWN_LOCATIONS_SCN", "Quarantine Zone", "$QUARANTINE_ZONES", ["LIST", 64, 64, 26, 26], ["LIST", 24, 62, 62, 24], 5, 4, -5],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Temporary HQ", 3, 3, 3, 0],
+            ["SET", "/arkham/finalScenarioMessage", ["FORMAT", "Mi-Go Incursion story cards are in Pile A. Subject 8L-08's health: {0}. Act 1's clue threshold: {1}. Countermeasures: {2}.", "$HEALTH", "$CLUES", "$COUNTERMEASURES"]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "THE_BLOB_THAT_ATE_EVERYTHING_PLAYERS_CALLBACK.SELECTED_VALUE"],
+                ["SET", "/arkham/scenarioTheBlobThatAteEverythingNumberOfPlayers", "$VALUE"],
+                ["LOGF", "{0}{1} set number of players to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
+                ["SCENARIO_INIT_RESUME", "The Blob That Ate Everything Scenario Init"]
+            ]
+        }
+    }
+}

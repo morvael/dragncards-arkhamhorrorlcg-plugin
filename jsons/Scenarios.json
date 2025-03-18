@@ -322,7 +322,8 @@
                     {"label": "id:theLabyrinthsOfLunacy", "deckListId": "The Labyrinths of Lunacy Scenario"},
                     {"label": "id:theEternalSlumber", "deckListId": "The Eternal Slumber Scenario"},
                     {"label": "id:theNightsUsurper", "deckListId": "The Night's Usurper Scenario"},
-                    {"label": "id:murderAtTheExcelsiorHotel", "deckListId": "Murder at the Excelsior Hotel Scenario"}
+                    {"label": "id:murderAtTheExcelsiorHotel", "deckListId": "Murder at the Excelsior Hotel Scenario"},
+                    {"label": "id:theBlobThatAteEverything", "deckListId": "The Blob That Ate Everything Scenario"}
                 ]
             },
             {
@@ -921,7 +922,10 @@
             "English": "The Night's Usurper (Guardians of the Abyss B)"
         },
         "murderAtTheExcelsiorHotel": {
-            "English": "Murder at the Excelsior Hotel Scenario"
+            "English": "Murder at the Excelsior Hotel"
+        },
+        "theBlobThatAteEverything": {
+            "English": "The Blob That Ate Everything"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

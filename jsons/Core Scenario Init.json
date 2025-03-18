@@ -702,6 +702,28 @@
                 ["DO_SPAWN_LOCATION", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LEFT", "$TOP", true, null]
             ]
         },
+        "DO_SPAWN_LOCATIONS_SCN": {
+            "args": ["$TARGET_NAME", "$SPAWN_IDS", "$SPAWN_LEFTS", "$SPAWN_TOPS", "$START_INDEX", "$NUMBER", "$ADD_TO_XY"],
+            "code": [
+                ["VALIDATE_NOT_NULL", "$SPAWN_IDS", "DO_SPAWN_LOCATIONS_SCN.SPAWN_IDS"],
+                ["VALIDATE_NOT_NULL", "$SPAWN_LEFTS", "DO_SPAWN_LOCATIONS_SCN.SPAWN_LEFTS"],
+                ["VALIDATE_NOT_NULL", "$SPAWN_TOPS", "DO_SPAWN_LOCATIONS_SCN.SPAWN_TOPS"],
+                ["VALIDATE_GE0", "$START_INDEX", "DO_SPAWN_LOCATIONS_SCN.START_INDEX"],
+                ["VALIDATE_GT0", "$NUMBER", "DO_SPAWN_LOCATIONS_SCN.NUMBER"],
+                ["VALIDATE_NOT_NULL", "$ADD_TO_XY", "DO_SPAWN_LOCATIONS_SCN.ADD_TO_XY"],
+                ["VAR", "$STOP_INDEX", ["ADD", "$START_INDEX", "$NUMBER"]],
+                ["FOR_EACH_START_STOP_STEP", "$I", "$START_INDEX", "$STOP_INDEX", 1, [
+                    ["VAR", "$ID", "$SPAWN_IDS.[$I]"],
+                    ["VAR", "$NAME", "$TARGET_NAME"],
+                    ["COND",
+                        ["EQUAL", "$NAME", null],
+                        ["UPDATE_VAR", "$NAME", "$CARD_DB.{{$ID}}.B.name"]
+                    ],
+                    ["VAR", "$J", ["ADD", "$I", "$ADD_TO_XY"]],
+                    ["DO_SPAWN_LOCATION_SCN", "$NAME", "$ID", "$SPAWN_LEFTS.[$J]", "$SPAWN_TOPS.[$J]"]
+                ]]
+            ]
+        },
         "DO_SPAWN_HIDDEN_AT_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOCATION_CARD_NAME", "$LEFT_MOD", "$TOP_MOD", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [

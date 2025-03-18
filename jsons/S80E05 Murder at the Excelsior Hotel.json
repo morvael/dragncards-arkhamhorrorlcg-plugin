@@ -17,7 +17,7 @@
                 {"databaseId": "84002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Murder
                 {"databaseId": "84003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Special Investigation
                 {"databaseId": "84004", "quantity": 1, "loadGroupId": "sharedActStory"},                                //What Happened...?
-                {"databaseId": "84005", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Following Leads                
+                {"databaseId": "84005", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Following Leads
                 {"databaseId": "84010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "31%"},  //Room 225: Scene of the Crime
                 {"databaseId": "84011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "75%", "top": "31%"},  //Suite Balcony
                 {"databaseId": "84012", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "31%"},  //Second Floor Hall

@@ -443,6 +443,17 @@
                 ]
             ]
         },
+        "HALF_ROUNDING_UP": {
+            "args": ["$VALUE"],
+            "code": [
+                ["VAR", "$HALF_VALUE", ["TO_INT", ["DIVIDE", "$VALUE", 2]]],
+                ["COND",
+                    ["LESS_THAN", ["MULTIPLY", "$HALF_VALUE", 2], "$VALUE"],
+                    ["INCREASE_VAR", "$HALF_VALUE", 1]
+                ],
+                "$HALF_VALUE"
+            ]
+        },
         "FILTER_UNIQUE_CARDS": {
             "args": ["$SELECTED_CARDS"],
             "code": [

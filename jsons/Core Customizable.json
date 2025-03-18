@@ -644,7 +644,7 @@
                 ["INCREASE_VAR", "$XP", "$UPGRADE_8"],
                 ["VAR", "$HALF_XP", ["TO_INT", ["DIVIDE", "$XP", 2]]],
                 ["COND",
-                    ["LESS_THAN", "$XP", ["MULTIPLY", "$HALF_XP", 2]],
+                    ["LESS_THAN", ["MULTIPLY", "$HALF_XP", 2], "$XP"],
                     ["INCREASE_VAR", "$HALF_XP", 1]
                 ],
                 ["COND",
@@ -902,6 +902,37 @@
             "code": [
                 ["LIST", "None", "", "Arcane", "0", "Ally", "1"]
             ]
+        },
+        "CALCULATOR_PROMPT": {
+            "args": ["$TARGET_PLAYER", "$MESSAGE", "$MIN_VALUE", "$MAX_VALUE", "$CURRENT_VALUE", "$CALLBACK_FUNCTION", "$SOME_PLAYER", "$SOME_CARD_ID", "$SOME_TEXT"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CALCULATOR_PROMPT.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$MESSAGE", "CALCULATOR_PROMPT.MESSAGE"],
+                ["VALIDATE_GE0", "$MIN_VALUE", "CALCULATOR_PROMPT.MIN_VALUE"],
+                ["VALIDATE_GE0", "$MAX_VALUE", "CALCULATOR_PROMPT.MAX_VALUE"],
+                ["VALIDATE_GE0", "$CURRENT_VALUE", "CALCULATOR_PROMPT.CURRENT_VALUE"],
+                ["VALIDATE_NOT_EMPTY", "$CALLBACK_FUNCTION", "CALCULATOR_PROMPT.CALLBACK_FUNCTION"],
+                ["PROMPT", "$TARGET_PLAYER", "calculatorPrompt", ["FORMAT", "{0} ({1}-{2}): {3}.", "$MESSAGE", "$MIN_VALUE", "$MAX_VALUE", "$CURRENT_VALUE"]],
+                ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Clear.", "X", ["LIST", "CALCULATOR_PROMPT_STR", "{{$TARGET_PLAYER}}", "{{$MESSAGE}}", "{{$MIN_VALUE}}", "{{$MAX_VALUE}}", "0", "{{$CALLBACK_FUNCTION}}", "{{$SOME_PLAYER}}", "{{$SOME_CARD_ID}}", "{{$SOME_TEXT}}"]],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, 10, 1, [
+                    ["VAR", "$LETTER", ["SUBSTRING", "0123456789", "$I", 1]],
+                    ["VAR", "$NEW_VALUE", ["ADD", ["MULTIPLY", "$CURRENT_VALUE", 10], "$I"]],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$I}}", "{{$LETTER}}", ["LIST", "CALCULATOR_PROMPT_STR", "{{$TARGET_PLAYER}}", "{{$MESSAGE}}", "{{$MIN_VALUE}}", "{{$MAX_VALUE}}", "{{$NEW_VALUE}}", "{{$CALLBACK_FUNCTION}}", "{{$SOME_PLAYER}}", "{{$SOME_CARD_ID}}", "{{$SOME_TEXT}}"]]
+                ]],
+                ["COND",
+                    ["AND",
+                        ["GREATER_EQUAL", "$CURRENT_VALUE", "$MIN_VALUE"],
+                        ["LESS_EQUAL", "$CURRENT_VALUE", "$MAX_VALUE"]
+                    ],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Accept.", "A", ["LIST", "{{$CALLBACK_FUNCTION}}", "{{$SOME_PLAYER}}", "{{$SOME_CARD_ID}}", "{{$SOME_TEXT}}", "{{$TARGET_PLAYER}}", "{{$CURRENT_VALUE}}"]]
+                ]
+            ]
+        },
+        "CALCULATOR_PROMPT_STR": {
+            "args": ["$TARGET_PLAYER", "$MESSAGE", "$MIN_VALUE", "$MAX_VALUE", "$CURRENT_VALUE", "$CALLBACK_FUNCTION", "$SOME_PLAYER", "$SOME_CARD_ID", "$SOME_TEXT"],
+            "code": [
+                ["CALCULATOR_PROMPT", "$TARGET_PLAYER", "$MESSAGE", ["CALC", "{{$MIN_VALUE}}"], ["CALC", "{{$MAX_VALUE}}"], ["CALC", "{{$CURRENT_VALUE}}"], "$CALLBACK_FUNCTION", "$SOME_PLAYER", "$SOME_CARD_ID", "$SOME_TEXT"]
+            ]
         }
     },
     "automation": {
@@ -1066,6 +1097,13 @@
             ]
         },
         "pagingPrompt": {
+            "args": ["$MESSAGE"],
+            "message": "{{$MESSAGE}}",
+            "options": [
+
+            ]
+        },
+        "calculatorPrompt": {
             "args": ["$MESSAGE"],
             "message": "{{$MESSAGE}}",
             "options": [
