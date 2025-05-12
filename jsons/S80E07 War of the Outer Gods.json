@@ -82,17 +82,17 @@
             ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
-                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of players", ["ADD", "$GAME.arkham.numPlayers", 1], 1000, 0, "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS", "$GAME.firstPlayer", "", ""],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of players", ["ADD", "$GAME.arkham.numPlayers", 1], 1000, 0, "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", ""],
                 ["TRUE"],
-                ["WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "{{$GAME.arkham.numPlayers}}"]
+                ["WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "{{$GAME.arkham.numPlayers}}"]
             ]
         ],
         "War of the Outer Gods Scenario Question 2": [
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
-                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of groups", ["DIVIDE_ROUNDING_UP", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 4], "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 0, "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS", "$GAME.firstPlayer", "", ""],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of groups", ["DIVIDE_ROUNDING_UP", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 4], "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 0, "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK", "$GAME.firstPlayer", "", ""],
                 ["TRUE"],
-                ["WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "1"]
+                ["WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "1"]
             ]
         ],
         "War of the Outer Gods Scenario Init": [
@@ -123,33 +123,33 @@
             ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Zealot of Paradise", "Shrine of Magh'an Ark'at", 3, 3, 0],
             ["SET", "/arkham/ignoreDoomOnPlayerCardsUnlessOneAgenda", true],
             ["SET", "/arkham/placeDoomOnAllAgendas", true],
-            ["SET", "/arkham/advanceAllAgendas", true],            
+            ["SET", "/arkham/advanceAllAgendas", true],
             ["SET", "/arkham/finalScenarioMessage", ["FORMAT", "Children of Paradise cards are in Pile C, Death of Stars cards are in Pile D, Swarm of Assimilation cards are in Pile E. Doom thresholds: {0}. Magh'an Ark'at's health: {1}. Silenus' health: {2}. Ezel-zen-rezl's health: {3}. The game will place doom on and advance all agendas, see “Faction Agendas.”", "$DOOM", "$HEALTH8", "$HEALTH8", "$HEALTH7"]],
             ["SCENARIO_INIT_CONTINUE", null]
         ]
     },
     "functions": {
-        "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS": {
+        "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.TARGET_PLAYER"],
-                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.ARGS"],
-                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.TARGET_PLAYER"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK.TARGET_PLAYER"],
                 ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
-                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.SELECTED_VALUE"],
+                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_PLAYERS_CALLBACK.SELECTED_VALUE"],
                 ["SET", "/arkham/scenarioWarOfTheOuterGodsNumberOfPlayers", "$VALUE"],
                 ["LOGF", "{0}{1} set number of players to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
                 ["ACTION_LIST", "War of the Outer Gods Scenario Question 2"]
             ]
         },
-        "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS": {
+        "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.TARGET_PLAYER"],
-                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.ARGS"],
-                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.TARGET_PLAYER"],
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK.TARGET_PLAYER"],
                 ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
-                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.SELECTED_VALUE"],
+                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK.SELECTED_VALUE"],
                 ["SET", "/arkham/scenarioWarOfTheOuterGodsNumberOfGroups", "$VALUE"],
                 ["LOGF", "{0}{1} set number of groups to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
                 ["SCENARIO_INIT_RESUME", "War of the Outer Gods Scenario Init"]

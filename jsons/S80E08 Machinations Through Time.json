@@ -1,0 +1,429 @@
+{
+    "preBuiltDecks": {
+        "Machinations Through Time Scenario": {
+            "label": "Machinations Through Time Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Machinations Through Time", "Side Stories", "Machinations Through Time", "Machinations Through Time Scenario Early Init", "Machinations Through Time Scenario Init"]
+            ]
+        },
+        "Machinations Through Time": {
+            "hideFromSearch": true,
+            "label": "Machinations Through Time",
+            "cards": [
+                {"databaseId": "87001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Machinations Through Time
+                {"databaseId": "87002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Into the Void
+                {"databaseId": "87003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Time Marches On
+                {"databaseId": "87004", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Walking Through Time
+                {"databaseId": "87044", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Ghastly Satyr
+                {"databaseId": "87045", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Hound of Tindalos
+                {"databaseId": "87046", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Many-Angled Thing
+                {"databaseId": "87047", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Tindalos Alpha
+                {"databaseId": "87048", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //A Tear in Time
+                {"databaseId": "87049", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Abducted
+                {"databaseId": "87050", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Broken Space
+                {"databaseId": "87051", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Dimensional Breach
+                {"databaseId": "87052", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //From All Angles
+                {"databaseId": "87053", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Lost in Time
+                {"databaseId": "87054", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Merging Timelines
+                {"databaseId": "87055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Open Portal
+                {"databaseId": "87056", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Temporal Distortion
+                {"databaseId": "87057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Vanishing History
+            ]
+        },
+        "Machinations Through Time - Epic Multiplayer Mode (Past)": { //3x4
+            "hideFromSearch": true,
+            "label": "Machinations Through Time - Epic Multiplayer Mode (Past)",
+            "cards": [
+                {"databaseId": "87005a", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"}, //Tindalos: Maze of Infinite Depths
+                {"databaseId": "87007", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Arkham Gazette
+                {"databaseId": "87008", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "31%"},  //O'Malley's Watch Shop
+                {"databaseId": "87009", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "31%"},  //River Docks (Past)
+                {"databaseId": "87010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Miskatonic University (Past)
+                {"databaseId": "87011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "79%"}   //Childhood Home
+            ]
+        },
+        "Machinations Through Time - Epic Multiplayer Mode (Present)": { //3x4
+            "hideFromSearch": true,
+            "label": "Machinations Through Time - Epic Multiplayer Mode (Present)",
+            "cards": [
+                {"databaseId": "87005a", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"}, //Tindalos: Maze of Infinite Depths
+                {"databaseId": "87016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Arkham Advertiser (Present)
+                {"databaseId": "87017", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "31%"},  //Tick-Tock Club (Present)
+                {"databaseId": "87018", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "31%"},  //River Docks (Present)
+                {"databaseId": "87019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Miskatonic University (Present)
+                {"databaseId": "87020", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "79%"}   //Ye Olde Magick Shoppe
+            ]
+        },
+        "Machinations Through Time - Epic Multiplayer Mode (Future)": { //3x4
+            "hideFromSearch": true,
+            "label": "Machinations Through Time - Epic Multiplayer Mode (Future)",
+            "cards": [
+                {"databaseId": "87005a", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "31%"}, //Tindalos: Maze of Infinite Depths
+                {"databaseId": "87025", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Arkham Advertiser (Future)
+                {"databaseId": "87026", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "31%"},  //Tick-Tock Club (Future)
+                {"databaseId": "87027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "31%"},  //River Docks (Future)
+                {"databaseId": "87028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Miskatonic University (Future)
+                {"databaseId": "87029", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Corrigan Industries
+            ]
+        },
+        "Machinations Through Time - Single Group Mode": { //7x4
+            "hideFromSearch": true,
+            "label": "Machinations Through Time - Single Group Mode",
+            "cards": [
+                {"databaseId": "87005a", "quantity": 1, "loadGroupId": "sharedLocations", "left": "27%", "top": "67%"}, //Tindalos: Realm of Angular Time
+                {"databaseId": "87007", "quantity": 1, "loadGroupId": "sharedLocations", "left": "10%", "top": "7%"},   //Arkham Gazette
+                {"databaseId": "87008", "quantity": 1, "loadGroupId": "sharedLocations", "left": "17%", "top": "31%"},  //O'Malley's Watch Shop
+                {"databaseId": "87009", "quantity": 1, "loadGroupId": "sharedLocations", "left": "3%", "top": "31%"},   //River Docks (Past)
+                {"databaseId": "87010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "10%", "top": "55%"},  //Miskatonic University (Past)
+                {"databaseId": "87011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "10%", "top": "79%"},  //Childhood Home
+                {"databaseId": "87016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "7%"},   //Arkham Advertiser (Present)
+                {"databaseId": "87017", "quantity": 1, "loadGroupId": "sharedLocations", "left": "52%", "top": "31%"},  //Tick-Tock Club (Present)
+                {"databaseId": "87018", "quantity": 1, "loadGroupId": "sharedLocations", "left": "38%", "top": "31%"},  //River Docks (Present)
+                {"databaseId": "87019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "55%"},  //Miskatonic University (Present)
+                {"databaseId": "87020", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "79%"},  //Ye Olde Magick Shoppe
+                {"databaseId": "87025", "quantity": 1, "loadGroupId": "sharedLocations", "left": "80%", "top": "7%"},   //Arkham Advertiser (Future)
+                {"databaseId": "87026", "quantity": 1, "loadGroupId": "sharedLocations", "left": "87%", "top": "31%"},  //Tick-Tock Club (Future)
+                {"databaseId": "87027", "quantity": 1, "loadGroupId": "sharedLocations", "left": "73%", "top": "31%"},  //River Docks (Future)
+                {"databaseId": "87028", "quantity": 1, "loadGroupId": "sharedLocations", "left": "80%", "top": "55%"},  //Miskatonic University (Future)
+                {"databaseId": "87029", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                                //Corrigan Industries
+            ]
+        }
+    },
+    "actionLists": {
+        "Machinations Through Time Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play in Epic Multiplayer Mode (Past).", "Play in Epic Multiplayer Mode (Present).", "Play in Epic Multiplayer Mode (Future).", "Play in Single Group Mode."], "Machinations Through Time Scenario Question 1"]
+        ],
+        "Machinations Through Time Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["SET", "/arkham/scenarioMachinationsThroughTimePast", ["OR", ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"], ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"]]],
+            ["SET", "/arkham/scenarioMachinationsThroughTimePresent", ["OR", ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"], ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"]]],
+            ["SET", "/arkham/scenarioMachinationsThroughTimeFuture", ["OR", ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"], ["EQUAL", "$GAME.arkham.scenarioAnswer1", "D"]]],
+            ["SET", "/arkham/scenarioMachinationsThroughTimeEpicMultiplayerMode", ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "D"]],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "D"],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of players", ["ADD", "$GAME.arkham.numPlayers", 2], 12, 0, "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", ""],
+                ["TRUE"],
+                ["MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "{{$GAME.arkham.numPlayers}}"]
+            ]
+        ],
+        "Machinations Through Time Scenario Init": [
+            ["VAR", "$HEALTH", ["MULTIPLY", "$GAME.arkham.scenarioMachinationsThroughTimeNumberOfPlayers", 6]],
+            ["DO_LOAD_CARDS_SCN", "Machinations Through Time"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_LOAD_CARDS_SCN", "Machinations Through Time - Epic Multiplayer Mode (Past)"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["DO_LOAD_CARDS_SCN", "Machinations Through Time - Epic Multiplayer Mode (Present)"],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Machinations Through Time - Epic Multiplayer Mode (Future)"],
+                    ["DO_SET_SPAWN_LOCATION", "87029", 45, 79] //Corrigan Industries
+                ],
+                ["TRUE"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Machinations Through Time - Single Group Mode"],
+                    ["DO_SET_SPAWN_LOCATION", "87029", 80, 79] //Corrigan Industries
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                [
+                    ["VAR", "$TINDALOS", ["GET_NAMED_MAP_LOCATION", "Tindalos"]],
+                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$TINDALOS.id", false, null]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Tindalos", 2, 7, 2, 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true],
+                ["MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_PAST"]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true],
+                ["MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_PRESENT"]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeFuture", true],
+                ["MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_FUTURE"]
+            ],
+            ["VAR", "$MACHINATION", ["SHUFFLE_LIST", ["LIST", "MACHINATIONS_THROUGH_TIME_MACHINATION_A_BITTER_RIVALRY", "MACHINATIONS_THROUGH_TIME_MACHINATION_REDEEM_A_FORMER_COLLEAGUE", "MACHINATIONS_THROUGH_TIME_MACHINATION_UNEASY_ALLIANCE"]]],
+            ["$MACHINATION.[0]"],
+            ["VAR", "$PLOT", ["SHUFFLE_LIST", ["LIST", "MACHINATIONS_THROUGH_TIME_PLOT_ANOMALIES_IN_SPACETIME", "MACHINATIONS_THROUGH_TIME_PLOT_MOB_TROUBLES", "MACHINATIONS_THROUGH_TIME_PLOT_UNSPEAKABLE_ABOMINATION"]]],
+            ["$PLOT.[0]"],
+            ["VAR", "$DOOM", "$GAME.arkham.numPlayers"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Easy"],
+                ["DECREASE_VAR", "$DOOM", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["INCREASE_VAR", "$DOOM", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["INCREASE_VAR", "$DOOM", 2]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$DOOM", 0],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", "$DOOM"]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.SELECTED_VALUE"],
+                ["SET", "/arkham/scenarioMachinationsThroughTimeNumberOfPlayers", "$VALUE"],
+                ["LOGF", "{0}{1} set number of players to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
+                ["SCENARIO_INIT_RESUME", "Machinations Through Time Scenario Init"]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID": {
+            "args": [],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                    "87037a", //Edwin Bennet: Envious Rival
+                    ["TRUE"],
+                    "87036a"  //Edwin Bennet: Bitter Adversary
+                ]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME": {
+            "args": ["$ENEMY"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                    ["INLINE_IF", ["EQUAL", "$ENEMY", true], "Edwin Bennet: Envious Rival", "Edwin Bennet: Esteemed Colleague"],
+                    ["TRUE"],
+                    ["INLINE_IF", ["EQUAL", "$ENEMY", true], "Edwin Bennet: Bitter Adversary", "Edwin Bennet: Astute Associate"]
+                ]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_FLIP_EDWIN_BENNET": {
+            "args": [],
+            "code": [
+                ["VAR", "$EDWIN_BENNET_ID", ["GET_NAMED_CARD_ID", "Edwin Bennet"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$EDWIN_BENNET_ID", false, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_PAST": {
+            "args": [],
+            "code": [
+                //Place the Nikola Tesla asset at the Past River Docks. Flip this story card over.
+                ["DO_CREATE_CARDS_SCN", "A Noble Legacy (Past)", "87006", 1, "sharedOffMap"],
+                ["DO_SPAWN_AT_LOCATION_SCN", "Nikola Tesla: Renowned Inventor", "87014", "87009", 3, 3], //River Docks (Past)
+                ["VAR", "$LEGACY_ID", ["GET_NAMED_CARD_ID", "A Noble Legacy (Past)"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$LEGACY_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_PRESENT": {
+            "args": [],
+            "code": [
+                //Place the Ezra Graves asset at the Present Arkham Advertiser. Flip this story card over.
+                ["DO_CREATE_CARDS_SCN", "A Noble Legacy (Present)", "87015", 1, "sharedOffMap"],
+                ["DO_SPAWN_AT_LOCATION_SCN", "Ezra Graves: Professor of the Arcane", "87023", "87016", 3, 3], //Arkham Advertiser (Present)
+                ["VAR", "$LEGACY_ID", ["GET_NAMED_CARD_ID", "A Noble Legacy (Present)"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$LEGACY_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_A_NOBLE_LEGACY_FUTURE": {
+            "args": [],
+            "code": [
+                //Set the Dimensional Beam Machine asset aside, out of play. Flip this story card over.
+                ["DO_CREATE_CARDS_SCN", "A Noble Legacy (Future)", "87024", 1, "sharedOffMap"],
+                ["DO_CREATE_CARDS_SCN", "Dimensional Beam Machine", "87032", 1, "sharedNotInPlay"],
+                ["VAR", "$LEGACY_ID", ["GET_NAMED_CARD_ID", "A Noble Legacy (Future)"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$LEGACY_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_MACHINATION_A_BITTER_RIVALRY": {
+            "args": [],
+            "code": [
+                //Follow the instructions for your relevant era(s), below.
+                //Past: Set Thoman Corrigan aside, out of play; he has been abducted. Place Mary Zielinski at Arkham Gazette. Set the Edwin Bennet enemy aside, out of play.
+                //Present and Future: Set Thomas Corrigan and Mary Zielinski aside, out of play; they have been abducted. If you are playing in Epic Multiplayer Mode, set the Edwin Bennet enemy aside, out of play.
+                ["DO_CREATE_CARDS_SCN", "A Bitter Rivalry", "87033", 1, "sharedOffMap"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Physics Student", "87012", 1, "sharedNotInPlay"],
+                        ["DO_SPAWN_AT_LOCATION_SCN", "Mary Zielinski: Chemistry Student", "87013", "87007", 3, 3] //Arkham Gazette
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Preeminent Astrophysicist", "87021", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Distinguished Chemist", "87022", 1, "sharedNotInPlay"]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeFuture", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Cofounder of Corrigan Industries", "87030", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Cofounder of Corrigan Industries", "87031", 1, "sharedNotInPlay"]
+                    ]
+                ],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true],
+                        ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true]
+                    ],
+                    ["DO_CREATE_CARDS_SCN", ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME", true], ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID"], 1, "sharedNotInPlay"]
+                ]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_MACHINATION_REDEEM_A_FORMER_COLLEAGUE": {
+            "args": [],
+            "code": [
+                //Follow the instructions for your relevant era(s), below. Then, flip this story card over.
+                //Past: Set Mary Zielinski aside, out of play; she has been abducted. Place Thomas Corrigan at Childhood Home. If you are playing in Epic Multiplayer Mode, set the Edwin Bennet enemy aside, out of play.
+                //Present: Set Thomas Corrigan and Mary Zielinsky aside, out of play: they have been abducted. Spawn the Edwin Bennet enemy at Miskatonic University.
+                //Future: Set Thomas Corrigan and Mary Zielinski aside, out of play; they have been abducted. If you are playing in Epic Multiplayer Mode, set the Edwin Bennet enemy aside, out of play.
+                ["DO_CREATE_CARDS_SCN", "Redeem a Former Colleague", "87034", 1, "sharedOffMap"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Chemistry Student", "87013", 1, "sharedNotInPlay"],
+                        ["DO_SPAWN_AT_LOCATION_SCN", "Thomas Corrigan: Physics Student", "87012", "87011", 3, 3] //Childhood Home
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Preeminent Astrophysicist", "87021", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Distinguished Chemist", "87022", 1, "sharedNotInPlay"],
+                        ["DO_SPAWN_AT_LOCATION_SCN", ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME", true], ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID"], "87019", 3, 3] //Miskatonic University (Present)
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeFuture", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Cofounder of Corrigan Industries", "87030", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Cofounder of Corrigan Industries", "87031", 1, "sharedNotInPlay"]
+                    ]
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                        ["NOT_EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true]
+                    ],
+                    ["DO_CREATE_CARDS_SCN", ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME", true], ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID"], 1, "sharedNotInPlay"]
+                ],
+                ["VAR", "$MACHINATION_ID", ["GET_NAMED_CARD_ID", "Redeem a Former Colleague"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$MACHINATION_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_MACHINATION_UNEASY_ALLIANCE": {
+            "args": [],
+            "code": [
+                //Follow the instructions for your relevant era(s), below. Then, flip this story card over.
+                //Past: Place Thomas Corrigan at Childhood Home. Place Mary Zielinski at O'Malley's Watch Shop. Place the Edwin Bennet asset at Arkham Gazette with 12 clues on him, then remove 3(inv) clues from him.
+                //Present and Future: Set Thomas Corrigan and Mary Zielinsky aside, out of play: they have been abducted. If you are playing in Epic Multiplayer Mode, set the Edwin Bennet asset aside, out of play.
+                ["DO_CREATE_CARDS_SCN", "Uneasy Alliance", "87035", 1, "sharedOffMap"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true],
+                    [
+                        ["DO_SPAWN_AT_LOCATION_SCN", "Thomas Corrigan: Physics Student", "87012", "87011", 3, 3], //Childhood Home
+                        ["DO_SPAWN_AT_LOCATION_SCN", "Mary Zielinski: Chemistry Student", "87013", "87008", 3, 3], //O'Malley's Watch Shop
+                        ["DO_SPAWN_AT_LOCATION_SCN", ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME", false], ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID"], "87007", 3, 3], //Arkham Gazette
+                        ["MACHINATIONS_THROUGH_TIME_FLIP_EDWIN_BENNET"],
+                        ["VAR", "$CLUES", ["SUBTRACT", 12, ["MULTIPLY", "$GAME.arkham.numPlayers", 3]]],
+                        ["COND",
+                            ["GREATER_THAN", "$CLUES", 0],
+                            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "Edwin Bennet"], "$CLUES", true, null]
+                        ]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Preeminent Astrophysicist", "87021", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Distinguished Chemist", "87022", 1, "sharedNotInPlay"]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeFuture", true],
+                    [
+                        ["DO_CREATE_CARDS_SCN", "Thomas Corrigan: Cofounder of Corrigan Industries", "87030", 1, "sharedNotInPlay"],
+                        ["DO_CREATE_CARDS_SCN", "Mary Zielinski: Cofounder of Corrigan Industries", "87031", 1, "sharedNotInPlay"]
+                    ]
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                        ["NOT_EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePast", true]
+                    ],
+                    [
+                        ["DO_CREATE_CARDS_SCN", ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_NAME", false], ["MACHINATIONS_THROUGH_TIME_EDWIN_BENNET_ID"], 1, "sharedNotInPlay"],
+                        ["MACHINATIONS_THROUGH_TIME_FLIP_EDWIN_BENNET"]
+                    ]
+                ],
+                ["VAR", "$MACHINATION_ID", ["GET_NAMED_CARD_ID", "Uneasy Alliance"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$MACHINATION_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_PLOT_ANOMALIES_IN_SPACETIME": {
+            "args": [],
+            "code": [
+                //Place 1(inv) horror on each Miskatonic University location, as anomalies. If you are playing in Epic Multiplayer Mode, also place 1(inv) horror on the following locations, as anomalies: Arkham Gazette, Arkham Advertiser, O'Malley's Watch Shop, and Tick-Tock Club.
+                //Remove the following enemies from the game: Tyr'thrha, Old Sadie Sheldon, and all 3 copies of Sheldon Gang. Flip this story card over.
+                ["DO_CREATE_CARDS_SCN", "Anomalies in Spacetime", "87038", 1, "sharedOffMap"],
+                ["VAR", "$LOCATIONS", ["LIST", "Miskatonic University"]],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimeEpicMultiplayerMode", true],
+                    ["UPDATE_VAR", "$LOCATIONS", ["CONCAT_LISTS", "$LOCATIONS", ["LIST", "Arkham Gazette", "Arkham Advertiser", "O'Malley's Watch Shop", "Tick-Tock Club"]]]
+                ],
+                ["FOR_EACH_VAL", "$LOCATION", "$LOCATIONS", [
+                    ["VAR", "$SELECTED_CARDS", ["GET_NAMED_CARDS", "$LOCATION"]],
+                    ["COND",
+                        ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                        [
+                            ["VAR", "$HORROR", "$GAME.arkham.numPlayers"],
+                            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                ["DO_PLACE_HORROR_ON_CARD", "$GAME.firstPlayer", "$CARD.id", "$HORROR", true, null]
+                            ]]
+                        ]
+                    ]
+                ]],
+                ["VAR", "$PLOT_ID", ["GET_NAMED_CARD_ID", "Anomalies in Spacetime"]],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$PLOT_ID", true, null]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_PLOT_MOB_TROUBLES": {
+            "args": [],
+            "code": [
+                //Set the Old Sadie Sheldon enemy and all 3 copies of the Sheldon Gang enemy aside, out of play. Remove the Tyr'thrha enemy from the game. You make a deal with Old Sadie Sheldon: each investigator playing the present era gains 2 resources.
+                ["DO_CREATE_CARDS_SCN", "Mob Troubles", "87039", 1, "sharedOffMap"],
+                ["DO_CREATE_CARDS_SCN", "Old Sadie Sheldon: Bootlegging Kingpin", "87040", 1, "sharedNotInPlay"],
+                ["DO_CREATE_CARDS_SCN", "Sheldon Gang", "87041", 3, "sharedNotInPlay"],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioMachinationsThroughTimePresent", true],
+                    [
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["DO_GAIN_RESOURCES", "$PLAYER_I", 2, true, null] //resources are given directly, as this happens after starting resources have been collected
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "MACHINATIONS_THROUGH_TIME_PLOT_UNSPEAKABLE_ABOMINATION": {
+            "args": [],
+            "code": [
+                //Set the Tyr'thrha enemy aside, out of play. Remove the Old Sadie Sheldon enemy and all 3 copies of the Sheldon Gang enemy from the game.
+                ["DO_CREATE_CARDS_SCN", "Unspeakable Abomination", "87042", 1, "sharedOffMap"],
+                ["DO_CREATE_CARDS_SCN", "Tyr'thrha: Arch-Lord of Tindalos", "87043", 1, "sharedNotInPlay"],
+                ["VAR", "$HEALTH", ["MULTIPLY", "$GAME.arkham.scenarioMachinationsThroughTimeNumberOfPlayers", 6]],
+                ["VAR", "$TYRTHRHA_ID", ["GET_NAMED_CARD_ID", "Tyr'thrha"]],
+                ["SET", "/cardById/$TYRTHRHA_ID/sides/A/health", "$HEALTH"],
+                ["SET", "/cardById/$TYRTHRHA_ID/sides/A/healthPerInvestigator", 0],
+                ["SET", "/arkham/finalScenarioMessage", ["FORMAT", "Tyr'thrha's health: {0}.", "$HEALTH"]]
+            ]
+        }
+    }
+}
