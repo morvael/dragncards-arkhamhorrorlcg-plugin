@@ -125,6 +125,9 @@
                             "skipShufflingSharedDeckC": false,                  // if true, disables shuffling the shared deck C at the end of scenario initialization
                             "offMapNotInPlay": false,                           // if true, offMap group is considered "not in play"
                             "ignoreDoomOnInvestigators": false,                 // if true, doom on investigators is not counted for agenda advancement
+                            "ignoreDoomOnPlayerCardsUnlessOneAgenda": false,    // if true, doom on player cards is not counted for agenda advancement unless only one agenda is in play
+                            "placeDoomOnAllAgendas": false,                     // if true, doom is placed on all agendas in step M2
+                            "advanceAllAgendas": false,                         // if true, all advancable agendas are advanced in step M3
                             "finalScenarioMessage": null,                       // text to append to the default text logged after scenario finishes initializing
                             "activeInvestigator": null,                         // name of the player whose turn it is now
                             "playWithEncounterDeckCardRevealed": 0,             // if greater than 0, top card of encounter deck is faceup (A) at all times

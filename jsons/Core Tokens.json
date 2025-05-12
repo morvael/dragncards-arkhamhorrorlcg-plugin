@@ -235,13 +235,24 @@
                 ["COND",
                     ["GREATER_THAN", "$CURRENT_AGENDAS_COUNT", 1],
                     [
-                        ["PROMPT", "$TARGET_PLAYER", "pickAgendaToPlaceDoomOn", "$NUMBER"],
-                        ["VAR", "$INDEX", 0],
-                        ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
-                            ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
-                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
-                            ["INCREASE_VAR", "$INDEX", 1]
-                        ]]
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.placeDoomOnAllAgendas", true],
+                            [
+                                ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                                    ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$CARD.id", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                                ]]
+                            ],
+                            ["TRUE"],
+                            [
+                                ["PROMPT", "$TARGET_PLAYER", "pickAgendaToPlaceDoomOn", "$NUMBER"],
+                                ["VAR", "$INDEX", 0],
+                                ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                                    ["VAR", "$LETTER", ["SUBSTRING", "123456789", "$INDEX", 1]],
+                                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$CARD.currentFace.name}}.", "{{$LETTER}}", ["LIST", "DO_PLACE_DOOM_ON_SPECIFIC_AGENDA_STR", "{{$TARGET_PLAYER}}", "{{$CARD.id}}", "{{$NUMBER}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]],
+                                    ["INCREASE_VAR", "$INDEX", 1]
+                                ]]
+                            ]
+                        ]
                     ],
                     ["EQUAL", "$CURRENT_AGENDAS_COUNT", 1],
                     ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$CURRENT_AGENDAS.[0].id", "$NUMBER", "$LOG_EVENT", "$ACTOR_PLAYER"]
@@ -444,8 +455,8 @@
             ]
         },
         "askToPlaceDoomOnCurrentAgenda": {
-            "args": [],
-            "message": "You should now place 1 doom on the current agenda.",
+            "args": ["$MESSAGE"],
+            "message": "You should now place 1 doom on {{$MESSAGE}}.",
             "options": [
                 {
                     "label": "Yes, proceed (follow the rules).",

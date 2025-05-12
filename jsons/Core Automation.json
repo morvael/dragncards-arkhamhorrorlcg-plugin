@@ -541,38 +541,31 @@
                 ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$CURRENT_AGENDAS"], 0],
-                    ["PROMPT", "$PLAYER_N", "askToPlaceDoomOnCurrentAgenda"]
+                    ["PROMPT", "$PLAYER_N", "askToPlaceDoomOnCurrentAgenda", ["INLINE_IF", ["EQUAL", "$GAME.arkham.advanceAllAgendas", true], "current agendas", "the current agenda"]]
                 ]
             ]
         },
         "DO_STEP_M3": {
             "args": [],
             "code": [
-                ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
+                ["VAR", "$ADVANCABLE_AGENDAS", ["GET_ADVANCABLE_AGENDAS"]],
+                ["VAR", "$ADVANCABLE_AGENDAS_COUNT", ["LENGTH", "$ADVANCABLE_AGENDAS"]],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$CURRENT_AGENDAS"], 0],
+                    ["GREATER_THAN", "$ADVANCABLE_AGENDAS_COUNT", 0],
                     [
                         ["VAR", "$MESSAGE", "└──"],
-                        ["VAR", "$ADVANCABLE_AGENDAS", ["LIST"]],
-                        ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                        ["FOR_EACH_VAL", "$CARD", "$ADVANCABLE_AGENDAS", [
                             ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CARD.id"]],
                             ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED", "$CARD.id"]],
-                            ["COND",
-                                ["AND",
-                                    ["GREATER_THAN", "$DOOM_REQUIRED", 0],
-                                    ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
-                                ],
-                                [
-                                    ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}} {{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD.currentFace.name}} to advance was accrued."],
-                                    ["UPDATE_VAR", "$ADVANCABLE_AGENDAS", ["APPEND", "$ADVANCABLE_AGENDAS", "$CARD"]]
-                                ]
-                            ]
+                            ["UPDATE_VAR", "$MESSAGE", "{{$MESSAGE}} {{$DOOM_ACCRUED}} of {{$DOOM_REQUIRED}} doom required by {{$CARD.currentFace.name}} to advance was accrued."]
                         ]],
-                        ["VAR", "$ADVANCABLE_AGENDAS_COUNT", ["LENGTH", "$ADVANCABLE_AGENDAS"]],
+                        ["LOG", "$MESSAGE"],
                         ["COND",
-                            ["GREATER_THAN", "$ADVANCABLE_AGENDAS_COUNT", 1],
+                            ["AND",
+                                ["GREATER_THAN", "$ADVANCABLE_AGENDAS_COUNT", 1],
+                                ["EQUAL", "$GAME.arkham.advanceAllAgendas", false]
+                            ],
                             [
-                                ["LOG", "$MESSAGE"],
                                 ["PROMPT", "$PLAYER_N", "pickAgendaToAdvance"],
                                 ["VAR", "$INDEX", 0],
                                 ["FOR_EACH_VAL", "$CARD", "$ADVANCABLE_AGENDAS", [
@@ -582,11 +575,8 @@
                                 ]],
                                 ["PROMPT_ADD_OPTION", "$PLAYER_N", "Cancel.", "X"]
                             ],
-                            ["EQUAL", "$ADVANCABLE_AGENDAS_COUNT", 1],
-                            [
-                                ["LOG", "$MESSAGE"],
-                                ["DO_ADVANCE_STORY", "$PLAYER_N", "$ADVANCABLE_AGENDAS.[0].groupId", true, "$PLAYER_N"]
-                            ]
+                            ["TRUE"],
+                            ["DO_ADVANCE_STORY", "$PLAYER_N", "$ADVANCABLE_AGENDAS.[0].groupId", true, "$PLAYER_N"]
                         ]
                     ]
                 ]

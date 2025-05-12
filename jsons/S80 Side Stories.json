@@ -453,6 +453,68 @@
                 {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
-        }
+        },
+        "War of the Outer Gods Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "War of the Outer Gods Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "War of the Outer Gods Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "War of the Outer Gods Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "War of the Outer Gods Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "War of the Outer Gods Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "War of the Outer Gods Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "War of the Outer Gods Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }        
     }
 }

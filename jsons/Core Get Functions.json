@@ -96,6 +96,32 @@
                 ["SORT_OBJ_LIST", "$SELECTED_CARDS", "$CARD", "$CARD.sortOrder"]
             ]
         },
+        "GET_ADVANCABLE_AGENDAS": {
+            "args": [],
+            "code": [
+                ["VAR", "$CURRENT_AGENDAS", ["GET_CURRENT_AGENDAS"]],
+                ["VAR", "$ADVANCABLE_AGENDAS", ["LIST"]],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$CURRENT_AGENDAS"], 0],
+                    [
+                        ["FOR_EACH_VAL", "$CARD", "$CURRENT_AGENDAS", [
+                            ["VAR", "$DOOM_REQUIRED", ["GET_CARD_DOOM_REQUIREMENT", "$CARD.id"]],
+                            ["VAR", "$DOOM_ACCRUED", ["GET_DOOM_ACCRUED", "$CARD.id"]],
+                            ["COND",
+                                ["AND",
+                                    ["GREATER_THAN", "$DOOM_REQUIRED", 0],
+                                    ["GREATER_EQUAL", "$DOOM_ACCRUED", "$DOOM_REQUIRED"]
+                                ],
+                                [
+                                    ["UPDATE_VAR", "$ADVANCABLE_AGENDAS", ["APPEND", "$ADVANCABLE_AGENDAS", "$CARD"]]
+                                ]
+                            ]
+                        ]]
+                    ]
+                ],
+                "$ADVANCABLE_AGENDAS"
+            ]
+        },
         "GET_CARD_BY_DATABASE_ID": {
             "_comment": "Returns a card given databaseId, or null.",
             "args": ["$DATABASE_ID"],
@@ -452,6 +478,17 @@
                     ["INCREASE_VAR", "$HALF_VALUE", 1]
                 ],
                 "$HALF_VALUE"
+            ]
+        },
+        "DIVIDE_ROUNDING_UP": {
+            "args": ["$VALUE", "$DIVISOR"],
+            "code": [
+                ["VAR", "$DIVIDED_VALUE", ["TO_INT", ["DIVIDE", "$VALUE", "$DIVISOR"]]],
+                ["COND",
+                    ["LESS_THAN", ["MULTIPLY", "$DIVIDED_VALUE", "$DIVISOR"], "$VALUE"],
+                    ["INCREASE_VAR", "$DIVIDED_VALUE", 1]
+                ],
+                "$DIVIDED_VALUE"
             ]
         },
         "FILTER_UNIQUE_CARDS": {

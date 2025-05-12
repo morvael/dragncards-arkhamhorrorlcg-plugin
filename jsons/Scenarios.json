@@ -323,7 +323,8 @@
                     {"label": "id:theEternalSlumber", "deckListId": "The Eternal Slumber Scenario"},
                     {"label": "id:theNightsUsurper", "deckListId": "The Night's Usurper Scenario"},
                     {"label": "id:murderAtTheExcelsiorHotel", "deckListId": "Murder at the Excelsior Hotel Scenario"},
-                    {"label": "id:theBlobThatAteEverything", "deckListId": "The Blob That Ate Everything Scenario"}
+                    {"label": "id:theBlobThatAteEverything", "deckListId": "The Blob That Ate Everything Scenario"},
+                    {"label": "id:warOfTheOuterGods", "deckListId": "War of the Outer Gods Scenario"}
                 ]
             },
             {
@@ -926,6 +927,9 @@
         },
         "theBlobThatAteEverything": {
             "English": "The Blob That Ate Everything"
+        },
+        "warOfTheOuterGods": {
+            "English": "War of the Outer Gods"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

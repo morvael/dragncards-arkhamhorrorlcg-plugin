@@ -1,0 +1,159 @@
+{
+    "preBuiltDecks": {
+        "War of the Outer Gods Scenario": {
+            "label": "War of the Outer Gods Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "War of the Outer Gods", "Side Stories", "War of the Outer Gods", "War of the Outer Gods Scenario Early Init", "War of the Outer Gods Scenario Init"]
+            ]
+        },
+        "War of the Outer Gods": {
+            "hideFromSearch": true,
+            "label": "War of the Outer Gods",
+            "cards": [
+                {"databaseId": "86001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //War of the Outer Gods
+                {"databaseId": "86011", "quantity": 1, "loadGroupId": "sharedActStory"},                                //War of the Outer Gods
+                {"databaseId": "86012", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Close the Portal
+                {"databaseId": "86013", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Close All Portals
+                {"databaseId": "86005", "quantity": 1, "loadGroupId": "sharedActStoryB"},                               //The Incubation of the Egg
+                {"databaseId": "86006", "quantity": 1, "loadGroupId": "sharedActStoryB"},                               //The Incubation Progresses
+                {"databaseId": "86007", "quantity": 1, "loadGroupId": "sharedActStoryB"},                               //The Incubation Nears Completion
+                {"databaseId": "86002", "quantity": 1, "loadGroupId": "sharedActStoryC"},                               //The Summoning of Silenus
+                {"databaseId": "86003", "quantity": 1, "loadGroupId": "sharedActStoryC"},                               //The Summoning Progresses
+                {"databaseId": "86004", "quantity": 1, "loadGroupId": "sharedActStoryC"},                               //The Summoning Nears Completion
+                {"databaseId": "86008", "quantity": 1, "loadGroupId": "sharedActStoryD"},                               //The Proliferation of the Swarm
+                {"databaseId": "86009", "quantity": 1, "loadGroupId": "sharedActStoryD"},                               //The Proliferation Progresses
+                {"databaseId": "86010", "quantity": 1, "loadGroupId": "sharedActStoryD"},                               //The Proliferation Nears Completion
+                {"databaseId": "86019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "5%"},   //Chateau Ramezay
+                {"databaseId": "86020", "quantity": 1, "loadGroupId": "sharedLocations", "left": "55%", "top": "5%"},   //Shrine of Magh'an Ark'at
+                {"databaseId": "86018", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Streets of Montréal
+                {"databaseId": "86014", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Arkham
+                {"databaseId": "86021", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "62%"},  //Streets of New York City
+                {"databaseId": "86015", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "62%"},  //Streets of Providence
+                {"databaseId": "86022", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "71%"},   //The Burning Pit
+                {"databaseId": "86016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "71%"},  //Athenaeum of the Empty Sky
+                {"databaseId": "86023", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "81%"},  //The Penthouse
+                {"databaseId": "86017", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "81%"},  //The Arcade
+                {"databaseId": "86024", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Hub Dimension: Gateway to Destruction
+                {"databaseId": "86040", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Egg Hatches
+                {"databaseId": "86034", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Silenus Descends
+                {"databaseId": "86046", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Ezel-zen-rezl Emerges
+                {"databaseId": "86051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Cloak of the Outer Realm: Interwoven Distortion
+                {"databaseId": "86052", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Pocket Portal: Doorway to Another World
+                {"databaseId": "86053", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Dreaded End: Gift of the Void
+                {"databaseId": "86054", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Blade of Ark'at: Shellblade Tribute
+                {"databaseId": "86055", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Enchanted Skull: Mask of the Burning Pit
+                {"databaseId": "86041", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Magh'an Ark'at: The Child of Paradise
+                {"databaseId": "86042", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Vile Broodmaster: Grotesque Abomination
+                {"databaseId": "86043", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Horrific Shoggoth
+                {"databaseId": "86044", "quantity": 2, "loadGroupId": "sharedPileC"},                                   //Bringer of Paradise
+                {"databaseId": "86045", "quantity": 3, "loadGroupId": "sharedPileC"},                                   //Hunt Down
+                {"databaseId": "86035", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Silenus: The Empty Sky
+                {"databaseId": "86036", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //The Inescapable Maw: Servant of Silenus
+                {"databaseId": "86037", "quantity": 1, "loadGroupId": "sharedPileD"},                                   //Hune-Stitched Herald
+                {"databaseId": "86038", "quantity": 2, "loadGroupId": "sharedPileD"},                                   //Ethereal Entity
+                {"databaseId": "86039", "quantity": 3, "loadGroupId": "sharedPileD"},                                   //Inevitable End
+                {"databaseId": "86047", "quantity": 1, "loadGroupId": "sharedPileE"},                                   //Ezel-zen-rezl: The Lord of Swarms
+                {"databaseId": "86048", "quantity": 1, "loadGroupId": "sharedPileE"},                                   //Droning Horde
+                {"databaseId": "86049", "quantity": 4, "loadGroupId": "sharedPileE"},                                   //Trylogog
+                {"databaseId": "86050", "quantity": 2, "loadGroupId": "sharedPileE"},                                   //Transmogrify
+                {"databaseId": "86025", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Nihilistic Stargazer
+                {"databaseId": "86026", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Death and Decay
+                {"databaseId": "86027", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Zealot of Paradise
+                {"databaseId": "86028", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Predator's Call
+                {"databaseId": "86029", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Disciple of the Swarm
+                {"databaseId": "86030", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Feast of Locusts
+                {"databaseId": "86031", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hellfire
+                {"databaseId": "86032", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ravages of War
+                {"databaseId": "86033", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //While They Sleep
+                {"databaseId": "86038", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Ethereal Entity
+                {"databaseId": "86049", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Trylogog
+                {"databaseId": "86044", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Bringer of Paradise
+            ]
+        }
+    },
+    "actionLists": {
+        "War of the Outer Gods Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Play in Epic Multiplayer Mode.", "Play in Single Group Mode."], "War of the Outer Gods Scenario Question 1"]
+        ],
+        "War of the Outer Gods Scenario Question 1": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of players", ["ADD", "$GAME.arkham.numPlayers", 1], 1000, 0, "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS", "$GAME.firstPlayer", "", ""],
+                ["TRUE"],
+                ["WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "{{$GAME.arkham.numPlayers}}"]
+            ]
+        ],
+        "War of the Outer Gods Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of groups", ["DIVIDE_ROUNDING_UP", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 4], "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 0, "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS", "$GAME.firstPlayer", "", ""],
+                ["TRUE"],
+                ["WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS", "$GAME.firstPlayer", "", "└── ", "$GAME.firstPlayer", "1"]
+            ]
+        ],
+        "War of the Outer Gods Scenario Init": [
+            ["VAR", "$DOOM", ["MULTIPLY", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfGroups", 6]],
+            ["VAR", "$HEALTH8", ["MULTIPLY", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 8]],
+            ["VAR", "$HEALTH7", ["MULTIPLY", "$GAME.arkham.scenarioWarOfTheOuterGodsNumberOfPlayers", 7]],
+            ["DO_LOAD_CARDS_SCN", "War of the Outer Gods"],
+            ["DO_SET_SPAWN_LOCATION", "86024", 7, 33], //Hub Dimension: Gateway to Destruction
+            ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.sides.A.type", "Agenda"],
+                ["EQUAL", "$CARD.sides.A.doom", -2]
+            ]]],
+            ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                ["SET", "/cardById/$CARD.id/sides/A/doom", "$DOOM"]
+            ]],
+            ["VAR", "$MAGHAN_ARKAT_ID", ["GET_NAMED_CARD_ID", "Magh'an Ark'at"]],
+            ["SET", "/cardById/$MAGHAN_ARKAT_ID/sides/A/health", "$HEALTH8"],
+            ["SET", "/cardById/$MAGHAN_ARKAT_ID/sides/A/healthPerInvestigator", 0],
+            ["VAR", "$SILENUS_ID", ["GET_NAMED_CARD_ID", "Silenus"]],
+            ["SET", "/cardById/$SILENUS_ID/sides/A/health", "$HEALTH8"],
+            ["SET", "/cardById/$SILENUS_ID/sides/A/healthPerInvestigator", 0],
+            ["VAR", "$EZEL_ZEN_REZL_ID", ["GET_NAMED_CARD_ID", "Ezel-zen-rezl"]],
+            ["SET", "/cardById/$EZEL_ZEN_REZL_ID/sides/A/health", "$HEALTH7"],
+            ["SET", "/cardById/$EZEL_ZEN_REZL_ID/sides/A/healthPerInvestigator", 0],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Arkham", 5, 3, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Disciple of the Swarm", "The Burning Pit", 3, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Nihilistic Stargazer", "Athenaeum of the Empty Sky", -3, 3, 0],
+            ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "Zealot of Paradise", "Shrine of Magh'an Ark'at", 3, 3, 0],
+            ["SET", "/arkham/ignoreDoomOnPlayerCardsUnlessOneAgenda", true],
+            ["SET", "/arkham/placeDoomOnAllAgendas", true],
+            ["SET", "/arkham/advanceAllAgendas", true],            
+            ["SET", "/arkham/finalScenarioMessage", ["FORMAT", "Children of Paradise cards are in Pile C, Death of Stars cards are in Pile D, Swarm of Assimilation cards are in Pile E. Doom thresholds: {0}. Magh'an Ark'at's health: {1}. Silenus' health: {2}. Ezel-zen-rezl's health: {3}. The game will place doom on and advance all agendas, see “Faction Agendas.”", "$DOOM", "$HEALTH8", "$HEALTH8", "$HEALTH7"]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.TARGET_PLAYER"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_PLAYERS.SELECTED_VALUE"],
+                ["SET", "/arkham/scenarioWarOfTheOuterGodsNumberOfPlayers", "$VALUE"],
+                ["LOGF", "{0}{1} set number of players to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
+                ["ACTION_LIST", "War of the Outer Gods Scenario Question 2"]
+            ]
+        },
+        "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.TARGET_PLAYER"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "WAR_OF_THE_OUTER_GODS_GROUPS_CALLBACK_GROUPS.SELECTED_VALUE"],
+                ["SET", "/arkham/scenarioWarOfTheOuterGodsNumberOfGroups", "$VALUE"],
+                ["LOGF", "{0}{1} set number of groups to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
+                ["SCENARIO_INIT_RESUME", "War of the Outer Gods Scenario Init"]
+            ]
+        }
+    }
+}

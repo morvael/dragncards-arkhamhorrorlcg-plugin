@@ -279,6 +279,23 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "GET_DOOM_ACCRUED.TARGET_CARD_ID"]],
                 ["VAR", "$DOOM", 0],
                 ["VAR", "$SELECTED_CARDS", ["GET_ALL_CARDS_IN_PLAY"]],
+                ["VAR", "$AGENDAS_IN_PLAY", 0],
+                ["VAR", "$IGNORE_DOOM_ON_PLAYER_CARDS", false],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.ignoreDoomOnPlayerCardsUnlessOneAgenda", true],
+                    [
+                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                            ["COND",
+                                ["EQUAL", "$CARD.currentFace.type", "Agenda"],
+                                ["INCREASE_VAR", "$AGENDAS_IN_PLAY", 1]
+                            ]
+                        ]],
+                        ["COND",
+                            ["GREATER_THAN", "$AGENDAS_IN_PLAY", 1],
+                            ["UPDATE_VAR", "$IGNORE_DOOM_ON_PLAYER_CARDS", true]
+                        ]
+                    ]
+                ],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["COND",
                         ["AND",
@@ -289,6 +306,10 @@
                             ["OR",
                                 ["EQUAL", "$GAME.arkham.ignoreDoomOnInvestigators", false],
                                 ["NOT_EQUAL", "$CARD.currentFace.type", "Investigator"]
+                            ],
+                            ["OR",
+                                ["EQUAL", "$IGNORE_DOOM_ON_PLAYER_CARDS", false],
+                                ["EQUAL", "$CARD.cardOwner", "shared"]
                             ]
                         ],
                         ["INCREASE_VAR", "$DOOM", "$CARD.tokens.doom"]
@@ -510,6 +531,17 @@
                             ["MOVE_CARD", "$TOP_CARD_ID", "$TARGET_GROUP_ID", -1]
                         ],
                         ["SET", "/cardById/$TOP_CARD_ID/currentSide", "A"]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.advanceAllAgendas", true],
+                    [
+                        ["VAR", "$ADVANCABLE_AGENDAS", ["GET_ADVANCABLE_AGENDAS"]],
+                        ["VAR", "$ADVANCABLE_AGENDAS_COUNT", ["LENGTH", "$ADVANCABLE_AGENDAS"]],
+                        ["COND",
+                            ["GREATER_THAN", "$ADVANCABLE_AGENDAS_COUNT", 0],
+                            ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "$ADVANCABLE_AGENDAS.[0].groupId", "$LOG_EVENT", "$ACTOR_PLAYER"]
+                        ]
                     ]
                 ]
             ]
