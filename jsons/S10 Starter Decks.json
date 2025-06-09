@@ -159,7 +159,7 @@
                             ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                                 ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Trick."], null],
                                 "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.10079",
-                                "Target between {0} and {1} different Trick cards to attach them facedown to Bewitching.",
+                                "Select between {0} and {1} different Trick cards to attach them facedown to Bewitching.",
                                 0, 3, true, "BEWITCHING_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     }

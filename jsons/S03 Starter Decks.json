@@ -241,7 +241,7 @@
                             ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
                                 ["GET_FILTERED_CARDS", "$HAND_GROUP_ID", null, ["LIST", "Event"], null, null, ["LIST", "The Painted World"]],
                                 null,
-                                "Target between {0} and {1} events to place beneath Sefina Rousseau.",
+                                "Select between {0} and {1} events to place beneath Sefina Rousseau.",
                                 0, 5, false, "SEFINA_ROUSSEAU_SELECTION_CALLBACK_1", "$THIS.id"]
                         ]
                     }
@@ -314,7 +314,7 @@
                             ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                                 ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, ["LIST", "Event"], null, ["LIST", "Tactic.", "Supply."], null],
                                 "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.03264",
-                                "Target between {0} and {1} different Tactic and/or Supply events to attach them facedown to Stick to the Plan.",
+                                "Select between {0} and {1} different Tactic and/or Supply events to attach them facedown to Stick to the Plan.",
                                 0, 3, true, "STICK_TO_THE_PLAN_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     }
@@ -394,7 +394,7 @@
                         ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
                             "$HAND_CARDS",
                             null,
-                            "Target {0} excess card{0:S} to discard from hand.",
+                            "Select {0} excess card{0:S} to discard from hand.",
                             "$CARDS_TO_DISCARD", "$CARDS_TO_DISCARD", false, "SEFINA_ROUSSEAU_SELECTION_CALLBACK_2", "$SOURCE_CARD_ID"]
                     ],
                     ["TRUE"],

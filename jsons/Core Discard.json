@@ -470,15 +470,16 @@
             ]
         },
         "DISCARD_EXCESS_CARDS": {
-            "args": ["$TARGET_PLAYER", "$CARDS_TO_DISCARD"],
+            "args": ["$TARGET_PLAYER", "$CARDS_TO_DISCARD", "$SELECTED_CARDS"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DISCARD_EXCESS_CARDS.TARGET_PLAYER"],
                 ["VALIDATE_GT0", "$CARDS_TO_DISCARD", "DISCARD_EXCESS_CARDS.CARDS_TO_DISCARD"],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], "$TARGET_PLAYER"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
-                ["DO_FLOG", "{0:P} discards {1} of {2} excess card{2:S} from hand.", ["LIST", "$TARGET_PLAYER", ["LENGTH", "$SELECTED_CARDS"], "$CARDS_TO_DISCARD"]],
+                ["LOGF", "{0} discards {1:INT} of {2} excess card{2:S} from hand.", "$TARGET_PLAYER", "$SELECTED_CARDS", "$CARDS_TO_DISCARD"],
                 ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
+                    ["AND",
+                        ["NOT_EQUAL", "$SELECTED_CARDS", null],
+                        ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
+                    ],
                     [
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DO_DISCARD_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
@@ -604,20 +605,23 @@
         },
         "askToDiscardExcessCards": {
             "args": ["$CARDS_TO_DISCARD"],
-            "message": "You should discard {{$CARDS_TO_DISCARD}} excess card(s) from hand. Target cards to discard.",
+            "message": "You should discard {{$CARDS_TO_DISCARD}} excess card(s) from hand. Select cards to discard.",
+            "input": {
+                "type": "selectCards"
+            },
             "options": [
                 {
-                    "label": "Yes, discard targeted cards (follow the rules).",
+                    "label": "Yes, discard selected cards (follow the rules).",
                     "hotkey": "Y",
                     "code": [
-                        ["DISCARD_EXCESS_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD"]
+                        ["DISCARD_EXCESS_CARDS", "$PLAYER_N", "$CARDS_TO_DISCARD", ["GET_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$PLAYER_N"], "$PROMPT_INPUT"]]
                     ]
                 },
                 {
                     "label": "No, skip that (ignore the rules).",
                     "hotkey": "N",
                     "code": [
-                        ["DO_FLOG", "{0:P} skips discarding {1} excess card{1:S} from hand.", ["LIST", "$PLAYER_N", "$CARDS_TO_DISCARD"]],
+                        ["LOGF", "{0} skips discarding {1} excess card{1:S} from hand.", "$PLAYER_N", "$CARDS_TO_DISCARD"],
                         ["DO_CHECK_HAND_SIZE", ["GET_NEXT_ACTIVE_PLAYER", "$PLAYER_N"]]
                     ]
                 }

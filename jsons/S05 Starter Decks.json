@@ -225,7 +225,7 @@
                             ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                                 ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, ["LIST", "Event"], null, ["LIST", "Insight."], null],
                                 "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.05002",
-                                "Target {0} Insight events to shuffle them into your hunch deck.",
+                                "Select {0} Insight events to shuffle them into your hunch deck.",
                                 10, 10, false, "JOE_DIAMOND_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     },

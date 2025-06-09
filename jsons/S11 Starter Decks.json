@@ -303,7 +303,7 @@
                             ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                                 ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Spell."], null],
                                 "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.11080",
-                                "Target your branded spell to play it (paying its cost).",
+                                "Select your branded spell to play it (paying its cost).",
                                 0, 1, false, "ELDRITCH_BRAND_SELECTION_CALLBACK", "$THIS.id"]
                         ]
                     }

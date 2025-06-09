@@ -294,7 +294,7 @@
                 ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                     ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Tactic.", "Supply."], null],
                     null,
-                    "Target between {0} and {1} Tactic and/or Supply cards to begin this scenario with them as additional cards in your opening hand.",
+                    "Select between {0} and {1} Tactic and/or Supply cards to begin this scenario with them as additional cards in your opening hand.",
                     0, 2, false, "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK", null]
             ]
         },

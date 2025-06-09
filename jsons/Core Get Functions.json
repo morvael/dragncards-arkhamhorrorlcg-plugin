@@ -284,6 +284,34 @@
                 ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
             ]
         },
+        //Converts a selectCards prompt $PROMPT_INPUT (list of card ids) into a list of cards that are in given group and selected.
+        "GET_SELECTED_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID", "$CARD_IDS"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_SELECTED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["AND",
+                        ["NOT_EQUAL", "$CARD_IDS", null],
+                        ["EQUAL", ["IN_LIST", "$CARD_IDS", "$CARD.id"], true]
+                    ]
+                ]]
+            ]
+        },
+        //Converts a selectCards prompt $PROMPT_INPUT (list of card ids) into a list of cards that are in given group and not selected.
+        "GET_NOT_SELECTED_CARDS_IN_GROUP": {
+            "args": ["$TARGET_GROUP_ID", "$CARD_IDS"],
+            "code": [
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NOT_SELECTED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
+                    ["OR",
+                        ["EQUAL", "$CARD_IDS", null],
+                        ["NOT_EQUAL", ["IN_LIST", "$CARD_IDS", "$CARD.id"], true]
+                    ]
+                ]]
+            ]
+        },
         //Returns list of cards in given group targeted by given player.
         "GET_TARGETED_CARDS_IN_GROUP": {
             "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
@@ -534,6 +562,23 @@
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "10005"],  //Flux Stabilizer: Inactive
                     ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                ]
+            ]
+        },
+        "CARD_IDS_TO_CARDS": {
+            "args": ["$CARD_IDS"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$CARD_IDS", null],
+                    null,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$CARDS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD_ID", "$CARD_IDS", [
+                            ["UPDATE_VAR", "$CARDS", ["APPEND", "$CARDS", "$GAME.cardById.{{$CARD_ID}}"]]
+                        ]],
+                        "$CARDS"
+                    ]
                 ]
             ]
         }

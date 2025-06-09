@@ -1407,24 +1407,22 @@
             ]
         },
         "DRAW_MULLIGAN_HAND": {
-            "args": ["$DO_MULLIGAN"],
+            "args": ["$PLAYER_I", "$SELECTED_CARDS"],
             "code": [
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$PLAYER_N"], "$PLAYER_N"]],
-                ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$PLAYER_N"],
                 ["COND",
                     ["AND",
-                        ["EQUAL", "$DO_MULLIGAN", true],
+                        ["NOT_EQUAL", "$SELECTED_CARDS", null],
                         ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0]
                     ],
                     [
-                        ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "take a mulligan.", "takes a mulligan."],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_N", ["GET_CONTROLLER_DECK", "$PLAYER_N"], ["LENGTH", "$SELECTED_CARDS"], true, true, null],
-                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_N", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_N"], true, null]
+                        ["LOGF", "{0} takes a mulligan.", "$PLAYER_I"],
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], ["LENGTH", "$SELECTED_CARDS"], true, true, null],
+                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_I", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null]
                     ],
                     ["TRUE"],
-                    ["DO_LOG", true, "$PLAYER_N", "$PLAYER_N", "do not take a mulligan.", "does not take a mulligan."]
+                    ["LOGF", "{0} does not take a mulligan.", "$PLAYER_I"]
                 ],
-                ["OPENING_HAND_FINISHED", "$PLAYER_N"]
+                ["OPENING_HAND_FINISHED", "$PLAYER_I"]
             ]
         },
         "OPENING_HAND_FINISHED": {
@@ -1701,20 +1699,23 @@
         },
         "decideAboutMulligan": {
             "args": [],
-            "message": "Do you want to take a mulligan? Target cards in hand to mulligan.",
+            "message": "Do you want to take a mulligan? Select cards in hand to mulligan.",
+            "input": {
+                "type": "selectCards"
+            },
             "options": [
                 {
-                    "label": "Yes, mulligan targeted cards.",
+                    "label": "Yes, mulligan selected cards.",
                     "hotkey": "Y",
                     "code": [
-                        ["DRAW_MULLIGAN_HAND", true]
+                        ["DRAW_MULLIGAN_HAND", "$PLAYER_N", ["GET_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_HAND", "$PLAYER_N"], "$PROMPT_INPUT"]]
                     ]
                 },
                 {
                     "label": "No.",
                     "hotkey": "N",
                     "code": [
-                        ["DRAW_MULLIGAN_HAND", false]
+                        ["DRAW_MULLIGAN_HAND", "$PLAYER_N", null]
                     ]
                 }
             ]
