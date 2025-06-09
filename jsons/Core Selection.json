@@ -100,7 +100,7 @@
                                 ["IN_LIST", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"],
                                 [
                                     ["UPDATE_VAR", "$TARGETED_CARDS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"]],
-                                    ["SET", "/cardById/$CARD.id/targeting/$TARGET_PLAYER", true]
+                                    ["SET", "/cardById/$CARD.id/targeting/$TARGET_PLAYER", true] //TODO - https://github.com/seastan/dragncards/issues/139
                                 ]
                             ]
                         ]],
