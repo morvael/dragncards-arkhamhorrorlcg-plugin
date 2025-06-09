@@ -226,7 +226,7 @@
                     ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
                     ["ACTION_LIST", "$CONTINUE_ACTION"],
                     ["TRUE"],
-                    ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$NEXT_PLAYER"]
+                    ["THE_FORGOTTEN_AGE_SHOW_BODY_CHOICE", "$NEXT_PLAYER", "$CONTINUE_ACTION"]
                 ]
             ]
         }
