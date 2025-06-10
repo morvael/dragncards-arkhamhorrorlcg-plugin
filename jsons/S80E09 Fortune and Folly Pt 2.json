@@ -1,0 +1,284 @@
+{
+    "preBuiltDecks": {
+        "Fortune and Folly Pt 2 Scenario": {
+            "label": "Fortune and Folly Pt 2 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Fortune and Folly", "Side Stories", "Fortune and Folly Pt 2", "Fortune and Folly Pt 2 Scenario Early Init", "Fortune and Folly Pt 2 Scenario Init"]
+            ]
+        },
+        "Fortune and Folly Pt 2": {
+            "hideFromSearch": true,
+            "label": "Fortune and Folly Pt 2",
+            "cards": [
+                {"databaseId": "88001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Fortune and Folly
+                {"databaseId": "88003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Opening Hand
+                {"databaseId": "88004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //The Turn
+                {"databaseId": "88005", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //All Bets Down
+                {"databaseId": "88007", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Take
+                {"databaseId": "88008", "quantity": 1, "loadGroupId": "sharedActStory"},            //The Exit
+                {"databaseId": "88002", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //The House Always Watches
+                {"databaseId": "88006", "quantity": 1, "loadGroupId": "sharedNotInPlay"},           //Casing the Joint
+                {"databaseId": "88046a", "quantity": 1, "loadGroupId": "sharedPileA"},              //Fortune's Shield
+                {"databaseId": "88046b", "quantity": 1, "loadGroupId": "sharedPileA"},              //Fortune's Shield
+                {"databaseId": "88047a", "quantity": 1, "loadGroupId": "sharedPileA"},              //Fortune's Dagger
+                {"databaseId": "88047b", "quantity": 1, "loadGroupId": "sharedPileA"},              //Fortune's Dagger
+                {"databaseId": "88048", "quantity": 1, "loadGroupId": "sharedPileB"},               //Dimensional Shambler: Hunter from Beyond
+                {"databaseId": "88049a", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Duplicator
+                {"databaseId": "88049b", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Duplicator
+                {"databaseId": "88050a", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Displacer
+                {"databaseId": "88050b", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Displacer
+                {"databaseId": "88051a", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Hypnosis
+                {"databaseId": "88051b", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Hypnosis
+                {"databaseId": "88051c", "quantity": 1, "loadGroupId": "sharedPileB"},              //Dimensional Hypnosis
+                {"databaseId": "88052a", "quantity": 1, "loadGroupId": "sharedPileB"},              //Grip of the Beyond
+                {"databaseId": "88052b", "quantity": 1, "loadGroupId": "sharedPileB"},              //Grip of the Beyond
+                {"databaseId": "88052c", "quantity": 1, "loadGroupId": "sharedPileB"},              //Grip of the Beyond
+                {"databaseId": "88053a", "quantity": 1, "loadGroupId": "sharedPileB"},              //Hunter's Hunger
+                {"databaseId": "88053b", "quantity": 1, "loadGroupId": "sharedPileB"},              //Hunter's Hunger
+                {"databaseId": "88036a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //House Dealer
+                {"databaseId": "88036b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //House Dealer
+                {"databaseId": "88038a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Inconvenient Questioning
+                {"databaseId": "88038b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Inconvenient Questioning
+                {"databaseId": "88038c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Inconvenient Questioning
+                {"databaseId": "88038d", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Inconvenient Questioning
+                {"databaseId": "88039a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Arcane Spotlight
+                {"databaseId": "88039b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Arcane Spotlight
+                {"databaseId": "88039c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Arcane Spotlight
+                {"databaseId": "88040a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Avarice Calls
+                {"databaseId": "88040b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Avarice Calls
+                {"databaseId": "88040c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Avarice Calls
+                {"databaseId": "88041a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Suspicious Gaze
+                {"databaseId": "88041b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Suspicious Gaze
+                {"databaseId": "88041c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Suspicious Gaze
+                {"databaseId": "88042a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Obsessed Gambler
+                {"databaseId": "88042b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},      //Obsessed Gambler
+                {"databaseId": "88042c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}       //Obsessed Gambler
+            ]
+        },
+        "Fortune and Folly Pt 2 - Locations": {
+            "hideFromSearch": true,
+            "label": "Fortune and Folly Pt 2 - Locations",
+            "cards": [
+                {"databaseId": "88009", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},  //Casino Floor: Calm Night
+                {"databaseId": "88010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "81%"},   //Poker Table
+                {"databaseId": "88011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "62%"},  //Roulette Wheel
+                {"databaseId": "88012", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "62%"},   //Baccarat Table
+                {"databaseId": "88013", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "81%"},  //Slot Machines
+                {"databaseId": "88014", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "43%"},   //High Roller's Table: Calm Night
+                {"databaseId": "88015", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "43%"},  //Casino Lounge: Calm Night
+                {"databaseId": "88016", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Staff Access Hallway
+                {"databaseId": "88017", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "34%"},  //Security Office
+                {"databaseId": "88018", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "34%"},  //Guard Room
+                {"databaseId": "88019", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "15%"},  //Owner's Office
+                {"databaseId": "88020", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "15%"},  //Counting Room
+                {"databaseId": "88021", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Vault Door
+                {"databaseId": "88022", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Relic Room: Sanctum of Fortune
+                {"databaseId": "88023", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "5%"}     //The Stakeout
+            ]
+        },
+        "Fortune and Folly Pt 2 - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Fortune and Folly Pt 2 - Set Aside",
+            "cards": [
+                {"databaseId": "88024", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //If the Uniform Fits...
+                {"databaseId": "88043", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Deck of Possibilities: Tychokinetic Implement
+                {"databaseId": "88044", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Isamara Ordoñez: The Torch Singer
+                {"databaseId": "88034a", "quantity": 1, "loadGroupId": "sharedNotInPlay"}   //Abarran Arrigorriagakoa: The Man with the Ruby Ring
+            ]
+        }
+    },
+    "actionLists": {
+        "Fortune and Folly Pt 2 Scenario Early Init": [
+            ["LOG", "└── Each investigator may search their deck for all of their cards that were recorded as “Stashed” and set them aside (1 copy for each copy recorded)."],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Set aside “Stashed” cards.", ["LIST", "Done."], "Fortune and Folly Pt 2 Scenario Question 1"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Question 1": [
+            ["SCENARIO_INIT_RESUME", "Fortune and Folly Pt 2 Scenario Init"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Fortune and Folly Pt 2"],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators need time to rest.", "The above is not true."], "Fortune and Folly Pt 2 Scenario Question 2"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1]
+                ]
+            ],
+            ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                ["SET", "/playerData/$PLAYER_I/arkham/scenarioFortuneAndFollyPt2RolesTaken", 0]
+            ]],
+            ["FORTUNE_AND_FOLLY_PT_2_SHOW_ROLE_CHOICE", "$GAME.firstPlayer"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Init Continue 1": [
+            ["DO_LOAD_CARDS_SCN", "Fortune and Folly Pt 2 - Locations"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88009"], false, null], //Casino Floor: Busy Night
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88014"], false, null], //High Roller's Table: Busy Night
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88015"], false, null], //Casino Lounge: Busy Night
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88023"], false, null], //The Heist
+            ["DO_SPAWN_ATTACHED_TO_LOCATION_SCN", "The Wellspring of Fortune: Symbol of Providence", "88045", "Relic Room"],
+            ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter number of clues on The Wellspring of Fortune", 0, ["MULTIPLY", 7, "$GAME.arkham.numPlayers"], 0, "FORTUNE_AND_FOLLY_PT_2_CLUES_CALLBACK", "$GAME.firstPlayer", "", ""]
+        ],
+        "Fortune and Folly Pt 2 Scenario Init Continue 2": [
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Casino Floor", 5, 3, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You convinced Isamara to participate in the heist.", "The above is not true."], "Fortune and Folly Pt 2 Scenario Question 3"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Isamara Ordoñez: Lounge Singer", "88032", "88015", -3, 0], //Casino Lounge: Busy Night
+                    ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$DO_SPAWN_AT_LOCATION_RESULT", false, null]  //Isamara Ordoñez: Lounge Singer
+                ],
+                ["TRUE"],
+                ["DO_CREATE_CARDS_SCN", "Isamara Ordoñez: Lounge Singer", "88032", 1, "sharedNotInPlay"]
+            ],
+            ["VAR", "$FORTUNE_DISFAVORS", ["SHUFFLE_LIST", ["LIST", "88025", "88026", "88027"]]], //Fortune's Disfavor, Fortune's Disfavor, Fortune's Disfavor
+            ["FOR_EACH_VAL", "$FORTUNE_DISFAVOR", "$FORTUNE_DISFAVORS", [
+                ["DO_CREATE_CARDS_SCN", "Fortune's Disfavor", "$FORTUNE_DISFAVOR", 1, "sharedNotInPlay"]
+            ]],
+            ["DO_LOAD_CARDS_SCN", "Fortune and Folly Pt 2 - Set Aside"],
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88024"], false, null], //Package Delivery
+            ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88034a"], false, null], //Abarran Arrigorriagakoa: Abarran Unleashed
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "You cleaned out the house.", "The above is not true."], "Fortune and Folly Pt 2 Scenario Question 4"]
+        ],
+        "Fortune and Folly Pt 2 Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
+                    ["DO_SPAWN_AT_LOCATION_SCN", "Cash Cart", "88033", "88014", 3, 0]  //High Roller's Table: Busy Night
+                ],
+                ["TRUE"],
+                ["DO_CREATE_CARDS_SCN", "Cash Cart", "88033", 1, "sharedNotInPlay"]
+            ],
+            ["VAR", "$CASINO_GUARDS", ["SHUFFLE_LIST", ["LIST", "88035a", "88035b", "88035c"]]], //Casino Guard, Casino Guard, Casino Guard
+            ["DO_SPAWN_AT_LOCATION_SCN", "Casino Guard", "$CASINO_GUARDS.[0]", "88014", ["INLINE_IF", ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"], 6, 3], 0], //High Roller's Table: Busy Night
+            ["DO_CREATE_CARDS_SCN", "Casino Guard", "$CASINO_GUARDS.[1]", 1, "sharedEncounterDeck"],
+            ["DO_CREATE_CARDS_SCN", "Casino Guard", "$CASINO_GUARDS.[2]", 1, "sharedEncounterDeck"],
+            ["VAR", "$SECURITY_PATROLS", ["SHUFFLE_LIST", ["LIST", "88037a", "88037b", "88037c"]]], //Security Patrol, Security Patrol, Security Patrol
+            ["DO_SPAWN_AT_LOCATION_SCN", "Security Patrol", "$SECURITY_PATROLS.[0]", "88015", ["INLINE_IF", ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"], -6, -3], 0], //Casino Lounge: Busy Night
+            ["DO_CREATE_CARDS_SCN", "Security Patrol", "$SECURITY_PATROLS.[1]", 1, "sharedEncounterDeck"],
+            ["DO_CREATE_CARDS_SCN", "Security Patrol", "$SECURITY_PATROLS.[2]", 1, "sharedEncounterDeck"],
+            ["SET", "/arkham/ignoreDoomOnInvestigators", true],
+            ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter your alarm level", 1, 10, 0, "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK", "$GAME.firstPlayer", "", ""]
+        ],
+        "Fortune and Folly Pt 2 Scenario Init Continue 3": [
+            ["SET", "/arkham/finalScenarioMessage", "Fortune's Chosen cards are in Pile A, Plan in Shambles cards are in Pile B. Each investigator adds each of their set-aside stashed cards to their hand. See “Alarm Level”, “Isamara Ordoñez”, “Patrol”, “Game Icons”, “Mulligans”, and “The Wellspring of Fortune.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "FORTUNE_AND_FOLLY_PT_2_SHOW_ROLE_CHOICE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FORTUNE_AND_FOLLY_PT_2_SHOW_ROLE_CHOICE.TARGET_PLAYER"],
+                ["PROMPT", "$TARGET_PLAYER", "fortuneAndFollyPt2ChooseRole"],
+                ["COND",
+                    ["EQUAL", ["GET_NAMED_CARD_ID", "88028"], null], //The Face
+                    [
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Face (Practiced)", "F", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Face", "88028", "Practiced"]],
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Face (Unpracticed)", "A", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Face", "88028", "Unpracticed"]]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", ["GET_NAMED_CARD_ID", "88029"], null], //The Muscle
+                    [
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Muscle (Practiced)", "M", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Muscle", "88029", "Practiced"]],
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Muscle (Unpracticed)", "U", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Muscle", "88029", "Unpracticed"]]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", ["GET_NAMED_CARD_ID", "88030"], null], //The Thief
+                    [
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Thief (Practiced)", "T", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Thief", "88030", "Practiced"]],
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Thief (Unpracticed)", "H", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Thief", "88030", "Unpracticed"]]
+                    ]
+                ],
+                ["COND",
+                    ["EQUAL", ["GET_NAMED_CARD_ID", "88031"], null], //The Grifter
+                    [
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Grifter (Practiced)", "G", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Grifter", "88031", "Practiced"]],
+                        ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "The Grifter (Unpracticed)", "R", ["LIST", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE", "{{$TARGET_PLAYER}}", "The Grifter", "88031", "Unpracticed"]]
+                    ]
+                ]
+            ]
+        },
+        "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CHOICE_NAME", "$CHOICE_DATABASE_ID", "$PRACTICED"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CHOICE_NAME", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE.CHOICE_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$CHOICE_DATABASE_ID", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE.CHOICE_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$PRACTICED", "FORTUNE_AND_FOLLY_PT_2_ROLE_CHOICE_DONE.PRACTICED"],
+                ["LOGF", "{0} picks {1} ({2}) role.", "$TARGET_PLAYER", "$CHOICE_NAME", "$PRACTICED"],
+                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CHOICE_NAME", "$CHOICE_DATABASE_ID", 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null],
+                ["COND",
+                    ["EQUAL", "$PRACTICED", "Practiced"],
+                    ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$GAME.lastLoadedCardIds.[0]", false, null]
+                ],
+                ["INCREASE_VAL", "/playerData/$TARGET_PLAYER/arkham/scenarioFortuneAndFollyPt2RolesTaken", 1],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                        ["OR",
+                            ["GREATER_THAN", "$GAME.arkham.numPlayers", 1],
+                            ["GREATER_EQUAL", "$GAME.playerData.$NEXT_PLAYER.arkham.scenarioFortuneAndFollyPt2RolesTaken", 2]
+                        ]
+                    ],
+                    ["ACTION_LIST", "Fortune and Folly Pt 2 Scenario Init Continue 1"],
+                    ["TRUE"],
+                    ["FORTUNE_AND_FOLLY_PT_2_SHOW_ROLE_CHOICE", "$NEXT_PLAYER"]
+                ]
+            ]
+        },
+        "FORTUNE_AND_FOLLY_PT_2_CLUES_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FORTUNE_AND_FOLLY_PT_2_CLUES_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "FORTUNE_AND_FOLLY_PT_2_CLUES_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "FORTUNE_AND_FOLLY_PT_2_CLUES_CALLBACK.SELECTED_VALUE"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["COND",
+                    ["GREATER_THAN", "$VALUE", 0],
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "88045"], "$VALUE", true, null] //The Wellspring of Fortune: Symbol of Providence
+                ],
+                ["ACTION_LIST", "Fortune and Folly Pt 2 Scenario Init Continue 2"]
+            ]
+        },
+        "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK.SELECTED_VALUE"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK.SELECTED_VALUE"],
+                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                ["DO_PLACE_DOOM_ON_CARD", "$TARGET_PLAYER", "$INVESTIGATOR.id", "$VALUE", true, null],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["ACTION_LIST", "Fortune and Folly Pt 2 Scenario Init Continue 3"],
+                    ["TRUE"],
+                    ["CALCULATOR_PROMPT", "$NEXT_PLAYER", "Enter your alarm level", 1, 10, 0, "FORTUNE_AND_FOLLY_PT_2_ALARM_CALLBACK", "$NEXT_PLAYER", "", ""]
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "fortuneAndFollyPt2ChooseRole": {
+            "args": [],
+            "message": "Choose your Role.",
+            "options": [
+            ]
+        }
+    }
+}

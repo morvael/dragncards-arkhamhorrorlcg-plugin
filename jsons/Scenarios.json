@@ -325,7 +325,9 @@
                     {"label": "id:murderAtTheExcelsiorHotel", "deckListId": "Murder at the Excelsior Hotel Scenario"},
                     {"label": "id:theBlobThatAteEverything", "deckListId": "The Blob That Ate Everything Scenario"},
                     {"label": "id:warOfTheOuterGods", "deckListId": "War of the Outer Gods Scenario"},
-                    {"label": "id:machinationsThroughTime", "deckListId": "Machinations Through Time Scenario"}
+                    {"label": "id:machinationsThroughTime", "deckListId": "Machinations Through Time Scenario"},
+                    {"label": "id:fortuneAndFollyPt1", "deckListId": "Fortune and Folly Pt 1 Scenario"},
+                    {"label": "id:fortuneAndFollyPt2", "deckListId": "Fortune and Folly Pt 2 Scenario"}
                 ]
             },
             {
@@ -934,6 +936,12 @@
         },
         "machinationsThroughTime": {
             "English": "Machinations Through Time"
+        },
+        "fortuneAndFollyPt1": {
+            "English": "Fortune and Folly, Part 1"
+        },
+        "fortuneAndFollyPt2": {
+            "English": "Fortune and Folly, Part 2"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

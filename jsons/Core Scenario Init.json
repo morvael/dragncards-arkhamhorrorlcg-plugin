@@ -675,6 +675,50 @@
                 ["DO_SPAWN_ATTACHED_TO_LOCATION", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LOCATION_CARD_NAME", true, null]
             ]
         },
+        "DO_SPAWN_ATTACHED_TO_NAMED_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$PARENT_CARD_NAME", "$FLIP_FIRST", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["DEFINE", "$DO_SPAWN_ATTACHED_TO_NAMED_CARD_RESULT", null],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["NOT_EQUAL", "$TARGET_NAME", null],
+                        ["NOT_EQUAL", "$TARGET_DATABASE_ID", null],
+                        ["NOT_EQUAL", "$PARENT_CARD_NAME", null]
+                    ],
+                    [
+                        ["VAR", "$PARENT_CARD", ["GET_NAMED_CARD", "$PARENT_CARD_NAME"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$PARENT_CARD", null],
+                            [
+                                ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", 1, "$PARENT_CARD.groupId", false, null],
+                                ["VAR", "$TARGET_CARD_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                                ["VAR", "$TARGET_CARD", "$CARD_BY_ID.$TARGET_CARD_ID"],
+                                ["COND",
+                                    ["NOT_EQUAL", "$TARGET_CARD", null],
+                                    [
+                                        ["COND",
+                                            ["EQUAL", "$FLIP_FIRST", true],
+                                            ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$TARGET_CARD_ID", false, null]
+                                        ],
+                                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn {{$TARGET_CARD.currentFace.name}} attached to {{$PARENT_CARD.currentFace.name}}.", "spawns {{$TARGET_CARD.currentFace.name}} attached to {{$PARENT_CARD.currentFace.name}}."],
+                                        ["MOVE_CARD", "$TARGET_CARD.id", "$PARENT_CARD.groupId", -1],
+                                        ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$TARGET_CARD.id", "$PARENT_CARD.id", false, null],
+                                        ["DEFINE", "$DO_SPAWN_ATTACHED_TO_NAMED_CARD_RESULT", "$TARGET_CARD.id"]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "DO_SPAWN_ATTACHED_TO_NAMED_CARD_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$PARENT_CARD_NAME", "$FLIP_FIRST"],
+            "code": [
+                ["DO_SPAWN_ATTACHED_TO_NAMED_CARD", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$PARENT_CARD_NAME", "$FLIP_FIRST", true, null]
+            ]
+        },
         "DO_SPAWN_LOCATION": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [

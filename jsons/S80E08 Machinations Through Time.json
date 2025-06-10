@@ -13,24 +13,24 @@
             "hideFromSearch": true,
             "label": "Machinations Through Time",
             "cards": [
-                {"databaseId": "87001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Machinations Through Time
-                {"databaseId": "87002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Into the Void
-                {"databaseId": "87003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Time Marches On
-                {"databaseId": "87004", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Walking Through Time
-                {"databaseId": "87044", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Ghastly Satyr
-                {"databaseId": "87045", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Hound of Tindalos
-                {"databaseId": "87046", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Many-Angled Thing
-                {"databaseId": "87047", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Tindalos Alpha
-                {"databaseId": "87048", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //A Tear in Time
-                {"databaseId": "87049", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Abducted
-                {"databaseId": "87050", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Broken Space
-                {"databaseId": "87051", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Dimensional Breach
-                {"databaseId": "87052", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //From All Angles
-                {"databaseId": "87053", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Lost in Time
-                {"databaseId": "87054", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Merging Timelines
-                {"databaseId": "87055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Open Portal
-                {"databaseId": "87056", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Temporal Distortion
-                {"databaseId": "87057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Vanishing History
+                {"databaseId": "87001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Machinations Through Time
+                {"databaseId": "87002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Into the Void
+                {"databaseId": "87003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Time Marches On
+                {"databaseId": "87004", "quantity": 1, "loadGroupId": "sharedActStory"},            //Walking Through Time
+                {"databaseId": "87044", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Ghastly Satyr
+                {"databaseId": "87045", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},       //Hound of Tindalos
+                {"databaseId": "87046", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},       //Many-Angled Thing
+                {"databaseId": "87047", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},       //Tindalos Alpha
+                {"databaseId": "87048", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //A Tear in Time
+                {"databaseId": "87049", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Abducted
+                {"databaseId": "87050", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Broken Space
+                {"databaseId": "87051", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Dimensional Breach
+                {"databaseId": "87052", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //From All Angles
+                {"databaseId": "87053", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},       //Lost in Time
+                {"databaseId": "87054", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Merging Timelines
+                {"databaseId": "87055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},       //Open Portal
+                {"databaseId": "87056", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},       //Temporal Distortion
+                {"databaseId": "87057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}        //Vanishing History
             ]
         },
         "Machinations Through Time - Epic Multiplayer Mode (Past)": { //3x4
@@ -174,7 +174,7 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.TARGET_PLAYER"],
                 ["VALIDATE_NOT_NULL", "$ARGS", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.ARGS"],
-                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.SELECTED_VALUE"],
                 ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
                 ["VALIDATE_GT0", "$VALUE", "MACHINATIONS_THROUGH_TIME_PLAYERS_CALLBACK.SELECTED_VALUE"],
                 ["SET", "/arkham/scenarioMachinationsThroughTimeNumberOfPlayers", "$VALUE"],
