@@ -332,8 +332,10 @@
                         ["UPDATE_VAR", "$UPGRADES", ["ADD_UPGRADE", "$UPGRADES", "$UPGRADE_7", 3, "  You may include three copies of Power Word in your deck. When you give a command using one copy, also give that command to each other enemy with one of your copies of Power Word attached."]],
                         //update text
                         ["COND",
+                            ["GREATER_EQUAL", "$TABOO_ID", 9],
+                            ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Mutated. Customizable. Fast. Play only during your turn.  Attach to a non-[[Elite]] enemy at your location.{0}  [action] If attached enemy is at your location: <b>Parley.</b> Test [willpower] (2). If you succeed, give it {1} (limit once per round per command) -  - <i>“Go.”</i> This enemy moves once in a direction of your choice.{2}", ["LIST", "$UPGRADES", "$TONGUETWISTER", "$COMMANDS"]]],
                             ["GREATER_EQUAL", "$TABOO_ID", 6],
-                            ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Mutated. Customizable. Fast. Play only during your turn.  Attach to a non-[[Elite]] enemy at your location.{0}  [action] If attached enemy is at your location: <b>Parley.</b> Test [willpower] 3. If you succeed, give it {1} (limit once per round per command) -  - <i>“Go.”</i> This enemy moves once in a direction of your choice.{2}", ["LIST", "$UPGRADES", "$TONGUETWISTER", "$COMMANDS"]]],
+                            ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Mutated. Customizable. Fast. Play only during your turn.  Attach to a non-[[Elite]] enemy at your location.{0}  [action] If attached enemy is at your location: <b>Parley.</b> Test [willpower] (3). If you succeed, give it {1} (limit once per round per command) -  - <i>“Go.”</i> This enemy moves once in a direction of your choice.{2}", ["LIST", "$UPGRADES", "$TONGUETWISTER", "$COMMANDS"]]],
                             ["TRUE"],
                             ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Fast. Play only during your turn.  Attach to a non-[[Elite]] enemy at your location.{0}  [action] If attached enemy is at your location: <b>Parley.</b> Give it {1} (limit once per round per command) -  - <i>“Go.”</i> This enemy moves once in a direction of your choice.  - <i>“Cower.”</i> This enemy exhausts.{2}", ["LIST", "$UPGRADES", "$TONGUETWISTER", "$COMMANDS"]]]
                         ]
@@ -1063,22 +1065,29 @@
             "message": "Pick Taboo version used.",
             "options": [
                 {
-                    "label": "Taboo 2.3 (Oct 23, 2024)",
+                    "label": "Taboo 2.4 (Jul 10, 2025)",
                     "hotkey": "1",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 9, "2.4", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.3 (Oct 23, 2024)",
+                    "hotkey": "2",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 8, "2.3", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Taboo 2.1 (Oct 23, 2024)",
-                    "hotkey": "2",
+                    "hotkey": "3",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 6, "2.1", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "None",
-                    "hotkey": "3",
+                    "hotkey": "4",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 0, "None", true, "$PLAYER_N"]
                     ]

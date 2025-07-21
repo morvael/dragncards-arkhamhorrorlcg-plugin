@@ -142,7 +142,8 @@
                     {
                         "label": "id:otherDecks",
                         "deckLists": [
-                            {"label": "id:gloriaGoldbergPromoStarterDeck", "deckListId": "Gloria Goldberg (Promo) Starter Deck"}
+                            {"label": "id:gloriaGoldbergPromoStarterDeck", "deckListId": "Gloria Goldberg (Promo) Starter Deck"},
+                            {"label": "id:subject5U21StarterDeck", "deckListId": "Subject 5U-21 Starter Deck"}
                         ]
                     }
                 ]
@@ -570,6 +571,9 @@
         },
         "gloriaGoldbergPromoStarterDeck": {
             "English": "Gloria Goldberg (Promo) Starter Deck"
+        },
+        "subject5U21StarterDeck": {
+            "English": "Subject 5U-21 Starter Deck"
         },
         "campaigns": {
             "English": "Campaigns"

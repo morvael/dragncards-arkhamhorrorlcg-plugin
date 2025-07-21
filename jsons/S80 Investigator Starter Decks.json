@@ -1,0 +1,100 @@
+{
+   "preBuiltDecks": {
+        "Subject 5U-21 Starter Deck": {
+            "label": "Subject 5U-21 Starter Deck",
+            "cards": [
+                {"databaseId": "89001", "quantity": 1, "loadGroupId": "playerNInvestigator"},
+                {"databaseId": "10023", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10108", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10116", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "60110", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "60115", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "89002", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "89003", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "89004", "quantity": 3, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01000", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01025", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01030", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01039", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "01044", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "02188", "quantity": 1, "loadGroupId": "playerNDeck"},
+                {"databaseId": "02229", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03112", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03149", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "03231", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04037", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "04107", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "05116", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "05118", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06020", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06117", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "06201", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08072", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "08116", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09061", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "09067", "quantity": 2, "loadGroupId": "playerNDeck"},
+                {"databaseId": "10031", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "10081", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "52008", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "60429", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "02150", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "02299", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "03197", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "04111", "quantity": 1, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "06204", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "09057", "quantity": 2, "loadGroupId": "playerNSideDeck"},
+                {"databaseId": "09061", "quantity": 2, "loadGroupId": "playerNSideDeck"}                
+            ],
+            "postLoadActionList": [
+                ["LOG", "Unofficial Subject 5U-21 starter deck by: https://arkhamdb.com/user/profile/7346/Turbinismo"]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "89001": { //Subject 5U-21: The Anomaly
+                "rules": {
+                    "89001a": { //spawn Reality Acid story card, as it's not part of the deck
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_CREATE_CARDS", "$THIS.controller", "Reality Acid story card", "89005", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null]
+                        ]
+                    },                    
+                    "89001b": { //During each upkeep phase, draw 1 additional card and devour a non-weakness player card in your hand.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventUpkeepDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                        "then": [
+                            ["CANCEL_PLAYER_EVENT", "$TARGET.id", "$THIS", "UpkeepDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} draws 1 additional card and devours a non-weakness player card in their hand.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["VAR", "$TARGET_PLAYER", "$THIS.controller"],
+                            ["DO_DRAW_CARDS", "$TARGET_PLAYER", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], 2, true, null],
+                            ["PROMPT", "$TARGET.id", "subject5U21Devouring"]
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "prompts": {
+        "subject5U21Devouring": {
+            "args": [],
+            "message": "Please devour a non-weakness player card in your hand.",
+            "options": [
+                {
+                    "label": "Done.",
+                    "hotkey": "D",
+                    "code": [
+                        ["PLAYER_EVENT_LOOP", "$PLAYER_N", "UpkeepDraw"]
+                    ]
+                }
+            ]
+        }
+    }
+}
