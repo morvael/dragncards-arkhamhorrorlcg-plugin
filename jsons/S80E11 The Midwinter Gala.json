@@ -1,0 +1,172 @@
+{
+    "preBuiltDecks": {
+        "The Midwinter Gala Scenario": {
+            "label": "The Midwinter Gala Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "The Midwinter Gala", "Side Stories", "The Midwinter Gala", "The Midwinter Gala Scenario Early Init", "The Midwinter Gala Scenario Init"]
+            ]
+        },
+        "The Midwinter Gala": {
+            "hideFromSearch": true,
+            "label": "The Midwinter Gala",
+            "cards": [
+                {"databaseId": "71001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Midwinter Gala
+                {"databaseId": "71002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Masked Revelers
+                {"databaseId": "71003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Unexpected Guests
+                {"databaseId": "71004", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //A Killer Party
+                {"databaseId": "71005", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Meet and Greet
+                {"databaseId": "71006", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Finding the Jewel
+                {"databaseId": "71007", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "43%"},  //Lobby
+                {"databaseId": "71008", "quantity": 1, "loadGroupId": "sharedLocations", "left": "15%", "top": "76%"},  //Lantern Chamber
+                {"databaseId": "71053", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Lantern Club Member
+                {"databaseId": "71054", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Bleeding Walls
+                {"databaseId": "71055", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Entrap
+                {"databaseId": "71056", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Inexplicable Cold
+                {"databaseId": "71057", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Mind Extraction
+                {"databaseId": "71058", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Noxious Fumes
+                {"databaseId": "71059", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Pushed into the Beyond
+                {"databaseId": "71060", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Secret Door
+                {"databaseId": "71061", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Terror Gate
+                {"databaseId": "71062", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Violent Commands
+            ]
+        },
+        "The Midwinter Gala - Set Aside": {
+            "hideFromSearch": true,
+            "label": "The Midwinter Gala - Set Aside",
+            "cards": [
+                {"databaseId": "71047", "quantity": 2, "loadGroupId": "sharedNotInPlay"},   //Enraged Gug
+                {"databaseId": "71048", "quantity": 2, "loadGroupId": "sharedNotInPlay"},   //Abhorrent Moon-Beast
+                {"databaseId": "71049", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Savage Shantak
+                {"databaseId": "71050", "quantity": 2, "loadGroupId": "sharedNotInPlay"},   //Vicious Ambush
+                {"databaseId": "71051", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Declan Pearce: Lantern Club Nomarch
+                {"databaseId": "71052", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Jewel of Sarnath: Turning Dreams into Reality
+            ]
+        }
+    },
+    "actionLists": {
+        "The Midwinter Gala Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Pick allies.", ["LIST", "The Foundation.", "Miskatonic University.", "The Syndicate.", "The Silver Twilight Lodge.", "Locals of Kingsport."], "The Midwinter Gala Scenario Question 1"]
+        ],
+        "The Midwinter Gala Scenario Question 1": [
+            ["LOG", "└── Allies: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.numPlayers", 1],
+                ["THE_MIDWINTER_GALA_LEADER_CHOICE", "$GAME.firstPlayer", "0"],
+                ["TRUE"],
+                [
+                    ["PROMPT", "$GAME.firstPlayer", "theMidwinterGalaChooseLeaderController"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                        ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                        ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "THE_MIDWINTER_GALA_LEADER_CHOICE", "{{$PLAYER_I}}", "1"]]
+                    ]]
+                ]
+            ]
+        ],
+        "The Midwinter Gala Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Midwinter Gala"],
+            ["VAR", "$GROUND_FLOOR_ROOMS", ["SHUFFLE_LIST", ["LIST", "71009", "71010", "71011"]]],  //Art Gallery, Ballroom, Barroom
+            ["VAR", "$SPAWN_LEFTS", ["LIST", 35, 55, 75]],
+            ["DO_SPAWN_LOCATIONS_SCN", "Ground-Floor Room", "$GROUND_FLOOR_ROOMS", "$SPAWN_LEFTS", ["LIST", 43, 43, 43], 0, 3, 0],
+            ["VAR", "$SECOND_FLOOR_ROOMS", ["SHUFFLE_LIST", ["LIST", "71012", "71013", "71014"]]],  //Bedroom, Library, Parlor
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Second-Floor Room", "$SECOND_FLOOR_ROOMS.[$I]", 1, "sharedNotInPlay"],
+                ["DO_SET_SPAWN_LOCATION", "$SECOND_FLOOR_ROOMS.[$I]", "$SPAWN_LEFTS.[$I]", 10]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Lobby", 5, 7, 3, 0],
+            ["VAR", "$FACTIONS", ["SHUFFLE_LIST", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", ["LIST", "The Foundation.", "Miskatonic University.", "The Syndicate.", "The Silver Twilight Lodge.", "Locals of Kingsport."], "$GAME.arkham.scenarioAnswer1Text"]]],
+            ["SET", "/arkham/scenarioTheMidwinterGalaRivals", "$FACTIONS.[0]"],
+            ["LOG", "└── Rivals: {{$GAME.arkham.scenarioTheMidwinterGalaRivals}}"],
+            ["VAR", "$FACTION1_FUNCTION", ["THE_MIDWINTER_GALA_DEPLOY_NAME", "The Foundation."]],
+            ["VAR", "$FACTION2_FUNCTION", ["THE_MIDWINTER_GALA_DEPLOY_NAME", "Miskatonic University."]],
+            ["VAR", "$FACTION3_FUNCTION", ["THE_MIDWINTER_GALA_DEPLOY_NAME", "The Syndicate."]],
+            ["VAR", "$FACTION4_FUNCTION", ["THE_MIDWINTER_GALA_DEPLOY_NAME", "The Silver Twilight Lodge."]],
+            ["VAR", "$FACTION5_FUNCTION", ["THE_MIDWINTER_GALA_DEPLOY_NAME", "Locals of Kingsport."]],
+            ["$FACTION1_FUNCTION", "71015", "71016", "71017", "71018", "71019", "71020"],   //The Foundation, Valeriya Antonova, Archibald Hudson, Special Agent Callahan, Horacio Martinez, Rookie Cop
+            ["$FACTION2_FUNCTION", "71021", "71022", "71023", "71024", "71025", "71026"],   //Miskatonic University, Caldwell Philips, Dr. Mya Badry, Lucas Tetlow, Elizabeth Conrad, Confusion
+            ["$FACTION3_FUNCTION", "71027", "71028", "71029", "71030", "71031", "71032"],   //The Syndicate, Johnny Valone, Miranda Keeper, Arsène Renard, Nova Malone, Cold Streak
+            ["$FACTION4_FUNCTION", "71033", "71034", "71035", "71036", "71037", "71038"],   //Silver Twilight Lodge, Carl Sanford, Prudence Douglas, Sarah Van Shaw, Raymond Loggins, Ward of Preservation
+            ["$FACTION5_FUNCTION", "71039", "71040", "71041", "71042", "71043", "71044"],   //Locals of Kingsport, William Bain, Delores Gadling, Thomas Olney, Claire Wilson, Unlucky
+            ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", ["GET_TOP_CARD_ID", "sharedDeckA"], "$GROUND_FLOOR_ROOMS.[$I]", 3, 3, 1]
+            ]],
+            ["DO_SPAWN_AT_LOCATION_SCN", "The Bloodless Man: Silent Lurker", "71045", "Lantern Chamber", 3, 3],
+            ["DO_EXHAUST_CARD", "$GAME.firstPlayer", "$DO_SPAWN_AT_LOCATION_RESULT", false, null],
+            ["DO_SPAWN_ATTACHED_TO_NAMED_CARD_SCN", "The Pale Lantern: Hypnotic Glow", "71046", "$DO_SPAWN_AT_LOCATION_RESULT", false],
+            ["DO_LOAD_CARDS_SCN", "The Midwinter Gala - Set Aside"],
+            ["SET", "/arkham/finalScenarioMessage", ["FORMAT", "Guest cards are in Deck A. Allies: {0} Rivals: {1}", "$GAME.arkham.scenarioAnswer1Text", "$GAME.arkham.scenarioTheMidwinterGalaRivals"]],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "THE_MIDWINTER_GALA_LEADER_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$LOG_MESSAGE"],
+            "code": [
+                ["SET", "/arkham/scenarioTheMidwinterGalaLeaderController", "$TARGET_PLAYER"],
+                ["COND",
+                    ["EQUAL", "$LOG_MESSAGE", "1"],
+                    ["LOGF", "{0} selected {1} to take control of allied faction's Leader.", "$GAME.firstPlayer", "$TARGET_PLAYER"]
+                ],
+                ["SCENARIO_INIT_RESUME", "The Midwinter Gala Scenario Init"]
+            ]
+        },
+        "THE_MIDWINTER_GALA_DEPLOY_NAME": {
+            "args": ["$FACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$FACTION", "THE_MIDWINTER_GALA_DEPLOY_NAME.FACTION"],
+                ["COND",
+                    ["EQUAL", "$FACTION", "$GAME.arkham.scenarioAnswer1Text"],
+                    "THE_MIDWINTER_GALA_DEPLOY_ALLIES",
+                    ["EQUAL", "$FACTION", "$GAME.arkham.scenarioTheMidwinterGalaRivals"],
+                    "THE_MIDWINTER_GALA_DEPLOY_RIVALS",
+                    ["TRUE"],
+                    "THE_MIDWINTER_GALA_DEPLOY_NEUTRALS"
+                ]
+            ]
+        },
+        "THE_MIDWINTER_GALA_DEPLOY_ALLIES": {
+            "args": ["$STORY_DATABASE_ID", "$LEADER_DATABASE_ID", "$GUEST1_DATABASE_ID", "$GUEST2_DATABASE_ID", "$GUEST3_DATABASE_ID", "$RIVAL_DATABASE_ID"],
+            "code": [
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$STORY_DATABASE_ID}}.A.name", "$STORY_DATABASE_ID", 1, "sharedNotInPlay"],
+                ["DO_CREATE_CARDS", "$GAME.arkham.scenarioTheMidwinterGalaLeaderController", "$CARD_DB.{{$LEADER_DATABASE_ID}}.A.name", "$LEADER_DATABASE_ID", 1, ["GET_CONTROLLER_PLAY", "$GAME.arkham.scenarioTheMidwinterGalaLeaderController"], true, null],
+                ["VAR", "$GUESTS", ["SHUFFLE_LIST", ["LIST", "$GUEST1_DATABASE_ID", "$GUEST2_DATABASE_ID", "$GUEST3_DATABASE_ID"]]],
+                ["VAR", "$GROUND_FLOOR_ROOMS", ["GET_NAMED_MAP_LOCATIONS", "Ground-Floor Room"]],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                    ["DO_SPAWN_AT_LOCATION_SCN", "$CARD_DB.{{$GUESTS.[$I]}}.A.name", "$GUESTS.[$I]", "$GROUND_FLOOR_ROOMS.[$I].id", 6, 3]
+                ]]
+            ]
+        },
+        "THE_MIDWINTER_GALA_DEPLOY_RIVALS": {
+            "args": ["$STORY_DATABASE_ID", "$LEADER_DATABASE_ID", "$GUEST1_DATABASE_ID", "$GUEST2_DATABASE_ID", "$GUEST3_DATABASE_ID", "$RIVAL_DATABASE_ID"],
+            "code": [
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$STORY_DATABASE_ID}}.B.name", "$STORY_DATABASE_ID", 1, "sharedNotInPlay"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$CARD_DB.{{$LEADER_DATABASE_ID}}.B.name", "$LEADER_DATABASE_ID", 1, "sharedNotInPlay", false, null],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
+                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$GAME.lastLoadedCardIds.[0]", "Lobby", 3, 3, 1],
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$RIVAL_DATABASE_ID}}.B.name", "$RIVAL_DATABASE_ID", 1, "sharedEncounterDeck"]
+            ]
+        },
+        "THE_MIDWINTER_GALA_DEPLOY_NEUTRALS": {
+            "args": ["$STORY_DATABASE_ID", "$LEADER_DATABASE_ID", "$GUEST1_DATABASE_ID", "$GUEST2_DATABASE_ID", "$GUEST3_DATABASE_ID", "$RIVAL_DATABASE_ID"],
+            "code": [
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$GUEST1_DATABASE_ID}}.A.name", "$GUEST1_DATABASE_ID", 1, "sharedDeckA"],
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$GUEST2_DATABASE_ID}}.A.name", "$GUEST2_DATABASE_ID", 1, "sharedDeckA"],
+                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$GUEST3_DATABASE_ID}}.A.name", "$GUEST3_DATABASE_ID", 1, "sharedDeckA"]
+            ]
+        }
+    },
+    "prompts": {
+        "theMidwinterGalaChooseLeaderController": {
+            "args": [],
+            "message": "Select the investigator to take control of allied faction's Leader.",
+            "options": [
+            ]
+        }
+    }
+}

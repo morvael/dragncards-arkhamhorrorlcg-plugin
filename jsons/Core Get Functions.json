@@ -252,6 +252,22 @@
                 ]]
             ]
         },
+        "GET_NAMED_MAP_LOCATIONS": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATIONS.TARGET_NAME"],
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]
+            ]
+        },
         "GET_NAMED_MAP_CARD": {
             "_comment": "Returns a card from sharedLocations with given currentFace name/databaseId/id, or null.",
             "args": ["$TARGET_NAME"],

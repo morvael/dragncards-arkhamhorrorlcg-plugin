@@ -328,7 +328,9 @@
                     {"label": "id:warOfTheOuterGods", "deckListId": "War of the Outer Gods Scenario"},
                     {"label": "id:machinationsThroughTime", "deckListId": "Machinations Through Time Scenario"},
                     {"label": "id:fortuneAndFollyPt1", "deckListId": "Fortune and Folly Pt 1 Scenario"},
-                    {"label": "id:fortuneAndFollyPt2", "deckListId": "Fortune and Folly Pt 2 Scenario"}
+                    {"label": "id:fortuneAndFollyPt2", "deckListId": "Fortune and Folly Pt 2 Scenario"},
+                    {"label": "id:theBlobThatAteEverythingElse", "deckListId": "The Blob That Ate Everything Else Scenario"},
+                    {"label": "id:theMidwinterGala", "deckListId": "The Midwinter Gala Scenario"}
                 ]
             },
             {
@@ -946,6 +948,12 @@
         },
         "fortuneAndFollyPt2": {
             "English": "Fortune and Folly, Part 2"
+        },
+        "theBlobThatAteEverythingElse": {
+            "English": "The Blob That Ate Everything Else"
+        },
+        "theMidwinterGala": {
+            "English": "The Midwinter Gala"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

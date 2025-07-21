@@ -44,7 +44,7 @@
                 {"databaseId": "04111", "quantity": 1, "loadGroupId": "playerNSideDeck"},
                 {"databaseId": "06204", "quantity": 2, "loadGroupId": "playerNSideDeck"},
                 {"databaseId": "09057", "quantity": 2, "loadGroupId": "playerNSideDeck"},
-                {"databaseId": "09061", "quantity": 2, "loadGroupId": "playerNSideDeck"}                
+                {"databaseId": "09061", "quantity": 2, "loadGroupId": "playerNSideDeck"}
             ],
             "postLoadActionList": [
                 ["LOG", "Unofficial Subject 5U-21 starter deck by: https://arkhamdb.com/user/profile/7346/Turbinismo"]
@@ -64,7 +64,7 @@
                             ["CARD_ABILITY_ON", "$THIS"],
                             ["DO_CREATE_CARDS", "$THIS.controller", "Reality Acid story card", "89005", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null]
                         ]
-                    },                    
+                    },
                     "89001b": { //During each upkeep phase, draw 1 additional card and devour a non-weakness player card in your hand.
                         "type": "trigger",
                         "priority": 10,
