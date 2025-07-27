@@ -1,0 +1,86 @@
+{
+    "preBuiltDecks": {
+        "Ice and Death Pt 1 Scenario": {
+            "label": "Ice and Death Pt 1 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "Ice and Death Pt 1", "Ice and Death Pt 1 Scenario Early Init", "Ice and Death Pt 1 Scenario Init"]
+            ]
+        },
+        "Ice and Death Pt 1": {
+            "hideFromSearch": true,
+            "label": "Ice and Death Pt 1",
+            "cards": [
+                {"databaseId": "08501", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Ice and Death
+                {"databaseId": "08502", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Crash Site
+                {"databaseId": "08503", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Frozen Shores
+                {"databaseId": "08504", "quantity": 1, "loadGroupId": "sharedLocations", "left": "74%", "top": "43%"},  //Treacherous Path
+                {"databaseId": "08505", "quantity": 1, "loadGroupId": "sharedLocations", "left": "16%", "top": "43%"},  //Precarious Ice Sheet
+                {"databaseId": "08506", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Broad Snowdrifts
+                {"databaseId": "08507", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Icy Wastes
+                {"databaseId": "08508", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Rocky Crags
+                {"databaseId": "08509", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Snow Graves
+                {"databaseId": "08510", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Icebreaker Landing
+                {"databaseId": "08511", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Frigid Cave
+                {"databaseId": "08512", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Barrier Camp
+                {"databaseId": "08513", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Remnants of Lake's Camp
+                {"databaseId": "08514", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Crystalline Cavern
+                {"databaseId": "08515", "quantity": 3, "loadGroupId": "sharedNotInPlay"},                               //Skittering Nonsense
+                {"databaseId": "08516", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Apeirophobia
+                {"databaseId": "08517", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Zero Visibility
+            ]
+        },
+        "The Crash": {
+            "hideFromSearch": true,
+            "label": "The Crash",
+            "cards": [
+                {"databaseId": "08518", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //Cold Welcome
+                {"databaseId": "08519", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //Into the White
+                {"databaseId": "08520", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //Running Out of Time
+                {"databaseId": "08521", "quantity": 1, "loadGroupId": "sharedActStory"},    //Search for a Camp Site
+                {"databaseId": "08522", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Terror of the Stars: Bringer of Ice and Death
+            ]
+        }
+    },
+    "actionLists": {
+        "Ice and Death Pt 1 Scenario Early Init": [
+            ["VAR", "$VICTIM", ["SHUFFLE_LIST", ["LIST", "08714", "08715", "08716", "08717", "08718", "08719", "08720", "08721", "08722"]]], //Professor William Dyer, Danforth, Eliyah Ashevak, Dr. Mala Sinha, Avery Claypool, James "Cookie" Fredericks, Dr. Amy Kensler, Roald Ellsworth, Takada Hiroko
+            ["LOGF", "└── {0} was killed in the plane crash.", ["GET_CARD_TITLE", "$CARD_DB.{{$VICTIM.[0]}}.A.name"]],
+            ["EDGE_OF_THE_EARTH_SET_PARTNER_STATUS", "$VICTIM.[0]", "KIA"],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "Ice and Death Pt 1 Scenario Early Init Continue"]
+        ],
+        "Ice and Death Pt 1 Scenario Early Init Continue": [
+            ["SCENARIO_INIT_RESUME", "Ice and Death Pt 1 Scenario Init"]
+        ],
+        "Ice and Death Pt 1 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Ice and Death Pt 1"],
+            ["DO_SET_SPAWN_LOCATION", "08506", 45, 62], //Broad Snowdrifts
+            ["DO_SET_SPAWN_LOCATION", "08507", 7, 24], //Icy Wastes
+            ["DO_SET_SPAWN_LOCATION", "08508", 83, 24], //Rocky Crags
+            ["DO_SET_SPAWN_LOCATION", "08509", 45, 81], //Snow Graves
+            ["DO_SET_SPAWN_LOCATION", "08510", 7, 5], //Icebreaker Landing
+            ["DO_SET_SPAWN_LOCATION", "08511", 83, 5], //Frigid Cave
+            ["DO_SET_SPAWN_LOCATION", "08512", 45, 5], //Barrier Camp
+            ["DO_SET_SPAWN_LOCATION", "08513", 16, 62], //Remnants of Lake's Camp
+            ["DO_SET_SPAWN_LOCATION", "08514", 74, 62], //Crystalline Cavern
+            ["DO_LOAD_CARDS_SCN", "The Crash"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Creatures in the Ice", "sharedPileA"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Weather"],
+            ["DO_LOAD_CARDS_SCN", "Hazards of Antarctica"],
+            ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Crash Site", 5, 7, 3, 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Creatures in the Ice cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

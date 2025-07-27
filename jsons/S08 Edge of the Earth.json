@@ -1,0 +1,784 @@
+{
+    "preBuiltDecks": {
+        "Agents of the Unknown": {
+            "hideFromSearch": true,
+            "label": "Agents of the Unknown",
+            "cards": [
+                {"databaseId": "08687", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Primordial Evil
+                {"databaseId": "08688", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //The Madness Within
+            ]
+        },
+        "Creatures in the Ice": {
+            "hideFromSearch": true,
+            "label": "Creatures in the Ice",
+            "cards": [
+                {"databaseId": "08689", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Manifestation of Madness
+                {"databaseId": "08690", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Glacial Phantasm
+                {"databaseId": "08691", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Kindred Mist
+            ]
+        },
+        "Deadly Weather": {
+            "hideFromSearch": true,
+            "label": "Deadly Weather",
+            "cards": [
+                {"databaseId": "08692", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Antarctic Wind
+                {"databaseId": "08693", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Whiteout
+                {"databaseId": "08694", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Polar Vortex
+            ]
+        },
+        "Elder Things": {
+            "hideFromSearch": true,
+            "label": "Elder Things",
+            "cards": [
+                {"databaseId": "08695", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Elder Thing Scavenger
+                {"databaseId": "08696", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Guardian Elder Thing
+                {"databaseId": "08697", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Rise of the Elder Things
+            ]
+        },
+        "Hazards of Antarctica": {
+            "hideFromSearch": true,
+            "label": "Hazards of Antarctica",
+            "cards": [
+                {"databaseId": "08698", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Ice Shaft
+                {"databaseId": "08699", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Through the Ice
+            ]
+        },
+        "Left Behind": {
+            "hideFromSearch": true,
+            "label": "Left Behind",
+            "cards": [
+                {"databaseId": "08700", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Lost Researcher
+                {"databaseId": "08701", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Frenzied Explorer
+                {"databaseId": "08702", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Abandoned to Madness
+            ]
+        },
+        "Nameless Horrors": {
+            "hideFromSearch": true,
+            "label": "Nameless Horrors",
+            "cards": [
+                {"databaseId": "08703", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Blasphemous Visions
+                {"databaseId": "08704", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Glimpse the Unspeakable
+                {"databaseId": "08705", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Nightmarish Vapors
+            ]
+        },
+        "Miasma": {
+            "hideFromSearch": true,
+            "label": "Miasma",
+            "cards": [
+                {"databaseId": "08706", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Miasmatic Torment
+                {"databaseId": "08707", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Nebulous Miasma
+            ]
+        },
+        "Penguins": {
+            "hideFromSearch": true,
+            "label": "Penguins",
+            "cards": [
+                {"databaseId": "08708", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Giant Albino Penguin
+                {"databaseId": "08709", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Wuk! Wuk! Wuk!
+            ]
+        },
+        "Shoggoths": {
+            "hideFromSearch": true,
+            "label": "Shoggoths",
+            "cards": [
+                {"databaseId": "08710", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Forgotten Shoggoth
+                {"databaseId": "08711", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Rampaging Shoggoth
+            ]
+        },
+        "Silence and Mystery": {
+            "hideFromSearch": true,
+            "label": "Silence and Mystery",
+            "cards": [
+                {"databaseId": "08712", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Polar Mirage
+                {"databaseId": "08713", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Dark Aurora
+            ]
+        },
+        "Expedition Team": {
+            "hideFromSearch": true,
+            "label": "Expedition Team",
+            "cards": [
+                {"databaseId": "08714", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Professor William Dyer: Professor of Geology
+                {"databaseId": "08715", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Danforth: Brilliant Student
+                {"databaseId": "08716", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Eliyah Ashevak: Dog Handler
+                {"databaseId": "08717", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dr. Mala Sinha: Daring Physician
+                {"databaseId": "08718", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Avery Claypool: Antarctic Guide
+                {"databaseId": "08719", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //James "Cookie" Fredericks: Dubious Choice
+                {"databaseId": "08720", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dr. Amy Kensler: Professor of Biology
+                {"databaseId": "08721", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Roald Ellsworth: Intrepid Explorer
+                {"databaseId": "08722", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Takada Hiroko: Aeroplane Mechanic
+            ]
+        },
+        "Tekeli-li": {
+            "hideFromSearch": true,
+            "label": "Tekeli-li",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08723", 3, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08724", 3, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08725", 2, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08726", 2, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08727", 2, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08728", 2, "sharedDeckB"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Tekeli-li", "08729", 2, "sharedDeckB"]
+            ]
+        },
+        "Memorials of the Lost": {
+            "hideFromSearch": true,
+            "label": "Memorials of the Lost",
+            "cards": [
+                {"databaseId": "08730", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Claypool's Furs
+                {"databaseId": "08731", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Collected Works of Poe
+                {"databaseId": "08732", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Cookie's Custom .32
+                {"databaseId": "08733", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dyer's Sketches
+                {"databaseId": "08734", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Ellsworth's Boots
+                {"databaseId": "08735", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Kensler's Log
+                {"databaseId": "08736", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Sinha's Medical Kit
+                {"databaseId": "08737", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Takada's Cache
+                {"databaseId": "08738", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Anyu: Faithful Companion
+            ]
+        },
+        "Edge of the Earth Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "Edge of the Earth Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Edge of the Earth Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "Edge of the Earth Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Edge of the Earth Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "Edge of the Earth Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "Edge of the Earth Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "Edge of the Earth Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    },
+    "functions": {
+        //generic function returning status
+        "EDGE_OF_THE_EARTH_GET_STATUS": {
+            "args": ["$VARIABLE_TEMPLATE", "$DATABASE_ID", "$DEFAULT"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$VARIABLE_TEMPLATE", "EDGE_OF_THE_EARTH_GET_STATUS.VARIABLE_TEMPLATE"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "EDGE_OF_THE_EARTH_GET_STATUS.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$DEFAULT", "EDGE_OF_THE_EARTH_GET_STATUS.DEFAULT"],
+                ["VAR", "$VARIABLE", ["FORMAT", "$VARIABLE_TEMPLATE", "$DATABASE_ID"]],
+                ["COND",
+                    ["DEFINED", "$GAME.arkham.{{$VARIABLE}}"],
+                    "$GAME.arkham.{{$VARIABLE}}",
+                    ["TRUE"],
+                    "$DEFAULT"
+                ]
+            ]
+        },
+        //generic function setting status
+        "EDGE_OF_THE_EARTH_SET_STATUS": {
+            "args": ["$VARIABLE_TEMPLATE", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$VARIABLE_TEMPLATE", "EDGE_OF_THE_EARTH_SET_STATUS.VARIABLE_TEMPLATE"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "EDGE_OF_THE_EARTH_SET_STATUS.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$STATUS", "EDGE_OF_THE_EARTH_SET_STATUS.STATUS"],
+                ["VAR", "$VARIABLE", ["FORMAT", "$VARIABLE_TEMPLATE", "$DATABASE_ID"]],
+                ["SET", "/arkham/{{$VARIABLE}}", "$STATUS"]
+            ]
+        },
+        //generic function returning next element on the list after the given element (or first element for null, or not found)
+        "EDGE_OF_THE_EARTH_GET_NEXT_ID": {
+            "args": ["$DATABASE_ID", "$LIST"],
+            "code": [
+                //$DATABASE_ID may be null
+                ["VALIDATE_GT0", ["LENGTH", "$LIST"], "EDGE_OF_THE_EARTH_GET_NEXT_ID.LIST"],
+                ["VAR", "$COUNT", ["LENGTH", "$LIST"]],
+                ["COND",
+                    ["EQUAL", "$DATABASE_ID", null],
+                    "$LIST.[0]",
+                    ["TRUE"],
+                    [
+                        ["VAR", "$I", ["ADD", ["GET_INDEX", "$LIST", "$DATABASE_ID"], 1]],
+                        ["COND",
+                            ["GREATER_EQUAL", "$I", "$COUNT"],
+                            ["UPDATE_VAR", "$I", 0]
+                        ],
+                        "$LIST.[$I]"
+                    ]
+                ]
+            ]
+        },
+        //generic function returning next element on the list after the given element (or first element for null) that has no status set, or null
+        "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID": {
+            "args": ["$VARIABLE_TEMPLATE", "$DATABASE_ID", "$DEFAULT", "$LIST"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$VARIABLE_TEMPLATE", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID.VARIABLE_TEMPLATE"],
+                //$DATABASE_ID may be null
+                ["VALIDATE_NOT_EMPTY", "$DEFAULT", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID.DEFAULT"],
+                ["VALIDATE_GT0", ["LENGTH", "$LIST"], "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID.LIST"],
+                ["VAR", "$CONTINUE", true],
+                ["VAR", "$CURRENT_ID", ["EDGE_OF_THE_EARTH_GET_NEXT_ID", "$DATABASE_ID", "$LIST"]],
+                ["VAR", "$VARIABLE", ["FORMAT", "$VARIABLE_TEMPLATE", "$CURRENT_ID"]],
+                ["WHILE",
+                    ["EQUAL", "$CONTINUE", true],
+                    [
+                        ["COND",
+                            ["DEFINED", "$GAME.arkham.{{$VARIABLE}}"],
+                            [
+                                ["UPDATE_VAR", "$CURRENT_ID", ["EDGE_OF_THE_EARTH_GET_NEXT_ID", "$CURRENT_ID", "$LIST"]],
+                                ["UPDATE_VAR", "$VARIABLE", ["FORMAT", "$VARIABLE_TEMPLATE", "$CURRENT_ID"]],
+                                ["COND",
+                                    ["EQUAL", "$CURRENT_ID", "$LIST.[0]"],
+                                    [
+                                        ["UPDATE_VAR", "$CURRENT_ID", null],
+                                        ["UPDATE_VAR", "$CONTINUE", false]
+                                    ]
+                                ]
+                            ],
+                            ["TRUE"],
+                            ["UPDATE_VAR", "$CONTINUE", false]
+                        ]
+                    ]
+                ],
+                "$CURRENT_ID"
+            ]
+        },
+        //generic function initiating asking for card status
+        "EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS": {
+            "args": ["$TARGET_PLAYER", "$UNDEFINED_FUNCTION", "$PROMPT", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$UNDEFINED_FUNCTION", "EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS.UNDEFINED_FUNCTION"],
+                ["VALIDATE_NOT_EMPTY", "$PROMPT", "EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS.PROMPT"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS.CONTINUE_ACTION"],
+                ["VAR", "$DATABASE_ID", ["$UNDEFINED_FUNCTION", null]],
+                ["COND",
+                    ["EQUAL", "$DATABASE_ID", null],
+                    ["ACTION_LIST", "$CONTINUE_ACTION"],
+                    ["TRUE"],
+                    ["PROMPT", "$TARGET_PLAYER", "$PROMPT", "$DATABASE_ID", ["GET_CARD_TITLE", "$CARD_DB.{{$DATABASE_ID}}.A.name"], "$CONTINUE_ACTION"]
+                ]
+            ]
+        },
+        //generic function continuing asking for card status
+        "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$UNDEFINED_FUNCTION", "$SET_FUNCTION", "$PROMPT", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$UNDEFINED_FUNCTION", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.UNDEFINED_FUNCTION"],
+                ["VALIDATE_NOT_EMPTY", "$SET_FUNCTION", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.SET_FUNCTION"],
+                ["VALIDATE_NOT_EMPTY", "$PROMPT", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.PROMPT"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.CONTINUE_ACTION"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$STATUS", "EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE.STATUS"],
+                ["LOGF", "{0} states {1} is {2}.", "$TARGET_PLAYER", ["GET_CARD_TITLE", "$CARD_DB.{{$DATABASE_ID}}.A.name"], "$STATUS"],
+                ["$SET_FUNCTION", "$DATABASE_ID", "$STATUS"],
+                ["VAR", "$NEXT_DATABASE_ID", ["$UNDEFINED_FUNCTION", "$DATABASE_ID"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_DATABASE_ID", null],
+                    ["ACTION_LIST", "$CONTINUE_ACTION"],
+                    ["TRUE"],
+                    ["PROMPT", "$TARGET_PLAYER", "$PROMPT", "$NEXT_DATABASE_ID", ["GET_CARD_TITLE", "$CARD_DB.{{$NEXT_DATABASE_ID}}.A.name"], "$CONTINUE_ACTION"]
+                ]
+            ]
+        },
+        //selecting location status 1/5
+        "EDGE_OF_THE_EARTH_GET_LOCATION_STATUS": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "campaignEdgeOfTheEarthLocation{0}Status", "$DATABASE_ID", "unrevealed"]
+            ]
+        },
+        //selecting location status 2/5
+        "EDGE_OF_THE_EARTH_SET_LOCATION_STATUS": {
+            "args": ["$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "campaignEdgeOfTheEarthLocation{0}Status", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting location status 3/5
+        "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_LOCATION_DATABASE_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID", "campaignEdgeOfTheEarthLocation{0}Status", "$DATABASE_ID", "unrevealed", ["LIST", "08503", "08504", "08505", "08506", "08507", "08508", "08509", "08510", "08511", "08512", "08513", "08514"]] //Frozen Shores, Treacherous Path, Precarious Ice Sheet, Broad Snowdrifts, Icy Wastes, Rocky Crags, Snow Graves, Icebreaker Landing, Frigid Cave, Barrier Camp, Remnants of Lake's Camp, Crystalline Cavern
+            ]
+        },
+        //selecting location status 4/5
+        "EDGE_OF_THE_EARTH_ASK_FOR_LOCATION_STATUS": {
+            "args": ["$CONTINUE_ACTION"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_LOCATION_STATUS", "08502", "revealed"], //Crash Site
+                ["EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS", "$GAME.firstPlayer", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_LOCATION_DATABASE_ID", "edgeOfTheEarthChooseLocationStatus", "$CONTINUE_ACTION"]
+            ]
+        },
+        //selecting location status 5/5
+        "EDGE_OF_THE_EARTH_LOCATION_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_LOCATION_DATABASE_ID", "EDGE_OF_THE_EARTH_SET_LOCATION_STATUS", "edgeOfTheEarthChooseLocationStatus", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //flips faceup all eligible locations that have "revealed" status, blocks placing clues on camp location in Ice and Death Pt 3
+        "EDGE_OF_THE_EARTH_REVEAL_LOCATIONS": {
+            "args": [],
+            "code": [
+                ["VAR", "$LOCATIONS", ["LIST", "08502", "08503", "08504", "08505", "08506", "08507", "08508", "08509", "08510", "08511", "08512", "08513", "08514"]], //Crash Site, Frozen Shores, Treacherous Path, Precarious Ice Sheet, Broad Snowdrifts, Icy Wastes, Rocky Crags, Snow Graves, Icebreaker Landing, Frigid Cave, Barrier Camp, Remnants of Lake's Camp, Crystalline Cavern
+                ["FOR_EACH_VAL", "$DATABASE_ID", "$LOCATIONS", [
+                    ["COND",
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_LOCATION_STATUS", "$DATABASE_ID"], "revealed"],
+                        [
+                            ["VAR", "$LOCATION_ID", ["GET_NAMED_CARD_ID", "$DATABASE_ID"]],
+                            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$LOCATION_ID", true, null],
+                            ["COND",
+                                ["AND",
+                                    ["EQUAL", "$GAME.arkham.scenarioName", "Ice and Death Pt 3"],
+                                    ["EQUAL", "$DATABASE_ID", "$GAME.arkham.campaignEdgeOfTheEarthCamp"],
+                                    ["GREATER_THAN", ["GET_CARD_CLUES_REQUIREMENT", "$LOCATION_ID"], 0]
+                                ],
+                                ["SET", "/cardById/$LOCATION_ID/cluesPlaced", true]
+                            ]
+                        ]
+                    ]
+                ]]
+            ]
+        },
+        //selecting partner status 1/5
+        "EDGE_OF_THE_EARTH_GET_PARTNER_STATUS": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "campaignEdgeOfTheEarthPartner{0}Status", "$DATABASE_ID", "alive"]
+            ]
+        },
+        //selecting partner status 2/5
+        "EDGE_OF_THE_EARTH_SET_PARTNER_STATUS": {
+            "args": ["$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "campaignEdgeOfTheEarthPartner{0}Status", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting partner status 3/5
+        "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_PARTNER_DATABASE_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID", "campaignEdgeOfTheEarthPartner{0}Status", "$DATABASE_ID", "alive", ["LIST", "08714", "08715", "08716", "08717", "08718", "08719", "08720", "08721", "08722"]] //Professor William Dyer: Professor of Geology, Danforth: Brilliant Student, Eliyah Ashevak: Dog Handler, Dr. Mala Sinha: Daring Physician, Avery Claypool: Antarctic Guide, James "Cookie" Fredericks: Dubious Choice, Dr. Amy Kensler: Professor of Biology, Roald Ellsworth: Intrepid Explorer, Takada Hiroko: Aeroplane Mechanic
+            ]
+        },
+        //selecting partner status 4/5
+        "EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS": {
+            "args": ["$SUBTYPE", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$SUBTYPE", "EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS.SUBTYPE"],
+                ["EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS", "$GAME.firstPlayer", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_PARTNER_DATABASE_ID", "edgeOfTheEarthChoosePartnerStatus{{$SUBTYPE}}", "$CONTINUE_ACTION"]
+            ]
+        },
+        //selecting partner status 5/5
+        "EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$SUBTYPE", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$SUBTYPE", "EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE.SUBTYPE"],
+                ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_PARTNER_DATABASE_ID", "EDGE_OF_THE_EARTH_SET_PARTNER_STATUS", "edgeOfTheEarthChoosePartnerStatus{{$SUBTYPE}}", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //
+        "EDGE_OF_THE_EARTH_GET_RESOLUTE_PARTNER_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_NEXT_ID", "$DATABASE_ID", ["LIST", "08714", "08587", "08715", "08588", "08716", "08589", "08717", "08590", "08718", "08591", "08719", "08592", "08720", "08593", "08721", "08594", "08722", "08595"]] //Professor William Dyer: Professor of Geology, Danforth: Brilliant Student, Eliyah Ashevak: Dog Handler, Dr. Mala Sinha: Daring Physician, Avery Claypool: Antarctic Guide, James "Cookie" Fredericks: Dubious Choice, Dr. Amy Kensler: Professor of Biology, Roald Ellsworth: Intrepid Explorer, Takada Hiroko: Aeroplane Mechanic
+            ]
+        },
+        "EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$PARTNER_DATABASE_ID", "$HOTKEY", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$PARTNER_DATABASE_ID", "EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE.PARTNER_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$HOTKEY", "EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE.HOTKEY"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE.CONTINUE_ACTION"],
+                ["COND",
+                    ["EQUAL", "$PARTNER_DATABASE_ID", "-"],
+                    ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "Cancel.", "{{$HOTKEY}}", ["LIST", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE", "{{$TARGET_PLAYER}}", "{{$PARTNER_DATABASE_ID}}", "{{$CONTINUE_ACTION}}"]],
+                    ["TRUE"],
+                    [
+                        ["COND",
+                            ["AND",
+                                ["OR",
+                                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$PARTNER_DATABASE_ID"], "alive"],
+                                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$PARTNER_DATABASE_ID"], "resolute"]
+                                ],
+                                ["EQUAL", ["GET_NAMED_CARD_ID", "$PARTNER_DATABASE_ID"], null]
+                            ],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", ["FORMAT", "{0}.", ["GET_CARD_TITLE", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name"]], "{{$HOTKEY}}", ["LIST", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE", "{{$TARGET_PLAYER}}", "{{$PARTNER_DATABASE_ID}}", "{{$CONTINUE_ACTION}}"]]
+                        ]
+                    ]
+                ]
+            ]
+        },
+        "EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE.CONTINUE_ACTION"],
+                ["VAR", "$EXTRA_MESSAGE", ""],
+                ["COND",
+                    ["EQUAL", "$GAME.arkham.scenarioName", "Ice and Death Pt 2"],
+                    ["UPDATE_VAR", "$EXTRA_MESSAGE", " Honor scenario requirements."]
+                ],
+                ["PROMPT", "$TARGET_PLAYER", "edgeOfTheEarthChoosePartner", "$EXTRA_MESSAGE"],
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08714", "1", "$CONTINUE_ACTION"], //Professor William Dyer: Professor of Geology
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08715", "2", "$CONTINUE_ACTION"], //Danforth: Brilliant Student
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08716", "3", "$CONTINUE_ACTION"], //Eliyah Ashevak: Dog Handler
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08717", "4", "$CONTINUE_ACTION"], //Dr. Mala Sinha: Daring Physician
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08718", "5", "$CONTINUE_ACTION"], //Avery Claypool: Antarctic Guide
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08719", "6", "$CONTINUE_ACTION"], //James "Cookie" Fredericks: Dubious Choice
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08720", "7", "$CONTINUE_ACTION"], //Dr. Amy Kensler: Professor of Biology
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08721", "8", "$CONTINUE_ACTION"], //Roald Ellsworth: Intrepid Explorer
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "08722", "9", "$CONTINUE_ACTION"], //Takada Hiroko: Aeroplane Mechanic
+                ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "-", "X", "$CONTINUE_ACTION"]
+            ]
+        },
+        "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$PARTNER_DATABASE_ID", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE.CONTINUE_ACTION"],
+                ["LOGF", "{0} choose {1}.", "$TARGET_PLAYER", ["INLINE_IF", ["NOT_EQUAL", "$PARTNER_DATABASE_ID", "-"], ["GET_CARD_TITLE", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name"], "no one."]],
+                ["COND",
+                    ["NOT_EQUAL", "$PARTNER_DATABASE_ID", "-"],
+                    [
+                        ["COND",
+                            ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$PARTNER_DATABASE_ID"], "resolute"],
+                            ["UPDATE_VAR", "$PARTNER_DATABASE_ID", ["EDGE_OF_THE_EARTH_GET_RESOLUTE_PARTNER_ID", "$PARTNER_DATABASE_ID"]]
+                        ],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name", "$PARTNER_DATABASE_ID", 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null],
+                        ["VAR", "$PARTNER_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["VAR", "$RESOURCES_TO_PLACE", ["GET_CARD_USES", "$PARTNER_ID"]],
+                        ["COND",
+                            ["AND",
+                                ["EQUAL", "$GAME.arkham.scenarioName", "Ice and Death Pt 2"],
+                                ["OR",
+                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08720"], //Dr. Amy Kensler: Professor of Biology
+                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08714"], //Professor William Dyer: Professor of Geology
+                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08718"], //Avery Claypool: Antarctic Guide
+                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08719"]  //James "Cookie" Fredericks: Dubious Choice
+                                ]
+                            ],
+                            ["INCREASE_VAR", "$RESOURCES_TO_PLACE", 1]
+                        ],
+                        ["DO_PLACE_RESOURCES_ON_CARD", "$TARGET_PLAYER", "$PARTNER_ID", "$RESOURCES_TO_PLACE", true, null],
+                        ["SET", "/cardById/$PARTNER_ID/usesPlaced", true]
+                    ]
+                ],
+                ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["EQUAL", "$NEXT_PLAYER", "$GAME.firstPlayer"],
+                    ["ACTION_LIST", "$CONTINUE_ACTION"],
+                    ["TRUE"],
+                    ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$NEXT_PLAYER", "$CONTINUE_ACTION"]
+                ]
+            ]
+        },
+        "EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE": {
+            "args": ["$LOCATION_DATABASE_ID", "$HOTKEY", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$LOCATION_DATABASE_ID", "EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE.LOCATION_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$HOTKEY", "EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE.HOTKEY"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE.CONTINUE_ACTION"],
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_LOCATION_STATUS", "$LOCATION_DATABASE_ID"], "revealed"],
+                    ["PROMPT_ADD_OPTION", "$GAME.firstPlayer", ["FORMAT", "{0}.", "$CARD_DB.{{$LOCATION_DATABASE_ID}}.A.name"], "{{$HOTKEY}}", ["LIST", "EDGE_OF_THE_EARTH_CAMP_CHOICE_DONE", "{{$LOCATION_DATABASE_ID}}", "{{$CONTINUE_ACTION}}"]]
+                ]
+            ]
+        },
+        "EDGE_OF_THE_EARTH_SHOW_CAMP_CHOICE": {
+            "args": ["$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_SHOW_CAMP_CHOICE.CONTINUE_ACTION"],
+                ["PROMPT", "$GAME.firstPlayer", "edgeOfTheEarthChooseCamp"],
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08514", "0", "$CONTINUE_ACTION"], //Crystalline Cavern
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08512", "1", "$CONTINUE_ACTION"], //Barrier Camp
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08513", "2", "$CONTINUE_ACTION"], //Remnants of Lake's Camp
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08511", "3", "$CONTINUE_ACTION"], //Frigid Cave
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08510", "4", "$CONTINUE_ACTION"], //Icebreaker Landing
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08509", "5", "$CONTINUE_ACTION"], //Snow Graves
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08506", "6", "$CONTINUE_ACTION"], //Broad Snowdrifts
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08507", "7", "$CONTINUE_ACTION"], //Icy Wastes
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08508", "8", "$CONTINUE_ACTION"], //Rocky Crags
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08503", "9", "$CONTINUE_ACTION"], //Frozen Shores
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08505", "A", "$CONTINUE_ACTION"], //Precarious Ice Sheet
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08504", "B", "$CONTINUE_ACTION"], //Treacherous Path
+                ["EDGE_OF_THE_EARTH_ADD_CAMP_CHOICE", "08502", "C", "$CONTINUE_ACTION"]  //Crash Site
+            ]
+        },
+        "EDGE_OF_THE_EARTH_CAMP_CHOICE_DONE": {
+            "args": ["$LOCATION_DATABASE_ID", "$CONTINUE_ACTION"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$LOCATION_DATABASE_ID", "EDGE_OF_THE_EARTH_CAMP_CHOICE_DONE.LOCATION_DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_CAMP_CHOICE_DONE.CONTINUE_ACTION"],
+                ["LOGF", "{0} choose {1} as the camp.", "$GAME.firstPlayer", "$CARD_DB.{{$LOCATION_DATABASE_ID}}.A.name"],
+                ["SET", "/arkham/campaignEdgeOfTheEarthCamp", "$LOCATION_DATABASE_ID"],
+                ["VAR", "$MOD", -5],
+                ["COND",
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08502"], //Crash Site
+                    ["INCREASE_VAR", "$MOD", 0],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08503"], //Frozen Shores
+                    ["INCREASE_VAR", "$MOD", 2],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08504"], //Treacherous Path
+                    ["INCREASE_VAR", "$MOD", 1],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08505"], //Precarious Ice Sheet
+                    ["INCREASE_VAR", "$MOD", 2],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08506"], //Broad Snowdrifts
+                    ["INCREASE_VAR", "$MOD", 4],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08507"], //Icy Wastes
+                    ["INCREASE_VAR", "$MOD", 4],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08508"], //Rocky Crags
+                    ["INCREASE_VAR", "$MOD", 3],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08509"], //Snow Graves
+                    ["INCREASE_VAR", "$MOD", 5],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08510"], //Icebreaker Landing
+                    ["INCREASE_VAR", "$MOD", 5],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08511"], //Frigid Cave
+                    ["INCREASE_VAR", "$MOD", 6],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08512"], //Barrier Camp
+                    ["INCREASE_VAR", "$MOD", 7],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08513"], //Remnants of Lake's Camp
+                    ["INCREASE_VAR", "$MOD", 7],
+                    ["EQUAL", "$LOCATION_DATABASE_ID", "08514"], //Crystalline Cavern
+                    ["INCREASE_VAR", "$MOD", 8]
+                ],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingResourcesMod", "$MOD"]
+                ]],
+                ["ACTION_LIST", "$CONTINUE_ACTION"]
+            ]
+        },
+        //calculates the matching number of cards for mirage effect and multiplies it by multiplier
+        "EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS": {
+            "args": ["$MULTIPLIER", "$DATABASE_ID1", "$DATABASE_ID2", "$DATABASE_ID3"],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["OR",
+                        ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                        ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"]
+                    ],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID1"],
+                        ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID2"],
+                        ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID3"]
+                    ]
+                ]]],
+                ["MULTIPLY", ["LENGTH", "$SELECTED_CARDS"], "$MULTIPLIER"]
+            ]
+        },
+        //calculates mirage clue number decrease
+        "EDGE_OF_THE_EARTH_GET_MIRAGE_DECREASE": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$DATABASE_ID", "08556"], //Prison of Memories
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 1, "08557", "08558", "08559"], //Base Camp, Deck of the Theodosia, University Halls
+                    ["EQUAL", "$DATABASE_ID", "08557"], //Base Camp
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 1, "08562", "08561", "08564"], //Coastal Waters, Deserted Station, Riverview Theatre
+                    ["EQUAL", "$DATABASE_ID", "08558"], //Deck of the Theodosia
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 1, "08562", "08560", "08565"], //Coastal Waters, Hedge Maze, Standing Stones
+                    ["EQUAL", "$DATABASE_ID", "08559"], //University Halls
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 1, "08563", "08564", "08565"], //Elder Chamber, Riverview Theatre, Standing Stones
+                    ["EQUAL", "$DATABASE_ID", "08560"], //Hedge Maze
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08572", "XXX", "XXX"], //Mo'ai Statues
+                    ["EQUAL", "$DATABASE_ID", "08561"], //Deserted Station
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08567", "XXX", "XXX"], //Alaskan Wilds
+                    ["EQUAL", "$DATABASE_ID", "08562"], //Coastal Waters
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08566", "08573", "XXX"], //Airfield, Ottoman Front
+                    ["EQUAL", "$DATABASE_ID", "08563"], //Elder Chamber
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08568", "XXX", "XXX"], //Cluttered Dormitory
+                    ["EQUAL", "$DATABASE_ID", "08564"], //Riverview Theatre
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08570", "08571", "XXX"], //Infirmary, Dr. Kensler's Office
+                    ["EQUAL", "$DATABASE_ID", "08565"], //Standing Stones
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08574", "08569", "XXX"], //The Black Stone, Dyer's Classroom
+                    ["EQUAL", "$DATABASE_ID", "08566"], //Airfield
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08577", "XXX", "XXX"], //Memory of a Missing Father
+                    ["EQUAL", "$DATABASE_ID", "08567"], //Alaskan Wilds
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08575", "XXX", "XXX"], //Memory of a Hunt Gone Awry
+                    ["EQUAL", "$DATABASE_ID", "08568"], //Cluttered Dormitory
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08580", "XXX", "XXX"], //Memory of an Unspeakable Evil
+                    ["EQUAL", "$DATABASE_ID", "08569"], //Dyer's Classroom
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08579", "XXX", "XXX"], //Memory of a Regretful Voyage
+                    ["EQUAL", "$DATABASE_ID", "08570"], //Infirmary
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08576", "XXX", "XXX"], //Memory of a Lost Patient
+                    ["EQUAL", "$DATABASE_ID", "08571"], //Dr. Kensler's Office
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08583", "XXX", "XXX"], //Memory of an Unrequited Love
+                    ["EQUAL", "$DATABASE_ID", "08572"], //Mo'ai Statues
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08582", "XXX", "XXX"], //Memory of an Alien Translation
+                    ["EQUAL", "$DATABASE_ID", "08573"], //Ottoman Front
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08578", "XXX", "XXX"], //Memory of a Ravaged Country
+                    ["EQUAL", "$DATABASE_ID", "08574"], //The Black Stone
+                    ["EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS", 2, "08581", "XXX", "XXX"], //Memory of a Terrible Discovery
+                    ["TRUE"],
+                    0
+                ]
+            ]
+        }
+    },
+    "prompts": {
+        "edgeOfTheEarthChooseLocationStatus": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "Is “{{$CARD_NAME}}” listed under “Locations Revealed”?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_LOCATION_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "revealed"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_LOCATION_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "unrevealed"]
+                    ]
+                }
+            ]
+        },
+        "edgeOfTheEarthChoosePartnerStatusOK": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "State the current status of {{$CARD_NAME}}.",
+            "options": [
+                {
+                    "label": "Alive.",
+                    "hotkey": "A",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "OK", "$CONTINUE_ACTION", "$DATABASE_ID", "alive"]
+                    ]
+                },
+                {
+                    "label": "KIA (crossed off).",
+                    "hotkey": "K",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "OK", "$CONTINUE_ACTION", "$DATABASE_ID", "KIA"]
+                    ]
+                }
+            ]
+        },
+        "edgeOfTheEarthChoosePartnerStatusMIA": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "State the current status of {{$CARD_NAME}}.",
+            "options": [
+                {
+                    "label": "Alive.",
+                    "hotkey": "A",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "MIA", "$CONTINUE_ACTION", "$DATABASE_ID", "alive"]
+                    ]
+                },
+                {
+                    "label": "MIA.",
+                    "hotkey": "M",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "MIA", "$CONTINUE_ACTION", "$DATABASE_ID", "MIA"]
+                    ]
+                },
+                {
+                    "label": "KIA (crossed off).",
+                    "hotkey": "K",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "MIA", "$CONTINUE_ACTION", "$DATABASE_ID", "KIA"]
+                    ]
+                }
+            ]
+        },
+        "edgeOfTheEarthChoosePartnerStatusResolute": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "State the current status of {{$CARD_NAME}}.",
+            "options": [
+                {
+                    "label": "Alive and resolute (checkmark).",
+                    "hotkey": "R",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "Resolute", "$CONTINUE_ACTION", "$DATABASE_ID", "resolute"]
+                    ]
+                },
+                {
+                    "label": "Alive.",
+                    "hotkey": "A",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "Resolute", "$CONTINUE_ACTION", "$DATABASE_ID", "alive"]
+                    ]
+                },
+                {
+                    "label": "KIA (crossed off).",
+                    "hotkey": "K",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_PARTNER_STATUS_CHOICE_DONE", "$PLAYER_N", "Resolute", "$CONTINUE_ACTION", "$DATABASE_ID", "KIA"]
+                    ]
+                }
+            ]
+        },
+        "edgeOfTheEarthChoosePartner": {
+            "args": ["$EXTRA_MESSAGE"],
+            "message": "Choose one member of the expedition to join you.{{$EXTRA_MESSAGE}}",
+            "options": [
+            ]
+        },
+        "edgeOfTheEarthChooseCamp": {
+            "args": [],
+            "message": "Choose one revealed location to be the expedition's camp.",
+            "options": [
+            ]
+        }
+    }
+}

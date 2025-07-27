@@ -244,6 +244,15 @@
                             {"label": "id:theLairOfDagon", "deckListId": "The Lair of Dagon Scenario"},
                             {"label": "id:intoTheMaelstrom", "deckListId": "Into the Maelstrom Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:edgeOfTheEarth",
+                        "deckLists": [
+                            {"label": "id:iceAndDeathPt1", "deckListId": "Ice and Death Pt 1 Scenario"},
+                            {"label": "id:iceAndDeathPt2", "deckListId": "Ice and Death Pt 2 Scenario"},
+                            {"label": "id:iceAndDeathPt3", "deckListId": "Ice and Death Pt 3 Scenario"},
+                            {"label": "id:fatalMirage", "deckListId": "Fatal Mirage Scenario"}
+                        ]
                     }
                 ]
             },
@@ -771,6 +780,18 @@
         },
         "edgeOfTheEarth": {
             "English": "Edge of the Earth"
+        },
+        "iceAndDeathPt1": {
+            "English": "Ice and Death, Part I"
+        },
+        "iceAndDeathPt2": {
+            "English": "Ice and Death, Part II"
+        },
+        "iceAndDeathPt3": {
+            "English": "Ice and Death, Part III"
+        },
+        "fatalMirage": {
+            "English": "Fatal Mirage"
         },
         "theScarletKeys": {
             "English": "The Scarlet Keys"

@@ -1,0 +1,148 @@
+{
+    "preBuiltDecks": {
+        "Ice and Death Pt 2 Scenario": {
+            "label": "Ice and Death Pt 2 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "Ice and Death Pt 2", "Ice and Death Pt 2 Scenario Early Init", "Ice and Death Pt 2 Scenario Init"]
+            ]
+        },
+        "Ice and Death Pt 2": {
+            "hideFromSearch": true,
+            "label": "Ice and Death Pt 2",
+            "cards": [
+                {"databaseId": "08501", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Ice and Death
+                {"databaseId": "08502", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Crash Site
+                {"databaseId": "08503", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Frozen Shores
+                {"databaseId": "08504", "quantity": 1, "loadGroupId": "sharedLocations", "left": "74%", "top": "43%"},  //Treacherous Path
+                {"databaseId": "08505", "quantity": 1, "loadGroupId": "sharedLocations", "left": "16%", "top": "43%"},  //Precarious Ice Sheet
+                {"databaseId": "08506", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "62%"},  //Broad Snowdrifts
+                {"databaseId": "08507", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "24%"},   //Icy Wastes
+                {"databaseId": "08508", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "24%"},  //Rocky Crags
+                {"databaseId": "08509", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},  //Snow Graves
+                {"databaseId": "08510", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "5%"},    //Icebreaker Landing
+                {"databaseId": "08511", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "5%"},   //Frigid Cave
+                {"databaseId": "08512", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Barrier Camp
+                {"databaseId": "08513", "quantity": 1, "loadGroupId": "sharedLocations", "left": "16%", "top": "62%"},  //Remnants of Lake's Camp
+                {"databaseId": "08514", "quantity": 1, "loadGroupId": "sharedLocations", "left": "74%", "top": "62%"},  //Crystalline Cavern
+                {"databaseId": "08515", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Skittering Nonsense
+                {"databaseId": "08516", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Apeirophobia
+                {"databaseId": "08517", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Zero Visibility
+            ]
+        },
+        "Lost in the Night": {
+            "hideFromSearch": true,
+            "label": "Lost in the Night",
+            "cards": [
+                {"databaseId": "08523", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //A Harsh Wind Blows
+                {"databaseId": "08524", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //The Chill of Night
+                {"databaseId": "08525", "quantity": 1, "loadGroupId": "sharedAgendaStory"}, //Madness and Death
+                {"databaseId": "08526", "quantity": 1, "loadGroupId": "sharedActStory"}     //The Lost Expedition
+            ]
+        }
+    },
+    "actionLists": {
+        "Ice and Death Pt 2 Scenario Early Init": [
+            ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1],
+            ["EDGE_OF_THE_EARTH_ASK_FOR_LOCATION_STATUS", "Ice and Death Pt 2 Scenario Early Init Continue 1"]
+        ],
+        "Ice and Death Pt 2 Scenario Early Init Continue 1": [
+            ["EDGE_OF_THE_EARTH_SHOW_CAMP_CHOICE", "Ice and Death Pt 2 Scenario Early Init Continue 2"]
+        ],
+        "Ice and Death Pt 2 Scenario Early Init Continue 2": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "MIA", "Ice and Death Pt 2 Scenario Early Init Continue 3"]
+        ],
+        "Ice and Death Pt 2 Scenario Early Init Continue 3": [
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08720"], "alive"], //Dr. Amy Kensler: Professor of Biology
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08717"], "MIA"], //Dr. Mala Sinha: Daring Physician
+                    ["LOG", "└── Dr. Amy Kensler enters play with 1 additional secret (must be chosen, if able)."],
+                    ["TRUE"],
+                    ["LOG", "└── Dr. Amy Kensler enters play with 1 additional secret (if chosen)."]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08714"], "alive"], //Professor William Dyer: Professor of Geology
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08715"], "MIA"], //Danforth: Brilliant Student
+                    ["LOG", "└── Professor William Dyer enters play with 1 additional secret (must be chosen, if able)."],
+                    ["TRUE"],
+                    ["LOG", "└── Professor William Dyer enters play with 1 additional secret (if chosen)."]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08718"], "alive"], //Avery Claypool: Antarctic Guide
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08721"], "MIA"], //Roald Ellsworth: Intrepid Explorer
+                    ["LOG", "└── Avery Claypool enters play with 1 additional supply (must be chosen, if able)."],
+                    ["TRUE"],
+                    ["LOG", "└── Avery Claypool enters play with 1 additional supply (if chosen)."]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08719"], "alive"], //James "Cookie" Fredericks: Dubious Choice
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08722"], "MIA"], //Takada Hiroko: Aeroplane Mechanic
+                    ["LOG", "└── James \"Cookie\" Fredericks enters play with 1 additional ammo (must be chosen, if able)."],
+                    ["TRUE"],
+                    ["LOG", "└── James \"Cookie\" Fredericks enters play with 1 additional ammo (if chosen)."]
+                ]
+            ],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "Ice and Death Pt 2 Scenario Early Init Continue 4"]
+        ],
+        "Ice and Death Pt 2 Scenario Early Init Continue 4": [
+            ["SCENARIO_INIT_RESUME", "Ice and Death Pt 2 Scenario Init"]
+        ],
+        "Ice and Death Pt 2 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Ice and Death Pt 2"],
+            ["EDGE_OF_THE_EARTH_REVEAL_LOCATIONS"],
+            ["DO_LOAD_CARDS_SCN", "Lost in the Night"],
+            ["DO_LOAD_CARDS_SCN", "Left Behind"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Weather"],
+            ["DO_LOAD_CARDS_SCN", "Hazards of Antarctica"],
+            ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["VAR", "$CARD_LIST", ["LIST"]],
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08714", "08535"]], //Professor William Dyer: Professor of Geology
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08715", "08536"]], //Danforth: Brilliant Student
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08716", "08537"]], //Eliyah Ashevak: Dog Handler
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08717", "08538"]], //Dr. Mala Sinha: Daring Physician
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08718", "08539"]], //Avery Claypool: Antarctic Guide
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08719", "08540"]], //James "Cookie" Fredericks: Dubious Choice
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08720", "08541"]], //Dr. Amy Kensler: Professor of Biology
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08721", "08542"]], //Roald Ellsworth: Intrepid Explorer
+            ["UPDATE_VAR", "$CARD_LIST", ["ICE_AND_DEATH_PT_2_ADD_ENEMY", "$CARD_LIST", "08722", "08543"]], //Takada Hiroko: Aeroplane Mechanic
+            ["VAR", "$MISSING", ["SUBTRACT", 9, ["LENGTH", "$CARD_LIST"]]],
+            ["VAR", "$STORY_LIST", ["CHOOSE_N", ["LIST", "08527", "08528", "08529", "08530", "08531", "08532", "08533", "08534"], "$MISSING"]], //Dead End, Cracks in the Ice, Somber Remains, Disappearing Footprints, Dissected Explorer, Evil Within, Bloody Evidence, Madness Inside
+            ["UPDATE_VAR", "$CARD_LIST", ["CONCAT_LISTS", "$CARD_LIST", "$STORY_LIST"]],
+            ["UPDATE_VAR", "$CARD_LIST", ["SHUFFLE_LIST", "$CARD_LIST"]],
+            ["VAR", "$UNCHARTED", ["LIST", "08506", "08507", "08508", "08509", "08510", "08511", "08512", "08513", "08514"]], //Broad Snowdrifts, Icy Wastes, Rocky Crags, Snow Graves, Icebreaker Landing, Frigid Cave, Barrier Camp, Remnants of Lake's Camp, Crystalline Cavern
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, ["LENGTH", "$CARD_LIST"], 1, [
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Encounter Card", "$CARD_LIST.[$I]", 1, "sharedEncounterDeck", false, null],
+                ["VAR", "$CREATED_CARD_ID", "$GAME.lastLoadedCardIds.[0]"],
+                ["SET", "/cardById/$CREATED_CARD_ID/disableSideChange", true],
+                ["DO_SPAWN_HIDDEN_AT_LOCATION_SCN", "$CREATED_CARD_ID", "$UNCHARTED.[$I]", -3, 0],
+                ["SET", "/cardById/$CREATED_CARD_ID/disableSideChange", false]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$GAME.arkham.campaignEdgeOfTheEarthCamp", 3, 2, 2, 0],
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "ICE_AND_DEATH_PT_2_ADD_ENEMY": {
+            "args": ["$CARD_LIST", "$PARTNER_DATABASE_ID", "$ENEMY_DATABASE_ID"],
+            "code": [
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$PARTNER_DATABASE_ID"], "MIA"],
+                    ["UPDATE_VAR", "$CARD_LIST", ["APPEND", "$CARD_LIST", "$ENEMY_DATABASE_ID"]]
+                ],
+                "$CARD_LIST"
+            ]
+        }
+    }
+}

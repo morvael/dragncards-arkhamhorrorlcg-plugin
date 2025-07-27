@@ -87,6 +87,12 @@
                 ["DO_CREATE_MISSING_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
+        "DO_CREATE_MISSING_CARDS_SILENT_SCN": {
+            "args": ["$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_CREATE_MISSING_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$TARGET_DATABASE_ID", "$TARGET_MAX_QUANTITY", "$TARGET_GROUP_ID", false, null]
+            ]
+        },
         "DO_MOVE_DECK_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -238,7 +244,7 @@
                 ["VALIDATE_NOT_EMPTY", "$LOAD_LIST_ID", "DO_LOAD_CARDS_INTO.LOAD_LIST_ID"],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_LOAD_CARDS_INTO.TARGET_GROUP_ID"]],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_LOAD_CARDS_INTO.LOG_EVENT"],
-                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "load cards from {{$LOAD_LIST_ID}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "loads cards from {{$LOAD_LIST_ID}} {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "load cards from {{$LOAD_LIST_ID}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}.", "loads cards from {{$LOAD_LIST_ID}} into {{$GROUP_BY_ID.$TARGET_GROUP_ID.label}}."],
                 ["LOAD_CARDS", "$LOAD_LIST_ID"],
                 ["COND",
                     ["AND",

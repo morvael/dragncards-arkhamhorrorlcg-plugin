@@ -1,0 +1,131 @@
+{
+    "preBuiltDecks": {
+        "Ice and Death Pt 3 Scenario": {
+            "label": "Ice and Death Pt 3 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "Ice and Death Pt 3", "Ice and Death Pt 3 Scenario Early Init", "Ice and Death Pt 3 Scenario Init"]
+            ]
+        },
+        "Ice and Death Pt 3": {
+            "hideFromSearch": true,
+            "label": "Ice and Death Pt 3",
+            "cards": [
+                {"databaseId": "08501", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Ice and Death
+                {"databaseId": "08502", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "24%"},  //Crash Site
+                {"databaseId": "08503", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Frozen Shores
+                {"databaseId": "08504", "quantity": 1, "loadGroupId": "sharedLocations", "left": "74%", "top": "43%"},  //Treacherous Path
+                {"databaseId": "08505", "quantity": 1, "loadGroupId": "sharedLocations", "left": "16%", "top": "43%"},  //Precarious Ice Sheet
+                {"databaseId": "08506", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "62%"},  //Broad Snowdrifts
+                {"databaseId": "08507", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "24%"},   //Icy Wastes
+                {"databaseId": "08508", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "24%"},  //Rocky Crags
+                {"databaseId": "08509", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "81%"},  //Snow Graves
+                {"databaseId": "08510", "quantity": 1, "loadGroupId": "sharedLocations", "left": "7%", "top": "5%"},    //Icebreaker Landing
+                {"databaseId": "08511", "quantity": 1, "loadGroupId": "sharedLocations", "left": "83%", "top": "5%"},   //Frigid Cave
+                {"databaseId": "08512", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "5%"},   //Barrier Camp
+                {"databaseId": "08513", "quantity": 1, "loadGroupId": "sharedLocations", "left": "16%", "top": "62%"},  //Remnants of Lake's Camp
+                {"databaseId": "08514", "quantity": 1, "loadGroupId": "sharedLocations", "left": "74%", "top": "62%"},  //Crystalline Cavern
+                {"databaseId": "08515", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Skittering Nonsense
+                {"databaseId": "08516", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Apeirophobia
+                {"databaseId": "08517", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Zero Visibility
+            ]
+        },
+        "Seeping Nightmares": {
+            "hideFromSearch": true,
+            "label": "Seeping Nightmares",
+            "cards": [
+                {"databaseId": "08544", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Manifestations of Evil
+                {"databaseId": "08545", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Icy Depths
+                {"databaseId": "08546", "quantity": 1, "loadGroupId": "sharedActStory"},        //Under Attack!
+                {"databaseId": "08548", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Phantasmagoria
+            ]
+        }
+    },
+    "actionLists": {
+        "Ice and Death Pt 3 Scenario Early Init": [
+            ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1],
+            ["EDGE_OF_THE_EARTH_ASK_FOR_LOCATION_STATUS", "Ice and Death Pt 3 Scenario Early Init Continue 1"]
+        ],
+        "Ice and Death Pt 3 Scenario Early Init Continue 1": [
+            ["EDGE_OF_THE_EARTH_SHOW_CAMP_CHOICE", "Ice and Death Pt 3 Scenario Early Init Continue 2"]
+        ],
+        "Ice and Death Pt 3 Scenario Early Init Continue 2": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "OK", "Ice and Death Pt 3 Scenario Early Init Continue 3"]
+        ],
+        "Ice and Death Pt 3 Scenario Early Init Continue 3": [
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "Ice and Death Pt 3 Scenario Early Init Continue 4"]
+        ],
+        "Ice and Death Pt 3 Scenario Early Init Continue 4": [
+            ["SCENARIO_INIT_RESUME", "Ice and Death Pt 3 Scenario Init"]
+        ],
+        "Ice and Death Pt 3 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Ice and Death Pt 3"],
+            ["EDGE_OF_THE_EARTH_REVEAL_LOCATIONS"],
+            ["DO_LOAD_CARDS_SCN", "Seeping Nightmares"],
+            ["DO_LOAD_CARDS_SCN", "Creatures in the Ice"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Weather"],
+            ["DO_LOAD_CARDS_SCN", "Hazards of Antarctica"],
+            ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$GAME.arkham.campaignEdgeOfTheEarthCamp", 3, 2, 2, 0],
+            ["VAR", "$NIGHTMARE_SITES", null],
+            ["COND",
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08502"],                  //Crash Site
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08504"],                  //Treacherous Path
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08505"],                  //Precarious Ice Sheet
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08503"]                   //Frozen Shores
+                ],
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08507", "08506", "08508", "08510"]],   //Icy Wastes, Broad Snowdrifts, Rocky Crags, Icebreaker Landing
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08507"],                  //Icy Wastes
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08510"]                   //Icebreaker Landing
+                ],
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08509", "08511", "08513", "08512"]],   //Snow Graves, Frigid Cave, Remnants of Lake's Camp, Barrier Camp
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08506"],                  //Broad Snowdrifts
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08509"]                   //Snow Graves
+                ],
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08510", "08511", "08513", "08514"]],   //Icebreaker Landing, Frigid Cave, Remnants of Lake's Camp, Crystalline Cavern
+                ["OR",
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08511"],                  //Frigid Cave
+                    ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08508"]                   //Rocky Crags
+                ],
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08510", "08509", "08512", "08514"]],   //Icebreaker Landing, Snow Graves, Barrier Camp, Crystalline Cavern
+                ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08514"],                      //Crystalline Cavern
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08513", "08512", "08510", "08502"]],   //Remnants of Lake's Camp, Barrier Camp, Icebreaker Landing, Crash Site
+                ["EQUAL", "$GAME.arkham.campaignEdgeOfTheEarthCamp", "08512"],                      //Barrier Camp
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08513", "08514", "08509", "08502"]],   //Remnants of Lake's Camp, Crystalline Cavern, Snow Graves, Crash Site
+                ["TRUE"],                                                                           //Remnants of Lake's Camp
+                ["UPDATE_VAR", "$NIGHTMARE_SITES", ["LIST", "08512", "08514", "08511", "08502"]]    //Barrier Camp, Crystalline Cavern, Frigid Cave, Crash Site
+            ],
+            ["VAR", "$NIGHTMARE_CARD_IDS", ["LIST"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$GAME.arkham.numPlayers", 1, [
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Seeping Nightmare", "08547", 1, "sharedNotInPlay", false, null],
+                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$GAME.lastLoadedCardIds.[0]", "$NIGHTMARE_SITES.[$I]", 3, 0, 1],
+                ["UPDATE_VAR", "$NIGHTMARE_CARD_IDS", ["APPEND", "$NIGHTMARE_CARD_IDS", "$GAME.lastLoadedCardIds.[0]"]]
+            ]],
+            ["VAR", "$EIDOLONS", ["SHUFFLE_LIST", ["FILTER_CARDS", "$CARD", ["AND",
+                ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                ["EQUAL", "$CARD.sides.A.type", "Enemy"],
+                ["IN_STRING", "$CARD.sides.A.traits", "Eidolon."]
+            ]]]],
+            ["VAR", "$J", 0],
+            ["FOR_EACH_VAL", "$CARD", "$EIDOLONS", [
+                ["SET", "/cardById/$CARD.id/disableSideChange", true],
+                ["DO_FORCE_PUT_CARD_BENEATH", "$GAME.firstPlayer", "$CARD.id", "$NIGHTMARE_CARD_IDS.[$J]", true, null],
+                ["SET", "/cardById/$CARD.id/disableSideChange", false],
+                ["INCREASE_VAR", "$J", 1],
+                ["COND",
+                    ["GREATER_EQUAL", "$J", ["LENGTH", "$NIGHTMARE_CARD_IDS"]],
+                    ["UPDATE_VAR", "$J", 0]
+                ]
+            ]],
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

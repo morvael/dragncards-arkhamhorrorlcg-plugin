@@ -435,6 +435,19 @@
                 ]
             ]
         },
+        "DO_FORCE_PUT_CARD_BENEATH": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$PARENT_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_FORCE_PUT_CARD_BENEATH.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_FORCE_PUT_CARD_BENEATH.TARGET_CARD_ID"]],
+                ["VAR", "$PARENT_CARD", ["GET_CARD_AND_VALIDATE", "$PARENT_CARD_ID", "DO_FORCE_PUT_CARD_BENEATH.PARENT_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_FORCE_PUT_CARD_BENEATH.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "place {{$TARGET_CARD.currentFace.name}} beneath {{$PARENT_CARD.currentFace.name}}.", "places {{$TARGET_CARD.currentFace.name}} beneath {{$PARENT_CARD.currentFace.name}}."],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "placeBehind"],
+                ["ATTACH_CARD", "$TARGET_CARD_ID", "$PARENT_CARD_ID", {"combine": "behind"}],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
+            ]
+        },
         "CAN_DETACH_CARD": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
             "code": [

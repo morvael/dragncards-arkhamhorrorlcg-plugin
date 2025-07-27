@@ -91,6 +91,7 @@
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "Event"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "Skill"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "Enemy"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "Story"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
                         ],
                         ["NOT_EQUAL", "$TARGET_CARD.currentFace.permanent", true],

@@ -1,0 +1,638 @@
+{
+    "preBuiltDecks": {
+        "Fatal Mirage Scenario": {
+            "label": "Fatal Mirage Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "Fatal Mirage", "Fatal Mirage Scenario Early Init", "Fatal Mirage Scenario Init"]
+            ]
+        },
+        "Fatal Mirage": {
+            "hideFromSearch": true,
+            "label": "Fatal Mirage",
+            "cards": [
+                {"databaseId": "08549", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Fatal Mirage
+                {"databaseId": "08550", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Ethereal Tangle (v. I)
+                {"databaseId": "08551", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Ethereal Tangle (v. II)
+                {"databaseId": "08552", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Ethereal Tangle (v. III)
+                {"databaseId": "08553", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Shadow of the Past (v. I)
+                {"databaseId": "08554", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Shadow of the Past (v. II)
+                {"databaseId": "08555", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Shadow of the Past (v. III)
+                {"databaseId": "08556", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "41%"},  //Prison of Memories
+                {"databaseId": "08557", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Base Camp
+                {"databaseId": "08558", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Deck of the Theodosia
+                {"databaseId": "08559", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //University Halls
+                {"databaseId": "08560", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Hedge Maze
+                {"databaseId": "08561", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Deserted Station
+                {"databaseId": "08562", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Coastal Waters
+                {"databaseId": "08563", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Elder Chamber
+                {"databaseId": "08564", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Riverview Theatre
+                {"databaseId": "08565", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Standing Stones
+                {"databaseId": "08566", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Airfield
+                {"databaseId": "08567", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Alaskan Wilds
+                {"databaseId": "08568", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Cluttered Dormitory
+                {"databaseId": "08569", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Dyer's Classroom
+                {"databaseId": "08570", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Infirmary
+                {"databaseId": "08571", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Dr. Kensler's Office
+                {"databaseId": "08572", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Mo'ai Statues
+                {"databaseId": "08573", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Ottoman Front
+                {"databaseId": "08574", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //The Black Stone
+                {"databaseId": "08575", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Hunt Gone Awry
+                {"databaseId": "08576", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Lost Patient
+                {"databaseId": "08577", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Missing Father
+                {"databaseId": "08578", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Ravaged Country
+                {"databaseId": "08579", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Regretful Voyage
+                {"databaseId": "08580", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of an Unspeakable Evil
+                {"databaseId": "08581", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of a Terrible Discovery
+                {"databaseId": "08582", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of an Alien Translation
+                {"databaseId": "08583", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Memory of an Unrequited Love
+                {"databaseId": "08584", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Horrifying Shade
+                {"databaseId": "08585", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Evanescent Mist
+                {"databaseId": "08586", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Anamnesis
+            ],
+            "postLoadActionList": [
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Professor William Dyer: Professor of Geology", "08587", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Danforth: Brilliant Student", "08588", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Eliyah Ashevak: Dog Handler", "08589", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Dr. Mala Sinha: Daring Physician", "08590", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Avery Claypool: Antarctic Guide", "08591", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "James \"Cookie\" Fredericks: Dubious Choice", "08592", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Dr. Amy Kensler: Professor of Biology", "08593", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Roald Ellsworth: Intrepid Explorer", "08594", 1, "sharedPileD"],
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Takada Hiroko: Aeroplane Mechanic", "08595", 1, "sharedPileD"]
+            ]
+        }
+    },
+    "actionLists": {
+        "Fatal Mirage Scenario Early Init": [
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Playing Fatal Mirage.", ["LIST", "This is the first time.", "This is the second time.", "This is the third time."], "Fatal Mirage Scenario Question 1"]
+        ],
+        "Fatal Mirage Scenario Question 1": [
+            ["LOG", "└── Playing Fatal Mirage: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", ["INLINE_IF", ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"], "OK", "Resolute"], "Fatal Mirage Scenario Early Init Continue 1"]
+        ],
+        "Fatal Mirage Scenario Early Init Continue 1": [
+            //When partner cards are resolute the path to them must have been discovered and their Memory of banished.
+            //Sadly, when a partner is KIA after being made resolute, this ability to automatically set status is lost.
+            //Also, it can't be used to determine discovery of locations to which two different paths lead.
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08716"], "resolute"], //Eliyah Ashevak: Dog Handler
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08557", "discovered"], //Base Camp
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08561", "discovered"], //Deserted Station
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08567", "discovered"], //Alaskan Wilds
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08575", "banished"]      //Memory of a Hunt Gone Awry
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08717"], "resolute"], //Dr. Mala Sinha: Daring Physician
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08564", "discovered"], //Riverview Theatre
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08570", "discovered"], //Infirmary
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08576", "banished"] //Memory of a Lost Patient
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08722"], "resolute"], //Takada Hiroko: Aeroplane Mechanic
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08562", "discovered"], //Coastal Waters
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08566", "discovered"], //Airfield
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08577", "banished"] //Memory of a Missing Father
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08719"], "resolute"], //James "Cookie" Fredericks: Dubious Choice
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08562", "discovered"], //Coastal Waters
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08573", "discovered"], //Ottoman Front
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08578", "banished"] //Memory of a Ravaged Country
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08714"], "resolute"], //Professor William Dyer: Professor of Geology
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08565", "discovered"], //Standing Stones
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08569", "discovered"], //Dyer's Classroom
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08579", "banished"] //Memory of a Regretful Voyage
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08715"], "resolute"], //Danforth: Brilliant Student
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08559", "discovered"], //University Halls
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08563", "discovered"], //Elder Chamber
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08568", "discovered"], //Cluttered Dormitory
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08580", "banished"] //Memory of an Unspeakable Evil
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08718"], "resolute"], //Avery Claypool: Antarctic Guide
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08565", "discovered"], //Standing Stones
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08574", "discovered"], //The Black Stone
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08581", "banished"] //Memory of a Terrible Discovery
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08721"], "resolute"], //Roald Ellsworth: Intrepid Explorer
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08558", "discovered"], //Deck of the Theodosia
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08560", "discovered"], //Hedge Maze
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08572", "discovered"], //Mo'ai Statues
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08582", "banished"] //Memory of an Alien Translation
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08720"], "resolute"], //Dr. Amy Kensler: Professor of Biology
+                [
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08564", "discovered"], //Riverview Theatre
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08571", "discovered"], //Dr. Kensler's Office
+                    ["FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "08583", "banished"] //Memory of an Unrequited Love
+                ]
+            ],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "Fatal Mirage Scenario Early Init Continue 2"]
+        ],
+        "Fatal Mirage Scenario Early Init Continue 2": [
+            ["SCENARIO_INIT_RESUME", "Fatal Mirage Scenario Init"]
+        ],
+        "Fatal Mirage Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Fatal Mirage"],
+            ["DO_SET_SPAWN_LOCATION", "08557", 58, 51], //Base Camp
+            ["DO_SET_SPAWN_LOCATION", "08558", 32, 51], //Deck of the Theodosia
+            ["DO_SET_SPAWN_LOCATION", "08559", 45, 22], //University Halls
+            ["DO_SET_SPAWN_LOCATION", "08560", 19, 60], //Hedge Maze
+            ["DO_SET_SPAWN_LOCATION", "08561", 71, 60], //Deserted Station
+            ["DO_SET_SPAWN_LOCATION", "08562", 45, 62], //Coastal Waters
+            ["DO_SET_SPAWN_LOCATION", "08563", 51, 3],  //Elder Chamber
+            ["DO_SET_SPAWN_LOCATION", "08564", 60, 31], //Riverview Theatre
+            ["DO_SET_SPAWN_LOCATION", "08565", 30, 31], //Standing Stones
+            ["DO_SET_SPAWN_LOCATION", "08566", 37, 81], //Airfield
+            ["DO_SET_SPAWN_LOCATION", "08567", 84, 62], //Alaskan Wilds
+            ["DO_SET_SPAWN_LOCATION", "08568", 38, 1],  //Cluttered Dormitory
+            ["DO_SET_SPAWN_LOCATION", "08569", 20, 11], //Dyer's Classroom
+            ["DO_SET_SPAWN_LOCATION", "08570", 73, 31], //Infirmary
+            ["DO_SET_SPAWN_LOCATION", "08571", 70, 11], //Dr. Kensler's Office
+            ["DO_SET_SPAWN_LOCATION", "08572", 6, 62],  //Mo'ai Statues
+            ["DO_SET_SPAWN_LOCATION", "08573", 53, 81], //Ottoman Front
+            ["DO_SET_SPAWN_LOCATION", "08574", 17, 31], //The Black Stone
+            ["DO_LOAD_CARDS_SCN", "Agents of the Unknown"],
+            ["DO_LOAD_CARDS_SCN", "Left Behind"],
+            ["DO_LOAD_CARDS_SCN", "Miasma"],
+            ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+            ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08550"],  //Ethereal Tangle (v. I)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08553"]   //Shadow of the Past (v. I)
+                ]
+            ],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08551"],  //Ethereal Tangle (v. II)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08554"]   //Shadow of the Past (v. II)
+                ]
+            ],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "C"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08552"],  //Ethereal Tangle (v. III)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08555"]   //Shadow of the Past (v. III)
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Prison of Memories", 5, 7, 3, 0],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["ACTION_LIST", "Fatal Mirage Scenario Init Continue 2"],
+                ["TRUE"],
+                ["FATAL_MIRAGE_ASK_FOR_MEMORY_DISCOVERED_STATUS", "Fatal Mirage Scenario Init Continue 1"]
+            ]
+        ],
+        "Fatal Mirage Scenario Init Continue 1": [
+            ["FATAL_MIRAGE_ASK_FOR_MEMORY_BANISHED_STATUS", "Fatal Mirage Scenario Init Continue 2"]
+        ],
+        "Fatal Mirage Scenario Init Continue 2": [
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["VAR", "$BANISHED", ["LIST", "08566", "08567", "08568", "08569", "08570", "08571", "08572", "08573", "08574"]], //Airfield, Alaskan Wilds, Cluttered Dormitory, Dyer's Classroom, Infirmary, Dr. Kensler's Office, Mo'ai Statues, Ottoman Front, The Black Stone
+                    ["FOR_EACH_VAL", "$MEMORY", "$BANISHED", [
+                        ["COND",
+                            ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_BANISHED_STATUS", "$MEMORY"], "banished"],
+                            [
+                                ["DO_MOVE_NAMED_DECK_CARDS_SCN", "$MEMORY", "sharedPileA", 1, "sharedVictoryDisplay"],
+                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "$MEMORY"], false, null]
+                            ]
+                        ]
+                    ]],
+                    ["VAR", "$BANISHED", ["LIST", "08575", "08576", "08577", "08578", "08579", "08580", "08581", "08582", "08583"]], //Memory of a Hunt Gone Awry, Memory of a Lost Patient, Memory of a Missing Father, Memory of a Ravaged Country, Memory of a Regretful Voyage, Memory of an Unspeakable Evil, Memory of a Terrible Discovery, Memory of an Alien Translation, Memory of an Unrequited Love
+                    ["FOR_EACH_VAL", "$MEMORY", "$BANISHED", [
+                        ["COND",
+                            ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_BANISHED_STATUS", "$MEMORY"], "banished"],
+                            [
+                                ["DO_MOVE_NAMED_DECK_CARDS_SCN", "$MEMORY", "sharedPileB", 1, "sharedVictoryDisplay"],
+                                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "$MEMORY"], false, null]
+                            ]
+                        ]
+                    ]],
+                    ["VAR", "$DISCOVERED", ["LIST", "08557", "08558", "08559", "08560", "08561", "08562", "08563", "08564", "08565", "08566", "08567", "08568", "08569", "08570", "08571", "08572", "08573", "08574"]], //Base Camp, Deck of the Theodosia, University Halls, Hedge Maze, Deserted Station, Coastal Waters, Elder Chamber, Riverview Theatre, Standing Stones, Airfield, Alaskan Wilds, Cluttered Dormitory, Dyer's Classroom, Infirmary, Dr. Kensler's Office, Mo'ai Statues, Ottoman Front, The Black Stone
+                    ["FOR_EACH_VAL", "$LOCATION", "$DISCOVERED", [
+                        ["COND",
+                            ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "$LOCATION"], "discovered"],
+                            [
+                                ["VAR", "$LOCATION_CARD", ["GET_NAMED_DECK_CARD", "$LOCATION", "sharedPileA"]],
+                                ["COND",
+                                    ["NOT_EQUAL", "$LOCATION_CARD", null],
+                                    ["DO_SPAWN_CARD", "$GAME.firstPlayer", "$LOCATION_CARD.id", true, null]
+                                ]
+                            ]
+                        ]
+                    ]]
+                ]
+            ],
+            //also removing cards of KIA partners, so this applies to first play too (only cards in sharedPileD are affected)
+            ["VAR", "$BASE", ["LIST", "08714", "08715", "08716", "08717", "08718", "08719", "08720", "08721", "08722"]], //Professor William Dyer, Danforth, Eliyah Ashevak, Dr. Mala Sinha, Avery Claypool, James "Cookie" Fredericks, Dr. Amy Kensler, Roald Ellsworth, Takada Hiroko
+            ["VAR", "$RESOLUTE", ["LIST", "08587", "08588", "08589", "08590", "08591", "08592", "08593", "08594", "08595"]], //Professor William Dyer, Danforth, Eliyah Ashevak, Dr. Mala Sinha, Avery Claypool, James "Cookie" Fredericks, Dr. Amy Kensler, Roald Ellsworth, Takada Hiroko
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 9, 1, [
+                ["COND",
+                    ["NOT_EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$BASE.[$I]"], "alive"],
+                    [
+                        ["VAR", "$PARTNER_CARD", ["GET_NAMED_DECK_CARD", "$RESOLUTE.[$I]", "sharedPileD"]],
+                        ["COND",
+                            ["NOT_EQUAL", "$PARTNER_CARD", null],
+                            ["DO_DELETE_CARD", "$GAME.firstPlayer", "$PARTNER_CARD.id", true, null]
+                        ]
+                    ]
+                ]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B, locations are in Pile A, “Memory of...” cards are in Pile B, Resolute assets are in Pile D. See “Mirage” (it is accounted for when placing clues). Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log."],
+                ["TRUE"],
+                ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B, remaining locations are in Pile A, remaining “Memory of...” cards are in Pile B, remaining Resolute assets are in Pile D. See “Mirage” (it is accounted for when placing clues). Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log."]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        //selecting memory discovered status 1/5
+        "FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "scenarioFatalMirageMemoryDiscovered{0}Status", "$DATABASE_ID", "not discovered"]
+            ]
+        },
+        //selecting memory discovered status 2/5
+        "FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS": {
+            "args": ["$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "scenarioFatalMirageMemoryDiscovered{0}Status", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting memory discovered status 3/5
+        "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_DISCOVERED_DATABASE_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["VAR", "$LIST", ["LIST", "08557", "08558", "08559"]], //Base Camp, Deck of the Theodosia, University Halls
+                //Hedge Maze
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08558"], "discovered"], //requires Deck of the Theodosia
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08560"]]
+                ],
+                //Deserted Station
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08557"], "discovered"], //requires Base Camp
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08561"]]
+                ],
+                //Coastal Waters
+                ["COND",
+                    ["OR",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08557"], "discovered"], //requires Base Camp
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08558"], "discovered"]  //or Deck of the Theodosia
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08562"]]
+                ],
+                //Elder Chamber
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08559"], "discovered"], //requires University Halls
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08563"]]
+                ],
+                //Riverview Theatre
+                ["COND",
+                    ["OR",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08557"], "discovered"], //requires Base Camp
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08559"], "discovered"]  //or University Halls
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08564"]]
+                ],
+                //Standing Stones
+                ["COND",
+                    ["OR",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08558"], "discovered"], //requires Deck of the Theodosia
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08559"], "discovered"]  //or University Halls
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08565"]]
+                ],
+                //Airfield
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08562"], "discovered"], //requires Coastal Waters
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08566"]]
+                ],
+                //Alaskan Wilds
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08561"], "discovered"], //requires Deserted Station
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08567"]]
+                ],
+                //Cluttered Dormitory
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08563"], "discovered"], //requires Elder Chamber
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08568"]]
+                ],
+                //Dyer's Classroom
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08565"], "discovered"], //requires Standing Stones
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08569"]]
+                ],
+                //Infirmary
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08564"], "discovered"], //requires Riverview Theatre
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08570"]]
+                ],
+                //Dr. Kensler's Office
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08564"], "discovered"], //requires Riverview Theatre
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08571"]]
+                ],
+                //Mo'ai Statues
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08560"], "discovered"], //requires Hedge Maze
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08572"]]
+                ],
+                //Ottoman Front
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08562"], "discovered"], //requires Coastal Waters
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08573"]]
+                ],
+                //The Black Stone
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08565"], "discovered"], //requires Standing Stones
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08574"]]
+                ],
+                ["EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID", "scenarioFatalMirageMemoryDiscovered{0}Status", "$DATABASE_ID", "not discovered", "$LIST"]
+            ]
+        },
+        //selecting memory discovered status 4/5
+        "FATAL_MIRAGE_ASK_FOR_MEMORY_DISCOVERED_STATUS": {
+            "args": ["$CONTINUE_ACTION"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS", "$GAME.firstPlayer", "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_DISCOVERED_DATABASE_ID", "fatalMirageChooseMemoryDiscoveredStatus", "$CONTINUE_ACTION"]
+            ]
+        },
+        //selecting memory discovered status 5/5
+        "FATAL_MIRAGE_MEMORY_DISCOVERED_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                //Base Camp is declared before Deck of the Theodosia and University Halls
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DATABASE_ID", "08557"],                                             //Base Camp...
+                        ["EQUAL", "$STATUS", "not discovered"],                                         //is declared not discovered, but...
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08564"], "discovered"] //Riverview Theatre is discovered, then...
+                    ],
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08559", "discovered"]                //University Halls must be discovered
+                ],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DATABASE_ID", "08557"],                                             //Base Camp...
+                        ["EQUAL", "$STATUS", "not discovered"],                                         //is declared not discovered, but...
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08562"], "discovered"] //Coastal Waters is discovered, then...
+                    ],
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08558", "discovered"]                //Deck of the Theodosia must be discovered
+                ],
+                //Deck of the Theodosia is declared before University Halls
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$DATABASE_ID", "08558"],                                             //Deck of the Theodosia...
+                        ["EQUAL", "$STATUS", "not discovered"],                                         //is declared not discovered, but...
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08565"], "discovered"] //Standing Stones is discovered, then...
+                    ],
+                    ["FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "08559", "discovered"]                //University Halls must be discovered
+                ],
+                ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_DISCOVERED_DATABASE_ID", "FATAL_MIRAGE_SET_MEMORY_DISCOVERED_STATUS", "fatalMirageChooseMemoryDiscoveredStatus", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting memory banished status 1/5
+        "FATAL_MIRAGE_GET_MEMORY_BANISHED_STATUS": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "scenarioFatalMirageMemoryBanished{0}Status", "$DATABASE_ID", "not banished"]
+            ]
+        },
+        //selecting memory banished status 2/5
+        "FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS": {
+            "args": ["$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "scenarioFatalMirageMemoryBanished{0}Status", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting memory banished status 3/5
+        "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_BANISHED_DATABASE_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["VAR", "$LIST", ["LIST"]],
+                //
+                //Location cards can become Memory Banished only when path to them was discovered and their corresponding partner is KIA.
+                //
+                //Airfield
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08562"], "discovered"], //requires Coastal Waters
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08722"], "KIA"]  //requires Takada Hiroko: Aeroplane Mechanic to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08566"]]
+                ],
+                //Alaskan Wilds
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08561"], "discovered"], //requires Deserted Station
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08716"], "KIA"] //requires Eliyah Ashevak: Dog Handler to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08567"]]
+                ],
+                //Cluttered Dormitory
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08563"], "discovered"], //requires Elder Chamber
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08715"], "KIA"] //requires Danforth: Brilliant Student to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08568"]]
+                ],
+                //Dyer's Classroom
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08565"], "discovered"], //requires Standing Stones
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08714"], "KIA"] //requires Professor William Dyer: Professor of Geology to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08569"]]
+                ],
+                //Infirmary
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08564"], "discovered"], //requires Riverview Theatre
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08717"], "KIA"] //requires Dr. Mala Sinha: Daring Physician to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08570"]]
+                ],
+                //Dr. Kensler's Office
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08564"], "discovered"], //requires Riverview Theatre
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08720"], "KIA"] //requires Dr. Amy Kensler: Professor of Biology to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08571"]]
+                ],
+                //Mo'ai Statues
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08560"], "discovered"], //requires Hedge Maze
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08721"], "KIA"] //requires Roald Ellsworth: Intrepid Explorer to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08572"]]
+                ],
+                //Ottoman Front
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08562"], "discovered"], //requires Coastal Waters
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08719"], "KIA"] //requires James "Cookie" Fredericks: Dubious Choice to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08573"]]
+                ],
+                //The Black Stone
+                ["COND",
+                    ["AND",
+                        ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08565"], "discovered"], //requires Standing Stones
+                        ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08718"], "KIA"] //requires Avery Claypool: Antarctic Guide to be KIA
+                    ],
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08574"]]
+                ],
+                //
+                //Memory of... cards can become Memory Banished only when path to them was discovered. If they are already declared banished by partner status, the game will not ask about them anyway.
+                //
+                //Memory of a Hunt Gone Awry
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08567"], "discovered"], //requires Alaskan Wilds
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08575"]]
+                ],
+                //Memory of a Lost Patient
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08570"], "discovered"], //requires Infirmary
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08576"]]
+                ],
+                //Memory of a Missing Father
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08566"], "discovered"], //requires Airfield
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08577"]]
+                ],
+                //Memory of a Ravaged Country
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08573"], "discovered"], //requires Ottoman Front
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08578"]]
+                ],
+                //Memory of a Regretful Voyage
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08569"], "discovered"], //requires Dyer's Classroom
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08579"]]
+                ],
+                //Memory of an Unspeakable Evil
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08568"], "discovered"], //requires Cluttered Dormitory
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08580"]]
+                ],
+                //Memory of a Terrible Discovery
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08574"], "discovered"], //requires The Black Stone
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08581"]]
+                ],
+                //Memory of an Alien Translation
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08572"], "discovered"], //requires Mo'ai Statues
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08582"]]
+                ],
+                //Memory of an Unrequited Love
+                ["COND",
+                    ["EQUAL", ["FATAL_MIRAGE_GET_MEMORY_DISCOVERED_STATUS", "08571"], "discovered"], //requires Dr. Kensler's Office
+                    ["UPDATE_VAR", "$LIST", ["APPEND", "$LIST", "08583"]]
+                ],
+                //memories banished when partner is resolute
+                ["EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID", "scenarioFatalMirageMemoryBanished{0}Status", "$DATABASE_ID", "not banished", "$LIST"]
+            ]
+        },
+        //selecting memory banished status 4/5
+        "FATAL_MIRAGE_ASK_FOR_MEMORY_BANISHED_STATUS": {
+            "args": ["$CONTINUE_ACTION"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS", "$GAME.firstPlayer", "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_BANISHED_DATABASE_ID", "fatalMirageChooseMemoryBanishedStatus", "$CONTINUE_ACTION"]
+            ]
+        },
+        //selecting memory banished status 5/5
+        "FATAL_MIRAGE_MEMORY_BANISHED_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "FATAL_MIRAGE_GET_NEXT_UNDEFINED_MEMORY_BANISHED_DATABASE_ID", "FATAL_MIRAGE_SET_MEMORY_BANISHED_STATUS", "fatalMirageChooseMemoryBanishedStatus", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
+            ]
+        }
+    },
+    "prompts": {
+        "fatalMirageChooseMemoryBanishedStatus": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "Is “{{$CARD_NAME}}” listed under “Memories Banished”?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["FATAL_MIRAGE_MEMORY_BANISHED_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "banished"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["FATAL_MIRAGE_MEMORY_BANISHED_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "not banished"]
+                    ]
+                }
+            ]
+        },
+        "fatalMirageChooseMemoryDiscoveredStatus": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "Is “{{$CARD_NAME}}” listed under “Memories Discovered”?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["FATAL_MIRAGE_MEMORY_DISCOVERED_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "discovered"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["FATAL_MIRAGE_MEMORY_DISCOVERED_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "not discovered"]
+                    ]
+                }
+            ]
+        }
+    }
+}

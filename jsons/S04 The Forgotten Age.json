@@ -99,7 +99,7 @@
                 {"databaseId": "04101", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Creeping Poison
             ],
             "postLoadActionList": [
-                ["DO_CREATE_MISSING_CARDS_SCN", "Poisoned", "04102", 4, "sharedNotInPlay"]
+                ["DO_CREATE_MISSING_CARDS_SILENT_SCN", "Poisoned", "04102", 4, "sharedNotInPlay"]
             ]
         },
         "The Forgotten Age Supplies": {
@@ -216,7 +216,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.TARGET_PLAYER"],
                 ["VALIDATE_BOOLEAN", "$REPLACE", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.REPLACE"],
                 ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "THE_FORGOTTEN_AGE_BODY_CHOICE_DONE.CONTINUE_ACTION"],
-                ["DO_FLOG", "{0:P}'s will {1} Body of a Yithian instead of {0:I}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$REPLACE", true], "use", "not use"]]],
+                ["DO_FLOG", "{0:P} will {1} Body of a Yithian instead of {0:I}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$REPLACE", true], "use", "not use"]]],
                 ["COND",
                     ["EQUAL", "$REPLACE", true],
                     ["THE_FORGOTTEN_AGE_REPLACE_INVESTIGATOR_WITH_BODY_OF_A_YITHIAN", "$TARGET_PLAYER"]

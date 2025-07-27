@@ -397,6 +397,16 @@
                     ],
                     ["UPDATE_VAR", "$CLUES", ["CALC", "{{$CLUES}}*{{$GAME.arkham.numPlayers}}"]]
                 ],
+                ["COND",
+                    ["IN_STRING", "$TARGET_CARD.currentFace.traits", "Mirage."],
+                    [
+                        ["DECREASE_VAR", "$CLUES", ["EDGE_OF_THE_EARTH_GET_MIRAGE_DECREASE", "$TARGET_CARD.currentFace.databaseId"]],
+                        ["COND",
+                            ["LESS_THAN", "$CLUES", 0],
+                            ["UPDATE_VAR", "$CLUES", 0]
+                        ]
+                    ]
+                ],
                 "$CLUES"
             ]
         },
