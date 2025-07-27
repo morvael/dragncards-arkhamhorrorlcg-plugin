@@ -606,7 +606,7 @@
                 ["ACTION_LIST", "$CONTINUE_ACTION"]
             ]
         },
-        //calculates the matching number of cards for mirage effect and multiplies it by multiplier
+        //calculates the matching number of cards for mirage effect and multiplies it by multiplier and number of players
         "EDGE_OF_THE_EARTH_COUNT_MIRAGE_CARDS": {
             "args": ["$MULTIPLIER", "$DATABASE_ID1", "$DATABASE_ID2", "$DATABASE_ID3"],
             "code": [
@@ -621,7 +621,7 @@
                         ["EQUAL", "$CARD.currentFace.databaseId", "$DATABASE_ID3"]
                     ]
                 ]]],
-                ["MULTIPLY", ["LENGTH", "$SELECTED_CARDS"], "$MULTIPLIER"]
+                ["MULTIPLY", ["MULTIPLY", ["LENGTH", "$SELECTED_CARDS"], "$MULTIPLIER"], "$GAME.arkham.numPlayers"]
             ]
         },
         //calculates mirage clue number decrease
