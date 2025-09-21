@@ -274,7 +274,7 @@
                         ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$DECK_GROUP_ID",
                             ["GET_FILTERED_CARDS", "$DECK_GROUP_ID", null, null, null, ["LIST", "Illicit."], null],
                             "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckAttachments.09077",
-                            "Target {0} Illicit cards to shuffle them together as your market deck.",
+                            "Select {0} Illicit cards to shuffle them together as your market deck.",
                             10, 10, false, "UNDERWORLD_MARKET_SELECTION_CALLBACK", "$SOURCE_CARD.id"]
                     ],
                     ["TRUE"],

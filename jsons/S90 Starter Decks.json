@@ -176,7 +176,7 @@
                         ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$SIDE_DECK_GROUP_ID",
                             ["FILTER_PARALLEL_JIM_CULVER_CARDS", "$SIDE_DECK_GROUP_ID"],
                             null,
-                            "Target {0} different Ally assets from any class level 0-2 to shuffle them into your spirit deck.",
+                            "Select {0} different Ally assets from any class level 0-2 to shuffle them into your spirit deck.",
                             9, 9, true, "PARALLEL_JIM_CULVER_SELECTION_CALLBACK", "$THIS.id"]
                     ]
                 ]

@@ -100,7 +100,7 @@
                                 ["IN_LIST", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"],
                                 [
                                     ["UPDATE_VAR", "$TARGETED_CARDS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"]],
-                                    ["SET", "/cardById/$CARD.id/targeting/$TARGET_PLAYER", true]
+                                    ["SET", "/cardById/$CARD.id/targeting/$TARGET_PLAYER", true] //TODO - https://github.com/seastan/dragncards/issues/139
                                 ]
                             ]
                         ]],
@@ -111,7 +111,7 @@
             ]
         },
         "DO_MAKE_SELECTION": {
-            "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$FORCE"],
+            "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$FORCE", "$SELECTED_CARDS", "$REMAINING_CARDS"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MAKE_SELECTION.TARGET_PLAYER"],
                 ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "DO_MAKE_SELECTION.SOURCE_GROUP_ID"]],
@@ -122,7 +122,6 @@
                 ["VALIDATE_NOT_EMPTY", "$CALLBACK_FUNCTION", "DO_MAKE_SELECTION.CALLBACK_FUNCTION"],
                 ["VALIDATE_BOOLEAN", "$FORCE", "DO_MAKE_SELECTION.FORCE"],
                 ["VAR", "$SELECTION_GROUP_ID", ["GET_CONTROLLER_SELECTION", "$TARGET_PLAYER"]],
-                ["VAR", "$SELECTED_CARDS", ["GET_TARGETED_CARDS_IN_GROUP", "$SELECTION_GROUP_ID", "$TARGET_PLAYER"]],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["VAR", "$VALID_SELECTION", ["AND",
                     ["GREATER_EQUAL", "$SELECTED_COUNT", "$MIN"],
@@ -148,11 +147,9 @@
                             ["DO_FLOG", "{0:P} {1} selection for {2:CID}.", ["LIST", "$TARGET_PLAYER", ["INLINE_IF", "$VALID_SELECTION", "makes a valid", "forces an invalid"], "$SOURCE_CARD_ID"]]
                         ],
                         ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNSelection/visible", false],
-                        ["VAR", "$REMAINING_CARDS", ["GET_NOT_TARGETED_CARDS_IN_GROUP", "$SELECTION_GROUP_ID", "$TARGET_PLAYER"]],
                         ["FOR_EACH_VAL", "$CARD", "$REMAINING_CARDS", [
                             ["MOVE_CARD", "$CARD.id", "$SOURCE_GROUP_ID", -1]
                         ]],
-                        ["DO_CLEAR_TARGETED_FROM_LIST", "$SELECTED_CARDS", "$TARGET_PLAYER"],
                         ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "$SOURCE_GROUP_ID", true, null],
                         ["$CALLBACK_FUNCTION", "$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"]
                     ],
@@ -174,19 +171,22 @@
         "cardSelectPrompt": {
             "args": ["$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$MESSAGE"],
             "message": "{{$MESSAGE}}",
+            "input": {
+                "type": "selectCards"
+            },
             "options": [
                 {
                     "label": "Select (follow the rules).",
                     "hotkey": "S",
                     "code": [
-                        ["DO_MAKE_SELECTION", "$PLAYER_N", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", false]
+                        ["DO_MAKE_SELECTION", "$PLAYER_N", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", false, ["GET_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_SELECTION", "$PLAYER_N"], "$PROMPT_INPUT"], ["GET_NOT_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_SELECTION", "$PLAYER_N"], "$PROMPT_INPUT"]]
                     ]
                 },
                 {
                     "label": "Force (ignore the rules).",
                     "hotkey": "F",
                     "code": [
-                        ["DO_MAKE_SELECTION", "$PLAYER_N", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", true]
+                        ["DO_MAKE_SELECTION", "$PLAYER_N", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", true, ["GET_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_SELECTION", "$PLAYER_N"], "$PROMPT_INPUT"], ["GET_NOT_SELECTED_CARDS_IN_GROUP", ["GET_CONTROLLER_SELECTION", "$PLAYER_N"], "$PROMPT_INPUT"]]
                     ]
                 }
             ]

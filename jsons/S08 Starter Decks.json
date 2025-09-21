@@ -193,7 +193,7 @@
                                     ["DO_SHOW_SELECTION", "$TARGET_PLAYER", "$HAND_GROUP_ID",
                                         "$NEW_CARDS",
                                         null,
-                                        "Target {0} card to discard it.",
+                                        "Select {0} card to discard it.",
                                         1, 1, false, "FORCED_LEARNING_SELECTION_CALLBACK", "$THIS.id"]
                                 ],
                                 ["TRUE"],
