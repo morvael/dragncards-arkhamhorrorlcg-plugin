@@ -328,30 +328,6 @@
                 ]]
             ]
         },
-        //Returns list of cards in given group targeted by given player.
-        "GET_TARGETED_CARDS_IN_GROUP": {
-            "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
-            "code": [
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
-                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "GET_TARGETED_CARDS_IN_GROUP.TARGETING_PLAYER"],
-                ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
-                    ["EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
-                ]]
-            ]
-        },
-        //Returns list of cards in given group not targeted by given player.
-        "GET_NOT_TARGETED_CARDS_IN_GROUP": {
-            "args": ["$TARGET_GROUP_ID", "$TARGETING_PLAYER"],
-            "code": [
-                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGET_GROUP_ID"]],
-                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "GET_NOT_TARGETED_CARDS_IN_GROUP.TARGETING_PLAYER"],
-                ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "$TARGET_GROUP_ID"],
-                    ["NOT_EQUAL", "$CARD.targeting.$TARGETING_PLAYER", true]
-                ]]
-            ]
-        },
         "GET_ALL_CARDS_IN_PLAY": {
             "_comment": "Returns list of all cards with inPlay true.",
             "args": [],
@@ -376,20 +352,6 @@
             "code": [
                 ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
                 ["SET", "/cardById/$TARGET_CARD_ID/rotation", "$ROTATION"]
-            ]
-        },
-        "DO_CLEAR_TARGETED_FROM_LIST": {
-            "_comment": "Unsets given player targeting cards from given list.",
-            "args": ["$SELECTED_CARDS", "$TARGETING_PLAYER"],
-            "code": [
-                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "DO_CLEAR_TARGETED_FROM_LIST.SELECTED_CARDS"],
-                ["VALIDATE_PLAYER", "$TARGETING_PLAYER", "DO_CLEAR_TARGETED_FROM_LIST.TARGETING_PLAYER"],
-                ["COND",
-                    ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 0],
-                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                        ["UNSET", "/cardById/$CARD.id/targeting/$TARGETING_PLAYER"]
-                    ]]
-                ]
             ]
         },
         "GET_READY_ENEMIES_COUNT": {

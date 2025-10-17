@@ -94,18 +94,20 @@
                             ]
                         ],
                         ["VAR", "$SELECTION_GROUP_ID", ["GET_CONTROLLER_SELECTION", "$TARGET_PLAYER"]],
+                        ["VAR", "$SELECTION_LIST", ["LIST"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["MOVE_CARD", "$CARD.id", "$SELECTION_GROUP_ID", -1],
                             ["COND",
                                 ["IN_LIST", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"],
                                 [
                                     ["UPDATE_VAR", "$TARGETED_CARDS", ["REMOVE_FIRST_FROM_LIST_BY_VALUE", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"]],
-                                    ["SET", "/cardById/$CARD.id/targeting/$TARGET_PLAYER", true] //TODO - https://github.com/seastan/dragncards/issues/139
+                                    ["UPDATE_VAR", "$SELECTION_LIST", ["APPEND", "$SELECTION_LIST", "$CARD.id"]]
                                 ]
                             ]
                         ]],
                         ["SET", "/playerData/$TARGET_PLAYER/layout/regions/playerNSelection/visible", true],
-                        ["PROMPT", "$TARGET_PLAYER", "cardSelectPrompt", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]]
+                        ["PROMPT", "$TARGET_PLAYER", "cardSelectPrompt", "$SOURCE_GROUP_ID", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]],
+                        ["SELECT_CARDS", "$TARGET_PLAYER", "$SELECTION_LIST"]
                     ]
                 ]
             ]
