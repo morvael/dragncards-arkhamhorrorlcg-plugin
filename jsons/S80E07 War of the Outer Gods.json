@@ -68,9 +68,9 @@
                 {"databaseId": "86031", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hellfire
                 {"databaseId": "86032", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Ravages of War
                 {"databaseId": "86033", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //While They Sleep
-                {"databaseId": "86038", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Ethereal Entity
-                {"databaseId": "86049", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Trylogog
-                {"databaseId": "86044", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                            //Bringer of Paradise
+                {"databaseId": "86038a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                          //Ethereal Entity
+                {"databaseId": "86049a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                          //Trylogog
+                {"databaseId": "86044a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}                           //Bringer of Paradise
             ]
         }
     },
