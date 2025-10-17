@@ -1222,6 +1222,13 @@
                                     ]]],
                                     ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                                         ["MOVE_CARD", "$CARD.id", ["GET_CONTROLLER_PLAY", "$PLAYER_I"], -1]
+                                    ]],
+                                    ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                                        ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                                        ["EQUAL", "$CARD.sides.B.name", "Encounter Card"]
+                                    ]]],
+                                    ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                                        ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
                                     ]]
                                 ]],
                                 ["COND",
