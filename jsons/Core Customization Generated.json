@@ -3,7 +3,7 @@
         "GET_TRANSFIGURATION_OPTIONS_LIST": {
             "args": [],
             "code": [
-                ["LIST", "None", "", "Roland Banks (01001)", "01001", "Daisy Walker (01002)", "01002", "\"Skids\" O'Toole (01003)", "01003", "Agnes Baker (01004)", "01004", "Wendy Adams (01005)", "01005", "Roland Banks (01501)", "01501", "Daisy Walker (01502)", "01502", "\"Skids\" O'Toole (01503)", "01503", "Agnes Baker (01504)", "01504", "Wendy Adams (01505)", "01505", "Zoey Samaras (02001)", "02001", "Rex Murphy (02002)", "02002", "Jenny Barnes (02003)", "02003", "Jim Culver (02004)", "02004", "\"Ashcan\" Pete (02005)", "02005", "Mark Harrigan (03001)", "03001", "Minh Thi Phan (03002)", "03002", "Sefina Rousseau (03003)", "03003", "Akachi Onyele (03004)", "03004", "William Yorick (03005)", "03005", "Lola Hayes (03006)", "03006", "Leo Anderson (04001)", "04001", "Ursula Downs (04002)", "04002", "Finn Edwards (04003)", "04003", "Father Mateo (04004)", "04004", "Calvin Wright (04005)", "04005", "Carolyn Fern (05001)", "05001", "Joe Diamond (05002)", "05002", "Preston Fairmont (05003)", "05003", "Diana Stanley (05004)", "05004", "Rita Young (05005)", "05005", "Marie Lambeau (05006)", "05006", "Tommy Muldoon (06001)", "06001", "Mandy Thompson (06002)", "06002", "Tony Morgan (06003)", "06003", "Luke Robinson (06004)", "06004", "Patrice Hathaway (06005)", "06005", "Sister Mary (07001)", "07001", "Amanda Sharpe (07002)", "07002", "Trish Scarborough (07003)", "07003", "Dexter Drake (07004)", "07004", "Silas Marsh (07005)", "07005", "Daniela Reyes (08001)", "08001", "Norman Withers (08004)", "08004", "Monterey Jack (08007)", "08007", "Lily Chen (08010)", "08010", "Bob Jenkins (08016)", "08016", "Carson Sinclair (09001)", "09001", "Vincent Lee (09004)", "09004", "Kymani Jones (09008)", "09008", "Amina Zidane (09011)", "09011", "Darrell Simmons (09015)", "09015", "Charlie Kane (09018)", "09018", "Wilson Richards (10001)", "10001", "Kate Winthrop (10004)", "10004", "Alessandra Zorzi (10009)", "10009", "Kōhaku Narukami (10012)", "10012", "Hank Samson (10015)", "10015", "Marion Tavares (11001)", "11001", "Lucius Galloway (11004)", "11004", "Agatha Crane (11007)", "11007", "Agatha Crane (11008)", "11008", "Michael McGlen (11011)", "11011", "Gloria Goldberg (11014)", "11014", "George Barnaby (11017)", "11017", "Nathaniel Cho (60101)", "60101", "Harvey Walters (60201)", "60201", "Winifred Habbamock (60301)", "60301", "Jacqueline Fine (60401)", "60401", "Stella Clark (60501)", "60501", "Subject 5U-21 (89001)", "89001", "Jenny Barnes (98001)", "98001", "Roland Banks (98004)", "98004", "Norman Withers (98007)", "98007", "Carolyn Fern (98010)", "98010", "Silas Marsh (98013)", "98013", "Dexter Drake (98016)", "98016", "Gloria Goldberg (98019)", "98019", "Marie Lambeau (99001)", "99001"]
+                ["LIST", "None", "", "Roland Banks (01001)", "01001", "Daisy Walker (01002)", "01002", "\"Skids\" O'Toole (01003)", "01003", "Agnes Baker (01004)", "01004", "Wendy Adams (01005)", "01005", "Roland Banks (01501)", "01501", "Daisy Walker (01502)", "01502", "\"Skids\" O'Toole (01503)", "01503", "Agnes Baker (01504)", "01504", "Wendy Adams (01505)", "01505", "Zoey Samaras (02001)", "02001", "Rex Murphy (02002)", "02002", "Jenny Barnes (02003)", "02003", "Jim Culver (02004)", "02004", "\"Ashcan\" Pete (02005)", "02005", "Mark Harrigan (03001)", "03001", "Minh Thi Phan (03002)", "03002", "Sefina Rousseau (03003)", "03003", "Akachi Onyele (03004)", "03004", "William Yorick (03005)", "03005", "Lola Hayes (03006)", "03006", "Leo Anderson (04001)", "04001", "Ursula Downs (04002)", "04002", "Finn Edwards (04003)", "04003", "Father Mateo (04004)", "04004", "Calvin Wright (04005)", "04005", "Carolyn Fern (05001)", "05001", "Joe Diamond (05002)", "05002", "Preston Fairmont (05003)", "05003", "Diana Stanley (05004)", "05004", "Rita Young (05005)", "05005", "Marie Lambeau (05006)", "05006", "Tommy Muldoon (06001)", "06001", "Mandy Thompson (06002)", "06002", "Tony Morgan (06003)", "06003", "Luke Robinson (06004)", "06004", "Patrice Hathaway (06005)", "06005", "Sister Mary (07001)", "07001", "Amanda Sharpe (07002)", "07002", "Trish Scarborough (07003)", "07003", "Dexter Drake (07004)", "07004", "Silas Marsh (07005)", "07005", "Daniela Reyes (08001)", "08001", "Norman Withers (08004)", "08004", "Monterey Jack (08007)", "08007", "Lily Chen (08010)", "08010", "Bob Jenkins (08016)", "08016", "Carson Sinclair (09001)", "09001", "Vincent Lee (09004)", "09004", "Kymani Jones (09008)", "09008", "Amina Zidane (09011)", "09011", "Darrell Simmons (09015)", "09015", "Charlie Kane (09018)", "09018", "Wilson Richards (10001)", "10001", "Kate Winthrop (10004)", "10004", "Alessandra Zorzi (10009)", "10009", "Kōhaku Narukami (10012)", "10012", "Hank Samson (10015)", "10015", "Marion Tavares (11001)", "11001", "Lucius Galloway (11004)", "11004", "Agatha Crane (11007)", "11007", "Agatha Crane (11008)", "11008", "Michael McGlen (11011)", "11011", "Gloria Goldberg (11014)", "11014", "George Barnaby (11017)", "11017", "Lost Homunculus (11068b)", "11068b", "Nathaniel Cho (60101)", "60101", "Harvey Walters (60201)", "60201", "Winifred Habbamock (60301)", "60301", "Jacqueline Fine (60401)", "60401", "Stella Clark (60501)", "60501", "Subject 5U-21 (89001)", "89001", "Daisy Walker (90001)", "90001", "\"Skids\" O'Toole (90008)", "90008", "Agnes Baker (90017)", "90017", "Roland Banks (90024)", "90024", "Wendy Adams (90037)", "90037", "\"Ashcan\" Pete (90046)", "90046", "Jim Culver (90049)", "90049", "Zoey Samaras (90059)", "90059", "Monterey Jack (90062)", "90062", "Rex Murphy (90078)", "90078", "Father Mateo (90081)", "90081", "Jenny Barnes (90084)", "90084", "Jenny Barnes (98001)", "98001", "Roland Banks (98004)", "98004", "Norman Withers (98007)", "98007", "Carolyn Fern (98010)", "98010", "Silas Marsh (98013)", "98013", "Dexter Drake (98016)", "98016", "Gloria Goldberg (98019)", "98019", "Marie Lambeau (99001)", "99001"]
             ]
         },
         "GET_RAVEN_QUILL_OPTIONS_LIST": {
@@ -157,6 +157,8 @@
                     "Gloria Goldberg",
                     ["EQUAL", "$DATABASE_ID", "11017"],
                     "George Barnaby",
+                    ["EQUAL", "$DATABASE_ID", "11068b"],
+                    "Lost Homunculus",
                     ["EQUAL", "$DATABASE_ID", "60101"],
                     "Nathaniel Cho",
                     ["EQUAL", "$DATABASE_ID", "60201"],
@@ -169,6 +171,30 @@
                     "Stella Clark",
                     ["EQUAL", "$DATABASE_ID", "89001"],
                     "Subject 5U-21",
+                    ["EQUAL", "$DATABASE_ID", "90001"],
+                    "Daisy Walker",
+                    ["EQUAL", "$DATABASE_ID", "90008"],
+                    "\"Skids\" O'Toole",
+                    ["EQUAL", "$DATABASE_ID", "90017"],
+                    "Agnes Baker",
+                    ["EQUAL", "$DATABASE_ID", "90024"],
+                    "Roland Banks",
+                    ["EQUAL", "$DATABASE_ID", "90037"],
+                    "Wendy Adams",
+                    ["EQUAL", "$DATABASE_ID", "90046"],
+                    "\"Ashcan\" Pete",
+                    ["EQUAL", "$DATABASE_ID", "90049"],
+                    "Jim Culver",
+                    ["EQUAL", "$DATABASE_ID", "90059"],
+                    "Zoey Samaras",
+                    ["EQUAL", "$DATABASE_ID", "90062"],
+                    "Monterey Jack",
+                    ["EQUAL", "$DATABASE_ID", "90078"],
+                    "Rex Murphy",
+                    ["EQUAL", "$DATABASE_ID", "90081"],
+                    "Father Mateo",
+                    ["EQUAL", "$DATABASE_ID", "90084"],
+                    "Jenny Barnes",
                     ["EQUAL", "$DATABASE_ID", "98001"],
                     "Jenny Barnes",
                     ["EQUAL", "$DATABASE_ID", "98004"],
