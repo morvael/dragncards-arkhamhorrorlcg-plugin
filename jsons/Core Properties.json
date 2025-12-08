@@ -57,6 +57,8 @@
         "victoryPoints":         {"type": "integer", "default": null},
         "vengeance":             {"type": "integer", "default": null},
         "stage":                 {"type": "integer", "default": null},
+        "code":                  {"type": "string",  "default": null},
+        "tabooId":               {"type": "integer", "default": 0},
         "action":                {"type": "boolean", "default": false},
         "reaction":              {"type": "boolean", "default": false},
         "free":                  {"type": "boolean", "default": false},
