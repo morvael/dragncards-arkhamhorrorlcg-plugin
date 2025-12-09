@@ -59,6 +59,7 @@
         "stage":                 {"type": "integer", "default": null},
         "code":                  {"type": "string",  "default": null},
         "tabooId":               {"type": "integer", "default": 0},
+        "tabooXp":               {"type": "integer", "default": 0},
         "action":                {"type": "boolean", "default": false},
         "reaction":              {"type": "boolean", "default": false},
         "free":                  {"type": "boolean", "default": false},
