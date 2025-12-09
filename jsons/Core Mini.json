@@ -104,6 +104,12 @@
                     "{{$PREFIX}}90084",
                     ["EQUAL", "$DATABASE_ID", "9800190084"],
                     "{{$PREFIX}}98001",
+                    ["EQUAL", "$DATABASE_ID", "90087"],
+                    "{{$PREFIX}}03006",
+                    ["EQUAL", "$DATABASE_ID", "9008703006"],
+                    "{{$PREFIX}}03006",
+                    ["EQUAL", "$DATABASE_ID", "0300690087"],
+                    "{{$PREFIX}}03006",
                     ["TRUE"],
                     "{{$PREFIX}}{{$DATABASE_ID}}"
                 ]
