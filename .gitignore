@@ -1,8 +1,10 @@
 # generated files
 images/
 images_src/
+arkham_build_images/
 jsons.tar.gz
 upload.sh
+sync_arkham_build.sh
 sync_images.sh
 unused_code*.txt
 
