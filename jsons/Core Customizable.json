@@ -1065,29 +1065,71 @@
             "message": "Pick Taboo version used.",
             "options": [
                 {
-                    "label": "Taboo 2.4 (Jul 10, 2025)",
+                    "label": "Taboo 2.4 (2025-07-11)",
                     "hotkey": "1",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 9, "2.4", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Taboo 2.3 (Oct 23, 2024)",
+                    "label": "Taboo 2.3 (2024-10-23)",
                     "hotkey": "2",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 8, "2.3", true, "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "Taboo 2.1 (Oct 23, 2024)",
+                    "label": "Taboo 2.2 (2024-02-20)",
                     "hotkey": "3",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 7, "2.2", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.1 (2023-08-30)",
+                    "hotkey": "4",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 6, "2.1", true, "$PLAYER_N"]
                     ]
                 },
                 {
+                    "label": "Taboo 2.0 (2022-08-26)",
+                    "hotkey": "5",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 5, "2.0", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.9 (2021-06-28)",
+                    "hotkey": "6",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 4, "1.9", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.8 (2020-10-15)",
+                    "hotkey": "7",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 3, "1.8", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.6 (2019-09-27)",
+                    "hotkey": "8",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 2, "1.6", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.5 (2019-04-20)",
+                    "hotkey": "9",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 1, "1.5", true, "$PLAYER_N"]
+                    ]
+                },
+                {
                     "label": "None",
-                    "hotkey": "4",
+                    "hotkey": "0",
                     "code": [
                         ["DO_SET_TABOO_VALUE", "$PLAYER_N", 0, "None", true, "$PLAYER_N"]
                     ]

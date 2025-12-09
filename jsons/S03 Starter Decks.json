@@ -286,6 +286,70 @@
                     }
                 }
             },
+            "03006-5": { //Lola Hayes: The Actress (taboo 5+)
+                "inheritFrom": "03006"
+            },
+            "90087": { //Lola Hayes: The Actress (parallel)
+                "rules": {
+                    "90087a": { //You begin the game in the Neutral role. You can only play or commit Neutral cards or cards of your current role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
+                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
+                        ]
+                    },
+                    "90087b": { //You begin the game in the Neutral role. You can only play or commit Neutral cards or cards of your current role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} begins the game in the Neutral role. They can only play or commit Neutral cards or cards of their current role.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "AfterDraw"]
+                        ]
+                    }
+                }
+            },
+            "9008703006": { //Lola Hayes: The Actress (parallel front)
+                "inheritFrom": "90087"
+            },
+            "9008703006-5": { //Lola Hayes: The Actress (parallel front, taboo 5+)
+                "inheritFrom": "90087"
+            },
+            "0300690087": { //Lola Hayes: The Actress (parallel back)
+                "inheritFrom": "03006"
+            },
+            "0300690087-5": { //Lola Hayes: The Actress (parallel back, taboo 5+)
+                "rules": {
+                    "300690087-5a": { //You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/cardById/$THIS_ID/inPlay"],
+                        "condition": ["TRIGGER_IN_PLAY", "$THIS"],
+                        "then": [
+                            ["CARD_ABILITY_ON", "$THIS"],
+                            ["DO_CREATE_CARDS", "$THIS.controller", "Lola Hayes Role card", "r03006", 1, ["GET_CONTROLLER_PLAY", "$THIS.controller"], false, null],
+                            ["SET", "/cardById/{{$GAME.lastLoadedCardIds.[0]}}/currentSide", "F"]
+                        ]
+                    },
+                    "300690087-5b": { //You can only play, commit, or trigger abilities on Neutral cards or cards of your role.
+                        "type": "trigger",
+                        "priority": 10,
+                        "listenTo": ["/playerData/*/arkham/playerEventAfterDraw"],
+                        "condition": ["TRIGGER_ON_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                        "then": [
+                            ["CONSUME_PLAYER_EVENT", "$TARGET.id", "$THIS", "AfterDraw", 1],
+                            ["DO_FSYSLOG", "{0:C}: {1:P} can only play, commit, or trigger abilities on Neutral cards or cards of their role.", ["LIST", "$THIS", "$THIS.controller"]],
+                            ["PLAYER_EVENT_LOOP", "$TARGET.id", "AfterDraw"]
+                        ]
+                    }
+                }
+            },
             "03041": { //Drawing the Sign
                 "rules": {
                     "03041a": { //Your maximum hand size is reduced by 5.

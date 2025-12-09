@@ -122,6 +122,12 @@
                 "$ADVANCABLE_AGENDAS"
             ]
         },
+        "GET_PARALLEL_CONTENT_INVESTIGATORS": {
+            "args": [],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["EQUAL", "$CARD.sides.A.parallelContent", true]]
+            ]
+        },
         "GET_CARD_BY_DATABASE_ID": {
             "_comment": "Returns a card given databaseId, or null.",
             "args": ["$DATABASE_ID"],
@@ -167,13 +173,11 @@
             "args": ["$TARGET_NAME"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_CARDS.TARGET_NAME"],
-                ["FILTER_CARDS", "$CARD", ["AND",
-                    ["OR",
-                        ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
-                        ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
-                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
-                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
-                    ]
+                ["FILTER_CARDS", "$CARD", ["OR",
+                    ["EQUAL", "$CARD.sides.A.name", "$TARGET_NAME"],
+                    ["IN_STRING", "$CARD.sides.A.name", "{{$TARGET_NAME}}:"],
+                    ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                    ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
                 ]]
             ]
         },

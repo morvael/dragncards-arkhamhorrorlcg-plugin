@@ -3,6 +3,7 @@
     "tutorialUrl": "https://github.com/morvael/dragncards-arkhamhorrorlcg-plugin/wiki",
     "backgroundUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/background.webp",
     "announcements": [
+        "2025-12-09: Parallel updates",
         "2025-12-08: New card data source",
         "2025-12-03: Fixed Lucius Galloway",
         "2025-10-17: New way to select cards",

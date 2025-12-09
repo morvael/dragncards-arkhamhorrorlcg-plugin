@@ -1,0 +1,70 @@
+{
+    "preBuiltDecks": {
+        "Enthralling Encore Scenario": {
+            "label": "Enthralling Encore Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["VAR", "$PARALLEL_CONTENT_INVESTIGATORS", ["GET_PARALLEL_CONTENT_INVESTIGATORS"]],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$PARALLEL_CONTENT_INVESTIGATORS"], 0],
+                    ["SCENARIO_INIT", "Challenge Scenarios E", "Challenge Scenarios", "Enthralling Encore", null, "Enthralling Encore Scenario Init"],
+                    ["TRUE"],
+                    ["LOG", "└── At least 1 investigator with parallel content must be chosen when playing this scenario."]
+                ]
+            ]
+        },
+        "Enthralling Encore": {
+            "hideFromSearch": true,
+            "label": "Enthralling Encore",
+            "cards": [
+                {"databaseId": "90094", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Enthralling Encore
+                {"databaseId": "90095", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Haunting of the Ward Theatre
+                {"databaseId": "90096", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Break Free from the Past
+                {"databaseId": "03049", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Theatre
+                {"databaseId": "03050", "quantity": 1, "loadGroupId": "sharedLocations", "left": "26%", "top": "43%"},  //Lobby
+                {"databaseId": "03051", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Balcony
+                {"databaseId": "03052", "quantity": 1, "loadGroupId": "sharedLocations", "left": "64%", "top": "43%"},  //Backstage
+                {"databaseId": "01017", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Physical Training
+                {"databaseId": "01019", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //First Aid
+                {"databaseId": "01020", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Machete
+                {"databaseId": "01031", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Old Book of Lore
+                {"databaseId": "01034", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Hyperawareness
+                {"databaseId": "01035", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Medical Texts
+                {"databaseId": "01045", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Burglary
+                {"databaseId": "01046", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Pickpocketing
+                {"databaseId": "01049", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Hard Knocks
+                {"databaseId": "01059", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Holy Rosary
+                {"databaseId": "01061", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Scrying
+                {"databaseId": "01062", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Arcane Studies
+                {"databaseId": "01074", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Baseball Bat
+                {"databaseId": "01075", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Rabbit's Foot
+                {"databaseId": "01077", "quantity": 1, "loadGroupId": "sharedDeckA"}                                    //Dig Deep
+            ]
+        }
+    },
+    "actionLists": {
+        "Enthralling Encore Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Enthralling Encore"],
+            ["DO_LOAD_CARDS_SCN", "Decay & Filth"],
+            ["DO_LOAD_CARDS_SCN", "Delusions"],
+            ["DO_LOAD_CARDS_SCN", "Hauntings"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_LOAD_CARDS_SCN", "Rats"],
+            ["VAR", "$LOBBY_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "03053", "03054", "03055"]]],  //Lighting Box, Box Office, Green Room
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Lobby Doorway", "$LOBBY_DOORWAYS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["VAR", "$BACKSTAGE_DOORWAYS", ["SHUFFLE_LIST", ["LIST", "03056", "03057", "03058"]]],  //Dressing Room, Rehearsal Room, Trap Room
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["DO_CREATE_CARDS_SCN", "Backstage Doorway", "$BACKSTAGE_DOORWAYS.[$I]", 1, "sharedNotInPlay"]
+            ]],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Theatre", 5, 7, 3, 0],
+            ["DO_SPAWN_AT_LOCATION_SCN", "Sinister Soloist: Minstrel of Carcosa", "90097", "Backstage", 3, 3],
+            ["SET", "/arkham/finalScenarioMessage", "Deck A is the Props deck (you may now alter its default composition)."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

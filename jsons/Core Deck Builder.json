@@ -34,7 +34,8 @@
             {"propName": "type", "label": "id:dbType"},
             {"propName": "traits", "label": "id:dbTraits"},
             {"propName": "packName", "label": "id:dbPack"},
-            {"propName": "numberInPack", "label": "id:dbNumber"}
+            {"propName": "numberInPack", "label": "id:dbNumber"},
+            {"propName": "tabooName", "label": "id:dbTabooName"}
         ],
         "spawnGroups": [
             {"loadGroupId": "playerNInvestigator", "label": "id:dbMyInvestigator"},
@@ -60,6 +61,9 @@
         },
         "dbNumber": {
             "English": "Number"
+        },
+        "dbTabooName": {
+            "English": "Taboo"
         },
         "dbMyInvestigator": {
             "English": "My Investigator"

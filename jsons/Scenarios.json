@@ -351,7 +351,8 @@
                     {"label": "id:byTheBook", "deckListId": "By the Book Scenario"},
                     {"label": "id:redTideRising", "deckListId": "Red Tide Rising Scenario"},
                     {"label": "id:laidToRest", "deckListId": "Laid to Rest Scenario"},
-                    {"label": "id:relicsOfThePast", "deckListId": "Relics of the Past Scenario"}
+                    {"label": "id:relicsOfThePast", "deckListId": "Relics of the Past Scenario"},
+                    {"label": "id:enthrallingEncore", "deckListId": "Enthralling Encore Scenario"}
                 ]
             },
             {
@@ -999,6 +1000,9 @@
         },
         "relicsOfThePast": {
             "English": "Relics of the Past"
+        },
+        "enthrallingEncore": {
+            "English": "Enthralling Encore"
         },
         "miscellaneous": {
             "English": "Miscellaneous"
