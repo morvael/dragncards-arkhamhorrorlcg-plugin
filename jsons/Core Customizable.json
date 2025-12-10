@@ -1,9 +1,4 @@
 {
-    "actionLists": {
-        "selectTaboo": [
-            ["PROMPT", "$PLAYER_N", "selectTabooPrompt"]
-        ]
-    },
     "functions": {
         "IS_CUSTOMIZABLE": {
             "args": ["$DATABASE_ID"],
@@ -12,9 +7,11 @@
                 ["OR",
                     ["EQUAL", "$DATABASE_ID", "09021"], //Hunter's Armor
                     ["EQUAL", "$DATABASE_ID", "09022"], //Runic Axe
+                    ["EQUAL", "$DATABASE_ID", "09022-6"], //Runic Axe
                     ["EQUAL", "$DATABASE_ID", "09023"], //Custom Modifications
                     ["EQUAL", "$DATABASE_ID", "09040"], //Alchemical Distillation
                     ["EQUAL", "$DATABASE_ID", "09041"], //Empirical Hypothesis
+                    ["EQUAL", "$DATABASE_ID", "09041-8"], //Empirical Hypothesis
                     ["EQUAL", "$DATABASE_ID", "09042"], //The Raven Quill
                     ["EQUAL", "$DATABASE_ID", "09059"], //Damning Testimony
                     ["EQUAL", "$DATABASE_ID", "09060"], //Friends in Low Places
@@ -22,6 +19,8 @@
                     ["EQUAL", "$DATABASE_ID", "09079"], //Living Ink
                     ["EQUAL", "$DATABASE_ID", "09080"], //Summoned Servitor
                     ["EQUAL", "$DATABASE_ID", "09081"], //Power Word
+                    ["EQUAL", "$DATABASE_ID", "09081-6"], //Power Word
+                    ["EQUAL", "$DATABASE_ID", "09081-9"], //Power Word
                     ["EQUAL", "$DATABASE_ID", "09099"], //Pocket Multi Tool
                     ["EQUAL", "$DATABASE_ID", "09100"], //Makeshift Trap
                     ["EQUAL", "$DATABASE_ID", "09101"], //Grizzled
@@ -35,25 +34,26 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_SPAWN_CUSTOMIZABLE.TARGET_CARD_ID"]],
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SPAWN_CUSTOMIZABLE.TARGET_PLAYER"],
                 ["VAR", "$DATABASE_ID", "$TARGET_CARD.sides.A.databaseId"],
-                ["VAR", "$TABOO_ID", ["GET_TABOO_VALUE", "$TARGET_PLAYER"]],
-                ["VAR", "$UPGRADE_0", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "0", 0], 0]]],
-                ["VAR", "$UPGRADE_1", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "1", 0], 0]]],
-                ["VAR", "$UPGRADE_2", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "2", 0], 0]]],
-                ["VAR", "$UPGRADE_3", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "3", 0], 0]]],
-                ["VAR", "$UPGRADE_4", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "4", 0], 0]]],
-                ["VAR", "$UPGRADE_5", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "5", 0], 0]]],
-                ["VAR", "$UPGRADE_6", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "6", 0], 0]]],
-                ["VAR", "$UPGRADE_7", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "7", 0], 0]]],
-                ["VAR", "$UPGRADE_8", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "8", 0], 0]]],
-                ["VAR", "$UPGRADE_0_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "0", 1], ""]],
-                ["VAR", "$UPGRADE_1_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "1", 1], ""]],
-                ["VAR", "$UPGRADE_2_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "2", 1], ""]],
-                ["VAR", "$UPGRADE_3_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "3", 1], ""]],
-                ["VAR", "$UPGRADE_4_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "4", 1], ""]],
-                ["VAR", "$UPGRADE_5_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "5", 1], ""]],
-                ["VAR", "$UPGRADE_6_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "6", 1], ""]],
-                ["VAR", "$UPGRADE_7_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "7", 1], ""]],
-                ["VAR", "$UPGRADE_8_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "8", 1], ""]],
+                ["VAR", "$CODE", "$TARGET_CARD.sides.A.code"],
+                ["VAR", "$TABOO_ID", "$TARGET_CARD.sides.A.tabooId"],
+                ["VAR", "$UPGRADE_0", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "0", 0], 0]]],
+                ["VAR", "$UPGRADE_1", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "1", 0], 0]]],
+                ["VAR", "$UPGRADE_2", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "2", 0], 0]]],
+                ["VAR", "$UPGRADE_3", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "3", 0], 0]]],
+                ["VAR", "$UPGRADE_4", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "4", 0], 0]]],
+                ["VAR", "$UPGRADE_5", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "5", 0], 0]]],
+                ["VAR", "$UPGRADE_6", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "6", 0], 0]]],
+                ["VAR", "$UPGRADE_7", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "7", 0], 0]]],
+                ["VAR", "$UPGRADE_8", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "8", 0], 0]]],
+                ["VAR", "$UPGRADE_0_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "0", 1], ""]],
+                ["VAR", "$UPGRADE_1_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "1", 1], ""]],
+                ["VAR", "$UPGRADE_2_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "2", 1], ""]],
+                ["VAR", "$UPGRADE_3_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "3", 1], ""]],
+                ["VAR", "$UPGRADE_4_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "4", 1], ""]],
+                ["VAR", "$UPGRADE_5_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "5", 1], ""]],
+                ["VAR", "$UPGRADE_6_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "6", 1], ""]],
+                ["VAR", "$UPGRADE_7_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "7", 1], ""]],
+                ["VAR", "$UPGRADE_8_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "8", 1], ""]],
                 ["VAR", "$NEW_XP", ["CALCULATE_UPGRADE_XP", "$UPGRADE_0", "$UPGRADE_1", "$UPGRADE_2", "$UPGRADE_3", "$UPGRADE_4", "$UPGRADE_5", "$UPGRADE_6", "$UPGRADE_7", "$UPGRADE_8"]],
                 ["VAR", "$NEW_TEXT", "$TARGET_CARD.sides.A.text"],
                 ["VAR", "$UPGRADES", ""],
@@ -454,7 +454,7 @@
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 6, "$UPGRADE_6", "$UPGRADE_6_EXT"]],
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 7, "$UPGRADE_7", "$UPGRADE_7_EXT"]],
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 8, "$UPGRADE_8", "$UPGRADE_8_EXT"]],
-                ["VAR", "$IMAGE_URL", ["FORMAT", "https://ahlcg.derwinski.pl/{0}-{1}-{2}.webp", "$DATABASE_ID", "$TABOO_ID", ["BASE64_ENCODE", "$CUSTOMIZATION"]]],
+                ["VAR", "$IMAGE_URL", ["FORMAT", "https://ahlcg.derwinski.pl/{0}-{1}-{2}.webp", "$CODE", "$TABOO_ID", ["BASE64_ENCODE", "$CUSTOMIZATION"]]],
                 //update upgrade card if needed (flip to hopefully force image refresh)
                 ["COND",
                     ["NOT_EQUAL", "$UPGRADE_CARD.sides.A.imageUrl", "$IMAGE_URL"],
@@ -501,85 +501,75 @@
                 ]
             ]
         },
-        "DO_SET_TABOO_VALUE": {
-            "args": ["$TARGET_PLAYER", "$TABOO_VALUE", "$TABOO_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
-            "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SET_TABOO_VALUE.TARGET_PLAYER"],
-                ["VALIDATE_GE0", "$TABOO_VALUE", "DO_SET_TABOO_VALUE.TABOO_VALUE"],
-                ["VALIDATE_NOT_EMPTY", "$TABOO_NAME", "DO_SET_TABOO_VALUE.TABOO_NAME"],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SET_TABOO_VALUE.LOG_EVENT"],
-                ["VAR", "$OLD_TABOO_VALUE", ["GET_TABOO_VALUE", "$TARGET_PLAYER"]],
-                ["COND",
-                    ["NOT_EQUAL", "$OLD_TABOO_VALUE", "$TABOO_VALUE"],
-                    [
-                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "change Taboo to {{$TABOO_NAME}}.", "changes Taboo to {{$TABOO_NAME}}."],
-                        ["SET", "/playerData/$TARGET_PLAYER/arkham/tabooId", "$TABOO_VALUE"],
-                        ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                            ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
-                            ["OR",
-                                ["EQUAL", "$CARD.sides.A.databaseId", "09022"], //Runic Axe
-                                ["EQUAL", "$CARD.sides.A.databaseId", "09041"], //Empirical Hypothesis
-                                ["EQUAL", "$CARD.sides.A.databaseId", "09081"]  //Power Word
-                            ]
-                        ]]],
-                        ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                            ["DO_SPAWN_CUSTOMIZABLE", "$CARD.id", "$TARGET_PLAYER"]
-                        ]]
-                    ],
-                    ["TRUE"],
-                    ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "keep Taboo {{$TABOO_NAME}}.", "keeps Taboo {{$TABOO_NAME}}."]
-                ]
-            ]
-        },
         "GET_UPGRADE_VALUE": {
-            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$INDEX"],
+            "args": ["$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$INDEX"],
             "code": [
+                ["VAR", "$FULL", "{{$CODE}}-{{$TABOO_ID}}"],
                 ["COND",
-                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID.$OPTION.[$INDEX]"],
-                    "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID.$OPTION.[$INDEX]",
+                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL.$OPTION.[$INDEX]"],
+                    "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL.$OPTION.[$INDEX]",
+                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$CODE.$OPTION.[$INDEX]"],
+                    "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$CODE.$OPTION.[$INDEX]",
                     ["TRUE"],
                     null
                 ]
             ]
         },
         "SET_UPGRADE_VALUE": {
-            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$INDEX", "$VALUE"],
+            "args": ["$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$INDEX", "$VALUE"],
             "code": [
+                ["VAR", "$FULL", "{{$CODE}}-{{$TABOO_ID}}"],
                 ["COND",
-                    ["NOT_EQUAL", ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID"], true],
-                    ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$DATABASE_ID", {}]
+                    ["NOT_EQUAL", ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL"], true],
+                    ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$FULL", {}]
                 ],
                 ["COND",
-                    ["NOT_EQUAL", ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID.$OPTION"], true],
-                    ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$DATABASE_ID/$OPTION", ["LIST", 0, ""]]
+                    ["NOT_EQUAL", ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL.$OPTION"], true],
+                    ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$FULL/$OPTION", ["LIST", 0, ""]]
                 ],
-                ["VAR", "$UPGRADE", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 0], 0]]],
-                ["VAR", "$UPGRADE_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 1], ""]],
+                ["VAR", "$UPGRADE", ["TO_INT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 0], 0]]],
+                ["VAR", "$UPGRADE_EXT", ["NVL", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 1], ""]],
                 ["COND",
                     ["EQUAL", "$INDEX", 0],
                     [
                         ["COND",
                             ["NOT_EQUAL", "$UPGRADE", "$VALUE"],
-                            ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$DATABASE_ID/$OPTION", ["LIST", "$VALUE", "$UPGRADE_EXT"]]
+                            ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$FULL/$OPTION", ["LIST", "$VALUE", "$UPGRADE_EXT"]]
                         ]
                     ],
                     ["TRUE"],
                     [
                         ["COND",
                             ["NOT_EQUAL", "$UPGRADE_EXT", "$VALUE"],
-                            ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$DATABASE_ID/$OPTION", ["LIST", "$UPGRADE", "$VALUE"]]
+                            ["SET", "/playerData/$TARGET_PLAYER/arkham/deckCustomizable/$FULL/$OPTION", ["LIST", "$UPGRADE", "$VALUE"]]
                         ]
                     ]
                 ]
             ]
         },
         "GET_EXT_UPGRADE_VALUE": {
-            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$EXT_INDEX"],
+            "args": ["$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$EXT_INDEX"],
             "code": [
+                ["VAR", "$FULL", "{{$CODE}}-{{$TABOO_ID}}"],
                 ["COND",
-                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID.$OPTION.[1]"],
+                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL.$OPTION.[1]"],
                     [
-                        ["VAR", "$UPGRADE_EXT", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$DATABASE_ID.$OPTION.[1]"],
+                        ["VAR", "$UPGRADE_EXT", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$FULL.$OPTION.[1]"],
+                        ["VAR", "$UPGRADE_EXT_LIST", ["SPLIT_STRING", "{{$UPGRADE_EXT}}^ ^ ", "^"]],
+                        ["VAR", "$EXT_VALUE", "$UPGRADE_EXT_LIST.[$EXT_INDEX]"],
+                        ["COND",
+                            ["OR",
+                                ["EQUAL", "$EXT_VALUE", ""],
+                                ["EQUAL", "$EXT_VALUE", " "]
+                            ],
+                            null,
+                            ["TRUE"],
+                            "$EXT_VALUE"
+                        ]
+                    ],
+                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$CODE.$OPTION.[1]"],
+                    [
+                        ["VAR", "$UPGRADE_EXT", "$PLAYER_DATA.$TARGET_PLAYER.arkham.deckCustomizable.$CODE.$OPTION.[1]"],
                         ["VAR", "$UPGRADE_EXT_LIST", ["SPLIT_STRING", "{{$UPGRADE_EXT}}^ ^ ", "^"]],
                         ["VAR", "$EXT_VALUE", "$UPGRADE_EXT_LIST.[$EXT_INDEX]"],
                         ["COND",
@@ -609,23 +599,23 @@
             ]
         },
         "SET_EXT_UPGRADE_VALUE": {
-            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$EXT_INDEX", "$VALUE"],
+            "args": ["$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$EXT_INDEX", "$VALUE"],
             "code": [
-                ["VAR", "$EXT_0", ["NVL", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 0], ""]],
-                ["VAR", "$EXT_1", ["NVL", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 1], ""]],
+                ["VAR", "$EXT_0", ["NVL", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 0], ""]],
+                ["VAR", "$EXT_1", ["NVL", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 1], ""]],
                 ["COND",
                     ["EQUAL", "$EXT_INDEX", 0],
                     [
                         ["COND",
                             ["NOT_EQUAL", "$EXT_0", "$VALUE"],
-                            ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 1, ["GET_EXT_UPGRADE_STRING", "$VALUE", "$EXT_1"]]
+                            ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 1, ["GET_EXT_UPGRADE_STRING", "$VALUE", "$EXT_1"]]
                         ]
                     ],
                     ["TRUE"],
                     [
                         ["COND",
                             ["NOT_EQUAL", "$EXT_1", "$VALUE"],
-                            ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", 1, ["GET_EXT_UPGRADE_STRING", "$EXT_0", "$VALUE"]]
+                            ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", 1, ["GET_EXT_UPGRADE_STRING", "$EXT_0", "$VALUE"]]
                         ]
                     ]
                 ]
@@ -690,11 +680,12 @@
             ]
         },
         "DO_CHANGE_CUSTOMIZABLE_CARD": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", "$MIN_VALUE", "$MAX_VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "$UPGRADE_NAME", "$OPTION", "$MIN_VALUE", "$MAX_VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHANGE_CUSTOMIZABLE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CHANGE_CUSTOMIZABLE_CARD.TARGET_CARD_ID"]],
-                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_CHANGE_CUSTOMIZABLE_CARD.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$CODE", "DO_CHANGE_CUSTOMIZABLE_CARD.CODE"],
+                ["VALIDATE_GE0", "$TABOO_ID", "DO_CHANGE_CUSTOMIZABLE_CARD.TABOO_ID"],
                 ["VALIDATE_NOT_EMPTY", "$UPGRADE_NAME", "DO_CHANGE_CUSTOMIZABLE_CARD.UPGRADE_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$OPTION", "DO_CHANGE_CUSTOMIZABLE_CARD.OPTION"],
                 ["VALIDATE_GE0", "$MIN_VALUE", "DO_CHANGE_CUSTOMIZABLE_CARD.MIN_VALUE"],
@@ -704,31 +695,33 @@
                 ["VAR", "$MAX_VALUE_PLUS_1", ["ADD", "$MAX_VALUE", 1]],
                 ["PROMPT", "$PROMPT_PLAYER", "selectPipsPrompt", "$UPGRADE_NAME"],
                 ["FOR_EACH_START_STOP_STEP", "$I", "$MIN_VALUE", "$MAX_VALUE_PLUS_1", 1, [
-                    ["PROMPT_ADD_OPTION", "$PROMPT_PLAYER", ["DO_FORMAT_STRING", "{0} pip{0:S}.", ["LIST", "$I"]], "{{$I}}", ["LIST", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "{{$DATABASE_ID}}", "{{$UPGRADE_NAME}}", "{{$OPTION}}", "0", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
+                    ["PROMPT_ADD_OPTION", "$PROMPT_PLAYER", ["DO_FORMAT_STRING", "{0} pip{0:S}.", ["LIST", "$I"]], "{{$I}}", ["LIST", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL_STR", "{{$TARGET_PLAYER}}", "{{$TARGET_CARD_ID}}", "{{$CODE}}", "{{$TABOO_ID}}", "{{$UPGRADE_NAME}}", "{{$OPTION}}", "0", "{{$I}}", "{{$LOG_EVENT}}", "{{$ACTOR_PLAYER}}"]]
                 ]],
                 ["PROMPT_ADD_OPTION", "$PROMPT_PLAYER", "Cancel.", "X"]
             ]
         },
         "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", "$INDEX", "$VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "$UPGRADE_NAME", "$OPTION", "$INDEX", "$VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.TARGET_CARD_ID"]],
-                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$CODE", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.CODE"],
+                ["VALIDATE_GE0", "$TABOO_ID", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.TABOO_ID"],
                 ["VALIDATE_NOT_EMPTY", "$UPGRADE_NAME", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.UPGRADE_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$OPTION", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.OPTION"],
                 ["VALIDATE_GE0", "$INDEX", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.INDEX"],
                 ["VALIDATE_GE0", "$VALUE", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.VALUE"],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL.LOG_EVENT"],
-                ["VAR", "$OLD_VALUE", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$INDEX"]],
+                ["VAR", "$OLD_VALUE", ["GET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$INDEX"]],
                 ["COND",
                     ["NOT_EQUAL", "$OLD_VALUE", "$VALUE"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "change {{$UPGRADE_NAME}} to {{$VALUE}}.", "changes {{$UPGRADE_NAME}} to {{$VALUE}}."],
-                        ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$INDEX", "$VALUE"],
+                        ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$INDEX", "$VALUE"],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                             ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
-                            ["EQUAL", "$CARD.sides.A.databaseId", "$DATABASE_ID"]
+                            ["EQUAL", "$CARD.sides.A.code", "$CODE"],
+                            ["EQUAL", "$CARD.sides.A.tabooId", "$TABOO_ID"]
                         ]]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DO_SPAWN_CUSTOMIZABLE", "$CARD.id", "$TARGET_PLAYER"]
@@ -740,24 +733,25 @@
             ]
         },
         "DO_CHANGE_CUSTOMIZABLE_CARD_FINAL_STR": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", "$INDEX", "$VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "$UPGRADE_NAME", "$OPTION", "$INDEX", "$VALUE", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
-                ["DO_CHANGE_CUSTOMIZABLE_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", ["CALC", "{{$INDEX}}"], ["CALC", "{{$VALUE}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
+                ["DO_CHANGE_CUSTOMIZABLE_CARD_FINAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", ["CALC", "{{$TABOO_ID}}"], "$UPGRADE_NAME", "$OPTION", ["CALC", "{{$INDEX}}"], ["CALC", "{{$VALUE}}"], ["EQUAL", "{{$LOG_EVENT}}", "true"], "$ACTOR_PLAYER"]
             ]
         },
         "DO_CHANGE_EXT": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", "$EXT_INDEX", "$NAME_VALUE_LIST_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "$UPGRADE_NAME", "$OPTION", "$EXT_INDEX", "$NAME_VALUE_LIST_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_CHANGE_EXT.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_CHANGE_EXT.TARGET_CARD_ID"]],
-                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_CHANGE_EXT.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$CODE", "DO_CHANGE_EXT.CODE"],
+                ["VALIDATE_GE0", "$TABOO_ID", "DO_CHANGE_EXT.TABOO_ID"],
                 ["VALIDATE_NOT_EMPTY", "$UPGRADE_NAME", "DO_CHANGE_EXT.UPGRADE_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$OPTION", "DO_CHANGE_EXT.OPTION"],
                 ["VALIDATE_NOT_EMPTY", "$NAME_VALUE_LIST_ID", "DO_CHANGE_EXT.NAME_VALUE_LIST_ID"],
                 ["VALIDATE_GE0", "$EXT_INDEX", "DO_CHANGE_EXT.EXT_INDEX"],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CHANGE_EXT.LOG_EVENT"],
                 ["VAR", "$PROMPT_PLAYER", ["NVL", "$ACTOR_PLAYER", "$TARGET_PLAYER"]],
-                ["PAGING_PROMPT", "$PROMPT_PLAYER", "Change {{$UPGRADE_NAME}}", "$NAME_VALUE_LIST_ID", 0, "DO_CHANGE_EXT_CALLBACK", "$TARGET_PLAYER", "$TARGET_CARD_ID", ["JOIN_LIST", ["LIST", "$DATABASE_ID", "$UPGRADE_NAME", "$OPTION", "{{$EXT_INDEX}}", "{{$LOG_EVENT}}"], "|"]]
+                ["PAGING_PROMPT", "$PROMPT_PLAYER", "Change {{$UPGRADE_NAME}}", "$NAME_VALUE_LIST_ID", 0, "DO_CHANGE_EXT_CALLBACK", "$TARGET_PLAYER", "$TARGET_CARD_ID", ["JOIN_LIST", ["LIST", "$CODE", "$TABOO_ID", "$UPGRADE_NAME", "$OPTION", "{{$EXT_INDEX}}", "{{$LOG_EVENT}}"], "|"]]
             ]
         },
         "DO_CHANGE_EXT_CALLBACK": {
@@ -769,25 +763,28 @@
                 ["VALIDATE_NOT_EMPTY", "$ITEM_NAME", "DO_CHANGE_EXT_CALLBACK.ITEM_NAME"],
                 ["VALIDATE_NOT_NULL", "$ITEM_VALUE", "DO_CHANGE_EXT_CALLBACK.ITEM_VALUE"],
                 ["VAR", "$EXTRA_ARGS", ["SPLIT_STRING", "$ARGS", "|"]],
-                ["VAR", "$DATABASE_ID", "$EXTRA_ARGS.[0]"],
-                ["VAR", "$UPGRADE_NAME", "$EXTRA_ARGS.[1]"],
-                ["VAR", "$OPTION", "$EXTRA_ARGS.[2]"],
-                ["VAR", "$EXT_INDEX", ["TO_INT", "$EXTRA_ARGS.[3]"]],
-                ["VAR", "$LOG_EVENT", ["EQUAL", "$EXTRA_ARGS.[4]", "true"]],
-                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_CHANGE_EXT_CALLBACK.DATABASE_ID"],
+                ["VAR", "$CODE", "$EXTRA_ARGS.[0]"],
+                ["VAR", "$TABOO_ID", ["TO_INT", "$EXTRA_ARGS.[1]"]],
+                ["VAR", "$UPGRADE_NAME", "$EXTRA_ARGS.[2]"],
+                ["VAR", "$OPTION", "$EXTRA_ARGS.[3]"],
+                ["VAR", "$EXT_INDEX", ["TO_INT", "$EXTRA_ARGS.[4]"]],
+                ["VAR", "$LOG_EVENT", ["EQUAL", "$EXTRA_ARGS.[5]", "true"]],
+                ["VALIDATE_NOT_EMPTY", "$CODE", "DO_CHANGE_EXT_CALLBACK.CODE"],
+                ["VALIDATE_GE0", "$TABOO_ID", "DO_CHANGE_EXT_CALLBACK.TABOO_ID"],
                 ["VALIDATE_NOT_EMPTY", "$UPGRADE_NAME", "DO_CHANGE_EXT_CALLBACK.UPGRADE_NAME"],
                 ["VALIDATE_NOT_EMPTY", "$OPTION", "DO_CHANGE_EXT_CALLBACK.OPTION"],
                 ["VALIDATE_GE0", "$EXT_INDEX", "DO_CHANGE_EXT_CALLBACK.EXT_INDEX"],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_CHANGE_EXT_CALLBACK.LOG_EVENT"],
-                ["VAR", "$OLD_VALUE", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$EXT_INDEX"]],
+                ["VAR", "$OLD_VALUE", ["GET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$EXT_INDEX"]],
                 ["COND",
                     ["NOT_EQUAL", "$OLD_VALUE", "$ITEM_VALUE"],
                     [
                         ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "change {{$UPGRADE_NAME}} to {{$ITEM_NAME}}.", "changes {{$UPGRADE_NAME}} to {{$ITEM_NAME}}."],
-                        ["SET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "$OPTION", "$EXT_INDEX", "$ITEM_VALUE"],
+                        ["SET_EXT_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "$OPTION", "$EXT_INDEX", "$ITEM_VALUE"],
                         ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                             ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
-                            ["EQUAL", "$CARD.sides.A.databaseId", "$DATABASE_ID"]
+                            ["EQUAL", "$CARD.sides.A.code", "$CODE"],
+                            ["EQUAL", "$CARD.sides.A.tabooId", "$TABOO_ID"]
                         ]]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["DO_SPAWN_CUSTOMIZABLE", "$CARD.id", "$TARGET_PLAYER"]
@@ -799,34 +796,36 @@
             ]
         },
         "DO_RESET_CUSTOMIZABLE_CARD": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_RESET_CUSTOMIZABLE_CARD.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_RESET_CUSTOMIZABLE_CARD.TARGET_CARD_ID"]],
-                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "DO_RESET_CUSTOMIZABLE_CARD.DATABASE_ID"],
+                ["VALIDATE_NOT_EMPTY", "$CODE", "DO_RESET_CUSTOMIZABLE_CARD.CODE"],
+                ["VALIDATE_GE0", "$TABOO_ID", "DO_RESET_CUSTOMIZABLE_CARD.TABOO_ID"],
                 ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_RESET_CUSTOMIZABLE_CARD.LOG_EVENT"],
                 ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "reset {{$TARGET_CARD.sides.A.name}}.", "resets {{$TARGET_CARD.sides.A.name}}."],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "0", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "0", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "1", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "1", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "2", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "2", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "3", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "3", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "4", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "4", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "5", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "5", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "6", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "6", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "7", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "7", 1, ""],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "8", 0, 0],
-                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$DATABASE_ID", "8", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "0", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "0", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "1", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "1", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "2", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "2", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "3", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "3", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "4", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "4", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "5", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "5", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "6", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "6", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "7", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "7", 1, ""],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "8", 0, 0],
+                ["SET_UPGRADE_VALUE", "$TARGET_PLAYER", "$CODE", "$TABOO_ID", "8", 1, ""],
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
-                    ["EQUAL", "$CARD.sides.A.databaseId", "$DATABASE_ID"]
+                    ["EQUAL", "$CARD.sides.A.code", "$CODE"],
+                    ["EQUAL", "$CARD.sides.A.tabooId", "$TABOO_ID"]
                 ]]],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                     ["DO_SPAWN_CUSTOMIZABLE", "$CARD.id", "$TARGET_PLAYER"]
@@ -942,204 +941,146 @@
             "upg09021": { //Hunter's Armor Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09021Prompt", "$THIS.cardOwner", "$THIS.id", "09021"]
+                        ["PROMPT", "$PLAYER_N", "upg09021Prompt", "$THIS.cardOwner", "$THIS.id", "09021", 0]
                     ]
                 }
             },
             "upg09022": { //Runic Axe Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09022Prompt", "$THIS.cardOwner", "$THIS.id", "09022"]
+                        ["PROMPT", "$PLAYER_N", "upg09022Prompt", "$THIS.cardOwner", "$THIS.id", "09022", 0]
+                    ]
+                }
+            },
+            "upg09022-6": { //Runic Axe Upgrades (taboo 6+)
+                "ability" : {
+                    "A": [
+                        ["PROMPT", "$PLAYER_N", "upg09022Prompt", "$THIS.cardOwner", "$THIS.id", "09022", 6]
                     ]
                 }
             },
             "upg09023": { //Custom Modifications Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09023Prompt", "$THIS.cardOwner", "$THIS.id", "09023"]
+                        ["PROMPT", "$PLAYER_N", "upg09023Prompt", "$THIS.cardOwner", "$THIS.id", "09023", 0]
                     ]
                 }
             },
             "upg09040": { //Alchemical Distillation Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09040Prompt", "$THIS.cardOwner", "$THIS.id", "09040"]
+                        ["PROMPT", "$PLAYER_N", "upg09040Prompt", "$THIS.cardOwner", "$THIS.id", "09040", 0]
                     ]
                 }
             },
             "upg09041": { //Empirical Hypothesis Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09041Prompt", "$THIS.cardOwner", "$THIS.id", "09041"]
+                        ["PROMPT", "$PLAYER_N", "upg09041Prompt", "$THIS.cardOwner", "$THIS.id", "09041", 0]
+                    ]
+                }
+            },
+            "upg09041-8": { //Empirical Hypothesis Upgrades (taboo 8+)
+                "ability" : {
+                    "A": [
+                        ["PROMPT", "$PLAYER_N", "upg09041Prompt", "$THIS.cardOwner", "$THIS.id", "09041", 8]
                     ]
                 }
             },
             "upg09042": { //The Raven Quill Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09042Prompt", "$THIS.cardOwner", "$THIS.id", "09042"]
+                        ["PROMPT", "$PLAYER_N", "upg09042Prompt", "$THIS.cardOwner", "$THIS.id", "09042", 0]
                     ]
                 }
             },
             "upg09059": { //Damning Testimony Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09059Prompt", "$THIS.cardOwner", "$THIS.id", "09059"]
+                        ["PROMPT", "$PLAYER_N", "upg09059Prompt", "$THIS.cardOwner", "$THIS.id", "09059", 0]
                     ]
                 }
             },
             "upg09060": { //Friends in Low Places Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09060Prompt", "$THIS.cardOwner", "$THIS.id", "09060"]
+                        ["PROMPT", "$PLAYER_N", "upg09060Prompt", "$THIS.cardOwner", "$THIS.id", "09060", 0]
                     ]
                 }
             },
             "upg09061": { //Honed Instinct Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09061Prompt", "$THIS.cardOwner", "$THIS.id", "09061"]
+                        ["PROMPT", "$PLAYER_N", "upg09061Prompt", "$THIS.cardOwner", "$THIS.id", "09061", 0]
                     ]
                 }
             },
             "upg09079": { //Living Ink Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09079Prompt", "$THIS.cardOwner", "$THIS.id", "09079"]
+                        ["PROMPT", "$PLAYER_N", "upg09079Prompt", "$THIS.cardOwner", "$THIS.id", "09079", 0]
                     ]
                 }
             },
             "upg09080": { //Summoned Servitor Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09080Prompt", "$THIS.cardOwner", "$THIS.id", "09080"]
+                        ["PROMPT", "$PLAYER_N", "upg09080Prompt", "$THIS.cardOwner", "$THIS.id", "09080", 0]
                     ]
                 }
             },
             "upg09081": { //Power Word Upgrades
                 "ability" : {
                     "A": [
-                        ["VAR", "$TABOO_ID", ["GET_TABOO_VALUE", "$THIS.cardOwner"]],
-                        ["COND",
-                            ["GREATER_EQUAL", "$TABOO_ID", 6],
-                            ["PROMPT", "$PLAYER_N", "upg09081T6Prompt", "$THIS.cardOwner", "$THIS.id", "09081"],
-                            ["TRUE"],
-                            ["PROMPT", "$PLAYER_N", "upg09081T0Prompt", "$THIS.cardOwner", "$THIS.id", "09081"]
-                        ]
+                        ["PROMPT", "$PLAYER_N", "upg09081Prompt", "$THIS.cardOwner", "$THIS.id", "09081", 0]
+                    ]
+                }
+            },
+            "upg09081-6": { //Power Word Upgrades (taboo 6-8)
+                "ability" : {
+                    "A": [
+                        ["PROMPT", "$PLAYER_N", "upg09081-6Prompt", "$THIS.cardOwner", "$THIS.id", "09081", 6]
+                    ]
+                }
+            },
+            "upg09081-9": { //Power Word Upgrades (taboo 9+)
+                "ability" : {
+                    "A": [
+                        ["PROMPT", "$PLAYER_N", "upg09081-6Prompt", "$THIS.cardOwner", "$THIS.id", "09081", 9]
                     ]
                 }
             },
             "upg09099": { //Pocket Multi Tool Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09099Prompt", "$THIS.cardOwner", "$THIS.id", "09099"]
+                        ["PROMPT", "$PLAYER_N", "upg09099Prompt", "$THIS.cardOwner", "$THIS.id", "09099", 0]
                     ]
                 }
             },
             "upg09100": { //Makeshift Trap Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09100Prompt", "$THIS.cardOwner", "$THIS.id", "09100"]
+                        ["PROMPT", "$PLAYER_N", "upg09100Prompt", "$THIS.cardOwner", "$THIS.id", "09100", 0]
                     ]
                 }
             },
             "upg09101": { //Grizzled Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09101Prompt", "$THIS.cardOwner", "$THIS.id", "09101"]
+                        ["PROMPT", "$PLAYER_N", "upg09101Prompt", "$THIS.cardOwner", "$THIS.id", "09101", 0]
                     ]
                 }
             },
             "upg09119": { //Hyperphysical Shotcaster Upgrades
                 "ability" : {
                     "A": [
-                        ["PROMPT", "$PLAYER_N", "upg09119Prompt", "$THIS.cardOwner", "$THIS.id", "09119"]
+                        ["PROMPT", "$PLAYER_N", "upg09119Prompt", "$THIS.cardOwner", "$THIS.id", "09119", 0]
                     ]
                 }
             }
         }
     },
     "prompts": {
-        "selectTabooPrompt": {
-            "args": [],
-            "message": "Pick Taboo version used.",
-            "options": [
-                {
-                    "label": "Taboo 2.4 (2025-07-11)",
-                    "hotkey": "1",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 9, "2.4", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 2.3 (2024-10-23)",
-                    "hotkey": "2",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 8, "2.3", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 2.2 (2024-02-20)",
-                    "hotkey": "3",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 7, "2.2", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 2.1 (2023-08-30)",
-                    "hotkey": "4",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 6, "2.1", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 2.0 (2022-08-26)",
-                    "hotkey": "5",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 5, "2.0", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 1.9 (2021-06-28)",
-                    "hotkey": "6",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 4, "1.9", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 1.8 (2020-10-15)",
-                    "hotkey": "7",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 3, "1.8", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 1.6 (2019-09-27)",
-                    "hotkey": "8",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 2, "1.6", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Taboo 1.5 (2019-04-20)",
-                    "hotkey": "9",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 1, "1.5", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "None",
-                    "hotkey": "0",
-                    "code": [
-                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 0, "None", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Cancel.",
-                    "hotkey": "X"
-                }
-            ]
-        },
         "selectPipsPrompt": {
             "args": ["$UPGRADE_NAME"],
             "message": "Change {{$UPGRADE_NAME}}.",
@@ -1162,63 +1103,63 @@
             ]
         },
         "upg09021Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Enchanted.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Enchanted", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Enchanted", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Protective Runes.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Protective Runes", "1", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Protective Runes", "1", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Durable.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Durable", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Durable", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Hallowed.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Hallowed", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Hallowed", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Lightweight.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Lightweight", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Lightweight", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Hexdrinker.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Hexdrinker", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Hexdrinker", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Armor of Thorns.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Armor of Thorns", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Armor of Thorns", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1228,71 +1169,70 @@
             ]
         },
         "upg09022Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Heirloom.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Heirloom", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Heirloom", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Inscription of Glory.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Inscription of Glory", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Inscription of Glory", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Inscription of the Elders.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Inscription of the Elders", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Inscription of the Elders", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Inscription of the Hunt.",
                     "hotkey": "4",
                     "code": [
-                        ["VAR", "$TABOO_ID", ["GET_TABOO_VALUE", "$TARGET_PLAYER"]],
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Inscription of the Hunt", "3", 0, ["INLINE_IF", ["GREATER_EQUAL", "$TABOO_ID", 6], 2, 1], true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Inscription of the Hunt", "3", 0, ["INLINE_IF", ["GREATER_EQUAL", "$TABOO_ID", 6], 2, 1], true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Inscription of Fury.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Inscription of Fury", "4", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Inscription of Fury", "4", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Ancient Power.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Ancient Power", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Ancient Power", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Saga.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Saga", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Saga", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Scriptweaver.",
                     "hotkey": "8",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Scriptweaver", "7", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Scriptweaver", "7", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1302,56 +1242,56 @@
             ]
         },
         "upg09023Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Notched Sight.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Notched Sight", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Notched Sight", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Extended Stock.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Extended Stock", "1", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Extended Stock", "1", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Counterbalance.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Counterbalance", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Counterbalance", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Leather Grip.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Leather Grip", "3", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Leather Grip", "3", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Extended Magazine.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Extended Magazine", "4", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Extended Magazine", "4", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Quicksilver Bullets.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Quicksilver Bullets", "5", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Quicksilver Bullets", "5", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1361,63 +1301,63 @@
             ]
         },
         "upg09040Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Mending Distillate.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Mending Distillate", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Mending Distillate", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Calming Distillate.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Calming Distillate", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Calming Distillate", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Enlightening Distillate.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Enlightening Distillate", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Enlightening Distillate", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Quickening Distillate.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Quickening Distillate", "3", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Quickening Distillate", "3", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Refined.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Refined", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Refined", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Empowered.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Empowered", "5", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Empowered", "5", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Perfected.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Perfected", "6", 0, 5, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Perfected", "6", 0, 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1427,70 +1367,70 @@
             ]
         },
         "upg09041Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Pessimistic Outlook.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Pessimistic Outlook", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Pessimistic Outlook", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Trial and Error.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Trial and Error", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Trial and Error", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Independent Variable.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Independent Variable", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Independent Variable", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Field Research.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Field Research", "3", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Field Research", "3", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Peer Review.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Peer Review", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Peer Review", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Research Grant.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Research Grant", "5", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Research Grant", "5", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Irrefutable Proof.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Irrefutable Proof", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Irrefutable Proof", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Alternative Hypothesis.",
                     "hotkey": "8",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Alternative Hypothesis", "7", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Alternative Hypothesis", "7", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1500,84 +1440,84 @@
             ]
         },
         "upg09042Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change named asset #1.",
                     "hotkey": "A",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "named Tome or Spell asset #1", "0", 0, "ravenQuill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "named Tome or Spell asset #1", "0", 0, "ravenQuill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Living Quill.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Living Quill", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Living Quill", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Spectral Binding.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Spectral Binding", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Spectral Binding", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Mystic Vane.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Mystic Vane", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Mystic Vane", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Endless Inkwell.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Endless Inkwell", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Endless Inkwell", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change named asset #2.",
                     "hotkey": "B",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "named Tome or Spell asset #2", "4", 0, "ravenQuill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "named Tome or Spell asset #2", "4", 0, "ravenQuill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change named asset #3.",
                     "hotkey": "C",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "named Tome or Spell asset #3", "4", 1, "ravenQuill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "named Tome or Spell asset #3", "4", 1, "ravenQuill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Energy Sap.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Energy Sap", "5", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Energy Sap", "5", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Interwoven Ink.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Interwoven Ink", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Interwoven Ink", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Supernatural Record.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Supernatural Record", "7", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Supernatural Record", "7", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1587,56 +1527,56 @@
             ]
         },
         "upg09059Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Search Warrant.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Search Warrant", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Search Warrant", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Fabricated Evidence.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Fabricated Evidence", "1", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Fabricated Evidence", "1", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Blackmail.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Blackmail", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Blackmail", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Extort.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Extort", "3", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Extort", "3", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Surveil.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Surveil", "4", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Surveil", "4", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Expose.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Expose", "5", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Expose", "5", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1646,77 +1586,77 @@
             ]
         },
         "upg09060Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change chosen trait #1.",
                     "hotkey": "A",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #1", "0", 0, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #1", "0", 0, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Helpful.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Helpful", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Helpful", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Versatile.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Versatile", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Versatile", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen trait #2.",
                     "hotkey": "B",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #2", "2", 0, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #2", "2", 0, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Bolstering.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Bolstering", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Bolstering", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Clever.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Clever", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Clever", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Prompt.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Prompt", "5", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Prompt", "5", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Experienced.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Experienced", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Experienced", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Swift.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Swift", "7", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Swift", "7", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1726,70 +1666,70 @@
             ]
         },
         "upg09061Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Reflex Response.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Reflex Response", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Reflex Response", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Situational Awareness.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Situational Awareness", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Situational Awareness", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Killer Instinct.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Killer Instinct", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Killer Instinct", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Gut Reaction.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Gut Reaction", "3", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Gut Reaction", "3", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Muscle Memory.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Muscle Memory", "4", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Muscle Memory", "4", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Sharpened Talent.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Sharpened Talent", "5", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Sharpened Talent", "5", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Impulse Control.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Impulse Control", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Impulse Control", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Force of Habit.",
                     "hotkey": "8",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Force of Habit", "7", 0, 5, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Force of Habit", "7", 0, 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1799,84 +1739,84 @@
             ]
         },
         "upg09079Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change chosen skill #1.",
                     "hotkey": "A",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen skill #1", "0", 0, "skill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen skill #1", "0", 0, "skill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Shifting Ink.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Shifting Ink", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Shifting Ink", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Subtle Depiction.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Subtle Depiction", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Subtle Depiction", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Imbued Ink.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Imbued Ink", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Imbued Ink", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Eldritch Ink #1.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Eldritch Ink #1", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Eldritch Ink #1", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen skill #2.",
                     "hotkey": "B",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen skill #2", "4", 0, "skill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen skill #2", "4", 0, "skill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Eldritch Ink #2.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Eldritch Ink #2", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Eldritch Ink #2", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen skill #3.",
                     "hotkey": "C",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen skill #3", "5", 0, "skill", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen skill #3", "5", 0, "skill", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Macabre Depiction.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Macabre Depiction", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Macabre Depiction", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Vibrancy.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Vibrancy", "7", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Vibrancy", "7", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1886,77 +1826,77 @@
             ]
         },
         "upg09080Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Armored Carapace.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Armored Carapace", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Armored Carapace", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Claws that Catch.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Claws that Catch", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Claws that Catch", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Jaws that Snatch.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Jaws that Snatch", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Jaws that Snatch", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Eyes of Flame.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Eyes of Flame", "3", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Eyes of Flame", "3", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Wings of Night.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Wings of Night", "4", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Wings of Night", "4", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Dominance.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Dominance", "5", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Dominance", "5", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change circled slot.",
                     "hotkey": "A",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "circled slot", "5", 0, "slot", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "circled slot", "5", 0, "slot", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Dreaming Call.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Dreaming Call", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Dreaming Call", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Dæmonic Influence.",
                     "hotkey": "8",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Dæmonic Influence", "7", 0, 5, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Dæmonic Influence", "7", 0, 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -1965,144 +1905,144 @@
                 }
             ]
         },
-        "upg09081T6Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+        "upg09081Prompt": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Betray.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Betray", "0", 0, 1, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Cower.",
-                    "hotkey": "2",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Cower", "1", 0, 1, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Confess.",
-                    "hotkey": "3",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Confess", "2", 0, 1, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Distract.",
-                    "hotkey": "4",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Distract", "3", 0, 1, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Greater Control.",
-                    "hotkey": "5",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Greater Control", "4", 0, 2, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Bonded.",
-                    "hotkey": "6",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Bonded", "5", 0, 3, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Tonguetwister.",
-                    "hotkey": "7",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Tonguetwister", "6", 0, 3, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Change Thrice Spoken.",
-                    "hotkey": "8",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Thrice Spoken", "7", 0, 3, true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Reset.",
-                    "hotkey": "R",
-                    "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Cancel.",
-                    "hotkey": "X"
-                }
-            ]
-        },
-        "upg09081T0Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
-            "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
-            "options": [
-                {
-                    "label": "Change Betray.",
-                    "hotkey": "1",
-                    "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Betray", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Betray", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Mercy.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Mercy", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Mercy", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Confess.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Confess", "2", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Confess", "2", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Distract.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Distract", "3", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Distract", "3", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Greater Control.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Greater Control", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Greater Control", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Bonded.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Bonded", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Bonded", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Tonguetwister.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Tonguetwister", "6", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Tonguetwister", "6", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Thrice Spoken.",
                     "hotkey": "8",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Thrice Spoken", "7", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Thrice Spoken", "7", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel.",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "upg09081-6Prompt": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
+            "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
+            "options": [
+                {
+                    "label": "Change Betray.",
+                    "hotkey": "1",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Betray", "0", 0, 1, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Cower.",
+                    "hotkey": "2",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Cower", "1", 0, 1, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Confess.",
+                    "hotkey": "3",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Confess", "2", 0, 1, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Distract.",
+                    "hotkey": "4",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Distract", "3", 0, 1, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Greater Control.",
+                    "hotkey": "5",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Greater Control", "4", 0, 2, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Bonded.",
+                    "hotkey": "6",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Bonded", "5", 0, 3, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Tonguetwister.",
+                    "hotkey": "7",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Tonguetwister", "6", 0, 3, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Change Thrice Spoken.",
+                    "hotkey": "8",
+                    "code": [
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Thrice Spoken", "7", 0, 3, true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Reset.",
+                    "hotkey": "R",
+                    "code": [
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -2112,63 +2052,63 @@
             ]
         },
         "upg09099Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Detachable.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Detachable", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Detachable", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Pry Bar.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Pry Bar", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Pry Bar", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Sharpened Knife.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Sharpened Knife", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Sharpened Knife", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Signal Mirror.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Signal Mirror", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Signal Mirror", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Magnifying Lens.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Magnifying Lens", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Magnifying Lens", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Lucky Charm.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Lucky Charm", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Lucky Charm", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Spring-Loaded.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Spring-Loaded", "6", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Spring-Loaded", "6", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -2178,63 +2118,63 @@
             ]
         },
         "upg09100Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Improved Timer.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Improved Timer", "0", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Improved Timer", "0", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Tripwire.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Tripwire", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Tripwire", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Simple.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Simple", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Simple", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Poisonous.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Poisonous", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Poisonous", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Remote Configuration.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Remote Configuration", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Remote Configuration", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Net.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Net", "5", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Net", "5", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Explosive Device.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Explosive Device", "6", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Explosive Device", "6", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -2244,77 +2184,77 @@
             ]
         },
         "upg09101Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change chosen trait #1.",
                     "hotkey": "A",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #1", "0", 0, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #1", "0", 0, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen trait #2.",
                     "hotkey": "B",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #2", "0", 1, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #2", "0", 1, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Specialist #1.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Specialist #1", "1", 0, 1, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Specialist #1", "1", 0, 1, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen trait #3.",
                     "hotkey": "C",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #3", "1", 0, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #3", "1", 0, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Specialist #2.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Specialist #2", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Specialist #2", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change chosen trait #4.",
                     "hotkey": "D",
                     "code": [
-                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "chosen trait #4", "2", 0, "trait", true, "$PLAYER_N"]
+                        ["DO_CHANGE_EXT", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "chosen trait #4", "2", 0, "trait", true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Nemesis.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Nemesis", "3", 0, 3, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Nemesis", "3", 0, 3, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Mythos-Hardened.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Mythos-Hardened", "4", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Mythos-Hardened", "4", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Always Prepared.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Always Prepared", "5", 0, 5, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Always Prepared", "5", 0, 5, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -2324,63 +2264,63 @@
             ]
         },
         "upg09119Prompt": {
-            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID"],
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID"],
             "message": "Change {{$CARD_BY_ID.$TARGET_CARD_ID.sides.A.name}}.",
             "options": [
                 {
                     "label": "Change Railshooter.",
                     "hotkey": "1",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Railshooter", "0", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Railshooter", "0", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Telescanner.",
                     "hotkey": "2",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Telescanner", "1", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Telescanner", "1", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Translocator.",
                     "hotkey": "3",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Translocator", "2", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Translocator", "2", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Realitycollapser.",
                     "hotkey": "4",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Realitycollapser", "3", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Realitycollapser", "3", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Matterweaver.",
                     "hotkey": "5",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Matterweaver", "4", 0, 2, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Matterweaver", "4", 0, 2, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Aetheric Link.",
                     "hotkey": "6",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Aetheric Link", "5", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Aetheric Link", "5", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Change Empowered Configuration.",
                     "hotkey": "7",
                     "code": [
-                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", "Empowered Configuration", "6", 0, 4, true, "$PLAYER_N"]
+                        ["DO_CHANGE_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", "Empowered Configuration", "6", 0, 4, true, "$PLAYER_N"]
                     ]
                 },
                 {
                     "label": "Reset.",
                     "hotkey": "R",
                     "code": [
-                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$DATABASE_ID", true, "$PLAYER_N"]
+                        ["DO_RESET_CUSTOMIZABLE_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CODE", "$TABOO_ID", true, "$PLAYER_N"]
                     ]
                 },
                 {
@@ -2388,11 +2328,6 @@
                     "hotkey": "X"
                 }
             ]
-        }
-    },
-    "labels": {
-        "selectTabooMenu": {
-            "English": "Select Taboo"
         }
     }
 }

@@ -216,6 +216,9 @@
                     }
                 }
             },
+            "09077-8": { //Underworld Market (taboo 8+)
+                "inheritFrom": "09077"
+            },
             "09080": { //Summoned Servitor
                 "ability" : {
                     "A": [
