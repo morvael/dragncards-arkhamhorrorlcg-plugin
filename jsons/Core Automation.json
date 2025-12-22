@@ -18,7 +18,7 @@
             ["VAR", "$NEW_LOAD_LIST", ["LIST"]],
             ["FOR_EACH_VAL", "$DATA", "$GAME.loadList", [
                 ["VAR", "$NEW_DATABASE_ID", ["GET_DATABASE_ID_FOR_TABOO", "$DATA.databaseId", "$TABOO_VALUE"]],
-                ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$NEW_DATABASE_ID", "quantity": "$DATA.quantity", "loadGroupId": "$DATA.loadGroupId"}]],
+                ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$NEW_DATABASE_ID", "quantity": "$DATA.quantity", "loadGroupId": "$DATA.loadGroupId", "cardDetails": "$CARD_DB.{{$NEW_DATABASE_ID}}"}]],
                 ["UPDATE_VAR", "$NEW_LOAD_LIST", ["APPEND", "$NEW_LOAD_LIST", "$LOAD_LIST_ITEM"]]
             ]],
             ["SET", "/loadList", "$NEW_LOAD_LIST"]
