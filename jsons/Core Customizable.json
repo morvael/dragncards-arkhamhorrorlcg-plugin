@@ -1,4 +1,9 @@
 {
+    "actionLists": {
+        "selectTaboo": [
+            ["PROMPT", "$PLAYER_N", "selectTabooPrompt"]
+        ]
+    },
     "functions": {
         "IS_CUSTOMIZABLE": {
             "args": ["$DATABASE_ID"],
@@ -58,7 +63,7 @@
                 ["VAR", "$NEW_TEXT", "$TARGET_CARD.sides.A.text"],
                 ["VAR", "$UPGRADES", ""],
                 ["COND",
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09021"], //Hunter's Armor
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09021"], //Hunter's Armor
                     [
                         //0 - [1] Enchanted. Hunter's Armor gains the [[Relic]] trait and takes up an arcane slot instead of a body slot.
                         ["SET_UPGRADE", "$TARGET_CARD_ID", "traits", "Item. Armor.", "Item. Armor. Relic.", "$UPGRADE_0", 1],
@@ -78,7 +83,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable.{0}", ["LIST", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09022"], //Runic Axe
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09022"], //Runic Axe
                     [
                         //0 - [1] Heirloom. This asset gets -1 cost and gains the [[Relic]] trait.
                         ["SET_UPGRADE", "$TARGET_CARD_ID", "cost", 4, 3, "$UPGRADE_0", 1],
@@ -100,7 +105,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Uses (4 charges). Replenish {0} of these charges at the start of each round.  [action]: <b>Fight.</b> You get +1 [combat] for this attack. Before this attack, you may spend any number of charges to imbue the axe with {1} -{2}  - <i>Accuracy</i> - You get an additional +2 [combat] for this attack.  - <i>Power</i> - This attack deals +1 damage.{3}", ["LIST", "$SAGA", "$SCRIPTWEAVER", "$ANCIENT_POWER", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09023"], //Custom Modifications
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09023"], //Custom Modifications
                     [
                         //0 - [1] Notched Sight. If you perform an attack with attached asset against an enemy engaged with another investigator and fail, you deal no damage.
                         ["UPDATE_VAR", "$UPGRADES", ["ADD_UPGRADE", "$UPGRADES", "$UPGRADE_0", 1, "  If you perform an attack with attached asset against an enemy engaged with another investigator and fail, you deal no damage."]],
@@ -118,7 +123,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable.{0}  Attach to a [[Firearm]] asset you control. Limit 1 per asset.  [reaction] When you reveal a non-[auto_fail] chaos token attacking with attached asset, exhaust Custom Modifications: Cancel that chaos token, return it to the chaos bag, and reveal a new one.{1}", ["LIST", "$LEATHER_GRIP", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09040"], //Alchemical Distillation
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09040"], //Alchemical Distillation
                     [
                         //tmp variables
                         ["VAR", "$OPTIONS", ""],
@@ -140,7 +145,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Uses ({0} supplies).  [action] Spend 1 supply: Choose an investigator at your location and test [intellect] (1). If you succeed, that investigator performs one of the following options{1} -{2}  - Draw 2 cards.  - Gain 2 resources.{3}", ["LIST", "$REFINED", "$PERFECTED", "$UPGRADES", "$OPTIONS"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09041"], //Empirical Hypothesis
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09041"], //Empirical Hypothesis
                     [
                         //tmp variables
                         ["VAR", "$CRITERIA", ""],
@@ -168,7 +173,7 @@
                             ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Limit 1 per investigator.  <b>Forced</b> - At the start of the round: Choose one of the following criteria for this round  - You fail a test by 2 or more.  - You succeed at a test by 3 or more.{0}  {1}{2}  [fast] Spend 1 evidence: Draw 1 card.{3}", ["LIST", "$CRITERIA", "$PEER_REVIEW", "$ALTERNATIVE_HYPOTHESIS", "$UPGRADES"]]]
                         ]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09042"], //The Raven Quill
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09042"], //The Raven Quill
                     [
                         //tmp variables
                         ["VAR", "$ASSETS", ""],
@@ -193,7 +198,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. {0}.  Attach to a named asset you control{1}.  [reaction] When you resign or the game ends: Either mark a checkbox on The Raven Quill's upgrade sheet, or reduce the experience cost to upgrade the attached asset before the next scenario by 1.{2}", ["LIST", "$ASSETS", "$SUPERNATURAL_RECORD", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09059"], //Damning Testimony
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09059"], //Damning Testimony
                     [
                         //0 - [1] Search Warrant. While investigating using Damning Testimony, you may ignore any effect or keyword on the investigated location that would trigger.
                         ["UPDATE_VAR", "$UPGRADES", ["ADD_UPGRADE", "$UPGRADES", "$UPGRADE_0", 1, "  While investigating using Damning Testimony, you may ignore any effect or keyword on the investigated location that would trigger."]],
@@ -211,7 +216,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Uses ({0} evidence).  [action] Exhaust Damning Testimony and choose an enemy at any location: <b>Investigate</b> <i>(your location)</i>. If you succeed, you may spend 1 evidence to discover 1 additional clue at the chosen enemy's location.{1}", ["LIST", "$FABRICATED_EVIDENCE", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09060"], //Friends in Low Places
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09060"], //Friends in Low Places
                     [
                         //tmp variables
                         ["VAR", "$TRAITS", ""],
@@ -235,7 +240,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable.{0}  {1}  Look at the top {2} cards of your deck. For each looked-at card with the chosen [[Trait]](s), you may spend 1 resource to add that card to your hand. Shuffle the remaining cards into your deck.{3}", ["LIST", "$PROMPT", "$TRAITS", "$EXPERIENCED", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09061"], //Honed Instinct
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09061"], //Honed Instinct
                     [
                         //tmp variables
                         ["VAR", "$CONDITIONS", ""],
@@ -259,7 +264,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Fast. Play this card only after one of the following conditions is met:  - The agenda or act advances.  - You succeed at a skill test by 3 or more.{0}  Immediately take {1}. (Max once per round).{2}", ["LIST", "$CONDITIONS", "$FORCE_OF_HABIT", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09079"], //Living Ink
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09079"], //Living Ink
                     [
                         //tmp variables
                         ["VAR", "$SKILLS", ""],
@@ -284,7 +289,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. {0}.  Uses ({1} charges).  Remove 1 charge from Living Ink at the start of each of your turns. If Living Ink has no charges, discard it.  You get {2}.{3}", ["LIST", "$SKILLS", "$IMBUED_INK", "$VIBRANCY", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09080"], //Summoned Servitor
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09080"], //Summoned Servitor
                     [
                         //tmp variables
                         ["VAR", "$ACTIONS", ""],
@@ -308,7 +313,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. As an additional cost to play Summoned Servitor, you must discard another asset you control{0}.{1}  Summoned Servitor enters play at your location. It can take {2}:  - Move Summoned Servitor to a connecting revealed location.{3}", ["LIST", "$DREAMING_CALL", "$UPGRADES", "$DAEMONIC_INFLUENCE", "$ACTIONS"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09081"], //Power Word
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09081"], //Power Word
                     [
                         //tmp variables
                         ["VAR", "$COMMANDS", ""],
@@ -340,7 +345,7 @@
                             ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Fast. Play only during your turn.  Attach to a non-[[Elite]] enemy at your location.{0}  [action] If attached enemy is at your location: <b>Parley.</b> Give it {1} (limit once per round per command) -  - <i>“Go.”</i> This enemy moves once in a direction of your choice.  - <i>“Cower.”</i> This enemy exhausts.{2}", ["LIST", "$UPGRADES", "$TONGUETWISTER", "$COMMANDS"]]]
                         ]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09099"], //Pocket Multi Tool
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09099"], //Pocket Multi Tool
                     [
                         //0 -[1] Detachable. Other investigators at your location may use the ability on Pocket Multi Tool.
                         ["UPDATE_VAR", "$UPGRADES", ["ADD_UPGRADE", "$UPGRADES", "$UPGRADE_0", 1, "  Other investigators at your location may use the ability on Pocket Multi Tool."]],
@@ -361,7 +366,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. Limit 1 per investigator.  {0} a skill test you are performing, exhaust Pocket Multi Tool: You get +1 skill value for this test.{1}", ["LIST", "$SPRING_LOADED", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09100"], //Makeshift Trap
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09100"], //Makeshift Trap
                     [
                         //0 -[1] Improved Timer. When you play Makeshift Trap, you may increase or decrease its uses by 1.
                         ["VAR", "$IMPROVED_TIMER", ["PICK_UPGRADE", "", "  When you play Makeshift Trap, you may increase or decrease its uses by 1.", "$UPGRADE_0", 1]],
@@ -380,7 +385,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable.{0}  Uses (2 time). If Makeshift Trap has no time, discard it{1}.{2}  Attach to your location{3}.  Each non-[[Elite]] enemy at attached location get -1 fight and -1 evade{4}.  <b>Forced</b> - At the end of the round{5}: Remove 1 time from Makeshift Trap.{6}", ["LIST", "$SIMPLE", "$EXPLOSIVE_DEVICE", "$IMPROVED_TIMER", "$REMOTE_CONFIGURATION", "$NET", "$TRIP_WIRE", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09101"], //Grizzled
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09101"], //Grizzled
                     [
                         //tmp variables
                         ["VAR", "$TRAITS", ""],
@@ -400,7 +405,7 @@
                         //update text
                         ["UPDATE_VAR", "$NEW_TEXT", ["DO_FORMAT_STRING", "Customizable. {0}.  If this is a skill test on or against an encounter card <i>(including fighting, evading, or parleying)</i>, Grizzled gains [wild][wild] for each of the chosen traits that encounter card possesses.{1}", ["LIST", "$TRAITS", "$UPGRADES"]]]
                     ],
-                    ["EQUAL", "$TARGET_CARD.sides.A.databaseId", "09119"], //Hyperphysical Shotcaster: Theoretical Device
+                    ["EQUAL", "$TARGET_CARD.sides.A.code", "09119"], //Hyperphysical Shotcaster: Theoretical Device
                     [
                         //tmp variables
                         ["VAR", "$FORMS", ""],
@@ -498,6 +503,37 @@
                     "$PLAYER_DATA.$TARGET_PLAYER.arkham.tabooId",
                     ["TRUE"],
                     0
+                ]
+            ]
+        },
+        "DO_SET_TABOO_VALUE": {
+            "args": ["$TARGET_PLAYER", "$TABOO_VALUE", "$TABOO_NAME", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SET_TABOO_VALUE.TARGET_PLAYER"],
+                ["VALIDATE_GE0", "$TABOO_VALUE", "DO_SET_TABOO_VALUE.TABOO_VALUE"],
+                ["VALIDATE_NOT_EMPTY", "$TABOO_NAME", "DO_SET_TABOO_VALUE.TABOO_NAME"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_SET_TABOO_VALUE.LOG_EVENT"],
+                ["VAR", "$OLD_TABOO_VALUE", ["GET_TABOO_VALUE", "$TARGET_PLAYER"]],
+                ["COND",
+                    ["NOT_EQUAL", "$OLD_TABOO_VALUE", "$TABOO_VALUE"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "change Taboo to {{$TABOO_NAME}}.", "changes Taboo to {{$TABOO_NAME}}."],
+                        ["SET", "/playerData/$TARGET_PLAYER/arkham/tabooId", "$TABOO_VALUE"]//,
+                        //changed how taboo works - only when loading cards
+                        //["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                        //    ["EQUAL", "$CARD.cardOwner", "$TARGET_PLAYER"],
+                        //    ["OR",
+                        //        ["EQUAL", "$CARD.sides.A.databaseId", "09022"], //Runic Axe
+                        //        ["EQUAL", "$CARD.sides.A.databaseId", "09041"], //Empirical Hypothesis
+                        //        ["EQUAL", "$CARD.sides.A.databaseId", "09081"]  //Power Word
+                        //    ]
+                        //]]],
+                        //["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                        //    ["DO_SPAWN_CUSTOMIZABLE", "$CARD.id", "$TARGET_PLAYER"]
+                        //]]
+                    ],
+                    ["TRUE"],
+                    ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "keep Taboo {{$TABOO_NAME}}.", "keeps Taboo {{$TABOO_NAME}}."]
                 ]
             ]
         },
@@ -1081,6 +1117,86 @@
         }
     },
     "prompts": {
+        "selectTabooPrompt": {
+            "args": [],
+            "message": "Pick Taboo version used.",
+            "options": [
+                {
+                    "label": "Taboo 2.4 (2025-07-11)",
+                    "hotkey": "1",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 9, "2.4", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.3 (2024-10-23)",
+                    "hotkey": "2",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 8, "2.3", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.2 (2024-02-20)",
+                    "hotkey": "3",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 7, "2.2", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.1 (2023-08-30)",
+                    "hotkey": "4",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 6, "2.1", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 2.0 (2022-08-26)",
+                    "hotkey": "5",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 5, "2.0", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.9 (2021-06-28)",
+                    "hotkey": "6",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 4, "1.9", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.8 (2020-10-15)",
+                    "hotkey": "7",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 3, "1.8", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.6 (2019-09-27)",
+                    "hotkey": "8",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 2, "1.6", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Taboo 1.5 (2019-04-20)",
+                    "hotkey": "9",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 1, "1.5", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "None",
+                    "hotkey": "0",
+                    "code": [
+                        ["DO_SET_TABOO_VALUE", "$PLAYER_N", 0, "None", true, "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel.",
+                    "hotkey": "X"
+                }
+            ]
+        },        
         "selectPipsPrompt": {
             "args": ["$UPGRADE_NAME"],
             "message": "Change {{$UPGRADE_NAME}}.",
@@ -2328,6 +2444,11 @@
                     "hotkey": "X"
                 }
             ]
+        }
+    },
+    "labels": {
+        "selectTabooMenu": {
+            "English": "Select Taboo"
         }
     }
 }

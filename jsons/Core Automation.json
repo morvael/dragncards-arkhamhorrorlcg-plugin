@@ -13,7 +13,15 @@
         ],
         "preLoadActionList": [
             ["SET", "/arkham/loadingCards", true],
-            ["SET", "/lastLoadedCardIds", null]
+            ["SET", "/lastLoadedCardIds", null],
+            ["VAR", "$TABOO_VALUE", ["GET_TABOO_VALUE", "$PLAYER_N"]],
+            ["VAR", "$NEW_LOAD_LIST", ["LIST"]],
+            ["FOR_EACH_VAL", "$DATA", "$GAME.loadList", [
+                ["VAR", "$NEW_DATABASE_ID", ["GET_DATABASE_ID_FOR_TABOO", "$DATA.databaseId", "$TABOO_VALUE"]],
+                ["VAR", "$LOAD_LIST_ITEM", ["PROCESS_MAP", {"databaseId": "$NEW_DATABASE_ID", "quantity": "$DATA.quantity", "loadGroupId": "$DATA.loadGroupId"}]],
+                ["UPDATE_VAR", "$NEW_LOAD_LIST", ["APPEND", "$NEW_LOAD_LIST", "$LOAD_LIST_ITEM"]]
+            ]],
+            ["SET", "/loadList", "$NEW_LOAD_LIST"]
         ],
         "postLoadActionList": [
             ["SET", "/lastLoadedCardIds", "$GAME.loadedCardIds"],
