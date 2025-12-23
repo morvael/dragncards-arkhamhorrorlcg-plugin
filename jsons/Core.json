@@ -168,7 +168,7 @@
     "imageUrlPrefix": {
         "Default": "https://dragncards-ahlcg.s3.amazonaws.com/images/",
         "English": "https://dragncards-ahlcg.s3.amazonaws.com/images/",
-        "Spanish": "https://dragncards-ahlcg.s3.amazonaws.com/images/es/"
+        "Italian": "https://arkham-horror-lcg-dragncards.s3.eu-north-1.amazonaws.com/"
     },
     "saveGame": {
         "metadata": {

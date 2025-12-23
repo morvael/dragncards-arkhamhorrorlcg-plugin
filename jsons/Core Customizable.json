@@ -499,7 +499,10 @@
             "args": ["$TARGET_PLAYER"],
             "code": [
                 ["COND",
-                    ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.tabooId"],
+                    ["AND",
+                        ["NOT_EQUAL", "$TARGET_PLAYER", null],
+                        ["DEFINED", "$PLAYER_DATA.$TARGET_PLAYER.arkham.tabooId"]
+                    ],
                     "$PLAYER_DATA.$TARGET_PLAYER.arkham.tabooId",
                     ["TRUE"],
                     0
@@ -1196,7 +1199,7 @@
                     "hotkey": "X"
                 }
             ]
-        },        
+        },
         "selectPipsPrompt": {
             "args": ["$UPGRADE_NAME"],
             "message": "Change {{$UPGRADE_NAME}}.",
