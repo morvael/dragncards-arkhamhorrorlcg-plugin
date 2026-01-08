@@ -459,7 +459,7 @@
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 6, "$UPGRADE_6", "$UPGRADE_6_EXT"]],
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 7, "$UPGRADE_7", "$UPGRADE_7_EXT"]],
                 ["UPDATE_VAR", "$CUSTOMIZATION", ["FORMAT_UPGRADE", "$CUSTOMIZATION", 8, "$UPGRADE_8", "$UPGRADE_8_EXT"]],
-                ["VAR", "$IMAGE_URL", ["FORMAT", "https://ahlcg.derwinski.pl/{0}-{1}-{2}.webp", "$CODE", "$TABOO_ID", ["BASE64_ENCODE", "$CUSTOMIZATION"]]],
+                ["VAR", "$IMAGE_URL", ["FORMAT", "https://ahlcg.derwinski.pl/{0}{1}-{2}-{3}.webp", ["GET_CUSTOMIZATION_LANGUAGE"], "$CODE", "$TABOO_ID", ["BASE64_ENCODE", "$CUSTOMIZATION"]]],
                 //update upgrade card if needed (flip to hopefully force image refresh)
                 ["COND",
                     ["NOT_EQUAL", "$UPGRADE_CARD.sides.A.imageUrl", "$IMAGE_URL"],
@@ -493,6 +493,18 @@
                     ]
                 ],
                 "$CUSTOMIZATION"
+            ]
+        },
+        "GET_CUSTOMIZATION_LANGUAGE": {
+            "args": [],
+            "code": [
+                ["VAR", "$LNG", ["LANGUAGE"]],
+                ["COND",
+                    ["EQUAL", "$LNG", "Italian"],
+                    "IT-",
+                    ["TRUE"],
+                    ""
+                ]
             ]
         },
         "GET_TABOO_VALUE": {
