@@ -62,6 +62,8 @@
                     ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Uncanny Growth", "10045", 1, "$TARGET_PLAYER_ASIDE", true, null],
                     ["EQUAL", "$DATABASE_ID", "10059-8"],
                     ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Uncanny Growth", "10045", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                    ["EQUAL", "$DATABASE_ID", "10059-10"],
+                    ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Uncanny Growth", "10045", 1, "$TARGET_PLAYER_ASIDE", true, null],
                     ["EQUAL", "$DATABASE_ID", "10060"],
                     ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Uncanny Growth", "10045", 1, "$TARGET_PLAYER_ASIDE", true, null],
                     ["EQUAL", "$DATABASE_ID", "10060-8"],
@@ -80,7 +82,23 @@
                         ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Scarlet Rot", "10089", 1, "$TARGET_PLAYER_ASIDE", true, null],
                         ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Virescent Rot", "10090", 1, "$TARGET_PLAYER_ASIDE", true, null]
                     ],
+                    ["EQUAL", "$DATABASE_ID", "10085-10"],
+                    [
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Abyssal Rot", "10086", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Aember Rot", "10087", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Putrescent Rot", "10088", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Scarlet Rot", "10089", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Virescent Rot", "10090", 1, "$TARGET_PLAYER_ASIDE", true, null]
+                    ],
                     ["EQUAL", "$DATABASE_ID", "10098"],
+                    [
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Abyssal Rot", "10086", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Aember Rot", "10087", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Putrescent Rot", "10088", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Scarlet Rot", "10089", 1, "$TARGET_PLAYER_ASIDE", true, null],
+                        ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Virescent Rot", "10090", 1, "$TARGET_PLAYER_ASIDE", true, null]
+                    ],
+                    ["EQUAL", "$DATABASE_ID", "10098-10"],
                     [
                         ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Abyssal Rot", "10086", 1, "$TARGET_PLAYER_ASIDE", true, null],
                         ["DO_CREATE_MISSING_CARDS", "$TARGET_PLAYER", "Aember Rot", "10087", 1, "$TARGET_PLAYER_ASIDE", true, null],
