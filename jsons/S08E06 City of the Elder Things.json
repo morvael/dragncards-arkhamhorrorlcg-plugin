@@ -83,7 +83,6 @@
                 ["COND",
                     ["NOT_EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$MEMBERS.[$I]"], "KIA"],
                     [
-                        ["VAR", "$J", ["TO_INT", ["DIVIDE", "$I", 3]]],
                         ["COND",
                             ["LESS_EQUAL", "$I", 2],
                             ["UPDATE_VAR", "$GROUPS", ["LIST", ["ADD", "$GROUPS.[0]", 1], "$GROUPS.[1]", "$GROUPS.[2]"]],
