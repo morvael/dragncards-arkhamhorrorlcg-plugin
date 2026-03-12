@@ -141,10 +141,10 @@
         ],
         "City of the Elder Things Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "City of the Elder Things"],
-            ["VAR", "$FINAL_MESSAGE", ""],
+            ["VAR", "$FINAL_MESSAGE", "Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log."],
             ["COND",
                 ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
-                ["UPDATE_VAR", "$FINAL_MESSAGE", "After you reveal the starting location, the lead investigator discovers clues from that location equal to half its clue value (rounded up)."]
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} After you reveal the starting location, the lead investigator discovers clues from that location equal to half its clue value (rounded up)."]
             ],
             ["VAR", "$SPAWN_LEFTS", ["LIST"]],
             ["VAR", "$SPAWN_TOPS", ["LIST"]],
@@ -159,7 +159,7 @@
                     ["DO_LOAD_CARDS_INTO_SCN", "Shoggoths", "sharedPileA"],
                     ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
                     ["DO_LOAD_CARDS_SCN", "Locked Doors"],
-                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Shoggoths cards are in Pile A."],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "Shoggoths cards are in Pile A. {{$FINAL_MESSAGE}}"],
                     ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 26, 45, 26, 45, 64, 83, 7, 26, 64, 83, 7, 26, 45, 64, 45, 64]],
                     ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 5, 5, 24, 24, 24, 24, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81]],
                     ["UPDATE_VAR", "$STARTING", ["LIST", 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1]],
@@ -181,7 +181,7 @@
                     ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
                     ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
                     ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
-                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Creatures in the Ice cards are in Pile A."],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "Creatures in the Ice cards are in Pile A. {{$FINAL_MESSAGE}}"],
                     ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 33, 44, 55, 22, 33, 44, 55, 66, 11, 22, 66, 77, 0, 11, 77, 88]],
                     ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 24, 24, 24, 43, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81, 81, 81]],
                     ["UPDATE_VAR", "$STARTING", ["LIST", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]],
@@ -203,7 +203,7 @@
                     ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
                     ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
                     ["DO_LOAD_CARDS_SCN", "Locked Doors"],
-                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Shoggoths cards are in Pile A."],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "Shoggoths cards are in Pile A. {{$FINAL_MESSAGE}}"],
                     ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 2, 14, 2, 14, 26, 38, 26, 38, 50, 62, 38, 50, 62, 74, 62, 74]],
                     ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 5, 5, 24, 24, 24, 24, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81]],
                     ["UPDATE_VAR", "$STARTING", ["LIST", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
@@ -215,7 +215,7 @@
                     ["DO_DELETE_NAMED_CARDS_SCN", "08629"]   //Pursuit of the Unknown (v. III)
                 ]
             ],
-            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Tekeli-li cards are in Deck B. See “Location Adjacency” and “Keys.”"],
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B, {{$FINAL_MESSAGE}} See “Location Adjacency” and “Keys.”"],
             ["VAR", "$SPAWN_IDS", ["SHUFFLE_LIST", ["LIST", "08631", "08632", "08632", "08632", "08633", "08634", "08634", "08635", "08636", "08637", "08637", "08638", "08639", "08639", "08640", "08640"]]], //Ancient Planetarium, Stone Bridge (3), Cylindrical Tower, Labyrinthine Chamber (2), Map Room, Roofless Rampart, Ruinous Streets (2), Cyclopean Spires, Submerged Passageway (2), Temple of the Elder Things (2)
             ["DO_SPAWN_LOCATIONS_SCN", "City Landscape", "$SPAWN_IDS", "$SPAWN_LEFTS", "$SPAWN_TOPS", 0, 16, 0],
             ["SET", "/arkham/scenarioCityOfTheElderThingsCity", "$DO_SPAWN_LOCATIONS_SCN_RESULT"],

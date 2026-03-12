@@ -252,6 +252,7 @@
                             {"label": "id:iceAndDeathPt2", "deckListId": "Ice and Death Pt 2 Scenario"},
                             {"label": "id:iceAndDeathPt3", "deckListId": "Ice and Death Pt 3 Scenario"},
                             {"label": "id:fatalMirage", "deckListId": "Fatal Mirage Scenario"},
+                            {"label": "id:toTheForbiddenPeaks", "deckListId": "To the Forbidden Peaks Scenario"},
                             {"label": "id:cityOfTheElderThings", "deckListId": "City of the Elder Things Scenario"}
                         ]
                     }
@@ -795,6 +796,9 @@
         },
         "fatalMirage": {
             "English": "Fatal Mirage"
+        },
+        "toTheForbiddenPeaks": {
+            "English": "To the Forbidden Peaks"
         },
         "cityOfTheElderThings": {
             "English": "City of the Elder Things"

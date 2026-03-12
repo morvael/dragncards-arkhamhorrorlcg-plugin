@@ -1,0 +1,155 @@
+{
+    "preBuiltDecks": {
+        "To the Forbidden Peaks Scenario": {
+            "label": "To the Forbidden Peaks Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "To the Forbidden Peaks", "To the Forbidden Peaks Scenario Early Init", "To the Forbidden Peaks Scenario Init"]
+            ]
+        },
+        "To the Forbidden Peaks": {
+            "hideFromSearch": true,
+            "label": "To the Forbidden Peaks",
+            "cards": [
+                {"databaseId": "08596", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //To the Forbidden Peaks
+                {"databaseId": "08597", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Forbidden Peaks
+                {"databaseId": "08598", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Terror Descends
+                {"databaseId": "08599", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Ascend the Mountain
+                {"databaseId": "08607", "quantity": 1, "loadGroupId": "sharedLocations", "left": "82%", "top": "13%"},  //The Summit
+                {"databaseId": "08608", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Terror of the Stars: Guardian of Forbidden Peaks
+                {"databaseId": "08609", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Constricting Elder Thing
+                {"databaseId": "08610", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Snowfall
+                {"databaseId": "08611", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Avalanche
+                {"databaseId": "08612", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Hanging on the Edge
+                {"databaseId": "08613", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Hypothermia
+            ]
+        }
+    },
+    "actionLists": {
+        "To the Forbidden Peaks Scenario Early Init": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "Resolute", "To the Forbidden Peaks Scenario Early Init Continue 1"]
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 1": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_SUPPLIES_STATUS", "To the Forbidden Peaks Scenario Early Init Continue 2"]
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 2": [
+            ["COND",
+                ["OR",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08716"], "KIA"],  //Eliyah Ashevak: Dog Handler
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_SUPPLIES_STATUS", "08615"], "lost"] //Wooden Sledge
+                ],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08718"], "KIA"],  //Avery Claypool: Antarctic Guide
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Add 1 Frost token to the chaos bag.", "Each investigator suffers 1 physical trauma."], "To the Forbidden Peaks Scenario Early Init Continue 3"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "To the Forbidden Peaks Scenario Early Init Continue 3"]
+            ]
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1]
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                [
+                    ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingDamageMod", 1]
+                    ]]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08722"], "KIA"],  //Takada Hiroko: Aeroplane Mechanic
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Add 1 Frost token to the chaos bag.", "Each investigator suffers 1 mental trauma."], "To the Forbidden Peaks Scenario Early Init Continue 4"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "To the Forbidden Peaks Scenario Early Init Continue 4"]
+            ]            
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1]
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "B"],
+                [
+                    ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingHorrorMod", 1]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators scouted the mountain pass.", "The above is not true."], "To the Forbidden Peaks Scenario Early Init Continue 5"]
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 5": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "To the Forbidden Peaks Scenario Early Init Continue 6"]
+        ],
+        "To the Forbidden Peaks Scenario Early Init Continue 6": [
+            ["SCENARIO_INIT_RESUME", "To the Forbidden Peaks Scenario Init"]
+        ],
+        "To the Forbidden Peaks Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "To the Forbidden Peaks"],
+            ["DO_LOAD_CARDS_SCN", "Deadly Weather"],
+            ["DO_LOAD_CARDS_SCN", "Elder Things"],
+            ["DO_LOAD_CARDS_SCN", "Hazards of Antarctica"],
+            ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["VAR", "$MOUNTAINSIDES", ["SHUFFLE_LIST", ["LIST", "08600", "08601", "08602", "08603", "08604", "08605", "08606"]]], //Deep Drifts, White Bluff, Steep Incline, Narrow Ridge, Rocky Ledge, Snow-Covered Crag, Windswept Path
+            ["DO_SPAWN_LOCATIONS_SCN", "Mountainside", "$MOUNTAINSIDES", ["LIST", 7, 22, 37, 52, 67], ["LIST", 73, 61, 49, 37, 25], 0, 5, 0],
+            ["VAR", "$LEVEL0_ID", "$DO_SPAWN_LOCATIONS_SCN_RESULT.[0]"],
+            ["DO_CREATE_CARDS_SCN", "Mountainside", "$MOUNTAINSIDES.[5]", 1, "sharedNotInPlay"],
+            ["DO_CREATE_CARDS_SCN", "Mountainside", "$MOUNTAINSIDES.[6]", 1, "sharedNotInPlay"],
+            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$LEVEL0_ID", true, null],
+            ["VAR", "$CLUES_TO_ADD", ["GET_CARD_CLUES_REQUIREMENT", "$LEVEL0_ID"]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                ["UPDATE_VAR", "$CLUES_TO_ADD", ["HALF_ROUNDING_UP", "$CLUES_TO_ADD"]]
+            ],
+            ["COND",
+                ["EQUAL", "$MOUNTAINSIDES.[0]", "08606"], //Windswept Path
+                ["INCREASE_VAR", "$CLUES_TO_ADD", "$GAME.arkham.numPlayers"]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$CLUES_TO_ADD", 0],
+                [
+                    ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$LEVEL0_ID", "$CLUES_TO_ADD", true, null],
+                    ["SET", "/cardById/$LEVEL0_ID/cluesPlaced", true]
+                ]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$LEVEL0_ID", 5, 7, 3, 0],
+            ["VAR", "$SUPPLIES", ["LIST", "08614", "08615", "08616", "08617", "08618", "08619", "08620"]], //Green Soapstone: Jinxed Idol, Wooden Sledge, Dynamite, Miasmic Crystal: Strange Evidence, Mineral Specimen, Small Radio, Spare Parts
+            ["VAR", "$TOP", -11],
+            ["VAR", "$ADD_TO_INDEX", 1],
+            ["FOR_EACH_VAL", "$DATABASE_ID", "$SUPPLIES", [
+                ["COND",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_SUPPLIES_STATUS", "$DATABASE_ID"], "recovered"],
+                    [
+                        ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Supplies", "$DATABASE_ID", 1, "sharedNotInPlay", false, null],
+                        ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$GAME.lastLoadedCardIds.[0]", "$LEVEL0_ID", 2, "$TOP", "$ADD_TO_INDEX"],
+                        ["INCREASE_VAR", "$TOP", -3],
+                        ["INCREASE_VAR", "$ADD_TO_INDEX", 1]
+                    ]
+                ]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+            ],            
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log. See “Location Adjacency.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

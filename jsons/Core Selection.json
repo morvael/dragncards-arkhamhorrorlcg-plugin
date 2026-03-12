@@ -211,7 +211,7 @@
                         ["VAR", "$SELECTION_LIST", ["LIST"]],
                         ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                             ["UPDATE_VAR", "$ALLOWED_CARD_IDS", ["APPEND", "$ALLOWED_CARD_IDS", "$CARD.id"]],
-                            ["SET", "/cardById/$CARD.id/borderColor", "Gold"],
+                            ["SET", "/cardById/$CARD.id/borderColor", "DarkTurquoise"],
                             ["COND",
                                 ["IN_LIST", "$TARGETED_CARDS", "$CARD.sides.A.databaseId"],
                                 [

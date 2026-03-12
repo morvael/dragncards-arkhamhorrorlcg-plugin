@@ -674,7 +674,42 @@
                     0
                 ]
             ]
-        }
+        },
+        //selecting supplies status 1/5
+        "EDGE_OF_THE_EARTH_GET_SUPPLIES_STATUS": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "campaignEdgeOfTheEarthSupplies{0}Status", "$DATABASE_ID", "lost"]
+            ]
+        },
+        //selecting supplies status 2/5
+        "EDGE_OF_THE_EARTH_SET_SUPPLIES_STATUS": {
+            "args": ["$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "campaignEdgeOfTheEarthSupplies{0}Status", "$DATABASE_ID", "$STATUS"]
+            ]
+        },
+        //selecting supplies status 3/5
+        "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_SUPPLIES_DATABASE_ID": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_ID", "campaignEdgeOfTheEarthSupplies{0}Status", "$DATABASE_ID", "unrevealed", ["LIST", "08614", "08615", "08616", "08617", "08618", "08619", "08620"]] //Green Soapstone: Jinxed Idol, Wooden Sledge, Dynamite, Miasmic Crystal: Strange Evidence, Mineral Specimen, Small Radio, Spare Parts
+            ]
+        },
+        //selecting supplies status 4/5
+        "EDGE_OF_THE_EARTH_ASK_FOR_SUPPLIES_STATUS": {
+            "args": ["$CONTINUE_ACTION"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_ASK_FOR_CARD_STATUS", "$GAME.firstPlayer", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_SUPPLIES_DATABASE_ID", "edgeOfTheEarthChooseSuppliesStatus", "$CONTINUE_ACTION"]
+            ]
+        },
+        //selecting supplies status 5/5
+        "EDGE_OF_THE_EARTH_SUPPLIES_STATUS_CHOICE_DONE": {
+            "args": ["$TARGET_PLAYER", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_SUPPLIES_DATABASE_ID", "EDGE_OF_THE_EARTH_SET_SUPPLIES_STATUS", "edgeOfTheEarthChooseSuppliesStatus", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
+            ]
+        }        
     },
     "prompts": {
         "edgeOfTheEarthChooseLocationStatus": {
@@ -782,6 +817,26 @@
             "message": "Choose one revealed location to be the expedition's camp.",
             "options": [
             ]
-        }
+        },
+        "edgeOfTheEarthChooseSuppliesStatus": {
+            "args": ["$DATABASE_ID", "$CARD_NAME", "$CONTINUE_ACTION"],
+            "message": "Is “{{$CARD_NAME}}” listed under “Supplies Recovered”?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_SUPPLIES_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "recovered"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N",
+                    "code": [
+                        ["EDGE_OF_THE_EARTH_SUPPLIES_STATUS_CHOICE_DONE", "$PLAYER_N", "$CONTINUE_ACTION", "$DATABASE_ID", "lost"]
+                    ]
+                }
+            ]
+        }        
     }
 }
