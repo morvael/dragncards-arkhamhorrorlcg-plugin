@@ -63,6 +63,7 @@
                         ["NOT_EQUAL", "$TARGET_CARD.groupId", "sharedTokens"],
                         ["OR",
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                            ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosKeyToken"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                             ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"]
                         ]

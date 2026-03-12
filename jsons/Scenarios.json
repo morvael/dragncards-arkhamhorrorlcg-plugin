@@ -251,7 +251,8 @@
                             {"label": "id:iceAndDeathPt1", "deckListId": "Ice and Death Pt 1 Scenario"},
                             {"label": "id:iceAndDeathPt2", "deckListId": "Ice and Death Pt 2 Scenario"},
                             {"label": "id:iceAndDeathPt3", "deckListId": "Ice and Death Pt 3 Scenario"},
-                            {"label": "id:fatalMirage", "deckListId": "Fatal Mirage Scenario"}
+                            {"label": "id:fatalMirage", "deckListId": "Fatal Mirage Scenario"},
+                            {"label": "id:cityOfTheElderThings", "deckListId": "City of the Elder Things Scenario"}
                         ]
                     }
                 ]
@@ -360,6 +361,7 @@
                 "deckLists": [
                     {"label": "id:standardTokens", "deckListId": "Standard Tokens"},
                     {"label": "id:keyTokens", "deckListId": "Key Tokens"},
+                    {"label": "id:chaosKeyTokens", "deckListId": "Chaos Key Tokens"},
                     {"label": "id:floodedToken", "deckListId": "Flooded Token"},
                     {"label": "id:sealTokens", "deckListId": "Seal Tokens"},
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
@@ -794,6 +796,9 @@
         "fatalMirage": {
             "English": "Fatal Mirage"
         },
+        "cityOfTheElderThings": {
+            "English": "City of the Elder Things"
+        },
         "theScarletKeys": {
             "English": "The Scarlet Keys"
         },
@@ -1012,6 +1017,9 @@
         },
         "keyTokens": {
             "English": "Key Tokens"
+        },
+        "chaosKeyTokens": {
+            "English": "Chaos Key Tokens"
         },
         "floodedToken": {
             "English": "Flooded Token"

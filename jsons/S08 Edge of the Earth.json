@@ -491,37 +491,40 @@
                 ["EDGE_OF_THE_EARTH_ADD_PARTNER_CHOICE", "$TARGET_PLAYER", "-", "X", "$CONTINUE_ACTION"]
             ]
         },
+        "EDGE_OF_THE_EARTH_GET_PARTNER_EXTRA_RESOURCES": {
+            "args": ["$DATABASE_ID"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_GET_STATUS", "campaignEdgeOfTheEarthPartner{0}ExtraResources", "$DATABASE_ID", 0]
+            ]
+        },
+        "EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES": {
+            "args": ["$DATABASE_ID", "$RESOURCES"],
+            "code": [
+                ["EDGE_OF_THE_EARTH_SET_STATUS", "campaignEdgeOfTheEarthPartner{0}ExtraResources", "$DATABASE_ID", "$RESOURCES"]
+            ]
+        },
         "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE": {
             "args": ["$TARGET_PLAYER", "$PARTNER_DATABASE_ID", "$CONTINUE_ACTION"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE.TARGET_PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$CONTINUE_ACTION", "EDGE_OF_THE_EARTH_PARTNER_CHOICE_DONE.CONTINUE_ACTION"],
-                ["LOGF", "{0} choose {1}.", "$TARGET_PLAYER", ["INLINE_IF", ["NOT_EQUAL", "$PARTNER_DATABASE_ID", "-"], ["GET_CARD_TITLE", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name"], "no one."]],
                 ["COND",
                     ["NOT_EQUAL", "$PARTNER_DATABASE_ID", "-"],
                     [
+                        ["LOGF", "{0} choose {1}.", "$TARGET_PLAYER", ["GET_CARD_TITLE", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name"]],
+                        ["VAR", "$EXTRA_RESOURCES", ["EDGE_OF_THE_EARTH_GET_PARTNER_EXTRA_RESOURCES", "$PARTNER_DATABASE_ID"]],
                         ["COND",
                             ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$PARTNER_DATABASE_ID"], "resolute"],
                             ["UPDATE_VAR", "$PARTNER_DATABASE_ID", ["EDGE_OF_THE_EARTH_GET_RESOLUTE_PARTNER_ID", "$PARTNER_DATABASE_ID"]]
                         ],
                         ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_DB.{{$PARTNER_DATABASE_ID}}.A.name", "$PARTNER_DATABASE_ID", 1, ["GET_CONTROLLER_PLAY", "$TARGET_PLAYER"], true, null],
                         ["VAR", "$PARTNER_ID", "$GAME.lastLoadedCardIds.[0]"],
-                        ["VAR", "$RESOURCES_TO_PLACE", ["GET_CARD_USES", "$PARTNER_ID"]],
-                        ["COND",
-                            ["AND",
-                                ["EQUAL", "$GAME.arkham.scenarioName", "Ice and Death Pt 2"],
-                                ["OR",
-                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08720"], //Dr. Amy Kensler: Professor of Biology
-                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08714"], //Professor William Dyer: Professor of Geology
-                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08718"], //Avery Claypool: Antarctic Guide
-                                    ["EQUAL", "$PARTNER_DATABASE_ID", "08719"]  //James "Cookie" Fredericks: Dubious Choice
-                                ]
-                            ],
-                            ["INCREASE_VAR", "$RESOURCES_TO_PLACE", 1]
-                        ],
+                        ["VAR", "$RESOURCES_TO_PLACE", ["ADD", ["GET_CARD_USES", "$PARTNER_ID"], "$EXTRA_RESOURCES"]],
                         ["DO_PLACE_RESOURCES_ON_CARD", "$TARGET_PLAYER", "$PARTNER_ID", "$RESOURCES_TO_PLACE", true, null],
                         ["SET", "/cardById/$PARTNER_ID/usesPlaced", true]
-                    ]
+                    ],
+                    ["TRUE"],
+                    ["LOGF", "{0} choose no one.", "$TARGET_PLAYER"]
                 ],
                 ["VAR", "$NEXT_PLAYER", ["NEXT_PLAYER", "$TARGET_PLAYER"]],
                 ["COND",

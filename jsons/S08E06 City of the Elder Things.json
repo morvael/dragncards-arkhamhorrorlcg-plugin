@@ -1,0 +1,286 @@
+{
+    "preBuiltDecks": {
+        "City of the Elder Things Scenario": {
+            "label": "City of the Elder Things Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "City of the Elder Things", "City of the Elder Things Scenario Early Init", "City of the Elder Things Scenario Init"]
+            ]
+        },
+        "City of the Elder Things": {
+            "hideFromSearch": true,
+            "label": "City of the Elder Things",
+            "cards": [
+                {"databaseId": "08621", "quantity": 1, "loadGroupId": "sharedScenarioReference"}, //City of the Elder Things
+                {"databaseId": "08622", "quantity": 1, "loadGroupId": "sharedAgendaStory"},       //Lurking Horrors
+                {"databaseId": "08623", "quantity": 1, "loadGroupId": "sharedAgendaStory"},       //Doom from Below
+                {"databaseId": "08624", "quantity": 1, "loadGroupId": "sharedActStory"},          //Sprawling City (v. I)
+                {"databaseId": "08625", "quantity": 1, "loadGroupId": "sharedActStory"},          //Sprawling City (v. II)
+                {"databaseId": "08626", "quantity": 1, "loadGroupId": "sharedActStory"},          //Sprawling City (v. III)
+                {"databaseId": "08627", "quantity": 1, "loadGroupId": "sharedActStory"},          //Pursuit of the Unknown (v. I)
+                {"databaseId": "08628", "quantity": 1, "loadGroupId": "sharedActStory"},          //Pursuit of the Unknown (v. II)
+                {"databaseId": "08629", "quantity": 1, "loadGroupId": "sharedActStory"},          //Pursuit of the Unknown (v. III)
+                {"databaseId": "08641", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},     //Terror of the Stars: Bane of the Elder Things
+                {"databaseId": "08642", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},     //Benign Elder Thing
+                {"databaseId": "08643", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},     //Reawakened Elder Thing
+                {"databaseId": "08644", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},     //Dawning of the Truth
+                {"databaseId": "08645", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}      //Crumbling Ruins
+            ]
+        }
+    },
+    "actionLists": {
+        "City of the Elder Things Scenario Early Init": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "Resolute", "City of the Elder Things Scenario Early Init Continue 1"]
+        ],
+        "City of the Elder Things Scenario Early Init Continue 1": [
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08717"], "KIA"], //Dr. Mala Sinha: Daring Physician
+                [
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["DO_CREATE_DECK_MISSING_CARD_SCN", "$PLAYER_I", "Frostbitten", "08646", 1]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators scouted the city outskirts.", "The above is not true."], "City of the Elder Things Scenario Early Init Continue 2"]
+        ],
+        "City of the Elder Things Scenario Early Init Continue 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08714"], "KIA"], //Professor William Dyer: Professor of Geology
+                [
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["DO_CREATE_DECK_MISSING_CARD_SCN", "$PLAYER_I", "Possessed", "08647", 1]
+                    ]]
+                ]
+            ],
+            ["COND",
+                ["NOT_EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08719"], "KIA"], //James "Cookie" Fredericks: Dubious Choice
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Supplies Recovered” in Campaign Log.", ["LIST", "Dynamite is listed.", "The above is not true."], "City of the Elder Things Scenario Early Init Continue 3"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "City of the Elder Things Scenario Early Init Continue 3"]
+            ]
+        ],
+        "City of the Elder Things Scenario Early Init Continue 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["LOG", "└── Supplies Recovered: {{$GAME.arkham.scenarioAnswer2Text}}"]
+            ],
+            ["COND",
+                ["OR",
+                    ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08719"], "KIA"], //James "Cookie" Fredericks: Dubious Choice
+                    ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer2", "A"]
+                ],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1]
+            ],
+            ["VAR", "$GROUPS", ["LIST", 0, 0, 0]],
+            ["VAR", "$MEMBERS", ["LIST", "08720", "08721", "08717", "08715", "08722", "08716", "08714", "08718", "08719"]], //Dr. Amy Kensler: Professor of Biology, Roald Ellsworth: Intrepid Explorer, Dr. Mala Sinha: Daring Physician, Danforth: Brilliant Student, Takada Hiroko: Aeroplane Mechanic, Eliyah Ashevak: Dog Handler, Professor William Dyer: Professor of Geology, Avery Claypool: Antarctic Guide, James "Cookie" Fredericks: Dubious Choice
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 9, 1, [
+                ["COND",
+                    ["NOT_EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "$MEMBERS.[$I]"], "KIA"],
+                    [
+                        ["VAR", "$J", ["TO_INT", ["DIVIDE", "$I", 3]]],
+                        ["COND",
+                            ["LESS_EQUAL", "$I", 2],
+                            ["UPDATE_VAR", "$GROUPS", ["LIST", ["ADD", "$GROUPS.[0]", 1], "$GROUPS.[1]", "$GROUPS.[2]"]],
+                            ["GREATER_EQUAL", "$I", 6],
+                            ["UPDATE_VAR", "$GROUPS", ["LIST", "$GROUPS.[0]", "$GROUPS.[1]", ["ADD", "$GROUPS.[2]", 1]]],
+                            ["TRUE"],
+                            ["UPDATE_VAR", "$GROUPS", ["LIST", "$GROUPS.[0]", ["ADD", "$GROUPS.[1]", 1], "$GROUPS.[2]"]]
+                        ]
+                    ]
+                ]
+            ]],
+            ["VAR", "$MAX_VOTES", ["MAX", "$GROUPS"]],
+            ["VAR", "$WINNERS", ["LIST"]],
+            ["VAR", "$NAMES", ["LIST", "Group One.", "Group Two.", "Group Three."]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                ["COND",
+                    ["EQUAL", "$GROUPS.[$I]", "$MAX_VOTES"],
+                    ["UPDATE_VAR", "$WINNERS", ["APPEND", "$WINNERS", "$NAMES.[$I]"]]
+                ]
+            ]],
+            ["COND",
+                ["EQUAL", ["LENGTH", "$WINNERS"], 1],
+                ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "A", "$WINNERS.[0]", "City of the Elder Things Scenario Early Init Continue 4"],
+                ["TRUE"],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Cast tiebreaking vote.", "$WINNERS", "City of the Elder Things Scenario Early Init Continue 4"]
+            ]
+        ],
+        "City of the Elder Things Scenario Early Init Continue 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group One."],
+                [
+                    ["LOG", "└── Voting result: The group votes to venture into the heart of the city where lie its greatest structures (I)."],
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08720", 1], //Dr. Amy Kensler: Professor of Biology
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08721", 1], //Roald Ellsworth: Intrepid Explorer
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08717", 1]  //Dr. Mala Sinha: Daring Physician
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Two."],
+                [
+                    ["LOG", "└── Voting result: The group votes to travel along the mountain ridge, toward the region Dyer and Danforth never explored (II)."],
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08715", 1], //Danforth: Brilliant Student
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08722", 1], //Takada Hiroko: Aeroplane Mechanic
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08716", 1]  //Eliyah Ashevak: Dog Handler
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Three."],
+                [
+                    ["LOG", "└── Voting result: The group votes to follow the trail left behind by whatever creatures massacred the Elder Things (III)."],
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08714", 1], //Professor William Dyer: Professor of Geology
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08718", 1], //Avery Claypool: Antarctic Guide
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08719", 1]  //James "Cookie" Fredericks: Dubious Choice
+                ]
+            ],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "City of the Elder Things Scenario Early Init Continue 5"]
+        ],
+        "City of the Elder Things Scenario Early Init Continue 5": [
+            ["SCENARIO_INIT_RESUME", "City of the Elder Things Scenario Init"]
+        ],
+        "City of the Elder Things Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "City of the Elder Things"],
+            ["VAR", "$FINAL_MESSAGE", ""],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "After you reveal the starting location, the lead investigator discovers clues from that location equal to half its clue value (rounded up)."]
+            ],
+            ["VAR", "$SPAWN_LEFTS", ["LIST"]],
+            ["VAR", "$SPAWN_TOPS", ["LIST"]],
+            ["VAR", "$STARTING", ["LIST"]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group One."],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Elder Things"],
+                    ["DO_LOAD_CARDS_SCN", "Miasma"],
+                    ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+                    ["DO_LOAD_CARDS_SCN", "Penguins"],
+                    ["DO_LOAD_CARDS_INTO_SCN", "Shoggoths", "sharedPileA"],
+                    ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+                    ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Shoggoths cards are in Pile A."],
+                    ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 26, 45, 26, 45, 64, 83, 7, 26, 64, 83, 7, 26, 45, 64, 45, 64]],
+                    ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 5, 5, 24, 24, 24, 24, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81]],
+                    ["UPDATE_VAR", "$STARTING", ["LIST", 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1]],
+                    ["DO_SPAWN_LOCATION_SCN", "Hidden Tunnel: Entrance to the Depths", "08630", 45, 43]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08624"],  //Sprawling City (v. I)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08627"]   //Pursuit of the Unknown (v. I)
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Two."],
+                [
+                    ["DO_LOAD_CARDS_INTO_SCN", "Creatures in the Ice", "sharedPileA"],
+                    ["DO_LOAD_CARDS_SCN", "Elder Things"],
+                    ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+                    ["DO_LOAD_CARDS_SCN", "Penguins"],
+                    ["DO_LOAD_CARDS_SCN", "Silence and Mystery"],
+                    ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+                    ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Creatures in the Ice cards are in Pile A."],
+                    ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 33, 44, 55, 22, 33, 44, 55, 66, 11, 22, 66, 77, 0, 11, 77, 88]],
+                    ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 24, 24, 24, 43, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81, 81, 81]],
+                    ["UPDATE_VAR", "$STARTING", ["LIST", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]],
+                    ["DO_SPAWN_LOCATION_SCN", "Hidden Tunnel: Entrance to the Depths", "08630", 44, 5]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08625"],  //Sprawling City (v. II)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08628"]   //Pursuit of the Unknown (v. II)
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Three."],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Creatures in the Ice"],
+                    ["DO_LOAD_CARDS_SCN", "Miasma"],
+                    ["DO_LOAD_CARDS_SCN", "Penguins"],
+                    ["DO_LOAD_CARDS_INTO_SCN", "Shoggoths", "sharedPileA"],
+                    ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+                    ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+                    ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Shoggoths cards are in Pile A."],
+                    ["UPDATE_VAR", "$SPAWN_LEFTS", ["LIST", 2, 14, 2, 14, 26, 38, 26, 38, 50, 62, 38, 50, 62, 74, 62, 74]],
+                    ["UPDATE_VAR", "$SPAWN_TOPS", ["LIST", 5, 5, 24, 24, 24, 24, 43, 43, 43, 43, 62, 62, 62, 62, 81, 81]],
+                    ["UPDATE_VAR", "$STARTING", ["LIST", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                    ["DO_SPAWN_LOCATION_SCN", "Hidden Tunnel: Entrance to the Depths", "08630", 86, 81]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08626"],  //Sprawling City (v. III)
+                    ["DO_DELETE_NAMED_CARDS_SCN", "08629"]   //Pursuit of the Unknown (v. III)
+                ]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}} Tekeli-li cards are in Deck B. See “Location Adjacency” and “Keys.”"],
+            ["VAR", "$SPAWN_IDS", ["SHUFFLE_LIST", ["LIST", "08631", "08632", "08632", "08632", "08633", "08634", "08634", "08635", "08636", "08637", "08637", "08638", "08639", "08639", "08640", "08640"]]], //Ancient Planetarium, Stone Bridge (3), Cylindrical Tower, Labyrinthine Chamber (2), Map Room, Roofless Rampart, Ruinous Streets (2), Cyclopean Spires, Submerged Passageway (2), Temple of the Elder Things (2)
+            ["DO_SPAWN_LOCATIONS_SCN", "City Landscape", "$SPAWN_IDS", "$SPAWN_LEFTS", "$SPAWN_TOPS", 0, 16, 0],
+            ["SET", "/arkham/scenarioCityOfTheElderThingsCity", "$DO_SPAWN_LOCATIONS_SCN_RESULT"],
+            ["VAR", "$SPAWNED_CARDS", ["CARD_IDS_TO_CARDS", "$DO_SPAWN_LOCATIONS_SCN_RESULT"]],
+            ["VAR", "$SELECTED_CARDS", ["LIST"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 16, 1, [
+                ["COND",
+                    ["EQUAL", "$STARTING.[$I]", 1],
+                    [
+                        ["VAR", "$CARD", "$SPAWNED_CARDS.[$I]"],
+                        ["UPDATE_VAR", "$SELECTED_CARDS", ["APPEND", "$SELECTED_CARDS", "$CARD"]]
+                    ]
+                ]
+            ]],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 1],
+                ["DO_SHOW_LIVE_SELECTION", "$GAME.firstPlayer", "$SELECTED_CARDS", null, "Select one of the highlighted cards as the starting location.", 1, 1, false, "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK", null],
+                ["TRUE"],
+                ["CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK", "$GAME.firstPlayer", null, "$SELECTED_CARDS"]
+            ]
+        ],
+        "City of the Elder Things Scenario Init Continue": [
+            ["VAR", "$KEYS", ["SHUFFLE_LIST", ["LIST", "chaos_key_skull", "chaos_key_skull", "chaos_key_cultist", "chaos_key_cultist", "chaos_key_tablet", "chaos_key_tablet", "chaos_key_elder_thing", "chaos_key_elder_thing", "chaos_key_p0", "chaos_key_p0", "chaos_key_m1", "chaos_key_m1", "chaos_key_m2", "chaos_key_m2", "chaos_key_m3", "chaos_key_m3"]]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 16, 1, [
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "Chaos Key", "$KEYS.[$I]", 1, "sharedTokens", false, null],
+                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$GAME.lastLoadedCardIds.[0]", "$GAME.arkham.scenarioCityOfTheElderThingsCity.[$I]", 3, 0, 1]
+            ]],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group One."],
+                [
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Benign Elder Thing"],
+                    ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Terror of the Stars", "sharedEncounterDeck", 1, "sharedNotInPlay"]
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Two."],
+                [
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Terror of the Stars"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Benign Elder Thing"]
+                ],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3Text", "Group Three."],
+                [
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Terror of the Stars"],
+                    ["DO_DELETE_ENCOUNTER_CARDS_SCN", "Reawakened Elder Thing"]
+                ]
+            ],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+            ],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$SELECTED_CARDS.[0].id", 1, 2, 2, 0],
+                ["ACTION_LIST", "City of the Elder Things Scenario Init Continue"]
+            ]
+        }
+    }
+}

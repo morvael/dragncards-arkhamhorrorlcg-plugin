@@ -527,6 +527,19 @@
                 {"databaseId": "key_white",  "quantity": 1, "loadGroupId": "sharedTokens"}
             ]
         },
+        "Chaos Key Tokens": {
+            "label": "Chaos Key Tokens",
+            "cards": [
+                {"databaseId": "chaos_key_skull",       "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_cultist",     "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_tablet",      "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_elder_thing", "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_p0",          "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_m1",          "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_m2",          "quantity": 2, "loadGroupId": "sharedTokens"},
+                {"databaseId": "chaos_key_m3",          "quantity": 2, "loadGroupId": "sharedTokens"}
+            ]
+        },
         "Flooded Token": {
             "label": "Flooded Token",
             "cards": [

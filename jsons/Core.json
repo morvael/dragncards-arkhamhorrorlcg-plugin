@@ -81,6 +81,7 @@
         "ChaosToken":             {"width": 0.28, "height": 0.28, "tokens": []},
         "FirstInvestigatorToken": {"width": 0.57, "height": 0.55, "tokens": []},
         "KeyToken":               {"width": 0.19, "height": 0.19, "tokens": []},
+        "ChaosKeyToken":          {"width": 0.28, "height": 0.28, "tokens": []},
         "FloodedToken":           {"width": 0.20, "height": 0.20, "tokens": []},
         "SealToken":              {"width": 0.20, "height": 0.42, "tokens": []},
         "MiniConcealed":          {"width": 0.47, "height": 0.72, "tokens": []},

@@ -124,6 +124,7 @@
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "Upgrade"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "KeyToken"],
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "ChaosKeyToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "SealToken"],
                         ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],

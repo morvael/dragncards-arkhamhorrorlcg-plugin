@@ -91,6 +91,10 @@
                     ["LOG", "└── James \"Cookie\" Fredericks enters play with 1 additional ammo (if chosen)."]
                 ]
             ],
+            ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08720", 1], //Dr. Amy Kensler: Professor of Biology
+            ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08714", 1], //Professor William Dyer: Professor of Geology
+            ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08718", 1], //Avery Claypool: Antarctic Guide
+            ["EDGE_OF_THE_EARTH_SET_PARTNER_EXTRA_RESOURCES", "08719", 1], //James "Cookie" Fredericks: Dubious Choice
             ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "Ice and Death Pt 2 Scenario Early Init Continue 4"]
         ],
         "Ice and Death Pt 2 Scenario Early Init Continue 4": [

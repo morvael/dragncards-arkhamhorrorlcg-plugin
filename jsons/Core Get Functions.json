@@ -304,6 +304,22 @@
                 ["LENGTH", ["GET_ALL_CARDS_IN_GROUP", "$TARGET_GROUP_ID"]]
             ]
         },
+        //Converts a selectCards prompt $PROMPT_INPUT (list of card ids) into a list of cards that are in given list and selected.
+        "GET_SELECTED_CARDS_FROM_LIST": {
+            "args": ["$ALLOWED_CARD_IDS", "$CARD_IDS"],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["AND",
+                        ["NOT_EQUAL", "$ALLOWED_CARD_IDS", null],
+                        ["EQUAL", ["IN_LIST", "$ALLOWED_CARD_IDS", "$CARD.id"], true]
+                    ],
+                    ["AND",
+                        ["NOT_EQUAL", "$CARD_IDS", null],
+                        ["EQUAL", ["IN_LIST", "$CARD_IDS", "$CARD.id"], true]
+                    ]
+                ]]
+            ]
+        },
         //Converts a selectCards prompt $PROMPT_INPUT (list of card ids) into a list of cards that are in given group and selected.
         "GET_SELECTED_CARDS_IN_GROUP": {
             "args": ["$TARGET_GROUP_ID", "$CARD_IDS"],
