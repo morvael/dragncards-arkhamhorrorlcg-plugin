@@ -1,0 +1,132 @@
+{
+    "preBuiltDecks": {
+        "The Heart of Madness Pt 1 Scenario": {
+            "label": "The Heart of Madness Pt 1 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "The Heart of Madness Pt 1", "The Heart of Madness Pt 1 Scenario Early Init", "The Heart of Madness Pt 1 Scenario Init"]
+            ]
+        },
+        "The Heart of Madness Pt 1": {
+            "hideFromSearch": true,
+            "label": "The Heart of Madness Pt 1",
+            "cards": [
+                {"databaseId": "08648", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Heart of Madness
+                {"databaseId": "08649", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "62%"},  //The Gate of Y'quaa: Primordial Seal
+                {"databaseId": "08657", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Primeval Terror
+                {"databaseId": "08658", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Roots of the Earth
+            ]
+        },
+        "The Great Seal": {
+            "hideFromSearch": true,
+            "label": "The Great Seal",
+            "cards": [
+                {"databaseId": "08659", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Beating Heart
+                {"databaseId": "08660", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Miasma Beckons
+                {"databaseId": "08661", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //Call of Madness
+                {"databaseId": "08662", "quantity": 1, "loadGroupId": "sharedActStory"},        //Dormancy
+                {"databaseId": "08663", "quantity": 1, "loadGroupId": "sharedActStory"},        //The Great Seal
+                {"databaseId": "08669", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Protoplasmic Mass
+                {"databaseId": "08670", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Electrostatic Discharge
+            ]
+        }
+    },
+    "actionLists": {
+        "The Heart of Madness Pt 1 Scenario Early Init": [
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "Resolute", "The Heart of Madness Pt 1 Scenario Early Init Continue 1"]
+        ],
+        "The Heart of Madness Pt 1 Scenario Early Init Continue 1": [
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08720"], "KIA"],  //Dr. Amy Kensler: Professor of Biology
+                [
+                    ["LOG", "└── Each investigator suffers 1 physical trauma."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingDamageMod", 1]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators scouted the forked passage.", "The above is not true."], "The Heart of Madness Pt 1 Scenario Early Init Continue 2"]
+        ],
+        "The Heart of Madness Pt 1 Scenario Early Init Continue 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["COND",
+                ["EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08715"], "KIA"],  //Danforth: Brilliant Student
+                [
+                    ["LOG", "└── Each investigator suffers 1 mental trauma."],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["INCREASE_VAL", "/playerData/$PLAYER_I/arkham/startingHorrorMod", 1]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check “Supplies Recovered” in Campaign Log.", ["LIST", "Miasmic Crystal is listed.", "The above is not true."], "The Heart of Madness Pt 1 Scenario Early Init Continue 3"]
+        ],
+        "The Heart of Madness Pt 1 Scenario Early Init Continue 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                ["LOG", "└── Supplies Recovered: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                ["TRUE"],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_frost", 1]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Stay here and study the great door to learn more.", "There is no time to waste. Pass through the gate!"], "The Heart of Madness Pt 1 Scenario Early Init Continue 4"]
+        ],
+        "The Heart of Madness Pt 1 Scenario Early Init Continue 4": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer3Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "The Heart of Madness Pt 1 Scenario Early Init Continue 5"],
+                ["TRUE"],
+                [
+                    ["SET", "/arkham/scenarioName", "The Heart of Madness Pt 2"],
+                    ["SET", "/arkham/scenarioAction", "The Heart of Madness Pt 2 Scenario Init"],
+                    ["SET", "/arkham/numScenarioQuestions", 0],
+                    ["SET", "/arkham/scenarioQuestionIndex", 0],
+                    ["FOR_EACH_START_STOP_STEP", "$I", 0, 3, 1, [
+                        ["VAR", "$J", ["ADD", "$I", 1]],
+                        ["UNSET", "/arkham/scenarioQuestion{{$I}}"],
+                        ["UNSET", "/arkham/scenarioQuestionList{{$I}}"],
+                        ["UNSET", "/arkham/scenarioAnswer{{$J}}"],
+                        ["UNSET", "/arkham/scenarioAnswer{{$J}}Text"]
+                    ]],
+                    ["SET", "/arkham/scenarioTheHeartOfMadnessPt1Skipped", true],
+                    ["LOG", "└── Scenario changed to The Heart of Madness Pt 2."],
+                    ["ACTION_LIST", "The Heart of Madness Pt 2 Scenario Early Init Continue 1"]
+                ]
+            ]
+        ],
+        "The Heart of Madness Pt 1 Scenario Early Init Continue 5": [
+            ["SCENARIO_INIT_RESUME", "The Heart of Madness Pt 1 Scenario Init"]
+        ],
+        "The Heart of Madness Pt 1 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Heart of Madness Pt 1"],
+            ["DO_LOAD_CARDS_SCN", "The Great Seal"],
+            ["DO_LOAD_CARDS_SCN", "Miasma"],
+            ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+            ["DO_LOAD_CARDS_SCN", "Penguins"],
+            ["DO_LOAD_CARDS_SCN", "Shoggoths"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["VAR", "$THE_GATE", ["GET_NAMED_MAP_LOCATION", "The Gate of Y'quaa"]],
+            ["DO_FLIP_FACEUP", "$GAME.firstPlayer", "$THE_GATE.id", false, null],
+            ["DO_PLACE_CLUES_ON_CARD", "$GAME.firstPlayer", "$THE_GATE.id", ["GET_CARD_CLUES_REQUIREMENT", "$THE_GATE.id"], true, null],
+            ["SET", "/cardById/$THE_GATE.id/cluesPlaced", true],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$THE_GATE.id", 3, 7, 0, 3],
+            ["VAR", "$FACILITIES", ["SHUFFLE_LIST", ["LIST", "08650", "08651", "08652", "08653", "08654", "08655", "08655", "08656", "08656", "08656", "08664", "08665", "08666", "08667", "08668"]]], //Geothermal Vent, Forsaken Temple, Library of Kós, Protoplasmic Pool, Hall of the Sunless Sea, Subnautical Sprawl (2), Vaulted Corridor (3), Glacial Grotto, Sculptured Crypt, Undercity Altar, Ichor-Laden Tunnels, Limestone Caverns
+            ["DO_SPAWN_LOCATIONS_SCN", "Ancient Facility", "$FACILITIES", ["LIST", 45, 45, 3, 87, 17, 73, 45, 31, 59, 31, 59, 17, 73, 3, 87], ["LIST", 5, 24, 28, 28, 39, 39, 43, 51, 51, 73, 73, 77, 77, 81, 81], 0, 15, 0],
+            ["DO_LOAD_CARDS_SCN", "Seal Tokens"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Hard"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
+                ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log. See “Ancient Facility Locations”, “Seals”, and “Location Adjacency.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

@@ -69,7 +69,7 @@
                 ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Add 1 Frost token to the chaos bag.", "Each investigator suffers 1 mental trauma."], "To the Forbidden Peaks Scenario Early Init Continue 4"],
                 ["TRUE"],
                 ["SCENARIO_SKIP_QUESTION", "To the Forbidden Peaks Scenario Early Init Continue 4"]
-            ]            
+            ]
         ],
         "To the Forbidden Peaks Scenario Early Init Continue 4": [
             ["COND",
@@ -147,7 +147,7 @@
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 1],
                 ["EQUAL", "$GAME.arkham.scenarioDifficulty", "Expert"],
                 ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", 2]
-            ],            
+            ],
             ["SET", "/arkham/finalScenarioMessage", "Tekeli-li cards are in Deck B. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log. See “Location Adjacency.”"],
             ["SCENARIO_INIT_CONTINUE", null]
         ]

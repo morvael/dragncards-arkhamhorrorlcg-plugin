@@ -1,0 +1,172 @@
+{
+    "preBuiltDecks": {
+        "The Heart of Madness Pt 2 Scenario": {
+            "label": "The Heart of Madness Pt 2 Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Edge of the Earth", "Edge of the Earth", "The Heart of Madness Pt 2", "The Heart of Madness Pt 2 Scenario Early Init", "The Heart of Madness Pt 2 Scenario Init"]
+            ]
+        },
+        "The Heart of Madness Pt 2": {
+            "hideFromSearch": true,
+            "label": "The Heart of Madness Pt 2",
+            "cards": [
+                {"databaseId": "08648", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //The Heart of Madness
+                {"databaseId": "08649", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "62%"},  //The Gate of Y'quaa: Primordial Seal
+                {"databaseId": "08657", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Primeval Terror
+                {"databaseId": "08658", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}                            //Roots of the Earth
+            ]
+        },
+        "Stirring in the Deep": {
+            "hideFromSearch": true,
+            "label": "Stirring in the Deep",
+            "cards": [
+                {"databaseId": "08671", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //The Seal Weakens
+                {"databaseId": "08672", "quantity": 1, "loadGroupId": "sharedAgendaStory"},     //That Which Has No Name
+                {"databaseId": "08673", "quantity": 1, "loadGroupId": "sharedActStory"},        //Collapse the Pylons
+                {"databaseId": "08679", "quantity": 15, "loadGroupId": "sharedPileA"},          //The Nameless Madness: The Entity in the Mirage
+                {"databaseId": "08680", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Unsealed Phantasm
+                {"databaseId": "08681", "quantity": 1, "loadGroupId": "sharedNotInPlay"},       //The Final Mirage
+                {"databaseId": "08682", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Titanic Ramp
+                {"databaseId": "08683", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Titanic Ramp
+                {"databaseId": "08684", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Titanic Ramp
+                {"databaseId": "08685", "quantity": 1, "loadGroupId": "sharedDeckA"},           //Titanic Ramp
+                {"databaseId": "08686", "quantity": 1, "loadGroupId": "sharedNotInPlay"}        //Hidden Tunnel: A Way Out
+            ]
+        }
+    },
+    "actionLists": {
+        "The Heart of Madness Pt 2 Scenario Early Init": [
+            ["SET", "/arkham/scenarioTheHeartOfMadnessPt1Skipped", false],
+            ["EDGE_OF_THE_EARTH_ASK_FOR_PARTNER_STATUS", "Resolute", "The Heart of Madness Pt 2 Scenario Early Init Continue 1"]
+        ],
+        "The Heart of Madness Pt 2 Scenario Early Init Continue 1": [
+            ["COND",
+                ["NOT_EQUAL", ["EDGE_OF_THE_EARTH_GET_PARTNER_STATUS", "08720"], "KIA"],  //Dr. Amy Kensler: Professor of Biology
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Dr. Kensler understands the true nature of the miasma.", "The above is not true."], "The Heart of Madness Pt 2 Scenario Early Init Continue 2"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "The Heart of Madness Pt 2 Scenario Early Init Continue 2"]
+            ]
+        ],
+        "The Heart of Madness Pt 2 Scenario Early Init Continue 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+                    ["LOG", "└── Remember: Dr. Kensler has a plan."],
+                    ["EDGE_OF_THE_EARTH_SET_PARTNER_STATUS", "08720", "busy"] //Dr. Amy Kensler: Professor of Biology
+                ],
+                ["TRUE"],
+                ["LOG", "└── Remember: The truth of the mirage eludes you."]
+            ],
+            ["EDGE_OF_THE_EARTH_SHOW_PARTNER_CHOICE", "$GAME.firstPlayer", "The Heart of Madness Pt 2 Scenario Early Init Continue 3"]
+        ],
+        "The Heart of Madness Pt 2 Scenario Early Init Continue 3": [
+            ["SCENARIO_INIT_RESUME", "The Heart of Madness Pt 2 Scenario Init"]
+        ],
+        "The Heart of Madness Pt 2 Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "The Heart of Madness Pt 2"],
+            ["DO_LOAD_CARDS_SCN", "Agents of the Unknown"],
+            ["DO_LOAD_CARDS_SCN", "Miasma"],
+            ["DO_LOAD_CARDS_SCN", "Nameless Horrors"],
+            ["DO_LOAD_CARDS_SCN", "Penguins"],
+            ["DO_LOAD_CARDS_SCN", "Stirring in the Deep"],
+            ["DO_LOAD_CARDS_SCN", "Tekeli-li"],
+            ["DO_LOAD_CARDS_SCN", "Ancient Evils"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_DELETE_ENCOUNTER_CARDS", "$GAME.firstPlayer", "Rotting Remains", false, null],
+            ["VAR", "$LOCATIONS", ["THE_HEART_OF_MADNESS_PT_2_RANDOMIZE_LOCATIONS"]],
+            ["DO_SPAWN_LOCATIONS_SCN", null, "$LOCATIONS", ["LIST", 45, 45, 3, 87, 17, 73, 45, 31, 59, 31, 59, 17, 73, 3, 87], ["LIST", 5, 24, 28, 28, 39, 39, 43, 51, 51, 73, 73, 77, 77, 81, 81], 0, 15, 0],
+            ["VAR", "$CLOSEST", ["CARD_IDS_TO_CARDS", ["THE_HEART_OF_MADNESS_PT_2_FIND_CLOSEST_LOCATIONS", "$LOCATIONS", "$DO_SPAWN_LOCATIONS_SCN_RESULT"]]],
+            ["COND",
+                ["GREATER_THAN", ["LENGTH", "$CLOSEST"], 1],
+                ["DO_SHOW_LIVE_SELECTION", "$GAME.firstPlayer", "$CLOSEST", null, "Select one of the highlighted cards as the starting location.", 1, 1, false, "THE_HEART_OF_MADNESS_PT_2_SELECTION_CALLBACK", null, true],
+                ["TRUE"],
+                ["THE_HEART_OF_MADNESS_PT_2_SELECTION_CALLBACK", "$GAME.firstPlayer", null, "$CLOSEST"]
+            ]
+        ],
+        "The Heart of Madness Pt 2 Scenario Init Continue 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioTheHeartOfMadnessPt1Skipped", false],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Did you play Part I?", ["LIST", "Yes.", "No."], "The Heart of Madness Pt 2 Scenario Init Continue 2"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION_WITH_ANSWER", "B", "No.", "The Heart of Madness Pt 2 Scenario Init Continue 2"]
+            ]
+        ],
+        "The Heart of Madness Pt 2 Scenario Init Continue 2": [
+            ["LOG", "└── Played Part I: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["VAR", "$FINAL_MESSAGE", ""],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["DO_LOAD_CARDS_SCN", "Seal Tokens"],
+                    ["UPDATE_VAR", "$FINAL_MESSAGE", "Place each of the five seal tokens according to “Scenario Setup”. "]
+                ]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "Titanic Ramp cards are in Deck A, Tekeli-li cards are in Deck B, The Nameless Madness cards are in Pile A. Place damage and horror on Partner cards as indicated in the “Expedition Team” section of the Campaign Log. {{$FINAL_MESSAGE}}See “Ancient Facility Locations”, “Seals”, and “Location Adjacency.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "THE_HEART_OF_MADNESS_PT_2_RANDOMIZE_LOCATIONS": {
+            "args": [],
+            "code": [
+                ["VAR", "$LOCATIONS", ["LIST"]],
+                ["VAR", "$REPEAT", true],
+                ["WHILE",
+                    ["EQUAL", "$REPEAT", true],
+                    [
+                        ["UPDATE_VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "08650", "08651", "08652", "08653", "08654", "08655", "08655", "08656", "08656", "08656", "08674", "08675", "08676", "08677", "08678"]]], //Geothermal Vent, Forsaken Temple, Library of Kós, Protoplasmic Pool, Hall of the Sunless Sea, Subnautical Sprawl (2), Vaulted Corridor (3), Mist-Pylon, Mist-Pylon, Mist-Pylon, Mist-Pylon, Mist-Pylon
+                        ["UPDATE_VAR", "$REPEAT", ["AND",
+                            ["EQUAL", ["INDEX_OF", "$LOCATIONS.[6]", "0867"], 0],
+                            ["EQUAL", ["INDEX_OF", "$LOCATIONS.[7]", "0867"], 0],
+                            ["EQUAL", ["INDEX_OF", "$LOCATIONS.[8]", "0867"], 0],
+                            ["EQUAL", ["INDEX_OF", "$LOCATIONS.[9]", "0867"], 0],
+                            ["EQUAL", ["INDEX_OF", "$LOCATIONS.[10]", "0867"], 0]
+                        ]]
+                    ]
+                ],
+                "$LOCATIONS"
+            ]
+        },
+        "THE_HEART_OF_MADNESS_PT_2_FIND_CLOSEST_LOCATIONS": {
+            "args": ["$LOCATIONS", "$CARD_IDS"],
+            "code": [
+                ["VAR", "$DISTANCE", ["LIST", 3, 2, 3, 3, 2, 2, 1, 1, 1, 1, 1, 2, 2, 3, 3]],
+                ["VAR", "$MIN_DISTANCE", 4],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, 15, 1, [
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", ["INDEX_OF", "$LOCATIONS.[$I]", "0867"], 0],
+                            ["LESS_THAN", "$DISTANCE.[$I]", "$MIN_DISTANCE"]
+                        ],
+                        ["UPDATE_VAR", "$MIN_DISTANCE", "$DISTANCE.[$I]"]
+                    ]
+                ]],
+                ["VAR", "$CLOSEST", ["LIST"]],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, 15, 1, [
+                    ["COND",
+                        ["AND",
+                            ["NOT_EQUAL", ["INDEX_OF", "$LOCATIONS.[$I]", "0867"], 0],
+                            ["EQUAL", "$DISTANCE.[$I]", "$MIN_DISTANCE"]
+                        ],
+                        ["UPDATE_VAR", "$CLOSEST", ["APPEND", "$CLOSEST", "$CARD_IDS.[$I]"]]
+                    ]
+                ]],
+                "$CLOSEST"
+            ]
+        },
+        "THE_HEART_OF_MADNESS_PT_2_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "THE_HEART_OF_MADNESS_PT_2_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "THE_HEART_OF_MADNESS_PT_2_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "$SELECTED_CARDS.[0].id", 1, 2, 2, 0],
+                ["ACTION_LIST", "The Heart of Madness Pt 2 Scenario Init Continue 1"]
+            ]
+        }
+    }
+}

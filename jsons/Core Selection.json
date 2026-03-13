@@ -168,7 +168,7 @@
             ]
         },
         "DO_SHOW_LIVE_SELECTION": {
-            "args": ["$TARGET_PLAYER", "$SELECTED_CARDS", "$PRESELECTED_LIST", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID"],
+            "args": ["$TARGET_PLAYER", "$SELECTED_CARDS", "$PRESELECTED_LIST", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$DISABLE_FORCE"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_SHOW_LIVE_SELECTION.TARGET_PLAYER"],
                 ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "DO_SHOW_LIVE_SELECTION.SELECTED_CARDS"],
@@ -177,6 +177,7 @@
                 ["VALIDATE_GE0", "$MAX", "DO_SHOW_LIVE_SELECTION.MAX"],
                 ["VALIDATE_BOOLEAN", "$UNIQUE_TITLES", "DO_SHOW_LIVE_SELECTION.UNIQUE_TITLES"],
                 ["VALIDATE_NOT_EMPTY", "$CALLBACK_FUNCTION", "DO_SHOW_LIVE_SELECTION.CALLBACK_FUNCTION"],
+                ["VALIDATE_BOOLEAN", "$DISABLE_FORCE", "DO_SHOW_LIVE_SELECTION.DISABLE_FORCE"],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["COND",
                     ["AND",
@@ -220,14 +221,14 @@
                                 ]
                             ]
                         ]],
-                        ["PROMPT", "$TARGET_PLAYER", "cardLiveSelectPrompt", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]],
+                        ["PROMPT", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$DISABLE_FORCE", true], "cardLiveSelectPromptNoForce", "cardLiveSelectPromptForce"], "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]],
                         ["SELECT_CARDS", "$TARGET_PLAYER", "$SELECTION_LIST"]
                     ]
                 ]
             ]
         },
         "DO_MAKE_LIVE_SELECTION": {
-            "args": ["$TARGET_PLAYER", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$FORCE", "$SELECTED_CARDS"],
+            "args": ["$TARGET_PLAYER", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$FORCE", "$SELECTED_CARDS", "$DISABLE_FORCE"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MAKE_LIVE_SELECTION.TARGET_PLAYER"],
                 ["VALIDATE_NOT_EMPTY", "$MESSAGE_TEMPLATE", "DO_MAKE_LIVE_SELECTION.MESSAGE_TEMPLATE"],
@@ -236,6 +237,7 @@
                 ["VALIDATE_BOOLEAN", "$UNIQUE_TITLES", "DO_MAKE_LIVE_SELECTION.UNIQUE_TITLES"],
                 ["VALIDATE_NOT_EMPTY", "$CALLBACK_FUNCTION", "DO_MAKE_LIVE_SELECTION.CALLBACK_FUNCTION"],
                 ["VALIDATE_BOOLEAN", "$FORCE", "DO_MAKE_LIVE_SELECTION.FORCE"],
+                ["VALIDATE_BOOLEAN", "$DISABLE_FORCE", "DO_MAKE_LIVE_SELECTION.DISABLE_FORCE"],
                 ["VAR", "$SELECTED_COUNT", ["LENGTH", "$SELECTED_CARDS"]],
                 ["VAR", "$VALID_SELECTION", ["AND",
                     ["GREATER_EQUAL", "$SELECTED_COUNT", "$MIN"],
@@ -273,7 +275,7 @@
                             ["TRUE"],
                             ["DO_FLOG", "{0:P} makes an invalid selection for {1:CID}.", ["LIST", "$TARGET_PLAYER", "$SOURCE_CARD_ID"]]
                         ],
-                        ["PROMPT", "$TARGET_PLAYER", "cardLiveSelectPrompt", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]]
+                        ["PROMPT", "$TARGET_PLAYER", ["INLINE_IF", ["EQUAL", "$DISABLE_FORCE", true], "cardLiveSelectPromptNoForce", "cardLiveSelectPromptForce"], "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", ["DO_FORMAT_STRING", "$MESSAGE_TEMPLATE", ["LIST", "$MIN", "$MAX"]]]
                     ]
                 ]
             ]
@@ -303,7 +305,7 @@
                 }
             ]
         },
-        "cardLiveSelectPrompt": {
+        "cardLiveSelectPromptForce": {
             "args": ["$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$MESSAGE"],
             "message": "{{$MESSAGE}}",
             "input": {
@@ -314,14 +316,30 @@
                     "label": "Select (follow the rules).",
                     "hotkey": "S",
                     "code": [
-                        ["DO_MAKE_LIVE_SELECTION", "$PLAYER_N", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", false, ["GET_SELECTED_CARDS_FROM_LIST", "$ALLOWED_CARD_IDS", "$PROMPT_INPUT"]]
+                        ["DO_MAKE_LIVE_SELECTION", "$PLAYER_N", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", false, ["GET_SELECTED_CARDS_FROM_LIST", "$ALLOWED_CARD_IDS", "$PROMPT_INPUT"], false]
                     ]
                 },
                 {
                     "label": "Force (ignore the rules).",
                     "hotkey": "F",
                     "code": [
-                        ["DO_MAKE_LIVE_SELECTION", "$PLAYER_N", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", true, ["GET_SELECTED_CARDS_FROM_LIST", "$ALLOWED_CARD_IDS", "$PROMPT_INPUT"]]
+                        ["DO_MAKE_LIVE_SELECTION", "$PLAYER_N", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", true, ["GET_SELECTED_CARDS_FROM_LIST", "$ALLOWED_CARD_IDS", "$PROMPT_INPUT"], false]
+                    ]
+                }
+            ]
+        },
+        "cardLiveSelectPromptNoForce": {
+            "args": ["$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", "$MESSAGE"],
+            "message": "{{$MESSAGE}}",
+            "input": {
+                "type": "selectCards"
+            },
+            "options": [
+                {
+                    "label": "Select.",
+                    "hotkey": "S",
+                    "code": [
+                        ["DO_MAKE_LIVE_SELECTION", "$PLAYER_N", "$ALLOWED_CARD_IDS", "$MESSAGE_TEMPLATE", "$MIN", "$MAX", "$UNIQUE_TITLES", "$CALLBACK_FUNCTION", "$SOURCE_CARD_ID", false, ["GET_SELECTED_CARDS_FROM_LIST", "$ALLOWED_CARD_IDS", "$PROMPT_INPUT"], true]
                     ]
                 }
             ]

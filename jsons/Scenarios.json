@@ -253,7 +253,9 @@
                             {"label": "id:iceAndDeathPt3", "deckListId": "Ice and Death Pt 3 Scenario"},
                             {"label": "id:fatalMirage", "deckListId": "Fatal Mirage Scenario"},
                             {"label": "id:toTheForbiddenPeaks", "deckListId": "To the Forbidden Peaks Scenario"},
-                            {"label": "id:cityOfTheElderThings", "deckListId": "City of the Elder Things Scenario"}
+                            {"label": "id:cityOfTheElderThings", "deckListId": "City of the Elder Things Scenario"},
+                            {"label": "id:theHeartOfMadnessPt1", "deckListId": "The Heart of Madness Pt 1 Scenario"},
+                            {"label": "id:theHeartOfMadnessPt2", "deckListId": "The Heart of Madness Pt 2 Scenario"}
                         ]
                     }
                 ]
@@ -802,6 +804,12 @@
         },
         "cityOfTheElderThings": {
             "English": "City of the Elder Things"
+        },
+        "theHeartOfMadnessPt1": {
+            "English": "The Heart of Madness, Part I"
+        },
+        "theHeartOfMadnessPt2": {
+            "English": "The Heart of Madness, Part II"
         },
         "theScarletKeys": {
             "English": "The Scarlet Keys"

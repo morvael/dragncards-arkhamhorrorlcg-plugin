@@ -709,7 +709,7 @@
             "code": [
                 ["EDGE_OF_THE_EARTH_CARD_STATUS_CHOICE_DONE", "$TARGET_PLAYER", "EDGE_OF_THE_EARTH_GET_NEXT_UNDEFINED_SUPPLIES_DATABASE_ID", "EDGE_OF_THE_EARTH_SET_SUPPLIES_STATUS", "edgeOfTheEarthChooseSuppliesStatus", "$CONTINUE_ACTION", "$DATABASE_ID", "$STATUS"]
             ]
-        }        
+        }
     },
     "prompts": {
         "edgeOfTheEarthChooseLocationStatus": {
@@ -837,6 +837,6 @@
                     ]
                 }
             ]
-        }        
+        }
     }
 }

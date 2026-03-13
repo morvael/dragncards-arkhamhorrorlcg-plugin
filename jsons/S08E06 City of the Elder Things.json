@@ -232,7 +232,7 @@
             ]],
             ["COND",
                 ["GREATER_THAN", ["LENGTH", "$SELECTED_CARDS"], 1],
-                ["DO_SHOW_LIVE_SELECTION", "$GAME.firstPlayer", "$SELECTED_CARDS", null, "Select one of the highlighted cards as the starting location.", 1, 1, false, "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK", null],
+                ["DO_SHOW_LIVE_SELECTION", "$GAME.firstPlayer", "$SELECTED_CARDS", null, "Select one of the highlighted cards as the starting location.", 1, 1, false, "CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK", null, true],
                 ["TRUE"],
                 ["CITY_OF_THE_ELDER_THINGS_SELECTION_CALLBACK", "$GAME.firstPlayer", null, "$SELECTED_CARDS"]
             ]
