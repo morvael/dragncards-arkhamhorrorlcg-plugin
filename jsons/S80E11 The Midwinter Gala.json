@@ -148,8 +148,7 @@
                 ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
                 ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$CARD_DB.{{$LEADER_DATABASE_ID}}.B.name", "$LEADER_DATABASE_ID", 1, "sharedNotInPlay", false, null],
                 ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$GAME.lastLoadedCardIds.[0]", false, null],
-                ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "$GAME.lastLoadedCardIds.[0]", "Lobby", 3, 3, 1],
-                ["DO_CREATE_CARDS_SCN", "$CARD_DB.{{$RIVAL_DATABASE_ID}}.B.name", "$RIVAL_DATABASE_ID", 1, "sharedEncounterDeck"]
+                ["DO_CREATE_CARDS", "$GAME.firstPlayer", "$CARD_DB.{{$RIVAL_DATABASE_ID}}.A.name", "$RIVAL_DATABASE_ID", 1, "sharedNotInPlay", false, null]
             ]
         },
         "THE_MIDWINTER_GALA_DEPLOY_NEUTRALS": {
