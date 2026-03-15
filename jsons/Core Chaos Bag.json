@@ -37,6 +37,9 @@
         ],
         "removeBlessToken": [
             ["DO_REMOVE_CHAOS_TOKEN_ACTION", "$PLAYER_N", "chaos_bless", true, "$PLAYER_N"]
+        ],
+        "exportChaosBag": [
+            ["PROMPT", "$PLAYER_N", "saveChaosBag", ["EXPORT_CHAOS_BAG_TO_ENCODED_VALUE"]]
         ]
     },
     "functions": {
@@ -418,6 +421,80 @@
             "args": ["$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID"],
             "code": [
                 ["DO_REMOVE_ALL_CHAOS_TOKENS", "$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID", true, null]
+            ]
+        },
+        "DELETE_ALL_CHAOS_TOKENS_SILENTLY": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DELETE_CARD", "$CARD.id"]
+                ]]
+            ]
+        },
+        "IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE": {
+            "args": ["$TARGET_PLAYER", "$CONTENTS", "$DEFAULT_BAG_TO_LOAD"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE.TARGET_PLAYER"],
+                ["COND",
+                    ["OR",
+                        ["EQUAL", "$CONTENTS", null],
+                        ["EQUAL", "$CONTENTS", ""]
+                    ],
+                    [
+                        ["COND",
+                            ["AND",
+                                ["NOT_EQUAL", "$DEFAULT_BAG_TO_LOAD", null],
+                                ["NOT_EQUAL", "$DEFAULT_BAG_TO_LOAD", ""]
+                            ],
+                            [
+                                ["DELETE_ALL_CHAOS_TOKENS_SILENTLY"],
+                                ["DO_LOAD_CARDS", "$TARGET_PLAYER", "$DEFAULT_BAG_TO_LOAD", true, null]
+                            ]
+                        ]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DELETE_ALL_CHAOS_TOKENS_SILENTLY"],
+                        ["VAR", "$MAPPING", {"p1": "chaos_p1", "p0": "chaos_p0", "m1": "chaos_m1", "m2": "chaos_m2", "m3": "chaos_m3", "m4": "chaos_m4", "m5": "chaos_m5", "m6": "chaos_m6", "m7": "chaos_m7", "m8": "chaos_m8", "sk": "chaos_skull", "cl": "chaos_cultist", "tb": "chaos_tablet", "et": "chaos_elder_thing", "es": "chaos_elder_sign", "af": "chaos_auto_fail", "bl": "chaos_bless", "cr": "chaos_curse", "fr": "chaos_frost"}],
+                        ["VAR", "$TOKENS", ["SPLIT_STRING", ["BASE64_DECODE", "$CONTENTS"], ","]],
+                        ["FOR_EACH_VAL", "$TOKEN", "$TOKENS", [
+                            ["COND",
+                                ["DEFINED", "$MAPPING.{{$TOKEN}}"],
+                                ["DO_ADD_CHAOS_TOKEN_ACTION", "$TARGET_PLAYER", "$MAPPING.{{$TOKEN}}", false, null]
+                            ]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "EXPORT_CHAOS_BAG_TO_ENCODED_VALUE": {
+            "args": [],
+            "code": [
+                ["VAR", "$MAPPING", {"chaos_p1": "p1", "chaos_p0": "p0", "chaos_m1": "m1", "chaos_m2": "m2", "chaos_m3": "m3", "chaos_m4": "m4", "chaos_m5": "m5", "chaos_m6": "m6", "chaos_m7": "m7", "chaos_m8": "m8", "chaos_skull": "sk", "chaos_cultist": "cl", "chaos_tablet": "tb", "chaos_elder_thing": "et", "chaos_elder_sign": "es", "chaos_auto_fail": "af", "chaos_bless": "bl", "chaos_curse": "cr", "chaos_frost": "fr"}],
+                ["VAR", "$TOKENS", ""],
+                ["FOR_EACH_KEY_VAL", "$DATABASE_ID", "$TOKEN", "$MAPPING", [
+                    ["VAR", "$COUNT", ["LENGTH", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.sides.A.type", "ChaosToken"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$DATABASE_ID"]
+                    ]]]],
+                    ["COND",
+                        ["GREATER_THAN", "$COUNT", 0],
+                        [
+                            ["FOR_EACH_START_STOP_STEP", "$I", 0, "$COUNT", 1, [
+                                ["COND",
+                                    ["EQUAL", ["LENGTH", "$TOKENS"], 0],
+                                    ["UPDATE_VAR", "$TOKENS", "{{$TOKEN}}"],
+                                    ["TRUE"],
+                                    ["UPDATE_VAR", "$TOKENS", "{{$TOKENS}},{{$TOKEN}}"]
+                                ]
+                            ]]
+                        ]
+                    ]
+                ]],
+                ["BASE64_ENCODE", "$TOKENS"]
             ]
         }
     },
@@ -859,6 +936,22 @@
                     "hotkey": "X"
                 }
             ]
+        },
+        "saveChaosBag": {
+            "args": ["$TOKENS"],
+            "message": "Copy encoded bag for use with https://ahlcg.derwinski.pl/ : {{$TOKENS}}",
+            "input": {
+                "type": "text"
+            },
+            "options": [
+                {
+                    "label": "Close.",
+                    "hotkey": "X",
+                    "code": [
+                        ["LOGF", "└── {0} exported Chaos Bag: {1}", "$PLAYER_N", "$TOKENS"]
+                    ]
+                }
+            ]
         }
     },
     "labels": {
@@ -912,6 +1005,9 @@
         },
         "removeBlessTokenMenu": {
             "English": "Remove Bless (Shift+Y)"
+        },
+        "exportChaosBagMenu": {
+            "English": "Export Chaos Bag"
         }
     }
 }

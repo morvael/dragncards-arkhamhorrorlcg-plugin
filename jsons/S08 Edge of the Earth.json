@@ -165,13 +165,13 @@
                 {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
         "Edge of the Earth Chaos Bag - Hard": {
@@ -184,13 +184,13 @@
                 {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_frost", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 2, "loadGroupId": "sharedChaosBag"}
             ]
         },
         "Edge of the Earth Chaos Bag - Expert": {
@@ -204,13 +204,13 @@
                 {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m7", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_frost", "quantity": 3, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_cultist", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
-                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_frost", "quantity": 3, "loadGroupId": "sharedChaosBag"}
             ]
         }
     },

@@ -940,7 +940,11 @@
             {
                 "label": "id:selectTabooMenu",
                 "actionList": "selectTaboo"
-            }
+            }//,
+            //{
+            //    "label": "id:exportChaosBagMenu",
+            //    "actionList": "exportChaosBag"
+            //}
         ]
     }
 }

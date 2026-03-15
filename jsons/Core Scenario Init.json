@@ -1324,7 +1324,13 @@
             "code": [
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
                 ["SET", "/arkham/scenarioDifficulty", "$DIFFICULTY_NAME"],
-                ["DO_LOAD_CARDS", "$GAME.firstPlayer", "{{$GAME.arkham.chaosBagCampaignName}} Chaos Bag - {{$DIFFICULTY_NAME}}", true, null],
+                ["PROMPT", "$GAME.firstPlayer", "loadChaosBag"]
+            ]
+        },
+        "LOAD_CHAOS_BAG": {
+            "args": ["$CONTENTS"],
+            "code": [
+                ["IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE", "$GAME.firstPlayer", "$CONTENTS", "{{$GAME.arkham.chaosBagCampaignName}} Chaos Bag - {{$GAME.arkham.scenarioDifficulty}}"],
                 ["GAIN_STARTING_RESOURCES"]
             ]
         },
@@ -1753,6 +1759,27 @@
                     "hotkey": "X",
                     "code": [
                         ["SET_SCENARIO_DIFFICULTY", "Expert"]
+                    ]
+                }
+            ]
+        },
+        "loadChaosBag": {
+            "args": [],
+            "message": "Paste encoded bag from https://ahlcg.derwinski.pl/ or leave empty to use default.",
+            "input": {
+                "type": "text"
+            },
+            "options": [
+                {
+                    "label": "Proceed.",
+                    "hotkey": "P",
+                    "code": [
+                        ["COND",
+                            ["EQUAL", ["DEFINED", "$PROMPT_INPUT"], true],
+                            ["LOAD_CHAOS_BAG", "$PROMPT_INPUT"],
+                            ["TRUE"],
+                            ["LOAD_CHAOS_BAG", null]
+                        ]
                     ]
                 }
             ]
