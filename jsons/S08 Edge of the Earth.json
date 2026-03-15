@@ -97,15 +97,15 @@
             "hideFromSearch": true,
             "label": "Expedition Team",
             "cards": [
-                {"databaseId": "08714", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Professor William Dyer: Professor of Geology
-                {"databaseId": "08715", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Danforth: Brilliant Student
-                {"databaseId": "08716", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Eliyah Ashevak: Dog Handler
-                {"databaseId": "08717", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dr. Mala Sinha: Daring Physician
-                {"databaseId": "08718", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Avery Claypool: Antarctic Guide
-                {"databaseId": "08719", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //James "Cookie" Fredericks: Dubious Choice
-                {"databaseId": "08720", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dr. Amy Kensler: Professor of Biology
-                {"databaseId": "08721", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Roald Ellsworth: Intrepid Explorer
-                {"databaseId": "08722", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Takada Hiroko: Aeroplane Mechanic
+                {"databaseId": "08714", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Professor William Dyer: Professor of Geology
+                {"databaseId": "08715", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Danforth: Brilliant Student
+                {"databaseId": "08716", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Eliyah Ashevak: Dog Handler
+                {"databaseId": "08717", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Dr. Mala Sinha: Daring Physician
+                {"databaseId": "08718", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Avery Claypool: Antarctic Guide
+                {"databaseId": "08719", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //James "Cookie" Fredericks: Dubious Choice
+                {"databaseId": "08720", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Dr. Amy Kensler: Professor of Biology
+                {"databaseId": "08721", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Roald Ellsworth: Intrepid Explorer
+                {"databaseId": "08722", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Takada Hiroko: Aeroplane Mechanic
             ]
         },
         "Tekeli-li": {
@@ -128,15 +128,15 @@
             "hideFromSearch": true,
             "label": "Memorials of the Lost",
             "cards": [
-                {"databaseId": "08730", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Claypool's Furs
-                {"databaseId": "08731", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Collected Works of Poe
-                {"databaseId": "08732", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Cookie's Custom .32
-                {"databaseId": "08733", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Dyer's Sketches
-                {"databaseId": "08734", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Ellsworth's Boots
-                {"databaseId": "08735", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Kensler's Log
-                {"databaseId": "08736", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Sinha's Medical Kit
-                {"databaseId": "08737", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Takada's Cache
-                {"databaseId": "08738", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Anyu: Faithful Companion
+                {"databaseId": "08730", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Claypool's Furs
+                {"databaseId": "08731", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Collected Works of Poe
+                {"databaseId": "08732", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Cookie's Custom .32
+                {"databaseId": "08733", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Dyer's Sketches
+                {"databaseId": "08734", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Ellsworth's Boots
+                {"databaseId": "08735", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Kensler's Log
+                {"databaseId": "08736", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Sinha's Medical Kit
+                {"databaseId": "08737", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Takada's Cache
+                {"databaseId": "08738", "quantity": 1, "loadGroupId": "sharedNotInPlay"}    //Anyu: Faithful Companion
             ]
         },
         "Edge of the Earth Chaos Bag - Easy": {
