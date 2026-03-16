@@ -1,0 +1,447 @@
+{
+    "actionLists": {
+        "scarletKeysConceal": [
+            ["COND",
+                ["SCARLET_KEYS_CAN_CONCEAL", "$PLAYER_N", "$ACTIVE_CARD_ID", "$PLAYER_N"],
+                ["SCARLET_KEYS_CONCEAL", "$PLAYER_N", "$ACTIVE_CARD_ID", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot conceal {{$ACTIVE_FACE.name}}, {{$ALIAS_N}}."]
+            ]
+        ],
+        "scarletKeysSpawnDecoy": [
+            ["COND",
+                ["SCARLET_KEYS_CAN_SPAWN_CONCEALED", "$PLAYER_N", "concealed_decoy", "$PLAYER_N"],
+                ["SCARLET_KEYS_SPAWN_CONCEALED", "$PLAYER_N", "concealed_decoy", false, 1, 1, true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot spawn a Decoy, {{$ALIAS_N}}."]
+            ]
+        ],
+        "scarletKeysRandomizeConcealed": [
+            ["COND",
+                ["SCARLET_KEYS_CAN_RANDOMIZE_CONCEALED", "$PLAYER_N", "$PLAYER_N"],
+                ["SCARLET_KEYS_RANDOMIZE_CONCEALED", "$PLAYER_N", true, "$PLAYER_N"],
+                ["TRUE"],
+                ["LOG", "└── You cannot randomize concealed mini-cards, {{$ALIAS_N}}."]
+            ]
+        ]
+    },
+    "preBuiltDecks": {
+        "Crimson Conspiracy": {
+            "hideFromSearch": true,
+            "label": "Crimson Conspiracy",
+            "cards": [
+                {"databaseId": "09716a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Agent (A)
+                {"databaseId": "09716b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Agent (B)
+                {"databaseId": "09716c", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Agent (C)
+                {"databaseId": "09717", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Conspiracy in Red
+            ]
+        },
+        "Strange Happenings": {
+            "hideFromSearch": true,
+            "label": "Strange Happenings",
+            "cards": [
+                {"databaseId": "09718", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Pinch in Reality
+                {"databaseId": "09719", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Heavy Rain
+            ]
+        },
+        "Mysteries Abound": {
+            "hideFromSearch": true,
+            "label": "Mysteries Abound",
+            "cards": [
+                {"databaseId": "09720", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Coterie Envoy
+                {"databaseId": "09721", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //In Plain Sight
+            ]
+        },
+        "Shadow of a Doubt": {
+            "hideFromSearch": true,
+            "label": "Shadow of a Doubt",
+            "cards": [
+                {"databaseId": "09722", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Knives in the Dark
+                {"databaseId": "09723", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Undercover
+            ]
+        },
+        "Dark Veiling": {
+            "hideFromSearch": true,
+            "label": "Dark Veiling",
+            "cards": [
+                {"databaseId": "09724", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Seeing Shadows
+                {"databaseId": "09725", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Figures in the Dark
+            ]
+        },
+        "Cleanup Crew": {
+            "hideFromSearch": true,
+            "label": "Cleanup Crew",
+            "cards": [
+                {"databaseId": "09726a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Enforcer (A)
+                {"databaseId": "09726b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Enforcer (B)
+                {"databaseId": "09727a", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Assassin (A)
+                {"databaseId": "09727b", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},  //Coterie Assassin (B)
+                {"databaseId": "09728", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Swift Retreat
+            ]
+        },
+        "Scarlet Sorcery": {
+            "hideFromSearch": true,
+            "label": "Scarlet Sorcery",
+            "cards": [
+                {"databaseId": "09729", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Bound in Red
+                {"databaseId": "09730", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Key Charge
+            ]
+        },
+        "Outsiders": {
+            "hideFromSearch": true,
+            "label": "Outsiders",
+            "cards": [
+                {"databaseId": "09731", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Paracausal Entity
+                {"databaseId": "09732", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Apocalyptic Presage
+                {"databaseId": "09733", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Substance Dissimulation
+            ]
+        },
+        "Secret War": {
+            "hideFromSearch": true,
+            "label": "Secret War",
+            "cards": [
+                {"databaseId": "09734", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Otherworldly Mimic
+                {"databaseId": "09735", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Memory Variant
+                {"databaseId": "09736", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Secrets Lost
+            ]
+        },
+        "Agents of the Outside": {
+            "hideFromSearch": true,
+            "label": "Agents of the Outside",
+            "cards": [
+                {"databaseId": "09737", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Paradigm Effacer
+                {"databaseId": "09738", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Matter Inversion
+            ]
+        },
+        "Agents of Yuggoth": {
+            "hideFromSearch": true,
+            "label": "Agents of Yuggoth",
+            "cards": [
+                {"databaseId": "09739", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Emissary from Yuggoth
+                {"databaseId": "09740", "quantity": 3, "loadGroupId": "sharedEncounterDeck"}    //Tenebrous Eclipse
+            ]
+        },
+        "Spatial Anomaly": {
+            "hideFromSearch": true,
+            "label": "Spatial Anomaly",
+            "cards": [
+                {"databaseId": "09741", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Splintered Space
+                {"databaseId": "09742", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},   //Beyond the Pale
+                {"databaseId": "09743", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Warped Reality
+            ]
+        },
+        "Spreading Corruption": {
+            "hideFromSearch": true,
+            "label": "Spreading Corruption",
+            "cards": [
+                {"databaseId": "09744", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Touch of the Beyond
+                {"databaseId": "09745", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},   //Compulsion
+                {"databaseId": "09746", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}    //Distorted Reasoning
+            ]
+        },
+        "Beyond the Beyond": {
+            "hideFromSearch": true,
+            "label": "Beyond the Beyond",
+            "cards": [
+                {"databaseId": "09747a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Rambling Route
+                {"databaseId": "09747b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Rambling Route
+                {"databaseId": "09747c", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Rambling Route
+                {"databaseId": "09748a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Alien Frontier
+                {"databaseId": "09748b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Alien Frontier
+                {"databaseId": "09749a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Weald of Effigies
+                {"databaseId": "09749b", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //Weald of Effigies
+                {"databaseId": "09750", "quantity": 2, "loadGroupId": "sharedNotInPlay"},   //Cliffs of Insanity
+                {"databaseId": "09751", "quantity": 2, "loadGroupId": "sharedNotInPlay"}    //Paradimensional Terror
+            ]
+        },
+        "Red Coterie": {
+            "hideFromSearch": true,
+            "label": "Red Coterie",
+            "cards": [
+                {"databaseId": "09752", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Red-Gloved Man: Purpose Unknown
+                {"databaseId": "09753", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //La Chica Roja: Hot on Your Tail
+                {"databaseId": "09754", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Sanguine Watcher: He Sees What Is Not There
+                {"databaseId": "09755", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Beast in a Cowl of Crimson: Leaving a Trail of Destruction
+                {"databaseId": "09756", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //The Claret Knight: Holds You in Contempt
+                {"databaseId": "09757", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Thorne: Open to Negotiation
+                {"databaseId": "09758", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Desiderio Delgado Álvarez: Red in His Ledger
+                {"databaseId": "09759", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Amaranth: Scarlet Scorn
+                {"databaseId": "09760", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},   //Tzu San Niang: A Whisper in Your Ear
+                {"databaseId": "09761", "quantity": 1, "loadGroupId": "sharedEncounterDeck"}    //Aliki Zoni Uperetria: Speaks in Death
+            ]
+        },
+        "Globetrotting": {
+            "hideFromSearch": true,
+            "label": "Globetrotting",
+            "cards": [
+                {"databaseId": "09762", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Inspector Flint: With Pride and Care
+                {"databaseId": "09763", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Agent Ari Quinn: Foundation Researcher
+                {"databaseId": "09764", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Dr. Dewi Irawan: "Cryptozoologist"
+                {"databaseId": "09765", "quantity": 1, "loadGroupId": "sharedNotInPlay"},   //Expedited Ticket
+                {"databaseId": "09766", "quantity": 4, "loadGroupId": "sharedNotInPlay"},   //Foundation Intel
+                {"databaseId": "09767", "quantity": 4, "loadGroupId": "sharedNotInPlay"},   //Paradimensional Understanding
+                {"databaseId": "09768a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //The Mirroring Blade: Reflects Only Violence
+                {"databaseId": "09769a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},  //The Bale Engine: Infernal Mechanism
+                {"databaseId": "09770a", "quantity": 1, "loadGroupId": "sharedNotInPlay"}   //The Ruinous Chime: Silent Cacophony
+            ]
+        },
+        "The Scarlet Keys Chaos Bag - Easy": {
+            "hideFromSearch": true,
+            "label": "The Scarlet Keys Chaos Bag - Easy",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Scarlet Keys Chaos Bag - Standard": {
+            "hideFromSearch": true,
+            "label": "The Scarlet Keys Chaos Bag - Standard",
+            "cards": [
+                {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Scarlet Keys Chaos Bag - Hard": {
+            "hideFromSearch": true,
+            "label": "The Scarlet Keys Chaos Bag - Hard",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        },
+        "The Scarlet Keys Chaos Bag - Expert": {
+            "hideFromSearch": true,
+            "label": "The Scarlet Keys Chaos Bag - Expert",
+            "cards": [
+                {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m2", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m3", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m4", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m5", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m6", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_m8", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_skull", "quantity": 2, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_tablet", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_thing", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_auto_fail", "quantity": 1, "loadGroupId": "sharedChaosBag"},
+                {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
+            ]
+        }
+    },
+    "functions": {
+        //checks for non-existence of the forbidden Red-Gloved Man card (02310) in player decks before actually starting a Scarlet Keys scenario
+        "SCARLET_KEYS_SCENARIO_INIT": {
+            "args": ["$SCENARIO_NAME", "$SCENARIO_EARLY_ACTION", "$SCENARIO_ACTION"],
+            "code": [
+                ["VAR", "$RED_GLOVED_MAN", ["GET_NAMED_PLAYER_DECK_CARD", "02310"]],
+                ["COND",
+                    ["EQUAL", "$RED_GLOVED_MAN", null],
+                    ["SCENARIO_INIT", "The Scarlet Keys", "The Scarlet Keys", "$SCENARIO_NAME", "$SCENARIO_EARLY_ACTION", "$SCENARIO_ACTION"],
+                    ["TRUE"],
+                    ["LOG", "└── While playing this campaign, investigators cannot purchase or include The Red-Gloved Man asset (The Dunwich Legacy card 310) in their decks."]
+                ]
+            ]
+        },
+        //checks if a card can be concealed
+        "SCARLET_KEYS_CAN_CONCEAL": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_CAN_CONCEAL.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "SCARLET_KEYS_CAN_CONCEAL.TARGET_CARD_ID"]],
+                ["AND",
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.concealed", 0],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.concealedId", null],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.concealedId", ""],
+                    ["OR",
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedLocations"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedScenarioReference"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player1Investigator"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player1Threat"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player1Play"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player1Hand"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player2Investigator"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player2Threat"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player2Play"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player2Hand"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player3Investigator"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player3Threat"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player3Play"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player3Hand"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player4Investigator"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player4Threat"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player4Play"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "player4Hand"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedNotInPlay"],
+                        ["EQUAL", "$TARGET_CARD.groupId", "sharedVictoryDisplay"]
+                    ],
+                    ["SCARLET_KEYS_CAN_SPAWN_CONCEALED", "$TARGET_PLAYER", "$TARGET_CARD.currentFace.concealedId", "$ACTOR_PLAYER"]
+                ]
+            ]
+        },
+        //conceals a card (moves it to sharedOffMap and spawns required number of concealed cards in sharedLocations)
+        "SCARLET_KEYS_CONCEAL": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_CONCEAL.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "SCARLET_KEYS_CONCEAL.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "SCARLET_KEYS_CONCEAL.LOG_EVENT"],
+                ["COND",
+                    ["SCARLET_KEYS_CAN_CONCEAL", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$IDS_TO_SPAWN", ["LIST", "$TARGET_CARD.currentFace.concealedId"]],
+                        ["VAR", "$DECOYS_TO_SPAWN", "$TARGET_CARD.currentFace.concealed"],
+                        ["COND",
+                            ["EQUAL", "$DECOYS_TO_SPAWN", -1],
+                            ["UPDATE_VAR", "$DECOYS_TO_SPAWN", "$GAME.arkham.numPlayers"]
+                        ],
+                        ["FOR_EACH_START_STOP_STEP", "$I", 0, "$DECOYS_TO_SPAWN", 1, [
+                            ["UPDATE_VAR", "$IDS_TO_SPAWN", ["APPEND", "$IDS_TO_SPAWN", "concealed_decoy"]]
+                        ]],
+                        ["UPDATE_VAR", "$IDS_TO_SPAWN", ["SHUFFLE_LIST", "$IDS_TO_SPAWN"]],
+                        ["FOR_EACH_VAL", "$ID_TO_SPAWN", "$IDS_TO_SPAWN", [
+                            ["SCARLET_KEYS_SPAWN_CONCEALED", "$TARGET_PLAYER", "$ID_TO_SPAWN", true, 1, 1, false, null]
+                        ]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "sharedOffMap", -1],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "conceal {{$TARGET_CARD.currentFace.name}}.", "conceals {{$TARGET_CARD.currentFace.name}}."]
+                    ]
+                ]
+            ]
+        },
+        //checks if a concealed card can be spawned
+        "SCARLET_KEYS_CAN_SPAWN_CONCEALED": {
+            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_CAN_SPAWN_CONCEALED.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "SCARLET_KEYS_CAN_SPAWN_CONCEALED.DATABASE_ID"],
+                ["VAR", "$MAX", 1],
+                ["COND",
+                    ["EQUAL", "$DATABASE_ID", "concealed_decoy"],
+                    ["UPDATE_VAR", "$MAX", 14],
+                    ["EQUAL", "$DATABASE_ID", "concealed_acolyte"],
+                    ["UPDATE_VAR", "$MAX", 3]
+                ],
+                ["LESS_THAN", ["LENGTH", ["GET_NAMED_CARDS", "$DATABASE_ID"]], "$MAX"]
+            ]
+        },
+        //spawns a concealed card at specified location
+        "SCARLET_KEYS_SPAWN_CONCEALED": {
+            "args": ["$TARGET_PLAYER", "$DATABASE_ID", "$SPAWN_HIDDEN", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_SPAWN_CONCEALED.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "SCARLET_KEYS_SPAWN_CONCEALED.DATABASE_ID"],
+                ["VALIDATE_BOOLEAN", "$SPAWN_HIDDEN", "SCARLET_KEYS_SPAWN_CONCEALED.SPAWN_HIDDEN"],
+                ["VALIDATE_GE0", "$LEFT", "SCARLET_KEYS_SPAWN_CONCEALED.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "SCARLET_KEYS_SPAWN_CONCEALED.TOP"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "SCARLET_KEYS_SPAWN_CONCEALED.LOG_EVENT"],
+                ["COND",
+                    ["SCARLET_KEYS_CAN_SPAWN_CONCEALED", "$TARGET_PLAYER", "$DATABASE_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["VAR", "$CARD_NAME", ["INLINE_IF", "$SPAWN_HIDDEN", "concealed mini-card", "$CARD_DB.{{$DATABASE_ID}}.A.name"]],
+                        ["DO_CREATE_CARDS", "$TARGET_PLAYER", "$CARD_NAME", "$DATABASE_ID", 1, "sharedLocations", false, null],
+                        ["VAR", "$CREATED_CARD_ID", "$GAME.lastLoadedCardIds.[0]"],
+                        ["WHILE",
+                            ["NOT_EQUAL", ["GET_CARD_AT_LOCATION_EXCEPT", "$LEFT", "$TOP", "$CREATED_CARD_ID"], null],
+                            ["INCREASE_VAR", "$LEFT", 3]
+                        ],
+                        ["DO_SET_CARD_LOCATION", "$CREATED_CARD_ID", "$LEFT", "$TOP"],
+                        ["COND",
+                            ["EQUAL", "$SPAWN_HIDDEN", true],
+                            ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CREATED_CARD_ID", false, null]
+                        ],
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "spawn a {{$CARD_NAME}}.", "spawns a {{$CARD_NAME}}."]
+                    ]
+                ]
+            ]
+        },
+        //returns a list of concealed cards that can be randomized
+        "SCARLET_KEYS_GET_RANDOMIZABLE_CONCEALED_CARDS": {
+            "args": [],
+            "code": [
+                ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.A.type", "MiniConcealed"],
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"]
+                ]]
+            ]
+        },
+        //checks if a concealed cards can be randomized
+        "SCARLET_KEYS_CAN_RANDOMIZE_CONCEALED": {
+            "args": ["$TARGET_PLAYER", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_CAN_RANDOMIZE_CONCEALED.TARGET_PLAYER"],
+                ["GREATER_EQUAL", ["LENGTH", ["SCARLET_KEYS_GET_RANDOMIZABLE_CONCEALED_CARDS"], 2]]
+            ]
+        },
+        //starts the process of randomizing concealed cards (2+ MiniConcealed cards in sharedLocations are eligible)
+        "SCARLET_KEYS_RANDOMIZE_CONCEALED": {
+            "args": ["$TARGET_PLAYER", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_RANDOMIZE_CONCEALED.TARGET_PLAYER"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "SCARLET_KEYS_RANDOMIZE_CONCEALED.LOG_EVENT"],
+                ["COND",
+                    ["SCARLET_KEYS_CAN_RANDOMIZE_CONCEALED", "$TARGET_PLAYER", "$ACTOR_PLAYER"],
+                    ["DO_SHOW_LIVE_SELECTION", "$TARGET_PLAYER", ["SCARLET_KEYS_GET_RANDOMIZABLE_CONCEALED_CARDS"], null, "Select 2+ concealed mini-cards to randomize.", 2, 0, false, "SCARLET_KEYS_RANDOMIZE_CONCEALED_SELECTION_CALLBACK", null, true]
+                ]
+            ]
+        },
+        //randomizes concealed cards (flips them down if needed, and randomizes them retaining their current locations)
+        "SCARLET_KEYS_RANDOMIZE_CONCEALED_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "SCARLET_KEYS_RANDOMIZE_CONCEALED_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "SCARLET_KEYS_RANDOMIZE_CONCEALED_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["VAR", "$DATA", ["LIST"]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", false, null],
+                    ["VAR", "$DATA_ITEM", ["PROCESS_MAP", {"databaseId": "$CARD.sides.A.databaseId", "name": "$CARD.sides.A.name", "imageUrl": "$CARD.sides.A.imageUrl"}]],
+                    ["UPDATE_VAR", "$DATA", ["APPEND", "$DATA", "$DATA_ITEM"]]
+                ]],
+                ["UPDATE_VAR", "$DATA", ["SHUFFLE_LIST", "$DATA"]],
+                ["VAR", "$NUM", ["LENGTH", "$SELECTED_CARDS"]],
+                ["FOR_EACH_START_STOP_STEP", "$I", 0, "$NUM", 1, [
+                    ["SET", "/cardById/$SELECTED_CARDS.[$I].id/sides/A/databaseId", "$DATA.[$I].databaseId"],
+                    ["SET", "/cardById/$SELECTED_CARDS.[$I].id/sides/A/name", "$DATA.[$I].name"],
+                    ["SET", "/cardById/$SELECTED_CARDS.[$I].id/sides/A/imageUrl", "$DATA.[$I].imageUrl"]
+                ]],
+                ["LOGF", "└── {0} randomized {1} concealed mini-cards.", "$TARGET_PLAYER", "$NUM"]
+            ]
+        }
+    },
+    "labels": {
+        "scarletKeysConcealMenu": {
+            "English": "Conceal"
+        },
+        "scarletKeysSpawnDecoyMenu": {
+            "English": "Spawn Decoy"
+        },
+        "scarletKeysRandomizeConcealedMenu": {
+            "English": "Randomize Concealed"
+        }
+    }
+}

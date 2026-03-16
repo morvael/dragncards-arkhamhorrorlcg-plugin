@@ -58,6 +58,10 @@
                     ["EQUAL", "$ACTIVE_FACE.type", "MiniAssistant"],
                     ["EQUAL", "$ACTIVE_FACE.type", "MicroAssistant"],
                     ["EQUAL", "$ACTIVE_FACE.type", "FloodedToken"],
+                    ["AND",
+                        ["EQUAL", "$ACTIVE_FACE.type", "MiniConcealed"],
+                        ["EQUAL", "$ACTIVE_CARD.cardDiscard", ""]
+                    ],
                     ["IN_STRING", "$ACTIVE_FACE.type", "StandardToken"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Supplies"],
                     ["EQUAL", "$ACTIVE_FACE.type", "Tarot"],
@@ -906,6 +910,58 @@
                 "showIf": ["AND",
                     ["IN_STRING", "$ACTIVE_CARD.groupId", "Deck"],
                     ["EQUAL", ["IN_STRING", "$ACTIVE_CARD.groupId", "SideDeck"], false]
+                ]
+            },
+            {
+                "label": "id:scarletKeysConcealMenu",
+                "actionList": "scarletKeysConceal",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["NOT_EQUAL", "$ACTIVE_FACE.concealed", 0],
+                    ["NOT_EQUAL", "$ACTIVE_FACE.concealedId", null],
+                    ["NOT_EQUAL", "$ACTIVE_FACE.concealedId", ""],
+                    ["OR",
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedLocations"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedScenarioReference"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player1Investigator"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player1Threat"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player1Play"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player1Hand"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player2Investigator"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player2Threat"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player2Play"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player2Hand"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player3Investigator"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player3Threat"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player3Play"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player3Hand"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player4Investigator"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player4Threat"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player4Play"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "player4Hand"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedNotInPlay"],
+                        ["EQUAL", "$ACTIVE_CARD.groupId", "sharedVictoryDisplay"]
+                    ]
+                ]
+            },
+            {
+                "label": "id:scarletKeysSpawnDecoyMenu",
+                "actionList": "scarletKeysSpawnDecoy",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedScenarioReference"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                    ["EQUAL", "$ACTIVE_FACE.packName", "The Scarlet Keys Campaign Expansion"]
+                ]
+            },
+            {
+                "label": "id:scarletKeysRandomizeConcealedMenu",
+                "actionList": "scarletKeysRandomizeConcealed",
+                "showIf": ["AND",
+                    ["EQUAL", "$GAME.arkham.scenarioInit", false],
+                    ["EQUAL", "$ACTIVE_CARD.groupId", "sharedScenarioReference"],
+                    ["EQUAL", "$ACTIVE_FACE.type", "Scenario"],
+                    ["EQUAL", "$ACTIVE_FACE.packName", "The Scarlet Keys Campaign Expansion"]
                 ]
             },
             {
