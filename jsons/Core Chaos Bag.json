@@ -423,41 +423,19 @@
                 ["DO_REMOVE_ALL_CHAOS_TOKENS", "$TARGET_PLAYER", "$CHAOS_TOKEN_DATABASE_ID", true, null]
             ]
         },
-        "DELETE_ALL_CHAOS_TOKENS_SILENTLY": {
-            "args": [],
-            "code": [
-                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.sides.A.type", "ChaosToken"]
-                ]]],
-                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DELETE_CARD", "$CARD.id"]
-                ]]
-            ]
-        },
         "IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE": {
             "args": ["$TARGET_PLAYER", "$CONTENTS", "$DEFAULT_BAG_TO_LOAD"],
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DEFAULT_BAG_TO_LOAD", "IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE.DEFAULT_BAG_TO_LOAD"],
                 ["COND",
                     ["OR",
                         ["EQUAL", "$CONTENTS", null],
                         ["EQUAL", "$CONTENTS", ""]
                     ],
-                    [
-                        ["COND",
-                            ["AND",
-                                ["NOT_EQUAL", "$DEFAULT_BAG_TO_LOAD", null],
-                                ["NOT_EQUAL", "$DEFAULT_BAG_TO_LOAD", ""]
-                            ],
-                            [
-                                ["DELETE_ALL_CHAOS_TOKENS_SILENTLY"],
-                                ["DO_LOAD_CARDS", "$TARGET_PLAYER", "$DEFAULT_BAG_TO_LOAD", true, null]
-                            ]
-                        ]
-                    ],
+                    ["DO_LOAD_CARDS", "$TARGET_PLAYER", "$DEFAULT_BAG_TO_LOAD", true, null],
                     ["TRUE"],
                     [
-                        ["DELETE_ALL_CHAOS_TOKENS_SILENTLY"],
                         ["VAR", "$MAPPING", {"p1": "chaos_p1", "p0": "chaos_p0", "m1": "chaos_m1", "m2": "chaos_m2", "m3": "chaos_m3", "m4": "chaos_m4", "m5": "chaos_m5", "m6": "chaos_m6", "m7": "chaos_m7", "m8": "chaos_m8", "sk": "chaos_skull", "cl": "chaos_cultist", "tb": "chaos_tablet", "et": "chaos_elder_thing", "es": "chaos_elder_sign", "af": "chaos_auto_fail", "bl": "chaos_bless", "cr": "chaos_curse", "fr": "chaos_frost"}],
                         ["VAR", "$TOKENS", ["SPLIT_STRING", ["BASE64_DECODE", "$CONTENTS"], ","]],
                         ["FOR_EACH_VAL", "$TOKEN", "$TOKENS", [
