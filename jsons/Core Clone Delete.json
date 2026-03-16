@@ -79,7 +79,7 @@
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "MicroAssistant"],
                     ["EQUAL", "$TARGET_CARD.currentFace.type", "FloodedToken"],
                     ["AND",
-                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"]
+                        ["EQUAL", "$TARGET_CARD.currentFace.type", "MiniConcealed"],
                         ["EQUAL", "$TARGET_CARD.cardDiscard", ""]
                     ],
                     ["IN_STRING", "$TARGET_CARD.currentFace.type", "StandardToken"],
