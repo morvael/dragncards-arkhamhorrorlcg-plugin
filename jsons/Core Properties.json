@@ -66,6 +66,8 @@
         "reaction":              {"type": "boolean", "default": false},
         "free":                  {"type": "boolean", "default": false},
         "hasBonded":             {"type": "boolean", "default": false},
+        "concealed":             {"type": "integer", "default": 0},
+        "concealedId":           {"type": "string",  "default": null},
         "text":                  {"type": "string",  "default": ""}
     },
     "gameProperties": {
@@ -115,6 +117,7 @@
                             "campaignName": "No Campaign",                      // name used when saving the game
                             "scenarioName": "No Scenario",                      // name used when saving the game and in some messages
                             "scenarioDifficulty": "Standard",                   // scenario difficulty (Easy, Standard, Hard, Expert)
+                            "scenarioEarlyAction": null,                        // name of the next action list to call during scenario setup when scenario initialization ends processing
                             "scenarioAction": null,                             // name of the next action list to call during scenario setup when default code ends processing
                             "scenarioActionAfterStep7": null,                   // name of the action list to call during scenario setup when resources have been collected (step 7), but before drawing opening hand (step 8)
                             "numScenarioQuestions": 0,                          // number of scenario questions registered
