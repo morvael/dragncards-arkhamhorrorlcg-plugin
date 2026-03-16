@@ -1144,6 +1144,7 @@
                                 ["SET", "/arkham/campaignName", "$CAMPAIGN_NAME"],
                                 ["SET", "/arkham/scenarioName", "$SCENARIO_NAME"],
                                 ["SET", "/arkham/scenarioDifficulty", "Standard"],
+                                ["SET", "/arkham/scenarioEarlyAction", "$SCENARIO_EARLY_ACTION"],
                                 ["SET", "/arkham/scenarioAction", "$SCENARIO_ACTION"],
                                 ["SET", "/arkham/scenarioActionAfterStep7", null],
                                 ["SET", "/arkham/numScenarioQuestions", 0],
@@ -1234,12 +1235,7 @@
                                         ["MOVE_CARD", "$CARD.id", "sharedEncounterDeck", -1]
                                     ]]
                                 ]],
-                                ["COND",
-                                    ["NOT_EQUAL", "$SCENARIO_EARLY_ACTION", null],
-                                    ["ACTION_LIST", "$SCENARIO_EARLY_ACTION"],
-                                    ["TRUE"],
-                                    ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
-                                ]
+                                ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
                             ],
                             ["TRUE"],
                             ["LOG", "└── Not all players have loaded their investigators and/or decks."]
@@ -1309,7 +1305,7 @@
                 ["INCREASE_VAL", "/arkham/traumaDone", 1],
                 ["COND",
                     ["GREATER_EQUAL", "$GAME.arkham.traumaDone", "$GAME.numPlayers"],
-                    ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
+                    ["GAIN_STARTING_RESOURCES"]
                 ]
             ]
         },
@@ -1331,7 +1327,12 @@
             "args": ["$CONTENTS"],
             "code": [
                 ["IMPORT_CHAOS_BAG_FROM_ENCODED_VALUE", "$GAME.firstPlayer", "$CONTENTS", "{{$GAME.arkham.chaosBagCampaignName}} Chaos Bag - {{$GAME.arkham.scenarioDifficulty}}"],
-                ["GAIN_STARTING_RESOURCES"]
+                ["COND",
+                    ["NOT_EQUAL", "$GAME.arkham.scenarioEarlyAction", null],
+                    ["ACTION_LIST", "$GAME.arkham.scenarioEarlyAction"],
+                    ["TRUE"],
+                    ["DO_ASK_FOR_STARTING_PHYSICAL_TRAUMA"]
+                ]
             ]
         },
         "GET_STARTING_RESOURCES": {
