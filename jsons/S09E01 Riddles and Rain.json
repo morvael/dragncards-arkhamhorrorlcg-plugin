@@ -1,0 +1,94 @@
+{
+    "preBuiltDecks": {
+        "Riddles and Rain Scenario": {
+            "label": "Riddles and Rain Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCARLET_KEYS_SCENARIO_INIT", "Riddles and Rain", "Riddles and Rain Scenario Early Init", "Riddles and Rain Scenario Init"]
+            ]
+        },
+        "Riddles and Rain": {
+            "hideFromSearch": true,
+            "label": "Riddles and Rain",
+            "cards": [
+                {"databaseId": "09501", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Riddles and Rain
+                {"databaseId": "09502", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //When It Rains...
+                {"databaseId": "09503", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Figures in the Fog
+                {"databaseId": "09504", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //The Connection
+                {"databaseId": "09505", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Plots and Panic
+                {"databaseId": "09506", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Clues and Capers
+                {"databaseId": "09507", "quantity": 1, "loadGroupId": "sharedActStory"},                                //The Game is Afoot!
+                {"databaseId": "09508", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Eyes in the Tower
+                {"databaseId": "09509", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Caught Red-Handed
+                {"databaseId": "09510", "quantity": 1, "loadGroupId": "sharedLocations", "left": "35%", "top": "43%"},  //Rainy London Streets
+                {"databaseId": "09511", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Big Ben
+                {"databaseId": "09512", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Westminster Abbey
+                {"databaseId": "09513", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Kensington Gardens
+                {"databaseId": "09514", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Tower Bridge
+                {"databaseId": "09515", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Traitors' Gate
+                {"databaseId": "09516", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Tower of London
+                {"databaseId": "09517", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Tower Prison
+                {"databaseId": "09518", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //The Red-Gloved Man: Shrouded in Mystery
+                {"databaseId": "09519a", "quantity": 1, "loadGroupId": "sharedNotInPlay"}                               //The Eye of Ravens: Macabre Ruby Marble
+            ]
+        }
+    },
+    "actionLists": {
+        "Riddles and Rain Scenario Early Init": [
+            ["COND",
+                ["GREATER_THAN", "$GAME.arkham.numPlayers", 1],
+                ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Go alone, as requested.", "Go with backup."], "Riddles and Rain Scenario Early Init Continue 1"],
+                ["TRUE"],
+                ["SCENARIO_SKIP_QUESTION", "Riddles and Rain Scenario Early Init Continue 1"]
+            ]
+        ],
+        "Riddles and Rain Scenario Early Init Continue 1": [
+            ["COND",
+                ["GREATER_THAN", "$GAME.arkham.numPlayers", 1],
+                ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Decide.", ["LIST", "Take his offer.", "Go to London on your own terms."], "Riddles and Rain Scenario Early Init Continue 2"]
+        ],
+        "Riddles and Rain Scenario Early Init Continue 2": [
+            ["LOG", "└── Decision: {{$GAME.arkham.scenarioAnswer2Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["DO_REMOVE_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_tablet", 1],
+                    ["LOG", "└── Tracking Time: Mark 1 time."]
+                ],
+                ["TRUE"],
+                [
+                    ["DO_REMOVE_CHAOS_TOKENS_SCN", "chaos_tablet", 1],
+                    ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1],
+                    ["LOG", "└── Tracking Time: Mark 2 time."]
+                ]
+            ],
+            ["SCENARIO_INIT_RESUME", "Riddles and Rain Scenario Init"]
+        ],
+        "Riddles and Rain Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Riddles and Rain"],
+            ["DO_SET_SPAWN_LOCATION", "09511", 35, 76], //Big Ben
+            ["DO_SET_SPAWN_LOCATION", "09512", 15, 76], //Westminster Abbey
+            ["DO_SET_SPAWN_LOCATION", "09513", 15, 10], //Kensington Gardens
+            ["DO_SET_SPAWN_LOCATION", "09514", 55, 10], //The Tower Bridge
+            ["DO_SET_SPAWN_LOCATION", "09515", 75, 10], //Traitors' Gate
+            ["DO_SET_SPAWN_LOCATION", "09516", 75, 43], //Tower of London
+            ["DO_SET_SPAWN_LOCATION", "09517", 75, 76], //Tower Prison
+            ["DO_LOAD_CARDS_INTO_SCN", "Crimson Conspiracy", "sharedPileA"],
+            ["DO_LOAD_CARDS_SCN", "Dark Veiling"],
+            ["DO_LOAD_CARDS_INTO_SCN", "Outsiders", "sharedPileB"],
+            ["DO_LOAD_CARDS_SCN", "Shadow of a Doubt"],
+            ["DO_LOAD_CARDS_SCN", "Strange Happenings"],
+            ["DO_LOAD_CARDS_SCN", "Chilling Cold"],
+            ["DO_LOAD_CARDS_SCN", "Locked Doors"],
+            ["DO_LOAD_CARDS_SCN", "The Midnight Masks - Treacheries"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Rainy London Streets", 5, 7, 3, 0],
+            ["SET", "/arkham/finalScenarioMessage", "Crimson Conspiracy cards are in Pile A, Outsiders cards are in Pile B. Off Map is “the shadows” (in play)."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}

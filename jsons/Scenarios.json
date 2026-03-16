@@ -257,6 +257,12 @@
                             {"label": "id:theHeartOfMadnessPt1", "deckListId": "The Heart of Madness Pt 1 Scenario"},
                             {"label": "id:theHeartOfMadnessPt2", "deckListId": "The Heart of Madness Pt 2 Scenario"}
                         ]
+                    },
+                    {
+                        "label": "id:theScarletKeys",
+                        "deckLists": [
+                            {"label": "id:riddlesAndRain", "deckListId": "Riddles and Rain Scenario"}
+                        ]
                     }
                 ]
             },
@@ -813,6 +819,9 @@
         },
         "theScarletKeys": {
             "English": "The Scarlet Keys"
+        },
+        "riddlesAndRain": {
+            "English": "Riddles and Rain"
         },
         "theFeastOfHemlockVale": {
             "English": "The Feast of Hemlock Vale"
