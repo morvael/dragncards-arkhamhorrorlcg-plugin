@@ -1,0 +1,131 @@
+{
+    "preBuiltDecks": {
+        "Dead Heat Scenario": {
+            "label": "Dead Heat Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCARLET_KEYS_SCENARIO_INIT", "Dead Heat", "Dead Heat Scenario Early Init", "Dead Heat Scenario Init"]
+            ]
+        },
+        "Dead Heat": {
+            "hideFromSearch": true,
+            "label": "Dead Heat",
+            "cards": [
+                {"databaseId": "09520", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Dead Heat
+                {"databaseId": "09521", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Gnashing Teeth
+                {"databaseId": "09522", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Empty Streets
+                {"databaseId": "09523", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Find Amaranth
+                {"databaseId": "09524", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Ritual of Life and Death
+                {"databaseId": "09525", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Queen of Nothing at All
+                {"databaseId": "09526", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "19%"},  //Marrakesh Railway Station
+                {"databaseId": "09527", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "67%"},  //Jemaa el-Fnaa Square
+                {"databaseId": "09528", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "19%"},  //Saadian's Tombs
+                {"databaseId": "09529", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "67%"},  //Tanneries
+                {"databaseId": "09530", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "19%"},  //Bahia Palace Gardens
+                {"databaseId": "09531", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Marrakesh Railway Station
+                {"databaseId": "09532", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Jemaa el-Fnaa Square
+                {"databaseId": "09533", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Saadian's Tombs
+                {"databaseId": "09534", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Tanneries
+                {"databaseId": "09535", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Bahia Palace Gardens                
+                {"databaseId": "09537", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Amaranth: Lurking Corruption
+                {"databaseId": "09538", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Razin Farhi: Reanimated Artificer
+                {"databaseId": "09541", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Khalid: Beloved Companion
+                {"databaseId": "09540", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Ancient Raider
+                {"databaseId": "09544a", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                              //The Last Blossom: Paracausal Symbiote
+                {"databaseId": "09536", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Save the Civilians
+                {"databaseId": "09539", "quantity": 4, "loadGroupId": "sharedEncounterDeck"},                           //Thrall
+                {"databaseId": "09542", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Famine
+                {"databaseId": "09543", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Cornered!
+            ]
+        }
+    },
+    "actionLists": {
+        "Dead Heat Scenario Early Init": [
+            ["CALCULATOR_PROMPT", "$GAME.firstPlayer", "Enter time passed", 1, 30, 0, "DEAD_HEAT_TIME_CALLBACK", "$GAME.firstPlayer", "", ""]
+        ],
+        "Dead Heat Scenario Early Init Continue 1": [
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDeadHeatTimePassed", 25],
+                ["LOG", "└── Skip this scenario and proceed immediately to Resolution 5."],
+                ["TRUE"],
+                ["SCENARIO_INIT_RESUME", "Dead Heat Scenario Init"]
+            ]
+        ],
+        "Dead Heat Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Dead Heat"],
+            ["DO_SET_SPAWN_LOCATION", "09536", 20, 67], //Save the Civilians
+            ["DO_LOAD_CARDS_SCN", "Scarlet Sorcery"],
+            ["DO_LOAD_CARDS_SCN", "Spreading Corruption"],
+            ["DO_LOAD_CARDS_SCN", "Ghouls"],
+            ["DO_LOAD_CARDS_SCN", "Striking Fear"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Marrakesh Railway Station", 5, 7, 3, 0],
+            ["VAR", "$NUM", ["ADD", "$GAME.arkham.numPlayers", 1]],
+            ["VAR", "$CIVILIANS", ["LIST", "$NUM", "$NUM", "$NUM", "$NUM", "$NUM"]],
+            ["VAR", "$TO_REMOVE", 0],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDeadHeatTimePassed", 18],
+                ["UPDATE_VAR", "$TO_REMOVE", ["MULTIPLY", "$GAME.arkham.numPlayers", 2]],
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDeadHeatTimePassed", 11],
+                ["UPDATE_VAR", "$TO_REMOVE", "$GAME.arkham.numPlayers"]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$TO_REMOVE", 0],
+                [
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_SCENARIO_CARD_ID"], "$TO_REMOVE", true, null],
+                    ["VAR", "$INDEX", 0],
+                    ["WHILE",
+                        ["GREATER_THAN", "$TO_REMOVE", 0],
+                        [
+                            ["UPDATE_VAR", "$CIVILIANS", ["LIST_REPLACE_AT", "$CIVILIANS", "$INDEX", ["SUBTRACT", "$CIVILIANS.[$INDEX]", 1]]],
+                            ["INCREASE_VAR", "$INDEX", 1],
+                            ["COND",
+                                ["GREATER_EQUAL", "$INDEX", 5],
+                                ["UPDATE_VAR", "$INDEX", 0]
+                            ],
+                            ["DECREASE_VAR", "$TO_REMOVE", 1]
+                        ]
+                    ]
+                ]
+            ],
+            ["UPDATE_VAR", "$CIVILIANS", ["SHUFFLE_LIST", "$CIVILIANS"]],
+            ["VAR", "$LOCATIONS", ["LIST", "09526", "09527", "09528", "09529", "09530"]], //Marrakesh Railway Station, Jemaa el-Fnaa Square, Saadian's Tombs, Tanneries, Bahia Palace Gardens
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 5, 1, [
+                ["COND",
+                    ["GREATER_THAN", "$CIVILIANS.[$I]", 0],
+                    ["DO_PLACE_RESOURCES_ON_CARD", "$GAME.firstPlayer", ["GET_NAMED_CARD_ID", "$LOCATIONS.[$I]"], "$CIVILIANS.[$I]", true, null]
+                ]
+            ]],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDeadHeatTimePassed", 15],
+                [
+                    ["DO_DELETE_NAMED_CARDS_SCN", "Find Amaranth"],
+                    ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", "$GAME.arkham.numPlayers"],
+                    ["DO_SPAWN_NAMED_AT_LOCATION_SCN", "Amaranth", "Bahia Palace Gardens", 3, 3, 1],
+                    ["DO_ATTACH_ID_TO_ID", "09544a", "09537", true], //The Last Blossom: Paracausal Symbiote, Amaranth: Lurking Corruption
+                    ["DO_PUT_INTO_PLAY_AT_SCN", ["GET_NAMED_CARD_ID", "Save the Civilians"], 20, 67],
+                    ["DO_MOVE_TO_GROUP_SCN", ["GET_NAMED_CARD_ID", "Khalid"], "sharedEncounterDeck"]
+                ]
+            ],
+            ["SET", "/arkham/replacedLocationsGoTo", "sharedDeckA"],
+            ["SET", "/arkham/finalScenarioMessage", "Abandoned locations are in Deck A. Off Map is “the shadows” (in play). See “Civilians”, “Choosing a Random Location”, and “Replacing Locations.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "DEAD_HEAT_TIME_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ARGS", "$ACTOR_PLAYER", "$SELECTED_VALUE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DEAD_HEAT_TIME_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$ARGS", "DEAD_HEAT_TIME_CALLBACK.ARGS"],
+                ["VALIDATE_NOT_EMPTY", "$SELECTED_VALUE", "DEAD_HEAT_TIME_CALLBACK.SELECTED_VALUE"],
+                ["VAR", "$VALUE", ["CALC", "{{$SELECTED_VALUE}}"]],
+                ["VALIDATE_GT0", "$VALUE", "DEAD_HEAT_TIME_CALLBACK.SELECTED_VALUE"],
+                ["SET", "/arkham/scenarioDeadHeatTimePassed", "$VALUE"],
+                ["LOGF", "{0}{1} set time passed to {2}.", "$ARGS", "$TARGET_PLAYER", "$VALUE"],
+                ["ACTION_LIST", "Dead Heat Scenario Early Init Continue 1"]
+            ]
+        }
+    }
+}

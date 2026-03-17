@@ -557,7 +557,15 @@
                 ["FOR_EACH_VAL", "$CARD", "$REPLACED_ATTACHED", [
                     ["ATTACH_CARD", "$CARD.id", "$TARGET_CARD_ID", ["PROCESS_MAP", {"combine": "$CARD.attachmentDirection"}]]
                 ]],
-                ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}]
+                ["SET", "/cardById/$REPLACED_CARD_ID/targeting", {}],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$REPLACED_CARD.currentFace.type", "Location"],
+                        ["NOT_EQUAL", "$GAME.arkham.replacedLocationsGoTo", null],
+                        ["NOT_EQUAL", "$GAME.arkham.replacedLocationsGoTo", ""]
+                    ],
+                    ["DO_MOVE_TO_GROUP", "$TARGET_PLAYER", "$REPLACED_CARD_ID", "$GAME.arkham.replacedLocationsGoTo", true, null]
+                ]
             ]
         },
         "CAN_REPLACE_CARD_FULLY": {

@@ -139,6 +139,7 @@
                             "finalScenarioMessage": null,                       // text to append to the default text logged after scenario finishes initializing
                             "activeInvestigator": null,                         // name of the player whose turn it is now
                             "playWithEncounterDeckCardRevealed": 0,             // if greater than 0, top card of encounter deck is faceup (A) at all times
+                            "replacedLocationsGoTo": null,                      // if not null, replaced locations will go to this group instead of staying in their original place (behind the card that replaced them)
                             // required by game event handling
                             "executeGameEventDefault": null,                    // single argument (first player is supplied) function name to call after game event processes without being cancelled
                             "executeGameEventCancel": null,                     // single argument (first player is supplied) function name to call after game event processes with being cancelled

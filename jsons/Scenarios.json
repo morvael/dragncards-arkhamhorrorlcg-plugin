@@ -261,7 +261,8 @@
                     {
                         "label": "id:theScarletKeys",
                         "deckLists": [
-                            {"label": "id:riddlesAndRain", "deckListId": "Riddles and Rain Scenario"}
+                            {"label": "id:riddlesAndRain", "deckListId": "Riddles and Rain Scenario"},
+                            {"label": "id:deadHeat", "deckListId": "Dead Heat Scenario"}
                         ]
                     }
                 ]
@@ -822,6 +823,9 @@
         },
         "riddlesAndRain": {
             "English": "Riddles and Rain"
+        },
+        "deadHeat": {
+            "English": "Dead Heat"
         },
         "theFeastOfHemlockVale": {
             "English": "The Feast of Hemlock Vale"
