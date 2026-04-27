@@ -130,13 +130,28 @@
                         ]
                     },
                     {
+                        "label": "id:chapter2CoreDecks",
+                        "deckLists": [
+                            {"label": "id:danielaReyesChapter2StarterDeck", "deckListId": "Daniela Reyes (Chapter 2) Starter Deck"},
+                            {"label": "id:joeDiamondChapter2StarterDeck", "deckListId": "Joe Diamond (Chapter 2) Starter Deck"},
+                            {"label": "id:trishScarboroughChapter2StarterDeck", "deckListId": "Trish Scarborough (Chapter 2) Starter Deck"},
+                            {"label": "id:dexterDrakeChapter2StarterDeck", "deckListId": "Dexter Drake (Chapter 2) Starter Deck"},
+                            {"label": "id:isabelleBarnesChapter2StarterDeck", "deckListId": "Isabelle Barnes (Chapter 2) Starter Deck"}
+                        ]
+                    },
+                    {
                         "label": "id:standaloneDecks",
                         "deckLists": [
                             {"label": "id:nathanielChoStarterDeck", "deckListId": "Nathaniel Cho Starter Deck"},
+                            {"label": "id:tommyMuldoonChapter2StarterDeck", "deckListId": "Tommy Muldoon (Chapter 2) Starter Deck"},
                             {"label": "id:harveyWaltersStarterDeck", "deckListId": "Harvey Walters Starter Deck"},
+                            {"label": "id:carolynFernChapter2StarterDeck", "deckListId": "Carolyn Fern (Chapter 2) Starter Deck"},
                             {"label": "id:winifredHabbamockStarterDeck", "deckListId": "Winifred Habbamock Starter Deck"},
+                            {"label": "id:andrePatelChapter2StarterDeck", "deckListId": "André Patel (Chapter 2) Starter Deck"},
                             {"label": "id:jacquelineFineStarterDeck", "deckListId": "Jacqueline Fine Starter Deck"},
-                            {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"}
+                            {"label": "id:marieLambeauChapter2StarterDeck", "deckListId": "Marie Lambeau (Chapter 2) Starter Deck"},
+                            {"label": "id:stellaClarkStarterDeck", "deckListId": "Stella Clark Starter Deck"},
+                            {"label": "id:miguelDeLaCruzChapter2StarterDeck", "deckListId": "Miguel de la Cruz (Chapter 2) Starter Deck"}
                         ]
                     },
                     {
@@ -572,23 +587,56 @@
         "georgeBarnabyStarterDeck": {
             "English": "George Barnaby Starter Deck"
         },
+        "chapter2CoreDecks": {
+            "English": "Chapter 2 Core Decks"
+        },
+        "danielaReyesChapter2StarterDeck": {
+            "English": "Daniela Reyes (Chapter 2) Starter Deck"
+        },
+        "joeDiamondChapter2StarterDeck": {
+            "English": "Joe Diamond (Chapter 2) Starter Deck"
+        },
+        "trishScarboroughChapter2StarterDeck": {
+            "English": "Trish Scarborough (Chapter 2) Starter Deck"
+        },
+        "dexterDrakeChapter2StarterDeck": {
+            "English": "Dexter Drake (Chapter 2) Starter Deck"
+        },
+        "isabelleBarnesChapter2StarterDeck": {
+            "English": "Isabelle Barnes (Chapter 2) Starter Deck"
+        },
         "standaloneDecks": {
             "English": "Standalone Decks"
         },
         "nathanielChoStarterDeck": {
             "English": "Nathaniel Cho Starter Deck"
         },
+        "tommyMuldoonChapter2StarterDeck": {
+            "English": "Tommy Muldoon (Chapter 2) Starter Deck"
+        },
         "harveyWaltersStarterDeck": {
             "English": "Harvey Walters Starter Deck"
+        },
+        "carolynFernChapter2StarterDeck": {
+            "English": "Carolyn Fern (Chapter 2) Starter Deck"
         },
         "winifredHabbamockStarterDeck": {
             "English": "Winifred Habbamock Starter Deck"
         },
+        "andrePatelChapter2StarterDeck": {
+            "English": "André Patel (Chapter 2) Starter Deck"
+        },
         "jacquelineFineStarterDeck": {
             "English": "Jacqueline Fine Starter Deck"
         },
+        "marieLambeauChapter2StarterDeck": {
+            "English": "Marie Lambeau (Chapter 2) Starter Deck"
+        },
         "stellaClarkStarterDeck": {
             "English": "Stella Clark Starter Deck"
+        },
+        "miguelDeLaCruzChapter2StarterDeck": {
+            "English": "Miguel de la Cruz (Chapter 2) Starter Deck"
         },
         "otherDecks": {
             "English": "Other Decks"
