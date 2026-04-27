@@ -304,7 +304,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK.TARGET_PLAYER"],
                 ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "BEYOND_THE_GATES_OF_SLEEP_VETERAN_SELECTION_CALLBACK.SELECTED_CARDS"],
                 ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_SEND_CARD_TO_HAND", "$TARGET_PLAYER", "$CARD.id", true, null]
+                    ["DO_TAKE_CARD_TO_HAND", "$TARGET_PLAYER", "$CARD.id", true, null]
                 ]],
                 ["BEYOND_THE_GATES_OF_SLEEP_DREAM_CHOICE_ADVANCE", "$TARGET_PLAYER"]
             ]

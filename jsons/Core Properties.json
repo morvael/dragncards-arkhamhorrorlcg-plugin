@@ -186,6 +186,7 @@
                             "defaultMaxHandSize": 8,                            // default max hand size checked during upkeep phase
                             "maxHandSize": 0,                                   // modifier to max hand size checked during upkeep phase
                             "handSizeCountUnique": 0,                           // if greater than 0, each title counts only once when checking max hand size during upkeep phase
+                            "shuffleBackFromMulligan": null,                    // list of cards to shuffle back from hand to deck from paused mulligan due to starting cards handling
                             // required by player event handling
                             "executePlayerEventDefault": null,                  // single argument (this player is supplied) function name to call after player event processes without being cancelled
                             "executePlayerEventCancel": null,                   // single argument (this player is supplied) function name to call after player event processes with being cancelled

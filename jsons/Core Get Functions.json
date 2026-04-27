@@ -579,6 +579,23 @@
                     ]
                 ]
             ]
+        },
+        "CARDS_TO_CARD_IDS": {
+            "args": ["$CARDS"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$CARDS", null],
+                    null,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$CARD_IDS", ["LIST"]],
+                        ["FOR_EACH_VAL", "$CARD", "$CARDS", [
+                            ["UPDATE_VAR", "$CARD_IDS", ["APPEND", "$CARD_IDS", "$CARD.id"]]
+                        ]],
+                        "$CARD_IDS"
+                    ]
+                ]
+            ]
         }
     }
 }

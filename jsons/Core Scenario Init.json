@@ -1185,6 +1185,7 @@
                                     ["SET", "/playerData/$PLAYER_I/arkham/defaultMaxHandSize", 8],
                                     ["SET", "/playerData/$PLAYER_I/arkham/maxHandSize", 0],
                                     ["SET", "/playerData/$PLAYER_I/arkham/handSizeCountUnique", 0],
+                                    ["SET", "/playerData/$PLAYER_I/arkham/shuffleBackFromMulligan", null],
                                     ["INIT_ALL_PLAYER_EVENTS", "$PLAYER_I"],
                                     ["VAR", "$INVESTIGATOR_I", ["GET_INVESTIGATOR", "$PLAYER_I"]],
                                     ["SET", "/cardById/$INVESTIGATOR_I.id/eliminated", false],
@@ -1476,6 +1477,8 @@
         "DRAW_MULLIGAN_HAND": {
             "args": ["$PLAYER_I", "$SELECTED_CARDS"],
             "code": [
+                ["VAR", "$PLAYER_I_DECK", ["GET_CONTROLLER_DECK", "$PLAYER_I"]],
+                ["VAR", "$SHUFFLE_BACK", false],
                 ["COND",
                     ["AND",
                         ["NOT_EQUAL", "$SELECTED_CARDS", null],
@@ -1483,13 +1486,53 @@
                     ],
                     [
                         ["LOGF", "{0} takes a mulligan.", "$PLAYER_I"],
-                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", ["GET_CONTROLLER_DECK", "$PLAYER_I"], ["LENGTH", "$SELECTED_CARDS"], true, true, null],
-                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_I", "$SELECTED_CARDS", ["GET_CONTROLLER_DECK", "$PLAYER_I"], true, null]
+                        ["DO_DRAW_CARDS_EXT", "$PLAYER_I", "$PLAYER_I_DECK", ["LENGTH", "$SELECTED_CARDS"], true, true, null],
+                        ["UPDATE_VAR", "$SHUFFLE_BACK", true]
                     ],
                     ["TRUE"],
                     ["LOGF", "{0} does not take a mulligan.", "$PLAYER_I"]
                 ],
-                ["OPENING_HAND_FINISHED", "$PLAYER_I"]
+                ["VAR", "$STARTING_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "$PLAYER_I_DECK"],
+                    ["EQUAL", "$CARD.sides.A.starting", true]
+                ]]],
+                ["COND",
+                    ["GREATER_THAN", ["LENGTH", "$STARTING_CARDS"], 0],
+                    [
+                        ["SET", "/playerData/$PLAYER_I/arkham/shuffleBackFromMulligan", ["CARDS_TO_CARD_IDS", "$SELECTED_CARDS"]],
+                        ["DO_SHOW_SELECTION", "$PLAYER_I", "$PLAYER_I_DECK",
+                            "$STARTING_CARDS",
+                            null,
+                            "Optionally select a single starting card to add it to your hand.",
+                            0, 1, false, "STARTING_CARD_SELECTION_CALLBACK", null]
+                    ],
+                    ["EQUAL", "$SHUFFLE_BACK", true],
+                    [
+                        ["DO_SHUFFLE_LIST_INTO_GROUP", "$PLAYER_I", "$SELECTED_CARDS", "$PLAYER_I_DECK", true, null],
+                        ["OPENING_HAND_FINISHED", "$PLAYER_I"]
+                    ],
+                    ["TRUE"],
+                    ["OPENING_HAND_FINISHED", "$PLAYER_I"]
+                ]
+            ]
+        },
+        "STARTING_CARD_SELECTION_CALLBACK": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_CARD_ID", "$SELECTED_CARDS"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "STARTING_CARD_SELECTION_CALLBACK.TARGET_PLAYER"],
+                ["VALIDATE_NOT_NULL", "$SELECTED_CARDS", "STARTING_CARD_SELECTION_CALLBACK.SELECTED_CARDS"],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_TAKE_CARD_TO_HAND", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                ["VAR", "$CARDS_TO_SHUFFLE_BACK", ["CARD_IDS_TO_CARDS", "$GAME.playerData.$TARGET_PLAYER.arkham.shuffleBackFromMulligan"]],
+                ["COND",
+                    ["AND",
+                        ["NOT_EQUAL", "$CARDS_TO_SHUFFLE_BACK", null],
+                        ["GREATER_THAN", ["LENGTH", "$CARDS_TO_SHUFFLE_BACK"], 0]
+                    ],
+                    ["DO_SHUFFLE_LIST_INTO_GROUP", "$TARGET_PLAYER", "$CARDS_TO_SHUFFLE_BACK", ["GET_CONTROLLER_DECK", "$TARGET_PLAYER"], true, null]
+                ],
+                ["OPENING_HAND_FINISHED", "$TARGET_PLAYER"]
             ]
         },
         "OPENING_HAND_FINISHED": {

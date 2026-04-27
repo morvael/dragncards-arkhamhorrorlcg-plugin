@@ -518,6 +518,32 @@
                 ]
             ]
         },
+        "CAN_TAKE_CARD_TO_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "CAN_TAKE_CARD_TO_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "CAN_TAKE_CARD_TO_HAND.TARGET_CARD_ID"]],
+                ["OR",
+                    ["GET_UNSAFE_ALLOWED", "$ACTOR_PLAYER"],
+                    ["NOT_EQUAL", "$TARGET_CARD.currentFace.type", "FirstInvestigatorToken"]
+                ]
+            ]
+        },
+        "DO_TAKE_CARD_TO_HAND": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_TAKE_CARD_TO_HAND.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_TAKE_CARD_TO_HAND.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_TAKE_CARD_TO_HAND.LOG_EVENT"],
+                ["COND",
+                    ["CAN_TAKE_CARD_TO_HAND", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$ACTOR_PLAYER"],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "take {{$TARGET_CARD.currentFace.name}} into hand.", "takes {{$TARGET_CARD.currentFace.name}} into hand."],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", ["GET_CONTROLLER_HAND", "$TARGET_PLAYER"], -1]
+                    ]
+                ]
+            ]
+        },
         "PRIVATE_DO_REPLACE_CARD_FULLY": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_CARD", "$REPLACED_CARD_ID", "$REPLACED_CARD", "$LOG_EVENT", "$ACTOR_PLAYER", "$FLIP_LOCATION"],
             "code": [
