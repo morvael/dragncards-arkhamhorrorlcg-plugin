@@ -28,7 +28,7 @@
                 {"databaseId": "09532", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Jemaa el-Fnaa Square
                 {"databaseId": "09533", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Saadian's Tombs
                 {"databaseId": "09534", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Tanneries
-                {"databaseId": "09535", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Bahia Palace Gardens                
+                {"databaseId": "09535", "quantity": 1, "loadGroupId": "sharedDeckA"},                                   //Bahia Palace Gardens
                 {"databaseId": "09537", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Amaranth: Lurking Corruption
                 {"databaseId": "09538", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Razin Farhi: Reanimated Artificer
                 {"databaseId": "09541", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Khalid: Beloved Companion
