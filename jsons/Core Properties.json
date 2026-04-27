@@ -30,6 +30,7 @@
         "encounterNumber":       {"type": "integer", "default": 0},
         "unique":                {"type": "boolean", "default": false},
         "permanent":             {"type": "boolean", "default": false},
+        "starting":              {"type": "boolean", "default": false},
         "exceptional":           {"type": "boolean", "default": false},
         "myriad":                {"type": "boolean", "default": false},
         "faction":               {"type": "string",  "default": ""},
