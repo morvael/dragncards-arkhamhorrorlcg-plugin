@@ -9,7 +9,7 @@
                 ["VAR", "$PARALLEL_CONTENT_INVESTIGATORS", ["GET_PARALLEL_CONTENT_INVESTIGATORS"]],
                 ["COND",
                     ["GREATER_THAN", ["LENGTH", "$PARALLEL_CONTENT_INVESTIGATORS"], 0],
-                    ["SCENARIO_INIT", "Challenge Scenarios E", "Challenge Scenarios", "Enthralling Encore", null, "Enthralling Encore Scenario Init"],
+                    ["SCENARIO_INIT", "Enthralling Encore", "Challenge Scenarios", "Enthralling Encore", null, "Enthralling Encore Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── At least 1 investigator with parallel content must be chosen when playing this scenario."]
                 ]

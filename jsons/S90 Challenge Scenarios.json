@@ -1,8 +1,8 @@
 {
     "preBuiltDecks": {
-        "Challenge Scenarios A Chaos Bag - Easy": {
+        "Challenge Scenarios Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios A Chaos Bag - Easy",
+            "label": "Challenge Scenarios Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -16,9 +16,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios A Chaos Bag - Standard": {
+        "Challenge Scenarios Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios A Chaos Bag - Standard",
+            "label": "Challenge Scenarios Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -34,9 +34,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios A Chaos Bag - Hard": {
+        "Challenge Scenarios Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios A Chaos Bag - Hard",
+            "label": "Challenge Scenarios Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -53,9 +53,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios A Chaos Bag - Expert": {
+        "Challenge Scenarios Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios A Chaos Bag - Expert",
+            "label": "Challenge Scenarios Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -74,9 +74,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios B Chaos Bag - Easy": {
+        "Red Tide Rising Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios B Chaos Bag - Easy",
+            "label": "Red Tide Rising Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -90,9 +90,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios B Chaos Bag - Standard": {
+        "Red Tide Rising Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios B Chaos Bag - Standard",
+            "label": "Red Tide Rising Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -108,9 +108,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios B Chaos Bag - Hard": {
+        "Red Tide Rising Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios B Chaos Bag - Hard",
+            "label": "Red Tide Rising Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -127,9 +127,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios B Chaos Bag - Expert": {
+        "Red Tide Rising Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios B Chaos Bag - Expert",
+            "label": "Red Tide Rising Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -148,9 +148,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios C Chaos Bag - Easy": {
+        "Laid to Rest Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios C Chaos Bag - Easy",
+            "label": "Laid to Rest Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -164,9 +164,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios C Chaos Bag - Standard": {
+        "Laid to Rest Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios C Chaos Bag - Standard",
+            "label": "Laid to Rest Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -182,9 +182,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios C Chaos Bag - Hard": {
+        "Laid to Rest Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios C Chaos Bag - Hard",
+            "label": "Laid to Rest Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -201,9 +201,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios C Chaos Bag - Expert": {
+        "Laid to Rest Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios C Chaos Bag - Expert",
+            "label": "Laid to Rest Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -222,9 +222,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios D Chaos Bag - Easy": {
+        "Relics of the Past Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios D Chaos Bag - Easy",
+            "label": "Relics of the Past Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -239,9 +239,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios D Chaos Bag - Standard": {
+        "Relics of the Past Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios D Chaos Bag - Standard",
+            "label": "Relics of the Past Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -257,9 +257,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios D Chaos Bag - Hard": {
+        "Relics of the Past Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios D Chaos Bag - Hard",
+            "label": "Relics of the Past Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -276,9 +276,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios D Chaos Bag - Expert": {
+        "Relics of the Past Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios D Chaos Bag - Expert",
+            "label": "Relics of the Past Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
@@ -295,9 +295,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios E Chaos Bag - Easy": {
+        "Enthralling Encore Chaos Bag - Easy": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios E Chaos Bag - Easy",
+            "label": "Enthralling Encore Chaos Bag - Easy",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
@@ -311,9 +311,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios E Chaos Bag - Standard": {
+        "Enthralling Encore Chaos Bag - Standard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios E Chaos Bag - Standard",
+            "label": "Enthralling Encore Chaos Bag - Standard",
             "cards": [
                 {"databaseId": "chaos_p1", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_p0", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -329,9 +329,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios E Chaos Bag - Hard": {
+        "Enthralling Encore Chaos Bag - Hard": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios E Chaos Bag - Hard",
+            "label": "Enthralling Encore Chaos Bag - Hard",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 3, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},
@@ -347,9 +347,9 @@
                 {"databaseId": "chaos_elder_sign", "quantity": 1, "loadGroupId": "sharedChaosBag"}
             ]
         },
-        "Challenge Scenarios E Chaos Bag - Expert": {
+        "Enthralling Encore Chaos Bag - Expert": {
             "hideFromSearch": true,
-            "label": "Challenge Scenarios E Chaos Bag - Expert",
+            "label": "Enthralling Encore Chaos Bag - Expert",
             "cards": [
                 {"databaseId": "chaos_p0", "quantity": 1, "loadGroupId": "sharedChaosBag"},
                 {"databaseId": "chaos_m1", "quantity": 2, "loadGroupId": "sharedChaosBag"},

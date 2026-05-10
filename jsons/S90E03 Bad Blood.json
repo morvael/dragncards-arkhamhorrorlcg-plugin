@@ -9,7 +9,7 @@
                 ["VAR", "$AGNES_BAKER", ["GET_NAMED_CARD", "Agnes Baker"]],
                 ["COND",
                     ["NOT_EQUAL", "$AGNES_BAKER", null],
-                    ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "Bad Blood", null, "Bad Blood Scenario Init"],
+                    ["SCENARIO_INIT", "Challenge Scenarios", "Challenge Scenarios", "Bad Blood", null, "Bad Blood Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── Agnes Baker must be chosen as one of the investigators when playing this scenario."]
                 ]

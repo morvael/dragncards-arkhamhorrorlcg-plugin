@@ -9,7 +9,7 @@
                 ["VAR", "$ROLAND_BANKS", ["GET_NAMED_CARD", "Roland Banks"]],
                 ["COND",
                     ["NOT_EQUAL", "$ROLAND_BANKS", null],
-                    ["SCENARIO_INIT", "Challenge Scenarios A", "Challenge Scenarios", "By the Book", null, "By the Book Scenario Init"],
+                    ["SCENARIO_INIT", "Challenge Scenarios", "Challenge Scenarios", "By the Book", null, "By the Book Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── Roland Banks must be chosen as one of the investigators when playing this scenario."]
                 ]

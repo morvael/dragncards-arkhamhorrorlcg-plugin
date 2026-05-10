@@ -9,7 +9,7 @@
                 ["VAR", "$MONTEREY_JACK", ["GET_NAMED_CARD", "Monterey Jack"]],
                 ["COND",
                     ["NOT_EQUAL", "$MONTEREY_JACK", null],
-                    ["SCENARIO_INIT", "Challenge Scenarios D", "Challenge Scenarios", "Relics of the Past", null, "Relics of the Past Scenario Init"],
+                    ["SCENARIO_INIT", "Relics of the Past", "Challenge Scenarios", "Relics of the Past", null, "Relics of the Past Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── Monterey Jack must be chosen as one of the investigators when playing this scenario."]
                 ]

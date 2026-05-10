@@ -9,7 +9,7 @@
                 ["VAR", "$WENDY_ADAMS", ["GET_NAMED_CARD", "Wendy Adams"]],
                 ["COND",
                     ["NOT_EQUAL", "$WENDY_ADAMS", null],
-                    ["SCENARIO_INIT", "Challenge Scenarios B", "Challenge Scenarios", "Red Tide Rising", null, "Red Tide Rising Scenario Init"],
+                    ["SCENARIO_INIT", "Red Tide Rising", "Challenge Scenarios", "Red Tide Rising", null, "Red Tide Rising Scenario Init"],
                     ["TRUE"],
                     ["LOG", "└── Wendy Adams must be chosen as one of the investigators when playing this scenario."]
                 ]

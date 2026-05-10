@@ -12,7 +12,7 @@
                     [
                         ["COND",
                             ["EQUAL", ["CAN_SETUP_PARALLEL_JIM_CULVER_SPIRIT_DECK", "$JIM_CULVER"], true],
-                            ["SCENARIO_INIT", "Challenge Scenarios C", "Challenge Scenarios", "Laid to Rest", null, "Laid to Rest Scenario Init"],
+                            ["SCENARIO_INIT", "Laid to Rest", "Challenge Scenarios", "Laid to Rest", null, "Laid to Rest Scenario Init"],
                             ["TRUE"],
                             ["LOG", "└── Jim Culver must have a spirit deck, regardless of which version of Jim Culver is being played."]
                         ]
