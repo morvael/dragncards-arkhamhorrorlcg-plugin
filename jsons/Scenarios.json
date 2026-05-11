@@ -365,7 +365,8 @@
                     {"label": "id:fortuneAndFollyPt1", "deckListId": "Fortune and Folly Pt 1 Scenario"},
                     {"label": "id:fortuneAndFollyPt2", "deckListId": "Fortune and Folly Pt 2 Scenario"},
                     {"label": "id:theBlobThatAteEverythingElse", "deckListId": "The Blob That Ate Everything Else Scenario"},
-                    {"label": "id:theMidwinterGala", "deckListId": "The Midwinter Gala Scenario"}
+                    {"label": "id:theMidwinterGala", "deckListId": "The Midwinter Gala Scenario"},
+                    {"label": "id:filmFatale", "deckListId": "Film Fatale Scenario"}
                 ]
             },
             {
@@ -1054,6 +1055,9 @@
         },
         "theMidwinterGala": {
             "English": "The Midwinter Gala"
+        },
+        "filmFatale": {
+            "English": "Film Fatale"
         },
         "challengeScenarios": {
             "English": "Challenge Scenarios"

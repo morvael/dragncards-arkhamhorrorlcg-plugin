@@ -1,0 +1,619 @@
+{
+    "preBuiltDecks": {
+        "Film Fatale Scenario": {
+            "label": "Film Fatale Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Film Fatale", "Side Stories", "Film Fatale", null, "Film Fatale Scenario Init"]
+            ]
+        },
+        "Film Fatale": {
+            "hideFromSearch": true,
+            "label": "Film Fatale",
+            "cards": [
+                {"databaseId": "72001", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Film Fatale
+                {"databaseId": "72002", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Showbusiness As Usual
+                {"databaseId": "72003", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Colliding Realities
+                {"databaseId": "72004", "quantity": 1, "loadGroupId": "sharedActStory"},                                //André's Request
+                {"databaseId": "72008", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "19%"},  //Central Lot: Quiet on Set
+                {"databaseId": "72009", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "67%"},  //Space Set
+                {"databaseId": "72010", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "67%"},  //Jungle Set
+                {"databaseId": "72011", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "67%"},  //Gothic Set
+                {"databaseId": "72024", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //André Patel: Made for the Spotlight
+                {"databaseId": "72025", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //A Cosmic Journey
+                {"databaseId": "72026", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //From Whence They Came
+                {"databaseId": "72027", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //High Ruler's Bastion
+                {"databaseId": "72028", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Teetawn Passage
+                {"databaseId": "72029", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Ritual Site Teetawn
+                {"databaseId": "72030", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Tothis Barrens
+                {"databaseId": "72031", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Ritual Site Tothis
+                {"databaseId": "72032", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Saturnite Monarch: Gracious Host
+                {"databaseId": "72033", "quantity": 2, "loadGroupId": "sharedPileA"},                                   //Saturnite Drudge Militia
+                {"databaseId": "72034", "quantity": 2, "loadGroupId": "sharedPileA"},                                   //Lost Asteroid
+                {"databaseId": "72035", "quantity": 2, "loadGroupId": "sharedPileA"},                                   //Celestial Shower
+                {"databaseId": "72036", "quantity": 1, "loadGroupId": "sharedPileA"},                                   //Rocket Ship: Rattling with Energy
+                {"databaseId": "72037", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //The Forgotten Island
+                {"databaseId": "72038", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Destroy the Source
+                {"databaseId": "72039", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Western Ridge
+                {"databaseId": "72040", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Tar Pit
+                {"databaseId": "72041", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Eastern Ridge
+                {"databaseId": "72042", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Jungle River
+                {"databaseId": "72043", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Ruins of the Serpent King
+                {"databaseId": "72044", "quantity": 1, "loadGroupId": "sharedPileB"},                                   //Allosaurus: Indomitable Predator
+                {"databaseId": "72045", "quantity": 3, "loadGroupId": "sharedPileB"},                                   //Dromaeosaurus
+                {"databaseId": "72046", "quantity": 2, "loadGroupId": "sharedPileB"},                                   //Primordial Terror
+                {"databaseId": "72047", "quantity": 2, "loadGroupId": "sharedPileB"},                                   //Unexpected Transformation
+                {"databaseId": "72048", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //The Abominable Contessa
+                {"databaseId": "72049", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Bloodbath
+                {"databaseId": "72050", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Castle Hallways: Seemingly Endless
+                {"databaseId": "72051", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Catacombs: Stinks of Death
+                {"databaseId": "72052", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Clock Tower: Incessantly Ticking
+                {"databaseId": "72053", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Moonlit Garden: Poisoned Beauty
+                {"databaseId": "72054", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Throne of Blood: Red as Blood, Black as Night
+                {"databaseId": "72055", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //The Contessa: Needlessly Smug
+                {"databaseId": "72056", "quantity": 2, "loadGroupId": "sharedPileC"},                                   //Vampire Thrall
+                {"databaseId": "72057", "quantity": 1, "loadGroupId": "sharedPileC"},                                   //Werewolf
+                {"databaseId": "72058", "quantity": 2, "loadGroupId": "sharedPileC"},                                   //Hellfire
+                {"databaseId": "72059", "quantity": 2, "loadGroupId": "sharedPileC"},                                   //Vampire's Kiss
+                {"databaseId": "72012", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Flip the Script
+                {"databaseId": "72013", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Found Footage
+                {"databaseId": "72014", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Action!
+                {"databaseId": "72015", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Break a Leg!
+                {"databaseId": "72016", "quantity": 3, "loadGroupId": "sharedEncounterDeck"},                           //Bleeding Reality
+                {"databaseId": "72017", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Last Looks
+                {"databaseId": "72018", "quantity": 2, "loadGroupId": "sharedEncounterDeck"},                           //Creature Feature
+                {"databaseId": "72019", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Possessed Extra
+                {"databaseId": "72020", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Possessed Extra
+                {"databaseId": "72021", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Possessed Extra
+                {"databaseId": "72022", "quantity": 1, "loadGroupId": "sharedEncounterDeck"},                           //Erika Strand: Possessed Producer
+                {"databaseId": "72023", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Ghost Light
+            ]
+        }
+    },
+    "actionLists": {
+        "Film Fatale Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Film Fatale"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Central Lot", 5, 7, 3, 0],
+            ["VAR", "$CENTRAL_LOT_ID", ["GET_NAMED_CARD_ID", "Central Lot: Quiet on Set"]],
+            ["VAR", "$PROPS", ["SHUFFLE_LIST", ["LIST", "72005", "72006", "72007"]]],  //Helios Telescope: Gate to the Cosmos, Staff of the Serpent: Relic of the Past, Accursed Cape: Shroud of Chaos
+            ["FOR_EACH_VAL", "$PROP_ID", "$PROPS", [
+                ["DO_CREATE_CARDS_SCN", "Prop", "$PROP_ID", 1, "sharedLocations"],
+                ["VAR", "$PROP_ID", "{{$GAME.lastLoadedCardIds.[0]}}"],
+                ["DO_FLIP_FACEDOWN", "$GAME.firstPlayer", "$PROP_ID", false, null],
+                ["DO_ATTACH_CARD_FACEDOWN", "$GAME.firstPlayer", "$PROP_ID", "$CENTRAL_LOT_ID", true, null]
+            ]],
+            ["SET", "/arkham/scenarioFilmFataleAct2Setup", false],
+            ["SET", "/arkham/scenarioFilmFataleAct3Setup", false],
+            ["SET", "/arkham/finalScenarioMessage", "Cosmic Journey cards are in Pile A, Forgotten Island cards are in Pile B, Abominable Contessa cards are in Pile C. See “Alert”, “Combination Tests”, “Elusive”, “Patrol”, and “Props.”"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    },
+    "functions": {
+        "FILM_FATALE_SETUP_ACT_2_HELPER_1": {
+            "args": ["$TARGET_PLAYER", "$PROP_CARD_ID", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2_HELPER_1.TARGET_PLAYER"],
+                ["VAR", "$PROP_CARD", ["GET_CARD_AND_VALIDATE", "$PROP_CARD_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_1.PROP_CARD_ID"]],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_1.TARGET_CARD_ID"]],
+                ["VALIDATE_GE0", "$LEFT", "FILM_FATALE_SETUP_ACT_2_HELPER_1.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "FILM_FATALE_SETUP_ACT_2_HELPER_1.TOP"],
+                //Each investigator loses all of their clues.
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
+                //If there are any remaining cards beneath Central Lot, set them aside, out of play.
+                ["VAR", "$SELECTED_CARDS", ["GET_ATTACHED_CARDS", ["GET_NAMED_CARD_ID", "Central Lot: Quiet on Set"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null],
+                    ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$CARD.id", false, null]
+                ]],
+                //Check the victory display. If there are three Prop assets in the victory display, add a “0” token to the chaos bag and choose one Prop to set aside, out of play .
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Prop."]
+                ]]],
+                ["COND",
+                    ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 3],
+                    ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_p0", 1]
+                ],
+                // (technical: make sure required prop card is set aside)
+                ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$PROP_CARD_ID", "sharedNotInPlay"],
+                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$PROP_CARD_ID", false, null],
+                //Discard each enemy from play.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Enemy"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DISCARD_CARD_ACT", "$TARGET_PLAYER", "$CARD.id"]
+                ]],
+                //Move each investigator to <target card> and...
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$TARGET_CARD_ID", true, null]
+                ]],
+                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", true, null],
+                //...set each other Set location aside, out of play, discarding all tokens and cards at those locations.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["NOT_EQUAL", "$CARD.id", "$TARGET_CARD_ID"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Set."]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_FORCE_DISCARD_ALL_ATTACHED_CARDS", "$TARGET_PLAYER", "$CARD.id", true, null],
+                    ["DO_REMOVE_ALL_TOKENS_FROM_CARD", "$TARGET_PLAYER", "$CARD.id", true, null],
+                    ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$CARD.id", "sharedNotInPlay"],
+                    ["COND",
+                        ["NOT_EQUAL", "$CARD.sides.A.databaseId", "72008"], //Central Lot: Quiet on Set
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CARD.id", false, null]
+                    ]
+                ]]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_2_HELPER_2": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2_HELPER_2.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_2.TARGET_CARD_ID"]],
+                //Place clues on <target card> up to its clue value.
+                ["VAR", "$CLUES_TO_ADD", ["SUBTRACT", ["GET_CARD_CLUES_REQUIREMENT", "$TARGET_CARD_ID"], ["GET_CLUES_ON_CARD", "$TARGET_CARD_ID"]]],
+                ["COND",
+                    ["GREATER_THAN", "$CLUES_TO_ADD", 0],
+                    ["DO_PLACE_CLUES_ON_CARD", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$CLUES_TO_ADD", true, null]
+                ]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_2_MOVE_CARDS": {
+            "args": ["$TARGET_PLAYER", "$SOURCE_GROUP_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2_MOVE_CARDS.TARGET_PLAYER"],
+                ["VAR", "$SOURCE_GROUP", ["GET_GROUP_AND_VALIDATE", "$SOURCE_GROUP_ID", "FILM_FATALE_SETUP_ACT_2_MOVE_CARDS.SOURCE_GROUP_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "FILM_FATALE_SETUP_ACT_2_MOVE_CARDS.TARGET_GROUP_ID"]],
+                ["VAR", "$DATABASE_IDS", ["GET_UNIQUE_DATABASE_IDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.sides.B.name", "Encounter Card"],
+                    ["EQUAL", "$CARD.groupId", "$SOURCE_GROUP_ID"]
+                ]]]],
+                ["FOR_EACH_VAL", "$DATABASE_ID", "$DATABASE_IDS", [
+                    ["DO_MOVE_NAMED_DECK_CARDS_ACT", "$TARGET_PLAYER", "$DATABASE_ID", "$SOURCE_GROUP_ID", 10, "$TARGET_GROUP_ID"]
+                ]]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_2_HELPER_3": {
+            "args": ["$TARGET_PLAYER", "$ACT_2_NAME", "$ACT_3_NAME", "$MAIN_GROUP_ID", "$GROUP_A_ID", "$GROUP_B_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2_HELPER_3.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$ACT_2_NAME", "FILM_FATALE_SETUP_ACT_2_HELPER_3.ACT_2_NAME"],
+                ["VALIDATE_NOT_EMPTY", "$ACT_3_NAME", "FILM_FATALE_SETUP_ACT_2_HELPER_3.ACT_3_NAME"],
+                ["VAR", "$MAIN_GROUP", ["GET_GROUP_AND_VALIDATE", "$MAIN_GROUP_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_3.MAIN_GROUP_ID"]],
+                ["VAR", "$GROUP_A", ["GET_GROUP_AND_VALIDATE", "$GROUP_A_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_3.GROUP_A_ID"]],
+                ["VAR", "$GROUP_B", ["GET_GROUP_AND_VALIDATE", "$GROUP_B_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_3.GROUP_B_ID"]],
+                //Add <act 2> and <act 3> to the current act deck.
+                ["DO_MOVE_TO_GROUP_END_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "$ACT_2_NAME"], "sharedActStory"],
+                ["DO_MOVE_TO_GROUP_END_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "$ACT_3_NAME"], "sharedActStory"],
+                //Shuffle each remaining card in the <main group> into the encounter deck, along with the encounter discard pile.
+                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$MAIN_GROUP_ID", "sharedEncounterDeck"],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
+                //Gather each single-sided encounter card from <group A> and <group B>. Shuffle them together to make the “Reel deck.”
+                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_A_ID", "sharedDeckB"],
+                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_B_ID", "sharedDeckB"],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedDeckB", true, null]
+            ]
+        },
+        "FILM_FATALE_SETUP_COSMIC_JOURNEY": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_COSMIC_JOURNEY.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 2 (A Cosmic Journey).", "$TARGET_PLAYER"],
+                ["VAR", "$SPACE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Space Set"]],
+                ["VAR", "$HIGH_RULERS_BASTION_ID", ["GET_NAMED_CARD_ID", "High Ruler's Bastion"]],
+                ["VAR", "$HELIOS_TELESCOPE_ID", ["GET_NAMED_CARD_ID", "Helios Telescope: Gate to the Cosmos"]],
+                //Discard each enemy from play. Move each investigator to Space Set and set each other Set location aside, out of play, discarding all tokens and cards at those locations.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_1", "$TARGET_PLAYER", "$HELIOS_TELESCOPE_ID", "$SPACE_SET_ID", 35, 10],
+                //Put each location from the Cosmic Journey encounter set into play.
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$HIGH_RULERS_BASTION_ID", 35, 43],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Teetawn Passage"], 10, 43],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Ritual Site Teetawn"], 10, 76],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Tothis Barrens"], 60, 43],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Ritual Site Tothis"], 60, 76],
+                //Put the Rocket Ship story asset into play at Space Set. Each investigator enters Rocket Ship.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "Rocket Ship: Rattling with Energy", "$SPACE_SET_ID", 3, 3, 1],
+                //Place clues on Space Set up to its clue value.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_2", "$TARGET_PLAYER", "$SPACE_SET_ID"],
+                //Put the Saturnite Monarch enemy into play at High Ruler’s Bastion, (Gracious Host) side faceup.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "Saturnite Monarch: Gracious Host", "$HIGH_RULERS_BASTION_ID", 3, 3, 1],
+                //Put the set-aside Helios Telescope story asset into play next to the act deck.
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$HELIOS_TELESCOPE_ID", 80, 5],
+                //Add act 2a—A Cosmic Journey and act 3a—From Whence They Came to the current act deck.
+                //Shuffle each remaining card in the Cosmic Journey encounter set into the encounter deck, along with the encounter discard pile.
+                //Gather each single-sided encounter card from the set-aside Forgotten Island and Abominable Contessa encounter sets. Shuffle them together to make the “Reel deck.” Place the Reel deck next to the scenario reference card.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_3", "$TARGET_PLAYER", "A Cosmic Journey", "From Whence They Came", "sharedPileA", "sharedPileB", "sharedPileC"],
+                //Add 2 tablet tokens to the chaos bag.
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_tablet", 2],
+                //
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["LOGF", "└── Deck B is the Reel deck. Each investigator is in the Rocket Ship. See “Vehicles.” Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
+                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+            ]
+        },
+        "FILM_FATALE_SETUP_FORGOTTEN_ISLAND": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_FORGOTTEN_ISLAND.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 2 (The Forgotten Island).", "$TARGET_PLAYER"],
+                ["VAR", "$JUNGLE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Jungle Set"]],
+                ["VAR", "$JUNGLE_RIVER_ID", ["GET_NAMED_CARD_ID", "Jungle River"]],
+                ["VAR", "$RUINS_OF_THE_SERPENT_KING_ID", ["GET_NAMED_CARD_ID", "Ruins of the Serpent King"]],
+                ["VAR", "$STAFF_OF_THE_SERPENT_ID", ["GET_NAMED_CARD_ID", "Staff of the Serpent: Relic of the Past"]],
+                //Discard each enemy from play. Move each investigator to Jungle Set and set each other Set location aside, out of play, discarding all tokens and cards at those locations.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_1", "$TARGET_PLAYER", "$STAFF_OF_THE_SERPENT_ID", "$JUNGLE_SET_ID", 15, 43],
+                //Put each location in the Forgotten Island encounter set into play.
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Western Ridge"], 35, 43],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Tar Pit"], 55, 10],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Eastern Ridge"], 75, 43],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$JUNGLE_RIVER_ID", 55, 76],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$RUINS_OF_THE_SERPENT_KING_ID", 55, 43],
+                //Place 4 resources on Ruins of the Serpent King, as seals.
+                ["DO_PLACE_RESOURCES_ON_CARD", "$TARGET_PLAYER", "$RUINS_OF_THE_SERPENT_KING_ID", 4, true, null],
+                //Put the set-aside Staff of the Serpent story asset into play at Ruins of the Serpent King.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "$STAFF_OF_THE_SERPENT_ID", "$RUINS_OF_THE_SERPENT_KING_ID", 3, 3, 1],
+                //Spawn the double-sided Allosaurus enemy at Jungle River, (Indomitable Predator) side faceup.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "Allosaurus: Indomitable Predator", "$JUNGLE_RIVER_ID", 3, 3, 1],
+                //Add act 2a—The Forgotten Island and act 3a—Destroy the Source to the current act deck.
+                //Shuffle each remaining card in the Forgotten Island encounter set into the encounter deck, along with the encounter discard pile.
+                //Gather each single-sided encounter card from the set-aside Cosmic Journey and Abominable Contessa encounter sets. Shuffle them together to make the “Reel deck.” Place the Reel deck next to the scenario reference card.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_3", "$TARGET_PLAYER", "The Forgotten Island", "Destroy the Source", "sharedPileB", "sharedPileA", "sharedPileC"],
+                //Add 2 elder thing tokens to the chaos bag.
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_elder_thing", 2],
+                //
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["LOGF", "└── Deck B is the Reel deck. Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
+                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+            ]
+        },
+        "FILM_FATALE_SETUP_ABOMINABLE_CONTESSA": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ABOMINABLE_CONTESSA.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 2 (The Abominable Contessa).", "$TARGET_PLAYER"],
+                ["VAR", "$GOTHIC_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Gothic Set"]],
+                ["VAR", "$THRONE_OF_BLOOD_ID", ["GET_NAMED_CARD_ID", "Throne of Blood: Red as Blood, Black as Night"]],
+                ["VAR", "$ACCURSED_CAPE_ID", ["GET_NAMED_CARD_ID", "Accursed Cape: Shroud of Chaos"]],
+                //Discard each enemy from play. Move each investigator to Gothic Set and set each other Set location aside, out of play, discarding all tokens and cards at those locations.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_1", "$TARGET_PLAYER", "$ACCURSED_CAPE_ID", "$GOTHIC_SET_ID", 45, 43],
+                //Put each location in the Abominable Contessa encounter set into play.
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Castle Hallways: Seemingly Endless"], 20, 60],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Catacombs: Stinks of Death"], 70, 60],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Clock Tower: Incessantly Ticking"], 70, 27],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "Moonlit Garden: Poisoned Beauty"], 20, 27],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$THRONE_OF_BLOOD_ID", 45, 10],
+                //Spawn The Contessa at Throne of Blood, (Needlessly Smug) side faceup.
+                ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "The Contessa: Needlessly Smug", "$THRONE_OF_BLOOD_ID", 3, 3, 1],
+                //Place clues on Gothic Set up to its clue value.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_2", "$TARGET_PLAYER", "$GOTHIC_SET_ID"],
+                //Add act 2a—The Abominable Contessa and act 3a—Bloodbath to the act deck.
+                //Shuffle each remaining card in the Abominable Contessa encounter set into the encounter deck, along with the encounter discard pile.
+                //Gather each single-sided encounter card from the set-aside Cosmic Journey and Forgotten Island encounter sets. Shuffle them together to make the “Reel deck.” Place the Reel deck next to the scenario reference card.
+                ["FILM_FATALE_SETUP_ACT_2_HELPER_3", "$TARGET_PLAYER", "The Abominable Contessa", "Bloodbath", "sharedPileC", "sharedPileA", "sharedPileB"],
+                //Add 2 cultist tokens to the chaos bag.
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_cultist", 2],
+                //
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["LOGF", "└── Deck B is the Reel deck. See “Haunted.” Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
+                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_3_HELPER": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", "$VARIANT"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_3_HELPER.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "FILM_FATALE_SETUP_ACT_3_HELPER.TARGET_CARD_ID"]],
+                ["VALIDATE_GE0", "$LEFT", "FILM_FATALE_SETUP_ACT_3_HELPER.LEFT"],
+                ["VALIDATE_GE0", "$TOP", "FILM_FATALE_SETUP_ACT_3_HELPER.TOP"],
+                ["VALIDATE_GE0", "$VARIANT", "FILM_FATALE_SETUP_ACT_3_HELPER.VARIANT"],
+                ["VAR", "$MONARCH_IN_PLAY", ["GET_NAMED_MAP_CARD", "Saturnite Monarch: Gracious Host"]],
+                ["VAR", "$ALLOSAURUS_IN_PLAY", ["GET_NAMED_MAP_CARD", "Allosaurus: Indomitable Predator"]],
+                ["VAR", "$CONTESSA_IN_PLAY", ["GET_NAMED_MAP_CARD", "The Contessa: Needlessly Smug"]],
+                ["COND",
+                    ["AND",
+                        ["EQUAL", "$VARIANT", 1],
+                        ["NOT_EQUAL", "$MONARCH_IN_PLAY", null]
+                    ],
+                    [
+                        //simulate discard and move it to the victory display
+                        ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$MONARCH_IN_PLAY.id", true, null],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$MONARCH_IN_PLAY.id", false, null]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$VARIANT", 2],
+                        ["NOT_EQUAL", "$ALLOSAURUS_IN_PLAY", null]
+                    ],
+                    [
+                        //If the Allosaurus enemy is in play, set it aside out of play (keeping all tokens and attachments).
+                        ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$ALLOSAURUS_IN_PLAY.id", true, null],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$ALLOSAURUS_IN_PLAY.id", false, null]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$VARIANT", 3],
+                        ["NOT_EQUAL", "$CONTESSA_IN_PLAY", null],
+                        ["GREATER_THAN", ["GET_DAMAGE_ON_CARD", "$CONTESSA_IN_PLAY.id"], 0]
+                    ],
+                    [
+                        //If The Contessa is in play, heal all damage from her and set her aside, out of play.
+                        ["DO_REMOVE_DAMAGE_FROM_CARD", "$TARGET_PLAYER", "$CONTESSA_IN_PLAY.id", ["GET_DAMAGE_ON_CARD", "$CONTESSA_IN_PLAY.id"], true, null],
+                        ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$CONTESSA_IN_PLAY.id", true, null],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CONTESSA_IN_PLAY.id", false, null]
+                    ]
+                ],
+                //Discard each enemy from play.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Enemy"]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_DISCARD_CARD_ACT", "$TARGET_PLAYER", "$CARD.id"]
+                ]],
+                //Move each investigator to <target card>. Each investigator loses all of their clues.
+                ["DO_SET_CARD_LOCATION", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
+                ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                    ["DO_MOVE_MINI_INVESTIGATOR_TO", "$PLAYER_I", "$TARGET_CARD_ID", true, null]
+                ]],
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
+                //Add each location with victory X and no clues on it to the victory display.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.inPlay", true],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["NOT_EQUAL", "$CARD.currentFace.victoryPoints", null],
+                    ["GREATER_THAN", "$CARD.currentFace.victoryPoints", 0],
+                    ["EQUAL", ["GET_CLUES_ON_CARD", "$CARD.id"], 0]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_MOVE_TO_VICTORY_DISPLAY", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                //Remove each Cosmos, Ritual Site, Jungle, and Castle card from the game.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["NOT_EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                    ["OR",
+                        ["IN_STRING", "$CARD.sides.A.traits", "Cosmos."],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Ritual Site."],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Jungle."],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Castle."]
+                    ]
+                ]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_REMOVE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                //Put each set-aside Set location into play unrevealed, along with Central Lot, (Blurred) side faceup.
+                ["COND",
+                    ["NOT_EQUAL", "$VARIANT", 1],
+                    [
+                        ["VAR", "$SPACE_SET_ID", ["GET_NAMED_CARD_ID", "Space Set"]],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$SPACE_SET_ID", false, null],
+                        ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$SPACE_SET_ID", 20, 67]
+                    ]
+                ],
+                ["COND",
+                    ["NOT_EQUAL", "$VARIANT", 2],
+                    [
+                        ["VAR", "$JUNGLE_SET_ID", ["GET_NAMED_CARD_ID", "Jungle Set"]],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$JUNGLE_SET_ID", false, null],
+                        ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$JUNGLE_SET_ID", 45, 67]
+                    ]
+                ],
+                ["COND",
+                    ["NOT_EQUAL", "$VARIANT", 3],
+                    [
+                        ["VAR", "$GOTHIC_SET_ID", ["GET_NAMED_CARD_ID", "Gothic Set"]],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$GOTHIC_SET_ID", false, null],
+                        ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$GOTHIC_SET_ID", 70, 67]
+                    ]
+                ],
+                ["VAR", "$CENTRAL_LOT_ID", ["GET_NAMED_CARD_ID", "Central Lot: Quiet on Set"]],
+                ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CENTRAL_LOT_ID", false, null],
+                ["DO_PUT_INTO_PLAY_AT_ACT", "$TARGET_PLAYER", "$CENTRAL_LOT_ID", 45, 19],
+                //
+                ["COND",
+                    ["EQUAL", "$VARIANT", 1],
+                    [
+                        //Search the victory display for Saturnite Monarch and put it into play at Central Lot with its (In An Alien Land) side faceup.
+                        ["VAR", "$MONARCH_ID", ["GET_NAMED_CARD_ID", "Saturnite Monarch: Gracious Host"]],
+                        ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "$MONARCH_ID", "$CENTRAL_LOT_ID", 3, 3, 1],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$MONARCH_ID", true, null]
+                    ],
+                    ["AND",
+                        ["EQUAL", "$VARIANT", 2],
+                        ["NOT_EQUAL", "$ALLOSAURUS_IN_PLAY", null]
+                    ],
+                    [
+                        //If the Allosaurus enemy is set aside, spawn it at Central Lot, (Rampaging Predator) side faceup.
+                        ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "$ALLOSAURUS_IN_PLAY.id", "$CENTRAL_LOT_ID", 3, 3, 1],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$ALLOSAURUS_IN_PLAY.id", true, null]
+                    ],
+                    ["EQUAL", "$VARIANT", 3],
+                    [
+                        //Search all out-of-play areas for The Contessa and spawn her at the Central Lot, (Enraged) side faceup. Search the victory display for the Accursed Cape and attach it to her.
+                        ["VAR", "$CONTESSA_ID", ["GET_NAMED_CARD_ID", "The Contessa: Needlessly Smug"]],
+                        ["DO_SPAWN_NAMED_AT_LOCATION_ACT", "$TARGET_PLAYER", "$CONTESSA_ID", "$CENTRAL_LOT_ID", 3, 3, 1],
+                        ["DO_FLIP_FACEDOWN", "$TARGET_PLAYER", "$CONTESSA_ID", true, null],
+                        ["VAR", "$CAPE_ID", ["GET_NAMED_CARD_ID", "Accursed Cape: Shroud of Chaos"]],
+                        ["MOVE_CARD", "$CAPE_ID", "sharedLocations", -1],
+                        ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$CAPE_ID", false, null],
+                        ["DO_ATTACH_CARD", "$TARGET_PLAYER", "$CAPE_ID", "$CONTESSA_ID", true, null]
+                    ]
+                ],
+                //Shuffle the top 2 cards of the Reel deck into the encounter deck, along with the encounter discard pile.
+                ["DO_MOVE_DECK_CARDS_ACT", "$TARGET_PLAYER", "Encounter Card", "sharedDeckB", 2, "sharedEncounterDeck"],
+                ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
+                //Add 1 cultist, 1 tablet, and 1 elder thing to the chaos bag.
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_cultist", 1],
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_tablet", 1],
+                ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_elder_thing", 1]
+            ]
+        },
+        "FILM_FATALE_RETURN_FROM_THE_COSMOS": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_COSMOS.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 3 (From Whence They Came).", "$TARGET_PLAYER"],
+                ["VAR", "$SPACE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Space Set"]],
+                ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$SPACE_SET_ID", 20, 67, 1],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["LOGF", "└── Put the Helios Telescope story asset into play under the control of any investigator.", null],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+            ]
+        },
+        "FILM_FATALE_RETURN_FROM_THE_JUNGLE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_JUNGLE.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 3 (Destroy the Source).", "$TARGET_PLAYER"],
+                ["VAR", "$JUNGLE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Jungle Set"]],
+                ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$JUNGLE_SET_ID", 45, 67, 2],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+            ]
+        },
+        "FILM_FATALE_RETURN_FROM_THE_CASTLE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_CASTLE.TARGET_PLAYER"],
+                ["LOGF", "{0} sets up Act 3 (Bloodbath).", "$TARGET_PLAYER"],
+                ["VAR", "$GOTHIC_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Gothic Set"]],
+                ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$GOTHIC_SET_ID", 70, 67, 3],
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+            ]
+        }
+    },
+    "automation": {
+        "cards": {
+            "72004": { //André's Request (Source of the Trouble)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct2Setup", false],
+                            ["PROMPT", "$PLAYER_N", "filmFataleChooseDestination"]
+                        ]
+                    ]
+                }
+            },
+            "72025": { //A Cosmic Journey (Return from the Cosmos)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
+                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheCosmos"]
+                        ]
+                    ]
+                }
+            },
+            "72037": { //The Forgotten Island (Return from the Jungle)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
+                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheJungle"]
+                        ]
+                    ]
+                }
+            },
+            "72048": { //The Abominable Contessa (Return from the Castle)
+                "ability" : {
+                    "B": [
+                        ["COND",
+                            ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
+                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheCastle"]
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "prompts": {
+        "filmFataleChooseDestination": {
+            "args": [],
+            "message": "Which Act 2 do you want to setup?",
+            "options": [
+                {
+                    "label": "A Cosmic Journey.",
+                    "hotkey": "C",
+                    "code": [
+                        ["FILM_FATALE_SETUP_COSMIC_JOURNEY", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "The Forgotten Island.",
+                    "hotkey": "F",
+                    "code": [
+                        ["FILM_FATALE_SETUP_FORGOTTEN_ISLAND", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "The Abominable Contessa.",
+                    "hotkey": "A",
+                    "code": [
+                        ["FILM_FATALE_SETUP_ABOMINABLE_CONTESSA", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "Cancel.",
+                    "hotkey": "X"
+                }
+            ]
+        },
+        "filmFataleReturnFromTheCosmos": {
+            "args": [],
+            "args": [],
+            "message": "Do you want to setup Act 3?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["FILM_FATALE_RETURN_FROM_THE_COSMOS", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        },
+        "filmFataleReturnFromTheJungle": {
+            "args": [],
+            "args": [],
+            "message": "Do you want to setup Act 3?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["FILM_FATALE_RETURN_FROM_THE_JUNGLE", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        },
+        "filmFataleReturnFromTheCastle": {
+            "args": [],
+            "args": [],
+            "message": "Do you want to setup Act 3?",
+            "options": [
+                {
+                    "label": "Yes.",
+                    "hotkey": "Y",
+                    "code": [
+                        ["FILM_FATALE_RETURN_FROM_THE_CASTLE", "$PLAYER_N"]
+                    ]
+                },
+                {
+                    "label": "No.",
+                    "hotkey": "N"
+                }
+            ]
+        }
+    }
+}

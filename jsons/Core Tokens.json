@@ -445,6 +445,33 @@
                     ]
                 ]
             ]
+        },
+        "DO_REMOVE_ALL_TOKENS_FROM_CARD": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_REMOVE_ALL_TOKENS_FROM_CARD.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_REMOVE_ALL_TOKENS_FROM_CARD.TARGET_CARD_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_REMOVE_ALL_TOKENS_FROM_CARD.LOG_EVENT"],
+                ["COND",
+                    ["OR",
+                        ["GREATER_THAN", ["GET_RESOURCES_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["GREATER_THAN", ["GET_CLUES_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["GREATER_THAN", ["GET_DOOM_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["GREATER_THAN", ["GET_DAMAGE_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["GREATER_THAN", ["GET_HORROR_ON_CARD", "$TARGET_CARD_ID"], 0],
+                        ["GREATER_THAN", ["GET_FREEZE_ON_CARD", "$TARGET_CARD_ID"], 0]
+                    ],
+                    [
+                        ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "remove all tokens from {{$TARGET_CARD.currentFace.name}}.", "removes all tokens from {{$TARGET_CARD.currentFace.name}}."],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/resource", 0],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/clue", 0],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/doom", 0],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/damage", 0],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/horror", 0],
+                        ["SET", "/cardById/$TARGET_CARD_ID/tokens/freeze", 0]
+                    ]
+                ]
+            ]
         }
     },
     "prompts": {

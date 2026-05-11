@@ -121,6 +121,12 @@
                 ["DO_MOVE_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
+        "DO_MOVE_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_MOVE_NAMED_DECK_CARDS": {
             "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -160,6 +166,12 @@
             "args": ["$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
             "code": [
                 ["DO_MOVE_NAMED_DECK_CARDS", "$GAME.firstPlayer", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_MOVE_NAMED_DECK_CARDS_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_NAMED_DECK_CARDS", "$TARGET_PLAYER", "$TARGET_NAME", "$SOURCE_GROUP_ID", "$TARGET_QUANTITY", "$TARGET_GROUP_ID", true, null]
             ]
         },
         "DO_BEGIN_WITH_CARD_IN_PLAY": {
@@ -896,6 +908,44 @@
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
             "code": [
                 ["DO_MOVE_TO_GROUP", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_END": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_GROUP_END.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_GROUP_END.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_TO_GROUP_END.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["COND",
+                    ["OR",
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "discard"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "pile"],
+                        ["IN_STRING", "$TARGET_GROUP.groupType", "story"]
+                    ],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to the bottom of {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", -1]
+                    ],
+                    ["TRUE"],
+                    [
+                        ["DO_LOGF", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "move{A} {0:C} to {1:G}.", ["LIST", "$TARGET_CARD", "$TARGET_GROUP"]],
+                        ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", -1]
+                    ]
+                ]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_END_SCN": {
+            "args": ["$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP_END", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_MOVE_TO_GROUP_END_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_MOVE_TO_GROUP_END", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
             ]
         },
         "DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION": {

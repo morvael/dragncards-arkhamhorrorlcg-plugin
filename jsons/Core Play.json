@@ -123,6 +123,7 @@
                 ["AND",
                     ["EQUAL", "$TARGET_CARD.usesPlaced", false],
                     ["NOT_EQUAL", "$TARGET_CARD.currentFace.uses", null],
+                    ["NOT_EQUAL", "$TARGET_CARD.sides.A.databaseId", "72005"], //Helios Telescope: Gate to the Cosmos
                     ["OR",
                         ["GREATER_EQUAL", "$USES", 0],
                         ["EQUAL", "$USES", -2]

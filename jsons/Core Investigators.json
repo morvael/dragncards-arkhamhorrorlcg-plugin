@@ -130,11 +130,17 @@
             "_comment": "Returns true when given player has no owned Investigator card or it is marked as eliminated.",
             "args": ["$TARGET_PLAYER"],
             "code": [
-                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "GET_PLAYER_ELIMINATED.TARGET_PLAYER"],
-                ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
-                ["OR",
-                    ["EQUAL", "$INVESTIGATOR", null],
-                    ["EQUAL", "$INVESTIGATOR.eliminated", true]
+                ["COND",
+                    ["IS_VALID_PLAYER", "$TARGET_PLAYER"],
+                    [
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$TARGET_PLAYER"]],
+                        ["OR",
+                            ["EQUAL", "$INVESTIGATOR", null],
+                            ["EQUAL", "$INVESTIGATOR.eliminated", true]
+                        ]
+                    ],
+                    ["TRUE"],
+                    false
                 ]
             ]
         },

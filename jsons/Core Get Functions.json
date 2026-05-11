@@ -256,6 +256,28 @@
                 ]]
             ]
         },
+        "GET_NAMED_MAP_LOCATION_ID": {
+            "args": ["$TARGET_NAME"],
+            "code": [
+                ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "GET_NAMED_MAP_LOCATION_ID.TARGET_NAME"],
+                ["VAR", "$SELECTED_CARD", ["ONE_CARD", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedLocations"],
+                    ["EQUAL", "$CARD.currentFace.type", "Location"],
+                    ["OR",
+                        ["EQUAL", "$CARD.currentFace.name", "$TARGET_NAME"],
+                        ["IN_STRING", "$CARD.currentFace.name", "{{$TARGET_NAME}}:"],
+                        ["EQUAL", "$CARD.id", "$TARGET_NAME"],
+                        ["EQUAL", "$CARD.sides.A.databaseId", "$TARGET_NAME"]
+                    ]
+                ]]],
+                ["COND",
+                    ["NOT_EQUAL", "$SELECTED_CARD", null],
+                    "$SELECTED_CARD.id",
+                    ["TRUE"],
+                    null
+                ]
+            ]
+        },
         "GET_NAMED_MAP_LOCATIONS": {
             "args": ["$TARGET_NAME"],
             "code": [
@@ -593,6 +615,23 @@
                             ["UPDATE_VAR", "$CARD_IDS", ["APPEND", "$CARD_IDS", "$CARD.id"]]
                         ]],
                         "$CARD_IDS"
+                    ]
+                ]
+            ]
+        },
+        "GET_UNIQUE_DATABASE_IDS": {
+            "args": ["$CARDS"],
+            "code": [
+                ["COND",
+                    ["EQUAL", "$CARDS", null],
+                    null,
+                    ["TRUE"],
+                    [
+                        ["VAR", "$DATABASE_IDS", ["MAP_SET"]],
+                        ["FOR_EACH_VAL", "$CARD", "$CARDS", [
+                            ["UPDATE_VAR", "$DATABASE_IDS", ["MAP_SET_PUT", "$DATABASE_IDS", "$CARD.sides.A.databaseId"]]
+                        ]],
+                        ["MAP_SET_TO_LIST", "$DATABASE_IDS"]
                     ]
                 ]
             ]
