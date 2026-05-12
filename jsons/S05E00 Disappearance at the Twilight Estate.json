@@ -90,7 +90,7 @@
     },
     "actionLists": {
         "Disappearance at the Twilight Estate Scenario Early Init": [
-            ["PROMPT", "$GAME.firstPlayer", "chooseScenarioDifficulty"]
+            ["GAIN_STARTING_RESOURCES"]
         ],
         "Disappearance at the Twilight Estate Scenario Init": [
             ["DO_LOAD_CARDS_SCN", "Disappearance at the Twilight Estate"],
