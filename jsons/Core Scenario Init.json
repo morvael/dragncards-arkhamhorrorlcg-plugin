@@ -845,6 +845,31 @@
                 ["DO_SPAWN_HIDDEN_AT", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$LEFT", "$TOP", true, null]
             ]
         },
+        "DO_PUT_INTO_PLAY": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", "$LOG_EVENT", "$ACTOR_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_PUT_INTO_PLAY.TARGET_PLAYER"],
+                ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_PUT_INTO_PLAY.TARGET_CARD_ID"]],
+                ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_PUT_INTO_PLAY.TARGET_GROUP_ID"]],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY.LOG_EVENT"],
+                ["DO_LOG", "$LOG_EVENT", "$ACTOR_PLAYER", "$TARGET_PLAYER", "put {{$TARGET_CARD.currentFace.name}} into play.", "puts {{$TARGET_CARD.currentFace.name}} into play."],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", "putIntoPlay"],
+                ["MOVE_CARD", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", -1],
+                ["SET", "/cardById/$TARGET_CARD_ID/playIntent", ""]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_SCN": {
+            "args": ["$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_PUT_INTO_PLAY", "$GAME.firstPlayer", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
+        "DO_PUT_INTO_PLAY_ACT": {
+            "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID"],
+            "code": [
+                ["DO_PUT_INTO_PLAY", "$TARGET_PLAYER", "$TARGET_CARD_ID", "$TARGET_GROUP_ID", true, null]
+            ]
+        },
         "DO_PUT_INTO_PLAY_AT": {
             "args": ["$TARGET_PLAYER", "$TARGET_CARD_ID", "$LEFT", "$TOP", "$LOG_EVENT", "$ACTOR_PLAYER"],
             "code": [
@@ -878,7 +903,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_GROUP.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_GROUP.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_TO_GROUP.TARGET_GROUP_ID"]],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_TO_GROUP.LOG_EVENT"],
                 ["COND",
                     ["OR",
                         ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],
@@ -916,7 +941,7 @@
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "DO_MOVE_TO_GROUP_END.TARGET_PLAYER"],
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "DO_MOVE_TO_GROUP_END.TARGET_CARD_ID"]],
                 ["VAR", "$TARGET_GROUP", ["GET_GROUP_AND_VALIDATE", "$TARGET_GROUP_ID", "DO_MOVE_TO_GROUP_END.TARGET_GROUP_ID"]],
-                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_PUT_INTO_PLAY_AT.LOG_EVENT"],
+                ["VALIDATE_BOOLEAN", "$LOG_EVENT", "DO_MOVE_TO_GROUP_END.LOG_EVENT"],
                 ["COND",
                     ["OR",
                         ["IN_STRING", "$TARGET_GROUP.groupType", "deck"],

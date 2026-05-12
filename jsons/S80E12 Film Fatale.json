@@ -91,6 +91,104 @@
         ]
     },
     "functions": {
+        "FILM_FATALE_CHECK_PROPS": {
+            "args": [],
+            "code": [
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["IN_STRING", "$CARD.sides.A.traits", "Prop."]
+                ]]],
+                ["VAR", "$DATABASE_IDS", ["GET_UNIQUE_DATABASE_IDS", "$SELECTED_CARDS"]],
+                ["AND",
+                    ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 3],
+                    ["EQUAL", ["LENGTH", "$DATABASE_IDS"], 3]
+                ]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_2": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2.TARGET_PLAYER"],
+                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true],
+                //Each investigator loses all of their clues.
+                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
+                //If there are any remaining cards beneath Central Lot, set them aside, out of play.
+                ["VAR", "$SELECTED_CARDS", ["GET_ATTACHED_CARDS", ["GET_NAMED_CARD_ID", "Central Lot: Quiet on Set"]]],
+                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
+                    ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null],
+                    ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$CARD.id", true, null]
+                ]],
+                //Find the set-aside André Patel story asset and put it into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.
+                ["COND",
+                    ["EQUAL", "$GAME.numPlayers", 1],
+                    ["FILM_FATALE_ANDRE_CHOICE", "$TARGET_PLAYER", "$TARGET_PLAYER", "0"],
+                    ["TRUE"],
+                    [
+                        ["PROMPT", "$TARGET_PLAYER", "filmFataleChooseAndreController"],
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                            ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "FILM_FATALE_ANDRE_CHOICE", "{{$TARGET_PLAYER}}", "{{$PLAYER_I}}", "1"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "FILM_FATALE_ANDRE_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$CONTROLLER_PLAYER", "$LOG_MESSAGE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_ANDRE_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_PLAYER", "$CONTROLLER_PLAYER", "FILM_FATALE_ANDRE_CHOICE.CONTROLLER_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOG_MESSAGE", "FILM_FATALE_ANDRE_CHOICE.LOG_MESSAGE"],
+                ["COND",
+                    ["EQUAL", "$LOG_MESSAGE", "1"],
+                    ["LOGF", "{0} selected {1} to take control of André Patel.", "$TARGET_PLAYER", "$CONTROLLER_PLAYER"]
+                ],
+                ["DO_PUT_INTO_PLAY_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "72024"], ["GET_CONTROLLER_PLAY", "$CONTROLLER_PLAYER"]], //André Patel: Made for the Spotlight
+                //Proceed to Interlude: Take Two (page 8).
+                //Check the victory display.
+                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Prop."]
+                ]]],
+                //If there are three Prop assets in the victory display, add a “0” token to the chaos bag and choose one Prop to set aside, out of play.
+                ["COND",
+                    ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 3],
+                    [
+                        ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_p0", 1],
+                        ["PROMPT", "$TARGET_PLAYER", "filmFataleChoosePropToSetAside"]
+                    ],
+                    ["TRUE"],
+                    ["FILM_FATALE_SETUP_ACT_2_CONTINUE", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
+        "FILM_FATALE_SET_PROP_ASIDE": {
+            "args": ["$TARGET_PLAYER", "$DATABASE_ID"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SET_PROP_ASIDE.TARGET_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "FILM_FATALE_SET_PROP_ASIDE.DATABASE_ID"],
+                ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "$DATABASE_ID"], "sharedNotInPlay"],
+                ["FILM_FATALE_SETUP_ACT_2_CONTINUE", "$TARGET_PLAYER"]
+            ]
+        },
+        "FILM_FATALE_SETUP_ACT_2_CONTINUE": {
+            "args": ["$TARGET_PLAYER"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_SETUP_ACT_2_CONTINUE.TARGET_PLAYER"],
+                ["VAR", "$DATABASE_IDS", ["GET_UNIQUE_DATABASE_IDS", ["FILTER_CARDS", "$CARD", ["AND",
+                    ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
+                    ["IN_STRING", "$CARD.sides.A.traits", "Prop."]
+                ]]]],
+                ["COND",
+                    ["EQUAL", ["IN_LIST", "$DATABASE_IDS", "72005"], false], //Helios Telescope: Gate to the Cosmos
+                    ["FILM_FATALE_SETUP_COSMIC_JOURNEY", "$TARGET_PLAYER"],
+                    ["EQUAL", ["IN_LIST", "$DATABASE_IDS", "72006"], false], //Staff of the Serpent: Relic of the Past
+                    ["FILM_FATALE_SETUP_FORGOTTEN_ISLAND", "$TARGET_PLAYER"],
+                    ["EQUAL", ["IN_LIST", "$DATABASE_IDS", "72007"], false], //Accursed Cape: Shroud of Chaos
+                    ["FILM_FATALE_SETUP_ABOMINABLE_CONTESSA", "$TARGET_PLAYER"]
+                ]
+            ]
+        },
         "FILM_FATALE_SETUP_ACT_2_HELPER_1": {
             "args": ["$TARGET_PLAYER", "$PROP_CARD_ID", "$TARGET_CARD_ID", "$LEFT", "$TOP"],
             "code": [
@@ -99,26 +197,6 @@
                 ["VAR", "$TARGET_CARD", ["GET_CARD_AND_VALIDATE", "$TARGET_CARD_ID", "FILM_FATALE_SETUP_ACT_2_HELPER_1.TARGET_CARD_ID"]],
                 ["VALIDATE_GE0", "$LEFT", "FILM_FATALE_SETUP_ACT_2_HELPER_1.LEFT"],
                 ["VALIDATE_GE0", "$TOP", "FILM_FATALE_SETUP_ACT_2_HELPER_1.TOP"],
-                //Each investigator loses all of their clues.
-                ["DO_MAKE_EACH_INVESTIGATOR_LOSE_CLUES", true, null],
-                //If there are any remaining cards beneath Central Lot, set them aside, out of play.
-                ["VAR", "$SELECTED_CARDS", ["GET_ATTACHED_CARDS", ["GET_NAMED_CARD_ID", "Central Lot: Quiet on Set"]]],
-                ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
-                    ["DO_SET_ASIDE_CARD", "$TARGET_PLAYER", "$CARD.id", true, null],
-                    ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$CARD.id", false, null]
-                ]],
-                //Check the victory display. If there are three Prop assets in the victory display, add a “0” token to the chaos bag and choose one Prop to set aside, out of play .
-                ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
-                    ["EQUAL", "$CARD.groupId", "sharedVictoryDisplay"],
-                    ["IN_STRING", "$CARD.sides.A.traits", "Prop."]
-                ]]],
-                ["COND",
-                    ["EQUAL", ["LENGTH", "$SELECTED_CARDS"], 3],
-                    ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_p0", 1]
-                ],
-                // (technical: make sure required prop card is set aside)
-                ["DO_MOVE_TO_GROUP_ACT", "$TARGET_PLAYER", "$PROP_CARD_ID", "sharedNotInPlay"],
-                ["DO_FLIP_FACEUP", "$TARGET_PLAYER", "$PROP_CARD_ID", false, null],
                 //Discard each enemy from play.
                 ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                     ["EQUAL", "$CARD.inPlay", true],
@@ -195,9 +273,9 @@
                 ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$MAIN_GROUP_ID", "sharedEncounterDeck"],
                 ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
                 //Gather each single-sided encounter card from <group A> and <group B>. Shuffle them together to make the “Reel deck.”
-                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_A_ID", "sharedDeckB"],
-                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_B_ID", "sharedDeckB"],
-                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedDeckB", true, null]
+                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_A_ID", "sharedDeckA"],
+                ["FILM_FATALE_SETUP_ACT_2_MOVE_CARDS", "$TARGET_PLAYER", "$GROUP_B_ID", "sharedDeckA"],
+                ["DO_SHUFFLE_GROUP", "$TARGET_PLAYER", "sharedDeckA", true, null]
             ]
         },
         "FILM_FATALE_SETUP_COSMIC_JOURNEY": {
@@ -232,8 +310,7 @@
                 ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_tablet", 2],
                 //
                 ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["LOGF", "└── Deck B is the Reel deck. Each investigator is in the Rocket Ship. See “Vehicles.” Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
-                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+                ["LOGF", "└── Deck A is the Reel deck. André Patel does not take up an ally slot for the remainder of the scenario. Each investigator is in the Rocket Ship. See “Vehicles.”", null]
             ]
         },
         "FILM_FATALE_SETUP_FORGOTTEN_ISLAND": {
@@ -267,8 +344,7 @@
                 ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_elder_thing", 2],
                 //
                 ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["LOGF", "└── Deck B is the Reel deck. Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
-                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+                ["LOGF", "└── Deck A is the Reel deck. André Patel does not take up an ally slot for the remainder of the scenario.", null]
             ]
         },
         "FILM_FATALE_SETUP_ABOMINABLE_CONTESSA": {
@@ -299,8 +375,7 @@
                 ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_cultist", 2],
                 //
                 ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["LOGF", "└── Deck B is the Reel deck. See “Haunted.” Put the set-aside André Patel story asset into play under the control of any investigator. He does not take up an ally slot for the remainder of the scenario.", null],
-                ["SET", "/arkham/scenarioFilmFataleAct2Setup", true]
+                ["LOGF", "└── Deck A is the Reel deck. André Patel does not take up an ally slot for the remainder of the scenario. See “Haunted.”", null]
             ]
         },
         "FILM_FATALE_SETUP_ACT_3_HELPER": {
@@ -442,7 +517,7 @@
                     ]
                 ],
                 //Shuffle the top 2 cards of the Reel deck into the encounter deck, along with the encounter discard pile.
-                ["DO_MOVE_DECK_CARDS_ACT", "$TARGET_PLAYER", "Encounter Card", "sharedDeckB", 2, "sharedEncounterDeck"],
+                ["DO_MOVE_DECK_CARDS_ACT", "$TARGET_PLAYER", "Encounter Card", "sharedDeckA", 2, "sharedEncounterDeck"],
                 ["DO_SHUFFLE_GROUP_INTO_GROUP_ALWAYS_SHUFFLE", "$TARGET_PLAYER", "sharedEncounterDiscard", "sharedEncounterDeck", true, null],
                 //Add 1 cultist, 1 tablet, and 1 elder thing to the chaos bag.
                 ["DO_ADD_CHAOS_TOKENS_ACT", "$TARGET_PLAYER", "chaos_cultist", 1],
@@ -455,11 +530,37 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_COSMOS.TARGET_PLAYER"],
                 ["LOGF", "{0} sets up Act 3 (From Whence They Came).", "$TARGET_PLAYER"],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true],
                 ["VAR", "$SPACE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Space Set"]],
                 ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$SPACE_SET_ID", 20, 67, 1],
-                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["LOGF", "└── Put the Helios Telescope story asset into play under the control of any investigator.", null],
-                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+                //Put the Helios Telescope story asset into play under the control of any investigator.
+                ["COND",
+                    ["EQUAL", "$GAME.numPlayers", 1],
+                    ["FILM_FATALE_TELESCOPE_CHOICE", "$TARGET_PLAYER", "$TARGET_PLAYER", "0"],
+                    ["TRUE"],
+                    [
+                        ["PROMPT", "$TARGET_PLAYER", "filmFataleChooseTelescopeController"],
+                        ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                            ["VAR", "$ALIAS_I", ["GET_ALIAS", "$PLAYER_I"]],
+                            ["VAR", "$LETTER", ["SUBSTRING", "$PLAYER_I", 6, 1]],
+                            ["PROMPT_ADD_OPTION", "$TARGET_PLAYER", "{{$ALIAS_I}}.", "{{$LETTER}}", ["LIST", "FILM_FATALE_TELESCOPE_CHOICE", "{{$TARGET_PLAYER}}", "{{$PLAYER_I}}", "1"]]
+                        ]]
+                    ]
+                ]
+            ]
+        },
+        "FILM_FATALE_TELESCOPE_CHOICE": {
+            "args": ["$TARGET_PLAYER", "$CONTROLLER_PLAYER", "$LOG_MESSAGE"],
+            "code": [
+                ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_TELESCOPE_CHOICE.TARGET_PLAYER"],
+                ["VALIDATE_PLAYER", "$CONTROLLER_PLAYER", "FILM_FATALE_TELESCOPE_CHOICE.CONTROLLER_PLAYER"],
+                ["VALIDATE_NOT_EMPTY", "$LOG_MESSAGE", "FILM_FATALE_TELESCOPE_CHOICE.LOG_MESSAGE"],
+                ["COND",
+                    ["EQUAL", "$LOG_MESSAGE", "1"],
+                    ["LOGF", "{0} selected {1} to take control of the Helios Telescope.", "$TARGET_PLAYER", "$CONTROLLER_PLAYER"]
+                ],
+                ["DO_PUT_INTO_PLAY_ACT", "$TARGET_PLAYER", ["GET_NAMED_CARD_ID", "72005"], ["GET_CONTROLLER_PLAY", "$CONTROLLER_PLAYER"]], //Helios Telescope: Gate to the Cosmos
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null]
             ]
         },
         "FILM_FATALE_RETURN_FROM_THE_JUNGLE": {
@@ -467,10 +568,10 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_JUNGLE.TARGET_PLAYER"],
                 ["LOGF", "{0} sets up Act 3 (Destroy the Source).", "$TARGET_PLAYER"],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true],
                 ["VAR", "$JUNGLE_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Jungle Set"]],
                 ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$JUNGLE_SET_ID", 45, 67, 2],
-                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null]
             ]
         },
         "FILM_FATALE_RETURN_FROM_THE_CASTLE": {
@@ -478,10 +579,10 @@
             "code": [
                 ["VALIDATE_PLAYER", "$TARGET_PLAYER", "FILM_FATALE_RETURN_FROM_THE_CASTLE.TARGET_PLAYER"],
                 ["LOGF", "{0} sets up Act 3 (Bloodbath).", "$TARGET_PLAYER"],
+                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true],
                 ["VAR", "$GOTHIC_SET_ID", ["GET_NAMED_MAP_LOCATION_ID", "Gothic Set"]],
                 ["FILM_FATALE_SETUP_ACT_3_HELPER", "$TARGET_PLAYER", "$GOTHIC_SET_ID", 70, 67, 3],
-                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null],
-                ["SET", "/arkham/scenarioFilmFataleAct3Setup", true]
+                ["DO_ADVANCE_STORY", "$TARGET_PLAYER", "sharedActStory", true, null]
             ]
         }
     },
@@ -491,8 +592,11 @@
                 "ability" : {
                     "B": [
                         ["COND",
-                            ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct2Setup", false],
-                            ["PROMPT", "$PLAYER_N", "filmFataleChooseDestination"]
+                            ["AND",
+                                ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct2Setup", false],
+                                ["EQUAL", ["FILM_FATALE_CHECK_PROPS"], true]
+                            ],                            
+                            ["PROMPT", "$PLAYER_N", "filmFataleAndresRequestAbilityB"]
                         ]
                     ]
                 }
@@ -502,7 +606,7 @@
                     "B": [
                         ["COND",
                             ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
-                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheCosmos"]
+                            ["PROMPT", "$PLAYER_N", "filmFataleACosmicJourneyAbilityB"]
                         ]
                     ]
                 }
@@ -512,7 +616,7 @@
                     "B": [
                         ["COND",
                             ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
-                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheJungle"]
+                            ["PROMPT", "$PLAYER_N", "filmFataleTheForgottenIslandAbilityB"]
                         ]
                     ]
                 }
@@ -522,7 +626,7 @@
                     "B": [
                         ["COND",
                             ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct3Setup", false],
-                            ["PROMPT", "$PLAYER_N", "filmFataleReturnFromTheCastle"]
+                            ["PROMPT", "$PLAYER_N", "filmFataleTheAbominableContessaAbilityB"]
                         ]
                     ]
                 }
@@ -530,39 +634,57 @@
         }
     },
     "prompts": {
-        "filmFataleChooseDestination": {
+        "filmFataleAndresRequestAbilityB": {
             "args": [],
-            "message": "Which Act 2 do you want to setup?",
+            "message": "Do you want to setup Act 2?",
             "options": [
                 {
-                    "label": "A Cosmic Journey.",
-                    "hotkey": "C",
+                    "label": "Yes.",
+                    "hotkey": "Y",
                     "code": [
-                        ["FILM_FATALE_SETUP_COSMIC_JOURNEY", "$PLAYER_N"]
+                        ["FILM_FATALE_SETUP_ACT_2", "$PLAYER_N"]
                     ]
                 },
                 {
-                    "label": "The Forgotten Island.",
-                    "hotkey": "F",
-                    "code": [
-                        ["FILM_FATALE_SETUP_FORGOTTEN_ISLAND", "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "The Abominable Contessa.",
-                    "hotkey": "A",
-                    "code": [
-                        ["FILM_FATALE_SETUP_ABOMINABLE_CONTESSA", "$PLAYER_N"]
-                    ]
-                },
-                {
-                    "label": "Cancel.",
-                    "hotkey": "X"
+                    "label": "No.",
+                    "hotkey": "N"
                 }
             ]
         },
-        "filmFataleReturnFromTheCosmos": {
+        "filmFataleChooseAndreController": {
             "args": [],
+            "message": "Select the investigator to take control of André Patel.",
+            "options": [
+            ]
+        },
+        "filmFataleChoosePropToSetAside": {
+            "args": [],
+            "message": "Select one Prop to set aside.",
+            "options": [
+                {
+                    "label": "Helios Telescope.",
+                    "hotkey": "T",
+                    "code": [
+                        ["FILM_FATALE_SET_PROP_ASIDE", "$PLAYER_N", "72005"]
+                    ]
+                },
+                {
+                    "label": "Staff of the Serpent.",
+                    "hotkey": "S",
+                    "code": [
+                        ["FILM_FATALE_SET_PROP_ASIDE", "$PLAYER_N", "72006"]
+                    ]
+                },
+                {
+                    "label": "Accursed Cape.",
+                    "hotkey": "C",
+                    "code": [
+                        ["FILM_FATALE_SET_PROP_ASIDE", "$PLAYER_N", "72007"]
+                    ]
+                }
+            ]
+        },
+        "filmFataleACosmicJourneyAbilityB": {
             "args": [],
             "message": "Do you want to setup Act 3?",
             "options": [
@@ -579,8 +701,13 @@
                 }
             ]
         },
-        "filmFataleReturnFromTheJungle": {
+        "filmFataleChooseTelescopeController": {
             "args": [],
+            "message": "Select the investigator to take control of the Helios Telescope.",
+            "options": [
+            ]
+        },
+        "filmFataleTheForgottenIslandAbilityB": {
             "args": [],
             "message": "Do you want to setup Act 3?",
             "options": [
@@ -597,8 +724,7 @@
                 }
             ]
         },
-        "filmFataleReturnFromTheCastle": {
-            "args": [],
+        "filmFataleTheAbominableContessaAbilityB": {
             "args": [],
             "message": "Do you want to setup Act 3?",
             "options": [
