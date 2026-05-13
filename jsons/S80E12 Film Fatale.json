@@ -595,7 +595,7 @@
                             ["AND",
                                 ["EQUAL", "$GAME.arkham.scenarioFilmFataleAct2Setup", false],
                                 ["EQUAL", ["FILM_FATALE_CHECK_PROPS"], true]
-                            ],                            
+                            ],
                             ["PROMPT", "$PLAYER_N", "filmFataleAndresRequestAbilityB"]
                         ]
                     ]
