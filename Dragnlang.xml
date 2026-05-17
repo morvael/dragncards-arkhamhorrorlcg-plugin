@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language [
+<!ENTITY float "-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?(?=$|[\s,\]}])">
+<!ENTITY integer "-?(?:0|[1-9][0-9]*)(?=$|[\s,\]}])">
+<!ENTITY escape "\\(?:[&quot;\\/bfnrt]|u[0-9a-fA-F]{4})">
+<!ENTITY invalidEscape "\\(?:u[0-9a-fA-F]+|.)">
+<!ENTITY controlChars "[\x00-\x1F]+">
+<!ENTITY preprocessor "\{\{(?=(?:\\.|[^\\&quot;\{])*\}\})">
+<!ENTITY index "\[(?=(?:\\.|[^\\&quot;\[])*\])">
+]>
+<language name="Dragnlang" section="Markup" extensions="*.json" version="1" kateversion="5.79" mimetype="application/json" casesensitive="true" author="morvael (rdq2womgwvdbkjww@sinenomine.email)" license="MIT">
+
+  <highlighting>
+
+    <list name="Keywords">
+      <item>null</item>
+      <item>true</item>
+      <item>false</item>
+    </list>
+
+    <list name="Functions">
+      <item>ABILITY</item>
+      <item>ABORT</item>
+      <item>ACTION_LIST</item>
+      <item>ADD</item>
+      <item>ADD_TEMP_TOKEN</item>
+      <item>ADVANCE_TO_STEP</item>
+      <item>AND</item>
+      <item>APPEND</item>
+      <item>ATTACH_CARD</item>
+      <item>AT_INDEX</item>
+      <item>BASE64_DECODE</item>
+      <item>BASE64_ENCODE</item>
+      <item>CALC</item>
+      <item>CHOOSE_N</item>
+      <item>CONCAT_LISTS</item>
+      <item>COND</item>
+      <item>CURRENT_TIME</item>
+      <item>DECREASE_VAL</item>
+      <item>DECREASE_VAR</item>
+      <item>DEFINE</item>
+      <item>DEFINED</item>
+      <item>DELETE_CARD</item>
+      <item>DIVIDE</item>
+      <item>DRAW_CARD</item>
+      <item>EQUAL</item>
+      <item>ERROR</item>
+      <item>EXTRACT_TAG</item>
+      <item>FACEUP_NAME_FROM_CARD_ID</item>
+      <item>FACEUP_NAME_FROM_STACK_ID</item>
+      <item>FADE_TEXT_CARD</item>
+      <item>FADE_TEXT_GAME</item>
+      <item>FADE_TEXT_PLAYER</item>
+      <item>FALSE</item>
+      <item>FILTER_CARDS</item>
+      <item>FORMAT</item>
+      <item>FOR_EACH_KEY_VAL</item>
+      <item>FOR_EACH_START_STOP_STEP</item>
+      <item>FOR_EACH_VAL</item>
+      <item>FUNCTION</item>
+      <item>GET</item>
+      <item>GET_ALIAS</item>
+      <item>GET_CARD</item>
+      <item>GET_CARD_ID</item>
+      <item>GET_INDEX</item>
+      <item>GET_LOAD_LIST</item>
+      <item>GET_STACK_ID</item>
+      <item>GREATER_EQUAL</item>
+      <item>GREATER_THAN</item>
+      <item>GROUP_EMPTY</item>
+      <item>GROUP_NOT_EMPTY</item>
+      <item>INCREASE_VAL</item>
+      <item>INCREASE_VAR</item>
+      <item>INDEX_OF</item>
+      <item>INSPECT</item>
+      <item>INSPECT_INT</item>
+      <item>IN_LIST</item>
+      <item>IN_STRING</item>
+      <item>JOIN_LIST</item>
+      <item>JOIN_STRING</item>
+      <item>LABEL</item>
+      <item>LANGUAGE</item>
+      <item>LENGTH</item>
+      <item>LESS_EQUAL</item>
+      <item>LESS_THAN</item>
+      <item>LIST</item>
+      <item>LIST_DELETE_AT</item>
+      <item>LIST_INSERT_AT</item>
+      <item>LIST_REPLACE_AT</item>
+      <item>LOAD_CARDS</item>
+      <item>LOG</item>
+      <item>LOGF</item>
+      <item>LOG_DEV</item>
+      <item>LOOK_AT</item>
+      <item>MAP</item>
+      <item>MAP_DELETE</item>
+      <item>MAP_GET</item>
+      <item>MAP_HAS_KEY</item>
+      <item>MAP_KEYS_TO_LIST</item>
+      <item>MAP_PUT</item>
+      <item>MAP_SET</item>
+      <item>MAP_SET_DELETE</item>
+      <item>MAP_SET_HAS</item>
+      <item>MAP_SET_PUT</item>
+      <item>MAP_SET_TO_LIST</item>
+      <item>MAP_VALUES_TO_LIST</item>
+      <item>MAX</item>
+      <item>MIN</item>
+      <item>MODULO</item>
+      <item>MOVE_CARD</item>
+      <item>MOVE_STACK</item>
+      <item>MOVE_STACKS</item>
+      <item>MULTIPLY</item>
+      <item>MULTI_VAR</item>
+      <item>MULTI_VAR_NO_EVAL</item>
+      <item>NEXT_PLAYER</item>
+      <item>NEXT_STEP</item>
+      <item>NOT</item>
+      <item>NOT_EQUAL</item>
+      <item>OBJ_GET_BY_PATH</item>
+      <item>OBJ_GET_VAL</item>
+      <item>OBJ_SET_VAL</item>
+      <item>ONE_CARD</item>
+      <item>ONE_CARD_WITH_FACE_KEY_VAL</item>
+      <item>OR</item>
+      <item>PLURAL_INDEX</item>
+      <item>POINTER</item>
+      <item>PREV</item>
+      <item>PREV_STEP</item>
+      <item>PROCESS_MAP</item>
+      <item>PROMPT</item>
+      <item>PROMPT_ADD_OPTION</item>
+      <item>RANDOM_INT</item>
+      <item>REGEX_REPLACE</item>
+      <item>REMOVE_ALL_TEMP_TOKENS</item>
+      <item>REMOVE_FIRST_FROM_LIST_BY_VALUE</item>
+      <item>REMOVE_FROM_LIST_BY_VALUE</item>
+      <item>REPLACE_STRING_IN_LIST</item>
+      <item>REQUEST_HTML</item>
+      <item>REQUEST_JSON</item>
+      <item>REQUEST_POST</item>
+      <item>RESET_GAME</item>
+      <item>RESET_INDEX</item>
+      <item>REVERSE_LIST</item>
+      <item>ROUND_TO_INT</item>
+      <item>SAVE_GAME</item>
+      <item>SELECT_CARDS</item>
+      <item>SET</item>
+      <item>SET_LAYOUT</item>
+      <item>SHUFFLE_BOTTOM_X</item>
+      <item>SHUFFLE_GROUP</item>
+      <item>SHUFFLE_LIST</item>
+      <item>SHUFFLE_TOP_X</item>
+      <item>SORT_OBJ_LIST</item>
+      <item>SPLIT_STRING</item>
+      <item>STOP_LOOKING</item>
+      <item>STRING_TO_OBJ</item>
+      <item>SUBSTRING</item>
+      <item>SUBTRACT</item>
+      <item>TARGET</item>
+      <item>TARGET_PLAYER_I</item>
+      <item>TIME_IT</item>
+      <item>TO_INT</item>
+      <item>TO_LOWERCASE</item>
+      <item>TO_UPPERCASE</item>
+      <item>TRUE</item>
+      <item>TYPE_OF</item>
+      <item>UNLOAD_CARDS</item>
+      <item>UNSET</item>
+      <item>UPDATE_LAYOUT</item>
+      <item>UPDATE_VAR</item>
+      <item>VAR</item>
+      <item>WHILE</item>
+    </list>
+
+    <list name="Variables">
+      <item>ACTIVE_CARD</item>
+      <item>ACTIVE_CARD_ID</item>
+      <item>ACTIVE_FACE</item>
+      <item>ACTIVE_GROUP</item>
+      <item>ACTIVE_GROUP_ID</item>
+      <item>ACTIVE_SIDE</item>
+      <item>ACTIVE_TOKENS</item>
+      <item>ALIAS_N</item>
+      <item>CARD_BY_ID</item>
+      <item>CARD_DB</item>
+      <item>GAME</item>
+      <item>GAME_DEF</item>
+      <item>GROUP_BY_ID</item>
+      <item>PLAYER_DATA</item>
+      <item>PLAYER_LIST</item>
+      <item>PLAYER_N</item>
+      <item>PLAYER_ORDER</item>
+      <item>STACK_BY_ID</item>
+    </list>
+
+    <list name="Paths">
+      <item>cardById</item>
+      <item>groupById</item>
+      <item>playerData</item>
+      <item>stackById</item>
+    </list>
+
+    <contexts>
+      <!-- A Dragnlang source file can only start with an object and also supports // EOL comments, unlike pure JSON. -->
+      <context name="Dragnlang" attribute="Error">
+        <DetectChar char="{" context="#pop!Object" attribute="Brace" beginRegion="object"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <!-- Comments with Kate's special sauce -->
+      <context name="FindComments" attribute="Error">
+        <DetectSpaces attribute="Whitespace"/>
+        <StringDetect String="//" context="Comment" attribute="Comment"/>
+      </context>
+
+      <context name="Comment" attribute="Comment" lineEndContext="#pop">
+        <DetectSpaces/>
+        <IncludeRules context="##Comments"/>
+        <DetectIdentifier/>
+      </context>
+
+      <!-- A typical JSON value - either a string, object, array, keyword or number. Float numbers can be styled separately from integer numbers. -->
+      <context name="Value" attribute="Error">
+        <DetectChar char="&quot;" context="#pop!MaybeString" attribute="Quote"/>
+        <DetectChar char="{" context="#pop!Object" attribute="Brace" beginRegion="object"/>
+        <DetectChar char="[" context="#pop!Array" attribute="Bracket" beginRegion="array"/>
+        <keyword String="Keywords" context="#pop" attribute="Keyword"/>
+        <RegExpr String="&float;" context="#pop" attribute="Float"/>
+        <RegExpr String="&integer;" context="#pop" attribute="Integer"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <!-- JSON object. -->
+      <context name="Object" attribute="Error">
+        <DetectChar char="&quot;" context="#pop!ObjectAfterKey!KeyString" attribute="Quote"/>
+        <DetectChar char="}" context="#pop" attribute="Brace" endRegion="object"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <context name="ObjectBeforeKey" attribute="Error">
+        <DetectChar char="&quot;" context="#pop!ObjectAfterKey!KeyString" attribute="Quote"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <context name="ObjectAfterKey" attribute="Error">
+        <DetectChar char=":" context="#pop!ObjectAfterValue!Value" attribute="Colon"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <context name="ObjectAfterValue" attribute="Error">
+        <DetectChar char="," context="#pop!ObjectBeforeKey" attribute="Comma"/>
+        <DetectChar char="}" context="#pop" attribute="Brace" endRegion="object"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <!-- JSON array. If the first element is a string, then it may be a function call. -->
+      <context name="Array" attribute="Error" fallthroughContext="#pop!ArrayAfterValue!Value">
+        <DetectChar char="&quot;" context="#pop!ArrayAfterValue!MaybeFunctionString" attribute="Quote"/>
+        <DetectChar char="]" context="#pop" attribute="Bracket" endRegion="array"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <context name="ArrayAfterValue" attribute="Error">
+        <DetectChar char="," context="Value" attribute="Comma"/>
+        <DetectChar char="]" context="#pop" attribute="Bracket" endRegion="array"/>
+        <IncludeRules context="FindComments"/>
+      </context>
+
+      <!-- Base of all string types, handles escape sequences and checking character validity. -->
+      <context name="StringBase" attribute="String" lineEndContext="#pop">
+        <RegExpr String="&escape;" attribute="Escape"/>
+        <RegExpr String="&invalidEscape;" attribute="Error"/>
+        <RegExpr String="&controlChars;" attribute="Error"/>
+      </context>
+
+      <!-- Special context where closing double quotes are expected. -->
+      <context name="StringEnd" attribute="Error" lineEndContext="#pop">
+        <DetectChar char="&quot;" context="#pop" attribute="Quote"/>
+      </context>
+
+      <!-- Object key. Does not support any Dragnlang features. -->
+      <context name="KeyString" attribute="Key" lineEndContext="#pop">
+        <DetectChar char="&quot;" context="#pop" attribute="Quote"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- Possibly a function call, but it may also be a special string. -->
+      <context name="MaybeFunctionString" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!FunctionString">
+        <DetectChar char="$" context="#pop!SpecialString!VariableSegment" attribute="Variable"/>
+        <DetectChar char="/" context="#pop!SpecialString!PathSegmentStart" attribute="Solidus"/>
+      </context>
+
+      <!-- Possibly a regular JSON string, but it may also be a special string. -->
+      <context name="MaybeString" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!ValueString">
+        <DetectChar char="$" context="#pop!SpecialString!VariableSegment" attribute="Variable"/>
+        <DetectChar char="/" context="#pop!SpecialString!PathSegmentStart" attribute="Solidus"/>
+      </context>
+
+      <!-- A function call. Supports preprocessor directives (in current version of Dragnlang this isn't actually true). -->
+      <context name="FunctionString" attribute="Function" lineEndContext="#pop">
+        <DetectChar char="&quot;" context="#pop" attribute="Quote"/>
+        <RegExpr String="&preprocessor;" context="PreprocessorSegmentStart" attribute="Preprocessor"/>
+        <keyword String="Functions" context="#pop!StringEnd" attribute="Core Function" additionalDeliminator="&quot;"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- A regular JSON string. Supports preprocessor directives. -->
+      <context name="ValueString" attribute="String" lineEndContext="#pop">
+        <DetectChar char="&quot;" context="#pop" attribute="Quote"/>
+        <RegExpr String="&preprocessor;" context="PreprocessorSegmentStart" attribute="Preprocessor"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- Used for special strings. Supports preprocessor directives and segments. -->
+      <context name="SpecialString" attribute="Error" lineEndContext="#pop">
+        <DetectChar char="&quot;" context="#pop" attribute="Quote"/>
+        <DetectChar char="$" context="VariableSegment" attribute="Variable"/>
+        <DetectChar char="." context="DotSegment" attribute="Dot"/>
+        <DetectChar char="/" context="PathSegmentStart" attribute="Solidus"/>
+        <RegExpr String="&preprocessor;" context="PreprocessorSegmentStart" attribute="Preprocessor"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- Possibly a path segment, but it may also be a variable or index segment. -->
+      <context name="DotSegment" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!PathSegment">
+        <DetectChar char="$" context="#pop!VariableSegment" attribute="Variable"/>
+        <RegExpr String="&index;" context="#pop!IndexSegmentStart" attribute="Index"/>
+      </context>
+
+      <!-- A variable segment. -->
+      <context name="VariableSegment" attribute="Variable" lineEndContext="#pop">
+        <AnyChar String="&quot;$./]}" context="#pop" lookAhead="1"/>
+        <RegExpr String="&preprocessor;" context="PreprocessorSegmentStart" attribute="Preprocessor"/>
+        <keyword String="Variables" attribute="Core Variable" additionalDeliminator="&quot;"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- Possibly a path segment, but it may also be a variable segment. -->
+      <context name="PathSegmentStart" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!PathSegment">
+        <DetectChar char="$" context="#pop!VariableSegment" attribute="Variable"/>
+      </context>
+
+      <!-- A path segment. -->
+      <context name="PathSegment" attribute="Path" lineEndContext="#pop">
+        <AnyChar String="&quot;$./]}" context="#pop" lookAhead="1"/>
+        <RegExpr String="&preprocessor;" context="PreprocessorSegmentStart" attribute="Preprocessor"/>
+        <keyword String="Paths" attribute="Core Path" additionalDeliminator="&quot;"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <!-- An index segment, but it may  -->
+      <context name="IndexSegmentStart" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!IndexSegment">
+        <DetectChar char="$" context="VariableSegment" attribute="Variable"/>
+      </context>
+
+      <context name="IndexSegment" attribute="String" lineEndContext="#pop">
+        <DetectChar char="]" context="#pop" attribute="Index"/>
+        <keyword String="Keywords" context="#pop!IndexEnd" attribute="Keyword"/>
+        <RegExpr String="&float;" context="#pop!IndexEnd" attribute="Float"/>
+        <RegExpr String="&integer;" context="#pop!IndexEnd" attribute="Integer"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+      <context name="IndexEnd" attribute="Error" lineEndContext="#pop">
+        <DetectChar char="]" context="#pop" attribute="Index"/>
+      </context>
+
+      <!-- Used for preprocessor value (variable or standard string inside {{ }}). -->
+      <context name="PreprocessorSegmentStart" attribute="Error" lineEndContext="#pop" fallthroughContext="#pop!PreprocessorSegment">
+        <DetectChar char="$" context="VariableSegment" attribute="Variable"/>
+      </context>
+
+      <context name="PreprocessorSegment" attribute="String" lineEndContext="#pop">
+        <StringDetect String="}}" context="#pop" attribute="Preprocessor"/>
+        <IncludeRules context="StringBase"/>
+      </context>
+
+
+
+    </contexts>
+
+    <itemDatas>
+      <!-- basic styles -->
+      <itemData name="Whitespace"    defStyleNum="dsNormal"/>
+      <itemData name="Error"         defStyleNum="dsError" underline="0" strikethrough="1"/>
+      <itemData name="Comment"       defStyleNum="dsComment"/>
+
+      <!-- JSON symbol styles -->
+      <itemData name="Brace"         defStyleNum="dsOperator"/>      <!-- object opening and closing brace ({ }) -->
+      <itemData name="Bracket"       defStyleNum="dsOperator"/>      <!-- array opening and closing bracket ([ ]) -->
+      <itemData name="Colon"         defStyleNum="dsOperator"/>      <!-- object key value separator (:) -->
+      <itemData name="Comma"         defStyleNum="dsOperator"/>      <!-- object pair and array value separator (,) -->
+      <itemData name="Quote"         defStyleNum="dsOperator"/>      <!-- string opening and closing double quotes (") -->
+
+      <!-- various JSON styles -->
+      <itemData name="Keyword"       defStyleNum="dsKeyword"/>       <!-- built-in JSON keywords (null, true, false) -->
+      <itemData name="Integer"       defStyleNum="dsDecVal"/>        <!-- integer number (no . and no e/E) -->
+      <itemData name="Float"         defStyleNum="dsFloat"/>         <!-- float or exponent number (. and/or e/E) -->
+      <itemData name="Escape"        defStyleNum="dsSpecialChar"/>   <!-- escape sequence inside any string -->
+
+      <!-- string styles -->
+      <itemData name="Key"           defStyleNum="dsDataType"/>      <!-- object key string -->
+      <itemData name="Core Function" defStyleNum="dsFunction"/>      <!-- built-in function name string -->
+      <itemData name="Function"      defStyleNum="dsFunction"/>      <!-- function name string -->
+      <itemData name="String"        defStyleNum="dsString"/>        <!-- standard string -->
+
+      <!-- string element styles -->
+      <itemData name="Core Variable" defStyleNum="dsVariable"/>      <!-- built-in variable name -->
+      <itemData name="Variable"      defStyleNum="dsVariable"/>      <!-- variable name -->
+      <itemData name="Core Path"     defStyleNum="dsVariable"/>      <!-- built-in path name -->
+      <itemData name="Path"          defStyleNum="dsVariable"/>      <!-- path name -->
+      <itemData name="Dot"           defStyleNum="dsOperator"/>      <!-- member separator inside a special string (.) -->
+      <itemData name="Solidus"       defStyleNum="dsOperator"/>      <!-- path separator inside a special string (/) -->
+      <itemData name="Index"         defStyleNum="dsOperator"/>      <!-- index block opening and closing bracket inside a special string ([ ]) -->
+      <itemData name="Preprocessor"  defStyleNum="dsPreprocessor"/>  <!-- preprocessor block opening and closing double braces inside a special string ({{ }}) -->
+    </itemDatas>
+
+  </highlighting>
+
+</language>
+<!--
+// kate: space-indent on; indent-width 2; replace-tabs on;
+-->
