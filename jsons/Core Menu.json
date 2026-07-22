@@ -810,7 +810,7 @@
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08013a"], //Discipline: Prescience of Fate
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "08014a"], //Discipline: Balance of Body
                         ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "10005"],  //Flux Stabilizer: Inactive
-                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Black Netherworld
+                        ["EQUAL", "$ACTIVE_CARD.sides.A.databaseId", "90052"]   //The Beyond: Bleak Netherworld
                     ]
                 ]
             },

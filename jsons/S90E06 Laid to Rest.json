@@ -72,7 +72,7 @@
     "actionLists": {
         "Laid to Rest Scenario Init": [
             ["VAR", "$JIM_CULVER", ["GET_NAMED_CARD", "Jim Culver"]],
-            ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Beyond: Black Netherworld", "90052", ["GET_CONTROLLER_PLAY", "$JIM_CULVER.controller"]],
+            ["DO_PULL_PLAYER_DECK_CARD_SCN", "The Beyond: Bleak Netherworld", "90052", ["GET_CONTROLLER_PLAY", "$JIM_CULVER.controller"]],
             ["DO_LOAD_CARDS_SCN", "Laid to Rest"],
             ["DO_LOAD_CARDS_SCN", "Anette's Coven"],
             ["DO_LOAD_CARDS_SCN", "City of Sins"],
