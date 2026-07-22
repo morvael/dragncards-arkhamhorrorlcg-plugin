@@ -1,0 +1,143 @@
+{
+    "preBuiltDecks": {
+        "Queen of Ash Scenario": {
+            "label": "Queen of Ash Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Brethren of Ash", "Brethren of Ash", "Queen of Ash", "Queen of Ash Scenario Early Init", "Queen of Ash Scenario Init"]
+            ]
+        },
+        "Queen of Ash": {
+            "hideFromSearch": true,
+            "label": "Queen of Ash",
+            "cards": [
+                {"databaseId": "12168", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Queen of Ash
+                {"databaseId": "12169", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //A Gathering
+                {"databaseId": "12170", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //A Ritual
+                {"databaseId": "12171", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Brethren of Ash
+                {"databaseId": "12172", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Search the Sewers
+                {"databaseId": "12173", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Stop the Rite
+                {"databaseId": "12174", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "10%"},  //Underground Cistern
+                {"databaseId": "12175", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Sluice Control
+                {"databaseId": "12180", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Servant of Flame: A Willing Sacrifice
+                {"databaseId": "12181", "quantity": 2, "loadGroupId": "sharedNotInPlay"},                               //Collector
+                {"databaseId": "12179", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Elokoss: Faint Embers
+                {"databaseId": "12177", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Queen's Knight
+                {"databaseId": "12178", "quantity": 1, "loadGroupId": "sharedNotInPlay"},                               //Herald of Flame
+                {"databaseId": "12176", "quantity": 2, "loadGroupId": "sharedEncounterDeck"}                            //Ashen Rebirth
+            ]
+        },
+        "Sewers": {
+            "hideFromSearch": true,
+            "label": "Sewers",
+            "cards": [
+                {"databaseId": "12182", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"}   //Sewer Culvert
+            ]
+        }
+    },
+    "actionLists": {
+        "Queen of Ash Scenario Early Init": [
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDifficultyNumber", 1],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_elder_thing", 1]
+            ],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDifficultyNumber", 2],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_tablet", 1]
+            ],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDifficultyNumber", 3],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_skull", 1]
+            ],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.scenarioDifficultyNumber", 4],
+                ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_cultist", 1]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators discovered the cult’s whereabouts.", "The above is not true."], "Queen of Ash Scenario Question 1"]
+        ],
+        "Queen of Ash Scenario Question 1": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"]
+            ],
+            ["SCENARIO_INIT_RESUME", "Queen of Ash Scenario Init"]
+        ],
+        "Queen of Ash Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Queen of Ash"],
+            ["DO_SET_SPAWN_LOCATION", "12175", 64, 10], //Sluice Control
+            ["DO_LOAD_CARDS_SCN", "Sewers"],
+            ["DO_LOAD_CARDS_SCN", "Ashen Pilgrims"],
+            ["DO_LOAD_CARDS_SCN", "Cosmic Evils"],
+            ["DO_LOAD_CARDS_SCN", "Cultists"],
+            ["DO_LOAD_CARDS_SCN", "Fire!"],
+            ["DO_LOAD_CARDS_SCN", "Hallucinations"],
+            ["DO_LOAD_CARDS_SCN", "Reeking Decay"],
+            ["DO_LOAD_CARDS_SCN", "Torment"],
+            ["DO_SPAWN_LOCATIONS_SCN", "Sewer Tunnels", ["SHUFFLE_LIST", ["LIST", "12183", "12184", "12185", "12186", "12187"]], ["LIST", 7, 26, 45, 64, 83], ["LIST", 43, 43, 43, 43, 43], 0, 5, 0], //Sewer Tunnels: Infested Pipes, Sewer Tunnels: Overgrown Tunnels, Sewer Tunnels: Flooded Crypt, Sewer Tunnels: Smuggler's Cache, Sewer Tunnels: Toxic Waste Pit
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Sewer Culvert", 5, 7, 3, 0],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators scoured Arkham for answers.", "The above is not true."], "Queen of Ash Scenario Question 2"]
+        ],
+        "Queen of Ash Scenario Question 2": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer2", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer2Text}}"],
+                    ["FOR_EACH_VAL", "$PLAYER_I", "$PLAYER_ORDER", [
+                        ["VAR", "$INVESTIGATOR", ["GET_INVESTIGATOR", "$PLAYER_I"]],
+                        ["DO_PLACE_CLUES_ON_CARD", "$PLAYER_I", "$INVESTIGATOR.id", 1, true, null]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators stirred up trouble.", "The above is not true."], "Queen of Ash Scenario Question 3"]
+        ],
+        "Queen of Ash Scenario Question 3": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer3", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer3Text}}"],
+                    ["VAR", "$CULTISTS", ["SHUFFLE_LIST", ["CARDS_TO_CARD_IDS", ["FILTER_CARDS", "$CARD", ["AND",
+                        ["EQUAL", "$CARD.groupId", "sharedEncounterDeck"],
+                        ["OR",
+                            ["EQUAL", "$CARD.sides.A.encounterSet", "Ashen Pilgrims"],
+                            ["EQUAL", "$CARD.sides.A.encounterSet", "Cultists"]
+                        ],
+                        ["IN_STRING", "$CARD.sides.A.traits", "Cultist."]
+                    ]]]]],
+                    ["VAR", "$LOCATIONS", ["SHUFFLE_LIST", ["LIST", "12183", "12184", "12185", "12186", "12187"]]], //Sewer Tunnels: Infested Pipes, Sewer Tunnels: Overgrown Tunnels, Sewer Tunnels: Flooded Crypt, Sewer Tunnels: Smuggler's Cache, Sewer Tunnels: Toxic Waste Pit
+                    ["FOR_EACH_START_STOP_STEP", "$I", 0, "$GAME.arkham.numPlayers", 1, [
+                        ["DO_SPAWN_ENCOUNTER_AT_LOCATION_SCN", "$CULTISTS.[$I]", "$LOCATIONS.[$I]", 3, 3, 1]
+                    ]]
+                ]
+            ],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "The investigators killed the Servant of Flame.", "The above is not true."], "Queen of Ash Scenario Question 4"]
+        ],
+        "Queen of Ash Scenario Question 4": [
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer4", "A"],
+                [
+                    ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer4Text}}"],
+                    ["DO_DELETE_NAMED_CARDS_SCN", "Servant of Flame"]
+                ]
+            ],
+            ["VAR", "$DOOM", 0],
+            ["COND",
+                ["NOT_EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["INCREASE_VAR", "$DOOM", 1]
+            ],
+            ["COND",
+                ["GREATER_EQUAL", "$GAME.arkham.numPlayers", 3],
+                ["INCREASE_VAR", "$DOOM", 1]
+            ],
+            ["COND",
+                ["GREATER_THAN", "$DOOM", 0],
+                ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", "$DOOM"]
+            ],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Fire!", "sharedEncounterDeck", 5, "sharedPileA"],
+            ["SET", "/arkham/finalScenarioMessage", "Fire! cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
+// kate: syntax Dragnlang; scheme Arkham Dark;

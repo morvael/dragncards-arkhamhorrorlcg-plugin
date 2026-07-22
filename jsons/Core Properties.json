@@ -118,6 +118,7 @@
                             "campaignName": "No Campaign",                      // name used when saving the game
                             "scenarioName": "No Scenario",                      // name used when saving the game and in some messages
                             "scenarioDifficulty": "Standard",                   // scenario difficulty (Easy, Standard, Hard, Expert)
+                            "scenarioDifficultyNumber": 2,                      // scenario difficulty as number (Easy 1, Standard 2, Hard 3, Expert 4)
                             "scenarioEarlyAction": null,                        // name of the next action list to call during scenario setup when scenario initialization ends processing
                             "scenarioAction": null,                             // name of the next action list to call during scenario setup when default code ends processing
                             "scenarioActionAfterStep7": null,                   // name of the action list to call during scenario setup when resources have been collected (step 7), but before drawing opening hand (step 8)

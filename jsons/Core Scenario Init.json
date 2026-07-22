@@ -494,12 +494,14 @@
             "args": ["$TARGET_NAME"],
             "code": [
                 ["VALIDATE_NOT_EMPTY", "$TARGET_NAME", "DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN.TARGET_NAME"],
+                ["DEFINE", "$DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN_RESULT", null],
                 ["VAR", "$TARGET_CARD", ["GET_NAMED_PLAYER_DECK_CARD", "$TARGET_NAME"]],
                 ["COND",
                     ["NOT_EQUAL", "$TARGET_CARD", null],
                     [
                         ["DO_LOG", true, "$TARGET_CARD.controller", "$TARGET_CARD.controller", "put {{$TARGET_CARD.sides.A.name}} from their deck into play.", "puts {{$TARGET_CARD.sides.A.name}} from their deck into play."],
-                        ["MOVE_CARD", "$TARGET_CARD.id", ["GET_CONTROLLER_PLAY", "$TARGET_CARD.controller"], -1]
+                        ["MOVE_CARD", "$TARGET_CARD.id", ["GET_CONTROLLER_PLAY", "$TARGET_CARD.controller"], -1],
+                        ["DEFINE", "$DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN_RESULT", "$TARGET_CARD.id"]
                     ]
                 ]
             ]
@@ -1219,6 +1221,7 @@
                                 ["SET", "/arkham/campaignName", "$CAMPAIGN_NAME"],
                                 ["SET", "/arkham/scenarioName", "$SCENARIO_NAME"],
                                 ["SET", "/arkham/scenarioDifficulty", "Standard"],
+                                ["SET", "/arkham/scenarioDifficultyNumber", 2],
                                 ["SET", "/arkham/scenarioEarlyAction", "$SCENARIO_EARLY_ACTION"],
                                 ["SET", "/arkham/scenarioAction", "$SCENARIO_ACTION"],
                                 ["SET", "/arkham/scenarioActionAfterStep7", null],
@@ -1392,10 +1395,11 @@
             ]
         },
         "SET_SCENARIO_DIFFICULTY": {
-            "args": ["$DIFFICULTY_NAME"],
+            "args": ["$DIFFICULTY_NAME", "$DIFFICULTY_NUMBER"],
             "code": [
                 ["LOG", "{{$ALIAS_N}} sets scenario difficulty to {{$DIFFICULTY_NAME}}."],
                 ["SET", "/arkham/scenarioDifficulty", "$DIFFICULTY_NAME"],
+                ["SET", "/arkham/scenarioDifficultyNumber", "$DIFFICULTY_NUMBER"],
                 ["PROMPT", "$GAME.firstPlayer", "loadChaosBag"]
             ]
         },
@@ -1856,28 +1860,28 @@
                     "label": "Easy.",
                     "hotkey": "E",
                     "code": [
-                        ["SET_SCENARIO_DIFFICULTY", "Easy"]
+                        ["SET_SCENARIO_DIFFICULTY", "Easy", 1]
                     ]
                 },
                 {
                     "label": "Standard.",
                     "hotkey": "S",
                     "code": [
-                        ["SET_SCENARIO_DIFFICULTY", "Standard"]
+                        ["SET_SCENARIO_DIFFICULTY", "Standard", 2]
                     ]
                 },
                 {
                     "label": "Hard.",
                     "hotkey": "H",
                     "code": [
-                        ["SET_SCENARIO_DIFFICULTY", "Hard"]
+                        ["SET_SCENARIO_DIFFICULTY", "Hard", 3]
                     ]
                 },
                 {
                     "label": "Expert.",
                     "hotkey": "X",
                     "code": [
-                        ["SET_SCENARIO_DIFFICULTY", "Expert"]
+                        ["SET_SCENARIO_DIFFICULTY", "Expert", 4]
                     ]
                 }
             ]

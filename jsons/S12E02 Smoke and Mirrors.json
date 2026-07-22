@@ -1,0 +1,100 @@
+{
+    "preBuiltDecks": {
+        "Smoke and Mirrors Scenario": {
+            "label": "Smoke and Mirrors Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Brethren of Ash", "Brethren of Ash", "Smoke and Mirrors", "Smoke and Mirrors Scenario Early Init", "Smoke and Mirrors Scenario Init"]
+            ]
+        },
+        "Smoke and Mirrors": {
+            "hideFromSearch": true,
+            "label": "Smoke and Mirrors",
+            "cards": [
+                {"databaseId": "12133", "quantity": 1, "loadGroupId": "sharedScenarioReference"},   //Smoke and Mirrors
+                {"databaseId": "12134", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Arkham Alive
+                {"databaseId": "12135", "quantity": 1, "loadGroupId": "sharedAgendaStory"},         //Emergent Evils
+                {"databaseId": "12136", "quantity": 1, "loadGroupId": "sharedActStory"},            //Augurs of Flame
+                {"databaseId": "12137", "quantity": 4, "loadGroupId": "sharedPileA"},               //Mark of Elokoss
+                {"databaseId": "12138", "quantity": 1, "loadGroupId": "sharedDeckA"}                //Servant of Flame: On the Run
+            ]
+        },
+        "People of Arkham": {
+            "hideFromSearch": true,
+            "label": "People of Arkham",
+            "cards": [
+                {"databaseId": "12139", "quantity": 1, "loadGroupId": "sharedDeckA"},   //David Renfield: Disillusioned Eschatologist
+                {"databaseId": "12140", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Cornelia Akely: Exhausted Supervisor
+                {"databaseId": "12141", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Naomi O'Bannion: Runs This Town
+                {"databaseId": "12142", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Sgt. Earl Monroe: Dirty Cop
+                {"databaseId": "12143", "quantity": 1, "loadGroupId": "sharedDeckA"},   //Abigail Foreman: Wary Librarian
+                {"databaseId": "12144", "quantity": 1, "loadGroupId": "sharedDeckA"}    //Margaret Liu: Beguiling Lounge Singer
+            ]
+        },
+        "Arkham (Chapter 2)": {
+            "hideFromSearch": true,
+            "label": "Arkham (Chapter 2)",
+            "cards": [
+                {"databaseId": "12149", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"},  //Northside
+                {"databaseId": "12150", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "10%"},  //Easttown
+                {"databaseId": "12151", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "43%"},  //Merchant District
+                {"databaseId": "12152", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "43%"},  //Waterfront District
+                {"databaseId": "12153", "quantity": 1, "loadGroupId": "sharedLocations", "left": "45%", "top": "76%"},  //Southside
+                {"databaseId": "12154", "quantity": 1, "loadGroupId": "sharedLocations", "left": "70%", "top": "76%"}   //French Hill
+            ]
+        }
+    },
+    "actionLists": {
+        "Smoke and Mirrors Scenario Early Init": [
+          ["DO_ADD_CHAOS_TOKENS_SCN", "chaos_cultist", 2],
+          ["SCENARIO_INIT_RESUME", "Smoke and Mirrors Scenario Init"]
+        ],
+        "Smoke and Mirrors Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Smoke and Mirrors"],
+            ["DO_LOAD_CARDS_SCN", "Arcane Lock"],
+            ["DO_LOAD_CARDS_SCN", "Arkham (Chapter 2)"],
+            ["DO_LOAD_CARDS_SCN", "Bad Weather"],
+            ["DO_LOAD_CARDS_SCN", "Dead Ends"],
+            ["DO_LOAD_CARDS_SCN", "Flying Terrors"],
+            ["DO_LOAD_CARDS_SCN", "Gangs of Arkham"],
+            ["DO_LOAD_CARDS_SCN", "People of Arkham"],
+            ["DO_LOAD_CARDS_SCN", "Whippoorwills (Chapter 2)"],
+            ["DO_SPAWN_LOCATIONS_SCN", "Downtown", ["SHUFFLE_LIST", ["LIST", "12145", "12146"]], ["LIST", 45], ["LIST", 10], 0, 1, 0], //Downtown: First Bank of Arkham, Downtown: Arkham Sanatorium
+            ["DO_SPAWN_LOCATIONS_SCN", "Uptown", ["SHUFFLE_LIST", ["LIST", "12147", "12148"]], ["LIST", 20], ["LIST", 76], 0, 1, 0], //Uptown: St. Mary's Hospital, Uptown: Ye Olde Magick Shoppe
+            ["VAR", "$PEOPLE", ["SHUFFLE_LIST", ["LIST", "12139", "12140", "12141", "12142", "12143", "12144"]]], //David Renfield: Disillusioned Eschatologist, Cornelia Akely: Exhausted Supervisor, Naomi O'Bannion: Runs This Town, Sgt. Earl Monroe: Dirty Cop, Abigail Foreman: Wary Librarian, Margaret Liu: Beguiling Lounge Singer
+            ["DO_DELETE_CARD_SCN", ["GET_NAMED_CARD_ID", "$PEOPLE.[0]"]],
+            ["DO_SHUFFLE_GROUP", "$GAME.firstPlayer", "sharedDeckA", true, null],
+            ["SET", "/arkham/skipShufflingSharedDeckA", true],
+            ["VAR", "$LOCATIONS", ["LIST", "Northside", "Downtown", "Southside", "French Hill", "Uptown", "Waterfront District"]],
+            ["FOR_EACH_START_STOP_STEP", "$I", 0, 6, 1, [
+                ["VAR", "$TOP_CARD", ["GET_TOP_CARD", "sharedDeckA"]],
+                ["SET", "/cardById/$TOP_CARD.id/disableSideChange", true],
+                ["DO_SPAWN_HIDDEN_AT_LOCATION_SCN", "$TOP_CARD.id", "$LOCATIONS.[$I]", -3, -3],
+                ["SET", "/cardById/$TOP_CARD.id/disableSideChange", false]
+            ]],
+            ["ASK_SCENARIO_QUESTION_AND_CONTINUE", "Check Campaign Log.", ["LIST", "Miskatonic University burned.", "The investigators saved Miskatonic University."], "Smoke and Mirrors Scenario Question 1"]
+        ],
+        "Smoke and Mirrors Scenario Question 1": [
+            ["LOG", "└── Campaign Log: {{$GAME.arkham.scenarioAnswer1Text}}"],
+            ["COND",
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "A"],
+                ["DO_SPAWN_LOCATION_SCN", "Miskatonic University: In Flames", "12155", 20, 43],
+                ["EQUAL", "$GAME.arkham.scenarioAnswer1", "B"],
+                ["DO_SPAWN_LOCATION_SCN", "Miskatonic University: Quiet Campus", "12156", 20, 43]
+            ],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Miskatonic University", 5, 7, 3, 0],
+            ["DO_PLACE_DOOM_ON_CURRENT_AGENDA_SCN", "$GAME.arkham.numPlayers"],
+            ["VAR", "$FINAL_MESSAGE", "Mark of Elokoss cards are in Pile A."],
+            ["DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN", "Dr. Henry Armitage: Head Librarian"],
+            ["COND",
+                ["NOT_EQUAL", "$DO_PUT_INTO_PLAY_FROM_PLAYER_DECK_SCN_RESULT", null],
+                ["UPDATE_VAR", "$FINAL_MESSAGE", "{{$FINAL_MESSAGE}} Dr. Henry Armitage does not take up an ally slot during this scenario."]
+            ],
+            ["SET", "/arkham/finalScenarioMessage", "{{$FINAL_MESSAGE}}"],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
+// kate: syntax Dragnlang; scheme Arkham Dark;

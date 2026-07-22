@@ -1,0 +1,71 @@
+{
+    "preBuiltDecks": {
+        "Spreading Flames Scenario": {
+            "label": "Spreading Flames Scenario",
+            "cards": [
+
+            ],
+            "postLoadActionList": [
+                ["SCENARIO_INIT", "Brethren of Ash", "Brethren of Ash", "Spreading Flames", null, "Spreading Flames Scenario Init"]
+            ]
+        },
+        "Spreading Flames": {
+            "hideFromSearch": true,
+            "label": "Spreading Flames",
+            "cards": [
+                {"databaseId": "12105", "quantity": 1, "loadGroupId": "sharedScenarioReference"},                       //Spreading Flames
+                {"databaseId": "12106", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Past Curfew
+                {"databaseId": "12107", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Lit Up
+                {"databaseId": "12108", "quantity": 1, "loadGroupId": "sharedAgendaStory"},                             //Wild Flames
+                {"databaseId": "12109", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Where There's Smoke...
+                {"databaseId": "12110", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Escape the Dorms
+                {"databaseId": "12111", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Searching for Dr. Armitage
+                {"databaseId": "12112", "quantity": 1, "loadGroupId": "sharedActStory"},                                //Blaze of Glory
+                {"databaseId": "12113", "quantity": 1, "loadGroupId": "sharedLocations", "left": "20%", "top": "10%"}   //Your Friend's Room
+            ]
+        },
+        "Spreading Flames - Set Aside": {
+            "hideFromSearch": true,
+            "label": "Spreading Flames - Set Aside",
+            "cards": [
+                {"databaseId": "12115", "quantity": 1, "loadGroupId": "sharedNotInPlay"}, //Dr. Henry Armitage: Head Librarian
+                {"databaseId": "12114", "quantity": 1, "loadGroupId": "sharedNotInPlay"}  //Servant of Flame: Raging Fury
+            ]
+        },
+        "Miskatonic University (Chapter 2)": {
+            "hideFromSearch": true,
+            "label": "Miskatonic University (Chapter 2)",
+            "cards": [
+                {"databaseId": "12116", "quantity": 1, "loadGroupId": "sharedNotInPlay"}, //Miskatonic Quad
+                {"databaseId": "12117", "quantity": 1, "loadGroupId": "sharedNotInPlay"}, //Dormitories
+                {"databaseId": "12118", "quantity": 1, "loadGroupId": "sharedNotInPlay"}, //Science Hall
+                {"databaseId": "12119", "quantity": 1, "loadGroupId": "sharedNotInPlay"}, //Warren Observatory
+                {"databaseId": "12120", "quantity": 1, "loadGroupId": "sharedNotInPlay"}  //Orne Library
+            ]
+        }
+    },
+    "actionLists": {
+        "Spreading Flames Scenario Init": [
+            ["DO_LOAD_CARDS_SCN", "Spreading Flames"],
+            ["DO_LOAD_CARDS_SCN", "Ashen Pilgrims"],
+            ["DO_LOAD_CARDS_SCN", "Bystanders"],
+            ["DO_LOAD_CARDS_SCN", "Cosmic Evils"],
+            ["DO_LOAD_CARDS_SCN", "Eldritch Lore"],
+            ["DO_LOAD_CARDS_SCN", "Fire!"],
+            ["DO_LOAD_CARDS_SCN", "Hallucinations"],
+            ["DO_LOAD_CARDS_SCN", "Mad Science"],
+            ["DO_LOAD_CARDS_SCN", "Miskatonic University (Chapter 2)"],
+            ["DO_SET_SPAWN_LOCATION", "12116", 45, 43], //Miskatonic Quad
+            ["DO_SET_SPAWN_LOCATION", "12117", 45, 10], //Dormitories
+            ["DO_SET_SPAWN_LOCATION", "12118", 20, 76], //Science Hall
+            ["DO_SET_SPAWN_LOCATION", "12119", 45, 76], //Warren Observatory
+            ["DO_SET_SPAWN_LOCATION", "12120", 70, 76], //Orne Library
+            ["DO_LOAD_CARDS_SCN", "Spreading Flames - Set Aside"],
+            ["DO_SPAWN_MINI_INVESTIGATORS_AT_LOCATION", "Your Friend's Room", 5, 7, 3, 0],
+            ["DO_MOVE_NAMED_DECK_CARDS_SCN", "Fire!", "sharedEncounterDeck", 5, "sharedPileA"],
+            ["SET", "/arkham/finalScenarioMessage", "Fire! cards are in Pile A."],
+            ["SCENARIO_INIT_CONTINUE", null]
+        ]
+    }
+}
+// kate: syntax Dragnlang; scheme Arkham Dark;
