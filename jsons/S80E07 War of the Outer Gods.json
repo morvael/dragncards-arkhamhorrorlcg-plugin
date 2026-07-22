@@ -103,7 +103,7 @@
             ["DO_SET_SPAWN_LOCATION", "86024", 7, 33], //Hub Dimension: Gateway to Destruction
             ["VAR", "$SELECTED_CARDS", ["FILTER_CARDS", "$CARD", ["AND",
                 ["EQUAL", "$CARD.sides.A.type", "Agenda"],
-                ["EQUAL", "$CARD.sides.A.doom", -2]
+                ["EQUAL", "$CARD.sides.A.doom", -3]
             ]]],
             ["FOR_EACH_VAL", "$CARD", "$SELECTED_CARDS", [
                 ["SET", "/cardById/$CARD.id/sides/A/doom", "$DOOM"]
