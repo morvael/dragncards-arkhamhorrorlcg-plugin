@@ -130,6 +130,24 @@
                     "{{$PREFIX}}{{$DATABASE_ID}}"
                 ]
             ]
+        },
+        "GET_INVESTIGATOR_MINI_ID": {
+            "_comment": "Returns the mini ($PREFIX 'm') or micro ('u') databaseId for an investigator card. Keeps the 'author_id-<id>-' prefix of custom content investigators so the matching custom mini is found.",
+            "args": ["$PREFIX", "$INVESTIGATOR"],
+            "code": [
+                ["VAR", "$MINI_ID", ["GET_MINI_ID", "$PREFIX", "$INVESTIGATOR.sides.A.databaseId"]],
+                ["COND",
+                    ["NOT_EQUAL", "$INVESTIGATOR.originalInvestigatorId", null],
+                    ["GET_MINI_ID", "$PREFIX", "$INVESTIGATOR.originalInvestigatorId"],
+                    ["IN_STRING", "$INVESTIGATOR.databaseId", "author_id-"],
+                    [
+                        ["VAR", "$CUSTOM_PREFIX", ["REGEX_REPLACE", "$INVESTIGATOR.databaseId", "^(author_id-\\d+-).*$", "\\1"]],
+                        "{{$CUSTOM_PREFIX}}{{$MINI_ID}}"
+                    ],
+                    ["TRUE"],
+                    "$MINI_ID"
+                ]
+            ]
         }
     }
 }
