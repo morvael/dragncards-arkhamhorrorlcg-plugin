@@ -66,7 +66,7 @@
         "Encounter Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/encounter.webp"},
         "Player Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/player.webp"},
         "Upgrade Card": {"width": 0.69, "height": 1.0, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/upgrade.webp"},
-        "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "https://dragncards-ahlcg.s3.amazonaws.com/images/card_backs/concealed.webp"}
+        "Concealed Card": {"width": 0.47, "height": 0.72, "imageUrl": "card_backs/concealed.webp"}
     },
     "cardTypes": {
         "Investigator":           {"width": 1.00, "height": 0.69, "tokens": ["resource","clue","damage","horror","doom"]},
