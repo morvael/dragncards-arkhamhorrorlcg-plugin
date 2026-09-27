@@ -8,7 +8,7 @@
 <!ENTITY preprocessor "\{\{(?=(?:\\.|[^\\&quot;\{])*\}\})">
 <!ENTITY index "\[(?=(?:\\.|[^\\&quot;\[])*\])">
 ]>
-<language name="Dragnlang" section="Markup" extensions="*.json" version="1" kateversion="5.79" mimetype="application/json" casesensitive="true" author="morvael (rdq2womgwvdbkjww@sinenomine.email)" license="MIT">
+<language name="Dragnlang" section="Markup" extensions="*.json" version="2" kateversion="6.22" mimetype="application/json" casesensitive="true" author="morvael (rdq2womgwvdbkjww@sinenomine.email)" license="MIT">
 
   <highlighting>
 
@@ -383,7 +383,7 @@
     <itemDatas>
       <!-- basic styles -->
       <itemData name="Whitespace"    defStyleNum="dsNormal"/>
-      <itemData name="Error"         defStyleNum="dsError" underline="0" strikethrough="1"/>
+      <itemData name="Error"         defStyleNum="dsError" underline="0" strikeOut="1"/>
       <itemData name="Comment"       defStyleNum="dsComment"/>
 
       <!-- JSON symbol styles -->

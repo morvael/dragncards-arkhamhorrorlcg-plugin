@@ -4,7 +4,7 @@ An AHLCG plugin for Dragncards.
 
 ### Kate support
 
-Included are two files which make editing any Dragncards plugin JSON files in Kate editor a much more pleasant experience.
+Included are two files which make editing any Dragncards plugin JSON files in Kate editor (version 26+ required) a much more pleasant experience.
 
 Syntax file `Dragnlang.xml` should be copied to (or symlinked to):
 ```
