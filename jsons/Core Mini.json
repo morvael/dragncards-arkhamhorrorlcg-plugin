@@ -6,6 +6,8 @@
                 ["VALIDATE_NOT_EMPTY", "$PREFIX", "GET_MINI_ID.$PREFIX"],
                 ["VALIDATE_NOT_EMPTY", "$DATABASE_ID", "GET_MINI_ID.DATABASE_ID"],
                 ["COND",
+                    ["IN_STRING", "$DATABASE_ID", "author_id-"],
+                    ["REGEX_REPLACE", "$DATABASE_ID", "^(author_id-\\d+-)(.*)$", "\\1{{$PREFIX}}\\2"],
                     ["EQUAL", "$DATABASE_ID", "02002-1"],
                     "{{$PREFIX}}02002",
                     ["EQUAL", "$DATABASE_ID", "03006-5"],
