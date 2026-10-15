@@ -409,7 +409,8 @@
                     {"label": "id:theForgottenAgeSupplies", "deckListId": "The Forgotten Age Supplies"},
                     {"label": "id:returnToTheForgottenAgeSupplies", "deckListId": "Return to The Forgotten Age Supplies"},
                     {"label": "id:tarotCardsDeckC", "deckListId": "Tarot Cards - Deck C"},
-                    {"label": "id:tarotCardsPileE", "deckListId": "Tarot Cards - Pile E"}
+                    {"label": "id:tarotCardsPileE", "deckListId": "Tarot Cards - Pile E"},
+                    {"label": "id:customScenario", "deckListId": "Custom Scenario"}
                 ]
             }
         ]
@@ -1167,6 +1168,9 @@
         },
         "tarotCardsPileE": {
             "English": "Tarot Cards - Pile E"
+        },
+        "customScenario": {
+            "English": "Custom Scenario"
         }
     }
 }
